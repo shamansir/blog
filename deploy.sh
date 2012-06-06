@@ -28,10 +28,10 @@ cp -R ./$TMP_DIR/_site/* .
 git add -A
 git status
 echo "..."
-sleep 3
+sleep 6
 git commit -m "update from $(date)"
 echo "..."
-sleep 3
+sleep 6
 git push origin gh-pages
 git checkout $CUR_BRANCH
 git stash apply
