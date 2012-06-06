@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
     <feed xmlns="http://www.w3.org/2005/Atom">
-        <title>None</title>
-        
-        <link rel="alternate" href="/" />
-        <link rel="self" href="/feed.xml" type="application/atom+xml" />
-        <id>/</id>
-        <updated>2012-06-06T19:54:58Z</updated>
+        <title>No word about onion</title>
+        <subtitle>shaman.sir telling you about stuff</subtitle>
+        <link rel="alternate" href="http://shamansir.github.com/blog/" />
+        <link rel="self" href="http://shamansir.github.com/blog/feed.xml" type="application/atom+xml" />
+        <id>http://shamansir.github.com/blog/</id>
+        <updated>2012-06-06T21:00:26Z</updated>
         
         <author>
-            <name>None</name>
-            
-            <uri>/</uri>
+            <name>Ulric Wilfred</name>
+            <email>shaman.sir@gmail.com</email>
+            <uri>http://shamansir.github.com/blog/</uri>
         </author>
         
         
             <entry>
-                <title>Welcome to mynt</title>
-                <link rel="alternate" href="/2012/04/12/Welcome-to-mynt/" type="text/html" />
-                <id>/2012/04/12/Welcome-to-mynt/</id>
-                <updated>2012-04-12T19:54:00Z</updated>
+                <title>Please wait...</title>
+                <link rel="alternate" href="http://shamansir.github.com/blog/2012/06/07/Please-wait/" type="text/html" />
+                <id>http://shamansir.github.com/blog/2012/06/07/Please-wait/</id>
+                <updated>2012-06-07T21:00:00Z</updated>
                 
-                <summary type="html">For a quick overview of what mynt has to offer, give the &lt;a href=&#34;http://mynt.mirroredwhite.com/quickstart/&#34;&gt;quickstart&lt;/a&gt; guide a read. You can also find API reference style documentation on the &lt;a href=&#34;http://mynt.mirroredwhite.com/docs/&#34;&gt;docs&lt;/a&gt; page. If you run into any problems open an issue on &lt;a href=&#34;https://github.com/Anomareh/mynt&#34;&gt;GitHub&lt;/a&gt;. Lastly, if you have any questions or just want to chat, you can hop into our IRC channel on &lt;a href=&#34;http://webchat.freenode.net/?channels=mynt&#34;&gt;freenode&lt;/a&gt;, #mynt.</summary>
-                <content type="html">&lt;p&gt;For a quick overview of what mynt has to offer, give the &lt;a href=&#34;http://mynt.mirroredwhite.com/quickstart/&#34;&gt;quickstart&lt;/a&gt; guide a read. You can also find API reference style documentation on the &lt;a href=&#34;http://mynt.mirroredwhite.com/docs/&#34;&gt;docs&lt;/a&gt; page. If you run into any problems open an issue on &lt;a href=&#34;https://github.com/Anomareh/mynt&#34;&gt;GitHub&lt;/a&gt;. Lastly, if you have any questions or just want to chat, you can hop into our IRC channel on &lt;a href=&#34;http://webchat.freenode.net/?channels=mynt&#34;&gt;freenode&lt;/a&gt;, #mynt.&lt;/p&gt;
+                <summary type="html">Sorry, there&amp;#39;s nothing here now, I&amp;#39;m preparing all this cool stuff to you, but I haven&amp;#39;t still finished. Please come back later. If you want to read my articles, please visit &lt;a href=&#34;http://shamansir.tumblr.com/&#34;&gt;my tumblr blog&lt;/a&gt;. But please keep in mynt that this blog, when it will be finished, will be a main one and here will be a &lt;strong&gt;new nice design&lt;/strong&gt;. However, no clones of my blogs will be killed, because I am just spreading my tentacles all over muwahahahah&amp;hellip; (leaves)</summary>
+                <content type="html">&lt;p&gt;Sorry, there&amp;#39;s nothing here now, I&amp;#39;m preparing all this cool stuff to you, but I haven&amp;#39;t still finished. Please come back later. If you want to read my articles, please visit &lt;a href=&#34;http://shamansir.tumblr.com/&#34;&gt;my tumblr blog&lt;/a&gt;. But please keep in mynt that this blog, when it will be finished, will be a main one and here will be a &lt;strong&gt;new nice design&lt;/strong&gt;. However, no clones of my blogs will be killed, because I am just spreading my tentacles all over muwahahahah&amp;hellip; (leaves)&lt;/p&gt;
 </content>
             </entry>
         
