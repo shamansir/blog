@@ -15,4 +15,24 @@ cp -R ./shared/* ./$TMP_DIR
 cp -R ./$SEC_LANG/* ./$TMP_DIR/_subsites/$SEC_LANG
 mynt gen -f ./$TMP_DIR ./$TMP_DIR/_site
 mynt gen -f ./$TMP_DIR/_subsites/$SEC_LANG ./$TMP_DIR/_site/$SEC_LANG
+CUR_BRANCH=$(git symbolic-ref -q HEAD)
+CUR_BRANCH=${CUR_BRANCH##refs/heads/}
+CUR_BRANCH=${CUR_BRANCH:-HEAD}
+echo "moving away from branch $CUR_BRANCH"
+echo "..."
+sleep 3
+git stash
+git checkout gh-pages
+rm -Rf ./*
+cp -R ./$TMP_DIR/_site/* . 
+git add -A
+git status
+echo "..."
+sleep 3
+git commit -m "update from $(date)"
+echo "..."
+sleep 3
+git push origin gh-pages
+git checkout $CUR_BRANCH
+git stash apply
 
