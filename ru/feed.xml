@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <feed xmlns="http://www.w3.org/2005/Atom">
+        <title>None</title>
+        
+        <link rel="alternate" href="/" />
+        <link rel="self" href="/feed.xml" type="application/atom+xml" />
+        <id>/</id>
+        <updated>2012-06-06T19:33:52Z</updated>
+        
+        <author>
+            <name>None</name>
+            
+            <uri>/</uri>
+        </author>
+        
+        
+            <entry>
+                <title>Welcome to mynt</title>
+                <link rel="alternate" href="/2012/04/12/Welcome-to-mynt/" type="text/html" />
+                <id>/2012/04/12/Welcome-to-mynt/</id>
+                <updated>2012-04-12T19:33:00Z</updated>
+                
+                <summary type="html">For a quick overview of what mynt has to offer, give the &lt;a href=&#34;http://mynt.mirroredwhite.com/quickstart/&#34;&gt;quickstart&lt;/a&gt; guide a read. You can also find API reference style documentation on the &lt;a href=&#34;http://mynt.mirroredwhite.com/docs/&#34;&gt;docs&lt;/a&gt; page. If you run into any problems open an issue on &lt;a href=&#34;https://github.com/Anomareh/mynt&#34;&gt;GitHub&lt;/a&gt;. Lastly, if you have any questions or just want to chat, you can hop into our IRC channel on &lt;a href=&#34;http://webchat.freenode.net/?channels=mynt&#34;&gt;freenode&lt;/a&gt;, #mynt.</summary>
+                <content type="html">&lt;p&gt;For a quick overview of what mynt has to offer, give the &lt;a href=&#34;http://mynt.mirroredwhite.com/quickstart/&#34;&gt;quickstart&lt;/a&gt; guide a read. You can also find API reference style documentation on the &lt;a href=&#34;http://mynt.mirroredwhite.com/docs/&#34;&gt;docs&lt;/a&gt; page. If you run into any problems open an issue on &lt;a href=&#34;https://github.com/Anomareh/mynt&#34;&gt;GitHub&lt;/a&gt;. Lastly, if you have any questions or just want to chat, you can hop into our IRC channel on &lt;a href=&#34;http://webchat.freenode.net/?channels=mynt&#34;&gt;freenode&lt;/a&gt;, #mynt.&lt;/p&gt;
+</content>
+            </entry>
+        
+    </feed>
