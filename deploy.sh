@@ -13,6 +13,7 @@ mkdir ./$TMP_DIR/_subsites/$SEC_LANG
 cp -R ./$DEF_LANG/* ./$TMP_DIR
 cp -R ./shared/* ./$TMP_DIR
 cp -R ./$SEC_LANG/* ./$TMP_DIR/_subsites/$SEC_LANG
+cp -R ./shared/* ./$TMP_DIR/_subsites/$SEC_LANG
 mynt gen -f ./$TMP_DIR ./$TMP_DIR/_site
 mynt gen -f ./$TMP_DIR/_subsites/$SEC_LANG ./$TMP_DIR/_site/$SEC_LANG
 CUR_BRANCH=$(git symbolic-ref -q HEAD)
