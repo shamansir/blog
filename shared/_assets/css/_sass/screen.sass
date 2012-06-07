@@ -4,7 +4,33 @@
   Import this file using the following HTML or equivalent:
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
 
-@import compass/reset
+//@import compass/reset
+
+$text-font: Ubuntu, 'Lucida Grande', 'Open Sans', 'Droid Sans', 'PT Sans', Geneva, Helvetica, Georgia, sans-serif
+$code-font: 'Droid Sans Mono', Menlo, 'Ubuntu Mono', 'Courier New'
+$heading-font: 'PT Sans', 'Droid Sans', 'Droid Serif', Palatino, Geneva, Helvetica, serif
+$title-font: 'Droid Serif', 'Platan BG', Palatino, Baskerville, serif
+//$default-font: 'Droid Serif', 'PT Sans', sans-serif;
+
+// #ffab00
+$bg-color: white
+$page-color: #fffffd
+$base-font-size: 16px
 
 body
-    background: #ffab00
+    background-color: $bg-color
+    font-family: $text-font
+    font-size: $base-font-size
+    margin: 0
+
+#nwao-header h1
+    font-family: $title-font
+
+h1, h2, h3, h4, h5, h6
+    font-family: $heading-font
+
+pre, code
+    font-family: $code-font
+
+#nwao-page
+    margin: 0 20% 0 14%

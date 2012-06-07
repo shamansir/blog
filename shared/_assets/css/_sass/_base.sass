@@ -9,13 +9,13 @@
 //
 
 // CLEAR FIX
-@mixin clearfix
-    &:before, &:after
-        content: ''
-        display: table
-    
-    &:after
-        clear: both
+// @mixin clearfix
+//    &:before, &:after
+//        content: ''
+//        display: table
+//    
+//    &:after
+//        clear: both
 
 // VENDOR PREFIXES
 @mixin border-radius($radius, $corner: false)
@@ -38,3 +38,14 @@
     $transitions: compact($one, $two, $three, $four, $five)
     
     @include experimental(transition, $transitions, -moz, -webkit, -o, -ms, not -khtml, official)
+
+
+//
+// FONTS
+//
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,400italic&subset=latin,cyrillic)
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic&text=%D0%BD%D0%B8%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5&oq=%D0%BD%D0%B8+%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5Nowordaboutonion%20) 
+
+
+
