@@ -1,22 +1,27 @@
+/* line 7, _sass/screen.sass */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
+/* line 11, _sass/screen.sass */
 ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
   display: none;
   width: 0px;
   height: 0px;
 }
 
+/* line 17, _sass/screen.sass */
 ::-webkit-scrollbar-track:corner-present, ::-webkit-scrollbar-track-piece, ::-webkit-scrollbar-corner, ::-webkit-resizer {
   background-color: #77805f;
 }
 
+/* line 20, _sass/screen.sass */
 ::-webkit-scrollbar-thumb:vertical, ::-webkit-scrollbar-thumb:horizontal {
   background-color: #5f664c;
 }
 
+/* line 27, _sass/screen.sass */
 * {
   margin: 0px;
   padding: 0px;
@@ -24,17 +29,20 @@
   outline: invert none 0px;
 }
 
+/* line 38, _sass/screen.sass */
 body {
-  background-color: #fafafa;
+  background-color: red;
   color: #404040;
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: 14px;
 }
 
+/* line 46, _sass/screen.sass */
 blockquote, dl, ol, p, pre, table, ul {
   margin: 15px 0px 15px 0px;
 }
 
+/* line 49, _sass/screen.sass */
 blockquote {
   overflow: hidden;
   margin-left: 35px;
@@ -47,32 +55,40 @@ blockquote {
   font-style: italic;
 }
 
+/* line 63, _sass/screen.sass */
 dd > :first-child, dt > :first-child {
   margin-top: 0px;
 }
+/* line 66, _sass/screen.sass */
 dd > :last-child, dt > :last-child {
   margin-bottom: 0px;
 }
 
+/* line 69, _sass/screen.sass */
 dd {
   margin-top: 10px;
   margin-left: 140px;
 }
+/* line 74, _sass/screen.sass */
 dd + dd {
   margin-top: 5px;
 }
+/* line 77, _sass/screen.sass */
 dt:first-child + dd {
   margin-top: 0px;
 }
 
+/* line 80, _sass/screen.sass */
 dl {
   overflow: hidden;
 }
+/* line 83, _sass/screen.sass */
 dl dl {
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
+/* line 88, _sass/screen.sass */
 dt {
   clear: left;
   float: left;
@@ -81,13 +97,16 @@ dt {
   font-weight: bold;
   text-align: right;
 }
+/* line 99, _sass/screen.sass */
 dt + dt {
   margin-top: 5px;
 }
+/* line 102, _sass/screen.sass */
 dt:first-child {
   margin-top: 0px;
 }
 
+/* line 105, _sass/screen.sass */
 h1, h2, h3, h4, h5, h6 {
   margin: 15px 0px 15px 0px;
   color: #0d0d0d;
@@ -96,18 +115,22 @@ h1, h2, h3, h4, h5, h6 {
   font-style: italic;
   font-weight: normal;
 }
+/* line 115, _sass/screen.sass */
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: inherit;
 }
+/* line 118, _sass/screen.sass */
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
   text-decoration: none;
 }
 
+/* line 121, _sass/screen.sass */
 h2, h3 {
   padding-bottom: 5px;
   border-bottom: 1px solid #e6e6e6;
 }
 
+/* line 126, _sass/screen.sass */
 h4, h5, h6 {
   font-family: "Arial", "Helvetica", sans-serif;
   font-style: normal;
@@ -115,83 +138,102 @@ h4, h5, h6 {
   text-transform: uppercase;
 }
 
+/* line 133, _sass/screen.sass */
 h5, h6 {
   font-size: 12px;
 }
 
+/* line 136, _sass/screen.sass */
 h1 {
   font-size: 28px;
 }
 
+/* line 139, _sass/screen.sass */
 h2 {
   margin-top: 25px;
   font-size: 24px;
 }
 
+/* line 144, _sass/screen.sass */
 h3 {
   font-size: 20px;
 }
 
+/* line 147, _sass/screen.sass */
 h4 {
   font-size: 14px;
 }
 
+/* line 150, _sass/screen.sass */
 h6 {
   color: #595959;
   text-shadow: 1px 1px 0px #d9d9d9;
 }
 
+/* line 154, _sass/screen.sass */
 li {
   margin-top: 3px;
 }
+/* line 157, _sass/screen.sass */
 ol > li:before, ul > li:before {
   padding-right: 8px;
   color: #1a1a1a;
 }
+/* line 162, _sass/screen.sass */
 ol > li {
   counter-increment: item;
 }
+/* line 165, _sass/screen.sass */
 ol > li:before {
   content: counter(item, decimal) ".";
 }
+/* line 168, _sass/screen.sass */
 ul > li:before {
   content: "\2022";
 }
+/* line 171, _sass/screen.sass */
 ul.unstyled > li:before {
   padding-right: 0px;
   content: none;
 }
 
+/* line 176, _sass/screen.sass */
 ol, ul {
   margin-left: 35px;
   list-style-image: none;
   list-style-position: inside;
   list-style-type: none;
 }
+/* line 183, _sass/screen.sass */
 ol ol, ol ul, ul ol, ul ul {
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
+/* line 188, _sass/screen.sass */
 ol {
   counter-reset: item;
 }
 
+/* line 191, _sass/screen.sass */
 p {
   line-height: 20px;
   text-align: justify;
 }
 
+/* line 195, _sass/screen.sass */
 pre, code {
   font-family: "Envy Code R", monospace;
   font-size: 10pt;
 }
 
+/* line 200, _sass/screen.sass */
 pre {
   padding: 5px;
   background-color: #2b2e23;
   color: #b2b99e;
 }
+/* line 207, _sass/screen.sass */
 pre code {
   padding: 0px;
   background-color: transparent;
@@ -201,6 +243,7 @@ pre code {
   color: inherit;
 }
 
+/* line 216, _sass/screen.sass */
 table {
   border: 1px solid #d9d9d9;
   border-bottom-width: 0px;
@@ -209,50 +252,63 @@ table {
   box-shadow: 0px 0px 0px 2px #f7f7f7;
 }
 
+/* line 222, _sass/screen.sass */
 td, th {
   padding: 10px;
   border-bottom: 1px solid #d9d9d9;
   border-left: 1px dotted #d9d9d9;
 }
+/* line 228, _sass/screen.sass */
 td:first-child, th:first-child {
   border-left-width: 0px;
 }
+/* line 231, _sass/screen.sass */
 td > :first-child, th > :first-child {
   margin-top: 0px;
 }
+/* line 234, _sass/screen.sass */
 td > :last-child, th > :last-child {
   margin-bottom: 0px;
 }
+/* line 237, _sass/screen.sass */
 td > *, th > * {
   margin: 10px 0px 10px 0px;
 }
+/* line 240, _sass/screen.sass */
 tbody tr:nth-child(2n) td, tbody tr:nth-child(2n) th {
   background-color: #f2f2f2;
 }
 
+/* line 243, _sass/screen.sass */
 th {
   font-weight: bold;
   text-align: center;
 }
+/* line 247, _sass/screen.sass */
 tbody th {
   text-align: right;
 }
+/* line 250, _sass/screen.sass */
 thead th {
   background-color: #f2f2f2;
 }
 
+/* line 254, _sass/screen.sass */
 ul.unstyled {
   margin-left: 0px;
 }
 
+/* line 257, _sass/screen.sass */
 a {
   color: #5e8000;
   text-decoration: none;
 }
+/* line 261, _sass/screen.sass */
 a:hover {
   text-decoration: underline;
 }
 
+/* line 264, _sass/screen.sass */
 code {
   padding: 0px 2px 0px 2px;
   background-color: #e6e6e6;
@@ -262,6 +318,7 @@ code {
   white-space: pre;
 }
 
+/* line 273, _sass/screen.sass */
 small {
   display: block;
   color: #8c8c8c;
@@ -269,80 +326,99 @@ small {
   font-style: italic;
   text-transform: uppercase;
 }
+/* line 282, _sass/screen.sass */
 small a {
   color: #4d4d4d;
 }
 
+/* line 289, _sass/screen.sass */
 #container {
   margin: 0px auto 0px auto;
   width: 900px;
 }
 
+/* line 13, _sass/_base.sass */
 #nav:before, #nav:after {
   content: "";
   display: table;
 }
+/* line 17, _sass/_base.sass */
 #nav:after {
   clear: both;
 }
+/* line 298, _sass/screen.sass */
 #nav li {
   float: left;
   margin-top: 10px;
 }
+/* line 303, _sass/screen.sass */
 #nav li:before {
   padding-right: 0px;
   content: "";
 }
+/* line 308, _sass/screen.sass */
 #nav li + li {
   margin-left: 8px;
   padding-left: 8px;
   border-left: 1px solid #d9d9d9;
 }
+/* line 314, _sass/screen.sass */
 #nav ul {
   float: left;
   margin: 0px;
 }
+/* line 319, _sass/screen.sass */
 #nav a, #nav img {
   display: block;
 }
+/* line 322, _sass/screen.sass */
 #nav a {
   color: #333333;
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
 }
+/* line 329, _sass/screen.sass */
 #nav a:hover {
   color: black;
   text-decoration: none;
 }
+/* line 333, _sass/screen.sass */
 #nav img {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.75 * 100)";
   filter: alpha(opacity=0.75 * 100);
   opacity: 0.75;
 }
+/* line 336, _sass/screen.sass */
 #nav img:hover {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1 * 100)";
   filter: alpha(opacity=1 * 100);
   opacity: 1;
 }
+/* line 339, _sass/screen.sass */
 #nav #social {
   float: right;
 }
+/* line 342, _sass/screen.sass */
 #nav #social li {
   margin-top: 9px;
 }
 
+/* line 346, _sass/screen.sass */
 #header {
   margin: 40px 0px 40px 0px;
 }
+/* line 349, _sass/screen.sass */
 #header h1, #header h2 {
   margin: 0px;
   padding: 0px;
 }
+/* line 353, _sass/screen.sass */
 #header h1 {
   font-size: 36px;
   font-weight: bold;
 }
+/* line 358, _sass/screen.sass */
 #header h2 {
   border-bottom-width: 0px;
   color: #8c8c8c;
@@ -351,15 +427,18 @@ small a {
   text-transform: none;
 }
 
+/* line 370, _sass/screen.sass */
 div.item + div.item div.header h1 {
   margin-top: 25px;
   padding-top: 25px;
   border-top: 1px solid #e6e6e6;
 }
+/* line 377, _sass/screen.sass */
 div.item div.header h1, div.item div.header h2 {
   margin: 0px;
   padding: 0px;
 }
+/* line 381, _sass/screen.sass */
 div.item div.header h2 {
   border-bottom-width: 0px;
   color: #8c8c8c;
@@ -369,26 +448,32 @@ div.item div.header h2 {
   text-shadow: none;
   text-transform: uppercase;
 }
+/* line 393, _sass/screen.sass */
 div.item div.header h2 a {
   color: #4d4d4d;
 }
+/* line 396, _sass/screen.sass */
 div.item div.header h2 a:hover {
   text-decoration: underline;
 }
+/* line 399, _sass/screen.sass */
 div.item div.header h2 span {
   position: relative;
   top: -2px;
 }
+/* line 403, _sass/screen.sass */
 div.item div.footer {
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
 }
 
+/* line 409, _sass/screen.sass */
 div.pagination {
   margin-top: 25px;
   border-top: 1px dotted #d9d9d9;
 }
+/* line 414, _sass/screen.sass */
 div.pagination p {
   font-size: 12px;
   font-style: italic;
@@ -396,19 +481,23 @@ div.pagination p {
   text-align: center;
   text-transform: uppercase;
 }
+/* line 423, _sass/screen.sass */
 div.pagination a {
   color: #4d4d4d;
 }
 
+/* line 427, _sass/screen.sass */
 dl.archives > dt a {
   color: #4d4d4d;
   font-size: 18px;
   font-style: italic;
   line-height: 18px;
 }
+/* line 434, _sass/screen.sass */
 dl.archives dd {
   margin-left: 75px;
 }
+/* line 437, _sass/screen.sass */
 dl.archives dt {
   width: 50px;
   color: #8c8c8c;
@@ -417,14 +506,17 @@ dl.archives dt {
   font-weight: normal;
   text-transform: uppercase;
 }
+/* line 447, _sass/screen.sass */
 dl.archives small {
   margin-top: 2px;
 }
+/* line 450, _sass/screen.sass */
 dl.archives small span {
   position: relative;
   top: -1px;
 }
 
+/* line 455, _sass/screen.sass */
 #footer {
   margin: 40px 0px 15px 0px;
   font-size: 12px;
@@ -432,26 +524,33 @@ dl.archives small span {
   text-transform: uppercase;
 }
 
+/* line 463, _sass/screen.sass */
 div.code {
   margin: 15px 0px 15px 0px;
 }
+/* line 466, _sass/screen.sass */
 div.code pre, div.code table {
   margin: 0px;
 }
+/* line 469, _sass/screen.sass */
 div.code table, div.code td {
   border-width: 0px;
 }
+/* line 472, _sass/screen.sass */
 div.code table {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+/* line 475, _sass/screen.sass */
 div.code td {
   padding: 0px;
 }
+/* line 478, _sass/screen.sass */
 div.code > div {
   overflow: auto;
   background-color: #2b2e23;
 }
+/* line 484, _sass/screen.sass */
 div.code td.linenos pre {
   background-color: #3c4030;
 }

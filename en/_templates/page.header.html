@@ -8,7 +8,11 @@
 
 {% if site.feed %}<link rel="alternate" href="{{ get_url('feed.xml') }}" type="application/atom+xml">{% endif %}
 
-<link rel="stylesheet" href="{{ get_asset('css/screen.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ get_asset('css/screen.css') }}" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="{{ get_asset('css/print.css') }}" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="{{ get_asset('css/ie.css') }}" media="screen, projection" type="text/css" />
+  <![endif]-->
 {% if site.pygmentize %}<link rel="stylesheet" href="{{ get_asset('css/pygments.css') }}" type="text/css">{% endif %}
 
 {% if site.analytics %}
