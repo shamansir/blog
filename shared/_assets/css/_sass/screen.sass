@@ -13,10 +13,14 @@ $text-font: Ubuntu, 'Lucida Grande', 'Open Sans', 'Droid Sans', 'PT Sans', Genev
 $code-font: 'Droid Sans Mono', Menlo, 'Ubuntu Mono', 'Courier New'
 //$default-font: 'Droid Serif', 'PT Sans', sans-serif;
 
+$base-font-size: 16px
+
 $bg-color: white // #ffab00
 $page-color: #fffffd
 $code-bg-color: #fcfcfc // #fafcff, #ffeeaa
-$base-font-size: 16px
+$heading-bg-color: #fffbd5
+$hilite-color: #179
+$hilite-dark-color: #057
 
 $code-border: 2px dashed #eaece9
 
@@ -119,6 +123,14 @@ h1
        
     &:hover
         background-color: #ccc
+
+h2, h3, h4, h5, h6
+    &:hover:after
+        content: "#"
+        color: #999
+        margin: 4px
+        position: relative
+        top: 2px 
        
 h2
     font-size: 2.4em
@@ -155,8 +167,8 @@ h4
     color: #4f4f4f
     margin: 50px 0 25px 0
     border:
-        //color: #999
-        width: 0
+        color: #999
+        width: 0 0 2px 0
     text-align: left
        
 h5, h6
@@ -170,25 +182,19 @@ h5, h6
 // LINK
 
 a
-    color: #179
+    color: $hilite-color
        
     &:hover
-        color: #057
+        color: $hilite-dark-color
 
 // .nwao-selection
-//    color: #179
+//    color: $hilite-color
        
 // TOP HEADER
 
 #nwao-header
     margin: 0
     text-align: center
-    border-style: solid
-    border-color: #eee
-    border-width: 0 0 10px 0
-
-    dl
-        color: #999
        
     h1
         
@@ -210,18 +216,30 @@ a
             width: 0 0 4px 0
 
         &:hover
-            background: #fffbd5
+            background: $heading-bg-color
             //background: -moz-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
             //background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#fffbd5), color-stop(100%,#ffeabd));
             //background: -webkit-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
             //background: -o-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
             //background: -ms-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
             //background: radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
-            //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbd5', endColorstr='#ffeabd',GradientType=1 );  
+            //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbd5', endColorstr='#ffeabd',GradientType=1 );
        
     a
         color: #000
         text-decoration: none
+
+    div#nwao-subtitle
+        color: #999
+        font:
+            family: $heading-font
+            size: 1.5em
+            //style: italic
+        padding: 10 5px 5px 5px
+        border:
+            style: solid
+            color: #eee
+            width: 8px 0 0 0
        
     // em
     //   position: relative
@@ -229,6 +247,11 @@ a
        
     // nav > ul
     //   visibility: hidden
+
+#nwao-post-header
+    
+    dl
+        color: #999
 
 // DIVER
        
