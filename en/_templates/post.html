@@ -7,7 +7,7 @@
     <article id="nwao-post">
         <div class="nwao-post-header">
             <h2 class="nwao-post-title">{{ post.title }}<!-- <span>&raquo;</span>--></h1>
-            <dl class="nwao-post-info">
+            <dl>
             	<dt>Published at</dt>
             	<dd>{{ post.date }}</dd>
             	{% if post.tags %}
@@ -24,5 +24,5 @@
         <div class="nwao-post-content">
             {{ post.content }}
         </div>
-    </div>
+    </article>
 {% endblock %}

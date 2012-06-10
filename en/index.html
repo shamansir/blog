@@ -1,6 +1,5 @@
 {% extends 'layout.html' %}
 
-
 {% block content %}
     {% for post in posts %}
         {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}

@@ -2,20 +2,57 @@
   Welcome to Compass.
   In this file you should write your main styles. (or centralize your imports)
   Import this file using the following HTML or equivalent:
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 //@import compass/reset
+@import _base
 
+$title-font: 'Droid Serif', 'Platan BG', Palatino, Baskerville, serif
+$heading-font: 'PT Sans', 'Droid Sans', 'Droid Serif', Palatino, Geneva, Helvetica, serif
 $text-font: Ubuntu, 'Lucida Grande', 'Open Sans', 'Droid Sans', 'PT Sans', Geneva, Helvetica, Georgia, sans-serif
 $code-font: 'Droid Sans Mono', Menlo, 'Ubuntu Mono', 'Courier New'
-$heading-font: 'PT Sans', 'Droid Sans', 'Droid Serif', Palatino, Geneva, Helvetica, serif
-$title-font: 'Droid Serif', 'Platan BG', Palatino, Baskerville, serif
 //$default-font: 'Droid Serif', 'PT Sans', sans-serif;
 
-// #ffab00
-$bg-color: white
+$bg-color: white // #ffab00
 $page-color: #fffffd
+$code-bg-color: #fcfcfc // #fafcff, #ffeeaa
 $base-font-size: 16px
+
+$code-border: 2px dashed #eaece9
+
+// layout :
+// ------
+//
+// body
+//   div#nwao-page
+//     div#nwao-header
+//       nav
+//         ul
+//       h1 a
+//       [h2]
+//     div#nwao-content
+//       ---> content <---
+//     [ul#nwao-social]
+//     div#nwao-footer
+//       p a
+
+// content:post :
+// ------------
+// 
+// article#nwao-post
+//   div.nwao-post-header
+//     h2.nwao-post-title
+//     dl
+//   div.nwao-post-content
+
+// content:index :
+// -------------
+
+// content:archive :
+// -------------
+
+// content:tag :
+// -------------
 
 body
     background-color: $bg-color
@@ -23,14 +60,200 @@ body
     font-size: $base-font-size
     margin: 0
 
-#nwao-header h1
-    font-family: $title-font
+#nwao-page
+    margin: 0 20% 0 14%
 
-h1, h2, h3, h4, h5, h6
-    font-family: $heading-font
+article
+    //padding: 100px 75px 40px 75px
+    padding: 100px 60px 40px 60px
+
+p
+    // font-family: $text-font
+    font-size: 1.1em
+    line-height: 1.4em
+    padding: 0 1px 7px 0
+
+img
+    border: 1px solid #fff
+    //@include box-shadow(#acacac 1px 1px 4px)
+    @include box-shadow(#6c6c6c 1px 1px 4px)
+    display: block
+    margin: 20px auto
+    padding: 5px
+    color: #999
+
+    &:hover
+        @include box-shadow(#3c3c3c 1px 1px 4px)
+
+code
+    background-color: #eee
+
+pre > code
+    display: block
+    @include opacity(0.9)
+    background-color: $code-bg-color
+    padding: 10px
+    margin: 5px 12px
+    font-size: 1.0em
+    overflow: hidden
+    border: $code-border
+
+    &:hover
+        @include opacity(1.0)
+        color: #000
+        overflow: auto
 
 pre, code
     font-family: $code-font
+    font-size: 0.9em
 
-#nwao-page
-    margin: 0 20% 0 14%
+// HEADINGS
+
+h1, h2, h3, h4, h5, h6
+    font-family: $heading-font
+    font-weight: 400
+
+h1
+    font-size: 3em
+    margin: 80px 0 30px 0
+       
+    &:hover
+        background-color: #ccc
+       
+h2
+    font-size: 2.4em
+    margin: 35px 0 30px 0
+    padding: 5px 10px
+       
+    &:hover
+        border:
+            color: #ccc
+            style: solid
+            width: 0 5px 0 0
+        background-color: #eee
+        cursor: pointer
+       
+h3, h4, h5, h6
+    color: #333
+    padding: 5px 5px 5px 10px
+    border:
+        color: #333
+        style: solid
+        width: 0 0 3px 0
+       
+    &:hover
+        background-color: #eee
+        cursor: pointer
+
+h3
+    font-size: 2em
+    margin: 100px 0 40px 0
+    text-align: left
+       
+h4
+    font-size: 1.6em
+    color: #4f4f4f
+    margin: 50px 0 25px 0
+    border:
+        //color: #999
+        width: 0
+    text-align: left
+       
+h5, h6
+    font-size: 1.4em
+    color: #6f6f6f
+    border:
+        color: #999
+        width: 0 0 1px 0
+    text-align: left
+
+// LINK
+
+a
+    color: #179
+       
+    &:hover
+        color: #057
+
+// .nwao-selection
+//    color: #179
+       
+// TOP HEADER
+
+#nwao-header
+    margin: 0
+    text-align: center
+    border-style: solid
+    border-color: #eee
+    border-width: 0 0 10px 0
+
+    dl
+        color: #999
+       
+    h1
+        
+        margin: 0
+        padding: 0
+       
+        font:
+            family: $title-font
+            size: 3.6em
+            weight: 600
+        
+        padding: 70px 5px 25px 20px
+        margin: 0
+        word-spacing: 0.05em
+        
+        border:
+            style: solid
+            color: #666
+            width: 0 0 4px 0
+
+        &:hover
+            background: #fffbd5
+            //background: -moz-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
+            //background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#fffbd5), color-stop(100%,#ffeabd));
+            //background: -webkit-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
+            //background: -o-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
+            //background: -ms-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
+            //background: radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
+            //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbd5', endColorstr='#ffeabd',GradientType=1 );  
+       
+    a
+        color: #000
+        text-decoration: none
+       
+    // em
+    //   position: relative
+    //   left: 4px
+       
+    // nav > ul
+    //   visibility: hidden
+
+// DIVER
+       
+// #nwao-dive
+    
+//    color: #fff
+//    height: 20px
+//    overflow: hidden
+
+//    span
+//        visibility: hidden
+       
+//    > a
+//        color: #3399BB
+//        padding: 0 5px
+//        font-size: 0.8em
+//        text:
+//            decoration: none
+//            transform: lowercase
+
+//        &:hover
+//            background-color: #eee
+       
+//    #nwao-prev
+//        position: absolute 
+       
+//    #nwao-next
+//        float: right
