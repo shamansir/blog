@@ -21,6 +21,7 @@ $code-bg-color: #fcfcfc // #fafcff, #ffeeaa
 $heading-bg-color: #fffbd5
 $hilite-color: #179
 $hilite-dark-color: #057
+$tags-bg: #99A // #67A, #180
 
 $code-border: 2px dashed #eaece9
 
@@ -71,36 +72,38 @@ article
     //padding: 100px 75px 40px 75px
     padding: 100px 60px 40px 60px
 
-p
+p, ul
     // font-family: $text-font
-    font-size: 1.1em
+    //font-size: 1.1em
     line-height: 1.4em
     padding: 0 1px 7px 0
 
 img
-    border: 1px solid #fff
+    border: 1px solid #999
     //@include box-shadow(#acacac 1px 1px 4px)
-    @include box-shadow(#6c6c6c 1px 1px 4px)
+    @include box-shadow(#6c6c6c 1px 1px 9px -2px)
     display: block
     margin: 20px auto
-    padding: 5px
+    padding: 4px
     color: #999
+    @include opacity(0.8)
 
     &:hover
-        @include box-shadow(#3c3c3c 1px 1px 4px)
+        @include box-shadow(#3c3c3c 1px 1px 9px -2px)
+        @include opacity(1.0)
 
 code
     background-color: #eee
 
 pre > code
     display: block
-    @include opacity(0.9)
     background-color: $code-bg-color
     padding: 10px
     margin: 5px 12px
     font-size: 1.0em
     overflow: hidden
     border: $code-border
+    @include opacity(0.8)    
 
     &:hover
         @include opacity(1.0)
@@ -118,7 +121,7 @@ h1, h2, h3, h4, h5, h6
     font-weight: 400
 
 h1
-    font-size: 3em
+    font-size: 3.2em
     margin: 80px 0 30px 0
        
     &:hover
@@ -127,19 +130,24 @@ h1
 h2, h3, h4, h5, h6
     &:hover:after
         content: "#"
-        color: #999
+        color: #ccc
         margin: 4px
         position: relative
-        top: 2px 
+        top: -2px
        
 h2
     font-size: 2.4em
-    margin: 35px 0 30px 0
+    //margin: 35px 0 30px 0
+    margin: 35px 0 11px 0
     padding: 5px 10px
-       
+    border:
+        color: $page-color
+        style: solid
+        width: 0 5px 0 0   
+
     &:hover
         border:
-            color: #ccc
+            color: #aaa
             style: solid
             width: 0 5px 0 0
         background-color: #eee
@@ -248,10 +256,43 @@ a
     // nav > ul
     //   visibility: hidden
 
-#nwao-post-header
-    
-    dl
+.nwao-post-header
+
+    margin: 0 0 40px 0
+
+    dl 
+        display: block
+        padding: 3px
+        margin: 13px 10px 10px 20px
+
+    dl > dt, dl > dd 
+        display: inline
+        margin: 0 11px 0 0        
+
+    dl > dt
+        display: none
+
+    dl > dd
         color: #999
+
+    .tags
+        color: $page-color
+
+    .tags a
+        font-size: 0.8em
+        padding: 2px
+        text-decoration: none
+        @include border-radius(3px)
+        border:
+            width: 1px
+            color: $tags-bg
+            style: solid
+        background-color: $tags-bg
+        color: $page-color
+
+// FIXME
+#nwao-header nav
+    display: none
 
 // DIVER
        
