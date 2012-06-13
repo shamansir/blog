@@ -22,6 +22,8 @@ $heading-bg-color: #fffbd5
 $hilite-color: #179
 $hilite-dark-color: #057
 $tags-bg: #99A // #67A, #180
+$transp-tilt: rgba(200, 200, 200, 0.2)
+$lite-transp-tilt: rgba(255, 255, 255, 1)
 
 $code-border: 2px dashed #eaece9
 
@@ -70,49 +72,50 @@ body
 
 article
     //padding: 100px 75px 40px 75px
-    padding: 100px 60px 40px 60px
+    //padding: 100px 60px 40px 60px
+    padding: 130px 60px 200px 60px
 
-p, ul
-    // font-family: $text-font
-    //font-size: 1.1em
-    line-height: 1.4em
-    padding: 0 1px 7px 0
+    p, ul
+        // font-family: $text-font
+        //font-size: 1.1em
+        line-height: 1.4em
+        padding: 0 1px 7px 0
 
-img
-    border: 1px solid #999
-    //@include box-shadow(#acacac 1px 1px 4px)
-    @include box-shadow(#6c6c6c 1px 1px 9px -2px)
-    display: block
-    margin: 20px auto
-    padding: 4px
-    color: #999
-    @include opacity(0.8)
+    img
+        border: 1px solid #999
+        //@include box-shadow(#acacac 1px 1px 4px)
+        @include box-shadow(#6c6c6c 1px 1px 9px -2px)
+        display: block
+        margin: 20px auto
+        padding: 4px
+        color: #999
+        @include opacity(0.8)
 
-    &:hover
-        @include box-shadow(#3c3c3c 1px 1px 9px -2px)
-        @include opacity(1.0)
+        &:hover
+            @include box-shadow(#3c3c3c 1px 1px 9px -2px)
+            @include opacity(1.0)
 
-code
-    background-color: #eee
+    code
+        background-color: #eee
 
-pre > code
-    display: block
-    background-color: $code-bg-color
-    padding: 10px
-    margin: 5px 12px
-    font-size: 1.0em
-    overflow: hidden
-    border: $code-border
-    @include opacity(0.8)    
+    pre > code
+        display: block
+        background-color: $code-bg-color
+        padding: 10px
+        margin: 5px 12px
+        font-size: 1.0em
+        overflow: hidden
+        border: $code-border
+        @include opacity(0.8)    
 
-    &:hover
-        @include opacity(1.0)
-        color: #000
-        overflow: auto
+        &:hover
+            @include opacity(1.0)
+            color: #000
+            overflow: auto
 
-pre, code
-    font-family: $code-font
-    font-size: 0.9em
+    pre, code
+        font-family: $code-font
+        font-size: 0.9em
 
 // HEADINGS
 
@@ -232,6 +235,9 @@ a
             //background: -ms-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
             //background: radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
             //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbd5', endColorstr='#ffeabd',GradientType=1 );
+
+        a:hover
+            background-color: $transp-tilt
        
     a
         color: #000
@@ -290,9 +296,60 @@ a
         background-color: $tags-bg
         color: $page-color
 
-// FIXME
 #nwao-header nav
-    display: none
+    display: block
+
+    ul
+        width: 100%
+        display: inline-block
+        margin: 0
+        padding: 0
+        list-style: none
+        background-color: black
+
+        li
+            display: inline
+            text-transform: uppercase
+
+            a
+                color: $page-color
+                padding: 5px
+                margin: 2px 2.5%                
+
+                &:hover
+                    background-color: $page-color
+                    color: $hilite-color
+
+ul#nwao-social
+    margin: 5px
+    padding: 5px
+    display: inline-block
+    background-color: #eee
+    position: fixed
+    right: 5px
+    top: 5px    
+    @include border-radius(3px)
+    @include opacity(0.5)
+    border:
+        width: 1px
+        color: #eee
+    list-style: none
+
+    li
+        display: inline
+        padding: 5px
+
+#nwao-footer
+    font-size: 0.6em
+    color: #666
+    background-color: $transp-tilt
+    position: fixed
+    right: 0
+    bottom: 0
+
+    p 
+        margin: 0
+        padding: 5px
 
 // DIVER
        
