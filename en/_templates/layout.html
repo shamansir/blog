@@ -5,12 +5,13 @@
     {% include 'page.header.html' %}
     
     {% if site.title %}<title>{% if title %}{{ title }} &ndash; {% endif %}{{ site.title }}{% if not title and site.subtitle %} &ndash; {{ site.subtitle }}{% endif %}</title>{% endif %}
+
 </head>
 
 <body>
     <div id="nwao-page">
         <div id="nwao-header">
-            <nav><ul>
+            <nav id="nwao-nav"><ul>
                 <li><a href="http://shamansir.github.com" rel="author">Author</a></li>
                 <li><a href="{{ get_url() }}" rel="contents">Blog</a></li>
                 <li><a href="{{ get_url('archives/') }}" rel="index">Archives</a></li>
@@ -18,7 +19,7 @@
                 {% if site.feed %}<li><a href="{{ get_url('feed.xml') }}">Feed</a></li>{% endif %}
             </ul></nav>
 
-            <h1><a href="{{ get_url() }}">{{ site.title }}</a></h1>
+            <h1 id="nwao-title"><a href="{{ get_url() }}">{{ site.title }}</a></h1>
             {% if site.subtitle %}<div id="nwao-subtitle"><span>{{ site.subtitle }}</span></div>{% endif %}
         </div>
 
@@ -53,6 +54,33 @@
         </div>
 
         <div id="nwao-jump-to-top"><a href="#top" title="Jump to top">&uarr;</a></div>
+
+        <script type="text/javascript" src="{{ get_asset('scripts/scrolls.js') }}"></script>
+        <script type="text/javascript">
+            if (false) {
+
+            var socialElm = document.getElementById('nwao-social');
+            var toTopElm = document.getElementById('nwao-jump-to-top');
+            var titleElm = document.getElementById('nwao-title');
+            var navElm = document.getElementById('nwao-nav');
+
+            var prevTop = navElm.style.top;
+            var prevPos = navElm.style.position;
+            var titleHeight = titleElm.offsetHeight;
+            var titleTop = titleElm.offsetTop;
+            var navHeight = navElm.offsetHeight;
+
+            console.log(titleHeight, navHeight);
+
+            scrollEffect(scrollEffect.VERT, titleElm,
+                            /* appeared */ null,
+                            /* visible */ function(pos) {
+                                console.log(pos, (titleHeight + pos) - navHeight - titleTop); 
+                                navElm.style.position = 'fixed'; navElm.style.top = Math.min(0, (titleHeight + pos) - navHeight - titleTop) + 'px'; },
+                            /* lost */ function() { navElm.style.position = prevPos; navElm.style.top = prevTop; });
+            
+            }
+        </script>       
     </div>
 </body>
 </html>
