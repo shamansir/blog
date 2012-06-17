@@ -38,14 +38,15 @@
         
         {% if site.social.values()|sort(true)|first %}
             <ul id="nwao-social">
+                {% if site.social.twitter %}<li><a href="https://twitter.com/#!/{{ site.social.twitter }}"><img src="{{ get_asset('images/social/twitter.png') }}" width="16" height="16" alt="Twitter profile"></a></li>{% endif %}
+                {% if site.social.github %}<li><a href="https://github.com/{{ site.social.github }}"><img src="{{ get_asset('images/social/github.png') }}" width="16" height="16" alt="GitHub profile"></a></li>{% endif %}                
                 {% if site.social.dribbble %}<li><a href="http://dribbble.com/{{ site.social.dribbble }}"><img src="{{ get_asset('images/social/dribbble.png') }}" width="16" height="16" alt="Dribbble profile"></a></li>{% endif %}
                 {% if site.social.facebook %}<li><a href="https://www.facebook.com/{{ site.social.facebook }}"><img src="{{ get_asset('images/social/facebook.png') }}" width="16" height="16" alt="Facebook profile"></a></li>{% endif %}
-                {% if site.social.github %}<li><a href="https://github.com/{{ site.social.github }}"><img src="{{ get_asset('images/social/github.png') }}" width="16" height="16" alt="GitHub profile"></a></li>{% endif %}
                 {% if site.social.google_plus %}<li><a href="https://plus.google.com/{{ site.social.google_plus }}"><img src="{{ get_asset('images/social/google-plus.png') }}" width="16" height="16" alt="Google+ profile"></a></li>{% endif %}
                 {% if site.social.lastfm %}<li><a href="http://www.last.fm/user/{{ site.social.lastfm }}"><img src="{{ get_asset('images/social/lastfm.png') }}" width="16" height="16" alt="Last.fm profile"></a></li>{% endif %}
                 {% if site.social.stack_overflow %}<li><a href="http://stackoverflow.com/users/{{ site.social.stack_overflow }}"><img src="{{ get_asset('images/social/stack-overflow.png') }}" width="16" height="16" alt="Stack Overflow profile"></a></li>{% endif %}
                 {% if site.social.steam %}<li><a href="http://steamcommunity.com/id/{{ site.social.steam }}"><img src="{{ get_asset('images/social/steam.png') }}" width="16" height="16" alt="Steam profile"></a></li>{% endif %}
-                {% if site.social.twitter %}<li><a href="https://twitter.com/#!/{{ site.social.twitter }}"><img src="{{ get_asset('images/social/twitter.png') }}" width="16" height="16" alt="Twitter profile"></a></li>{% endif %}
+
             </ul>
         {% endif %}
 
@@ -55,10 +56,9 @@
 
         <div id="nwao-jump-to-top"><a href="#top" title="Jump to top">&uarr;</a></div>
 
+        <!--
         <script type="text/javascript" src="{{ get_asset('scripts/scrolls.js') }}"></script>
         <script type="text/javascript">
-            if (false) {
-
             var socialElm = document.getElementById('nwao-social');
             var toTopElm = document.getElementById('nwao-jump-to-top');
             var titleElm = document.getElementById('nwao-title');
@@ -70,6 +70,8 @@
             var titleTop = titleElm.offsetTop;
             var navHeight = navElm.offsetHeight;
 
+            if (false) {
+
             console.log(titleHeight, navHeight);
 
             scrollEffect(scrollEffect.VERT, titleElm,
@@ -78,9 +80,17 @@
                                 console.log(pos, (titleHeight + pos) - navHeight - titleTop); 
                                 navElm.style.position = 'fixed'; navElm.style.top = Math.min(0, (titleHeight + pos) - navHeight - titleTop) + 'px'; },
                             /* lost */ function() { navElm.style.position = prevPos; navElm.style.top = prevTop; });
-            
-            }
-        </script>       
+
+            } // if (false)
+
+            scrollEffect(scrollEffect.VERT, socialElm,
+                            /* appeared */ null,
+                            /* visible */ function(pos) {
+                                             if (pos < )
+                                          },
+                            /* lost */ null);
+        </script>
+        -->       
     </div>
 </body>
 </html>
