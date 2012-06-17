@@ -138,6 +138,18 @@ h2, h3, h4, h5, h6
         margin: 4px
         position: relative
         top: -2px
+
+    a
+        text-decoration: none
+
+h2, h3
+    color: #000
+
+    a
+        color: inherit
+
+        &:hover
+            color: inherit
        
 h2
     font-size: 2.4em
@@ -147,7 +159,7 @@ h2
     border:
         color: $page-color
         style: solid
-        width: 0 5px 0 0   
+        width: 0 5px 0 0  
 
     &:hover
         border:
@@ -156,9 +168,12 @@ h2
             width: 0 5px 0 0
         background-color: #eee
         cursor: pointer
+
+    a
+        color: #000
        
 h3, h4, h5, h6
-    color: #333
+    //color: #333
     padding: 5px 5px 5px 10px
     border:
         color: #333
@@ -173,6 +188,14 @@ h3
     font-size: 2em
     margin: 100px 0 40px 0
     text-align: left
+
+h4, h5, h6
+
+    a
+        color: inherit
+
+        &:hover
+            color: inherit
        
 h4
     font-size: 1.6em
