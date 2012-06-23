@@ -1,11 +1,12 @@
-/*
-  Welcome to Compass.
-  In this file you should write your main styles. (or centralize your imports)
-  Import this file using the following HTML or equivalent:
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-
 //@import compass/reset
 @import _base
+
+//
+// FONTS
+//
+
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,400italic&subset=latin,cyrillic)
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic&text=%D0%BD%D0%B8%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5&oq=%D0%BD%D0%B8+%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5Nowordaboutonion%20)
 
 $title-font: 'Droid Serif', 'Platan BG', Palatino, Baskerville, serif
 $heading-font: 'PT Sans', 'Droid Sans', 'Droid Serif', Palatino, Geneva, Helvetica, serif
@@ -231,42 +232,39 @@ a
 #nwao-header
     margin: 0
     text-align: center
-       
-    h1
-        
-        margin: 0
-        padding: 0
-       
-        font:
-            family: $title-font
-            size: 3.6em
-            weight: 600
-        
-        padding: 70px 5px 25px 20px
-        margin: 0
-        word-spacing: 0.05em
-        
+
+    a
+        color: #000
+        text-decoration: none
+
+    #nwao-holder
         border:
             style: solid
             color: #666
             width: 0 0 4px 0
-
-        &:hover
-            background: $heading-bg-color
-            //background: -moz-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
-            //background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#fffbd5), color-stop(100%,#ffeabd));
-            //background: -webkit-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
-            //background: -o-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
-            //background: -ms-radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
-            //background: radial-gradient(center, ellipse cover, #fffbd5 0%, #ffeabd 100%);
-            //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fffbd5', endColorstr='#ffeabd',GradientType=1 );
-
-        a:hover
-            background-color: $transp-tilt
        
-    a
-        color: #000
-        text-decoration: none
+        h1
+            
+            margin: 0
+            padding: 0
+           
+            font:
+                family: $title-font
+                size: 3.6em
+                weight: 600
+            
+            padding: 70px 5px 25px 20px
+            margin: 0
+            word-spacing: 0.05em
+
+            &:hover
+                //background: $heading-bg-color
+                @include radial-gradient-bg(#fffbd5, #ffeabd, $heading-bg-color)
+                //@include transition(background 2s linear)
+
+            a:hover
+                background-color: $transp-tilt
+       
 
     div#nwao-subtitle
         color: #999
@@ -371,10 +369,30 @@ ul#nwao-social
     position: fixed
     right: 0
     bottom: 0
+    z-index: 2
 
     p 
         margin: 0
         padding: 5px
+
+#nwao-onion
+    @include opacity(0.05)
+    right: 0
+    bottom: 0   
+    position: fixed
+    width: 310px
+    height: 267px
+    z-index: 1
+    background:
+        repeat: no-repeat
+        image: url('/assets/img/onion_greyed.png')
+
+    &:hover
+        @include opacity(1.0)
+        @include transition(opacity 2s)
+        background:
+            repeat: no-repeat
+            image: url('/assets/img/onion.png')
 
 #nwao-jump-to-top
     background-color: $transp-tilt

@@ -39,13 +39,24 @@
     
     @include experimental(transition, $transitions, -moz, -webkit, -o, -ms, not -khtml, official)
 
+@mixin gradient-bg($color1, $color2, $radial: false)
+    background-color: $color1
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$color1}, endColorstr=#{$color2})
+    background-image: -moz-linear-gradient(center top, $color1, $color2)
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($color1), to($color2))
 
-//
-// FONTS
-//
-
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,400italic&subset=latin,cyrillic)
-@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic&text=%D0%BD%D0%B8%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5&oq=%D0%BD%D0%B8+%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5Nowordaboutonion%20) 
+@mixin radial-gradient-bg($color1, $color2, $default: false)
+    @if $default
+        background: $default
+    @else
+        background: $color1    
+    background: -moz-radial-gradient(center, ellipse cover, $color1 0%, $color2 100%)
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,$color1), color-stop(100%,$color2))
+    background: -webkit-radial-gradient(center, ellipse cover, $color1 0%, $color2 100%)
+    background: -o-radial-gradient(center, ellipse cover, $color1 0%, $color2 100%)
+    background: -ms-radial-gradient(center, ellipse cover, $color1 0%, $color2 100%)
+    background: radial-gradient(center, ellipse cover, $color1 0%, $color2 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#{$color1}, endColorstr=#{$color2},GradientType=1 )
 
 
 
