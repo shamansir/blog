@@ -72,16 +72,18 @@ body
     margin: 0 20% 0 14%
     background-color: $page-color
 
-article
+article, #nwao-blog-feed
     //padding: 100px 75px 40px 75px
     //padding: 100px 60px 40px 60px
     //padding: 130px 75px 200px 75px
     padding: 90px 75px 200px 75px
 
-    p, ul
+    p, ul, ol, dl
         // font-family: $text-font
         font-size: 1.1em
         line-height: 1.4em
+
+    p
         padding: 0 1px 7px 0
 
     img
@@ -131,7 +133,7 @@ h1
     margin: 80px 0 30px 0
        
     &:hover
-        background-color: #ccc
+        background-color: #ccc  
 
 h2, h3, h4, h5, h6
     &:hover:after
@@ -158,18 +160,24 @@ h2
     //margin: 35px 0 30px 0
     margin: 35px 0 11px 0
     padding: 5px 10px
+
     border:
-        color: $page-color
+        color: rgba(255,255,255,0)
         style: solid
         width: 0 5px 0 0  
-
+    
     &:hover
         border:
             color: #aaa
             style: solid
             width: 0 5px 0 0
         background-color: #eee
+        @include transition(background 1s linear)        
         cursor: pointer
+
+    &:hover:after
+        left: -10px
+        top: -4px
 
     a
         color: #000
@@ -184,6 +192,7 @@ h3, h4, h5, h6
        
     &:hover
         background-color: #eee
+        @include transition(background 1s linear)
         cursor: pointer
 
 h3
@@ -285,11 +294,38 @@ a
     // nav > ul
     //   visibility: hidden
 
-.nwao-post-header
+#nwao-header nav
+    display: block
+
+    ul
+        width: 100%
+        display: inline-block
+        margin: 0
+        padding: 0
+        list-style: none
+        background-color: black
+
+        li
+            display: inline
+            text-transform: uppercase
+
+            a
+                color: $page-color
+                padding: 5px
+                margin: 2px 2.5%                
+
+                &:hover
+                    background-color: $page-color
+                    color: $hilite-color
+
+// POST HEADER
+
+.nwao-post-header, #nwao-blog-feed .nwao-post-header
 
     margin: 0 0 40px 0
 
     dl 
+        font-size: 0.9em
         display: block
         padding: 3px
         margin: 13px 10px 10px 20px
@@ -319,29 +355,7 @@ a
         background-color: $tags-bg
         color: $page-color
 
-#nwao-header nav
-    display: block
-
-    ul
-        width: 100%
-        display: inline-block
-        margin: 0
-        padding: 0
-        list-style: none
-        background-color: black
-
-        li
-            display: inline
-            text-transform: uppercase
-
-            a
-                color: $page-color
-                padding: 5px
-                margin: 2px 2.5%                
-
-                &:hover
-                    background-color: $page-color
-                    color: $hilite-color
+// SOCIAL BLOCK
 
 ul#nwao-social
     margin: 5px
@@ -362,6 +376,8 @@ ul#nwao-social
         display: inline
         padding: 5px
 
+// FOOTER
+
 #nwao-footer
     font-size: 0.6em
     color: #666
@@ -375,7 +391,10 @@ ul#nwao-social
         margin: 0
         padding: 5px
 
+// ONION
+
 #nwao-onion
+    //display: none // TODO: show on scroll to end
     @include opacity(0.05)
     right: 0
     bottom: 0   
@@ -394,6 +413,8 @@ ul#nwao-social
             repeat: no-repeat
             image: url('/assets/img/onion.png')
 
+// TO-TOP
+
 #nwao-jump-to-top
     background-color: $transp-tilt
     @include border-radius(3px)
@@ -410,6 +431,48 @@ ul#nwao-social
 
     &:hover
         @include opacity(1.0)
+
+// FEED STYLES
+
+#nwao-blog-feed h2
+    a
+        color: $hilite-dark-color
+
+        &:hover
+            color: $hilite-dark-color
+
+    border: none
+
+    &:hover
+        background-color: #ddd
+        border: none
+
+    &:hover:after
+        content: ""
+
+.nwao-blog-feed-item
+    margin: 0 0 80px 0
+
+    @include border-radius(9px)
+    border:
+        style: solid dashed
+        color: #666
+        width: 1px 0px 4px 0px
+
+    &:hover
+        background-color: $transp-tilt
+        @include transition(background 3s ease)
+
+.nwao-post-excerpt
+    margin: 0 80px 43px 43px
+
+.nwao-continue p
+    margin: 10px
+
+#nwao-pagination
+    font-size: 2em
+    width: 100%
+    text-align: center
 
 // DIVER
        

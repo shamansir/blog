@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 
 
-{% set title = 'Archives  &rsaquo; ' ~ archive.year %}
+{% set title = 'nwao — Archives  &rsaquo; ' ~ archive.year %}
 
 {% block content %}
     <h2><a href="{{ get_url('archives/') }}">Archives</a> &rsaquo; {{ archive.year }}</h2>
-    <dl class="archives">
+    <dl id="nwao-archives">
         {% for month, posts in archive.months %}
             {% for post in posts %}
                 <dt>{{ post.timestamp|date('%b %d') }}</dt>

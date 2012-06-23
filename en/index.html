@@ -1,27 +1,52 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+
+    <div id="nwao-blog-feed">
+
     {% for post in posts %}
         {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}
-        <div class="item">
-            <div class="header">
-                <h1><a href="{{ get_url(post.url) }}">{{ post.title }}</a></h1>
-                <h2>{{ post.date }}{% if post.tags %} <span>&raquo;</span> {% for tag in post.tags %}<a href="{{ get_url(tags[tag].url) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</h2>
+
+        <div class="nwao-blog-feed-item">
+
+            <div class="nwao-post-header">
+                <h2 class="nwao-post-title">
+                    <a href="{{ get_url(post.url) }}" title="{{ post.title }}">
+                        {{ post.title }}&nbsp;&raquo;
+                    </a>
+                </h1>
+                <dl>
+                    <dt>Published at</dt>
+                    <dd>{{ post.date }}</dd>
+                    {% if post.tags %}
+                        <dt>Tags</dt>
+                        <dd class="tags">
+                            {% for tag in post.tags %}
+                                <a href="{{ get_url(tags[tag].url) }}" rel="tag" title="Posts with {{ tag }} tag">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </dd>
+                    {% endif %}
+                </dl>
             </div>
             
-            <div class="body">
+            <div class="nwao-post-excerpt">
                 <p>{% if post.excerpt %}{{ post.excerpt }}{% else %}{{ post.content }}{% endif %}</p>
             </div>
-            
-            <div class="footer">
-                <p><a href="{{ get_url(post.url) }}">Continue Reading</a></p>
+
+            <div class="nwao-continue">
+                <p><a href="{{ get_url(post.url) }}">Continue&nbsp;Reading&nbsp;&raquo;</a></p>
             </div>
-        </div>
+
+        </div> <!-- / #nwao-blog-feed-item -->
+
     {% endfor %}
     
     {% if site.post_limit and posts|length > site.post_limit %}
-        <div class="pagination">
-            <p><a href="{{ get_url('archives/') }}">Read Older Posts</a></p>
+        <div id="nwao-pagination">
+            <p><a href="{{ get_url('archives/') }}">&raquo;&nbsp;Read Older&nbsp;Posts</a></p>
         </div>
     {% endif %}
+
+    </div> <!-- / #nwao-blog-feed -->
+
 {% endblock %}
