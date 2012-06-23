@@ -1,8 +1,8 @@
 ---
-layout: blog-ru
-title: [g]Vim в режиме Python: Рекомпиляция в Windows
+layout: post.html
+title: "[g]Vim в режиме Python: Рекомпиляция в Windows"
 datetime: 15 Mar 2008 17:32
-tags: ide,python,vim,gvim,windows,development
+tags: [ ide, python, vim, gvim, windows, development ]
 ---
 
 ### Введение

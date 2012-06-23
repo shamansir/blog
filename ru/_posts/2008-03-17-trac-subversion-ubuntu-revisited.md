@@ -1,8 +1,8 @@
 ---
-layout: blog-ru
-title: Trac + Subversion @ Ubuntu: Revisited
+layout: post.html
+title: "Trac + Subversion @ Ubuntu: Revisited"
 datetime: 17 Mar 2008 03:12
-tags: subversion,trac,ubuntu,administration
+tags: [ subversion, trac, ubuntu, administration ]
 ---
 
 ### Задача

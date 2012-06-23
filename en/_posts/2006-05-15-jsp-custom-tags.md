@@ -2,11 +2,10 @@
 layout: post.html
 title: JSP Custom Tags
 datetime: 15 May 2006 19:06
-tags: java,jsp,j2ee,web-development
+tags: [ java, jsp, j2ee, web-development ]
 ---
 
-Let the first post will be about custom-tags for [JSP](http://java.sun.com/products/jsp/), for example (and Java Server Faces, I think, will also follows these rules).
-There is a lot of information about them, but I've wanted to introduce you my sight and also to start from something relatively easy, though.
+Let the first post will be about custom-tags for [JSP](http://java.sun.com/products/jsp/), for example (and Java Server Faces, I think, will also follows these rules). There is a lot of information about them, but I've wanted to introduce you my sight and also to start from something relatively easy, though.
 
 As an example, I'll show you a little bit tricky tag, but kindly demonstrating the possibilities of tags-fabrication.
 

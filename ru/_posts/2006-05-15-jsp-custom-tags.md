@@ -1,8 +1,8 @@
 ---
-layout: blog-ru
+layout: post.html
 title: JSP Custom tags
 datetime: 15 May 2006 19:06
-tags: java,jsp,j2ee,web-development
+tags: [ java, jsp, j2ee, web-development ]
 ---
 
 Расскажу вам для затравки, например, о кастом-тэгах для [JSP](http://java.sun.com/products/jsp/) (а по принципу - и для каких-нибудь там Java Server Faces). Информации об этом действительно не так уж мало. Но тем не менее хотелось предложить для начала что-нибудь простенькое дабы развернуть тему.

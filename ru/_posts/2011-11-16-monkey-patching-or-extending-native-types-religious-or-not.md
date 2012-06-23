@@ -1,8 +1,8 @@
 ---
-layout: blog-ru
-title: Monkey-Patching или Расширение Встроенных Типов: религия или осознанный выбор?
+layout: post.html
+title: "Monkey-Patching или Расширение Встроенных Типов: религия или осознанный выбор?"
 datetime: 16 Nov 2011 11:55
-tags: javascript,snippet,assert,oop,each
+tags: [ javascript, snippet, assert, oop, each ]
 ---
 
 Прошу прощения за «жёлтый» заголовок, но надо же как-то привлечь.

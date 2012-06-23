@@ -1,8 +1,8 @@
 ---
-layout: blog-en
+layout: post.html
 title: PHP and UTF-8 (Unicode) - A funny thing for a half of a day
 datetime: 22 Dec 2006 12:48
-tags: mysql,php,unicode,web-development
+tags: [ mysql, php, unicode, web-development ]
 ---
 
 It is [not the advice of mine](http://live.julik.nl/2005/03/unicode-php), but it helped me enormously.

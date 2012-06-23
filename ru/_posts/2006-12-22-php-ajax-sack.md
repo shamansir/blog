@@ -1,8 +1,8 @@
 ---
-layout: blog-ru
+layout: post.html
 title: PHP + AJAX = SACK
 datetime: 22 Dec 2006 12:27
-tags: php,ajax,sack,web-development
+tags: [ php, ajax, sack, web-development ]
 ---
 
 Понадобилось тут… Но лень было писать свою фунцкцию, чтобы там в зависимости от браузера и бла-бла-бла (тем более, насколько я помню, есть уже более прогрессивные методы :) ). Хотел было прикрутить [JsHttpRequest с dklab.ru](http://dklab.ru/lib/JsHttpRequest/), да чего-то полезли какие-то хитрые ошибки и вообще все там у мистера Д. Котероff как-то для меня хитро :), благо в `PHP` я еще не спец. Поэтому я взял [другой пакетик](http://www.twilightuniverse.com/projects/sack/), под названием `SACK` -- Simple AJAX Code-Kit. Там действительно все просто и банально -- мне больше и не было надо.

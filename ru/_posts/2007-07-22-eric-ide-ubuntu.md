@@ -1,8 +1,8 @@
 ---
-layout: blog-ru
+layout: post.html
 title: Eric IDE 4.0.1 на Ubuntu 7.04
 datetime: 22 Jul 2007 18:05
-tags: eric,ide,python,ubuntu
+tags: [ eric, ide, python, ubuntu ]
 ---
 
 [Eric](http://www.die-offenbachs.de/eric/index.html) – очень даже хорошее IDE под [Python](http://www.python.org/). И [не далее как вчера](http://www.die-offenbachs.de/eric/eric-news.html) вышла версия [4.0.1](http://sourceforge.net/project/showfiles.php?group_id=119070&package_id=233329), в репозиториях же на данный момент лежит версия 3.9. и захотелось мне вспомнить старые добрые времена и собрать этот пакет. Представляю вам на всякий случай листинг того, что делать – чтобы не возвращаться обратно, выясняя что нужно поставить еще что-то или разбираясь в ошибках компиляции, которые меня посещали :). Кое-где – ориентировка на последние версии :). Так как устанавливалось на чистой практически убунте – все должно быть адекватно… если что-то упустил – прошу сообщать.

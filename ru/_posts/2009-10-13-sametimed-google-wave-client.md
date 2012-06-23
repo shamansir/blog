@@ -1,8 +1,8 @@
 ---
-layout: blog-ru
+layout: post.html
 title: Клиент для Google Wave в виде Java Web Application
 datetime: 13 Oct 2009 07:09
-tags: google wave,java,reverse ajax,jquery,dwr
+tags: [ google wave, java, reverse ajax, jquery, dwr ]
 ---
 
 Здравствуйте.

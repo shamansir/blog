@@ -1,8 +1,8 @@
 ---
-layout: blog-en
-title: GWT + mvp4g Lecture Slides
+layout: post.html
+title: "GWT + mvp4g Lecture Slides"
 datetime: 4 May 2011 19:17
-tags: gwt,mvp4g,slides
+tags: [ gwt, mvp4g, slides ]
 ---
 
 April 29, I've presented a lecture on Web-development with [GWT](http://code.google.com/intl/ru/webtoolkit/) and [mvp4g](http://code.google.com/p/mvp4g/) Framework, at [Application Developer Days](http://addconf.ru) 2011 Conference. Here are the slides.

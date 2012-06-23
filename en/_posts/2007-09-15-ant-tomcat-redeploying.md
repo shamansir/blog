@@ -1,8 +1,8 @@
 ---
-layout: blog-en
+layout: post.html
 title: Redeploying an Application to Tomcat with Ant
 datetime: 15 Sep 2007 12:38
-tags: j2ee,java,tomcat,ant,web-development
+tags: [ j2ee, java, tomcat, ant, web-development ]
 ---
 
 The process of out project development has one drawback, which is common to many serious J2EE-projects: after applying changes to the code code and further recompilation, a server do not catches a new version automatically, but requires stoping it, cleaning cache, restarting it again and then, redeploying a package.

@@ -1,8 +1,8 @@
 ---
-layout: blog-ru
+layout: post.html
 title: Доклад «Правильный JavaScript» на WebStandardDays @ Киев
 datetime: Thu 07 Oct 2011 10:00
-tags: javascript,lecture,announce,web-standards
+tags: [ javascript, lecture, announce, web-standards ]
 ---
 
 Буду делать доклад под названием «Правильный JavaScript» [22 Октября](http://webstandardsdays.ru/2011/10/22/) на [WebStandardsDays](http://webstandards) в Киеве.

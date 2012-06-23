@@ -1,8 +1,8 @@
 ---
-layout: blog-ru
-title: GWT + mvp4g: видео доклада + отзыв о ADDConf'11 + пример с портлетами
+layout: post.html
+title: "GWT + mvp4g: видео доклада + отзыв о ADDConf'11 + пример с портлетами"
 datetime: 27 Jul 2010 09:10
-tags: gwt,mvp4g,java
+tags: [ gwt, mvp4g, java ]
 ---
 
 # Вступление

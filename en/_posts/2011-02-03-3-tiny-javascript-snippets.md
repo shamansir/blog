@@ -1,8 +1,8 @@
 ---
-layout: blog-en
+layout: post.html
 title: 3 Tiny JavaScript Snippets
 datetime: 03 Feb 2011 11:55
-tags: javascript,snippet,assert,oop,each
+tags: [ javascript, snippet, assert, oop, each ]
 ---
 
 Currently I am doing some stuff in JavaScript and I need to have just a tiny amounts of code to work with. As tiny as this article. But there are some things I really need to make the development comfortable for myself. So I require them to be tiny too.

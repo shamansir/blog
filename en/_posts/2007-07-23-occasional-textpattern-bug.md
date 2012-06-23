@@ -1,8 +1,8 @@
 ---
-layout: blog-en
+layout: post.html
 title: Occasional Textpattern Bug
 datetime: 23 Jul 2007 02:14
-tags: php,textpattern
+tags: [ php, textpattern ]
 ---
 
 While I've played with [textpattern](http://textpattern.org/) at [sharecode](http://sharedcode.info/), I faced this issue that may come in touch with those who uses [textpattern](http://textpattern.org/).
