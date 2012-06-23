@@ -1,8 +1,11 @@
 ---
-layout: post.html
-title: LimeJS — Writing a cross-platform game in HTML5 with touch support
-tags: [html5,limejs,touch,android,ios,iphone,ipad]
+layout: blog-en
+title: LimeJS: Writing a cross-platform game in HTML5 with touch support
+datetime: 15 Feb 2011 22:10
+tags: html5,limejs,touch,android,ios,iphone,ipad
 ---
+
+### Introduction
 
 [LimeJS](http://www.limejs.com) is 2D Open Source HTML5-engine for game development with touch-events support and it works (following to the description on the site) with most of mobile platfroms. I have found it not by myself, but last week I've got a letter with a proposition to tell community about the engine [in russian, this is an english version] and I've decided - sp if this is the case, why waste time on trifles, why not to try this engine in action. Among with that, I have agreed in advance with engine authors that I will tell both advantages and disadvantages, so I hope to clear the advertisment halo from the article with that (though, what means advertisment to open-source)..?
 
@@ -601,3 +604,4 @@ The main thing - it is not a state-machine-based engine that is fashionable now 
 ![QRCode](http://qrcode.kaywa.com/img.php?s=6&d=http%3A%2F%2Fshamansir.madfire.net%2F_pingpong%2Fpingpong.html)
 
 P.S. Special thanks to [lazio_od](http://www.lazio.com.ua/), he helped me with testing among with engine authors.
+
