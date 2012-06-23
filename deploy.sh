@@ -16,6 +16,8 @@ cp -R ./$SEC_LANG/* ./$TMP_DIR/_subsites/$SEC_LANG
 cp -R ./shared/* ./$TMP_DIR/_subsites/$SEC_LANG
 mynt gen -f ./$TMP_DIR ./$TMP_DIR/_site
 mynt gen -f ./$TMP_DIR/_subsites/$SEC_LANG ./$TMP_DIR/_site/$SEC_LANG
+compass compile --config shared/_assets/css/_sass/config.rb --sass-dir ./shared/_assets/css/_sass --css-dir ./$TMP_DIR/_site/assets/css/
+compass compile --config shared/_assets/css/_sass/config.rb --sass-dir ./shared/_assets/css/_sass --css-dir ./$TMP_DIR/_site/$SEC_LANG/assets/css/
 CUR_BRANCH=$(git symbolic-ref -q HEAD)
 CUR_BRANCH=${CUR_BRANCH##refs/heads/}
 CUR_BRANCH=${CUR_BRANCH:-HEAD}
