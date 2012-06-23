@@ -1,12 +1,16 @@
 {% extends 'layout.html' %}
 
 
-{% set title = post.title %}
+{% set title = 'nwao — ' + post.title %}
 
 {% block content %}
     <article id="nwao-post">
         <div class="nwao-post-header">
-            <h2 class="nwao-post-title">{{ post.title }}<!-- <span>&raquo;</span>--></h1>
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="{{ post.title }}">
+                    {{ post.title }}
+                </a>
+            </h1>
             <dl>
             	<dt>Published at</dt>
             	<dd>{{ post.date }}</dd>
