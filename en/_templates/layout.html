@@ -11,15 +11,17 @@
 <body>
     <div id="nwao-page">
         <div id="nwao-header">
-            <nav id="nwao-nav"><ul>
-                <li><a href="http://shamansir.github.com" rel="author">Author</a></li>
-                <li><a href="{{ get_url() }}" rel="contents">Blog</a></li>
-                <li><a href="{{ get_url('archives/') }}" rel="index">Archives</a></li>
-                <!-- TODO: TAGS PAGE -->
-                {% if site.feed %}<li><a href="{{ get_url('feed.xml') }}">Feed</a></li>{% endif %}
-            </ul></nav>
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="http://shamansir.github.com" rel="author">Author</a></li>
+                    <li><a href="{{ get_url() }}" rel="contents">Blog</a></li>
+                    <li><a href="{{ get_url('archives/') }}" rel="index">Archives</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    {% if site.feed %}<li><a href="{{ get_url('feed.xml') }}">Feed</a></li>{% endif %}
+                </ul></nav>
 
-            <h1 id="nwao-title"><a href="{{ get_url() }}">{{ site.title }}</a></h1>
+                <h1 id="nwao-title"><a href="{{ get_url() }}">{{ site.title }}</a></h1>
+            </div>
             {% if site.subtitle %}<div id="nwao-subtitle"><span>{{ site.subtitle }}</span></div>{% endif %}
         </div>
 
@@ -38,14 +40,14 @@
         
         {% if site.social.values()|sort(true)|first %}
             <ul id="nwao-social">
-                {% if site.social.twitter %}<li><a href="https://twitter.com/#!/{{ site.social.twitter }}"><img src="{{ get_asset('images/social/twitter.png') }}" width="16" height="16" alt="Twitter profile"></a></li>{% endif %}
-                {% if site.social.github %}<li><a href="https://github.com/{{ site.social.github }}"><img src="{{ get_asset('images/social/github.png') }}" width="16" height="16" alt="GitHub profile"></a></li>{% endif %}                
-                {% if site.social.dribbble %}<li><a href="http://dribbble.com/{{ site.social.dribbble }}"><img src="{{ get_asset('images/social/dribbble.png') }}" width="16" height="16" alt="Dribbble profile"></a></li>{% endif %}
-                {% if site.social.facebook %}<li><a href="https://www.facebook.com/{{ site.social.facebook }}"><img src="{{ get_asset('images/social/facebook.png') }}" width="16" height="16" alt="Facebook profile"></a></li>{% endif %}
-                {% if site.social.google_plus %}<li><a href="https://plus.google.com/{{ site.social.google_plus }}"><img src="{{ get_asset('images/social/google-plus.png') }}" width="16" height="16" alt="Google+ profile"></a></li>{% endif %}
-                {% if site.social.lastfm %}<li><a href="http://www.last.fm/user/{{ site.social.lastfm }}"><img src="{{ get_asset('images/social/lastfm.png') }}" width="16" height="16" alt="Last.fm profile"></a></li>{% endif %}
-                {% if site.social.stack_overflow %}<li><a href="http://stackoverflow.com/users/{{ site.social.stack_overflow }}"><img src="{{ get_asset('images/social/stack-overflow.png') }}" width="16" height="16" alt="Stack Overflow profile"></a></li>{% endif %}
-                {% if site.social.steam %}<li><a href="http://steamcommunity.com/id/{{ site.social.steam }}"><img src="{{ get_asset('images/social/steam.png') }}" width="16" height="16" alt="Steam profile"></a></li>{% endif %}
+                {% if site.social.twitter %}<li><a href="https://twitter.com/#!/{{ site.social.twitter }}"><img src="{{ get_asset('img/social/twitter.png') }}" width="16" height="16" alt="Twitter profile"></a></li>{% endif %}
+                {% if site.social.github %}<li><a href="https://github.com/{{ site.social.github }}"><img src="{{ get_asset('img/social/github.png') }}" width="16" height="16" alt="GitHub profile"></a></li>{% endif %}                
+                {% if site.social.dribbble %}<li><a href="http://dribbble.com/{{ site.social.dribbble }}"><img src="{{ get_asset('img/social/dribbble.png') }}" width="16" height="16" alt="Dribbble profile"></a></li>{% endif %}
+                {% if site.social.facebook %}<li><a href="https://www.facebook.com/{{ site.social.facebook }}"><img src="{{ get_asset('img/social/facebook.png') }}" width="16" height="16" alt="Facebook profile"></a></li>{% endif %}
+                {% if site.social.google_plus %}<li><a href="https://plus.google.com/{{ site.social.google_plus }}"><img src="{{ get_asset('img/social/google-plus.png') }}" width="16" height="16" alt="Google+ profile"></a></li>{% endif %}
+                {% if site.social.lastfm %}<li><a href="http://www.last.fm/user/{{ site.social.lastfm }}"><img src="{{ get_asset('img/social/lastfm.png') }}" width="16" height="16" alt="Last.fm profile"></a></li>{% endif %}
+                {% if site.social.stack_overflow %}<li><a href="http://stackoverflow.com/users/{{ site.social.stack_overflow }}"><img src="{{ get_asset('img/social/stack-overflow.png') }}" width="16" height="16" alt="Stack Overflow profile"></a></li>{% endif %}
+                {% if site.social.steam %}<li><a href="http://steamcommunity.com/id/{{ site.social.steam }}"><img src="{{ get_asset('img/social/steam.png') }}" width="16" height="16" alt="Steam profile"></a></li>{% endif %}
 
             </ul>
         {% endif %}
@@ -56,8 +58,10 @@
 
         <div id="nwao-jump-to-top"><a href="#top" title="Jump to top">&uarr;</a></div>
 
+        <div id="nwao-onion"></div>
+
         <!--
-        <script type="text/javascript" src="{{ get_asset('scripts/scrolls.js') }}"></script>
+        <script type="text/javascript" src="{{ get_asset('js/scrolls.js') }}"></script>
         <script type="text/javascript">
             var socialElm = document.getElementById('nwao-social');
             var toTopElm = document.getElementById('nwao-jump-to-top');
