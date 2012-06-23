@@ -20,7 +20,7 @@
                     {% if site.feed %}<li><a href="{{ get_url('feed.xml') }}">Feed</a></li>{% endif %}
                 </ul></nav>
 
-                <h1 id="nwao-title"><a href="{{ get_url() }}">{{ site.title }}</a></h1>
+                <h1 id="nwao-title"><a href="{{ get_url() }}" title="{{ site.title }}">{{ site.title }}</a></h1>
             </div>
             {% if site.subtitle %}<div id="nwao-subtitle"><span>{{ site.subtitle }}</span></div>{% endif %}
         </div>
