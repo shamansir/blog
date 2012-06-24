@@ -15,6 +15,8 @@ So I have taken an existing script and started to revise it. I've found several 
 
 Here is the `build.properties` file. It contains a values that may change frequently so it is better to store them separately from the ant script.
 
+~~~ { ini }
+
     # package name
     war.name = SomeProjectPackage
 
@@ -42,9 +44,12 @@ Here is the `build.properties` file. It contains a values that may change freque
     # path to the directory with web-content: pages, scripts, images and so on
     web.dir = ${root.dir}/WebContent/
 
+~~~
+
 Now let us consider the script part by part. In the heading - we include our `.properties` file.
 
-    #!xml
+~~~ { xml }
+
     <?xml version="1.0" encoding="UTF-8"?>
 
         <project name="SomeProject" default="redeploy" basedir=".">
@@ -52,9 +57,12 @@ Now let us consider the script part by part. In the heading - we include our `.p
 
         . . .
 
+~~~
+
 Now the compilation target goes (`build`), the target cleaning temporary directories used while building (`clean`), and the rebuilding which, in fact, cleans and then builds the package (`rebuild`).
 
-    #!xml
+~~~ { xml }
+
         . . .
 
         <!-- Compiles project with all dependencies. -->
@@ -89,6 +97,8 @@ Now the compilation target goes (`build`), the target cleaning temporary directo
 
         . . .
 
+~~~
+
 And now the subject targets of the article -- a deploying target (put a new package to the servers), de-deploying target (taking an old package from server) and re-deploying target (which, in fact, takes and then puts).
 
 When deploying (`deploy`) we compile the code (`depends="build"`), then create the logs directory at the server, then constructing a package from the compiled sources (with `jar` command) and putting it to a temporary directory, and then we start a server. The server can be started from ant-script only from inside its own environment, in case of Windows, so we need to call it using `cmd /c catalina.bat jpda start` command with ant `exec` (arguments must be separated the exactly same way as you see them below -- `exec` must wrap the whole `catalina jpda start` command with quotes correctly). Also we need to pass several environment variables to server, what we do using `env` commands. The server is started in separate thread (`spawn="true"` -- or else the script will inactively wait for a server to return an exit code that will not happen while server is running) and in the clean way (not using java-vm -- `vmlauncher="false"`). Now server is running, we can deploy a package there and then clean up the temporary directories and files (`copy` and `delete` commands sequence).
@@ -97,7 +107,8 @@ To unload a package from server (`undeploy`) we stop the server using the rules 
 
 When we redeploy (`redeploy`) -- a default target -- the old version of the package is removed from the server (`undeploy`), temporay directories are cleaned up (`clean`), then package is constructed and deployed to server (`deploy`).
 
-    #!xml
+~~~ { xml }
+
         . . .
 
         <!-- Prepares deployment -->
@@ -178,6 +189,8 @@ When we redeploy (`redeploy`) -- a default target -- the old version of the pack
         </project>
 
     </xml>
+
+~~~
 
 Seems that's all :)
 

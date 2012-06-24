@@ -7,7 +7,7 @@
     {% for post in posts %}
         {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}
 
-        <div class="nwao-blog-feed-item">
+        <section class="nwao-blog-feed-item">
 
             <div class="nwao-post-header">
                 <h2 class="nwao-post-title">
@@ -37,7 +37,7 @@
                 <p><a href="{{ get_url(post.url) }}">Continue&nbsp;Reading&nbsp;&raquo;</a></p>
             </div>
 
-        </div> <!-- / #nwao-blog-feed-item -->
+        </section>
 
     {% endfor %}
     

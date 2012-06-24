@@ -13,14 +13,21 @@ The mean is if in your _Admin_ -> _Preferences_ -> _Basic_ page for _Comments_ s
 
 You need to do just two actions. First - take `./textpattern/include/txp_prefs.php` file from your hosting, find a 89 line:
 
-    #!php
+~~~ { php }
+
     $evt_list = safe_column('event', 'txp_prefs',
          "type = 0 and prefs_id = 1 group by 'event' order by event desc");
 
+~~~
+
 and to delete the quotes wrapping `event` to make it match with [this variant](http://dev.textpattern.com/browser/development/4.0/textpattern/include/txp_prefs.php?rev=2156#L89)):
+
+~~~ { php }
 
     $evt_list = safe_column('event', 'txp_prefs',
          "type = 0 and prefs_id = 1 group by event order by event desc");
+
+~~~
 
 second -- redeploy the file back. Finita la comedia -- you're welcome in preferences,  _Comments:Disabled after_.
 

@@ -17,25 +17,43 @@ _What is used:_
 
 so, let's go into some catalogue for compilation and start:
 
+~~~ { bash }
+
     $ cd ~/distr-temp/
+
+~~~
 
 using [sources](http://sourceforge.net/project/showfiles.php?group_id=119070&package_id=233329) from sourceforge:
 
+~~~ { bash }
+
     $ wget http://mesh.dl.sourceforge.net/sourceforge/eric-ide/eric4-4.0.1.tar.gz
 
+~~~
+
 we will install different libraries for [PyQt](http://www.riverbankcomputing.co.uk/pyqt/index.php) (depending of `apt-get` settings you may need an install CD):
+
+~~~ { bash }
 
     $ sudo apt-get install python2.5-dev
     $ sudo apt-get install python-qt4
     $ sudo apt-get install libqt4-dev
     $ sudo apt-get install python-qt4-dev
 
+~~~
+
 then we'll install `g++` compiler and make a `/usr/bin/g++` link:
+
+~~~ { bash }
 
     $ sudo apt-get install g++-3.4
     $ sudo ln -s /usr/bin/g++-3.4 /usr/bin/g++
 
+~~~
+
 then download and install the last current version of  [SIP](http://www.riverbankcomputing.co.uk/sip/index.php) – it allows the libraries written C[++] to act themselves as [Python](http://www.python.org/) modules:
+
+~~~ { bash }
 
     $ wget http://www.riverbankcomputing.com/Downloads/sip4/sip-4.6.tar.gz
     $ tar -xvzf ./sip-4.6.tar.gz
@@ -45,7 +63,11 @@ then download and install the last current version of  [SIP](http://www.riverban
     $ sudo make install
     $ cd ..
 
+~~~
+
 then download and install the last current version of [QScintilla](http://www.riverbankcomputing.co.uk/qscintilla/index.php) – Qt-port for source code editor component (version is for Qt4):
+
+~~~ { bash }
 
     $ wget http://www.riverbankcomputing.com/Downloads/ \
       Snapshots/QScintilla2/QScintilla-gpl-2-snapshot-20070709.tar.gz
@@ -55,17 +77,27 @@ then download and install the last current version of [QScintilla](http://www.ri
     $ sudo make
     $ sudo make install
 
+~~~
+
 now we need to install bindings of [QScintilla](http://www.riverbankcomputing.co.uk/qscintilla/index.php) for [Python](http://www.python.org/) – they are placed in `Python` directory:
+
+~~~ { bash }
 
     $ cd ../Python
     $ python ./configure.py
     $ make
     $ sudo make install
 
+~~~
+
 and finally the [eric](http://www.die-offenbachs.de/eric/index.html)'s turn:
+
+~~~ { bash }
 
     $ cd ../../eric4-4.0.1/
     $ sudo python install.py
+
+~~~
 
 when installing, you need to specify the directory where Qt lies: `/usr/share/qt4`.
 

@@ -21,7 +21,8 @@ I'll show you the result and will give a description on hard moments (if they ar
 
 > (to make highlighting correct I've splitted the code in five blocks, they just go one by one, following each other: if you just select them all and copy - everything will work ok)
 
-    #!html
+~~~ { html }
+
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
                           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,7 +32,10 @@ I'll show you the result and will give a description on hard moments (if they ar
 
         <style type="text/css">
 
-        #!css
+~~~
+
+~~~ { css }
+
         /**/.invisible {
             display: none;
         }
@@ -134,14 +138,20 @@ I'll show you the result and will give a description on hard moments (if they ar
             padding: 0;
         }
 
-        #!html
+~~~
+
+~~~ { html }
+
         </style>
 
         <script type="text/javascript" src="./scripts/tw-sack.js"></script>
         <script language="JavaScript" type="text/javascript">
         <!--
 
-            #!js
+~~~
+
+~~~ { javascript }
+
             function showElement(elementId) {
                 element = document.getElementById(elementId);
                 element.className = 'visible';
@@ -198,7 +208,10 @@ I'll show you the result and will give a description on hard moments (if they ar
                 ajax.runAJAX();
             }
 
-     #!html
+~~~
+
+~~~ { html }
+
              //-->
          </script>
      </head>
@@ -231,9 +244,12 @@ I'll show you the result and will give a description on hard moments (if they ar
      </body>
      </html>
 
+~~~
+
 And the receiving script - `q.php` (_pay attention_ - it is in `utf-8`, to conform with the page in encoding):
 
-    #!php
+~~~ { php }
+
     <?php
     ob_start();
     print_r($_POST);
@@ -283,6 +299,8 @@ And the receiving script - `q.php` (_pay attention_ - it is in `utf-8`, to confo
 
     echo $responce_str;
     ?>
+
+~~~
 
 It is even `CSS` is a greatest part of the `HTML`-page :).
 

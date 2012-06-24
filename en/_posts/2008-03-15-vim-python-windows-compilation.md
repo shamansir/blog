@@ -40,7 +40,8 @@ It is also important to get the sources, so we [download them](ftp://ftp.vim.org
 
 Also, if you use a stable release and you want to install the newest patches -- follow [this link](ftp://ftp.vim.org/pub/vim/patches/7.1/) (correct the version number if you need) to get them. There is a problem gere, because they pack the patches only when their count reaches one hundred (001-100, 101-200 and so on), so for example if their count is 275 - you'll need to download the late 75 files manually or by creating a batch-script which uses `telnet`. However, we have Cygwin installed, so we can make an `.sh`-script, executing the same functions using `wget`, it can look something like this:
 
-    #!/bin/bash
+~~~ { bash }
+
     PATCHES_DOWNLOAD_PATH=ftp://ftp.vim.org/pub/vim/patches
     PATCHES_VER=7.1
     wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.001-100.gz
@@ -51,6 +52,8 @@ Also, if you use a stable release and you want to install the newest patches -- 
         wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.$i
     done
 
+~~~
+
 Now let's sort the sources in order that is required for compilation.
 
 Source archive, `-extra` and `-lang` archives are required to be unpacked one by one (replacing the old files, though) in some directory, keeping the structure (let it be `C:/devel/vim-src/vim71` in our case): there inside the `/doc`,  `/nsis`, `/src`, `/farsi` and s.o. directories must be placed. You can use `bzip2` from Cygwin to unpack, or an internal archives plugin of [Total Commander](http://www.ghisler.com/) file manager, or a [7-zip](http://www.7-zip.org/) archivator or any other archive manager that copes well with `.tar.gz`/`tar.bz` :).
@@ -60,6 +63,8 @@ In `/runtime` subdirectory you can place `.vim` files, `/doc` and `/plugins` fro
 ### Compilation
 
 To install patches, you need to execute `patch` command from Cygwin set over every one of them, unpacking the archives with bunches of hundreds of patches, provisionally. In this case I've used `.bat`-files instead of `.sh`-script (you need to correct the numbers of patches to apply your variant, of course):
+
+~~~ { batch }
 
     @ECHO off
     ECHO changing directory to parent...
@@ -84,9 +89,13 @@ To install patches, you need to execute `patch` command from Cygwin set over eve
 
     @ECHO on
 
+~~~
+
 Place this file in `/patches` directory, ensure the directories structure matches the one described above, correct numbers and execute it. In the sources root there will be a `patching-src.log` file created, where you can monitor the results of patching procedure. If `patch` utility wasn't found, ensure Cygwin path is in you `PATH`. If some (small amount of) files has not been found and patched - there is nothing to worry about, they may relate to XWindow-version.
 
 Now we go directly to the compilation process, from Cygwin console. There is only execution of three commands required -- change to the source directory (Cygwin mounts your drives in `/cygdrive/` point: correct the paths to you Python and Tcl installation folder and their concrete versions, but if you compiling a version without Tcl support -- just remove the coinciding parameters) and create `vim.exe` (console version) and `gvim.exe` (GUI-version) files:
+
+~~~ { bash }
 
     $ cd /cygdrive/c/devel/vim-src/vim71
     $ make -B -f Make_cyg.mak GUI=no \
@@ -96,13 +105,19 @@ Now we go directly to the compilation process, from Cygwin console. There is onl
         PYTHON=/cygdrive/c/devel/Python PYTHON_VER=25 DYNAMIC_PYTHON=yes \
         TCL=/cygdrive/c/devel/Tcl TCL_VER=85 DYNAMIC_TCL=yes gvim.exe
 
+~~~
+
 You can ignore warnings and even some of the errors if they relate to Python or Tcl, if process is still going and `.exe`-files are created in the end. If everything has ended up successfully, then you'll find both `.exe` files in `src` directory. Make a backup of existing files in working version of Vim (i.e. `vim.exe.bak` and `gvim.exe.bak`) and replace them with the ones just compiled. If you've applied the pathces, then place the `*.vim` files, `/doc/` and `/plugins` directories back from `/runtime` directory, making a backup before, replacing the old versions. Now launch Vim or gVim from the working Vim directory and re-check the version and the compilation options in the same place to have `+python` key -- it must be ok in most cases.
 
 ### Possible drawbacks
 
 During the process of compiltion I've met two errors: `cannot exec cc1: No such file or directory` and `ld: cannot fin -lgcc`. Both of them are [known to the authors](http://www.mail-archive.com/cygwin@cygwin.com/msg10910.html) of Cygwin, however in mine versions the were not yet solved. The first one is temporary solved by adding a directory with `cc1.exe` executable file in local Cygwin `PATH` prior to compilation:
 
+~~~ { bash }
+
     $ PATH=$PATH:/cygdrive/c/devel/cygwin/lib/gcc/i686-pc-cygwin/3.4.4
+
+~~~
 
 The second one is solved the same way the first must to -- by installing `Devel/gcc-mingw` (they promised to make it automatically when user chooses `gcc` in future) while installing Cygwin. It is important to install the packages in same time, so if the error reappears still -- try to select `Reinstall` mode in Cygwin installer just in the same place where you've selected `Uninstall` before and re-install all packages again.
 

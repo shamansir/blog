@@ -17,7 +17,8 @@ When application launched, it is started in interpretor mode. To switch to code 
 
 Hereis, for example, two rotating spheres that change their colors through time:
 
-    #!lisp
+~~~ { lisp }
+
     (define (animate)
         (let* ((t (* (time) 2))
                (x (sin t))
@@ -35,3 +36,4 @@ Hereis, for example, two rotating spheres that change their colors through time:
 
     (every-frame (animate))
 
+~~~

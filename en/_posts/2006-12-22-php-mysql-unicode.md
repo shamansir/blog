@@ -15,10 +15,16 @@ That's what helped me - combining this advice with one line in `PHP` code while 
 
 In mysql, following to `PHPMyAdmin` everything was set to `utf-8`. But I had to correct this line in database connection line:
 
+~~~ { php }
+
     mysql_select_db("****") and mysql_query("set names utf8") and
     mysql_query("SET collation_connection = 'utf8_general_ci'");
 
+~~~
+
 Then I've added inside all `.htaccess` files of all `html`/`php` folders (why I am doing these strange things - [in that advise](http://live.julik.nl/2005/03/unicode-php)) the next lines:
+
+~~~ { htaccess }
 
     # unicode support
     AddDefaultCharset utf-8
@@ -38,14 +44,19 @@ Then I've added inside all `.htaccess` files of all `html`/`php` folders (why I 
     php_value       mbstring.detect_order   "UTF-8,KOI8-R,CP1251"
     # end
 
+~~~
+
 And, of course, I've re-encoded all my pages and `php`-files in `UTF-8` (used [PSPad](http://www.pspad.com/)).
 
 And in `HTML`-pages I've added this, just be on the safe side:
 
-    #!html
+~~~ { html }
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     </head>
+
+~~~
 
 And everything started to work great and in `UTF-8`! (this method was used in next post)
 

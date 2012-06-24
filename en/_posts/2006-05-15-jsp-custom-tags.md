@@ -15,7 +15,8 @@ Ok, let's take a decision what properties this tag must own. Obviously, it must 
 
 This is the specification:
 
-    #!java
+~~~ { java }
+
     /**
      * @author uwilfred
      *
@@ -48,13 +49,16 @@ This is the specification:
      *      /<html-tag-name>    /foo              -> <foo>body</foo>
      */
 
+~~~
+
 So, using some funny symbols and aliases, I've included a support of almost everything that user might want :)
 
 > I will include some XDoclet-tags in the code, so you'll have a possinility to generate a record in `.tld`-file if you'll need to.
 
 Following the specification, let us define our tag in `.tld`-file (a library of tags):
 
-    #!xml
+~~~ { xml }
+
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE taglib PUBLIC
         "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
@@ -95,11 +99,14 @@ Following the specification, let us define our tag in `.tld`-file (a library of 
 
     </taglib>
 
+~~~
+
 So the body of our tag is something calculated with JSP-code (normal text results in normal text), `value` attribute is required and contains an equation, all other attributes are optional.
 
 Now, not to be a downers - let's define our tag class:
 
-    #!java
+~~~ { java }
+
     package org.individpro.uwilfred.tag;
 
     import java.io.IOException;
@@ -315,6 +322,8 @@ Now, not to be a downers - let's define our tag class:
 
     }
 
+~~~
+
 By extending a tag from `BodyTagSupport`, we mean that this tag will have a body. The values are discarded in `release()` method, attributes values are set in compiled JSP - HTTP-servlet - with help of accessors. Methods `doStartTag()` `doAfterBody()` and `doEndTag()` are overriden from the parent (and they implement `Tag` interface by the way) and they are called in the specified order - after evaluation of opening tag, after evaluation of tag body, and after evaluation of closing tag respectively.
 
 `doStartTag()` returns `EVAL_BODY_BUFFERED` constant to evaluate tag body right after this method. `doAfterBody()` sets `body` to the `value` value if there is no text inside the tag and returns `SKIP_BODY` not to let tag body be returned to output without processing required. `doEndTag()` does the main thing - using the value and attributes settings it generates an output code, calls `release()` (or the values of attributes will be saved for next tags) and returns `EVAL_PAGE` to say `jasper` (JSP compiler) to follow the chain of tags forward through the page content.
@@ -323,7 +332,8 @@ If our tag was designed not to have a body (`empty` in `.tld`) - we'd extend it 
 
 Now let's look on the usage of tag:
 
-    #!html
+~~~ { html }
+
     <%@ taglib uri="/WEB-INF/uwilfred.tld" prefix="uwilfred" %>...
     <html><%
     ...
@@ -394,3 +404,4 @@ Now let's look on the usage of tag:
 
     </html>
 
+~~~
