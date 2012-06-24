@@ -38,59 +38,80 @@ Among with the regular `ListView` usage, it is frequently required to make a lis
 
 Headers must not react on selection or press and they must have their own layout. This may be accomplished extending the adapter of this list from `BaseAdapter`, for example, and by overriding its `getItemViewType`, `getViewTypeCount` and `isEnabled` methods, among with `getView`.
 
-    #!java
+~~~ {java}
+
     public class SectionedItemsAdapter extends BaseAdapter { . . .
+
+~~~
 
 * Example from vimeoid: [`SectionedActionsAdapter`](http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/adapter/SectionedActionsAdapter.java?r=85e18485bdda1c526141170f67e65f4e00202f34)
 
 The first step is creating a constants which identify element type, one for header, one for item (so there is a possibility to have more than two types, but it's better to use `enum` to store idenitifiers in cases like those):
 
-    #!java
+~~~ { java }
+
     public static final int ITEM_VIEW_TYPE = 0; \\ item
     public static final int SECTION_VIEW_TYPE = 1; \\ section
 
+~~~
+
 Then a constant containing a number of element types (there's two in our case):
 
-    #!java
+~~~ { java }
+
     public static final int VIEW_TYPES_COUNT = SECTION_VIEW_TYPE + 1;
+
+~~~
 
 Adapter must contain the information about all of the elements inside, so the `getCount`, `getItem` and `getItemId` realizations are depend on your situation.
 
 `getItemViewType` method must return the constant that conforms with the element type in the passed position. There is a special constant named `IGNORE_ITEM_VIEW_TYPE` exist in `Adapter` class for the case when type is undefined.
 
-    #!java
+~~~ { java }
+
     public int getItemViewType(int position) {
        if (. . .) return ITEM_VIEW_TYPE;
        if (. . .) return SECTION_VIEW_TYPE;
        return IGNORE_ITEM_VIEW_TYPE;
     }
 
+~~~
+
 I my case I store the list of sections inside the adapter and they contain their items inside. So I can ask any section to tell me how many items it holds inside and to determine the element type using this data.
 
 This method can be used in overriden `getView` now:
 
-    #!java
+~~~ { java }
+
     public View getView(int position, View convertView, ViewGroup parent) {
-    	final int viewType = getItemViewType(position);
-    	if (viewType == IGNORE_ITEM_VIEW_TYPE) throw new IllegalStateException("Failed to get object at position " + position);
-    	if (viewType == SECTION_VIEW_TYPE) {
-    	    convertView = . . . // here you can get a header layout using LayoutInflater
-    	} else if (viewType == ITEM_VIEW_TYPE) {
-    	    convertView = . . . // here you can get an item layout using LayoutInflater
-    	}
-    	return convertView;
+        final int viewType = getItemViewType(position);
+        if (viewType == IGNORE_ITEM_VIEW_TYPE) throw new IllegalStateException("Failed to get object at position " + position);
+        if (viewType == SECTION_VIEW_TYPE) {
+            convertView = . . . // here you can get a header layout using LayoutInflater
+        } else if (viewType == ITEM_VIEW_TYPE) {
+            convertView = . . . // here you can get an item layout using LayoutInflater
+        }
+        return convertView;
     }
+
+~~~
 
 `isEnabled` must return `false` for elements that can not be pressed or selected and `true` for others. Here we can use `getItemViewType` again:
 
-    #!java
+~~~ { java }
+
     public boolean isEnabled(int position) {
         return getItemViewType(position) != SECTION_VIEW_TYPE };
 
+~~~
+
 `getViewTypeCount` method returns the very constant determing a number of elements types:
 
-    #!java
+~~~ { java }
+
     public int getViewTypeCount() { return VIEW_TYPES_COUNT; }
+
+~~~
 
 By the way, you can keep a pointer to `LayoutInflater` in your adapter and get it passed using constructor.
 
@@ -102,13 +123,17 @@ I use separate structures to store the data about sections and items. The sectio
 
 I simplified adding sections and items to list using this way. Adapter has methods:
 
-    #!java
+~~~ { java }
+
     public int addSection(String title);
     public LActionItem addItem(int section, int icon, String title);
 
+~~~
+
 Method `addSection` returns the section identifier so you can use it to add items in this section:
 
-    #!java
+~~~ { java }
+
     final int suitsSection = adapter.addSection("Suits");
     adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
     adapter.addItem(suitsSection, R.drawable.diamond, "Diamonds");
@@ -118,6 +143,8 @@ Method `addSection` returns the section identifier so you can use it to add item
     adapter.addItem(figuresSection, R.drawable.king, "King");
     adapter.addItem(figuresSection, R.drawable.queen, "Queen");
     . . .
+
+~~~
 
 ### 3. Lists with elements that react on something
 
@@ -129,31 +156,43 @@ Sometimes it is required to change the list element content and/or switch activi
 
 If you agree with that, your adapter can implement `OnItemClickListener` interface:
 
-    #!java
+~~~ { java }
+
     public class ActionsAdapter extends . . . implements OnItemClickListener
+
+~~~
 
 And inside the activity that uses this adapter you can do:
 
-    #!java
+~~~ { java }
+
     final ListView actionsList = (ListView)findViewById(R.id.actionsList);
     final SectionedActionsAdapter actionsAdapter = new ActionsAdapter(. . .);
     . . . // fill adapter with values
     actionsList.setAdapter(actionsAdapter);
     actionsList.setOnItemClickListener(actionsAdapter);
 
+~~~
+
 In my case some actions are responsible for each item in the section - they switch the activity or change the corresponding item content after server request. So I decided to create structures with public-access properties for sections and items, and the item structures contain a pointer to `OnClick` handler that gets `View` to change, so you it is possible to change the view just inside the handler. So it is just required to pass a click action to the appropriate handler inside the adapter:
 
-    #!java
+~~~ { java }
+
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final LActionItem item = (LActionItem) getItem(position);
-	    if (item.onClick != null) item.onClick(view);
+        if (item.onClick != null) item.onClick(view);
     }
+
+~~~
 
 Using the `addItem` method described above you can set a handler directly from activity:
 
-    #!java
+~~~ { java }
+
     final LActionItem heartsItem = adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
     heartsItem.onClick = new OnClickListener() { public void onClick(View view) { . . . } };
+
+~~~
 
 ### 4. Manual invalidation of list views
 
@@ -161,18 +200,21 @@ As you may know, `ListView` in Android has a [little trick inside] named [_ListV
 
 If you need to update (invalidate) concrete known element view (or even its child view) at some moment, when it is visible to user, you may call `ListView.invalidate()` or `Adapter.notifyDataSetChanged()`, but sometimes these methods update not only the required view but also its neighbours or even all the visible elements (especially when layout is [built incorrectly](http://www.curious-creature.org/2009/02/22/android-layout-tricks-1/)). There is a way to get the current view of list element using `ListView.getChildAt(position)` method. But `position` in this case is not index of the element in a list, as you may considered, but an index relative to visible views on the screen. So a methods like these would help:
 
-    #!java
-	public static View getItemViewIfVisible(AdapterView<?> holder, int itemPos) {
-	    int firstPosition = holder.getFirstVisiblePosition();
-	    int wantedChild = itemPos - firstPosition;
-	    if (wantedChild < 0 || wantedChild >= holder.getChildCount()) return null;
-	    return holder.getChildAt(wantedChild);
-	}
+~~~ { java }
 
-	public static void invalidateByPos(AdapterView<?> parent, int position) {
+    public static View getItemViewIfVisible(AdapterView<?> holder, int itemPos) {
+        int firstPosition = holder.getFirstVisiblePosition();
+        int wantedChild = itemPos - firstPosition;
+        if (wantedChild < 0 || wantedChild >= holder.getChildCount()) return null;
+        return holder.getChildAt(wantedChild);
+    }
+
+    public static void invalidateByPos(AdapterView<?> parent, int position) {
         final View itemView = getItemViewIfVisible(parent, position);
         if (itemView != null) itemView.invalidate();
     }
+
+~~~
 
 `invalidateByPos` updates view only if it is shown on the screen (forcing an adapter's `getView` method call), if this element is not visible - adapter's `getView` will be called automatically when this view will appear to user after scrolling. To update some child view of an element, you can use `getViewIsVisible` method, it will return the element view which gives access to its child views and it returns `null` if this element is not visible so update is not required.
 
@@ -203,7 +245,8 @@ The classes hieararchy is a lit bit more complex, each page is loaded with speci
 
 To make a pagination possible, you may just keep a set of page containers (cursors, for example) in adapter and in `getView()`, if one of last elements is asked for, run the query for next page (`AsyncTask` is preferred), which will add new container to adapter when it will be received, so the adapter will have a possibility to call `notifyDataSetChanged()`. Like this:
 
-    #!java
+~~~ { java }
+
     private final Page[] pages = new Page[MAX_PAGES_COUNT];
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -229,6 +272,8 @@ To make a pagination possible, you may just keep a set of page containers (curso
        waitingNextPage = false;
        notifyDataSetChanged();
     }
+
+~~~
 
 `EasyCursorsAdapter` is a good example for a case where `Cursor` is `Page` analogue. I am sure there are several alternative solution exists and I will be glad if someone will mention them in comments.
 
@@ -281,25 +326,28 @@ Calling `getWindow().setFormat(PixelFormat.TRANSPARENT);` is aimed to prevent vi
 
 Code to get video stream by URL is similar to this one:
 
-    #!java
+~~~ { java }
+
     public static InputStream getVideoStream(long videoId)
            throws FailedToGetVideoStreamException, VideoLinkRequestException {
-		try {
-			final HttpClient client = new DefaultHttpClient();
-			. . .
-			final HttpResponse response = client.execute(request);
-			if ((response == null) || (response.getEntity() == null))
-			    throw new FailedToGetVideoStreamException("Failed to get video stream");
-			lastContentLength = response.getEntity().getContentLength();
-	        return response.getEntity().getContent();
-		} catch (URISyntaxException use) {
-			throw new VideoLinkRequestException("URI creation failed : " + use.getLocalizedMessage());
-		} catch (ClientProtocolException cpe) {
-			throw new VideoLinkRequestException("Client call failed : " + cpe.getLocalizedMessage());
-		} catch (IOException ioe) {
-			throw new VideoLinkRequestException("Connection failed : " + ioe.getLocalizedMessage());
-		}
-	}
+        try {
+            final HttpClient client = new DefaultHttpClient();
+            . . .
+            final HttpResponse response = client.execute(request);
+            if ((response == null) || (response.getEntity() == null))
+                throw new FailedToGetVideoStreamException("Failed to get video stream");
+            lastContentLength = response.getEntity().getContentLength();
+            return response.getEntity().getContent();
+        } catch (URISyntaxException use) {
+            throw new VideoLinkRequestException("URI creation failed : " + use.getLocalizedMessage());
+        } catch (ClientProtocolException cpe) {
+            throw new VideoLinkRequestException("Client call failed : " + cpe.getLocalizedMessage());
+        } catch (IOException ioe) {
+            throw new VideoLinkRequestException("Connection failed : " + ioe.getLocalizedMessage());
+        }
+    }
+
+~~~
 
 ### 9. `AsyncTask` Queues
 
@@ -307,7 +355,8 @@ If you need to execute several background tasks sequentially (when one finished 
 
 Here is a task-that-knows-it-has-next-task inteface:
 
-    #!java
+~~~ { java }
+
     public interface HasNextTask<Params> {
         public int getId();
         void setNextTask(HasNextTask<Params> task);
@@ -316,17 +365,23 @@ Here is a task-that-knows-it-has-next-task inteface:
                           // must much with AsyncTask<Params, ...>
     }
 
+~~~
+
 Here is an interface that monitors when tasks are performed successfully or not:
 
-    #!java
+~~~ { java }
+
     public interface PerformHandler<Params, Result> {
         public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask);
         public void onError(Exception e, String description);
     }
 
+~~~
+
 `HasNextTask` interface implementation. The hollows given with three dots, you may move them into child class or make this class abstract to implement `doInBackground`/`onPostExecute` methods right in `createTask` method of queue:
 
-    #!java
+~~~ { java }
+
     public class TaskInQueue<Params, Result> extends AsyncTask<Params, Void, Result>
                                              implements HasNextTask<Params> {
 
@@ -362,9 +417,12 @@ Here is an interface that monitors when tasks are performed successfully or not:
 
     }
 
+~~~
+
 And the main thing, the queue implementation:
 
-    #!java
+~~~ { java }
+
     public abstract class TasksQueue<Params, Result>
                     implements PerformHandler<Params, Result>, Runnable {
 
@@ -401,7 +459,7 @@ And the main thing, the queue implementation:
 
         @Override
         public void run() {
-        	Log.d(TAG, "Running first task");
+            Log.d(TAG, "Running first task");
             if (!isEmpty())
                 try {
                     started = true;
@@ -415,7 +473,7 @@ And the main thing, the queue implementation:
 
         @Override
         public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask) {
-        	Log.d(TAG, "Task " + taskId + " performed");
+            Log.d(TAG, "Task " + taskId + " performed");
             if (taskId != currentTask)
                 throw new IllegalStateException("Tasks queue desynchronized");
             running = false;
@@ -431,7 +489,7 @@ And the main thing, the queue implementation:
         }
 
         protected void execute(HasNextTask<Result> task) throws Exception {
-        	Log.d(TAG, "Trying to run task " + task.getId());
+            Log.d(TAG, "Trying to run task " + task.getId());
             if (running) throw new IllegalStateException("Tasks queue desynchronized");
             currentTask = task.getId();
             running = true;
@@ -460,9 +518,12 @@ And the main thing, the queue implementation:
 
     }
 
+~~~
+
 Now in your activities you can easily create a queue of background tasks:
 
-    #!java
+~~~ { java }
+
     protected final TasksQueue secondaryTasks;
 
     private final int TASK_1 = 0;
@@ -471,9 +532,9 @@ Now in your activities you can easily create a queue of background tasks:
 
     public ...Activity() { // constructor
 
-    	secondaryTasks = new TasksQueue<..., ...>() {
+        secondaryTasks = new TasksQueue<..., ...>() {
 
-    	    // here you can override createTask
+            // here you can override createTask
 
             @Override public void onPerfomed(int taskId, ... result) throws JSONException {
                 super.onPerfomed(taskId, result);
@@ -508,10 +569,15 @@ Now in your activities you can easily create a queue of background tasks:
         }
     }
 
+~~~
+
 By the way, thanks to `Runnable` interface you can run queues like this in separate thread:
 
-    #!java
+~~~ { java }
+
     new Thread(secondaryTasks, "Tasks Queue").start();
+
+~~~
 
  * Tasks queue in vimeoid: [`ApiTasksQueue`](http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/ApiTasksQueue.java?r=85e18485bdda1c526141170f67e65f4e00202f34)
  * Created in: [`SingleItemActivity`](http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/SingleItemActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34#49)
@@ -544,7 +610,8 @@ There are also a tricks with 9-patch, each time when there is something wrong in
 
 To show a dialog like this instead of context menu when element in list is long-tapped, it is enough to override `onCreateContextMenu` method in `ListActivity` like this:
 
-    #!java
+~~~ { java }
+
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         . . .
         final AdapterView.AdapterContextMenuInfo info = extractMenuInfo(menuInfo);
@@ -566,6 +633,8 @@ To show a dialog like this instead of context menu when element in list is long-
         return qa;
     }
 
+~~~
+
  * Directory contating a modified version of a library [`lib-qactions`](http://code.google.com/p/vimeoid/source/browse/lib-qactions?r=85e18485bdda1c526141170f67e65f4e00202f34)
  * Used in: [`VideosActivity`](http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/list/VideosActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34#113)
 
@@ -583,7 +652,8 @@ If your application uses a lot of different activities that called similar way, 
 
 My be it is obvious, but in strings from `strings.xml` you can use placeholders to insert some locale-independent values inside these strings, i.e.: `<string name="image_info">Image size: {width}x{height}</string>`. `format` function can help you like this: `format(getString(R.string.image_info), "width", String.valueOf(600), "height", String.valueOf(800))`
 
-    #!java
+~~~ { java }
+
     public static String format(String source, String... params) {
         String result = source;
         int pos = 0;
@@ -592,6 +662,8 @@ My be it is obvious, but in strings from `strings.xml` you can use placeholders 
         }
         return result;
     }
+
+~~~
 
 **Upd.** As I expected, I had missed this method in Android library: there is a standard function [`getString(int resId, Object... formatArgs)`](http://developer.android.com/intl/de/reference/android/content/Context.html#getString%28int,%20java.lang.Object...%29). Thanks to [zochek](http://zochek.habrahabr.ru/).
 
