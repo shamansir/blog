@@ -118,7 +118,18 @@ article, #nwao-blog-feed
             color: #000
             overflow: auto
 
-    pre, code
+    div.code
+        overflow: hidden
+        font-size: 1.0em
+        @include opacity(0.8)
+        border: $code-border
+
+        &:hover
+            @include opacity(1.0)
+            color: #000
+            overflow: auto
+
+    pre, code, div.code
         font-family: $code-font
         font-size: 0.9em
 
