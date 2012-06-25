@@ -15,7 +15,7 @@ $p-blue:    #268bd2
 $p-cyan:    #2aa198
 $p-green:   #859900
 $p-foo: #fff000
-$p-check: #f0f099
+$p-check: #00ff00
 
 // LIGHT
 
@@ -25,7 +25,8 @@ table.highlighttable
 		margin: 0*/
 
 div.code
-	background-color: $p-base3	
+	color-profile: sRGB
+	background-color: $p-base3
 
 .linenos
 	color: $p-base1
@@ -39,147 +40,164 @@ div.code
 	.c /* comment */
 		color: $p-base1
 	.err /* error */
-		color: $p-foo
+		color: $p-base3
+		background-color: $p-red
 	.g /* generic */
-		color: $p-foo
+		color: $p-base00
 	.k /* keyword */
-		color: $p-base01
-		font-weight: bold
+		color: $p-green
 	.l /* literal */
-		color: $p-foo
-	.n /* comment */
-		color: $p-foo
+		color: $p-base00
+		font-style: italic
+	.n /* name */
+		color: $p-base00
 	.o /* operator */
-		color: $p-foo
+		color: $p-cyan
 	.x /* other */
-		color: $p-foo
+		color: $p-base00
 	.p /* punctuation */
-		color: $p-foo
+		color: $p-base00
 
 	.cm /* comment.multiline */
-		color: $p-foo		
-	.cp /* comment.multiline */
-		color: $p-foo
-	.c1 /* comment.multiline */
-		color: $p-foo		
-	.cs /* comment.multiline */
-		color: $p-foo
+		color: $p-base1
+		font-style: italic
+	.cp /* comment.preproc */
+		color: $p-base1
+		font-weight: bold
+	.c1 /* comment.single */
+		color: $p-base1
+	.cs /* comment.special */
+		color: $p-base1
+		font-weight: bold
 
 	.gd /* generic.deleted */
-		color: $p-foo
+		color: $p-red
 	.ge /* generic.emph */
-		color: $p-foo
+		color: $p-base00
+		font-style: italic
 	.gr /* generic.error */
-		color: $p-foo		
+		color: $p-base3
+		background-color: $p-red
 	.gh /* generic.heading */
-		color: $p-foo
+		color: $p-blue
+		font-weight: bold
 	.gi /* generic.inserted */
-		color: $p-foo	
+		color: $p-green
 	.go /* generic.output */
-		color: $p-foo
+		color: $p-base00
 	.gp /* generic.prompt */
-		color: $p-foo
+		color: $p-red
 	.gs /* generic.strong */
-		color: $p-foo
+		color: $p-base00
+		font-weight: bold
 	.gu /* generic.subheading */
-		color: $p-foo
+		color: $p-yellow
+		font-weight: bold
 	.gt /* generic.traceback */
-		color: $p-foo
+		color: $p-base1
 
 	.kc /* keyword.constant */
-		color: $p-foo
+		color: $p-red
 	.kd /* keyword.declaration */
-		color: $p-foo
+		color: $p-base01
+		font-weight: bold
 	.kn /* keyword.namespace */
-		color: $p-foo
+		color: $p-cyan
+		font-weight: bold
 	.kp /* keyword.pseudo */
-		color: $p-foo
+		color: $p-base00
 	.kr /* keyword.reserved */
-		color: $p-foo
+		color: $p-base00
+		font-weight: bold
 	.kt /* keyword.type */
-		color: $p-foo
+		color: $p-base01
+		font-weight: bold
 
 	.ld /* literal.date */
-		color: $p-foo
+		color: $p-violet
 	.m /* literal.number */
-		color: $p-foo
+		color: $p-green
 	.s /* literal.string */
-		color: $p-foo
+		color: $p-orange
 
 	.na /* name.attribute */
-		color: $p-foo
+		color: $p-base00
 	.nb /* name.builtin */
-		color: $p-foo
+		color: $p-magenta
 	.nc /* name.class */
-		color: $p-foo
+		color: $p-blue
+		font-weight: bold
 	.no /* name.constant */
-		color: $p-foo
+		color: $p-yellow
 	.nd /* name.decorator */
-		color: $p-foo
+		color: $p-cyan
+		font-style: italic
 	.ni /* name.entity */
-		color: $p-foo
+		color: $p-base00
 	.ne /* name.exception */
-		color: $p-foo
+		color: $p-yellow
 	.nf /* name.function */
-		color: $p-foo
+		color: $p-blue
 	.nl /* name.label */
-		color: $p-foo
+		color: $p-base0
 	.nn /* name.namespace */
-		color: $p-foo
+		color: $p-base1
+		font-weight: bold
 	.nx /* name.other */
-		color: $p-foo
+		color: $p-base00
 	.py /* name.property */
-		color: $p-foo
+		color: $p-base0
 	.nt /* name.tag */
-		color: $p-foo
+		color: $p-blue
 	.nv /* name.variable */
-		color: $p-foo		
+		color: $p-base0		
 
 	.ow /* operator.word */
-		color: $p-foo
+		color: $p-cyan
 
 	.w /* text.whitespace */
-		color: $p-foo
+		color: $p-base00
 
 	.mf /* literal.number.float */
-		color: $p-foo
+		color: $p-violet
 	.mh /* literal.number.hex */
-		color: $p-foo
+		color: $p-magenta
 	.mi /* literal.number.integer */
-		color: $p-foo
+		color: $p-green
 	.mo /* literal.number.oct */
-		color: $p-foo
+		color: $p-magenta
 	.sb /* literal.string.backtick */
-		color: $p-foo
+		color: $p-red
 	.sc /* literal.string.char */
-		color: $p-foo
+		color: $p-orange
 	.sd /* literal.string.doc */
-		color: $p-foo
+		color: $p-green
+		font-style: italic
 	.s2 /* literal.string.double */
-		color: $p-foo
+		color: $p-violet
 	.se /* literal.string.escape */
-		color: $p-foo
+		color: $p-blue
 	.sh /* literal.string.heredoc */
-		color: $p-foo
+		color: $p-green
 	.si /* literal.string.interpol */
-		color: $p-foo
+		color: $p-base00
 	.sx /* literal.string.other */
-		color: $p-foo
+		color: $p-base00
 	.sr /* literal.string.regex */
-		color: $p-foo
+		color: $p-violet
 	.s1 /* literal.string.single */
-		color: $p-foo
+		color: $p-orange
 	.ss /* literal.string.symbol */
-		color: $p-foo
+		color: $p-blue
 
 	.bp /* name.builtin.pseudo */
-		color: $p-foo
+		color: $p-base00
 	.vc /* name.variable.class */
-		color: $p-foo
+		color: $p-blue
 	.vg /* name.variable.global */
-		color: $p-foo
+		color: $p-base00
 	.vi /* name.variable.instance */
-		color: $p-foo						
+		color: $p-base00						
 
 	.il /* literal.number.integer.long */
-		color: $p-foo
+		color: $p-green

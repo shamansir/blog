@@ -18,7 +18,7 @@ $base-font-size: 16px
 
 $bg-color: white // #ffab00
 $page-color: white // #fffffd
-$code-bg-color: #fcfcfc // #fafcff, #ffeeaa
+$code-bg-color: #f3f3f3 // #fafcff, #ffeeaa
 $heading-bg-color: #fffbd5
 $hilite-color: #179
 $hilite-dark-color: #057
@@ -107,11 +107,12 @@ article, #nwao-blog-feed
         display: block
         background-color: $code-bg-color
         padding: 10px
-        margin: 5px 12px
+        margin: 20px 7px 30px 7px
         font-size: 1.0em
         overflow: hidden
-        border: $code-border
-        @include opacity(0.8)    
+        //border: $code-border
+        //@include opacity(0.8)
+        @include border-radius(5px)
 
         &:hover
             @include opacity(1.0)
@@ -121,8 +122,10 @@ article, #nwao-blog-feed
     div.code
         overflow: hidden
         font-size: 1.0em
-        @include opacity(0.8)
-        border: $code-border
+        margin: 20px 7px 30px 7px
+        //@include opacity(0.8)
+        //border: $code-border
+        @include border-radius(5px)
 
         &:hover
             @include opacity(1.0)
@@ -132,6 +135,12 @@ article, #nwao-blog-feed
     pre, code, div.code
         font-family: $code-font
         font-size: 0.9em
+
+    blockquote
+        margin-left: 7px
+        padding: 0 10px
+        border-left: 30px solid #ddd
+
 
 // HEADINGS
 
@@ -147,6 +156,9 @@ h1
         background-color: #ccc  
 
 h2, h3, h4, h5, h6
+    &:hover
+        overflow: hidden
+
     &:hover:after
         content: "#"
         color: #ccc
