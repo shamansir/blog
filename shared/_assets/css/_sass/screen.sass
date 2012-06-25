@@ -6,6 +6,7 @@
 //
 
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,400italic&subset=latin,cyrillic)
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,400italic&subset=latin,cyrillic)
 @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic&text=%D0%BD%D0%B8%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5&oq=%D0%BD%D0%B8+%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5Nowordaboutonion%20)
 
 $title-font: 'Droid Serif', 'Platan BG', Palatino, Baskerville, serif
@@ -195,7 +196,7 @@ h2
             style: solid
             width: 0 5px 0 0
         background-color: #eee
-        @include transition(background 1s linear)        
+        @include transition(background 0.5s linear)        
         cursor: pointer
 
     &:hover:after
@@ -215,7 +216,7 @@ h3, h4, h5, h6
        
     &:hover
         background-color: #eee
-        @include transition(background 1s linear)
+        @include transition(background 0.5s linear)
         cursor: pointer
 
 h3
@@ -282,12 +283,13 @@ a
            
             font:
                 family: $title-font
-                size: 3.6em
-                weight: 600
+                size: 3.8em
+                weight: 400
             
             padding: 70px 5px 25px 20px
             margin: 0
             word-spacing: 0.05em
+            @include radial-gradient-bg(#ffffd9, #ffeec0, $heading-bg-color)
 
             &:hover
                 //background: $heading-bg-color
@@ -484,7 +486,7 @@ ul#nwao-social
 
     &:hover
         background-color: $transp-tilt
-        @include transition(background 3s ease)
+        @include transition(background 0.3s ease)
 
 .nwao-post-excerpt
     margin: 0 80px 43px 43px
