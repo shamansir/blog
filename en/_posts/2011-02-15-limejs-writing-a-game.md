@@ -168,12 +168,8 @@ But later we will add some behavior to the player and it will be obvious that it
 
 Before we run it in a browser we need to make one manipulation more - to update dependencies for Closure (it allows you to include just `base.js` with Closure utilities and `pingpong.js` in your `.html`, and all other files are loaded automatically using `goog.require`). However there is a little bug in the current version of engine - when you create a project, its name is not added to `./bin/projects` file. So you need to define `pingpong` line in your `./bin/projects` file before, and after that you can update the dependencies:
 
-~~~ { javascript }
-
     $ vim ./bin/projects   # add `pingpong` line
     $ ./bin/lime.py update
-
-~~~
 
 So, this is what you can see on the screen:
 
@@ -201,11 +197,7 @@ Now let's make a `ball.js` file with this content:
 
 Then update dependencies:
 
-~~~ { bash }
-
     $ ./bin/lime.py update
-
-~~~
 
 And add the ball to the board in `pingpong.js`:
 
@@ -287,11 +279,7 @@ Wall will not have a lot of logic, but as a tradition we will also place it in a
 
 Update dependencies:
 
-~~~ { bash }
-
     $ ./bin/lime.py update
-
-~~~
 
 And place the walls along the canvas edges in `pingpong.js`:
 
@@ -659,12 +647,8 @@ So, the demonstration game is complete. Here are the sources I've got:
 
 Now please re-check all `goog.require` lines - delete the calls that were not used then update the dependencies and collect all the resulting things in one script:
 
-~~~ { bash }
-
     $ ./bin/lime.py update
     $ ./bin/lime.py build pingpong -o pingpong/compiled/pp.js
-
-~~~
 
 You can copy a `pingpong.html` file into `compiled` folder and change the Javascript calls in the header:
 

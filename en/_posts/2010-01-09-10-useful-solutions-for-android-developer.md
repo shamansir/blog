@@ -50,8 +50,8 @@ The first step is creating a constants which identify element type, one for head
 
 ~~~ { java }
 
-    public static final int ITEM_VIEW_TYPE = 0; \\ item
-    public static final int SECTION_VIEW_TYPE = 1; \\ section
+    public static final int ITEM_VIEW_TYPE = 0; // item
+    public static final int SECTION_VIEW_TYPE = 1; // section
 
 ~~~
 
@@ -349,7 +349,7 @@ Code to get video stream by URL is similar to this one:
 
 ~~~
 
-### 9. `AsyncTask` Queues
+### 9. AsyncTask Queues
 
 If you need to execute several background tasks sequentially (when one finished - run next), this freestyle pattern (walking by linked list inside) will fir you. For example when your activity started you need to perform several successive calls to some web-server API or database. The main thing is that parameters and result types for all these tasks must be similar.
 
