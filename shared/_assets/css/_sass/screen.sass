@@ -70,14 +70,14 @@ body
     margin: 0
 
 #nwao-page
-    margin: 0 20% 0 14%
+    margin: 0 16% 0 16%
     background-color: $page-color
 
 article, #nwao-blog-feed
     //padding: 100px 75px 40px 75px
     //padding: 100px 60px 40px 60px
     //padding: 130px 75px 200px 75px
-    padding: 90px 75px 200px 75px
+    padding: 66px 75px 150px 75px
 
     p, ul, ol, dl
         // font-family: $text-font
@@ -149,27 +149,19 @@ h1, h2, h3, h4, h5, h6
     font-family: $heading-font
     font-weight: 400
 
+    a
+        text-decoration: none
+
+        &:hover
+            cursor: pointer
+
 h1
     font-size: 3.2em
     margin: 80px 0 30px 0
        
     &:hover
-        background-color: #ccc  
-
-h2, h3, h4, h5, h6
-    &:hover
-        overflow: hidden
-
-    &:hover:after
-        content: "#"
-        color: #ccc
-        margin: 4px
-        position: relative
-        top: -2px
-
-    a
-        text-decoration: none
-
+        background-color: #ccc
+    
 h2, h3
     color: #000
 
@@ -181,31 +173,11 @@ h2, h3
        
 h2
     font-size: 2.4em
-    //margin: 35px 0 30px 0
     margin: 35px 0 11px 0
-    padding: 5px 10px
-
-    border:
-        color: rgba(255,255,255,0)
-        style: solid
-        width: 0 5px 0 0  
-    
-    &:hover
-        border:
-            color: #aaa
-            style: solid
-            width: 0 5px 0 0
-        background-color: #eee
-        @include transition(background 0.5s linear)        
-        cursor: pointer
-
-    &:hover:after
-        left: -10px
-        top: -4px
 
     a
         color: #000
-       
+
 h3, h4, h5, h6
     //color: #333
     padding: 5px 5px 5px 10px
@@ -217,11 +189,17 @@ h3, h4, h5, h6
     &:hover
         background-color: #eee
         @include transition(background 0.5s linear)
-        cursor: pointer
+
+    &:hover:after
+        content: "#"
+        color: #ccc
+        margin: 4px
+        position: relative
+        top: -2px        
 
 h3
     font-size: 2em
-    margin: 100px 0 40px 0
+    margin: 80px 0 40px 0
     text-align: left
 
 h4, h5, h6
@@ -268,7 +246,6 @@ a
 
     a
         color: #000
-        text-decoration: none
 
     #nwao-holder
         border:
@@ -336,8 +313,9 @@ a
 
             a
                 color: $page-color
-                padding: 5px
-                margin: 2px 2.5%                
+                padding: 2px 5px
+                margin: 2px 2.5%
+                text-decoration: none             
 
                 &:hover
                     background-color: $page-color
@@ -345,15 +323,35 @@ a
 
 // POST HEADER
 
-.nwao-post-header, #nwao-blog-feed .nwao-post-header
+.nwao-post-header
 
     margin: 0 0 40px 0
+    //border-right: 10px solid #bbb
+
+    h2
+        padding: 0 14px
+        text-align: right
+        margin: 35px 0 0 0
+        
+        &:hover
+            background-color: #eee
+            @include transition(background 0.5s linear)
+
+        &:hover:before
+            float: left
+            content: "#"
+            color: #ccc
+            position: relative
+            top: -2px
+            left: -5px
 
     dl 
         font-size: 0.9em
         display: block
         padding: 3px
-        margin: 13px 10px 10px 20px
+        margin: 2px
+        text-align: right
+        line-heght: 1em
 
     dl > dt, dl > dd 
         display: inline
@@ -362,23 +360,26 @@ a
     dl > dt
         display: none
 
-    dl > dd
-        color: #999
+    dl > dd, dl > dt
+        color: #666
 
     .tags
         color: $page-color
 
     .tags a
         font-size: 0.8em
-        padding: 2px
+        padding: 2px 3px
         text-decoration: none
         @include border-radius(3px)
         border:
             width: 1px
             color: $tags-bg
             style: solid
-        background-color: $tags-bg
-        color: $page-color
+        color: #666
+
+        &:hover
+            background-color: $tags-bg
+            color: $page-color
 
 // SOCIAL BLOCK
 
@@ -459,37 +460,63 @@ ul#nwao-social
 
 // FEED STYLES
 
-#nwao-blog-feed h2
-    a
-        color: $hilite-dark-color
+#nwao-blog-feed
 
-        &:hover
-            color: $hilite-dark-color
+    padding: 50px 75px 110px 75px 
 
-    border: none
+    .nwao-post-header
+        
+        dl
+            font-size: 0.9em
 
-    &:hover
-        background-color: #ddd
-        border: none
+        h2
+            text-align: center
+            background-color: #ddd
 
-    &:hover:after
-        content: ""
+            &:hover:before
+                display: none
+                content: ""
+
+            a
+                //color: $hilite-dark-color
+
+                &:hover
+                    color: $hilite-dark-color
+                    @include transition(color 1s ease)
 
 .nwao-blog-feed-item
-    margin: 0 0 80px 0
+    margin: 0 0 60px 0
 
     @include border-radius(9px)
+    //@include box-shadow(#ccc 0px 1px 10px 0px)
     border:
         style: solid dashed
-        color: #666
-        width: 1px 0px 4px 0px
+        color: #666 #999
+        width: 1px 1px 4px 1px
 
     &:hover
         background-color: $transp-tilt
         @include transition(background 0.3s ease)
 
+    .nwao-continue
+        display: inline-block
+        width: 49%
+        font-size: 1.2em
+        position: relative
+        left: 14px
+        bottom: 7px
+
+    .nwao-item-marker
+        display: inline-block
+        width: 50%
+        text-align: right
+        font-size: 3em
+        color: #999
+        position: relative
+        right: 8px
+
 .nwao-post-excerpt
-    margin: 0 80px 43px 43px
+    margin: 0 30px 30px 47px
 
 .nwao-continue p
     margin: 10px
