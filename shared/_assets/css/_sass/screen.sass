@@ -77,7 +77,7 @@ article, #nwao-blog-feed
     //padding: 100px 75px 40px 75px
     //padding: 100px 60px 40px 60px
     //padding: 130px 75px 200px 75px
-    padding: 66px 75px 150px 75px
+    padding: 66px 75px 75px 75px
 
     p, ul, ol, dl
         // font-family: $text-font
@@ -196,9 +196,9 @@ h3, h4, h5, h6
     &:hover:after
         content: "#"
         color: #ccc
-        margin: 4px
-        position: relative
-        top: -2px        
+        margin: 0 3px
+        position: absolute
+        //top: -2px        
 
 h3
     font-size: 2em
@@ -239,7 +239,7 @@ a
         color: $hilite-dark-color
 
     &:visited
-        color: #333
+        color: #09a
 
 a.nwao-button
     border: 1px solid $hilite-dark-color
@@ -375,6 +375,8 @@ a.nwao-button
         padding: 0 14px
         text-align: right
         margin: 35px 0 0 0
+        border-bottom: 2px solid #067
+        position: relative
         
         &:hover
             background-color: #eee
@@ -384,9 +386,9 @@ a.nwao-button
             float: left
             content: "#"
             color: #ccc
-            position: relative
+            position: absolute
             top: -2px
-            left: -5px
+            left: 5px
 
     dl 
         font-size: 0.9em
@@ -406,10 +408,18 @@ a.nwao-button
     dl > dd, dl > dt
         color: #666
 
-    .tags
-        color: rgba(255, 255, 255, 0)
+    dd.nwao-published
+        float: left
+        margin: 2px 0
 
-    .tags a
+    dd.nwao-tags
+        color: rgba(255, 255, 255, 0)
+        margin: 0 4px
+
+    dd.nwao-tags a
+        line-height: 1em
+        display: inline-block
+        margin: 1px 0 
         font-size: 0.8em
         padding: 2px 3px
         text-decoration: none
@@ -464,7 +474,7 @@ ul#nwao-social
 
 #nwao-onion
     //display: none // TODO: show on scroll to end
-    @include opacity(0.05)
+    @include opacity(0.2)
     float: right
     right: 0
     bottom: 0
@@ -505,7 +515,7 @@ ul#nwao-social
 
 #nwao-blog-feed
 
-    padding: 50px 75px 110px 75px
+    padding: 50px 75px 75px 75px
 
     .nwao-post-header
         

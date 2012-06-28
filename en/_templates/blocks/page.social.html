@@ -1,0 +1,10 @@
+<ul id="nwao-social">
+    {% if site.social.twitter %}<li><a href="https://twitter.com/#!/{{ site.social.twitter }}"><img src="{{ get_asset('img/social/twitter.png') }}" width="16" height="16" alt="Twitter profile"></a></li>{% endif %}
+    {% if site.social.github %}<li><a href="https://github.com/{{ site.social.github }}"><img src="{{ get_asset('img/social/github.png') }}" width="16" height="16" alt="GitHub profile"></a></li>{% endif %}                
+    {% if site.social.dribbble %}<li><a href="http://dribbble.com/{{ site.social.dribbble }}"><img src="{{ get_asset('img/social/dribbble.png') }}" width="16" height="16" alt="Dribbble profile"></a></li>{% endif %}
+    {% if site.social.facebook %}<li><a href="https://www.facebook.com/{{ site.social.facebook }}"><img src="{{ get_asset('img/social/facebook.png') }}" width="16" height="16" alt="Facebook profile"></a></li>{% endif %}
+    {% if site.social.google_plus %}<li><a href="https://plus.google.com/{{ site.social.google_plus }}"><img src="{{ get_asset('img/social/google-plus.png') }}" width="16" height="16" alt="Google+ profile"></a></li>{% endif %}
+    {% if site.social.lastfm %}<li><a href="http://www.last.fm/user/{{ site.social.lastfm }}"><img src="{{ get_asset('img/social/lastfm.png') }}" width="16" height="16" alt="Last.fm profile"></a></li>{% endif %}
+    {% if site.social.stack_overflow %}<li><a href="http://stackoverflow.com/users/{{ site.social.stack_overflow }}"><img src="{{ get_asset('img/social/stack-overflow.png') }}" width="16" height="16" alt="Stack Overflow profile"></a></li>{% endif %}
+    {% if site.social.steam %}<li><a href="http://steamcommunity.com/id/{{ site.social.steam }}"><img src="{{ get_asset('img/social/steam.png') }}" width="16" height="16" alt="Steam profile"></a></li>{% endif %}
+</ul>
