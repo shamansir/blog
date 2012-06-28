@@ -340,24 +340,29 @@ a.nwao-button
 
 // PAGE TITLE
 
-h2.nwao-page-title
-    margin: 40px 14% 75px 14%
-    text-align: center
-    background-color: black
-    font-size: 3em
-    color: white
-    border: 4px solid black
-    padding: 10px
-    @include border-radius(13px)
+.nwao-page-title-anchor
+    margin: 30px
+    padding: 20px
+    border-bottom: 2px solid black
 
-    a
+    h2#nwao-page-title
+        margin: 40px 18% 75px 18%
+        text-align: center
+        background-color: black
+        font-size: 2.6em
         color: white
-        position: relative
-        left: -10px
+        border: 4px solid black
+        padding: 10px
+        @include border-radius(13px)
 
-    &:hover
-        @include transition(background 1s ease)
-        background-color: $hilite-dark-color
+        a
+            color: white
+            position: relative
+            left: -10px
+
+        &:hover
+            @include transition(background 1s ease)
+            background-color: $hilite-dark-color
 
 // POST HEADER
 
@@ -460,9 +465,9 @@ ul#nwao-social
 #nwao-onion
     //display: none // TODO: show on scroll to end
     @include opacity(0.05)
+    float: right
     right: 0
-    bottom: 0   
-    position: fixed
+    bottom: 0
     width: 310px
     height: 267px
     z-index: 1
