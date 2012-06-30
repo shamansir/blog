@@ -25,7 +25,6 @@ There is ant task for this:
 
 ~~~ { xml }
 
-    #!xml
     <target name="easy-test" depends="test-clean, compile">
         <mkdir dir="out/junit"/>
 
