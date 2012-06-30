@@ -58,5 +58,16 @@
     background: radial-gradient(center, ellipse cover, $color1 0%, $color2 100%)
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#{$color1}, endColorstr=#{$color2},GradientType=1 )
 
+@mixin rotate($angle, $origin)
+    if $origin
+        -moz-transform-origin: $origin
+        -webkit-transform-origin: $origin
+        -o-transform-origin: $origin
+        transform-origin: $origin
+    -moz-transform:rotate($angle)
+    -webkit-transform: rotate($angle)
+    -o-transform: rotate($angle)
+    transform: rotate($angle)
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1)
 
 
