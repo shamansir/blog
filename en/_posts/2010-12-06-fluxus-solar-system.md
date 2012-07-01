@@ -17,6 +17,8 @@ There are sources in the post, a short desription of code structure, tutorial mo
 
 [HERE](http://paste.pocoo.org/show/301220/)
 
+> Note: It was lost with the Poocoo, but I'll try to restore it from video.
+
 ### Description
 
 Fluxus uses a term of state machine for scene construction. If you have programmed in OpenGL already, you are familiar with this principle - every next function in the code either modifies the matrix of scene state or changes the content of the scene (i.e. draws an object). You may construct the required scene objects just before any rendering will happen and then change their conditions later or just draw a new primitives in every frame (OpenGL understands that it may cache the objects which state is not changed a lot between frames). I am using the both ways of these, so I prepare the text labels and planets' orbits before rendering process but I draw planets in every new frame.

@@ -15,7 +15,7 @@ Zdrawstwooyte.
 
 Source code and war-package with current condition of the project are located at [http://code.google.com/p/sametimed](http://code.google.com/p/sametimed)
 
-Right now I have no public hosting ready at hand, so I can't show the project in action with ease. However I can, may be, please you with a [video (at vimeo)](http://vimeo.com/7035447), it demonstrates its main possibilities, and perhaps it is pretty enough if you just want to know what the project can do. Anyway, you can run it by yourself, since there are detailed instructions at project site and the detailed source code inspection and concept description are in this very post...
+Right now I have no public hosting ready at hand, so I can't show the project in action with ease. However I can, may be, please you with a [video (at vimeo)](https://vimeo.com/7036141), it demonstrates its main possibilities, and perhaps it is pretty enough if you just want to know what the project can do. Anyway, you can run it by yourself, since there are detailed instructions at project site and the detailed source code inspection and concept description are in this very post...
 
 [![video](http://dl.dropbox.com/u/928694/blog/ru/img/sametimed-vimeo.png)](http://vimeo.com/7036141)
 
