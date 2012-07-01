@@ -77,7 +77,7 @@ article
     //padding: 100px 75px 40px 75px
     //padding: 100px 60px 40px 60px
     //padding: 130px 75px 200px 75px
-    padding: 75px 75px 75px 75px
+    padding: 75px 75px 100px 75px
 
 article, section
 
@@ -485,23 +485,26 @@ ul#nwao-social
 
 #nwao-onion
     //display: none // TODO: show on scroll to end
-    @include opacity(0.2)
+    @include opacity(0.8)
     float: right
     right: 0
     bottom: 0
     width: 310px
-    height: 267px
+    height: 207px
     z-index: 1
     background:
         repeat: no-repeat
-        image: url('/assets/img/onion_greyed.png')
+        image: url('/assets/img/onions.png')
+        position: 0 -207px
 
     &:hover
         @include opacity(1.0)
-        @include transition(opacity 10s)
+        @include transition(background-image 3s ease)
+        //@include transition(background 10s)
         background:
             repeat: no-repeat
-            image: url('/assets/img/onion.png')
+            image: url('/assets/img/onions.png')
+            position: 0 0
 
 // TO-TOP
 
@@ -526,7 +529,7 @@ ul#nwao-social
 
 #nwao-blog-feed, #nwao-archives, #nwao-archive, #nwao-tagged
 
-    padding: 50px 75px 75px 75px
+    padding: 50px 75px 100px 75px
 
     .nwao-post-header
         
