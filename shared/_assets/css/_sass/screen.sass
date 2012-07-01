@@ -270,7 +270,7 @@ a.nwao-button
 
     #nwao-holder
         border:
-            style: solid dashed
+            style: solid none
             color: #666
             width: 0 1px 4px 1px
        
@@ -287,12 +287,12 @@ a.nwao-button
             padding: 70px 5px 25px 20px
             margin: 0
             word-spacing: 0.05em
-            @include radial-gradient-bg(#ffffd9, #ffeec0, $heading-bg-color)
+            //@include radial-gradient-bg(#ffffd9, #ffeec0, $heading-bg-color)
 
             &:hover
                 //background: $heading-bg-color
                 @include radial-gradient-bg(#fffbd5, #ffeabd, $heading-bg-color)
-                //@include transition(background 2s linear)
+                @include transition(background 2s linear)
 
             a:hover
                 background-color: $transp-tilt
