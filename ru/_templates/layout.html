@@ -5,43 +5,57 @@
     {% include 'page.header.html' %}
     
     {% if site.title %}<title>{% if title %}{{ title }} &ndash; {% endif %}{{ site.title }}{% if not title and site.subtitle %} &ndash; {{ site.subtitle }}{% endif %}</title>{% endif %}
+
 </head>
 
 <body>
-    <div id="container">
-        <div id="nav">
-            <ul>
-                <li><a href="{{ get_url() }}">Blog</a></li>
-                <li><a href="{{ get_url('archives/') }}">Archives</a></li>
-                {% if site.feed %}<li><a href="{{ get_url('feed.xml') }}">Feed</a></li>{% endif %}
-            </ul>
-            
-            {% if site.social.values()|sort(true)|first %}
-                <ul id="social">
-                    {% if site.social.dribbble %}<li><a href="http://dribbble.com/{{ site.social.dribbble }}"><img src="{{ get_asset('images/social/dribbble.png') }}" width="16" height="16" alt="Dribbble"></a></li>{% endif %}
-                    {% if site.social.facebook %}<li><a href="https://www.facebook.com/{{ site.social.facebook }}"><img src="{{ get_asset('images/social/facebook.png') }}" width="16" height="16" alt="Facebook"></a></li>{% endif %}
-                    {% if site.social.github %}<li><a href="https://github.com/{{ site.social.github }}"><img src="{{ get_asset('images/social/github.png') }}" width="16" height="16" alt="GitHub"></a></li>{% endif %}
-                    {% if site.social.google_plus %}<li><a href="https://plus.google.com/{{ site.social.google_plus }}"><img src="{{ get_asset('images/social/google-plus.png') }}" width="16" height="16" alt="Google+"></a></li>{% endif %}
-                    {% if site.social.lastfm %}<li><a href="http://www.last.fm/user/{{ site.social.lastfm }}"><img src="{{ get_asset('images/social/lastfm.png') }}" width="16" height="16" alt="Last.fm"></a></li>{% endif %}
-                    {% if site.social.stack_overflow %}<li><a href="http://stackoverflow.com/users/{{ site.social.stack_overflow }}"><img src="{{ get_asset('images/social/stack-overflow.png') }}" width="16" height="16" alt="Stack Overflow"></a></li>{% endif %}
-                    {% if site.social.steam %}<li><a href="http://steamcommunity.com/id/{{ site.social.steam }}"><img src="{{ get_asset('images/social/steam.png') }}" width="16" height="16" alt="Steam"></a></li>{% endif %}
-                    {% if site.social.twitter %}<li><a href="https://twitter.com/#!/{{ site.social.twitter }}"><img src="{{ get_asset('images/social/twitter.png') }}" width="16" height="16" alt="Twitter"></a></li>{% endif %}
-                </ul>
-            {% endif %}
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="{{ get_url() }}" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="{{ get_url('archives/') }}" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    {% if site.feed %}<li><a href="{{ get_url('feed.xml') }}" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>{% endif %}
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="{{ get_url() }}" title="{{ site.title }}">&raquo;{{ site.title }}&laquo;</a></h1>
+            </div>
+            {% if site.subtitle %}<div id="nwao-subtitle"><span>{{ site.subtitle }}</span></div>{% endif %}
         </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
         
-        <div id="header">
-            <h1><a href="{{ get_url() }}">{{ site.title }}</a></h1>
-            {% if site.subtitle %}<h2>{{ site.subtitle }}</h2>{% endif %}
-        </div>
-        
-        <div id="content">
+        <div id="nwao-content">
             {% block content %}{% endblock %}
         </div>
         
-        <div id="footer">
-            <p>{% if site.author %}Copyright &copy; {{ none|date('%Y') }} {{ site.author }} &ndash; {% endif %}powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        {% if site.social.values()|sort(true)|first %}
+            {% include 'blocks/page.social.html' %}
+        {% endif %}
+
+        <div id="nwao-footer">
+            <p>{% if site.author %}Copyright &copy; {{ none|date('%Y') }} {{ site.author }} &ndash; {% endif %}запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
         </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="{{ get_asset('js/scrolls.js') }}"></script>
+        <script type="text/javascript" src="{{ get_asset('js/page.scrolls.js') }}"></script> -->
+
+
+        </script>
     </div>
+
+    <div id="nwao-onion"></div>
 </body>
 </html>

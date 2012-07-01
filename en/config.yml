@@ -48,7 +48,7 @@ post_limit: 10
 #
 
 # If you'd like to enable Google Analytics for your site, set this to your tracking code.
-analytics:
+analytics: UA-20770637-4
 # Set this to True to enable an Atom feed of your site.
 #   NOTE: `author`, `domain`, and `title` must be set to generate a valid feed.
 feed: true

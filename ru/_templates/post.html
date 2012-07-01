@@ -1,17 +1,21 @@
 {% extends 'layout.html' %}
 
 
-{% set title = post.title %}
+{% set title = 'nwao — ' + post.title %}
 
 {% block content %}
-    <div class="item">
-        <div class="header">
-            <h1>{{ post.title }}</h1>
-            <h2>{{ post.date }}{% if post.tags %} <span>&raquo;</span> {% for tag in post.tags %}<a href="{{ get_url(tags[tag].url) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</h2>
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="{{ post.title }}">
+                    {{ post.title }}
+                </a>
+            </h2>
+            {% include 'blocks/post.infoline.html' %}
         </div>
         
-        <div class="body">
+        <div class="nwao-post-content">
             {{ post.content }}
         </div>
-    </div>
+    </article>
 {% endblock %}

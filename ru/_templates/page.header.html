@@ -1,15 +1,27 @@
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
 
-{% if site.author %}<meta name="author" content="{{ site.author }}">{% endif %}
-{% if site.description %}<meta name="description" content="{{ site.description }}">{% endif %}
-<meta name="generator" content="mynt v{{ site.version }}">
+{% if site.author %}<meta name="author" content="{{ site.author }}" />{% endif %}
+{% if site.description %}<meta name="description" content="{{ site.description }}" />{% endif %}
+<meta name="generator" content="mynt v{{ site.version }}" />
 
-<link rel="shortcut icon" href="{{ get_asset('images/favicon.ico') }}" type="image/x-icon">
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="{{ get_url() }}" />
+<link rel="index" href="{{ get_url('archives/') }}" />
 
-{% if site.feed %}<link rel="alternate" href="{{ get_url('feed.xml') }}" type="application/atom+xml">{% endif %}
+<link rel="shortcut icon" href="{{ get_asset('img/favicon.ico') }}" type="image/x-icon" />
 
-<link rel="stylesheet" href="{{ get_asset('css/screen.css') }}" type="text/css">
-{% if site.pygmentize %}<link rel="stylesheet" href="{{ get_asset('css/pygments.css') }}" type="text/css">{% endif %}
+{% if site.feed %}<link rel="alternate" href="{{ get_url('feed.xml') }}" type="application/atom+xml" />{% endif %}
+
+<link rel="stylesheet" href="{{ get_asset('css/screen.css') }}" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="{{ get_asset('css/print.css') }}" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="{{ get_asset('css/ie.css') }}" media="screen, projection" type="text/css" />
+  <![endif]-->
+{% if site.pygmentize %}<link rel="stylesheet" href="{{ get_asset('css/pygments.css') }}" type="text/css" />{% endif %}
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="{{ get_asset('css/font-awesome.css') }}" />
 
 {% if site.analytics %}
     <script type="text/javascript">

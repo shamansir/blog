@@ -1,16 +1,15 @@
 {% extends 'layout.html' %}
 
 
-{% set title = 'Archives  &rsaquo; ' ~ archive.year %}
+{% set title = 'nwao — Архив  &rsaquo; ' ~ archive.year %}
 
 {% block content %}
-    <h2><a href="{{ get_url('archives/') }}">Archives</a> &rsaquo; {{ archive.year }}</h2>
-    <dl class="archives">
-        {% for month, posts in archive.months %}
-            {% for post in posts %}
-                <dt>{{ post.timestamp|date('%b %d') }}</dt>
-                <dd><a href="{{ get_url(post.url) }}">{{ post.title }}</a>{% if post.tags %}<small>Tagged <span>&raquo;</span> {% for tag in post.tags %}<a href="{{ get_url(tags[tag].url) }}">{{ tag }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</small>{% endif %}</dd>
-            {% endfor %}
-        {% endfor %}
-    </dl>
+	<div id="nwao-archive">
+		<div id="top" class="nwao-page-title-anchor">
+			<h2 id="nwao-page-title">
+				<a href="#top" title="Архив — {{ archive.year }}"><i class="icon-book"></i><span class="nwao-hidden">&nbsp;Архив&nbsp;&raquo;</span>&nbsp;{{ archive.year }}</a>
+			</h2>
+		</div>
+	    {% include 'blocks/archive.items.html' %}
+	</div>
 {% endblock %}
