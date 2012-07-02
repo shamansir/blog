@@ -17,32 +17,32 @@ Here is the `build.properties` file. It contains a values that may change freque
 
 ~~~ { ini }
 
-    # package name
-    war.name = SomeProjectPackage
+# package name
+war.name = SomeProjectPackage
 
-    # path to JDK
-    java.home = "C:\Worktable\Java\jdk1.5.0_12"
-    # path to the server root directory
-    server.dir = C:/Worktable/Java/apache-tomcat-5.5.25
-    # script that is used to start server
-    server.command = catalina.bat
+# path to JDK
+java.home = "C:\Worktable\Java\jdk1.5.0_12"
+# path to the server root directory
+server.dir = C:/Worktable/Java/apache-tomcat-5.5.25
+# script that is used to start server
+server.command = catalina.bat
 
-    # path to the project root directory
-    root.dir = C:/Workspace/SomeProject
-    # path to the place where package must be deployed
-    deploy.dir = ${server.dir}/webapps/
+# path to the project root directory
+root.dir = C:/Workspace/SomeProject
+# path to the place where package must be deployed
+deploy.dir = ${server.dir}/webapps/
 
-    # JPDA setting (you can use a remote debugging by
-    # (for example, Eclipse can) connecting to the specified port)
-    jpda.transport = dt_socket
-    jpda.port = 56666
+# JPDA setting (you can use a remote debugging by
+# (for example, Eclipse can) connecting to the specified port)
+jpda.transport = dt_socket
+jpda.port = 56666
 
-    # path to the project libraries
-    lib.dir = ${root.dir}/lib/
-    # path to the project's temporary assemblage place
-    dist.dir = ${root.dir}/dist/
-    # path to the directory with web-content: pages, scripts, images and so on
-    web.dir = ${root.dir}/WebContent/
+# path to the project libraries
+lib.dir = ${root.dir}/lib/
+# path to the project's temporary assemblage place
+dist.dir = ${root.dir}/dist/
+# path to the directory with web-content: pages, scripts, images and so on
+web.dir = ${root.dir}/WebContent/
 
 ~~~
 
@@ -50,12 +50,12 @@ Now let us consider the script part by part. In the heading - we include our `.p
 
 ~~~ { xml }
 
-    <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-        <project name="SomeProject" default="redeploy" basedir=".">
-        <property file="build.properties"/>
+    <project name="SomeProject" default="redeploy" basedir=".">
+    <property file="build.properties"/>
 
-        . . .
+    . . .
 
 ~~~
 
@@ -63,39 +63,39 @@ Now the compilation target goes (`build`), the target cleaning temporary directo
 
 ~~~ { xml }
 
-        . . .
+    . . .
 
-        <!-- Compiles project with all dependencies. -->
+    <!-- Compiles project with all dependencies. -->
 
-        <target name="build"
-                description="--> compiles project with all dependencies">
-            <mkdir dir="${dist.dir}"/>
-            <mkdir dir="${dist.dir}/classes"/>
-            <javac source="1.5"
-                srcdir="${root.dir}/src"
-                destdir="${dist.dir}/classes"
-                debug="on"
-                verbose="false"
-                optimize="on">
-                <classpath>
-                    <fileset dir="${lib.dir}" includes="**/*.jar"/>
-                </classpath>
-            </javac>
-        </target>
+    <target name="build"
+            description="--> compiles project with all dependencies">
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${dist.dir}/classes"/>
+        <javac source="1.5"
+            srcdir="${root.dir}/src"
+            destdir="${dist.dir}/classes"
+            debug="on"
+            verbose="false"
+            optimize="on">
+            <classpath>
+                <fileset dir="${lib.dir}" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
 
-        <!-- Cleans the build. -->
+    <!-- Cleans the build. -->
 
-        <target name="clean"
-                description="--> cleans the build">
-            <delete quiet="true" dir="${dist.dir}"/>
-        </target>
+    <target name="clean"
+            description="--> cleans the build">
+        <delete quiet="true" dir="${dist.dir}"/>
+    </target>
 
-        <!-- Rebuild. -->
+    <!-- Rebuild. -->
 
-        <target name="rebuild" depends="clean,build"
-                description="--> [clean, build]"/>
+    <target name="rebuild" depends="clean,build"
+            description="--> [clean, build]"/>
 
-        . . .
+    . . .
 
 ~~~
 
@@ -109,86 +109,86 @@ When we redeploy (`redeploy`) -- a default target -- the old version of the pack
 
 ~~~ { xml }
 
-        . . .
+    . . .
 
-        <!-- Prepares deployment -->
+    <!-- Prepares deployment -->
 
-        <target name="pre-deploy">
-            <mkdir dir="${dist.dir}/war"/>
-            <mkdir dir="${dist.dir}/war/WEB-INF"/>
-            <mkdir dir="${dist.dir}/war/WEB-INF/classes"/>
-            <mkdir dir="${dist.dir}/war/WEB-INF/lib"/>
-            <copy todir="${dist.dir}/war">
-                <fileset dir="${web.dir}">
-                    <include name="**/*.*"/>
-                </fileset>
-            </copy>
-            <copy todir="${dist.dir}/war/WEB-INF/classes">
-                <fileset dir="${dist.dir}/classes">
-                    <include name="**/*.*"/>
-                </fileset>
-            </copy>
-            <copy todir="${dist.dir}/war/WEB-INF/lib" flatten="true">
-                <fileset dir="${lib.dir}">
-                    <include name="**/*.jar"/>
-                </fileset>
-            </copy>
-        </target>
+    <target name="pre-deploy">
+        <mkdir dir="${dist.dir}/war"/>
+        <mkdir dir="${dist.dir}/war/WEB-INF"/>
+        <mkdir dir="${dist.dir}/war/WEB-INF/classes"/>
+        <mkdir dir="${dist.dir}/war/WEB-INF/lib"/>
+        <copy todir="${dist.dir}/war">
+            <fileset dir="${web.dir}">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+        <copy todir="${dist.dir}/war/WEB-INF/classes">
+            <fileset dir="${dist.dir}/classes">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+        <copy todir="${dist.dir}/war/WEB-INF/lib" flatten="true">
+            <fileset dir="${lib.dir}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </copy>
+    </target>
 
-        <!-- Deploys application on server. -->
+    <!-- Deploys application on server. -->
 
-        <target name="deploy" depends="rebuild, pre-deploy"
-                description="--> deploys application on server">
-            <mkdir dir="${server.dir}/logs"/>
-            <jar jarfile="${war.name}.war" basedir="${dist.dir}/war"/>
-            <exec dir="${server.dir}/bin" executable="cmd"
-                    vmlauncher="false" spawn="true">
-                <env key="JAVA_HOME" value="${java.home}"/>
-                <env key="JPDA_TRANSPORT" value="${jpda.transport}" />
-                <env key="JPDA_ADDRESS" value="${jpda.port}" />
-                <env key="CATALINA_HOME" value="${server.dir}"/>
-                <arg value="/c" />
-                <arg value="${server.command} jpda start"/>
-            </exec>
+    <target name="deploy" depends="rebuild, pre-deploy"
+            description="--> deploys application on server">
+        <mkdir dir="${server.dir}/logs"/>
+        <jar jarfile="${war.name}.war" basedir="${dist.dir}/war"/>
+        <exec dir="${server.dir}/bin" executable="cmd"
+                vmlauncher="false" spawn="true">
+            <env key="JAVA_HOME" value="${java.home}"/>
+            <env key="JPDA_TRANSPORT" value="${jpda.transport}" />
+            <env key="JPDA_ADDRESS" value="${jpda.port}" />
+            <env key="CATALINA_HOME" value="${server.dir}"/>
+            <arg value="/c" />
+            <arg value="${server.command} jpda start"/>
+        </exec>
 
-            <copy file="${war.name}.war" todir="${deploy.dir}"/>
-            <delete dir="${dist.dir}" failonerror="false" />
-            <delete file="${war.name}.war" failonerror="false" />
-        </target>
+        <copy file="${war.name}.war" todir="${deploy.dir}"/>
+        <delete dir="${dist.dir}" failonerror="false" />
+        <delete file="${war.name}.war" failonerror="false" />
+    </target>
 
-        <!-- Un-deploys application from server. -->
+    <!-- Un-deploys application from server. -->
 
-        <target name="undeploy"
-                description="--> un-deploys application from server">
-            <exec dir="${server.dir}/bin" executable="cmd"
-                    failifexecutionfails="false" vmlauncher="false">
-                <env key="JAVA_HOME" value="${java.home}"/>
-                <env key="CATALINA_HOME" value="${server.dir}"/>
-                <arg value="/c" />
-                <arg value="${server.command} stop"/>
-            </exec>
+    <target name="undeploy"
+            description="--> un-deploys application from server">
+        <exec dir="${server.dir}/bin" executable="cmd"
+                failifexecutionfails="false" vmlauncher="false">
+            <env key="JAVA_HOME" value="${java.home}"/>
+            <env key="CATALINA_HOME" value="${server.dir}"/>
+            <arg value="/c" />
+            <arg value="${server.command} stop"/>
+        </exec>
 
-            <delete quiet="true">
-                <fileset dir="${deploy.dir}">
-                    <include name="${war.name}*"/>
-                </fileset>
-            </delete>
+        <delete quiet="true">
+            <fileset dir="${deploy.dir}">
+                <include name="${war.name}*"/>
+            </fileset>
+        </delete>
 
-            <delete dir="${deploy.dir}/${war.name}" failonerror="false"/>
-            <delete file="${deploy.dir}/${war.name}.war" failonerror="false" />
-            <delete dir="${server.dir}/work/Catalina" failonerror="false" />
-        </target>
+        <delete dir="${deploy.dir}/${war.name}" failonerror="false"/>
+        <delete file="${deploy.dir}/${war.name}.war" failonerror="false" />
+        <delete dir="${server.dir}/work/Catalina" failonerror="false" />
+    </target>
 
-        <!-- Re-deploys application on server. -->
+    <!-- Re-deploys application on server. -->
 
-        <target name="redeploy"
-                depends="undeploy,clean,deploy"
-                description="--> [undeploy,clean,deploy]">
-        </target>
+    <target name="redeploy"
+            depends="undeploy,clean,deploy"
+            description="--> [undeploy,clean,deploy]">
+    </target>
 
-        </project>
+    </project>
 
-    </xml>
+</xml>
 
 ~~~
 

@@ -23,14 +23,14 @@ I'll show you the result and will give a description on hard moments (if they ar
 
 ~~~ { html }
 
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-                          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Blah</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Blah</title>
 
-        <style type="text/css">
+    <style type="text/css">
 
 ~~~
 
@@ -142,107 +142,107 @@ I'll show you the result and will give a description on hard moments (if they ar
 
 ~~~ { html }
 
-        </style>
+    </style>
 
-        <script type="text/javascript" src="./scripts/tw-sack.js"></script>
-        <script language="JavaScript" type="text/javascript">
-        <!--
+    <script type="text/javascript" src="./scripts/tw-sack.js"></script>
+    <script language="JavaScript" type="text/javascript">
+    <!--
 
 ~~~
 
 ~~~ { javascript }
 
-            function showElement(elementId) {
-                element = document.getElementById(elementId);
-                element.className = 'visible';
-                    // element.style.display = 'block';
-            }
+        function showElement(elementId) {
+            element = document.getElementById(elementId);
+            element.className = 'visible';
+                // element.style.display = 'block';
+        }
 
-            function hideElement(elementId) {
-                element = document.getElementById(elementId);
-                element.className = 'invisible';
-                    // element.style.display = 'none';
-            }
+        function hideElement(elementId) {
+            element = document.getElementById(elementId);
+            element.className = 'invisible';
+                // element.style.display = 'none';
+        }
 
-            function clearFormFields() {
-                // optimize for any form then....
-                var form = document.getElementById('question-form');
-                form.heading.value = '';
-                form.sender.value = '';
-                form.question.value = '';
-            };
+        function clearFormFields() {
+            // optimize for any form then....
+            var form = document.getElementById('question-form');
+            form.heading.value = '';
+            form.sender.value = '';
+            form.question.value = '';
+        };
 
-            var ajax = new sack();
+        var ajax = new sack();
 
-            function whenLoading(){
-                var e = document.getElementById('status-box');
-                e.innerHTML = "Sending data...";
-            }
+        function whenLoading(){
+            var e = document.getElementById('status-box');
+            e.innerHTML = "Sending data...";
+        }
 
-            function whenLoaded(){
-                var e = document.getElementById('status-box');
-                e.innerHTML = "Data sent...";
-            }
+        function whenLoaded(){
+            var e = document.getElementById('status-box');
+            e.innerHTML = "Data sent...";
+        }
 
-            function whenInteractive(){
-                var e = document.getElementById('status-box');
-                e.innerHTML = "Getting data...";
-            }
+        function whenInteractive(){
+            var e = document.getElementById('status-box');
+            e.innerHTML = "Getting data...";
+        }
 
-            function whenCompleted(){
-            }
+        function whenCompleted(){
+        }
 
-            function sendQuestion(){
-                var form = document.getElementById('question-form');
-                ajax.setVar("heading", form.heading.value);
-                    // recomended method of setting data to be parsed.
-                ajax.setVar("sender", form.sender.value);
-                ajax.setVar("question", form.question.value);
-                ajax.requestFile = "q.php";
-                ajax.method = 'POST';
-                ajax.element = 'status-box';
-                ajax.onLoading = whenLoading;
-                ajax.onLoaded = whenLoaded;
-                ajax.onInteractive = whenInteractive;
-                ajax.onCompletion = whenCompleted;
-                ajax.runAJAX();
-            }
+        function sendQuestion(){
+            var form = document.getElementById('question-form');
+            ajax.setVar("heading", form.heading.value);
+                // recomended method of setting data to be parsed.
+            ajax.setVar("sender", form.sender.value);
+            ajax.setVar("question", form.question.value);
+            ajax.requestFile = "q.php";
+            ajax.method = 'POST';
+            ajax.element = 'status-box';
+            ajax.onLoading = whenLoading;
+            ajax.onLoaded = whenLoaded;
+            ajax.onInteractive = whenInteractive;
+            ajax.onCompletion = whenCompleted;
+            ajax.runAJAX();
+        }
 
 ~~~
 
 ~~~ { html }
 
-             //-->
-         </script>
-     </head>
+     //-->
+ </script>
+</head>
 
-     <body>
-         <p><a href="./q.php" onmouseover="showElement('question-box');">
-                     отправить вопрос</a>.</p>
-         <div id="question-box" class="invisible"
-                     onmouseover="showElement('question-box');"
-                     onmouseout="hideElement('question-box');">
-             <span id="qbox-label">Your question: </span>
-             <div id="status-box"></div>
-             <form id="question-form" name="question-form"
-                             method="post" action="./q.php">
-                 <label for="heading">Title:</label>
-                     <input type="text" name="heading" id="q-heading"
-                                                 maxlength="80" />
-                 <label for="sender">Sender (e-mail) (*):</label>
-                     <input type="text" name="sender" id="q-sender"
-                                                 maxlength="60" />
-                 <label for="question">Question (255 chars):</label>
-                     <textarea name="question" rows="5" cols="25"
-                             id="q-body"></textarea>
-                 <input type="button" name="post_question" value="Ask"
-                     onclick="sendQuestion(); clearFormFields();
-                             return false;"
-                     ondblclick="sendQuestion(); return false;" />
-             </form>
-         </div>
-     </body>
-     </html>
+<body>
+ <p><a href="./q.php" onmouseover="showElement('question-box');">
+             отправить вопрос</a>.</p>
+ <div id="question-box" class="invisible"
+             onmouseover="showElement('question-box');"
+             onmouseout="hideElement('question-box');">
+     <span id="qbox-label">Your question: </span>
+     <div id="status-box"></div>
+     <form id="question-form" name="question-form"
+                     method="post" action="./q.php">
+         <label for="heading">Title:</label>
+             <input type="text" name="heading" id="q-heading"
+                                         maxlength="80" />
+         <label for="sender">Sender (e-mail) (*):</label>
+             <input type="text" name="sender" id="q-sender"
+                                         maxlength="60" />
+         <label for="question">Question (255 chars):</label>
+             <textarea name="question" rows="5" cols="25"
+                     id="q-body"></textarea>
+         <input type="button" name="post_question" value="Ask"
+             onclick="sendQuestion(); clearFormFields();
+                     return false;"
+             ondblclick="sendQuestion(); return false;" />
+     </form>
+ </div>
+</body>
+</html>
 
 ~~~
 
@@ -250,55 +250,55 @@ And the receiving script - `q.php` (_pay attention_ - it is in `utf-8`, to confo
 
 ~~~ { php }
 
-    <?php
-    ob_start();
-    print_r($_POST);
-    $postdata = ob_get_clean();
+<?php
+ob_start();
+print_r($_POST);
+$postdata = ob_get_clean();
 
-    $heading = substr($_POST['heading'], 0, 80);
-    $sender = substr($_POST['sender'], 0, 60);
-    $question = substr($_POST['question'], 0, 255);
+$heading = substr($_POST['heading'], 0, 80);
+$sender = substr($_POST['sender'], 0, 60);
+$question = substr($_POST['question'], 0, 255);
 
-    if (isset($question) && ('' != $question)) {
-        if (isset($sender) && ('' != $sender)) {
+if (isset($question) && ('' != $question)) {
+    if (isset($sender) && ('' != $sender)) {
 
-            /* connect to DB */
+        /* connect to DB */
 
-            $conn = mysql_connect("localhost", "****","*******")
-                    or die("Could not connect");
-            if( !$conn ) die( mysql_error() );
+        $conn = mysql_connect("localhost", "****","*******")
+                or die("Could not connect");
+        if( !$conn ) die( mysql_error() );
 
-            mysql_select_db("*****") and
-                mysql_query("set names utf8") and
-                mysql_query("SET collation_connection = 'utf8_general_ci'");
+        mysql_select_db("*****") and
+            mysql_query("set names utf8") and
+            mysql_query("SET collation_connection = 'utf8_general_ci'");
 
-            /* insert question */
+        /* insert question */
 
-            $sql = "INSERT INTO questions SET
-                        heading='".mysql_escape_string($heading)."',
-                        sender='".mysql_escape_string($sender)."',
-                        question='".mysql_escape_string($question)."',
-                        post_date=SYSDATE()";
-            $result = mysql_query($sql);
+        $sql = "INSERT INTO questions SET
+                    heading='".mysql_escape_string($heading)."',
+                    sender='".mysql_escape_string($sender)."',
+                    question='".mysql_escape_string($question)."',
+                    post_date=SYSDATE()";
+        $result = mysql_query($sql);
 
-            if (!$result) $responce_str = "<span class='error'>Failed to add
-                your question to database</span>";
-            else $responce_str = "<span class='message'>Your question is
-                sent!</span>";
+        if (!$result) $responce_str = "<span class='error'>Failed to add
+            your question to database</span>";
+        else $responce_str = "<span class='message'>Your question is
+            sent!</span>";
 
-            mysql_close($conn);
+        mysql_close($conn);
 
-        } else {
-            $responce_str = "<span class='warning'>Sender`s e-mail
-                    is required</span>";
-        }
     } else {
-        $responce_str = "<span class='warning'>Please,
-                            specify your question</span>";
+        $responce_str = "<span class='warning'>Sender`s e-mail
+                is required</span>";
     }
+} else {
+    $responce_str = "<span class='warning'>Please,
+                        specify your question</span>";
+}
 
-    echo $responce_str;
-    ?>
+echo $responce_str;
+?>
 
 ~~~
 

@@ -17,8 +17,8 @@ In mysql, following to `PHPMyAdmin` everything was set to `utf-8`. But I had to 
 
 ~~~ { php }
 
-    mysql_select_db("****") and mysql_query("set names utf8") and
-    mysql_query("SET collation_connection = 'utf8_general_ci'");
+mysql_select_db("****") and mysql_query("set names utf8") and
+mysql_query("SET collation_connection = 'utf8_general_ci'");
 
 ~~~
 
@@ -26,23 +26,23 @@ Then I've added inside all `.htaccess` files of all `html`/`php` folders (why I 
 
 ~~~ { htaccess }
 
-    # unicode support
-    AddDefaultCharset utf-8
-    <IfModule mod_charset.c>
-       CharsetDisable on
-       CharsetRecodeMultipartForms Off
-    </IfModule>
+# unicode support
+AddDefaultCharset utf-8
+<IfModule mod_charset.c>
+   CharsetDisable on
+   CharsetRecodeMultipartForms Off
+</IfModule>
 
-    php_value       mbstring.func_overload  7
-    php_value       default_charset         UTF-8
-    php_value       mbstring.language       Russian
+php_value       mbstring.func_overload  7
+php_value       default_charset         UTF-8
+php_value       mbstring.language       Russian
 
-    php_value       mbstring.internal_encoding      UTF-8
-    php_flag        mbstring.encoding_translation   on
-    php_value       mbstring.http_input     "UTF-8,KOI8-R,CP1251"
-    php_value       mbstring.http_output    UTF-8
-    php_value       mbstring.detect_order   "UTF-8,KOI8-R,CP1251"
-    # end
+php_value       mbstring.internal_encoding      UTF-8
+php_flag        mbstring.encoding_translation   on
+php_value       mbstring.http_input     "UTF-8,KOI8-R,CP1251"
+php_value       mbstring.http_output    UTF-8
+php_value       mbstring.detect_order   "UTF-8,KOI8-R,CP1251"
+# end
 
 ~~~
 
@@ -52,9 +52,9 @@ And in `HTML`-pages I've added this, just be on the safe side:
 
 ~~~ { html }
 
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    </head>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
 
 ~~~
 

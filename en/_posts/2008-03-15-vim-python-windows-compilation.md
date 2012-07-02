@@ -42,15 +42,15 @@ Also, if you use a stable release and you want to install the newest patches -- 
 
 ~~~ { bash }
 
-    PATCHES_DOWNLOAD_PATH=ftp://ftp.vim.org/pub/vim/patches
-    PATCHES_VER=7.1
-    wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.001-100.gz
-    wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.101-200.gz
+PATCHES_DOWNLOAD_PATH=ftp://ftp.vim.org/pub/vim/patches
+PATCHES_VER=7.1
+wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.001-100.gz
+wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.101-200.gz
 
-    for i in `seq 201 278`;
-    do
-        wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.$i
-    done
+for i in `seq 201 278`;
+do
+    wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.$i
+done
 
 ~~~
 
@@ -66,28 +66,28 @@ To install patches, you need to execute `patch` command from Cygwin set over eve
 
 ~~~ { batch }
 
-    @ECHO off
-    ECHO changing directory to parent...
+@ECHO off
+ECHO changing directory to parent...
 
-    CD ..
+CD ..
 
-    ECHO -------------------- %Date% -------------------- >> patching-src.log
+ECHO -------------------- %Date% -------------------- >> patching-src.log
 
-    ECHO %CD%: applying first 200 patches
+ECHO %CD%: applying first 200 patches
 
-    patch -p0 < patches/7.1.001-100 >> patching-src.log 2>&1
-    patch -p0 < patches/7.1.101-200 >> patching-src.log 2>&1
+patch -p0 < patches/7.1.001-100 >> patching-src.log 2>&1
+patch -p0 < patches/7.1.101-200 >> patching-src.log 2>&1
 
-    ECHO %CD%: applying the last patches
+ECHO %CD%: applying the last patches
 
-    FOR /L %%B IN (201,1,278) DO
-        patch -p0 < patches/7.1.%%B >> patching-src.log 2>&1
+FOR /L %%B IN (201,1,278) DO
+    patch -p0 < patches/7.1.%%B >> patching-src.log 2>&1
 
-    ECHO Finished
+ECHO Finished
 
-    PAUSE
+PAUSE
 
-    @ECHO on
+@ECHO on
 
 ~~~
 
@@ -97,13 +97,13 @@ Now we go directly to the compilation process, from Cygwin console. There is onl
 
 ~~~ { bash }
 
-    $ cd /cygdrive/c/devel/vim-src/vim71
-    $ make -B -f Make_cyg.mak GUI=no \
-        PYTHON=/cygdrive/c/devel/Python PYTHON_VER=25 DYNAMIC_PYTHON=yes \
-        TCL=/cygdrive/c/devel/Tcl TCL_VER=85 DYNAMIC_TCL=yes vim.exe
-    $ make -B -f Make_cyg.mak OLE=yes \
-        PYTHON=/cygdrive/c/devel/Python PYTHON_VER=25 DYNAMIC_PYTHON=yes \
-        TCL=/cygdrive/c/devel/Tcl TCL_VER=85 DYNAMIC_TCL=yes gvim.exe
+$ cd /cygdrive/c/devel/vim-src/vim71
+$ make -B -f Make_cyg.mak GUI=no \
+    PYTHON=/cygdrive/c/devel/Python PYTHON_VER=25 DYNAMIC_PYTHON=yes \
+    TCL=/cygdrive/c/devel/Tcl TCL_VER=85 DYNAMIC_TCL=yes vim.exe
+$ make -B -f Make_cyg.mak OLE=yes \
+    PYTHON=/cygdrive/c/devel/Python PYTHON_VER=25 DYNAMIC_PYTHON=yes \
+    TCL=/cygdrive/c/devel/Tcl TCL_VER=85 DYNAMIC_TCL=yes gvim.exe
 
 ~~~
 
@@ -115,7 +115,7 @@ During the process of compiltion I've met two errors: `cannot exec cc1: No such 
 
 ~~~ { bash }
 
-    $ PATH=$PATH:/cygdrive/c/devel/cygwin/lib/gcc/i686-pc-cygwin/3.4.4
+$ PATH=$PATH:/cygdrive/c/devel/cygwin/lib/gcc/i686-pc-cygwin/3.4.4
 
 ~~~
 
@@ -127,7 +127,11 @@ The second one is solved the same way the first must to -- by installing `Devel/
 
 Basing on [this article](http://allaboutvim.blogspot.com/2007/12/vim-python.html) I've created a pack (you can take it [here](http://shaman-sir.by.ru/files/vimfiles.zip)) collected from the last versions of plugins mentioned there ([Project](http://allaboutvim.blogspot.com/2007/07/projecttargz-ide.html), PythonComplete, NERD_Commenter, [VCSCommand](http://allaboutvim.blogspot.com/2007/08/vcscommandvim-svn_09.html), RunScript and TagList plus, over them — [PyDiction](http://www.vim.org/scripts/script.php?script_id=850)) + minimal setting (in `ftplugin/python.vim`, practically identical to the one mention in the article (TabWrapper function changed + another way to include dictionary) -- _omni completion_ is set to `Tab`). You need to extract the contents to the `<path_to_installed_vim>\vimfiles`. For taglist plugin you'll need to download ctags [from here](http://prdownloads.sourceforge.net/ctags/ec57w32.zip), after unpacking to any directory, add its path to the `PATH` environment variable. Then you need to run `vim` and execute the command:
 
-    :helptags $VIM\vimfiles\doc
+~~~
+
+:helptags $VIM\vimfiles\doc
+
+~~~
 
 Then you'll have a possibility to use `:help <plugin_name>` to get documentation of the corresponding plugin.
 
@@ -135,16 +139,20 @@ The default auto-completion, if you use this package settings, is called with `T
 
 To include the [proposed](http://www.python.org/dev/peps/pep-0263/) by specification first lines in python files header automatically when created, add the code below to the `<path_to_installed_vim>\_vimrc` (filename line is added to demonstrate a possibilities to add a file name):
 
-    function! BufNewFile_PY()
-       0put = '#!/usr/bin/env python'
-       1put = '#-*- coding: utf-8 -*-'
-       $put = '#-*- filename: ' . expand('') . ' -*-'
-       $put = ''
-       $put = ''
-       normal G
-    endfunction
+~~~
 
-    autocmd BufNewFile *.py call BufNewFile_PY()
+function! BufNewFile_PY()
+   0put = '#!/usr/bin/env python'
+   1put = '#-*- coding: utf-8 -*-'
+   $put = '#-*- filename: ' . expand('') . ' -*-'
+   $put = ''
+   $put = ''
+   normal G
+endfunction
+
+autocmd BufNewFile *.py call BufNewFile_PY()
+
+~~~
 
 …So now you can program in Python with comfort.
 

@@ -15,8 +15,8 @@ You need to do just two actions. First - take `./textpattern/include/txp_prefs.p
 
 ~~~ { php }
 
-    $evt_list = safe_column('event', 'txp_prefs',
-         "type = 0 and prefs_id = 1 group by 'event' order by event desc");
+$evt_list = safe_column('event', 'txp_prefs',
+     "type = 0 and prefs_id = 1 group by 'event' order by event desc");
 
 ~~~
 
@@ -24,9 +24,9 @@ and to delete the quotes wrapping `event` to make it match with [this variant](h
 
 ~~~ { php }
 
-    $evt_list = safe_column('event', 'txp_prefs',
-         "type = 0 and prefs_id = 1 group by event order by event desc");
-
+$evt_list = safe_column('event', 'txp_prefs',
+     "type = 0 and prefs_id = 1 group by event order by event desc");
+     
 ~~~
 
 second -- redeploy the file back. Finita la comedia -- you're welcome in preferences,  _Comments:Disabled after_.

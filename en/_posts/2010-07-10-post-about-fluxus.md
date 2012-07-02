@@ -19,21 +19,21 @@ Hereis, for example, two rotating spheres that change their colors through time:
 
 ~~~ { scheme }
 
-    (define (animate)
-        (let* ((t (* (time) 2))
-               (x (sin t))
-               (y (cos t)))
+(define (animate)
+    (let* ((t (* (time) 2))
+           (x (sin t))
+           (y (cos t)))
 
-        (with-state
-            (translate (vector x y 0))
-            (colour (vector (+ 1.5 (sin (time))) 0 0))
-            (draw-sphere))
+    (with-state
+        (translate (vector x y 0))
+        (colour (vector (+ 1.5 (sin (time))) 0 0))
+        (draw-sphere))
 
-        (with-state
-            (translate (vmul (vector x y 0) 3))
-            (colour (vector 0 0 (- 1.5 (sin (time)))))
-            (draw-sphere))))
+    (with-state
+        (translate (vmul (vector x y 0) 3))
+        (colour (vector 0 0 (- 1.5 (sin (time)))))
+        (draw-sphere))))
 
-    (every-frame (animate))
+(every-frame (animate))
 
 ~~~

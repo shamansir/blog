@@ -27,31 +27,31 @@ Functions are grouped in sections, by themes:
 
 ~~~ { javascript }
 
-    function Class() { }
+function Class() { }
 
-    Class.prototype.construct = function() { };
+Class.prototype.construct = function() { };
 
-    Class.extend = function(def) {
-        var classDef = function() {
-            if (arguments[0] !== Class) {
-                this.construct.apply(this, arguments);
-            }
-        };
-
-        var proto = new this(Class);
-        var superClass = this.prototype;
-
-        for (var n in def) {
-            var item = def[n];
-            if (item instanceof Function) item.$ = superClass; else classDef[n] = item;
-            proto[n] = item;
+Class.extend = function(def) {
+    var classDef = function() {
+        if (arguments[0] !== Class) {
+            this.construct.apply(this, arguments);
         }
-
-        classDef.prototype = proto;
-
-        classDef.extend = this.extend;
-        return classDef;
     };
+
+    var proto = new this(Class);
+    var superClass = this.prototype;
+
+    for (var n in def) {
+        var item = def[n];
+        if (item instanceof Function) item.$ = superClass; else classDef[n] = item;
+        proto[n] = item;
+    }
+
+    classDef.prototype = proto;
+
+    classDef.extend = this.extend;
+    return classDef;
+};
 
 ~~~
 
@@ -61,11 +61,11 @@ The complete examples of usage are too huge for this article, so I'll pass them 
 
 ~~~ { javascript }
 
-    function createMethodReference(object, methodName) {
-        return function () {
-            return object[methodName].apply(object, arguments);
-        };
-    }
+function createMethodReference(object, methodName) {
+    return function () {
+        return object[methodName].apply(object, arguments);
+    };
+}
 
 ~~~
 
@@ -73,30 +73,30 @@ Now you can write something like that:
 
 ~~~ { javascript }
 
-    var ScrollingHandler = Class.extend({
+var ScrollingHandler = Class.extend({
 
-        construct:
-            function(elementId) {
-                this._elementId = elementId;
-                this.assignListener();
-            },
+    construct:
+        function(elementId) {
+            this._elementId = elementId;
+            this.assignListener();
+        },
 
-        assignListener:
-            function() {
-                var scrollControlElem = document.getElementById(this._elementId);
-                if (scrollControlElem) {
-                    scrollControlElem.onscroll = createMethodReference(this, "_onElementScroll");
-                }
-            },
-
-        _onElementScroll:
-            function(ev) {
-                ev = ev || window.event;
-                alert("please stop scrolling, I've already got an event: " + ev);
+    assignListener:
+        function() {
+            var scrollControlElem = document.getElementById(this._elementId);
+            if (scrollControlElem) {
+                scrollControlElem.onscroll = createMethodReference(this, "_onElementScroll");
             }
-    });
+        },
 
-    var elmScrollHandler = new ScrollHandler('SomeElmId');
+    _onElementScroll:
+        function(ev) {
+            ev = ev || window.event;
+            alert("please stop scrolling, I've already got an event: " + ev);
+        }
+});
+
+var elmScrollHandler = new ScrollHandler('SomeElmId');
 
 ~~~
 
@@ -108,13 +108,13 @@ You can associate the instances of this class with the element-having-the-specif
 
 ~~~ { javascript }
 
-    function cloneObj(objToClone) {
-        var clone = [];
-        for (i in objToClone) {
-            clone[i] = objToClone[i];
-        }
-        return clone;
+function cloneObj(objToClone) {
+    var clone = [];
+    for (i in objToClone) {
+        clone[i] = objToClone[i];
     }
+    return clone;
+}
 
 ~~~
 
@@ -122,7 +122,7 @@ The usage is enormously simple:
 
 ~~~ { javascript }
 
-    var clonedObj = cloneObj(objToClone);
+var clonedObj = cloneObj(objToClone);
 
 ~~~
 
@@ -130,13 +130,13 @@ The usage is enormously simple:
 
 ~~~ { javascript }
 
-    function oc(a) {
-        var o = {};
-        for(var i=0;i<a.length;i++) {
-            o[a[i]]='';
-        }
-        return o;
+function oc(a) {
+    var o = {};
+    for(var i=0;i<a.length;i++) {
+        o[a[i]]='';
     }
+    return o;
+}
 
 ~~~
 
@@ -144,23 +144,23 @@ An example is the situation when you first need to test is object exist in some 
 
 ~~~ { javascript }
 
-    function isPersonAllowed(maleName, femaleName) {
-        var pairsAllowed = new Array([ "John", "Yoko" ],
-                [ "Bill",  "Monica" ], [ "Phil",  "Sue" ],
-                [ "Jason",  "Harrison" ], [ "Adam",  "Eve" ]);
-        var singlesAllowed = new Array("Michael", "Pete", "John",
-                "Dave", "Matthew");
-        return (femaleName
-                ? ([maleName, femaleName] in oc(pairsAllowed))
-                : (maleName in oc(singlesAllowed)));
-    }
+function isPersonAllowed(maleName, femaleName) {
+    var pairsAllowed = new Array([ "John", "Yoko" ],
+            [ "Bill",  "Monica" ], [ "Phil",  "Sue" ],
+            [ "Jason",  "Harrison" ], [ "Adam",  "Eve" ]);
+    var singlesAllowed = new Array("Michael", "Pete", "John",
+            "Dave", "Matthew");
+    return (femaleName
+            ? ([maleName, femaleName] in oc(pairsAllowed))
+            : (maleName in oc(singlesAllowed)));
+}
 
-    alert(isPersonAllowed("Jack")); // false
-    alert(isPersonAllowed("Adam")); // false
-    alert(isPersonAllowed("John")); // true
-    alert(isPersonAllowed("Phil","Marlo")); // false
-    alert(isPersonAllowed("Jason","Harrison")); // true
-    alert(isPersonAllowed("Martin","Luther")); // false
+alert(isPersonAllowed("Jack")); // false
+alert(isPersonAllowed("Adam")); // false
+alert(isPersonAllowed("John")); // true
+alert(isPersonAllowed("Phil","Marlo")); // false
+alert(isPersonAllowed("Jason","Harrison")); // true
+alert(isPersonAllowed("Martin","Luther")); // false
 
 ~~~
 
@@ -168,14 +168,14 @@ An example is the situation when you first need to test is object exist in some 
 
 ~~~ { javascript }
 
-    function Hash()
-    {
-        this.length = 0;
-        this.items = new Array();
-        for (var i = 0; i < arguments.length; i++) {
-            this.items[arguments[i][0]] = arguments[i][1];
-        }
+function Hash()
+{
+    this.length = 0;
+    this.items = new Array();
+    for (var i = 0; i < arguments.length; i++) {
+        this.items[arguments[i][0]] = arguments[i][1];
     }
+}
 
 ~~~
 
@@ -183,31 +183,31 @@ To access the elements, just use `items` property (may be I need to make `keys` 
 
 ~~~ { javascript }
 
-    var Game = Class.extend({
+var Game = Class.extend({
 
-        STG_STOP: 0,
-        STG_START: 1,
-        STG_LOADING: 2,
-        STG_MENU: 3,
-        STG_PROCESS: 4,
+    STG_STOP: 0,
+    STG_START: 1,
+    STG_LOADING: 2,
+    STG_MENU: 3,
+    STG_PROCESS: 4,
 
-        construct:
-            function() { this._stage = Game.STG_LOADING; },
+    construct:
+        function() { this._stage = Game.STG_LOADING; },
 
-        getStage:
-            function() { return this._stage; }
+    getStage:
+        function() { return this._stage; }
 
-    });
+});
 
-    var stateMap = new Hash(
-                [ Game.STG_START,   "start"    ],
-                [ Game.STG_LOADING, "loading"  ],
-                [ Game.STG_MENU,    "menu"     ],
-                [ Game.STG_PROCESS, "process"  ],
-                [ Game.STG_STOP,    "stopping" ]);
+var stateMap = new Hash(
+            [ Game.STG_START,   "start"    ],
+            [ Game.STG_LOADING, "loading"  ],
+            [ Game.STG_MENU,    "menu"     ],
+            [ Game.STG_PROCESS, "process"  ],
+            [ Game.STG_STOP,    "stopping" ]);
 
-    var someGame = new Game();
-    alert("You are in "+stateMap.items[someGame.getStage()]+" stage!");
+var someGame = new Game();
+alert("You are in "+stateMap.items[someGame.getStage()]+" stage!");
 
 ~~~
 
@@ -215,16 +215,16 @@ To access the elements, just use `items` property (may be I need to make `keys` 
 
 ~~~ { javascript }
 
-    function getTime() {
-        return new Date().getTime();
-    }
+function getTime() {
+    return new Date().getTime();
+}
 
-    function getTimeDelta(timeBegin, timeEnd) {
-        timeEnd = timeEnd || getTime();
-        return timeEnd - timeBegin;
-    }
+function getTimeDelta(timeBegin, timeEnd) {
+    timeEnd = timeEnd || getTime();
+    return timeEnd - timeBegin;
+}
 
-    Number.prototype.NaN0=function() { return isNaN(this) ? 0 : this; }
+Number.prototype.NaN0=function() { return isNaN(this) ? 0 : this; }
 
 ~~~
 
@@ -234,25 +234,25 @@ To access the elements, just use `items` property (may be I need to make `keys` 
 
 ~~~ { javascript }
 
-    var USER_DATA = {
+var USER_DATA = {
 
-        Browser: {
-            KHTML: /Konqueror|KHTML/.test(navigator.userAgent) &&
-                    !/Apple/.test(navigator.userAgent),
-            Safari: /KHTML/.test(navigator.userAgent) &&
-                    /Apple/.test(navigator.userAgent),
-            Opera: !!window.opera,
-            MSIE: !!(window.attachEvent && !window.opera),
-            Gecko: /Gecko/.test(navigator.userAgent) &&
-                    !/Konqueror|KHTML/.test(navigator.userAgent)
-        },
+    Browser: {
+        KHTML: /Konqueror|KHTML/.test(navigator.userAgent) &&
+                !/Apple/.test(navigator.userAgent),
+        Safari: /KHTML/.test(navigator.userAgent) &&
+                /Apple/.test(navigator.userAgent),
+        Opera: !!window.opera,
+        MSIE: !!(window.attachEvent && !window.opera),
+        Gecko: /Gecko/.test(navigator.userAgent) &&
+                !/Konqueror|KHTML/.test(navigator.userAgent)
+    },
 
-        OS: {
-            Windows: navigator.platform.indexOf("Win") > -1,
-            Mac: navigator.platform.indexOf("Mac") > -1,
-            Linux: navigator.platform.indexOf("Linux") > -1
-        }
+    OS: {
+        Windows: navigator.platform.indexOf("Win") > -1,
+        Mac: navigator.platform.indexOf("Mac") > -1,
+        Linux: navigator.platform.indexOf("Linux") > -1
     }
+}
 
 ~~~
 
@@ -264,51 +264,51 @@ If your document is static relatively to the window, and there are no scrollbars
 
 ~~~ { javascript }
 
-    function getPosition(e) {
-        var left = 0;
-        var top  = 0;
+function getPosition(e) {
+    var left = 0;
+    var top  = 0;
 
-        while (e.offsetParent) {
-            left += e.offsetLeft + (e.currentStyle ? (parseInt(e.currentStyle.borderLeftWidth)).NaN0() : 0);
-            top  += e.offsetTop  + (e.currentStyle ? (parseInt(e.currentStyle.borderTopWidth)).NaN0() : 0);
-            e = e.offsetParent;
-        }
-
+    while (e.offsetParent) {
         left += e.offsetLeft + (e.currentStyle ? (parseInt(e.currentStyle.borderLeftWidth)).NaN0() : 0);
-        top  += e.offsetTop  + (e.currentStyle ? (parseInt(e.currentStyle.borderTopWidth)).NaN0(): 0);
-
-        return {x:left, y:top};
+        top  += e.offsetTop  + (e.currentStyle ? (parseInt(e.currentStyle.borderTopWidth)).NaN0() : 0);
+        e = e.offsetParent;
     }
 
-    var IS_IE = USER_DATA['Browser'].MSIE;
+    left += e.offsetLeft + (e.currentStyle ? (parseInt(e.currentStyle.borderLeftWidth)).NaN0() : 0);
+    top  += e.offsetTop  + (e.currentStyle ? (parseInt(e.currentStyle.borderTopWidth)).NaN0(): 0);
 
-    function getAlignedPosition(e) {
-        var left = 0;
-        var top  = 0;
+    return {x:left, y:top};
+}
 
-        while (e.offsetParent) {
-            left += e.offsetLeft + (e.currentStyle ? (parseInt(e.currentStyle.borderLeftWidth)).NaN0() : 0);
-            top  += e.offsetTop  + (e.currentStyle ? (parseInt(e.currentStyle.borderTopWidth)).NaN0() : 0);
-            e  = e.offsetParent;
-            if (e.scrollLeft) {left -= e.scrollLeft; }
-            if (e.scrollTop)  {top  -= e.scrollTop; }
-        }
+var IS_IE = USER_DATA['Browser'].MSIE;
 
-        var docBody = document.documentElement ? document.documentElement : document.body;
+function getAlignedPosition(e) {
+    var left = 0;
+    var top  = 0;
 
-        left += e.offsetLeft + (e.currentStyle ?
-                    (parseInt(e.currentStyle.borderLeftWidth)).NaN0()
-                    : 0) +
-            (IS_IE ? (parseInt(docBody.scrollLeft)).NaN0() : 0) -
-            (parseInt(docBody.clientLeft)).NaN0();
-        top  += e.offsetTop  + (e.currentStyle ?
-                    (parseInt(e.currentStyle.borderTopWidth)).NaN0()
-                    :  0) +
-            (IS_IE ? (parseInt(docBody.scrollTop)).NaN0() : 0) -
-            (parseInt(docBody.clientTop)).NaN0();
-
-        return {x:left, y:top};
+    while (e.offsetParent) {
+        left += e.offsetLeft + (e.currentStyle ? (parseInt(e.currentStyle.borderLeftWidth)).NaN0() : 0);
+        top  += e.offsetTop  + (e.currentStyle ? (parseInt(e.currentStyle.borderTopWidth)).NaN0() : 0);
+        e  = e.offsetParent;
+        if (e.scrollLeft) {left -= e.scrollLeft; }
+        if (e.scrollTop)  {top  -= e.scrollTop; }
     }
+
+    var docBody = document.documentElement ? document.documentElement : document.body;
+
+    left += e.offsetLeft + (e.currentStyle ?
+                (parseInt(e.currentStyle.borderLeftWidth)).NaN0()
+                : 0) +
+        (IS_IE ? (parseInt(docBody.scrollLeft)).NaN0() : 0) -
+        (parseInt(docBody.clientLeft)).NaN0();
+    top  += e.offsetTop  + (e.currentStyle ?
+                (parseInt(e.currentStyle.borderTopWidth)).NaN0()
+                :  0) +
+        (IS_IE ? (parseInt(docBody.scrollTop)).NaN0() : 0) -
+        (parseInt(docBody.clientTop)).NaN0();
+
+    return {x:left, y:top};
+}
 
 ~~~
 
@@ -316,24 +316,24 @@ If your document is static relatively to the window, and there are no scrollbars
 
 ~~~ { javascript }
 
-    function findPos(e) {
-    	var baseEl = e;
-    	var curleft = curtop = 0;
-    	if (e.offsetParent) {
-    		do {
-    			curleft += e.offsetLeft;
-    			curtop += e.offsetTop;
-    		} while (e = e.offsetParent);
-    	}
-    	var docBody = document.documentElement ? document.documentElement : document.body;
-    	if (docBody) {
-    		curleft += (baseEl.currentStyle?(parseInt(baseEl.currentStyle.borderLeftWidth)).NaN0():0) +
-    				   (IS_IE ? (parseInt(docBody.scrollLeft)).NaN0() : 0) - (parseInt(docBody.clientLeft)).NaN0();
-    		curtop  += (baseEl.currentStyle?(parseInt(baseEl.currentStyle.borderTopWidth)).NaN0():0) +
-    				   (IS_IE ? (parseInt(docBody.scrollTop)).NaN0() : 0) - (parseInt(docBody.clientTop)).NaN0();
-    	}
-    	return {x: curleft, y:curtop};
-    }
+function findPos(e) {
+	var baseEl = e;
+	var curleft = curtop = 0;
+	if (e.offsetParent) {
+		do {
+			curleft += e.offsetLeft;
+			curtop += e.offsetTop;
+		} while (e = e.offsetParent);
+	}
+	var docBody = document.documentElement ? document.documentElement : document.body;
+	if (docBody) {
+		curleft += (baseEl.currentStyle?(parseInt(baseEl.currentStyle.borderLeftWidth)).NaN0():0) +
+				   (IS_IE ? (parseInt(docBody.scrollLeft)).NaN0() : 0) - (parseInt(docBody.clientLeft)).NaN0();
+		curtop  += (baseEl.currentStyle?(parseInt(baseEl.currentStyle.borderTopWidth)).NaN0():0) +
+				   (IS_IE ? (parseInt(docBody.scrollTop)).NaN0() : 0) - (parseInt(docBody.clientTop)).NaN0();
+	}
+	return {x: curleft, y:curtop};
+}
 
 ~~~
 
@@ -341,50 +341,50 @@ If your document is static relatively to the window, and there are no scrollbars
 
 ~~~ { javascript }
 
-    function mouseCoords(ev){
-    	if (ev.pageX || ev.pageY) {
-    		return {x:ev.pageX, y:ev.pageY};
-    	}
-    	var docBody = document.documentElement ? document.documentElement : document.body;
+function mouseCoords(ev){
+	if (ev.pageX || ev.pageY) {
+		return {x:ev.pageX, y:ev.pageY};
+	}
+	var docBody = document.documentElement ? document.documentElement : document.body;
 
-    	return {
-    		x: ev.clientX + docBody.scrollLeft - docBody.clientLeft,
-    		y: ev.clientY + docBody.scrollTop  - docBody.clientTop
-    	};
-    }
+	return {
+		x: ev.clientX + docBody.scrollLeft - docBody.clientLeft,
+		y: ev.clientY + docBody.scrollTop  - docBody.clientTop
+	};
+}
 
-    function getMouseOffset(target, ev, aligned) {
-        ev = ev || window.event;
-        if (aligned == null) aligned = false;
+function getMouseOffset(target, ev, aligned) {
+    ev = ev || window.event;
+    if (aligned == null) aligned = false;
 
-        var docPos    = aligned
-            ? getAlignedPosition(target)
-            : getPosition(target);
-        var mousePos  = mouseCoords(ev);
+    var docPos    = aligned
+        ? getAlignedPosition(target)
+        : getPosition(target);
+    var mousePos  = mouseCoords(ev);
 
-        return {
-            x: mousePos.x - docPos.x,
-            y: mousePos.y - docPos.y
-        };
-    }
+    return {
+        x: mousePos.x - docPos.x,
+        y: mousePos.y - docPos.y
+    };
+}
 
 ~~~
 
 > The updated version of `getMouseOffset` for the variant with single position detection function:
 >
 > ~~~ { javascript }
+> 
+> function getMouseOffset(target, ev) {
+>     ev = ev || window.event;
 >
->     function getMouseOffset(target, ev) {
->         ev = ev || window.event;
+>     var docPos = findPos(target);
+>     var mousePos = mouseCoords(ev);
 >
->         var docPos = findPos(target);
->         var mousePos = mouseCoords(ev);
->
->   	  return {
->             x: mousePos.x - docPos.x,
->             y: mousePos.y - docPos.y
->         };
->     }
+>     return {
+>         x: mousePos.x - docPos.x,
+>         y: mousePos.y - docPos.y
+>     };
+> }
 >
 > ~~~
 
@@ -392,17 +392,17 @@ The last function can also be used in two modes, using the `aligned` parameter a
 
 ~~~ { javascript }
 
-    function onMouseMove(elm, ev) {
-        var mouseOffset = getMouseOffset(elm, ev);
-        console.log("x: %d; y: %d", mouseOffset.x, mouseOffset.y);
-    }
+function onMouseMove(elm, ev) {
+    var mouseOffset = getMouseOffset(elm, ev);
+    console.log("x: %d; y: %d", mouseOffset.x, mouseOffset.y);
+}
 
 ~~~
 
 ~~~ { html }
 
-    <div id="someId" onmousemove="onMouseMove(this, event);
-        return false;"></div>
+<div id="someId" onmousemove="onMouseMove(this, event);
+    return false;"></div>
 
 ~~~
 
@@ -412,20 +412,20 @@ The last function can also be used in two modes, using the `aligned` parameter a
 
 ~~~ { javascript }
 
-     function findOffsetHeight(e) {
-	     var res = 0;
-     	while ((res == 0) && e.parentNode) {
-	     	e = e.parentNode;
-    		res = e.offsetHeight;
-     	}
-     	return res;
-     }
+function findOffsetHeight(e) {
+    var res = 0;
+ 	while ((res == 0) && e.parentNode) {
+     	e = e.parentNode;
+		res = e.offsetHeight;
+ 	}
+ 	return res;
+}
 
-     function getOffsetHeight(e) {
-         return this.element.offsetHeight ||
-                 this.element.style.pixelHeight ||
-                 findOffsetHeight(e);
-     }
+function getOffsetHeight(e) {
+    return this.element.offsetHeight ||
+           this.element.style.pixelHeight ||
+           findOffsetHeight(e);
+}
 
 ~~~
 
@@ -435,23 +435,23 @@ The last function can also be used in two modes, using the `aligned` parameter a
 
 ~~~ { javascript }
 
-    function walkTree(node, mapFunction, dataPackage) {
-    	if (node == null) return;
-    	mapFunction(node, dataPackage);
-    	for (var i = 0; i < node.childNodes.length; i++) {
-    		walkTree(node.childNodes[i], mapFunction, dataPackage);
-    	}
-    }
+function walkTree(node, mapFunction, dataPackage) {
+	if (node == null) return;
+	mapFunction(node, dataPackage);
+	for (var i = 0; i < node.childNodes.length; i++) {
+		walkTree(node.childNodes[i], mapFunction, dataPackage);
+	}
+}
 
-    function searchTree(node, searchFunction, dataPackage) {
-    	if (node == null) return;
-    	var funcResult = searchFunction(node, dataPackage);
-    	if (funcResult) return funcResult;
-    	for (var i = 0; i < node.childNodes.length; i++) {
-    		var searchResult = searchTree(node.childNodes[i], searchFunction, dataPackage);
-    		if (searchResult) return searchResult;
-    	}
-    }
+function searchTree(node, searchFunction, dataPackage) {
+	if (node == null) return;
+	var funcResult = searchFunction(node, dataPackage);
+	if (funcResult) return funcResult;
+	for (var i = 0; i < node.childNodes.length; i++) {
+		var searchResult = searchTree(node.childNodes[i], searchFunction, dataPackage);
+		if (searchResult) return searchResult;
+	}
+}
 
 ~~~
 
@@ -459,27 +459,27 @@ The functions `setElmAttr` and `getElmAttr`, are used in example, I'll present t
 
 ~~~ { javascript }
 
-    var rootElement = document.getElementById('rootElm');
+var rootElement = document.getElementById('rootElm');
 
-    setElmAttr(rootElement, "nodeType", "root");
-    var childNodeFunc = function(node) {
-        if (node.nodeName && (node.nodeName !== '#text')
-                          && (node.nodeName !== '#comment')) {
-            setElmAttr(node, "nodeType", "child");
-        }
+setElmAttr(rootElement, "nodeType", "root");
+var childNodeFunc = function(node) {
+    if (node.nodeName && (node.nodeName !== '#text')
+                      && (node.nodeName !== '#comment')) {
+        setElmAttr(node, "nodeType", "child");
     }
-    walkTree(rootElement, childNodeFunc);
+}
+walkTree(rootElement, childNodeFunc);
 
-    var findTargetNode = function(node, classList) {
-        if ((node.nodeName && (node.nodeName !== '#text')
-                           && (node.nodeName !== '#comment')) &&
-                           (getElmAttr(node, "class") in oc(classList))) {
-            return node;
-        }
+var findTargetNode = function(node, classList) {
+    if ((node.nodeName && (node.nodeName !== '#text')
+                       && (node.nodeName !== '#comment')) &&
+                       (getElmAttr(node, "class") in oc(classList))) {
+        return node;
     }
-    var targetNode = searchTree(rootElement, findTargetNode,
-                        ['headingClass', 'footerClass', 'tableClass']);
-    setElmAttr(targetNode, "isTarget", true);
+}
+var targetNode = searchTree(rootElement, findTargetNode,
+                    ['headingClass', 'footerClass', 'tableClass']);
+setElmAttr(targetNode, "isTarget", true);
 
 ~~~
 
@@ -489,19 +489,19 @@ The functions `setElmAttr` and `getElmAttr`, are used in example, I'll present t
 
 ~~~ { javascript }
 
-    function removeChildrenRecursively(node)
-    {
-        if (!node) return;
-        while (node.hasChildNodes()) {
-            removeChildrenRecursively(node.firstChild);
-            node.removeChild(node.firstChild);
-        }
+function removeChildrenRecursively(node)
+{
+    if (!node) return;
+    while (node.hasChildNodes()) {
+        removeChildrenRecursively(node.firstChild);
+        node.removeChild(node.firstChild);
     }
+}
 
-    function removeElementById(nodeId) {
-        document.getElementById(nodeId).parentNode.removeChild(
-                                document.getElementById(nodeId));
-    }
+function removeElementById(nodeId) {
+    document.getElementById(nodeId).parentNode.removeChild(
+                            document.getElementById(nodeId));
+}
 
 ~~~
 
@@ -509,47 +509,47 @@ The functions `setElmAttr` and `getElmAttr`, are used in example, I'll present t
 
 ~~~ { javascript }
 
-    var IS_SAFARI = USER_DATA['Browser'].Safari;
+var IS_SAFARI = USER_DATA['Browser'].Safari;
 
-    function getElmAttr(elm, attrName, ns) {
-        // IE6 fails getAttribute when used on table element
-        var elmValue = null;
-        try {
-            elmValue = (elm.getAttribute
-                        ? elm.getAttribute((ns ? (ns + NS_SYMB) : '')
-                        + attrName) : null);
-        } catch (e) { return null; }
-        if (!elmValue && IS_SAFARI) {
-            elmValue = (elm.getAttributeNS
-                        ? elm.getAttributeNS(ns, attrName)
-                        : null);
-        }
-        return elmValue;
+function getElmAttr(elm, attrName, ns) {
+    // IE6 fails getAttribute when used on table element
+    var elmValue = null;
+    try {
+        elmValue = (elm.getAttribute
+                    ? elm.getAttribute((ns ? (ns + NS_SYMB) : '')
+                    + attrName) : null);
+    } catch (e) { return null; }
+    if (!elmValue && IS_SAFARI) {
+        elmValue = (elm.getAttributeNS
+                    ? elm.getAttributeNS(ns, attrName)
+                    : null);
     }
+    return elmValue;
+}
 
-    function setElmAttr(elm, attrName, value, ns) {
-        if (!IS_SAFARI || !ns) {
-            return (elm.setAttribute
-                        ? elm.setAttribute((ns ? (ns + NS_SYMB) : '')
-                        + attrName, value) : null);
-        } else {
-            return (elm.setAttributeNS
-                        ? elm.setAttributeNS(ns, attrName, value)
-                        : null);
-        }
+function setElmAttr(elm, attrName, value, ns) {
+    if (!IS_SAFARI || !ns) {
+        return (elm.setAttribute
+                    ? elm.setAttribute((ns ? (ns + NS_SYMB) : '')
+                    + attrName, value) : null);
+    } else {
+        return (elm.setAttributeNS
+                    ? elm.setAttributeNS(ns, attrName, value)
+                    : null);
     }
+}
 
-    function remElmAttr(elm, attrName, ns) {
-        if (!IS_SAFARI || !ns) {
-            return (elm.removeAttribute
-                        ? elm.removeAttribute((ns ? (ns + NS_SYMB) : '')
-                        + attrName) : null);
-        } else {
-            return (elm.removeAttributeNS
-                        ? elm.removeAttributeNS(ns, attrName)
-                        : null);
-        }
+function remElmAttr(elm, attrName, ns) {
+    if (!IS_SAFARI || !ns) {
+        return (elm.removeAttribute
+                    ? elm.removeAttribute((ns ? (ns + NS_SYMB) : '')
+                    + attrName) : null);
+    } else {
+        return (elm.removeAttributeNS
+                    ? elm.removeAttributeNS(ns, attrName)
+                    : null);
     }
+}
 
 ~~~
 
@@ -559,60 +559,60 @@ The functions `setElmAttr` and `getElmAttr`, are used in example, I'll present t
 
 ~~~ { javascript }
 
-    /* AJAX call */
+/* AJAX call */
 
-    /* locationURL - URL to use */
-    /* parameters - url parameters, null if not required (format: "parameter1=value1&parameter2=value2[...]") */
-    /* onComplete - listener: function (http_request) or (http_request, package) */
-    /* doPost - (optional) specifies if POST (true) or GET (false/null) request required
-    /* package - (optional) some variable or array to tranfer to complete listener, may be not specified */
+/* locationURL - URL to use */
+/* parameters - url parameters, null if not required (format: "parameter1=value1&parameter2=value2[...]") */
+/* onComplete - listener: function (http_request) or (http_request, package) */
+/* doPost - (optional) specifies if POST (true) or GET (false/null) request required
+/* package - (optional) some variable or array to tranfer to complete listener, may be not specified */
 
-    function makeRequest(locationURL, parameters, onComplete, doPost, dataPackage) {
+function makeRequest(locationURL, parameters, onComplete, doPost, dataPackage) {
 
-        var http_request = false;
+    var http_request = false;
+    try {
+        http_request = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e1) {
         try {
-            http_request = new ActiveXObject("Msxml2.XMLHTTP");
-        } catch (e1) {
-            try {
-                http_request= new ActiveXObject("Microsoft.XMLHTTP");
-            } catch (e2) {
-                http_request = new XMLHttpRequest();
-            }
+            http_request= new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (e2) {
+            http_request = new XMLHttpRequest();
         }
-
-        //if (http_request.overrideMimeType) { // optional
-        //  http_request.overrideMimeType('text/xml');
-        //}
-
-        if (!http_request) {
-          throw new Error('Cannot create XMLHTTP instance');
-          return false;
-        }
-
-        var completeListener = function() {
-            if (http_request.readyState == 4) {
-                if (http_request.status == 200) {
-                    onComplete(http_request, dataPackage)
-                }
-            }
-        };
-
-        //var salt = hex_md5(new Date().toString());
-        http_request.onreadystatechange = completeListener;
-        if (doPost) {
-    		http_request.open('POST', locationURL, true);
-    		http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    		http_request.setRequestHeader("Content-length", parameters.length);
-    		http_request.setRequestHeader("Connection", "close");
-    		http_request.send(parameters);
-        } else {
-        	http_request.open('GET', locationURL + (parameters ? ("?" + parameters) : ""), true);
-        	//http_request.open('GET', './proxy.php?' + parameters +
-                        // "&salt=" + salt, true);
-        	http_request.send(null);
-        }
-
     }
+
+    //if (http_request.overrideMimeType) { // optional
+    //  http_request.overrideMimeType('text/xml');
+    //}
+
+    if (!http_request) {
+      throw new Error('Cannot create XMLHTTP instance');
+      return false;
+    }
+
+    var completeListener = function() {
+        if (http_request.readyState == 4) {
+            if (http_request.status == 200) {
+                onComplete(http_request, dataPackage)
+            }
+        }
+    };
+
+    //var salt = hex_md5(new Date().toString());
+    http_request.onreadystatechange = completeListener;
+    if (doPost) {
+		http_request.open('POST', locationURL, true);
+		http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		http_request.setRequestHeader("Content-length", parameters.length);
+		http_request.setRequestHeader("Connection", "close");
+		http_request.send(parameters);
+    } else {
+    	http_request.open('GET', locationURL + (parameters ? ("?" + parameters) : ""), true);
+    	//http_request.open('GET', './proxy.php?' + parameters +
+                    // "&salt=" + salt, true);
+    	http_request.send(null);
+    }
+
+}
 
 ~~~
 
@@ -620,29 +620,29 @@ The example of usage -- is from one of my working test task, that searched over 
 
 ~~~ { javascript }
 
-    function gotSearchResults(http_request, dataPackage) {
-        request_result = http_request.responseText;
-        var divElement = document.getElementById(dataPackage["divId"]);
-        divElement.innerHTML = request_result;
-    }
+function gotSearchResults(http_request, dataPackage) {
+    request_result = http_request.responseText;
+    var divElement = document.getElementById(dataPackage["divId"]);
+    divElement.innerHTML = request_result;
+}
 
-    function insertMusicSearchResults(divId) {
-        var searchStrElement = document.getElementById("searchStr");
-        var dataPackage = new Array();
-        dataPackage["divId"] = divId;
-        makeRequest("getAlbums.php", "searchStr="
-                + searchStrElement.value, gotSearchResults, false,
-                dataPackage);
-    }
+function insertMusicSearchResults(divId) {
+    var searchStrElement = document.getElementById("searchStr");
+    var dataPackage = new Array();
+    dataPackage["divId"] = divId;
+    makeRequest("getAlbums.php", "searchStr="
+            + searchStrElement.value, gotSearchResults, false,
+            dataPackage);
+}
 
-    function insertVideoSearchResults(divId) {
-        var searchStrElement = document.getElementById("searchStr");
-        var dataPackage = new Array();
-        dataPackage["divId"] = divId;
-        makeRequest("getMovies.php", "searchStr="
-                + searchStrElement.value, gotSearchResults, false,
-                dataPackage);
-    }
+function insertVideoSearchResults(divId) {
+    var searchStrElement = document.getElementById("searchStr");
+    var dataPackage = new Array();
+    dataPackage["divId"] = divId;
+    makeRequest("getMovies.php", "searchStr="
+            + searchStrElement.value, gotSearchResults, false,
+            dataPackage);
+}
 
 ~~~
 
@@ -652,15 +652,15 @@ The example of usage -- is from one of my working test task, that searched over 
 
 ~~~ { javascript }
 
-    function LOG(informerName, text) {
-        var logElement = document.getElementById('LOG_DIV');
-        if (logElement) {
-            logElement.appendChild(document.createTextNode(
-                            informerName + ': ' + text));
-            logElement.appendChild(document.createElement('br'));
-            logElement.scrollTop += 50;
-        }
+function LOG(informerName, text) {
+    var logElement = document.getElementById('LOG_DIV');
+    if (logElement) {
+        logElement.appendChild(document.createTextNode(
+                        informerName + ': ' + text));
+        logElement.appendChild(document.createElement('br'));
+        logElement.scrollTop += 50;
     }
+}
 
 ~~~
 
@@ -668,19 +668,19 @@ The example of usage -- is from one of my working test task, that searched over 
 
 ~~~ { javascript }
 
-    var Console = Class.extend({
-        // the stub class to allow using console when browser have it,
-        // if not - just pass all calls
-        construct: function() {},
-        log: function() { },
-        info: function() { },
-        warn: function() { },
-        error: function() { }
-    });
+var Console = Class.extend({
+    // the stub class to allow using console when browser have it,
+    // if not - just pass all calls
+    construct: function() {},
+    log: function() { },
+    info: function() { },
+    warn: function() { },
+    error: function() { }
+});
 
-    if (!window.console) {
-        console = new Console();
-    }
+if (!window.console) {
+    console = new Console();
+}
 
 ~~~
 
@@ -692,19 +692,19 @@ As a bonus (not to mess with number in the title, pleasantly smelling with binar
 
 ~~~ { javascript }
 
-    var dblClicked = false;
-    var dblClickedNode = null;
+var dblClicked = false;
+var dblClickedNode = null;
 
-    var DBL_CLICK_MAXTIME = 300;
+var DBL_CLICK_MAXTIME = 300;
 
-    function dblClick(clickedNode) {
-        dblClicked = true;
-        dblClickedNode = clickedNode || dblClickedNode;
-    }
+function dblClick(clickedNode) {
+    dblClicked = true;
+    dblClickedNode = clickedNode || dblClickedNode;
+}
 
-    function releaseDblClick() {
-        setTimeout('dblClicked=false;', DBL_CLICK_MAXTIME);
-    }
+function releaseDblClick() {
+    setTimeout('dblClicked=false;', DBL_CLICK_MAXTIME);
+}
 
 ~~~
 
@@ -712,8 +712,8 @@ Its usage causes severe conditions. Now in `ondblclick` handler you need to call
 
 ~~~ { html }
 
-    <div id="someId" onclick="if (!dblClicked) alert('click');"
-    ondblick="dblClick(this); alert('dblclick'); releaseDblClick();";></div>
+<div id="someId" onclick="if (!dblClicked) alert('click');"
+ondblick="dblClick(this); alert('dblclick'); releaseDblClick();";></div>
 
 ~~~
 
@@ -721,9 +721,9 @@ Also, for the point  _[1](#sol-1)_ we can add a small function of **getting an i
 
 ~~~ { javascript }
 
-    function getInstanceOf(className) {
-        return eval('new ' + className + '()');
-    }
+function getInstanceOf(className) {
+    return eval('new ' + className + '()');
+}
 
 ~~~
 
@@ -731,13 +731,13 @@ The **pause** function will fit the point _[6](#sol-6)_ (the real pause, not wha
 
 ~~~ { javascript }
 
-    function pause(millis)
-    {
-        var time = new Date();
-        var curTime = null;
-        do { curTime = new Date(); }
-            while (curTime - time < millis);
-    }
+function pause(millis)
+{
+    var time = new Date();
+    var curTime = null;
+    do { curTime = new Date(); }
+        while (curTime - time < millis);
+}
 
 ~~~
 
@@ -747,7 +747,7 @@ Determining of **number occurrence in the range**, limited by the `start` number
 
 ~~~ { javascript }
 
-    Number.prototype.inBounds=function(start,stop){return ((this>=start)&&(this<stop))?true:false;};
+Number.prototype.inBounds=function(start,stop){return ((this>=start)&&(this<stop))?true:false;};
 
 ~~~
 
@@ -755,7 +755,7 @@ Determining of **number occurrence in the range**, limited by the `start` number
 
 ~~~ { javascript }
 
-    String.prototype.trim=function(){var temp = this.replace( /^\s+/g, "" );return temp.replace( /\s+$/g, "" );}
+String.prototype.trim=function(){var temp = this.replace( /^\s+/g, "" );return temp.replace( /\s+$/g, "" );}
 
 ~~~
 
@@ -763,11 +763,11 @@ Determining of **number occurrence in the range**, limited by the `start` number
 
 ~~~ { javascript }
 
-    function boolFromObj(obj){return(((obj=="true")||(obj == true))?true:false);}
+function boolFromObj(obj){return(((obj=="true")||(obj == true))?true:false);}
 
-    String.prototype.asBoolVal=function(){return ((this=="true")?true:false);}
+String.prototype.asBoolVal=function(){return ((this=="true")?true:false);}
 
-    Boolean.prototype.asBoolVal=function(){return ((this==true)?true:false);}
+Boolean.prototype.asBoolVal=function(){return ((this==true)?true:false);}
 
 ~~~
 
@@ -775,8 +775,8 @@ Determining of **number occurrence in the range**, limited by the `start` number
 
 ~~~ { javascript }
 
-    Number.prototype.getFStr=function(fillNum){var fillNum=fillNum?fillNum:2;var
-    temp=""+this;while(temp.length<fillNum)temp="0"+temp;return temp;}
+Number.prototype.getFStr=function(fillNum){var fillNum=fillNum?fillNum:2;var
+temp=""+this;while(temp.length<fillNum)temp="0"+temp;return temp;}
 
 ~~~
 
@@ -784,17 +784,17 @@ Along with that, we can add the **sorting** functions to the [second part](#js-o
 
 ~~~ { javascript }
 
-    function intComparator(a, b) {
-    	return a - b;
-    }
+function intComparator(a, b) {
+	return a - b;
+}
 
-    function getObjSortedProps(obj, sortFunc) {
-    	var propsArr = [];
-    	for (propName in obj) {
-    		propsArr.push(propName);
-    	}
-    	return propsArr.sort(sortFunc);
-    }
+function getObjSortedProps(obj, sortFunc) {
+	var propsArr = [];
+	for (propName in obj) {
+		propsArr.push(propName);
+	}
+	return propsArr.sort(sortFunc);
+}
 
 ~~~
 
@@ -804,22 +804,22 @@ Along with that, we can add the **sorting** functions to the [second part](#js-o
 
 ~~~ { javascript }
 
-    function indexOf(arr, elem) {
-    	for (itemIdx in arr) {
-    		if (arr[itemIdx] == elem) return itemIdx;
-    	}
-    	return null;
-    }
+function indexOf(arr, elem) {
+	for (itemIdx in arr) {
+		if (arr[itemIdx] == elem) return itemIdx;
+	}
+	return null;
+}
 
-    function removeFromArray(arr, element) { // removes only one item!
-    	for (itemIndex in arr) {
-    		if (arr[itemIndex] == element) {
-    			arr.splice(itemIndex, 1);
-    			return arr;
-    		}
-    	}
-    	return null;
-    }
+function removeFromArray(arr, element) { // removes only one item!
+	for (itemIndex in arr) {
+		if (arr[itemIndex] == element) {
+			arr.splice(itemIndex, 1);
+			return arr;
+		}
+	}
+	return null;
+}
 
 ~~~
 

@@ -40,7 +40,7 @@ Headers must not react on selection or press and they must have their own layout
 
 ~~~ {java}
 
-    public class SectionedItemsAdapter extends BaseAdapter { . . .
+public class SectionedItemsAdapter extends BaseAdapter { . . .
 
 ~~~
 
@@ -50,8 +50,8 @@ The first step is creating a constants which identify element type, one for head
 
 ~~~ { java }
 
-    public static final int ITEM_VIEW_TYPE = 0; // item
-    public static final int SECTION_VIEW_TYPE = 1; // section
+public static final int ITEM_VIEW_TYPE = 0; // item
+public static final int SECTION_VIEW_TYPE = 1; // section
 
 ~~~
 
@@ -59,7 +59,7 @@ Then a constant containing a number of element types (there's two in our case):
 
 ~~~ { java }
 
-    public static final int VIEW_TYPES_COUNT = SECTION_VIEW_TYPE + 1;
+public static final int VIEW_TYPES_COUNT = SECTION_VIEW_TYPE + 1;
 
 ~~~
 
@@ -69,11 +69,11 @@ Adapter must contain the information about all of the elements inside, so the `g
 
 ~~~ { java }
 
-    public int getItemViewType(int position) {
-       if (. . .) return ITEM_VIEW_TYPE;
-       if (. . .) return SECTION_VIEW_TYPE;
-       return IGNORE_ITEM_VIEW_TYPE;
-    }
+public int getItemViewType(int position) {
+   if (. . .) return ITEM_VIEW_TYPE;
+   if (. . .) return SECTION_VIEW_TYPE;
+   return IGNORE_ITEM_VIEW_TYPE;
+}
 
 ~~~
 
@@ -83,16 +83,16 @@ This method can be used in overriden `getView` now:
 
 ~~~ { java }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        final int viewType = getItemViewType(position);
-        if (viewType == IGNORE_ITEM_VIEW_TYPE) throw new IllegalStateException("Failed to get object at position " + position);
-        if (viewType == SECTION_VIEW_TYPE) {
-            convertView = . . . // here you can get a header layout using LayoutInflater
-        } else if (viewType == ITEM_VIEW_TYPE) {
-            convertView = . . . // here you can get an item layout using LayoutInflater
-        }
-        return convertView;
+public View getView(int position, View convertView, ViewGroup parent) {
+    final int viewType = getItemViewType(position);
+    if (viewType == IGNORE_ITEM_VIEW_TYPE) throw new IllegalStateException("Failed to get object at position " + position);
+    if (viewType == SECTION_VIEW_TYPE) {
+        convertView = . . . // here you can get a header layout using LayoutInflater
+    } else if (viewType == ITEM_VIEW_TYPE) {
+        convertView = . . . // here you can get an item layout using LayoutInflater
     }
+    return convertView;
+}
 
 ~~~
 
@@ -100,8 +100,8 @@ This method can be used in overriden `getView` now:
 
 ~~~ { java }
 
-    public boolean isEnabled(int position) {
-        return getItemViewType(position) != SECTION_VIEW_TYPE };
+public boolean isEnabled(int position) {
+    return getItemViewType(position) != SECTION_VIEW_TYPE };
 
 ~~~
 
@@ -109,7 +109,7 @@ This method can be used in overriden `getView` now:
 
 ~~~ { java }
 
-    public int getViewTypeCount() { return VIEW_TYPES_COUNT; }
+public int getViewTypeCount() { return VIEW_TYPES_COUNT; }
 
 ~~~
 
@@ -125,8 +125,8 @@ I simplified adding sections and items to list using this way. Adapter has metho
 
 ~~~ { java }
 
-    public int addSection(String title);
-    public LActionItem addItem(int section, int icon, String title);
+public int addSection(String title);
+public LActionItem addItem(int section, int icon, String title);
 
 ~~~
 
@@ -134,15 +134,15 @@ Method `addSection` returns the section identifier so you can use it to add item
 
 ~~~ { java }
 
-    final int suitsSection = adapter.addSection("Suits");
-    adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
-    adapter.addItem(suitsSection, R.drawable.diamond, "Diamonds");
-    adapter.addItem(suitsSection, R.drawable.spade, "Spades");
-    adapter.addItem(suitsSection, R.drawable.cross, "Crosses");
-    final int figuresSection = adapter.addSection("Figures");
-    adapter.addItem(figuresSection, R.drawable.king, "King");
-    adapter.addItem(figuresSection, R.drawable.queen, "Queen");
-    . . .
+final int suitsSection = adapter.addSection("Suits");
+adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
+adapter.addItem(suitsSection, R.drawable.diamond, "Diamonds");
+adapter.addItem(suitsSection, R.drawable.spade, "Spades");
+adapter.addItem(suitsSection, R.drawable.cross, "Crosses");
+final int figuresSection = adapter.addSection("Figures");
+adapter.addItem(figuresSection, R.drawable.king, "King");
+adapter.addItem(figuresSection, R.drawable.queen, "Queen");
+. . .
 
 ~~~
 
@@ -158,7 +158,7 @@ If you agree with that, your adapter can implement `OnItemClickListener` interfa
 
 ~~~ { java }
 
-    public class ActionsAdapter extends . . . implements OnItemClickListener
+public class ActionsAdapter extends . . . implements OnItemClickListener
 
 ~~~
 
@@ -166,11 +166,11 @@ And inside the activity that uses this adapter you can do:
 
 ~~~ { java }
 
-    final ListView actionsList = (ListView)findViewById(R.id.actionsList);
-    final SectionedActionsAdapter actionsAdapter = new ActionsAdapter(. . .);
-    . . . // fill adapter with values
-    actionsList.setAdapter(actionsAdapter);
-    actionsList.setOnItemClickListener(actionsAdapter);
+final ListView actionsList = (ListView)findViewById(R.id.actionsList);
+final SectionedActionsAdapter actionsAdapter = new ActionsAdapter(. . .);
+. . . // fill adapter with values
+actionsList.setAdapter(actionsAdapter);
+actionsList.setOnItemClickListener(actionsAdapter);
 
 ~~~
 
@@ -178,10 +178,10 @@ In my case some actions are responsible for each item in the section - they swit
 
 ~~~ { java }
 
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        final LActionItem item = (LActionItem) getItem(position);
-        if (item.onClick != null) item.onClick(view);
-    }
+public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    final LActionItem item = (LActionItem) getItem(position);
+    if (item.onClick != null) item.onClick(view);
+}
 
 ~~~
 
@@ -189,8 +189,8 @@ Using the `addItem` method described above you can set a handler directly from a
 
 ~~~ { java }
 
-    final LActionItem heartsItem = adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
-    heartsItem.onClick = new OnClickListener() { public void onClick(View view) { . . . } };
+final LActionItem heartsItem = adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
+heartsItem.onClick = new OnClickListener() { public void onClick(View view) { . . . } };
 
 ~~~
 
@@ -202,17 +202,17 @@ If you need to update (invalidate) concrete known element view (or even its chil
 
 ~~~ { java }
 
-    public static View getItemViewIfVisible(AdapterView<?> holder, int itemPos) {
-        int firstPosition = holder.getFirstVisiblePosition();
-        int wantedChild = itemPos - firstPosition;
-        if (wantedChild < 0 || wantedChild >= holder.getChildCount()) return null;
-        return holder.getChildAt(wantedChild);
-    }
+public static View getItemViewIfVisible(AdapterView<?> holder, int itemPos) {
+    int firstPosition = holder.getFirstVisiblePosition();
+    int wantedChild = itemPos - firstPosition;
+    if (wantedChild < 0 || wantedChild >= holder.getChildCount()) return null;
+    return holder.getChildAt(wantedChild);
+}
 
-    public static void invalidateByPos(AdapterView<?> parent, int position) {
-        final View itemView = getItemViewIfVisible(parent, position);
-        if (itemView != null) itemView.invalidate();
-    }
+public static void invalidateByPos(AdapterView<?> parent, int position) {
+    final View itemView = getItemViewIfVisible(parent, position);
+    if (itemView != null) itemView.invalidate();
+}
 
 ~~~
 
@@ -247,31 +247,31 @@ To make a pagination possible, you may just keep a set of page containers (curso
 
 ~~~ { java }
 
-    private final Page[] pages = new Page[MAX_PAGES_COUNT];
+private final Page[] pages = new Page[MAX_PAGES_COUNT];
 
-    public View getView(final int position, View convertView, ViewGroup parent) {
+public View getView(final int position, View convertView, ViewGroup parent) {
 
-        if (!waitingNextPage &&
-            (pages.length < MAX_PAGES_COUNT) &&
-            (position >= ((pages.length * PER_PAGE) - 2))) {
+    if (!waitingNextPage &&
+        (pages.length < MAX_PAGES_COUNT) &&
+        (position >= ((pages.length * PER_PAGE) - 2))) {
 
-            final AsyncTask<Integer, . . .> nextPageTask = . . .;
-            nextPageTask.execute(pages.length);
-            // nextPageTask calls addSource, when next page is received
+        final AsyncTask<Integer, . . .> nextPageTask = . . .;
+        nextPageTask.execute(pages.length);
+        // nextPageTask calls addSource, when next page is received
 
-            waitingNextPage = true;
-        }
-
-        . . .
-
+        waitingNextPage = true;
     }
 
-    public void addSource(Page page) {
-       if (pages.length >= MAX_PAGES_COUNT) return;
-       pages[pages.length] = page;
-       waitingNextPage = false;
-       notifyDataSetChanged();
-    }
+    . . .
+
+}
+
+public void addSource(Page page) {
+   if (pages.length >= MAX_PAGES_COUNT) return;
+   pages[pages.length] = page;
+   waitingNextPage = false;
+   notifyDataSetChanged();
+}
 
 ~~~
 
@@ -328,24 +328,24 @@ Code to get video stream by URL is similar to this one:
 
 ~~~ { java }
 
-    public static InputStream getVideoStream(long videoId)
-           throws FailedToGetVideoStreamException, VideoLinkRequestException {
-        try {
-            final HttpClient client = new DefaultHttpClient();
-            . . .
-            final HttpResponse response = client.execute(request);
-            if ((response == null) || (response.getEntity() == null))
-                throw new FailedToGetVideoStreamException("Failed to get video stream");
-            lastContentLength = response.getEntity().getContentLength();
-            return response.getEntity().getContent();
-        } catch (URISyntaxException use) {
-            throw new VideoLinkRequestException("URI creation failed : " + use.getLocalizedMessage());
-        } catch (ClientProtocolException cpe) {
-            throw new VideoLinkRequestException("Client call failed : " + cpe.getLocalizedMessage());
-        } catch (IOException ioe) {
-            throw new VideoLinkRequestException("Connection failed : " + ioe.getLocalizedMessage());
-        }
+public static InputStream getVideoStream(long videoId)
+       throws FailedToGetVideoStreamException, VideoLinkRequestException {
+    try {
+        final HttpClient client = new DefaultHttpClient();
+        . . .
+        final HttpResponse response = client.execute(request);
+        if ((response == null) || (response.getEntity() == null))
+            throw new FailedToGetVideoStreamException("Failed to get video stream");
+        lastContentLength = response.getEntity().getContentLength();
+        return response.getEntity().getContent();
+    } catch (URISyntaxException use) {
+        throw new VideoLinkRequestException("URI creation failed : " + use.getLocalizedMessage());
+    } catch (ClientProtocolException cpe) {
+        throw new VideoLinkRequestException("Client call failed : " + cpe.getLocalizedMessage());
+    } catch (IOException ioe) {
+        throw new VideoLinkRequestException("Connection failed : " + ioe.getLocalizedMessage());
     }
+}
 
 ~~~
 
@@ -357,13 +357,13 @@ Here is a task-that-knows-it-has-next-task inteface:
 
 ~~~ { java }
 
-    public interface HasNextTask<Params> {
-        public int getId();
-        void setNextTask(HasNextTask<Params> task);
-        public HasNextTask<Parames> getNextTask();
-        public AsyncTask<?, ?, ?> execute(Params... params);
-                          // must much with AsyncTask<Params, ...>
-    }
+public interface HasNextTask<Params> {
+    public int getId();
+    void setNextTask(HasNextTask<Params> task);
+    public HasNextTask<Parames> getNextTask();
+    public AsyncTask<?, ?, ?> execute(Params... params);
+                      // must much with AsyncTask<Params, ...>
+}
 
 ~~~
 
@@ -371,10 +371,10 @@ Here is an interface that monitors when tasks are performed successfully or not:
 
 ~~~ { java }
 
-    public interface PerformHandler<Params, Result> {
-        public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask);
-        public void onError(Exception e, String description);
-    }
+public interface PerformHandler<Params, Result> {
+    public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask);
+    public void onError(Exception e, String description);
+}
 
 ~~~
 
@@ -382,40 +382,40 @@ Here is an interface that monitors when tasks are performed successfully or not:
 
 ~~~ { java }
 
-    public class TaskInQueue<Params, Result> extends AsyncTask<Params, Void, Result>
-                                             implements HasNextTask<Params> {
+public class TaskInQueue<Params, Result> extends AsyncTask<Params, Void, Result>
+                                         implements HasNextTask<Params> {
 
-        private final int taskId;
-        private HasNextTask<Params> nextTask = null;
-        private final PerformHandler<Params, Result> listener;
+    private final int taskId;
+    private HasNextTask<Params> nextTask = null;
+    private final PerformHandler<Params, Result> listener;
 
-        public TaskInQueue(PerformHandler<Params, Result> listener, int taskId) {
-            this.taskId = taskId;
-            this.listener = listener;
-        }
-
-        @Override
-        public Result doInBackground(Params... params) { . . . /* task execution */ }
-
-        @Override
-        protected void onPostExecute(Result result) {
-            . . . // handling a result, if required
-            listener.onPerformed(taskId, result, nextTask);
-        }
-
-        @Override public int getId() { return taskId; }
-
-        @Override
-        public void setNextTask(HasNextTask<Params> nextTask) {
-            if (this.nextTask != null)
-                throw new IllegalStateException("Next task is already set");
-            this.nextTask = nextTask;
-        }
-
-        @Override
-        public HasNextTask<Params> getNextTask() { return nextTask; };
-
+    public TaskInQueue(PerformHandler<Params, Result> listener, int taskId) {
+        this.taskId = taskId;
+        this.listener = listener;
     }
+
+    @Override
+    public Result doInBackground(Params... params) { . . . /* task execution */ }
+
+    @Override
+    protected void onPostExecute(Result result) {
+        . . . // handling a result, if required
+        listener.onPerformed(taskId, result, nextTask);
+    }
+
+    @Override public int getId() { return taskId; }
+
+    @Override
+    public void setNextTask(HasNextTask<Params> nextTask) {
+        if (this.nextTask != null)
+            throw new IllegalStateException("Next task is already set");
+        this.nextTask = nextTask;
+    }
+
+    @Override
+    public HasNextTask<Params> getNextTask() { return nextTask; };
+
+}
 
 ~~~
 
@@ -423,100 +423,100 @@ And the main thing, the queue implementation:
 
 ~~~ { java }
 
-    public abstract class TasksQueue<Params, Result>
-                    implements PerformHandler<Params, Result>, Runnable {
+public abstract class TasksQueue<Params, Result>
+                implements PerformHandler<Params, Result>, Runnable {
 
-        public static final String TAG = "TasksQueue";
+    public static final String TAG = "TasksQueue";
 
-        private HasNextTask<Params> firstTask = null;
-        private HasNextTask<Params> lastTask = null;
-        private Map<Integer, Params> tasksParams = null;
-        private int currentTask = -1;
-        private boolean running = false; // some task is running now
-        private boolean started = false; // the whole queue is running now
-        private int size = 0;
+    private HasNextTask<Params> firstTask = null;
+    private HasNextTask<Params> lastTask = null;
+    private Map<Integer, Params> tasksParams = null;
+    private int currentTask = -1;
+    private boolean running = false; // some task is running now
+    private boolean started = false; // the whole queue is running now
+    private int size = 0;
 
-        protected HasNextTask<Params> createTask(int taskId) { // can be overriden
-            return new TaskInQueue<Params, Result>(this, taskId);
+    protected HasNextTask<Params> createTask(int taskId) { // can be overriden
+        return new TaskInQueue<Params, Result>(this, taskId);
+    }
+
+    @Override
+    public HasNextTask<Params> add(int taskId, Params params) {
+        Log.d(TAG, "Adding task " + taskId);
+        final HasNextTask<Params> = createTask(taskId);
+        if (isEmpty()) {
+            firstTask = task;
+            lastTask = task;
+            tasksParams = new HashMap<Integer, Params>();
+        } else {
+            lastTask.setNextTask(task);
+            lastTask = task;
         }
+        tasksParams.put(task.getId(), params);
+        size += 1;
+        return task;
+    }
 
-        @Override
-        public HasNextTask<Params> add(int taskId, Params params) {
-            Log.d(TAG, "Adding task " + taskId);
-            final HasNextTask<Params> = createTask(taskId);
-            if (isEmpty()) {
-                firstTask = task;
-                lastTask = task;
-                tasksParams = new HashMap<Integer, Params>();
-            } else {
-                lastTask.setNextTask(task);
-                lastTask = task;
-            }
-            tasksParams.put(task.getId(), params);
-            size += 1;
-            return task;
-        }
-
-        @Override
-        public void run() {
-            Log.d(TAG, "Running first task");
-            if (!isEmpty())
-                try {
-                    started = true;
-                    execute(firstTask);
-                } catch (Exception e) {
-                    onError(e, e.getLocalizedMessage());
-                    finish();
-                }
-            else throw new IllegalStateException("Queue is empty");
-        }
-
-        @Override
-        public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask) {
-            Log.d(TAG, "Task " + taskId + " performed");
-            if (taskId != currentTask)
-                throw new IllegalStateException("Tasks queue desynchronized");
-            running = false;
+    @Override
+    public void run() {
+        Log.d(TAG, "Running first task");
+        if (!isEmpty())
             try {
-                if (nextTask != null) {
-                    execute(nextTask);
-                } else finish();
+                started = true;
+                execute(firstTask);
             } catch (Exception e) {
-                onError(e, "Error while executing task " +
-                           ((nextTask != null) ? nextTask.getId() : taskId));
+                onError(e, e.getLocalizedMessage());
                 finish();
             }
-        }
-
-        protected void execute(HasNextTask<Result> task) throws Exception {
-            Log.d(TAG, "Trying to run task " + task.getId());
-            if (running) throw new IllegalStateException("Tasks queue desynchronized");
-            currentTask = task.getId();
-            running = true;
-            Log.d(TAG, "Running task " + task.getId());
-            task.execute(tasksParams.get(task.getId())).get(); // wait for result
-        }
-
-        protected void finish() {
-            firstTask = null;
-            lastTask = null;
-            if (tasksParams != null) tasksParams.clear();
-            tasksParams = null;
-            currentTask = -1;
-            running = false;
-            started = false;
-            size = 0;
-        }
-
-        public boolean isEmpty() { return (firstTask == null); }
-
-        public boolean started() { return started; }
-
-        public boolean running() { return running; }
-
-        public int size() { return size; }
-
+        else throw new IllegalStateException("Queue is empty");
     }
+
+    @Override
+    public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask) {
+        Log.d(TAG, "Task " + taskId + " performed");
+        if (taskId != currentTask)
+            throw new IllegalStateException("Tasks queue desynchronized");
+        running = false;
+        try {
+            if (nextTask != null) {
+                execute(nextTask);
+            } else finish();
+        } catch (Exception e) {
+            onError(e, "Error while executing task " +
+                       ((nextTask != null) ? nextTask.getId() : taskId));
+            finish();
+        }
+    }
+
+    protected void execute(HasNextTask<Result> task) throws Exception {
+        Log.d(TAG, "Trying to run task " + task.getId());
+        if (running) throw new IllegalStateException("Tasks queue desynchronized");
+        currentTask = task.getId();
+        running = true;
+        Log.d(TAG, "Running task " + task.getId());
+        task.execute(tasksParams.get(task.getId())).get(); // wait for result
+    }
+
+    protected void finish() {
+        firstTask = null;
+        lastTask = null;
+        if (tasksParams != null) tasksParams.clear();
+        tasksParams = null;
+        currentTask = -1;
+        running = false;
+        started = false;
+        size = 0;
+    }
+
+    public boolean isEmpty() { return (firstTask == null); }
+
+    public boolean started() { return started; }
+
+    public boolean running() { return running; }
+
+    public int size() { return size; }
+
+}
 
 ~~~
 
@@ -524,50 +524,50 @@ Now in your activities you can easily create a queue of background tasks:
 
 ~~~ { java }
 
-    protected final TasksQueue secondaryTasks;
+protected final TasksQueue secondaryTasks;
 
-    private final int TASK_1 = 0;
-    private final int TASK_2 = 1;
-    private final int TASK_3 = 2;
+private final int TASK_1 = 0;
+private final int TASK_2 = 1;
+private final int TASK_3 = 2;
 
-    public ...Activity() { // constructor
+public ...Activity() { // constructor
 
-        secondaryTasks = new TasksQueue<..., ...>() {
+    secondaryTasks = new TasksQueue<..., ...>() {
 
-            // here you can override createTask
+        // here you can override createTask
 
-            @Override public void onPerfomed(int taskId, ... result) throws JSONException {
-                super.onPerfomed(taskId, result);
-                onSecondaryTaskPerfomed(taskId, result);
-            }
-
-            @Override public void onError(Exception e, String message) {
-                Log.e(TAG, message + " / " + e.getLocalizedMessage());
-                Dialogs.makeExceptionToast(ItemsListActivity.this, message, e);
-            }
-
-        };
-
-        secondaryTasks.add(TASK_1, ...);
-        secondaryTasks.add(TASK_2, ...);
-        secondaryTasks.add(TASK_3, ...);
-
-    }
-
-    protected void someMethod() {
-        . . .
-        if (!secondaryTasks.isEmpty()) secondaryTasks.run();
-        . . .
-    }
-
-    protected void onSecondaryTaskPerfomed(int taskId, ... result) {
-        switch (taskId) {
-            case TASK_1: . . .
-            case TASK_2: . . .
-            case TASK_3: . . .
-            . . .
+        @Override public void onPerfomed(int taskId, ... result) throws JSONException {
+            super.onPerfomed(taskId, result);
+            onSecondaryTaskPerfomed(taskId, result);
         }
+
+        @Override public void onError(Exception e, String message) {
+            Log.e(TAG, message + " / " + e.getLocalizedMessage());
+            Dialogs.makeExceptionToast(ItemsListActivity.this, message, e);
+        }
+
+    };
+
+    secondaryTasks.add(TASK_1, ...);
+    secondaryTasks.add(TASK_2, ...);
+    secondaryTasks.add(TASK_3, ...);
+
+}
+
+protected void someMethod() {
+    . . .
+    if (!secondaryTasks.isEmpty()) secondaryTasks.run();
+    . . .
+}
+
+protected void onSecondaryTaskPerfomed(int taskId, ... result) {
+    switch (taskId) {
+        case TASK_1: . . .
+        case TASK_2: . . .
+        case TASK_3: . . .
+        . . .
     }
+}
 
 ~~~
 
@@ -575,7 +575,7 @@ By the way, thanks to `Runnable` interface you can run queues like this in separ
 
 ~~~ { java }
 
-    new Thread(secondaryTasks, "Tasks Queue").start();
+new Thread(secondaryTasks, "Tasks Queue").start();
 
 ~~~
 
@@ -612,26 +612,26 @@ To show a dialog like this instead of context menu when element in list is long-
 
 ~~~ { java }
 
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        . . .
-        final AdapterView.AdapterContextMenuInfo info = extractMenuInfo(menuInfo);
-        final QuickAction quickAction =
-              createQuickActions(info.position, getItem(info.position), info.targetView);
-        if (quickAction != null) quickAction.show();
-    }
+public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+    . . .
+    final AdapterView.AdapterContextMenuInfo info = extractMenuInfo(menuInfo);
+    final QuickAction quickAction =
+          createQuickActions(info.position, getItem(info.position), info.targetView);
+    if (quickAction != null) quickAction.show();
+}
 
-    protected QuickAction createQuickActions(final int position, final ... item, View view) {
-        QuickAction qa = new QuickAction(view);
-        qa.addActionItem(getString(R.string...),
-                         getResources().getDrawable(R.drawable...),
-                new QActionClickListener() {
-                    @Override public void onClick(View v, QActionItem item) {
-                        . . .
-                    }
-                });
-        . . .
-        return qa;
-    }
+protected QuickAction createQuickActions(final int position, final ... item, View view) {
+    QuickAction qa = new QuickAction(view);
+    qa.addActionItem(getString(R.string...),
+                     getResources().getDrawable(R.drawable...),
+            new QActionClickListener() {
+                @Override public void onClick(View v, QActionItem item) {
+                    . . .
+                }
+            });
+    . . .
+    return qa;
+}
 
 ~~~
 
@@ -654,14 +654,14 @@ My be it is obvious, but in strings from `strings.xml` you can use placeholders 
 
 ~~~ { java }
 
-    public static String format(String source, String... params) {
-        String result = source;
-        int pos = 0;
-        while (pos < params.length) {
-            result = result.replaceAll("\\{" + params[pos++] + "\\}", params[pos++]);
-        }
-        return result;
+public static String format(String source, String... params) {
+    String result = source;
+    int pos = 0;
+    while (pos < params.length) {
+        result = result.replaceAll("\\{" + params[pos++] + "\\}", params[pos++]);
     }
+    return result;
+}
 
 ~~~
 

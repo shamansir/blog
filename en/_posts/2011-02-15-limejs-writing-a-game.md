@@ -70,18 +70,18 @@ Let we leave just a several lines from the `pingpong.start` function given us by
 
 ~~~ { javascript }
 
-    // entrypoint
-    pingpong.start = function(){
+// entrypoint
+pingpong.start = function(){
 
-        var director = new lime.Director(document.body),
-            scene = new lime.Scene();
+    var director = new lime.Director(document.body),
+        scene = new lime.Scene();
 
-        director.makeMobileWebAppCapable();
+    director.makeMobileWebAppCapable();
 
-        // set current scene active
-        director.replaceScene(scene);
+    // set current scene active
+    director.replaceScene(scene);
 
-    }
+}
 
 ~~~
 
@@ -89,18 +89,18 @@ Don not forget to remove the unneсessary `goog.require` lines. I will not remin
 
 ~~~ { javascript }
 
-    var director = new lime.Director(document.body),
-        scene = new lime.Scene(),
+var director = new lime.Director(document.body),
+    scene = new lime.Scene(),
 
-        floor_ = new lime.Layer().setPosition(0,0),
-        walls_ = new lime.Layer().setPosition(0,0),
-        board_ = new lime.Layer().setPosition(0,0);
+    floor_ = new lime.Layer().setPosition(0,0),
+    walls_ = new lime.Layer().setPosition(0,0),
+    board_ = new lime.Layer().setPosition(0,0);
 
-    scene.appendChild(floor_);
-    scene.appendChild(walls_);
-    scene.appendChild(board_);
+scene.appendChild(floor_);
+scene.appendChild(walls_);
+scene.appendChild(board_);
 
-    . . .
+. . .
 
 ~~~
 
@@ -110,16 +110,16 @@ In a separate `player.js` file we describe a player class - it will be the polyg
 
 ~~~ { javascript }
 
-    goog.provide('pingpong.Player');
+goog.provide('pingpong.Player');
 
-    goog.require('lime.Polygon');
+goog.require('lime.Polygon');
 
-    pingpong.Player = function() {
-        goog.base(this);
+pingpong.Player = function() {
+    goog.base(this);
 
-        // ... polygon construction
-    }
-    goog.inherits(pingpong.Player, lime.Polygon);
+    // ... polygon construction
+}
+goog.inherits(pingpong.Player, lime.Polygon);
 
 ~~~
 
@@ -127,10 +127,10 @@ In the place of the comment we will describe a polygon vertices and will fill it
 
 ~~~ { javascript }
 
-    // -1,-2.5, 0,-3.5, 1,-2.5, 1,2.5, 0,3.5, -1,2.5, 0,1.5, 0,-1.5
-    this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
-        .setFill(0,0,210,.7)
-        .setScale(.4);
+// -1,-2.5, 0,-3.5, 1,-2.5, 1,2.5, 0,3.5, -1,2.5, 0,1.5, 0,-1.5
+this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
+    .setFill(0,0,210,.7)
+    .setScale(.4);
 
 ~~~
 
@@ -142,7 +142,7 @@ For the moment, the code is equivalent to the call:
 
 ~~~ { javascript }
 
-    var playerOne = new lime.Polygon().addPoints(...).setFill(...);
+var playerOne = new lime.Polygon().addPoints(...).setFill(...);
 
 ~~~
 
@@ -150,19 +150,19 @@ But later we will add some behavior to the player and it will be obvious that it
 
 ~~~ { javascript }
 
-    . . .
-    goog.require('pingpong.Player');
+. . .
+goog.require('pingpong.Player');
 
-    . . .
-        board_ = new lime.Layer().setPosition(0,0),
+. . .
+    board_ = new lime.Layer().setPosition(0,0),
 
-        playerOne = new pingpong.Player().setPosition(50,150).setRotation(180),
-        playerTwo = new pingpong.Player().setPosition(400,150);
+    playerOne = new pingpong.Player().setPosition(50,150).setRotation(180),
+    playerTwo = new pingpong.Player().setPosition(400,150);
 
-    board_.appendChild(playerOne);
-    board_.appendChild(playerTwo);
+board_.appendChild(playerOne);
+board_.appendChild(playerTwo);
 
-    . . .
+. . .
 
 ~~~
 
@@ -181,17 +181,17 @@ Now let's make a `ball.js` file with this content:
 
 ~~~ { javascript }
 
-    goog.provide('pingpong.Ball');
+goog.provide('pingpong.Ball');
 
-    goog.require('lime.Circle');
+goog.require('lime.Circle');
 
-    pingpong.Ball = function() {
-        goog.base(this);
+pingpong.Ball = function() {
+    goog.base(this);
 
-        this.setFill(255,0,0,.7)
-            .setSize(20,20);
-    }
-    goog.inherits(pingpong.Ball, lime.Circle);
+    this.setFill(255,0,0,.7)
+        .setSize(20,20);
+}
+goog.inherits(pingpong.Ball, lime.Circle);
 
 ~~~
 
@@ -203,17 +203,17 @@ And add the ball to the board in `pingpong.js`:
 
 ~~~ { javascript }
 
-    . . .
-    goog.require('pingpong.Ball');
-    . . .
+. . .
+goog.require('pingpong.Ball');
+. . .
 
-        playerOne = new pingpong.Player().setPosition(50,150).setRotation(180),
-        playerTwo = new pingpong.Player().setPosition(400,150),
-        ball = new pingpong.Ball().setPosition(275,150);
+    playerOne = new pingpong.Player().setPosition(50,150).setRotation(180),
+    playerTwo = new pingpong.Player().setPosition(400,150),
+    ball = new pingpong.Ball().setPosition(275,150);
 
-    board_.appendChild(playerOne);
-    board_.appendChild(playerTwo);
-    board_.appendChild(ball);
+board_.appendChild(playerOne);
+board_.appendChild(playerTwo);
+board_.appendChild(ball);
 
 ~~~
 
@@ -225,7 +225,7 @@ Now let's create a field with a players, every player will have a half of the fi
 
 ~~~ { javascript }
 
-    var director = new lime.Director(document.body,600,480),
+var director = new lime.Director(document.body,600,480),
 
 ~~~
 
@@ -233,9 +233,9 @@ This dimensions are not related to any pixels, by no means - the game canvas is 
 
 ~~~ { javascript }
 
-    playerOne = new pingpong.Player().setPosition(40,240).setRotation(180),
-    playerTwo = new pingpong.Player().setPosition(600,240),
-    ball = new pingpong.Ball().setPosition(320,240);
+playerOne = new pingpong.Player().setPosition(40,240).setRotation(180),
+playerTwo = new pingpong.Player().setPosition(600,240),
+ball = new pingpong.Ball().setPosition(320,240);
 
 ~~~
 
@@ -243,15 +243,15 @@ Now, at last, the background. Yep, it will be just two sprites, splitting the sc
 
 ~~~ { javascript }
 
-    floor_.appendChild(new lime.Sprite().setPosition(160,240)
-                                        .setSize(320,480)
-                                        .setFill(100,100,100));
-    floor_.appendChild(new lime.Sprite().setPosition(480,240)
-                                        .setSize(320,480)
-                                        .setFill(200,200,200));
+floor_.appendChild(new lime.Sprite().setPosition(160,240)
+                                    .setSize(320,480)
+                                    .setFill(100,100,100));
+floor_.appendChild(new lime.Sprite().setPosition(480,240)
+                                    .setSize(320,480)
+                                    .setFill(200,200,200));
 
-    board_.appendChild(...);
-    . . .
+board_.appendChild(...);
+. . .
 
 ~~~
 
@@ -263,17 +263,17 @@ Wall will not have a lot of logic, but as a tradition we will also place it in a
 
 ~~~ { javascript }
 
-    goog.provide('pingpong.Wall');
+goog.provide('pingpong.Wall');
 
-    goog.require('lime.Sprite');
+goog.require('lime.Sprite');
 
-    pingpong.Wall = function() {
-        goog.base(this);
+pingpong.Wall = function() {
+    goog.base(this);
 
-        this.setFill(255,255,0)
-            .setSize(20,20);
-    }
-    goog.inherits(pingpong.Wall, lime.Sprite);
+    this.setFill(255,255,0)
+        .setSize(20,20);
+}
+goog.inherits(pingpong.Wall, lime.Sprite);
 
 ~~~
 
@@ -285,24 +285,24 @@ And place the walls along the canvas edges in `pingpong.js`:
 
 ~~~ { javascript }
 
-    . . .
-    goog.require('pingpong.Wall');
-    . . .
+. . .
+goog.require('pingpong.Wall');
+. . .
 
-    floor_.appendChild(...);
+floor_.appendChild(...);
 
-    // horizontal walls
-    for (x = 10; x <= 630; x += 20) {
-        walls_.appendChild(new pingpong.Wall().setPosition(x, 10));
-        walls_.appendChild(new pingpong.Wall().setPosition(x, 470));
-    }
-    // vertical walls
-    for (y = 30; y <= 450; y += 20) {
-        walls_.appendChild(new pingpong.Wall().setPosition(10, y));
-        walls_.appendChild(new pingpong.Wall().setPosition(630, y));
-    }
+// horizontal walls
+for (x = 10; x <= 630; x += 20) {
+    walls_.appendChild(new pingpong.Wall().setPosition(x, 10));
+    walls_.appendChild(new pingpong.Wall().setPosition(x, 470));
+}
+// vertical walls
+for (y = 30; y <= 450; y += 20) {
+    walls_.appendChild(new pingpong.Wall().setPosition(10, y));
+    walls_.appendChild(new pingpong.Wall().setPosition(630, y));
+}
 
-    board_.appendChild(...);
+board_.appendChild(...);
 
 ~~~
 
@@ -316,18 +316,18 @@ Player sprite must move vertically towards the touched or clicked point, omittin
 
 ~~~ { javascript }
 
-    . . .
+. . .
 
-    director.makeMobileWebAppCapable();
+director.makeMobileWebAppCapable();
 
-    goog.events.listen(floor_,['mousedown','touchstart'],function(e){
-        var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
-        player_.runAction(
-                new lime.animation.MoveTo(player_.getPosition().x,
-                                          e.position.y).setDuration(1));
-    });
+goog.events.listen(floor_,['mousedown','touchstart'],function(e){
+    var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
+    player_.runAction(
+            new lime.animation.MoveTo(player_.getPosition().x,
+                                      e.position.y).setDuration(1));
+});
 
-    director.replaceScene(scene);
+director.replaceScene(scene);
 
 ~~~
 
@@ -335,26 +335,26 @@ But with this behaviour the players are moving through walls. Keep each wall ins
 
 ~~~ { javascript }
 
-    pingpong.Player.prototype.setMovementBounds = function(top,right,bottom,left) {
-        this._moveBounds = new goog.math.Box(top,right,bottom,left);
-        return this;
-    }
+pingpong.Player.prototype.setMovementBounds = function(top,right,bottom,left) {
+    this._moveBounds = new goog.math.Box(top,right,bottom,left);
+    return this;
+}
 
-    pingpong.Player.prototype.alignBounds = function(x, y) {
-        if (this._moveBounds === undefined) return new goog.math.Coordinate(x, y);
-        var size_ = new goog.math.Size(this.getSize().width * this.getScale().x,
-                                       this.getSize().height * this.getScale().y);
-        var newX = x, newY = y;
-        if (x < (this._moveBounds.left + (size_.width / 2)))
-                      newX = this._moveBounds.left + (size_.width / 2);
-        if (x > (this._moveBounds.right - (size_.width / 2)))
-                      newX = this._moveBounds.right - (size_.width / 2);
-        if (y < (this._moveBounds.top + (size_.height / 2)))
-                      newY = this._moveBounds.top + (size_.height / 2);
-        if (y > (this._moveBounds.bottom - (size_.height / 2)))
-                      newY = this._moveBounds.bottom - (size_.height / 2);
-        return new goog.math.Coordinate(newX, newY);
-    }
+pingpong.Player.prototype.alignBounds = function(x, y) {
+    if (this._moveBounds === undefined) return new goog.math.Coordinate(x, y);
+    var size_ = new goog.math.Size(this.getSize().width * this.getScale().x,
+                                   this.getSize().height * this.getScale().y);
+    var newX = x, newY = y;
+    if (x < (this._moveBounds.left + (size_.width / 2)))
+                  newX = this._moveBounds.left + (size_.width / 2);
+    if (x > (this._moveBounds.right - (size_.width / 2)))
+                  newX = this._moveBounds.right - (size_.width / 2);
+    if (y < (this._moveBounds.top + (size_.height / 2)))
+                  newY = this._moveBounds.top + (size_.height / 2);
+    if (y > (this._moveBounds.bottom - (size_.height / 2)))
+                  newY = this._moveBounds.bottom - (size_.height / 2);
+    return new goog.math.Coordinate(newX, newY);
+}
 
 ~~~
 
@@ -364,11 +364,11 @@ Now let's update the players' definitions in `pingpong.js`:
 
 ~~~ { javascript }
 
-    playerOne = new pingpong.Player().setPosition(40,240)
-                                     .setRotation(180)
-                                     .setMovementBounds(20,620,460,20),
-    playerTwo = new pingpong.Player().setPosition(600,240)
-                                     .setMovementBounds(20,620,460,20),
+playerOne = new pingpong.Player().setPosition(40,240)
+                                 .setRotation(180)
+                                 .setMovementBounds(20,620,460,20),
+playerTwo = new pingpong.Player().setPosition(600,240)
+                                 .setMovementBounds(20,620,460,20),
 
 ~~~
 
@@ -376,14 +376,14 @@ And let's correct the event where the movement happens:
 
 ~~~ { javascript }
 
-    goog.events.listen(floor_,['mousedown','touchstart'],function(e){
-        var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
-        player_.runAction(
-                new lime.animation.MoveTo(
-                        player_.alignBounds(player_.getPosition().x,
-                                            e.screenPosition.y))
-                                  .setDuration(1));
-    });
+goog.events.listen(floor_,['mousedown','touchstart'],function(e){
+    var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
+    player_.runAction(
+            new lime.animation.MoveTo(
+                    player_.alignBounds(player_.getPosition().x,
+                                        e.screenPosition.y))
+                              .setDuration(1));
+});
 
 ~~~
 
@@ -393,34 +393,34 @@ We will also need some additional functions for a ball. The first one, as for pl
 
 ~~~ { javascript }
 
-    pingpong.Ball = function() {
-        goog.base(this);
+pingpong.Ball = function() {
+    goog.base(this);
 
-        this.setFill(255,0,0,.7)
-            .setSize(20,20);
+    this.setFill(255,0,0,.7)
+        .setSize(20,20);
 
-        this._xCoef = 1;
-        this._yCoef = 1;
+    this._xCoef = 1;
+    this._yCoef = 1;
 
-        this._resetPos = new goog.math.Coordinate(0, 0);
-        this._velocity = 2;
-    }
-    goog.inherits(pingpong.Ball,lime.Circle);
+    this._resetPos = new goog.math.Coordinate(0, 0);
+    this._velocity = 2;
+}
+goog.inherits(pingpong.Ball,lime.Circle);
 
-    pingpong.Ball.prototype.setMovementBounds = function(top,right,bottom,left) {
-        this._moveBounds = new goog.math.Box(top,right,bottom,left);
-        return this;
-    }
+pingpong.Ball.prototype.setMovementBounds = function(top,right,bottom,left) {
+    this._moveBounds = new goog.math.Box(top,right,bottom,left);
+    return this;
+}
 
-    pingpong.Ball.prototype.setVelocity = function(velocity) {
-        if (velocity) this._velocity = velocity;
-        return this;
-    }
+pingpong.Ball.prototype.setVelocity = function(velocity) {
+    if (velocity) this._velocity = velocity;
+    return this;
+}
 
-    pingpong.Ball.prototype.setResetPosition = function(x, y) {
-        this._resetPos = new goog.math.Coordinate(x, y);
-        return this;
-    }
+pingpong.Ball.prototype.setResetPosition = function(x, y) {
+    this._resetPos = new goog.math.Coordinate(x, y);
+    return this;
+}
 
 ~~~
 
@@ -428,33 +428,33 @@ There we also describe the main detection function, it will test if one of the p
 
 ~~~ { javascript }
 
-    pingpong.Ball.prototype.updateAndCheckHit = function(dt,playerOne,playerTwo) {
-        var newPos_ = this.getPosition();
-        var size_ = new goog.math.Size(this.getSize().width * this.getScale().x,
-                                       this.getSize().height * this.getScale().y);
-        newPos_.x += this._xCoef * this._velocity * dt;
-        newPos_.y += this._yCoef * this._velocity * dt;
-        var hitVBounds_ = false; // vertical bounds were hit
-        if (this._moveBounds !== undefined) {
-            if (newPos_.x <= (this._moveBounds.left + (size_.width / 2)))
-                             { this._xCoef = 1; hitVBounds_ = true; }
-            if (newPos_.x >= (this._moveBounds.right - (size_.width / 2)))
-                             { this._xCoef = -1; hitVBounds_ = true; }
-            if (newPos_.y <= (this._moveBounds.top + (size_.height / 2)))
-                             this._yCoef = 1;
-            if (newPos_.y >= (this._moveBounds.bottom - (size_.height / 2)))
-                             this._yCoef = -1;
-        }
-        var p1catched_ = playerOne.catched(this.getParent().localToScreen(newPos_));
-        var p2catched_ = playerTwo.catched(this.getParent().localToScreen(newPos_));
-        if (hitVBounds_ && !p1catched_ && !p2catched_) {
-            this.setPosition(this._resetPos.x,this._resetPos.y);
-            return newPos_;
-        } else if (p1catched_) { this.xCoef = 1; return null; }
-          else if (p2catched_) { this.xCoef = -1; return null; }
-        this.setPosition(newPos_.x, newPos_.y);
-        return null;
+pingpong.Ball.prototype.updateAndCheckHit = function(dt,playerOne,playerTwo) {
+    var newPos_ = this.getPosition();
+    var size_ = new goog.math.Size(this.getSize().width * this.getScale().x,
+                                   this.getSize().height * this.getScale().y);
+    newPos_.x += this._xCoef * this._velocity * dt;
+    newPos_.y += this._yCoef * this._velocity * dt;
+    var hitVBounds_ = false; // vertical bounds were hit
+    if (this._moveBounds !== undefined) {
+        if (newPos_.x <= (this._moveBounds.left + (size_.width / 2)))
+                         { this._xCoef = 1; hitVBounds_ = true; }
+        if (newPos_.x >= (this._moveBounds.right - (size_.width / 2)))
+                         { this._xCoef = -1; hitVBounds_ = true; }
+        if (newPos_.y <= (this._moveBounds.top + (size_.height / 2)))
+                         this._yCoef = 1;
+        if (newPos_.y >= (this._moveBounds.bottom - (size_.height / 2)))
+                         this._yCoef = -1;
     }
+    var p1catched_ = playerOne.catched(this.getParent().localToScreen(newPos_));
+    var p2catched_ = playerTwo.catched(this.getParent().localToScreen(newPos_));
+    if (hitVBounds_ && !p1catched_ && !p2catched_) {
+        this.setPosition(this._resetPos.x,this._resetPos.y);
+        return newPos_;
+    } else if (p1catched_) { this.xCoef = 1; return null; }
+      else if (p2catched_) { this.xCoef = -1; return null; }
+    this.setPosition(newPos_.x, newPos_.y);
+    return null;
+}
 
 ~~~
 
@@ -464,39 +464,39 @@ Now we need to add the `catched` method which is used in previous function to `p
 
 ~~~ { javascript }
 
-    pingpong.Player.prototype.catched = function(pos) {
-        var p = this.getPoints(),
-            s = this.getScale(),
-            r = this.getRotation(),
-            plen = p.length,
-            coord = this.screenToLocal(pos),
-            inPoly = false;
+pingpong.Player.prototype.catched = function(pos) {
+    var p = this.getPoints(),
+        s = this.getScale(),
+        r = this.getRotation(),
+        plen = p.length,
+        coord = this.screenToLocal(pos),
+        inPoly = false;
 
-        var rsin = Math.sin(r * Math.PI / 180),
-            rcos = Math.cos(r * Math.PI / 180),
-            csx = coord.x * s.x,
-            csy = coord.y * s.y,
-            crx = (csx * rcos) - (csy * rsin),
-            cry = (csx * rsin) + (csy * rcos);
-            crx = coord.x, cry = coord.y;
+    var rsin = Math.sin(r * Math.PI / 180),
+        rcos = Math.cos(r * Math.PI / 180),
+        csx = coord.x * s.x,
+        csy = coord.y * s.y,
+        crx = (csx * rcos) - (csy * rsin),
+        cry = (csx * rsin) + (csy * rcos);
+        crx = coord.x, cry = coord.y;
 
-        if (plen > 2) {
-            var i, j, c = 0;
+    if (plen > 2) {
+        var i, j, c = 0;
 
-            for (i = 0, j = plen - 1; i < plen; j = i++) {
-                var pix_ = p[i].x, piy_ = p[i].y,
-                    pjx_ = p[j].x, pjy_ = p[j].y;
+        for (i = 0, j = plen - 1; i < plen; j = i++) {
+            var pix_ = p[i].x, piy_ = p[i].y,
+                pjx_ = p[j].x, pjy_ = p[j].y;
 
-                if (((piy_ > cry) != (pjy_ > cry)) &&
-                    (crx < (pjx_ - pix_) * (cry - piy_) /
-                        (pjy_ - piy_) + pix_)) {
-                        inPoly = !inPoly;
-                    }
-            }
+            if (((piy_ > cry) != (pjy_ > cry)) &&
+                (crx < (pjx_ - pix_) * (cry - piy_) /
+                    (pjy_ - piy_) + pix_)) {
+                    inPoly = !inPoly;
+                }
         }
-
-        return inPoly;
     }
+
+    return inPoly;
+}
 
 ~~~
 
@@ -504,10 +504,10 @@ New setting are required to be set when initializing the ball in `pingpong.js`:
 
 ~~~ { javascript }
 
-    ball = new pingpong.Ball().setPosition(320,240)
-                              .setMovementBounds(20,620,460,20)
-                              .setVelocity(.2)
-                              .setResetPosition(320,240);
+ball = new pingpong.Ball().setPosition(320,240)
+                          .setMovementBounds(20,620,460,20)
+                          .setVelocity(.2)
+                          .setResetPosition(320,240);
 
 ~~~
 
@@ -515,16 +515,16 @@ And now the main thing, checking the events that happened with the ball. We will
 
 ~~~ { javascript }
 
-    goog.events.listen(. . .);
+goog.events.listen(. . .);
 
-    var hitPos_;
-    lime.scheduleManager.schedule(function(dt){
-        if (hitPos_ = ball.updateAndCheckHit(dt, playerOne, playerTwo)) {
-           console.log('player',(hitPos_.x <= 320) ? 1 : 2,'is a loser');
-        };
-    },ball);
+var hitPos_;
+lime.scheduleManager.schedule(function(dt){
+    if (hitPos_ = ball.updateAndCheckHit(dt, playerOne, playerTwo)) {
+       console.log('player',(hitPos_.x <= 320) ? 1 : 2,'is a loser');
+    };
+},ball);
 
-    director.replaceScene(scene);
+director.replaceScene(scene);
 
 ~~~
 
@@ -534,13 +534,13 @@ Now will add a label which will tell us who failed to catch the ball. Just an in
 
 ~~~ { javascript }
 
-    ball = . . .
-           .setResetPosition(320,240),
+ball = . . .
+       .setResetPosition(320,240),
 
-    label = new lime.Label().setPosition(280,30)
-                            .setText('').setFontFamily('Verdana')
-                            .setFontColor('#c00').setFontSize(18)
-                            .setFontWeight('bold').setSize(150,30);
+label = new lime.Label().setPosition(280,30)
+                        .setText('').setFontFamily('Verdana')
+                        .setFontColor('#c00').setFontSize(18)
+                        .setFontWeight('bold').setSize(150,30);
 
 ~~~
 
@@ -548,8 +548,8 @@ Don't forget to add the label the to board layer:
 
 ~~~ { javascript }
 
-    board_.appendChild(ball);
-    board_.appendChild(label);
+board_.appendChild(ball);
+board_.appendChild(label);
 
 ~~~
 
@@ -557,19 +557,19 @@ And, replace the output target from console to label:
 
 ~~~ { javascript }
 
-    goog.events.listen(. . .);
+goog.events.listen(. . .);
 
-    var hitPos_ = null, defDelay_ = 500, delay_ = defDelay_;
-    lime.scheduleManager.schedule(function(dt){
-        delay_ -= dt;
-        if (delay_ <= 0) label.setText('');
-        if (hitPos_ = ball.updateAndCheckHit(dt, playerOne, playerTwo)) {
-           label.setText('player ' + ((hitPos_.x <= 320) ? 1 : 2) + ' is a loser');
-           delay_ = defDelay_;
-        };
-    },ball);
+var hitPos_ = null, defDelay_ = 500, delay_ = defDelay_;
+lime.scheduleManager.schedule(function(dt){
+    delay_ -= dt;
+    if (delay_ <= 0) label.setText('');
+    if (hitPos_ = ball.updateAndCheckHit(dt, playerOne, playerTwo)) {
+       label.setText('player ' + ((hitPos_.x <= 320) ? 1 : 2) + ' is a loser');
+       delay_ = defDelay_;
+    };
+},ball);
 
-    director.replaceScene(scene);
+director.replaceScene(scene);
 
 ~~~
 
@@ -583,18 +583,18 @@ Let out background will have a nice grass-greeny color - we will change a backgr
 
 ~~~ { javascript }
 
-    floor_.appendChild(new lime.Sprite().setPosition(160,240)
-                                        .setSize(321,480)
-                                        .setFill(new lime.fill.LinearGradient()
-                                                         .setDirection(0,1,1,0)
-                                                         .addColorStop(0,0,92,0,1)
-                                                         .addColorStop(1,134,200,105,1)));
-    floor_.appendChild(new lime.Sprite().setPosition(480,240)
-                                        .setSize(320,480)
-                                        .setFill(new lime.fill.LinearGradient()
-                                                         .setDirection(1,1,0,0)
-                                                         .addColorStop(0,0,92,0,1)
-                                                         .addColorStop(1,134,200,105,1)));
+floor_.appendChild(new lime.Sprite().setPosition(160,240)
+                                    .setSize(321,480)
+                                    .setFill(new lime.fill.LinearGradient()
+                                                     .setDirection(0,1,1,0)
+                                                     .addColorStop(0,0,92,0,1)
+                                                     .addColorStop(1,134,200,105,1)));
+floor_.appendChild(new lime.Sprite().setPosition(480,240)
+                                    .setSize(320,480)
+                                    .setFill(new lime.fill.LinearGradient()
+                                                     .setDirection(1,1,0,0)
+                                                     .addColorStop(0,0,92,0,1)
+                                                     .addColorStop(1,134,200,105,1)));
 
 ~~~
 
@@ -602,12 +602,12 @@ For players (`player.js`) we will give a little bit transparent sea-like blue gr
 
 ~~~ { javascript }
 
-    this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
-        .setFill(new lime.fill.LinearGradient()
-                              .setDirection(0,1,1,0)
-                              .addColorStop(0,0,0,210,.7)
-                              .addColorStop(1,0,0,105,.7))
-        .setScale(.4);
+this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
+    .setFill(new lime.fill.LinearGradient()
+                          .setDirection(0,1,1,0)
+                          .addColorStop(0,0,0,210,.7)
+                          .addColorStop(1,0,0,105,.7))
+    .setScale(.4);
 
 ~~~
 
@@ -615,8 +615,8 @@ Ball (`ball.js`) will have a texture:
 
 ~~~ { javascript }
 
-    this.setFill('./ball.png')
-        .setSize(20,20);
+this.setFill('./ball.png')
+    .setSize(20,20);
 
 ~~~
 
@@ -624,14 +624,14 @@ Wall (`wall.js`) will be painted with concrete blue color and inherited from `Ro
 
 ~~~ { javascript }
 
-    pingpong.Wall = function() {
-        goog.base(this);
+pingpong.Wall = function() {
+    goog.base(this);
 
-        this.setFill(109,122,181)
-            .setSize(20,20)
-            .setRadius(3);
-    }
-    goog.inherits(pingpong.Wall, lime.RoundedRect);
+    this.setFill(109,122,181)
+        .setSize(20,20)
+        .setRadius(3);
+}
+goog.inherits(pingpong.Wall, lime.RoundedRect);
 
 ~~~
 
@@ -654,17 +654,17 @@ You can copy a `pingpong.html` file into `compiled` folder and change the Javasc
 
 ~~~ { html }
 
-    <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 
-    <html>
-    <head>
-	    <title>pingpong</title>
-	    <script type="text/javascript" src="pp.js"></script>
-    </head>
+<html>
+<head>
+    <title>pingpong</title>
+    <script type="text/javascript" src="pp.js"></script>
+</head>
 
-    <body onload="pingpong.start()"></body>
+<body onload="pingpong.start()"></body>
 
-    </html>
+</html>
 
 ~~~
 
