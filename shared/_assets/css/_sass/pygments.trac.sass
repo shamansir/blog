@@ -1,0 +1,214 @@
+$bg-color: #F3F3F3
+$bg-hhl-color: #FFFFCC
+$base-color: #000000
+
+$grey: #555555
+$light-grey: #999999
+$light-grey2: #BBBBBB
+$light-grey3: #888888
+$light-grey4: #AAAAAA
+
+$pinky: #FFDDDD
+$light-red: #E3D2D2
+$red: #AA0000
+$red2: #990000
+$dark-red: #A61717
+$brown: #BB8844
+$sandy: #999988
+$dark-sandy: #808000
+$light-green: #DDFFDD
+$cyan: #009999
+$dark-cyan: #008080
+$blue: #445588
+$dark-blue: #000080
+$magenta: #800080
+
+table.highlighttable
+    border-spacing: 0
+    /*tbody, td, tr
+        margin: 0*/
+
+    td.code
+        padding: 0 10px
+        border-left: 1px solid #eee
+        background-color: $bg-color
+
+div.code
+    color-profile: sRGB
+    background-color: $bg-color
+
+    pre
+        margin: 0
+        padding: 3px 0
+
+    pre .hhl
+        background-color: $bg-hhl-color
+
+.linenos
+    color: #CCCCCC
+    background-color: $bg-color
+    padding: 0 8px 0 12px
+
+.highlight
+    color: $base-color
+    background-color: $bg-color
+
+    .c /* comment */
+        color: $sandy
+        font-style: italic
+    .err /* error */
+        color: $light-red
+        background-color: $dark-red
+    .g /* generic */
+        /* color: $base */
+    .k /* keyword */
+        font-weight: bold
+    .l /* literal */
+        /* color: $base */
+    .n /* name */
+        /* color: $base */
+    .o /* operator */
+        /* color: $base */
+    .x /* other */
+        /* color: $base */
+    .p /* punctuation */
+        /* color: $base */
+
+    .cm /* comment.multiline */
+        color: $sandy
+        font-style: italic
+    .cp /* comment.preproc */
+        color: $light-grey
+        font-weight: bold
+    .c1 /* comment.single */
+        color: $sandy
+        font-style: italic
+    .cs /* comment.special */
+        color: $light-grey
+        font-style: italic
+        font-weight: bold
+
+    .gd /* generic.deleted */
+        background-color: $pinky
+        color: $base-color
+    .ge /* generic.emph */
+        font-style: italic
+    .gr /* generic.error */
+        color: $red
+    .gh /* generic.heading */
+        color: $light-grey
+    .gi /* generic.inserted */
+        background-color: $light-green
+        color: $base-color
+    .go /* generic.output */
+        color: $light-grey3
+    .gp /* generic.prompt */
+        color: $grey
+    .gs /* generic.strong */
+        font-weight: bold
+    .gu /* generic.subheading */
+        color: $light-grey4
+    .gt /* generic.traceback */
+        color: $red
+
+    .kc /* keyword.constant */
+        font-weight: bold
+    .kd /* keyword.declaration */
+        font-weight: bold
+    .kn /* keyword.namespace */
+        font-weight: bold
+    .kp /* keyword.pseudo */
+        font-weight: bold
+    .kr /* keyword.reserved */
+        font-weight: bold
+    .kt /* keyword.type */
+        color: $blue
+        font-weight: bold
+
+    .ld /* literal.date */
+        /* color: $base */
+    .m /* literal.number */
+        color: $cyan
+    .s /* literal.string */
+        color: $brown
+
+    .na /* name.attribute */
+        color: $dark-cyan
+    .nb /* name.builtin */
+        color: $light-grey
+    .nc /* name.class */
+        color: $blue
+        font-weight: bold
+    .no /* name.constant */
+        color: $dark-cyan
+    .nd /* name.decorator */
+        /* color: $base */
+    .ni /* name.entity */
+        color: $magenta
+    .ne /* name.exception */
+        color: $red2
+        font-weight: bold
+    .nf /* name.function */
+        color: $red2
+        font-weight: bold
+    .nl /* name.label */
+        /* color: $base */
+    .nn /* name.namespace */
+        color: $grey
+    .nx /* name.other */
+        /* color: $base */
+    .py /* name.property */
+        /* color: $base */
+    .nt /* name.tag */
+        color: $dark-blue
+    .nv /* name.variable */
+        color: $dark-cyan    
+
+    .ow /* operator.word */
+        font-weight: bold
+
+    .w /* text.whitespace */
+        color: $light-grey2
+
+    .mf /* literal.number.float */
+        color: $cyan
+    .mh /* literal.number.hex */
+        color: $cyan
+    .mi /* literal.number.integer */
+        color: $cyan
+    .mo /* literal.number.oct */
+        color: $cyan
+    .sb /* literal.string.backtick */
+        color: $brown
+    .sc /* literal.string.char */
+        color: $brown
+    .sd /* literal.string.doc */
+        color: $brown
+    .s2 /* literal.string.double */
+        color: $brown
+    .se /* literal.string.escape */
+        color: $brown
+    .sh /* literal.string.heredoc */
+        color: $brown
+    .si /* literal.string.interpol */
+        color: $brown
+    .sx /* literal.string.other */
+        color: $brown
+    .sr /* literal.string.regex */
+        color: $dark-sandy
+    .s1 /* literal.string.single */
+        color: $brown
+    .ss /* literal.string.symbol */
+        color: $brown
+
+    .bp /* name.builtin.pseudo */
+        color: $light-grey
+    .vc /* name.variable.class */
+        color: $dark-cyan
+    .vg /* name.variable.global */
+        color: $dark-cyan
+    .vi /* name.variable.instance */
+        color: $dark-cyan                        
+
+    .il /* literal.number.integer.long */
+        color: $cyan
