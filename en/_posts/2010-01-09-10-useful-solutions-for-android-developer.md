@@ -34,7 +34,7 @@ Anyway, through programming process I've got some knowledge base which I want to
 
 Among with the regular `ListView` usage, it is frequently required to make a list with elements grouped in sections like this: section header, item, item, item, ..., section header, item, item, item, ..., section header, item, item, ..., section header, item, item, ... & s.o. See "Statistics" and "Information" sections at the image.
 
-![List with sections](http://vimeoid.googlecode.com/hg/screens/guest_channel.png)
+![List with sections](./images/10-useful-solutions-for-android-developer-guest-channel.png)
 
 Headers must not react on selection or press and they must have their own layout. This may be accomplished extending the adapter of this list from `BaseAdapter`, for example, and by overriding its `getItemViewType`, `getViewTypeCount` and `isEnabled` methods, among with `getView`.
 
@@ -222,7 +222,7 @@ public static void invalidateByPos(AdapterView<?> parent, int position) {
 
 ### 5. Caching remote images for lists
 
-![List with remote images](http://vimeoid.googlecode.com/hg/screens/guest_videos.png)
+![List with remote images](./images/10-useful-solutions-for-android-developer-guest-videos.png)
 
 If you are creating `ListView` containing images taken from web, this chapter is for you. It would be unwise to get images by URL again each time `getView` is called in adapter - it is obvious that it would be better to a) cache them b) ask for them only when view with this image is visible. For the moment this task arose so recently for Android programmers, so there are a lot of [solutions for it](http://stackoverflow.com/questions/541966/android-how-do-i-do-a-lazy-load-of-images-in-listview).
 
@@ -586,7 +586,7 @@ new Thread(secondaryTasks, "Tasks Queue").start();
 
 ### 10. ListView selection highlight
 
-![Selected element in list](http://vimeoid.googlecode.com/hg/screens/user_video.png)
+![Selected element in list](./images/10-useful-solutions-for-android-developer-user-video.png)
 
 You see a blue line on the image, it is a custom selected element highlight and it has four conditions - pressed, focused, disabled and transition animation from pressed to held condition for long tap. First three and held condition - it is so-called `9-patch`, sure you [heard something about them](http://developer.android.com/guide/developing/tools/draw9patch.html), animation is an `xml`-file.
 
@@ -596,15 +596,15 @@ To define the states for selection highlight, set `android:listSelector="@drawab
  * Animation: [`selector_bg_transition.xml`](http://code.google.com/p/vimeoid/source/browse/apk/res/drawable/selector_bg_transition.xml?r=85e18485bdda1c526141170f67e65f4e00202f34)
  * Declared at: [`generic_list.xml`](http://code.google.com/p/vimeoid/source/browse/apk/res/layout/generic_list.xml?r=85e18485bdda1c526141170f67e65f4e00202f34#16)
 
-![9-patch editor](http://developer.android.com/images/draw9patch-norm.png)
+![9-patch editor](./images/10-useful-solutions-for-android-developer-draw9patch-norm.png)
 
 There are also a tricks with 9-patch, each time when there is something wrong in layout, the whole list becomes a mess. Main rule is to check `ListView` declaration first of all, ensure that `layout_width` and `layout_height` are set to `fill_parent` and re-check the parent elements higher in the hierarchy. Then, if it has not helped, you may try to correct 9-patches. The thick black lines on top and to the left determine what image areas will be stretched if the content can't fill the image. The thick black lines (optional) on bottom and to the right determine in what image area the content will fit itself. It is also not so easy to get the correct positions at first time, have to experiment. Don't even think about creating 9-patches without editor, it is a brainfuck - content areas and errors are highlighted in editor, but even when everything seems ok, inflater understands a layout as you expect not every time.
 
-![Disabled state](http://vimeoid.googlecode.com/hg/apk/res/drawable/selector_bg_disabled.9.png?r=85e18485bdda1c526141170f67e65f4e00202f34) ![Focused state](http://vimeoid.googlecode.com/hg/apk/res/drawable/selector_bg_focus.9.png?r=85e18485bdda1c526141170f67e65f4e00202f34) ![Pressed state](http://vimeoid.googlecode.com/hg/apk/res/drawable/selector_bg_pressed.9.png?r=85e18485bdda1c526141170f67e65f4e00202f34) ![Held state](http://vimeoid.googlecode.com/hg/apk/res/drawable/selector_bg_longpress.9.png?r=85e18485bdda1c526141170f67e65f4e00202f34)
+![Disabled state](./images/10-useful-solutions-for-android-developer-selector_bg_disabled.9.png) ![Focused state](./images/10-useful-solutions-for-android-developer-selector_bg_focus.9.png) ![Pressed state](./images/10-useful-solutions-for-android-developer-selector_bg_pressed.9.png) ![Held state](./images/10-useful-solutions-for-android-developer-selector_bg_longpress.9.png)
 
 ### 11. Adding QuickActions
 
-![QuickActions example](http://vimeoid.googlecode.com/hg/screens/user_videos.png)
+![QuickActions example](./images/10-useful-solutions-for-android-developer-user-videos.png)
 
 [QuickActions](http://www.londatiga.net/it/how-to-create-quickaction-dialog-in-android/) - is small library for the popping out dialogs with actions like the one shown on the picture (and not just like this, because the design can be changed freely). They became a new trend when official twitter-client appeared. Sure there are another implemantations exists but in _vimeoid_ I use this one and also changed it a bit for my needs.
 

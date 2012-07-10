@@ -18,7 +18,7 @@ By the way, here is a code example: [`javascript`](http://paste.pocoo.org/show/3
 
 During the article we will develop the very simplified version of ping-pong virtual game with the help of LimeJS. Here is how the result will look like:
 
-![Men in blue shorts on a green soccer field playing with a children-styled ball](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage-designed.png)
+![Men in blue shorts on a green soccer field playing with a children-styled ball](./images/limejs-writing-a-game-stage-designed.png)
 
 There will be videos demonstrating the game we will write running on iPad, iPhone and Android in the end of the article.
 
@@ -134,7 +134,7 @@ this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
 
 ~~~
 
-![Player](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-player.png)
+![Player](./images/limejs-writing-a-game-player.png)
 
 The red dot on a picture is an `anchorPoint`, it is calculated automatically for polygon. This point is a reference point of local coordinates system of the sprite - all the relative sizes and distances related to polygon are calculated starting from this point.
 
@@ -173,7 +173,7 @@ Before we run it in a browser we need to make one manipulation more - to update 
 
 So, this is what you can see on the screen:
 
-![Beach-boys wearing blue shorts](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage1.png)
+![Beach-boys wearing blue shorts](./images/limejs-writing-a-game-stage1.png)
 
 #### Ball blank
 
@@ -217,7 +217,7 @@ board_.appendChild(ball);
 
 ~~~
 
-![Beach-boys wearing blue shorts playing with a ball](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage2.png)
+![Beach-boys wearing blue shorts playing with a ball](./images/limejs-writing-a-game-stage2.png)
 
 #### Background
 
@@ -255,7 +255,7 @@ board_.appendChild(...);
 
 ~~~
 
-![Beach-boys wearing blue shorts playing on a asphalt](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage3.png)
+![Beach-boys wearing blue shorts playing on a asphalt](./images/limejs-writing-a-game-stage3.png)
 
 #### Wall blank
 
@@ -308,7 +308,7 @@ board_.appendChild(...);
 
 That's all, the game board is complete - we can start to program logic!
 
-![Beach-boys wearing blue shorts with a ball over a grey rectangles surrounded with yellow crates](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage4.png)
+![Beach-boys wearing blue shorts with a ball over a grey rectangles surrounded with yellow crates](./images/limejs-writing-a-game-stage4.png)
 
 #### Players logic
 
@@ -637,7 +637,7 @@ goog.inherits(pingpong.Wall, lime.RoundedRect);
 
 Now everything looks much prettier:
 
-![Men in blue shorts on a soccer field playing with children ball](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage-designed.png)
+![Men in blue shorts on a soccer field playing with children ball](./images/limejs-writing-a-game-stage-designed.png)
 
 #### Compilation
 
@@ -688,7 +688,7 @@ The main thing - it is not a state-machine-based engine that is fashionable now 
 
 [Here you can try to play](http://shamansir.madfire.net/_pingpong/pingpong.html) (it can be a little buggy, because it is a very simplified version, please compare the platform-related experience you get with what you see on video)
 
-![QRCode](http://qrcode.kaywa.com/img.php?s=6&d=http%3A%2F%2Fshamansir.madfire.net%2F_pingpong%2Fpingpong.html)
+![QRCode](./images/limejs-writing-a-game-qrcode.png)
 
 P.S. Special thanks to [lazio_od](http://www.lazio.com.ua/), he helped me with testing among with engine authors.
 

@@ -9,7 +9,7 @@ April 29, I've presented a lecture on Web-development with [GWT](http://code.goo
 
 ### Slides
 
-[![Slides](http://dl.dropbox.com/u/928694/blog/ru/img/gwtmvp4g_gdocs_en.png)](https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B9lKUPDNyz1vYzAzMzQxMzItYmQyMy00NjdhLWFiYzQtZDRjMjZkNTc2MDEy&hl=en)
+[![Slides](./images/gwt-mvp4g-slides-gdocs-en.png)](https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B9lKUPDNyz1vYzAzMzQxMzItYmQyMy00NjdhLWFiYzQtZDRjMjZkNTc2MDEy&hl=en)
 
 ([Also on Scribd](http://www.scribd.com/doc/54956722))
 
