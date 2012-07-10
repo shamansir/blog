@@ -47,8 +47,7 @@ _Используется:_
 
 скачиваем и устанавливаем последнюю на данный момент версию [QScintilla](http://www.riverbankcomputing.co.uk/qscintilla/index.php) – Qt-порт компонента для редактирования исходных кодов (устанавливаем версию для Qt4):
 
-    $ wget http://www.riverbankcomputing.com/Downloads/
-Snapshots/QScintilla2/QScintilla-gpl-2-snapshot-20070709.tar.gz
+    $ wget http://www.riverbankcomputing.com/Downloads/Snapshots/QScintilla2/QScintilla-gpl-2-snapshot-20070709.tar.gz
     $ tar -xvzf ./QScintilla-gpl-2-snapshot-20070709.tar.gz
     $ cd ./QScintilla-gpl-2-snapshot-20070709/Qt4
     $ qmake qscintilla.pro

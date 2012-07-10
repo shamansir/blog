@@ -21,17 +21,21 @@ tags: [ php, ajax, sack, web-development ]
 
 > (для корректной подсветки я разбил код на пять блоков, которые по сути просто идут друг за другом: если их выделить подряд и скопировать -- всё будет верно)
 
-    #!html
-    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-                          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Блах</title>
+``` { html }
 
-        <style type="text/css">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Блах</title>
 
-        #!css
+    <style type="text/css">
+
+```
+
+``` { css }
+
         /**/.invisible {
             display: none;
         }
@@ -134,155 +138,168 @@ tags: [ php, ajax, sack, web-development ]
             padding: 0;
         }
 
-        #!html
-        </style>
+```
 
-        <script type="text/javascript" src="./scripts/tw-sack.js"></script>
-        <script language="JavaScript" type="text/javascript">
-        <!--
+``` { html }
 
-            #!js
-            function showElement(elementId) {
-                element = document.getElementById(elementId);
-                element.className = 'visible';
-                    // element.style.display = 'block';
-            }
+    </style>
 
-            function hideElement(elementId) {
-                element = document.getElementById(elementId);
-                element.className = 'invisible';
-                    // element.style.display = 'none';
-            }
+    <script type="text/javascript" src="./scripts/tw-sack.js"></script>
+    <script language="JavaScript" type="text/javascript">
+    <!--
 
-            function clearFormFields() {
-                // optimize for any form then....
-                var form = document.getElementById('question-form');
-                form.heading.value = '';
-                form.sender.value = '';
-                form.question.value = '';
-            };
+```
 
-            var ajax = new sack();
+``` { javascript }
 
-            function whenLoading(){
-                var e = document.getElementById('status-box');
-                e.innerHTML = "Отсылаю данные...";
-            }
+        function showElement(elementId) {
+            element = document.getElementById(elementId);
+            element.className = 'visible';
+                // element.style.display = 'block';
+        }
 
-            function whenLoaded(){
-                var e = document.getElementById('status-box');
-                e.innerHTML = "Данные отосланы...";
-            }
+        function hideElement(elementId) {
+            element = document.getElementById(elementId);
+            element.className = 'invisible';
+                // element.style.display = 'none';
+        }
 
-            function whenInteractive(){
-                var e = document.getElementById('status-box');
-                e.innerHTML = "Получаю данные...";
-            }
+        function clearFormFields() {
+            // optimize for any form then....
+            var form = document.getElementById('question-form');
+            form.heading.value = '';
+            form.sender.value = '';
+            form.question.value = '';
+        };
 
-            function whenCompleted(){
-            }
+        var ajax = new sack();
 
-            function sendQuestion(){
-                var form = document.getElementById('question-form');
-                ajax.setVar("heading", form.heading.value);
-                    // recomended method of setting data to be parsed.
-                ajax.setVar("sender", form.sender.value);
-                ajax.setVar("question", form.question.value);
-                ajax.requestFile = "q.php";
-                ajax.method = 'POST';
-                ajax.element = 'status-box';
-                ajax.onLoading = whenLoading;
-                ajax.onLoaded = whenLoaded;
-                ajax.onInteractive = whenInteractive;
-                ajax.onCompletion = whenCompleted;
-                ajax.runAJAX();
-            }
+        function whenLoading(){
+            var e = document.getElementById('status-box');
+            e.innerHTML = "Отсылаю данные...";
+        }
 
-     #!html
-             //-->
-         </script>
-     </head>
+        function whenLoaded(){
+            var e = document.getElementById('status-box');
+            e.innerHTML = "Данные отосланы...";
+        }
 
-     <body>
-         <p><a href="./q.php" onmouseover="showElement('question-box');">
-                     отправить вопрос</a>.</p>
-         <div id="question-box" class="invisible"
-                     onmouseover="showElement('question-box');"
-                     onmouseout="hideElement('question-box');">
-             <span id="qbox-label">Ваш вопрос: </span>
-             <div id="status-box"></div>
-             <form id="question-form" name="question-form"
-                             method="post" action="./q.php">
-                 <label for="heading">Заголовок:</label>
-                     <input type="text" name="heading" id="q-heading"
-                                                 maxlength="80" />
-                 <label for="sender">Отправитель (e-mail) (*):</label>
-                     <input type="text" name="sender" id="q-sender"
-                                                 maxlength="60" />
-                 <label for="question">Вопрос (255 символов):</label>
-                     <textarea name="question" rows="5" cols="25"
-                             id="q-body"></textarea>
-                 <input type="button" name="post_question" value="Задать"
-                     onclick="sendQuestion(); clearFormFields();
-                             return false;"
-                     ondblclick="sendQuestion(); return false;" />
-             </form>
-         </div>
-     </body>
-     </html>
+        function whenInteractive(){
+            var e = document.getElementById('status-box');
+            e.innerHTML = "Получаю данные...";
+        }
+
+        function whenCompleted(){
+        }
+
+        function sendQuestion(){
+            var form = document.getElementById('question-form');
+            ajax.setVar("heading", form.heading.value);
+                // recomended method of setting data to be parsed.
+            ajax.setVar("sender", form.sender.value);
+            ajax.setVar("question", form.question.value);
+            ajax.requestFile = "q.php";
+            ajax.method = 'POST';
+            ajax.element = 'status-box';
+            ajax.onLoading = whenLoading;
+            ajax.onLoaded = whenLoaded;
+            ajax.onInteractive = whenInteractive;
+            ajax.onCompletion = whenCompleted;
+            ajax.runAJAX();
+        }
+
+```
+
+``` { html }
+
+        //-->
+    </script>
+</head>
+
+<body>
+    <p><a href="./q.php" onmouseover="showElement('question-box');">
+                 отправить вопрос</a>.</p>
+    <div id="question-box" class="invisible"
+                 onmouseover="showElement('question-box');"
+                 onmouseout="hideElement('question-box');">
+        <span id="qbox-label">Ваш вопрос: </span>
+        <div id="status-box"></div>
+        <form id="question-form" name="question-form"
+                         method="post" action="./q.php">
+            <label for="heading">Заголовок:</label>
+                <input type="text" name="heading" id="q-heading"
+                                             maxlength="80" />
+            <label for="sender">Отправитель (e-mail) (*):</label>
+                <input type="text" name="sender" id="q-sender"
+                                             maxlength="60" />
+            <label for="question">Вопрос (255 символов):</label>
+                <textarea name="question" rows="5" cols="25"
+                         id="q-body"></textarea>
+            <input type="button" name="post_question" value="Задать"
+                onclick="sendQuestion(); clearFormFields();
+                         return false;"
+                ondblclick="sendQuestion(); return false;" />
+        </form>
+    </div>
+</body>
+</html>
+
+```
 
 И принимающий скрипт -- `q.php` (_Обратите внимание_ -- он на `utf-8`, дабы совпадать в кодировке со страницей):
 
-    #!php
-    <?php
-    ob_start();
-    print_r($_POST);
-    $postdata = ob_get_clean();
+``` { php }
 
-    $heading = substr($_POST['heading'], 0, 80);
-    $sender = substr($_POST['sender'], 0, 60);
-    $question = substr($_POST['question'], 0, 255);
+<?php
+ob_start();
+print_r($_POST);
+$postdata = ob_get_clean();
 
-    if (isset($question) && ('' != $question)) {
-        if (isset($sender) && ('' != $sender)) {
+$heading = substr($_POST['heading'], 0, 80);
+$sender = substr($_POST['sender'], 0, 60);
+$question = substr($_POST['question'], 0, 255);
 
-            /* connect to DB */
+if (isset($question) && ('' != $question)) {
+    if (isset($sender) && ('' != $sender)) {
 
-            $conn = mysql_connect("localhost", "****","*******")
-                    or die("Could not connect");
-            if( !$conn ) die( mysql_error() );
+        /* connect to DB */
 
-            mysql_select_db("*****") and
-                mysql_query("set names utf8") and
-                mysql_query("SET collation_connection = 'utf8_general_ci'");
+        $conn = mysql_connect("localhost", "****","*******")
+                or die("Could not connect");
+        if( !$conn ) die( mysql_error() );
 
-            /* insert question */
+        mysql_select_db("*****") and
+            mysql_query("set names utf8") and
+            mysql_query("SET collation_connection = 'utf8_general_ci'");
 
-            $sql = "INSERT INTO questions SET
-                        heading='".mysql_escape_string($heading)."',
-                        sender='".mysql_escape_string($sender)."',
-                        question='".mysql_escape_string($question)."',
-                        post_date=SYSDATE()";
-            $result = mysql_query($sql);
+        /* insert question */
 
-            if (!$result) $responce_str = "<span class='error'>Не удалось
-                    добавить вопрос $heading в базу данных</span>";
-            else $responce_str = "<span class='message'>Ваш вопрос
-                    отправлен!</span>";
+        $sql = "INSERT INTO questions SET
+                    heading='".mysql_escape_string($heading)."',
+                    sender='".mysql_escape_string($sender)."',
+                    question='".mysql_escape_string($question)."',
+                    post_date=SYSDATE()";
+        $result = mysql_query($sql);
 
-            mysql_close($conn);
+        if (!$result) $responce_str = "<span class='error'>Не удалось
+                добавить вопрос $heading в базу данных</span>";
+        else $responce_str = "<span class='message'>Ваш вопрос
+                отправлен!</span>";
 
-        } else {
-            $responce_str = "<span class='warning'>E-mail
-                    отправителя нужно указать обязательно</span>";
-        }
+        mysql_close($conn);
+
     } else {
-        $responce_str = "<span class='warning'>Пожалуйста,
-                            укажите ваш вопрос</span>";
+        $responce_str = "<span class='warning'>E-mail
+                отправителя нужно указать обязательно</span>";
     }
+} else {
+    $responce_str = "<span class='warning'>Пожалуйста,
+                        укажите ваш вопрос</span>";
+}
 
-    echo $responce_str;
-    ?>
+echo $responce_str;
+
+```
 
 В `HTML`-коде большую часть даже занимает `CSS` :).
 

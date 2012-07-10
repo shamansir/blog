@@ -72,6 +72,7 @@ social:
 #
 archive_layout: archive.html
 archives_url: /archives/
+figures_url: /figures/
 jinja:
     extensions:
         - jinja2.ext.loopcontrols

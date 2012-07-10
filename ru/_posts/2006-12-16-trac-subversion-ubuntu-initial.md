@@ -69,27 +69,30 @@ _Ubuntu 6.06 TLS_ (руссская, хе-хе :) ), _Trac 0.10.3_, Subversion _
 
 Содержимое этого файла должно выглядеть так:
 
-    #!xml
-    <VirtualHost *>
-        ServerAdmin webmaster@localhost
-        ServerName trac.example.com
-        DocumentRoot /usr/share/trac/cgi-bin
-        <Directory /usr/share/trac/cgi-bin>
-            Options Indexes FollowSymLinks MultiViews ExecCGI
-            AllowOverride All
-            Order allow,deny
-            allow from all
-        </Directory>
-        Alias /trac "/usr/share/trac/htdocs"
+``` { apache }
 
-        <Location /trac.cgi>
-            SetEnv TRAC_ENV_PARENT_DIR "/var/trac"
-        </Location>
+<VirtualHost *>
+    ServerAdmin webmaster@localhost
+    ServerName trac.example.com
+    DocumentRoot /usr/share/trac/cgi-bin
+    <Directory /usr/share/trac/cgi-bin>
+        Options Indexes FollowSymLinks MultiViews ExecCGI
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+    Alias /trac "/usr/share/trac/htdocs"
 
-        DirectoryIndex trac.cgi
-        ErrorLog /var/log/apache2/error.trac.log
-        CustomLog /var/log/apache2/access.trac.log combined
-    </VirtualHost>
+    <Location /trac.cgi>
+        SetEnv TRAC_ENV_PARENT_DIR "/var/trac"
+    </Location>
+
+    DirectoryIndex trac.cgi
+    ErrorLog /var/log/apache2/error.trac.log
+    CustomLog /var/log/apache2/access.trac.log combined
+</VirtualHost>
+
+```
 
 Если кратко, мы настраиваем виртуальный хост, устанавливаеваем корневой каталог для [CGI](http://en.wikipedia.org/wiki/Common_Gateway_Interface Common Gateway Interface)-скриптов и документов в `/usr/share/trac/cgi-bin/`, а адрес `http://localhost/trac` привязываем к пути `/usr/share/trac/htdocs` - там лежат всяческие веб-документы. Для доступа к проектам для запросов на `http://localhost/trac.cgi` устанавливается корневой каталог для окружений trac’а - `/var/trac`. В принципе,знающему английский все должно быть понятно :).
 
@@ -200,13 +203,16 @@ _Ubuntu 6.06 TLS_ (руссская, хе-хе :) ), _Trac 0.10.3_, Subversion _
 
 Вставьте в этот файл следующий текст (после последнего `</Location>`):
 
-    #!xml
-    <Location /trac.cgi/*/login>
-        AuthType Basic
-        AuthName "Trac"
-        AuthUserFile /etc/apache2/dav_svn.passwd
-        Require valid-user
-    </Location>
+``` { apache }
+
+<Location /trac.cgi/*/login>
+    AuthType Basic
+    AuthName "Trac"
+    AuthUserFile /etc/apache2/dav_svn.passwd
+    Require valid-user
+</Location>
+
+```
 
 Кратко - это настройка аутентификации для страницы логина. В качестве источника пользователей и `md5`-хешей-паролей используется файл `/etc/apache2/dav_svn.passw`, который мы создадим попозже.
 
@@ -220,16 +226,19 @@ _Ubuntu 6.06 TLS_ (руссская, хе-хе :) ), _Trac 0.10.3_, Subversion _
 
 В любом случае, если у вас в логах вылезают ошибки типа ‘`Unknown/Incorrect SVN FileSystem`’ - ошибку следует искать именно здесь, конкретно в `SVN[Parent]Path`. Причины же неожиданных `Forbidden`, конечно, кроются в неверных `Location`‘ах и, соответственно, аутентификации. Отключайте ее, проверяйте `Location`. Потом авторизацию. Впрочем, если вы осознали (а я хорошо объяснил) предыдущий абзац, то этих ошибок у вас вылезти не должно. Поговорив с я бы уже сделал все немного по-другому (смотрите ниже описание аутентификации), но в этом варианте уже все проверено и работает, а наугад писать опасно.
 
-    #!xml
-    <Location /svn>
-        DAV svn
-        SVNPath /var/svn/SomeTracProject
-        AuthType Basic
-        AuthName "Subversion Repository"
-        AuthUserFile /etc/apache2/dav_svn.passwd
-        #AuthSVNAccessFile /etc/apache2/dav_svn.authz
-        Require valid-user
-    </Location>
+``` { apache }
+
+<Location /svn>
+    DAV svn
+    SVNPath /var/svn/SomeTracProject
+    AuthType Basic
+    AuthName "Subversion Repository"
+    AuthUserFile /etc/apache2/dav_svn.passwd
+    #AuthSVNAccessFile /etc/apache2/dav_svn.authz
+    Require valid-user
+</Location>
+
+```
 
 Создадим файл паролей и добавим туда пользователей (внимание: опция `-c` не нужна во втором случае - она создает/перезаписывает файл без предупреждения)
 

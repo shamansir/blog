@@ -129,44 +129,48 @@ _P.S. Статья будет исправляться и дополняться
 
 теперь по поводу гаснущих лампочек. я взял [скрипт starl1t‘а](http://starl1te.wordpress.com/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC%D0%B0-d-link-dsl-200/#comment-52), чуток исправил, добавив `pppoe-start` и выставил его в автозагрузку:
 
-    #!/bin/bash
+``` { bash }
 
-    # This is an improved eciadsl launch script, which
-    # tries to connect after failures until success.
-    # Feel free to share and modify
-    # by Starlite
+#!/bin/bash
 
-    case "$1" in
-    	start)
-    		sudo eciadsl-start
-    		result=$?
-    		#echo 'exit code:' $result
-    		until [ $result -eq 0 ]
-    		do
-    			echo ‘Error: connection failed’
-    			sudo eciadsl-stop
-    			sudo eciadsl-start
-    			result=$?
-    		#	echo ‘exit code:’ $result
-    		done
-    		echo ‘connection established’
-    		sudo pppoe-start
-    		exit $?
-    		;;
-    	stop)
-    		sudo eciadsl-stop
-    		exit $?
-    		;;
-    	restart|force-reload)
-    		$0 stop && $0 start
-    		exit $?
-    		;;
-    	*)
-    		echo ‘Usage: eciadsl {start|stop|restart}’
-    		exit 1
-    		;;
-    esac
-    exit 0
+# This is an improved eciadsl launch script, which
+# tries to connect after failures until success.
+# Feel free to share and modify
+# by Starlite
+
+case "$1" in
+	start)
+		sudo eciadsl-start
+		result=$?
+		#echo 'exit code:' $result
+		until [ $result -eq 0 ]
+		do
+			echo ‘Error: connection failed’
+			sudo eciadsl-stop
+			sudo eciadsl-start
+			result=$?
+		#	echo ‘exit code:’ $result
+		done
+		echo ‘connection established’
+		sudo pppoe-start
+		exit $?
+		;;
+	stop)
+		sudo eciadsl-stop
+		exit $?
+		;;
+	restart|force-reload)
+		$0 stop && $0 start
+		exit $?
+		;;
+	*)
+		echo ‘Usage: eciadsl {start|stop|restart}’
+		exit 1
+		;;
+esac
+exit 0
+
+```
 
 потом - ставим его на автозагрузку:
 
@@ -179,63 +183,71 @@ _P.S. Статья будет исправляться и дополняться
 
 #### Тексты: ####
 
-##### `/etc/eciadsl/eciadsl.conf` #####
+##### /etc/eciadsl/eciadsl.conf #####
 
-    VID1=0915
-    PID1=8104
-    VID2=0915
-    PID2=8104
-    #MODE=LLC_RFC1483_ROUTED_IP
-    MODE=LLC_SNAP_RFC1483_BRIDGED_ETH_NO_FCS
-    VCI=35
-    VPI=0
-    FIRMWARE=/etc/eciadsl/firmware00.bin
-    SYNCH=/etc/eciadsl/gs7470_synch20.bin
-    PPPD_USER=ptn
-    PPPD_PASSWD=
-    USE_DHCP=no
-    USE_STATICIP=no
-    STATICIP=
-    GATEWAY=
-    MODEM=D-Link DSL200 rev B1
-    MODEM_CHIPSET=GS7470
-    SYNCH_ALTIFACE=0
-    PPPOECI_ALTIFACE=1
-    PROVIDER=Other
-    DNS1=213.158.0.6
-    DNS2=213.18.193.36
+```
 
-##### `/etc/ppp/pppoe.conf` #####
+VID1=0915
+PID1=8104
+VID2=0915
+PID2=8104
+#MODE=LLC_RFC1483_ROUTED_IP
+MODE=LLC_SNAP_RFC1483_BRIDGED_ETH_NO_FCS
+VCI=35
+VPI=0
+FIRMWARE=/etc/eciadsl/firmware00.bin
+SYNCH=/etc/eciadsl/gs7470_synch20.bin
+PPPD_USER=ptn
+PPPD_PASSWD=
+USE_DHCP=no
+USE_STATICIP=no
+STATICIP=
+GATEWAY=
+MODEM=D-Link DSL200 rev B1
+MODEM_CHIPSET=GS7470
+SYNCH_ALTIFACE=0
+PPPOECI_ALTIFACE=1
+PROVIDER=Other
+DNS1=213.158.0.6
+DNS2=213.18.193.36
 
-    ETH='tap0'
-    USER='ptn'
-    DEMAND=no
-    #DEMAND=300
-    DNSTYPE=SERVER
-    PEERDNS=yes
-    DNS1=
-    DNS2=
-    DEFAULTROUTE=yes
-    CONNECT_TIMEOUT=30
-    CONNECT_POLL=2
-    ACNAME=
-    SERVICENAME=
-    PING="."
-    CF_BASE=`basename $CONFIG`
-    PIDFILE="/var/run/$CF_BASE-pppoe.pid"
-    SYNCHRONOUS=no
-    #SYNCHRONOUS=yes
-    CLAMPMSS=1412
-    #CLAMPMSS=100
-    #CLAMPMSS=no
-    LCP_INTERVAL=20
-    LCP_FAILURE=3
-    #LCP_FAILURE=30
-    PPPOE_TIMEOUT=80
-    FIREWALL=NONE
-    LINUX_PLUGIN=
-    PPPOE_EXTRA=""
-    PPPD_EXTRA=""
+```
+
+##### /etc/ppp/pppoe.conf #####
+
+```
+
+ETH='tap0'
+USER='ptn'
+DEMAND=no
+#DEMAND=300
+DNSTYPE=SERVER
+PEERDNS=yes
+DNS1=
+DNS2=
+DEFAULTROUTE=yes
+CONNECT_TIMEOUT=30
+CONNECT_POLL=2
+ACNAME=
+SERVICENAME=
+PING="."
+CF_BASE=`basename $CONFIG`
+PIDFILE="/var/run/$CF_BASE-pppoe.pid"
+SYNCHRONOUS=no
+#SYNCHRONOUS=yes
+CLAMPMSS=1412
+#CLAMPMSS=100
+#CLAMPMSS=no
+LCP_INTERVAL=20
+LCP_FAILURE=3
+#LCP_FAILURE=30
+PPPOE_TIMEOUT=80
+FIREWALL=NONE
+LINUX_PLUGIN=
+PPPOE_EXTRA=""
+PPPD_EXTRA=""
+
+```
 
 #### Примечания: ####
 

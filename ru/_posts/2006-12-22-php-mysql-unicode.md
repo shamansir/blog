@@ -20,32 +20,39 @@ tags: [ mysql, php, unicode, web-development ]
 
 Затем я добавил в `.htaccess` всех `html`/`php` каталогов (почему и о чем это я - [в том самом совете](http://live.julik.nl/2005/03/unicode-php)) следующее:
 
-    # unicode support
-    AddDefaultCharset utf-8
-    <IfModule mod_charset.c>
-       CharsetDisable on
-       CharsetRecodeMultipartForms Off
-    </IfModule>
+``` { apache }
 
-    php_value       mbstring.func_overload  7
-    php_value       default_charset         UTF-8
-    php_value       mbstring.language       Russian
+# unicode support
+AddDefaultCharset utf-8
+<IfModule mod_charset.c>
+   CharsetDisable on
+   CharsetRecodeMultipartForms Off
+</IfModule>
 
-    php_value       mbstring.internal_encoding      UTF-8
-    php_flag        mbstring.encoding_translation   on
-    php_value       mbstring.http_input     "UTF-8,KOI8-R,CP1251"
-    php_value       mbstring.http_output    UTF-8
-    php_value       mbstring.detect_order   "UTF-8,KOI8-R,CP1251"
-    # end
+php_value       mbstring.func_overload  7
+php_value       default_charset         UTF-8
+php_value       mbstring.language       Russian
+
+php_value       mbstring.internal_encoding      UTF-8
+php_flag        mbstring.encoding_translation   on
+php_value       mbstring.http_input     "UTF-8,KOI8-R,CP1251"
+php_value       mbstring.http_output    UTF-8
+php_value       mbstring.detect_order   "UTF-8,KOI8-R,CP1251"
+# end
+
+```
 
 И, конечно же, перекодировал все свои страницы и `php`-файлы в `UTF-8` (юзал [PSPad](http://www.pspad.com/)).
 
 В `HTML`-ках на всякий случай указал вот это:
 
-    #!html
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    </head>
+``` { html }
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+```
 
 И все заработало! (этот метод использовался и при сборке кода из предыдущего поста)
 

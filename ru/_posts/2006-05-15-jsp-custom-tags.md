@@ -15,38 +15,41 @@ tags: [ java, jsp, j2ee, web-development ]
 
 Спецификация получилась примерно такой:
 
-    #!java
-    /**
-     * @author uwilfred
-     *
-     * Adds priorityFontTag, specified in .tld as
-     *      <prefix:priorityFont
-     *      value = Integer       // priority value; if tag body not
-                    specified, also specifies the value
-     *      [ level = Integer ]       // priority level to change the
-                    style on
-     *      [ lowChange = String ]    // style description to apply
-                    if priority less than level (format listed below)
-     *      [ highChange = String ]   // style description to apply
-                    if priority greater than level (format listed below)
-     *      ( /> |
-     *          body                  // value
-     *      </prefix:priorityFont> )  // may be empty tag,
-                        so the value it taken from priority value parameter
-     *
-     *  default for highChange is “bold”
-     *  default for lowChange is “italic”
-     *  default for level is 3
-     *
-     *  Formats:
-     *      bold                                  -> <strong>body</strong>
-     *      italic                                -> <em>body</em>
-     *      underline                             -> <u>body</u>
-     *      strike                                -> <strike>body</strike>
-     *      .<css-class>            .foo          -> <span class=”foo”>body</span>
-     *      {<css-style>; ...}  	{font-weight: bold;} -> <span style="font-weight: bold;">body</span>
-     *      /<html-tag-name>    /foo              -> <foo>body</foo>
-     */
+``` { java }
+
+/**
+ * @author uwilfred
+ *
+ * Adds priorityFontTag, specified in .tld as
+ *      <prefix:priorityFont
+ *      value = Integer       // priority value; if tag body not
+                specified, also specifies the value
+ *      [ level = Integer ]       // priority level to change the
+                style on
+ *      [ lowChange = String ]    // style description to apply
+                if priority less than level (format listed below)
+ *      [ highChange = String ]   // style description to apply
+                if priority greater than level (format listed below)
+ *      ( /> |
+ *          body                  // value
+ *      </prefix:priorityFont> )  // may be empty tag,
+                    so the value it taken from priority value parameter
+ *
+ *  default for highChange is “bold”
+ *  default for lowChange is “italic”
+ *  default for level is 3
+ *
+ *  Formats:
+ *      bold                                  -> <strong>body</strong>
+ *      italic                                -> <em>body</em>
+ *      underline                             -> <u>body</u>
+ *      strike                                -> <strike>body</strike>
+ *      .<css-class>            .foo          -> <span class=”foo”>body</span>
+ *      {<css-style>; ...}  	{font-weight: bold;} -> <span style="font-weight: bold;">body</span>
+ *      /<html-tag-name>    /foo              -> <foo>body</foo>
+ */
+
+ ```
 
 То есть за счёт всяких хитрых символов и алиасов я включил поддержку практически любых желаний пользователя :).
 
@@ -54,266 +57,272 @@ tags: [ java, jsp, j2ee, web-development ]
 
 По спецификации, опишем тег в `.tld`-файле - библиотеке тегов:
 
-    #!xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE taglib PUBLIC
-        "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
-        "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
-    <taglib>
-       <tlibversion>1.0</tlibversion>
-       <jspversion>1.1</jspversion>
-       <shortname>uwilfred</shortname>
+``` { xml }
 
-       <tag>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC
+    "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+    "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+   <tlibversion>1.0</tlibversion>
+   <jspversion>1.1</jspversion>
+   <shortname>uwilfred</shortname>
 
-          <name>priorityFont</name>
-          <tagclass>org.individpro.uwilfred.tag.PriorityFontTag</tagclass>
-          <bodycontent>JSP</bodycontent>
+   <tag>
 
-          <attribute>
-             <name>value</name>
-             <required>true</required>
-             <rtexprvalue>true</rtexprvalue>
-          </attribute>
+      <name>priorityFont</name>
+      <tagclass>org.individpro.uwilfred.tag.PriorityFontTag</tagclass>
+      <bodycontent>JSP</bodycontent>
 
-          <attribute>
-             <name>highChange</name>
-             <required>false</required>
-          </attribute>
+      <attribute>
+         <name>value</name>
+         <required>true</required>
+         <rtexprvalue>true</rtexprvalue>
+      </attribute>
 
-          <attribute>
-             <name>level</name>
-             <required>false</required>
-          </attribute>
+      <attribute>
+         <name>highChange</name>
+         <required>false</required>
+      </attribute>
 
-          <attribute>
-             <name>lowChange</name>
-             <required>false</required>
-          </attribute>
+      <attribute>
+         <name>level</name>
+         <required>false</required>
+      </attribute>
 
-       </tag>
+      <attribute>
+         <name>lowChange</name>
+         <required>false</required>
+      </attribute>
 
-    </taglib>
+   </tag>
+
+</taglib>
+
+```
 
 Значит тело нашего тега - это нечто, вычисляемое засчет JSP-кода (обычный текст на выходе дает текст), атрибут `value` необходим и содержит выражение, все остальные атрибуты необязательны.
 
 Ну и сразу чтобы не тянуть - описываем класс тега:
 
-    #!java
-    package org.individpro.uwilfred.tag;
+``` { java }
 
-    import java.io.IOException;
-    import javax.servlet.jsp.JspException;
+package org.individpro.uwilfred.tag;
 
-    import javax.servlet.jsp.JspWriter;
-    import javax.servlet.jsp.tagext.BodyContent;
-    import javax.servlet.jsp.tagext.BodyTagSupport;
-    import javax.servlet.jsp.tagext.Tag;
+import java.io.IOException;
+import javax.servlet.jsp.JspException;
 
-    /**
-     * @note adds specified-level style change support
-     * @author uwilfred
-     *
-     * @jsp.tag
-     *   name="priorityFont"
-     *   body-content="JSP"
-     */
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.BodyContent;
+import javax.servlet.jsp.tagext.BodyTagSupport;
+import javax.servlet.jsp.tagext.Tag;
 
-    public class PriorityFontTag extends BodyTagSupport implements Tag {
+/**
+ * @note adds specified-level style change support
+ * @author uwilfred
+ *
+ * @jsp.tag
+ *   name="priorityFont"
+ *   body-content="JSP"
+ */
 
-       private static final long serialVersionUID = -4941606719316390930L;
+public class PriorityFontTag extends BodyTagSupport implements Tag {
 
-       private Integer value = -1;
-       private Integer level = 3;
-       private String lowChange = "bold";
-       private String highChange = "italic";
-       private String valueHtmlPrefix = "";
-       private String valueHtmlPostfix = "";
-       private String bodyTextContent = "";
+   private static final long serialVersionUID = -4941606719316390930L;
 
-       // TODO: private final Map that will store the styles replacements,
-       //       like "bold" -> "strong", "italic" -> "em" & s.o.
+   private Integer value = -1;
+   private Integer level = 3;
+   private String lowChange = "bold";
+   private String highChange = "italic";
+   private String valueHtmlPrefix = "";
+   private String valueHtmlPostfix = "";
+   private String bodyTextContent = "";
 
-       public void release() {
-          value = -1;
-          level = 3;
-          lowChange = "bold";
-          highChange = "italic";
-          valueHtmlPrefix = "";
-          valueHtmlPostfix = "";
-          bodyTextContent = "";
-       }
+   // TODO: private final Map that will store the styles replacements,
+   //       like "bold" -> "strong", "italic" -> "em" & s.o.
 
-       /**
-        * any variable to take the priority from, also
-        * recognized as value if no body specified, default -1
-        */
+   public void release() {
+      value = -1;
+      level = 3;
+      lowChange = "bold";
+      highChange = "italic";
+      valueHtmlPrefix = "";
+      valueHtmlPostfix = "";
+      bodyTextContent = "";
+   }
 
-       public Integer getValue() {
-          return value;
-       }
+   /**
+    * any variable to take the priority from, also
+    * recognized as value if no body specified, default -1
+    */
 
-       /**
-        * @jsp.attribute
-        *   required="true"
-        *   rtexprvalue="true"
-        */
+   public Integer getValue() {
+      return value;
+   }
 
-       public void setValue(Integer value) {
-          this.value = value;
-       }
+   /**
+    * @jsp.attribute
+    *   required="true"
+    *   rtexprvalue="true"
+    */
 
-       /**
-        * style description to apply to the content with value higher
-        *		 than the level.
-        *		 supports: bold, italic, underline or any
-                                            body-having html tag or css-style
-        *		     format: bold | italic | underline | strike
-        *		         .<CSS-class>
-        *		         {<CSS-Descriptors-Line>}
-        *		         :<HTML-Tag-Name>
-        *		 default: italic
-        */
+   public void setValue(Integer value) {
+      this.value = value;
+   }
 
-       public String getHighChange() {
-          return highChange;
-       }
-
-       /**
-        * @jsp.attribute
-        *   required="false"
-        */
-
-       public void setHighChange(String highChange) {
-          this.highChange = highChange;
-       }
-
-       /**
-        * level point to change the style, default is 3
-        */
-
-       public Integer getLevel() {
-          return level;
-       }
-
-       /**
-        * @jsp.attribute
-        *   required="false"
-        */
-
-       public void setLevel(Integer level) {
-          this.level = level;
-       }
-
-       /**
-        * style description to apply to the content with value lower
-        *		 than the level.
-        *		 supports: bold, italic, underline or any
+   /**
+    * style description to apply to the content with value higher
+    *		 than the level.
+    *		 supports: bold, italic, underline or any
                                         body-having html tag or css-style
-        *		     format: bold | italic | underline | strike
-        *		         .<CSS-class>
-        *		         {<CSS-Descriptors-Line>}
-        *		         :<HTML-Tag-Name>
-        *		 default: italic
-        */
+    *		     format: bold | italic | underline | strike
+    *		         .<CSS-class>
+    *		         {<CSS-Descriptors-Line>}
+    *		         :<HTML-Tag-Name>
+    *		 default: italic
+    */
 
-       public String getLowChange() {
-          return lowChange;
-       }
+   public String getHighChange() {
+      return highChange;
+   }
 
-       /**
-        * @jsp.attribute
-        *   required="false"
-        */
+   /**
+    * @jsp.attribute
+    *   required="false"
+    */
 
-       public void setLowChange(String lowChange) {
-          this.lowChange = lowChange;
-       }
+   public void setHighChange(String highChange) {
+      this.highChange = highChange;
+   }
 
-       public int doStartTag() throws JspException {
-          return EVAL_BODY_BUFFERED;
-       }
+   /**
+    * level point to change the style, default is 3
+    */
 
-       public int doAfterBody() throws JspException {
-          try {
-             BodyContent bodyContent = getBodyContent();
-             if (bodyContent == null) {
-                bodyTextContent = value.toString();
-             } else {
-                bodyTextContent = bodyContent.getString();
-                if (bodyTextContent == null) {
-                   bodyTextContent = value.toString();
-                }
-             }
-          } catch (NumberFormatException nfe) {
-             nfe.printStackTrace();
-             throw new JspException("jbpm:priorityFont
-                            tag body couldn't be parsed", nfe);
-          }
-          return SKIP_BODY;
-       }
+   public Integer getLevel() {
+      return level;
+   }
 
-       public int doEndTag() throws JspException {
-          if (value == Integer.valueOf(-1)) {
-             throw new JspException("jbpm:priorityFont tag requires
-                      the body xor the value parameter to
-                      be specified (also, negative values are unsupported)");
-          }
-          try {
-             JspWriter jspOut = pageContext.getOut();
-             String modificator =
-                      (value < level) ? lowChange :
-                               ((value > level) ? highChange : "");
-             if (modificator.equalsIgnoreCase("bold")) {
-                valueHtmlPrefix = "<strong>";
-                valueHtmlPostfix = "</strong>";
-             } else if (modificator.equalsIgnoreCase("italic")) {
-                valueHtmlPrefix = "<em>";
-                valueHtmlPostfix = "</em>";
-             } else if (modificator.equalsIgnoreCase("underline")) {
-                valueHtmlPrefix = "<u>";
-                valueHtmlPostfix = "</u>";
-             } else if (modificator.equalsIgnoreCase("strike")) {
-                valueHtmlPrefix = "<strike>";
-                valueHtmlPostfix = "</strike>";
-             } else if ((modificator.length() > 1) &&
-                                           (modificator.charAt(0) == '.')) {
-                // CSS existing style specify
-                valueHtmlPrefix = "<span class=\"" + modificator.substring(1) + "\">";
-                valueHtmlPostfix = "</span>";
-             } else if ((modificator.length() > 1) &&
-                                           (modificator.charAt(0) == '/')) {
-                // HTML tag redefine
-                valueHtmlPrefix = "<" + modificator.substring(1) + ">";
-                valueHtmlPostfix = "</" + modificator.substring(1) + ">";
-             } else if ((modificator.length() > 2) &&
-                    (modificator.charAt(0) == '{') &&
-                    (modificator.charAt(modificator.length() - 1) == '}')) {
-                // CSS style line
-                valueHtmlPrefix = "<span style=\"" +
-                       modificator.substring(1, modificator.length() - 1)
-                       + "\">";
-                valueHtmlPostfix = "</span>";
-             } else if (modificator.length() > 0) {
-                 throw new JspException ("jbpm:priorityFont tag parameters
-                        values couldn't be parsed");
-             }
-             jspOut.print(valueHtmlPrefix + bodyTextContent +
-                   valueHtmlPostfix);
-          } catch (NumberFormatException nfe) {
-             nfe.printStackTrace();
-             throw new JspException("jbpm:priorityFont tag parameters
-                            couldn't be parsed", nfe);
-          } catch (IOException ioe) {
-             ioe.printStackTrace();
-             throw new JspException("jbpm:priorityFont tag parameters
-                            couldn't be parsed", ioe);
-          }
-          release();
-          return EVAL_PAGE;
-       }
+   /**
+    * @jsp.attribute
+    *   required="false"
+    */
 
-    }
+   public void setLevel(Integer level) {
+      this.level = level;
+   }
+
+   /**
+    * style description to apply to the content with value lower
+    *		 than the level.
+    *		 supports: bold, italic, underline or any
+                                    body-having html tag or css-style
+    *		     format: bold | italic | underline | strike
+    *		         .<CSS-class>
+    *		         {<CSS-Descriptors-Line>}
+    *		         :<HTML-Tag-Name>
+    *		 default: italic
+    */
+
+   public String getLowChange() {
+      return lowChange;
+   }
+
+   /**
+    * @jsp.attribute
+    *   required="false"
+    */
+
+   public void setLowChange(String lowChange) {
+      this.lowChange = lowChange;
+   }
+
+   public int doStartTag() throws JspException {
+      return EVAL_BODY_BUFFERED;
+   }
+
+   public int doAfterBody() throws JspException {
+      try {
+         BodyContent bodyContent = getBodyContent();
+         if (bodyContent == null) {
+            bodyTextContent = value.toString();
+         } else {
+            bodyTextContent = bodyContent.getString();
+            if (bodyTextContent == null) {
+               bodyTextContent = value.toString();
+            }
+         }
+      } catch (NumberFormatException nfe) {
+         nfe.printStackTrace();
+         throw new JspException("jbpm:priorityFont
+                        tag body couldn't be parsed", nfe);
+      }
+      return SKIP_BODY;
+   }
+
+   public int doEndTag() throws JspException {
+      if (value == Integer.valueOf(-1)) {
+         throw new JspException("jbpm:priorityFont tag requires
+                  the body xor the value parameter to
+                  be specified (also, negative values are unsupported)");
+      }
+      try {
+         JspWriter jspOut = pageContext.getOut();
+         String modificator =
+                  (value < level) ? lowChange :
+                           ((value > level) ? highChange : "");
+         if (modificator.equalsIgnoreCase("bold")) {
+            valueHtmlPrefix = "<strong>";
+            valueHtmlPostfix = "</strong>";
+         } else if (modificator.equalsIgnoreCase("italic")) {
+            valueHtmlPrefix = "<em>";
+            valueHtmlPostfix = "</em>";
+         } else if (modificator.equalsIgnoreCase("underline")) {
+            valueHtmlPrefix = "<u>";
+            valueHtmlPostfix = "</u>";
+         } else if (modificator.equalsIgnoreCase("strike")) {
+            valueHtmlPrefix = "<strike>";
+            valueHtmlPostfix = "</strike>";
+         } else if ((modificator.length() > 1) &&
+                                       (modificator.charAt(0) == '.')) {
+            // CSS existing style specify
+            valueHtmlPrefix = "<span class=\"" + modificator.substring(1) + "\">";
+            valueHtmlPostfix = "</span>";
+         } else if ((modificator.length() > 1) &&
+                                       (modificator.charAt(0) == '/')) {
+            // HTML tag redefine
+            valueHtmlPrefix = "<" + modificator.substring(1) + ">";
+            valueHtmlPostfix = "</" + modificator.substring(1) + ">";
+         } else if ((modificator.length() > 2) &&
+                (modificator.charAt(0) == '{') &&
+                (modificator.charAt(modificator.length() - 1) == '}')) {
+            // CSS style line
+            valueHtmlPrefix = "<span style=\"" +
+                   modificator.substring(1, modificator.length() - 1)
+                   + "\">";
+            valueHtmlPostfix = "</span>";
+         } else if (modificator.length() > 0) {
+             throw new JspException ("jbpm:priorityFont tag parameters
+                    values couldn't be parsed");
+         }
+         jspOut.print(valueHtmlPrefix + bodyTextContent +
+               valueHtmlPostfix);
+      } catch (NumberFormatException nfe) {
+         nfe.printStackTrace();
+         throw new JspException("jbpm:priorityFont tag parameters
+                        couldn't be parsed", nfe);
+      } catch (IOException ioe) {
+         ioe.printStackTrace();
+         throw new JspException("jbpm:priorityFont tag parameters
+                        couldn't be parsed", ioe);
+      }
+      release();
+      return EVAL_PAGE;
+   }
+
+}
+
+```
 
 Наследуя тег от класса `BodyTagSupport` мы подразумевали, что у тега будет тело. Очистка значений происходит в методе `release()`, значения атрибутов устанавливаются в скомпилированной JSP - HTTP-сервлете - засчет аксессоров. Методы `doStartTag()`, `doAfterBody()` и `doEndTag()` перегружены от родителя (и имплементят соответствующие методы интерфейса `Tag`) и вызываются в указанном порядке - после обработки открывающего тега, после обработки тела и после обработки закрывающего тега соответственно.
 
@@ -323,74 +332,76 @@ tags: [ java, jsp, j2ee, web-development ]
 
 Ну и посмотрим на использование тега:
 
-    #!html
-    <%@ taglib uri="/WEB-INF/uwilfred.tld" prefix="uwilfred" %>...
-    <html><%
-    ...
-    %>
-    <head>
-       <style>
+``` { html }
 
-       .priorityHigh {
-          font-color: #f00;
-          font-weight: bold;
-          border: 1px solid #333;
-       }
+<%@ taglib uri="/WEB-INF/uwilfred.tld" prefix="uwilfred" %>...
+<html><%
+...
+%>
+<head>
+   <style>
 
-       .priorityLow {
-          font-color: #00f;
-          font-style: italic;
-          border: 1px dotted #999;
-       }
+   .priorityHigh {
+      font-color: #f00;
+      font-weight: bold;
+      border: 1px solid #333;
+   }
 
-       </style>
+   .priorityLow {
+      font-color: #00f;
+      font-style: italic;
+      border: 1px dotted #999;
+   }
 
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <title>Test priorityFont Tag</title>
-    </head>
+   </style>
 
-    <body class="layout">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <title>Test priorityFont Tag</title>
+</head>
 
-       <c:forEach items="${model.tasks}" var="task" varStatus="status">
-          <uwilfred:priorityFont value="${task.priority}">
-                <a href="taskinfo.htm?id=<c:out value="${task.id}"/>">
-                      <c:out value="${task.name}"/>
-                </a>
-          </uwilfred:priorityFont>
-       </c:forEach>
+<body class="layout">
 
-       <%-- is identical to: --%>
+   <c:forEach items="${model.tasks}" var="task" varStatus="status">
+      <uwilfred:priorityFont value="${task.priority}">
+            <a href="taskinfo.htm?id=<c:out value="${task.id}"/>">
+                  <c:out value="${task.name}"/>
+            </a>
+      </uwilfred:priorityFont>
+   </c:forEach>
 
-       <c:forEach items="${model.tasks}" var="task" varStatus="status">
-          <uwilfred:priorityFont value="${task.priority}" level="3"
-                  highChange="bold" lowChange="italic">
-             <a href="taskinfo.htm?id=<c:out value="${task.id}"/>">
-                <c:out value="${task.name}"/>
-             </a>
-          </uwilfred:priorityFont>
-       </c:forEach>
+   <%-- is identical to: --%>
 
-       <%-- different variants: --%>
+   <c:forEach items="${model.tasks}" var="task" varStatus="status">
+      <uwilfred:priorityFont value="${task.priority}" level="3"
+              highChange="bold" lowChange="italic">
+         <a href="taskinfo.htm?id=<c:out value="${task.id}"/>">
+            <c:out value="${task.name}"/>
+         </a>
+      </uwilfred:priorityFont>
+   </c:forEach>
 
-       <uwilfred:priorityFont value="${someValue}"
-                highChange="{font-color: #f00; font-weight: bold;}"
-                lowChange="{font-color: #00f; font-style: italic;}">
-                      BlahByCSSInline
-       </uwilfred:priorityFont>
+   <%-- different variants: --%>
 
-       <uwilfred:priorityFont value="${someValue}"
-                                        highChange=".priorityHigh"
-                                        lowChange=".priorityLow">
-             BlahByCSSExistentClass
-       </uwilfred:priorityFont>
+   <uwilfred:priorityFont value="${someValue}"
+            highChange="{font-color: #f00; font-weight: bold;}"
+            lowChange="{font-color: #00f; font-style: italic;}">
+                  BlahByCSSInline
+   </uwilfred:priorityFont>
 
-       <uwilfred:priorityFont value="${someValue}"
-                   highChange=":strong"
-                   lowChange=":em">
-             BlahByTagRedefine
-       </uwilfred:priorityFont>
+   <uwilfred:priorityFont value="${someValue}"
+                                    highChange=".priorityHigh"
+                                    lowChange=".priorityLow">
+         BlahByCSSExistentClass
+   </uwilfred:priorityFont>
 
-    </body>
+   <uwilfred:priorityFont value="${someValue}"
+               highChange=":strong"
+               lowChange=":em">
+         BlahByTagRedefine
+   </uwilfred:priorityFont>
 
-    </html>
+</body>
 
+</html>
+
+```
