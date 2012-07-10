@@ -15,7 +15,7 @@ I think you now feel what I mean: I have a proposal for you abou this all. It'd 
 
 ### Picture ###
 
-![Screenshot](./images/easy-as-sandwich-blog-engine-screenshot-small.png)
+![Screenshot]({{ get_figure(slug, 'screenshot-small.png') }})
 
 ### Components ###
 

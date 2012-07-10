@@ -7,7 +7,7 @@ tags: [ tumblr, theme, sandwitch, sandwich ]
 
 Have created [Tumblr theme](http://www.tumblr.com/theme/18012) named [Sandwitch](http://uncyclopedia.wikia.com/wiki/Sandwitch). I was going to make tumblr-blog look like [showdown blog](http://code.google.com/p/showdown-blog/)-engine style I've made, and seems the result in the end is even better!
 
-![Screenshot](./images/tumblr-sandwitch-theme-screen.png)
+![Screenshot]({{ get_figure(slug, 'screen.png') }})
 
 You can turn on tweets translation, allow [Disqus](http://disqus.com) comments and... write posts with source code highlighting!
 

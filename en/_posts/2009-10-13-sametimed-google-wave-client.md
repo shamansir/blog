@@ -7,17 +7,17 @@ tags: [ google wave, java, reverse ajax, jquery, dwr ]
 
 Zdrawstwooyte.
 
-[![sametimed](./images/sametimed-google-wave-client-logo.png)](http://code.google.com/p/sametimed)
+[![sametimed]({{ get_figure(slug, 'logo.png') }})](http://code.google.com/p/sametimed)
 
 ...So I wrote a small project in Java, which is a client for Google Wave, which in its turn can be extended with the features you need. Its current visual style is not very presentable <s>(though, why not, a-la Windows 3.1 ;) )</s>, 'cause I am not so good in web-design - but for all the project's source code I am responsible with my head :). Then, for example, the required CSS-styles looks the most understandable and the XHTML-structure is the most simplified (not to the detriment of standards) and the real designer can apply his skills in most and make this all look really beautiful.
 
-[![screenshot](./images/sametimed-google-wave-client-screenshot.png)](./images/sametimed-google-wave-client-screenshot-full.png)
+[![screenshot]({{ get_figure(slug, 'screenshot.png') }})]({{ get_figure(slug, 'screenshot-full.png') }})
 
 Source code and war-package with current condition of the project are located at [http://code.google.com/p/sametimed](http://code.google.com/p/sametimed)
 
 Right now I have no public hosting ready at hand, so I can't show the project in action with ease. However I can, may be, please you with a [video (at vimeo)](https://vimeo.com/7036141), it demonstrates its main possibilities, and perhaps it is pretty enough if you just want to know what the project can do. Anyway, you can run it by yourself, since there are detailed instructions at project site and the detailed source code inspection and concept description are in this very post...
 
-[![video](./images/sametimed-google-wave-client-vimeo.png)](http://vimeo.com/7036141)
+[![video]({{ get_figure(slug, 'vimeo.png') }})](http://vimeo.com/7036141)
 
 ### Installation
 
