@@ -11,7 +11,7 @@ Currently I am doing some stuff in JavaScript and I need to have just a tiny amo
 
 Works just with objects and arrays. For objects, callback takes key and value. For arrays, callback takes element.
 
-~~~ { javascript }
+``` { javascript }
 
 /**
  * Tiny each
@@ -24,13 +24,13 @@ function each(iterable, func) {
     else if (iterable instanceof Object) for (field in iterable) func.call(iterable, iterable[field], field);
 }
 
-~~~
+```
 
 ### Quick Class Construction (Single Inheritance, one function)
 
 This is just a slightly modified version from [this nice article](http://www.willmcgugan.com/blog/tech/2009/12/5/javascript-snippets/). Also, `bind` function is useful to make stuff like this: `var catMeow = bind(cat, Cat.meow);`.
 
-~~~ { javascript }
+``` { javascript }
 
 function class_(def) {
     var _proto = def;
@@ -68,11 +68,11 @@ function bind(obj, method) {
     return function() { return method.apply(obj, arguments); }
 }
 
-~~~
+```
 
 #### Usage
 
-~~~ { javascript }
+``` { javascript }
 
 var Base = class_({
 
@@ -117,13 +117,13 @@ console.log(b instanceof Child);
 console.log(c instanceof Base);
 console.log(c instanceof Child);
 
-~~~
+```
 
 ### Easy assertions mechanism (one or two functions)
 
 Just for quick TDD, if you like it. If you need only assertions, not a tests suites, take just `AssertException` and `assert` function - they are everything you need. Else, `runTests` allows you to run `JUnit`-like tests suites, even with proper `setUp` and `tearDown`. (Uses console to inform about tests results so in the presented form it may work only in Firefox / WebKit browsers)
 
-~~~ { javascript }
+``` { javascript }
 
 function AssertException(result, expectation) { this.result = result;
                                                 this.expectation = expectation; }
@@ -211,11 +211,11 @@ function runTests(suite, _name, _stopWhenFailed) {
     return null;
 }
 
-~~~
+```
 
 #### Examples
 
-~~~ { javascript }
+``` { javascript }
 
 var T1 = class_({
 
@@ -266,7 +266,7 @@ new T1().test1();
 
 _f();
 
-~~~
+```
 
 ### Snippets tests
 

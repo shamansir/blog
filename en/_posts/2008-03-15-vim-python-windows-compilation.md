@@ -40,7 +40,7 @@ It is also important to get the sources, so we [download them](ftp://ftp.vim.org
 
 Also, if you use a stable release and you want to install the newest patches -- follow [this link](ftp://ftp.vim.org/pub/vim/patches/7.1/) (correct the version number if you need) to get them. There is a problem gere, because they pack the patches only when their count reaches one hundred (001-100, 101-200 and so on), so for example if their count is 275 - you'll need to download the late 75 files manually or by creating a batch-script which uses `telnet`. However, we have Cygwin installed, so we can make an `.sh`-script, executing the same functions using `wget`, it can look something like this:
 
-~~~ { bash }
+``` { bash }
 
 PATCHES_DOWNLOAD_PATH=ftp://ftp.vim.org/pub/vim/patches
 PATCHES_VER=7.1
@@ -52,7 +52,7 @@ do
     wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.$i
 done
 
-~~~
+```
 
 Now let's sort the sources in order that is required for compilation.
 
@@ -64,7 +64,7 @@ In `/runtime` subdirectory you can place `.vim` files, `/doc` and `/plugins` fro
 
 To install patches, you need to execute `patch` command from Cygwin set over every one of them, unpacking the archives with bunches of hundreds of patches, provisionally. In this case I've used `.bat`-files instead of `.sh`-script (you need to correct the numbers of patches to apply your variant, of course):
 
-~~~ { batch }
+``` { batch }
 
 @ECHO off
 ECHO changing directory to parent...
@@ -89,13 +89,13 @@ PAUSE
 
 @ECHO on
 
-~~~
+```
 
 Place this file in `/patches` directory, ensure the directories structure matches the one described above, correct numbers and execute it. In the sources root there will be a `patching-src.log` file created, where you can monitor the results of patching procedure. If `patch` utility wasn't found, ensure Cygwin path is in you `PATH`. If some (small amount of) files has not been found and patched - there is nothing to worry about, they may relate to XWindow-version.
 
 Now we go directly to the compilation process, from Cygwin console. There is only execution of three commands required -- change to the source directory (Cygwin mounts your drives in `/cygdrive/` point: correct the paths to you Python and Tcl installation folder and their concrete versions, but if you compiling a version without Tcl support -- just remove the coinciding parameters) and create `vim.exe` (console version) and `gvim.exe` (GUI-version) files:
 
-~~~ { bash }
+``` { bash }
 
 $ cd /cygdrive/c/devel/vim-src/vim71
 $ make -B -f Make_cyg.mak GUI=no \
@@ -105,7 +105,7 @@ $ make -B -f Make_cyg.mak OLE=yes \
     PYTHON=/cygdrive/c/devel/Python PYTHON_VER=25 DYNAMIC_PYTHON=yes \
     TCL=/cygdrive/c/devel/Tcl TCL_VER=85 DYNAMIC_TCL=yes gvim.exe
 
-~~~
+```
 
 You can ignore warnings and even some of the errors if they relate to Python or Tcl, if process is still going and `.exe`-files are created in the end. If everything has ended up successfully, then you'll find both `.exe` files in `src` directory. Make a backup of existing files in working version of Vim (i.e. `vim.exe.bak` and `gvim.exe.bak`) and replace them with the ones just compiled. If you've applied the pathces, then place the `*.vim` files, `/doc/` and `/plugins` directories back from `/runtime` directory, making a backup before, replacing the old versions. Now launch Vim or gVim from the working Vim directory and re-check the version and the compilation options in the same place to have `+python` key -- it must be ok in most cases.
 
@@ -113,11 +113,11 @@ You can ignore warnings and even some of the errors if they relate to Python or 
 
 During the process of compiltion I've met two errors: `cannot exec cc1: No such file or directory` and `ld: cannot fin -lgcc`. Both of them are [known to the authors](http://www.mail-archive.com/cygwin@cygwin.com/msg10910.html) of Cygwin, however in mine versions the were not yet solved. The first one is temporary solved by adding a directory with `cc1.exe` executable file in local Cygwin `PATH` prior to compilation:
 
-~~~ { bash }
+``` { bash }
 
 $ PATH=$PATH:/cygdrive/c/devel/cygwin/lib/gcc/i686-pc-cygwin/3.4.4
 
-~~~
+```
 
 The second one is solved the same way the first must to -- by installing `Devel/gcc-mingw` (they promised to make it automatically when user chooses `gcc` in future) while installing Cygwin. It is important to install the packages in same time, so if the error reappears still -- try to select `Reinstall` mode in Cygwin installer just in the same place where you've selected `Uninstall` before and re-install all packages again.
 
@@ -127,11 +127,11 @@ The second one is solved the same way the first must to -- by installing `Devel/
 
 Basing on [this article](http://allaboutvim.blogspot.com/2007/12/vim-python.html) I've created a pack (you can take it [here](http://shaman-sir.by.ru/files/vimfiles.zip)) collected from the last versions of plugins mentioned there ([Project](http://allaboutvim.blogspot.com/2007/07/projecttargz-ide.html), PythonComplete, NERD_Commenter, [VCSCommand](http://allaboutvim.blogspot.com/2007/08/vcscommandvim-svn_09.html), RunScript and TagList plus, over them — [PyDiction](http://www.vim.org/scripts/script.php?script_id=850)) + minimal setting (in `ftplugin/python.vim`, practically identical to the one mention in the article (TabWrapper function changed + another way to include dictionary) -- _omni completion_ is set to `Tab`). You need to extract the contents to the `<path_to_installed_vim>\vimfiles`. For taglist plugin you'll need to download ctags [from here](http://prdownloads.sourceforge.net/ctags/ec57w32.zip), after unpacking to any directory, add its path to the `PATH` environment variable. Then you need to run `vim` and execute the command:
 
-~~~
+```
 
 :helptags $VIM\vimfiles\doc
 
-~~~
+```
 
 Then you'll have a possibility to use `:help <plugin_name>` to get documentation of the corresponding plugin.
 
@@ -139,7 +139,7 @@ The default auto-completion, if you use this package settings, is called with `T
 
 To include the [proposed](http://www.python.org/dev/peps/pep-0263/) by specification first lines in python files header automatically when created, add the code below to the `<path_to_installed_vim>\_vimrc` (filename line is added to demonstrate a possibilities to add a file name):
 
-~~~
+```
 
 function! BufNewFile_PY()
    0put = '#!/usr/bin/env python'
@@ -152,7 +152,7 @@ endfunction
 
 autocmd BufNewFile *.py call BufNewFile_PY()
 
-~~~
+```
 
 …So now you can program in Python with comfort.
 

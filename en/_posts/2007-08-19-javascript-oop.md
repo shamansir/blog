@@ -9,7 +9,7 @@ In [previous article](#16-useful-javascript-solutions) I have presented you a sm
 
 So, the basic functions (I'll say it again, I have taken them from [AJAXPath](http://www.ajaxpath.com/javascript-inheritance) and [AJAXPatterns](http://ajaxpatterns.org/Javascript_Inheritance) sources):
 
-~~~ {javascript}
+``` { javascript }
 
 function Class() { };
 
@@ -39,7 +39,7 @@ Class.extend = function(def) {
     return classDef;
 };
 
-~~~
+```
 
 Through the usage of these three functions, you have a possibility to build a relatively serious and deep-constructed frameworks, not loosing the code readability and a way to find a needed place to change fast. Plus OOP possibilities, of course
 
@@ -47,7 +47,7 @@ These three functions were used as a foundation of OOP-Drag'n'Drop framework for
 
 Let's return to business. For a code like this you need an example. I have build a little script that emulates a Windows OS, I hope it will match your needs:
 
-~~~ { javascript }
+``` { javascript }
 
 /* some helping functions */
 
@@ -197,13 +197,13 @@ function perform() {
     testOs.shutDown();
 }
 
-~~~
+```
 
 **NB!** (pay attention not to put a comma after the last method definition in class, or IE will fail)
 
 If you have disliked the previous example -- I can offer you a useful class, that really helps if the idea of DOM element intersects with the manipulated object idea inside your project:
 
-~~~ { javascript }
+``` { javascript }
 
 var ElementWrapper = Class.extend({
 
@@ -242,15 +242,15 @@ var ElementWrapper = Class.extend({
 
 });
 
-~~~
+```
 
 You can comfortly extend this class with other classes expanding the DOM elements functionality. Also, you can use a code like this:
 
-~~~ { javascript }
+``` { javascript }
 
 var someElement = new ElementWrapper('someElmId');
 
-~~~
+```
 
 …and `someElement` object will be linked to element (wrapping an element) with `id` _‘`SomeElmId`’_. To access it -- as a DOM element -- you can ask `someElement.element` property.
 
@@ -258,7 +258,7 @@ The following class inherits `ElementWrapper` and allows to work with element as
 
 > As it is for some functions from [previous article](#16-really-useful-javascript-solutions), the code is changed through times -- in this case it was parallelly simplified and growed in functionality:
 
-~~~ { javascript }
+``` { javascript }
 
 var DND_NS 				= 'dnd'; // to use in getAttributeNS and setAttributeNS
 
@@ -492,7 +492,7 @@ var GraphicalElementWrapper = ExpandedElementWrapper.extend({
 
 });
 
-~~~
+```
 
 Both of these classes, I hope, will help you with making DOM elements more graphical-base (for example, for Drag'n'Drop (here I've extended the dragging nodes classes, regions classes, receiving regions classes and drag helper -- from `GraphicElementWrapper`, and the main container -- from `ElementWrapper`) or, for example, for the web-application which emulates the windows-based application (here I have extended the draggable elements from `GraphicElementWrapper`, but menu, status bar and the worktable -- from `ElementWrapper`).
 

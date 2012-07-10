@@ -68,7 +68,7 @@ A brief summary of [Programming guide](http://www.limejs.com/0-getting-started):
 
 Let we leave just a several lines from the `pingpong.start` function given us by developers:
 
-~~~ { javascript }
+``` { javascript }
 
 // entrypoint
 pingpong.start = function(){
@@ -83,11 +83,11 @@ pingpong.start = function(){
 
 }
 
-~~~
+```
 
 Don not forget to remove the unneсessary `goog.require` lines. I will not remind you further about it, you can always take a look at a resulting file header in the end of the article. Let's add three layers to the scene - `floor_` (means background), `walls_` and a board that will have all the action happening on it:
 
-~~~ { javascript }
+``` { javascript }
 
 var director = new lime.Director(document.body),
     scene = new lime.Scene(),
@@ -102,13 +102,13 @@ scene.appendChild(board_);
 
 . . .
 
-~~~
+```
 
 #### Player blank
 
 In a separate `player.js` file we describe a player class - it will be the polygon in a shape of skateboard (to check how collisions work):
 
-~~~ { javascript }
+``` { javascript }
 
 goog.provide('pingpong.Player');
 
@@ -121,18 +121,18 @@ pingpong.Player = function() {
 }
 goog.inherits(pingpong.Player, lime.Polygon);
 
-~~~
+```
 
 In the place of the comment we will describe a polygon vertices and will fill it with half-transparent blue. Here is how the player will look like (in the tutorial, there are fractional numbers from -1 to 1 are used to describe vertices coordinates (relatively to the polygon center), but in the current version I failed to make them work):
 
-~~~ { javascript }
+``` { javascript }
 
 // -1,-2.5, 0,-3.5, 1,-2.5, 1,2.5, 0,3.5, -1,2.5, 0,1.5, 0,-1.5
 this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
     .setFill(0,0,210,.7)
     .setScale(.4);
 
-~~~
+```
 
 ![Player]({{ get_figure(slug, 'player.png') }})
 
@@ -140,15 +140,15 @@ The red dot on a picture is an `anchorPoint`, it is calculated automatically for
 
 For the moment, the code is equivalent to the call:
 
-~~~ { javascript }
+``` { javascript }
 
 var playerOne = new lime.Polygon().addPoints(...).setFill(...);
 
-~~~
+```
 
 But later we will add some behavior to the player and it will be obvious that it was a wise decision to create a special class. Let's check if player is displayed correctly on the scene - let's return back to `pingpong.js` file... though, why waste a time, let's add both players to the board and mirror a first one to make them stand face-to-face:
 
-~~~ { javascript }
+``` { javascript }
 
 . . .
 goog.require('pingpong.Player');
@@ -164,7 +164,7 @@ board_.appendChild(playerTwo);
 
 . . .
 
-~~~
+```
 
 Before we run it in a browser we need to make one manipulation more - to update dependencies for Closure (it allows you to include just `base.js` with Closure utilities and `pingpong.js` in your `.html`, and all other files are loaded automatically using `goog.require`). However there is a little bug in the current version of engine - when you create a project, its name is not added to `./bin/projects` file. So you need to define `pingpong` line in your `./bin/projects` file before, and after that you can update the dependencies:
 
@@ -179,7 +179,7 @@ So, this is what you can see on the screen:
 
 Now let's make a `ball.js` file with this content:
 
-~~~ { javascript }
+``` { javascript }
 
 goog.provide('pingpong.Ball');
 
@@ -193,7 +193,7 @@ pingpong.Ball = function() {
 }
 goog.inherits(pingpong.Ball, lime.Circle);
 
-~~~
+```
 
 Then update dependencies:
 
@@ -201,7 +201,7 @@ Then update dependencies:
 
 And add the ball to the board in `pingpong.js`:
 
-~~~ { javascript }
+``` { javascript }
 
 . . .
 goog.require('pingpong.Ball');
@@ -215,7 +215,7 @@ board_.appendChild(playerOne);
 board_.appendChild(playerTwo);
 board_.appendChild(ball);
 
-~~~
+```
 
 ![Beach-boys wearing blue shorts playing with a ball]({{ get_figure(slug, 'stage2.png') }})
 
@@ -223,25 +223,25 @@ board_.appendChild(ball);
 
 Now let's create a field with a players, every player will have a half of the field with its own color. We will say `Director` what are the game screen size parameters:
 
-~~~ { javascript }
+``` { javascript }
 
 var director = new lime.Director(document.body,600,480),
 
-~~~
+```
 
 This dimensions are not related to any pixels, by no means - the game canvas is automatically resized and maximized to the screen when required, but these dimensions allow us to use relative positions of elements on the canvas. Correct the ball position and players positions relatively to new screen size:
 
-~~~ { javascript }
+``` { javascript }
 
 playerOne = new pingpong.Player().setPosition(40,240).setRotation(180),
 playerTwo = new pingpong.Player().setPosition(600,240),
 ball = new pingpong.Ball().setPosition(320,240);
 
-~~~
+```
 
 Now, at last, the background. Yep, it will be just two sprites, splitting the screen in half - no indirect logic.
 
-~~~ { javascript }
+``` { javascript }
 
 floor_.appendChild(new lime.Sprite().setPosition(160,240)
                                     .setSize(320,480)
@@ -253,7 +253,7 @@ floor_.appendChild(new lime.Sprite().setPosition(480,240)
 board_.appendChild(...);
 . . .
 
-~~~
+```
 
 ![Beach-boys wearing blue shorts playing on a asphalt]({{ get_figure(slug, 'stage3.png') }})
 
@@ -261,7 +261,7 @@ board_.appendChild(...);
 
 Wall will not have a lot of logic, but as a tradition we will also place it in a separate class. Walls will have 20x20 size. Create a file `wall.js` with this content:
 
-~~~ { javascript }
+``` { javascript }
 
 goog.provide('pingpong.Wall');
 
@@ -275,7 +275,7 @@ pingpong.Wall = function() {
 }
 goog.inherits(pingpong.Wall, lime.Sprite);
 
-~~~
+```
 
 Update dependencies:
 
@@ -283,7 +283,7 @@ Update dependencies:
 
 And place the walls along the canvas edges in `pingpong.js`:
 
-~~~ { javascript }
+``` { javascript }
 
 . . .
 goog.require('pingpong.Wall');
@@ -304,7 +304,7 @@ for (y = 30; y <= 450; y += 20) {
 
 board_.appendChild(...);
 
-~~~
+```
 
 That's all, the game board is complete - we can start to program logic!
 
@@ -314,7 +314,7 @@ That's all, the game board is complete - we can start to program logic!
 
 Player sprite must move vertically towards the touched or clicked point, omitting the walls. Moving is done easy:
 
-~~~ { javascript }
+``` { javascript }
 
 . . .
 
@@ -329,11 +329,11 @@ goog.events.listen(floor_,['mousedown','touchstart'],function(e){
 
 director.replaceScene(scene);
 
-~~~
+```
 
 But with this behaviour the players are moving through walls. Keep each wall instance to test on collisions with player is not a best way for us, so we will let a programmer to determine what rectangular bounds are restricted for player. Thus we will need two methods in the end of `player.js`:
 
-~~~ { javascript }
+``` { javascript }
 
 pingpong.Player.prototype.setMovementBounds = function(top,right,bottom,left) {
     this._moveBounds = new goog.math.Box(top,right,bottom,left);
@@ -356,13 +356,13 @@ pingpong.Player.prototype.alignBounds = function(x, y) {
     return new goog.math.Coordinate(newX, newY);
 }
 
-~~~
+```
 
 The first one allows to set rectangular boundaries for player's movement and the second one - returns the position aligned to the edges of this bounds. Note that scale vector is taken into account in calculation process.
 
 Now let's update the players' definitions in `pingpong.js`:
 
-~~~ { javascript }
+``` { javascript }
 
 playerOne = new pingpong.Player().setPosition(40,240)
                                  .setRotation(180)
@@ -370,11 +370,11 @@ playerOne = new pingpong.Player().setPosition(40,240)
 playerTwo = new pingpong.Player().setPosition(600,240)
                                  .setMovementBounds(20,620,460,20),
 
-~~~
+```
 
 And let's correct the event where the movement happens:
 
-~~~ { javascript }
+``` { javascript }
 
 goog.events.listen(floor_,['mousedown','touchstart'],function(e){
     var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
@@ -385,13 +385,13 @@ goog.events.listen(floor_,['mousedown','touchstart'],function(e){
                               .setDuration(1));
 });
 
-~~~
+```
 
 #### Ball logic
 
 We will also need some additional functions for a ball. The first one, as for player, allows to set ball movement bounds, the second one allows to set ball velocity and the third one allows to set "reset position" - a position where the ball will returned when if one of the players misses it (`ball.js`):
 
-~~~ { javascript }
+``` { javascript }
 
 pingpong.Ball = function() {
     goog.base(this);
@@ -422,11 +422,11 @@ pingpong.Ball.prototype.setResetPosition = function(x, y) {
     return this;
 }
 
-~~~
+```
 
 There we also describe the main detection function, it will test if one of the players catched the ball and will reset ball position if not. If the vertical wall was hit, funtion returns the position of hit to let the outer function to determine which player to blame, judging by theirs position.
 
-~~~ { javascript }
+``` { javascript }
 
 pingpong.Ball.prototype.updateAndCheckHit = function(dt,playerOne,playerTwo) {
     var newPos_ = this.getPosition();
@@ -456,13 +456,13 @@ pingpong.Ball.prototype.updateAndCheckHit = function(dt,playerOne,playerTwo) {
     return null;
 }
 
-~~~
+```
 
 > In such functions you will need to monitor the current coordinate system, you work with, closely and to convert it properly when it is required. In this case `parnet` - is the layer that holds the ball and the ball position is the position relative to this layer coordinate system. Thereby we convert the ball position defined in layer coordinate system into the screen coordinate system before passing it to the `catched` method, and inside the `catched` method described below, we convert the passed ball position defined in screen coordinate system into the player local coordinate system.
 
 Now we need to add the `catched` method which is used in previous function to `player.js` file. Using all the polygon vertices coordinates + scale and rotation, it returns if passed position is inside the area of polygon:
 
-~~~ { javascript }
+``` { javascript }
 
 pingpong.Player.prototype.catched = function(pos) {
     var p = this.getPoints(),
@@ -498,22 +498,22 @@ pingpong.Player.prototype.catched = function(pos) {
     return inPoly;
 }
 
-~~~
+```
 
 New setting are required to be set when initializing the ball in `pingpong.js`:
 
-~~~ { javascript }
+``` { javascript }
 
 ball = new pingpong.Ball().setPosition(320,240)
                           .setMovementBounds(20,620,460,20)
                           .setVelocity(.2)
                           .setResetPosition(320,240);
 
-~~~
+```
 
 And now the main thing, checking the events that happened with the ball. We will use `schedule` method from `scheduleManager`, it calls the given function in each frame, telling it how much time passed from the previous frame. Currently we will blame the player who missed the ball in console and in the next subchapter we will make a `Label` for it:
 
-~~~ { javascript }
+``` { javascript }
 
 goog.events.listen(. . .);
 
@@ -526,13 +526,13 @@ lime.scheduleManager.schedule(function(dt){
 
 director.replaceScene(scene);
 
-~~~
+```
 
 #### Blaming Message
 
 Now will add a label which will tell us who failed to catch the ball. Just an information about who failed, we will not waste time on counting the score:
 
-~~~ { javascript }
+``` { javascript }
 
 ball = . . .
        .setResetPosition(320,240),
@@ -542,20 +542,20 @@ label = new lime.Label().setPosition(280,30)
                         .setFontColor('#c00').setFontSize(18)
                         .setFontWeight('bold').setSize(150,30);
 
-~~~
+```
 
 Don't forget to add the label the to board layer:
 
-~~~ { javascript }
+``` { javascript }
 
 board_.appendChild(ball);
 board_.appendChild(label);
 
-~~~
+```
 
 And, replace the output target from console to label:
 
-~~~ { javascript }
+``` { javascript }
 
 goog.events.listen(. . .);
 
@@ -571,7 +571,7 @@ lime.scheduleManager.schedule(function(dt){
 
 director.replaceScene(scene);
 
-~~~
+```
 
 That's all. the ball is flying over the board, bounces from players, the one who missed it is blamed with the evil red label - I think it is enough for demonstration game.
 
@@ -581,7 +581,7 @@ Great, let's do some make-up to demonstrate how gradients and textures work.
 
 Let out background will have a nice grass-greeny color - we will change a background sprites initialization in `pingpong.js`:
 
-~~~ { javascript }
+``` { javascript }
 
 floor_.appendChild(new lime.Sprite().setPosition(160,240)
                                     .setSize(321,480)
@@ -596,11 +596,11 @@ floor_.appendChild(new lime.Sprite().setPosition(480,240)
                                                      .addColorStop(0,0,92,0,1)
                                                      .addColorStop(1,134,200,105,1)));
 
-~~~
+```
 
 For players (`player.js`) we will give a little bit transparent sea-like blue gradient:
 
-~~~ { javascript }
+``` { javascript }
 
 this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
     .setFill(new lime.fill.LinearGradient()
@@ -609,20 +609,20 @@ this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
                           .addColorStop(1,0,0,105,.7))
     .setScale(.4);
 
-~~~
+```
 
 Ball (`ball.js`) will have a texture:
 
-~~~ { javascript }
+``` { javascript }
 
 this.setFill('./ball.png')
     .setSize(20,20);
 
-~~~
+```
 
 Wall (`wall.js`) will be painted with concrete blue color and inherited from `RoundedRect`:
 
-~~~ { javascript }
+``` { javascript }
 
 pingpong.Wall = function() {
     goog.base(this);
@@ -633,7 +633,7 @@ pingpong.Wall = function() {
 }
 goog.inherits(pingpong.Wall, lime.RoundedRect);
 
-~~~
+```
 
 Now everything looks much prettier:
 
@@ -652,7 +652,7 @@ Now please re-check all `goog.require` lines - delete the calls that were not us
 
 You can copy a `pingpong.html` file into `compiled` folder and change the Javascript calls in the header:
 
-~~~ { html }
+``` { html }
 
 <!DOCTYPE HTML>
 
@@ -666,7 +666,7 @@ You can copy a `pingpong.html` file into `compiled` folder and change the Javasc
 
 </html>
 
-~~~
+```
 
 ### Resume
 

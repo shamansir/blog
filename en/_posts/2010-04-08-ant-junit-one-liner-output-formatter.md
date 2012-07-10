@@ -23,7 +23,7 @@ For example:
 
 There is ant task for this:
 
-~~~ { xml }
+``` { xml }
 
 <target name="easy-test" depends="test-clean, compile">
     <mkdir dir="out/junit"/>
@@ -52,11 +52,11 @@ There is ant task for this:
 
 </target>
 
-~~~
+```
 
 And finally, the implementation:
 
-~~~ { java }
+``` { java }
 
 package com.undefined.testing;
 
@@ -405,5 +405,5 @@ public class OneLinerFormatter implements JUnitResultFormatter {
 
 }
 
-~~~
+```
 
