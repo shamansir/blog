@@ -5,7 +5,7 @@ datetime: 19 Aug 2007 02:29
 tags: [ javascript, web-development ]
 ---
 
-In [previous article](#16-useful-javascript-solutions) I have presented you a small example of code, which allows you to use the three pillars of OOP theory in JavaScript. The way it is accomplished is a little tricky, but I have afforded mysefl to modify `extend` function a bit, to give a possibility of having a static constants for classes (in fact, the constants in result are just conventional, of course). Here I will provide a special example for it.
+In [previous article](../16-useful-solutions-for-javascript) I have presented you a small example of code, which allows you to use the three pillars of OOP theory in JavaScript. The way it is accomplished is a little tricky, but I have afforded mysefl to modify `extend` function a bit, to give a possibility of having a static constants for classes (in fact, the constants in result are just conventional, of course). Here I will provide a special example for it.
 
 So, the basic functions (I'll say it again, I have taken them from [AJAXPath](http://www.ajaxpath.com/javascript-inheritance) and [AJAXPatterns](http://ajaxpatterns.org/Javascript_Inheritance) sources):
 
@@ -254,9 +254,9 @@ var someElement = new ElementWrapper('someElmId');
 
 …and `someElement` object will be linked to element (wrapping an element) with `id` _‘`SomeElmId`’_. To access it -- as a DOM element -- you can ask `someElement.element` property.
 
-The following class inherits `ElementWrapper` and allows to work with element as a fully-functional graphic object (using some functions from [previous article](#16-really-useful-javascript-solutions): `getElmAttr`, `setElmAttr`, `findOffsetHeight`, `getPosition`, `getAlignedPosition`)
+The following class inherits `ElementWrapper` and allows to work with element as a fully-functional graphic object (using some functions from [previous article](../16-useful-solutions-for-javascript): `getElmAttr`, `setElmAttr`, `findOffsetHeight`, `getPosition`, `getAlignedPosition`)
 
-> As it is for some functions from [previous article](#16-really-useful-javascript-solutions), the code is changed through times -- in this case it was parallelly simplified and growed in functionality:
+> As it is for some functions from [previous article](../16-useful-solutions-for-javascript), the code is changed through times -- in this case it was parallelly simplified and growed in functionality:
 
 ``` { javascript }
 
