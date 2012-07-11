@@ -113,11 +113,7 @@ You can ignore warnings and even some of the errors if they relate to Python or 
 
 During the process of compiltion I've met two errors: `cannot exec cc1: No such file or directory` and `ld: cannot fin -lgcc`. Both of them are [known to the authors](http://www.mail-archive.com/cygwin@cygwin.com/msg10910.html) of Cygwin, however in mine versions the were not yet solved. The first one is temporary solved by adding a directory with `cc1.exe` executable file in local Cygwin `PATH` prior to compilation:
 
-``` { bash }
-
-$ PATH=$PATH:/cygdrive/c/devel/cygwin/lib/gcc/i686-pc-cygwin/3.4.4
-
-```
+    $ PATH=$PATH:/cygdrive/c/devel/cygwin/lib/gcc/i686-pc-cygwin/3.4.4
 
 The second one is solved the same way the first must to -- by installing `Devel/gcc-mingw` (they promised to make it automatically when user chooses `gcc` in future) while installing Cygwin. It is important to install the packages in same time, so if the error reappears still -- try to select `Reinstall` mode in Cygwin installer just in the same place where you've selected `Uninstall` before and re-install all packages again.
 
@@ -127,11 +123,7 @@ The second one is solved the same way the first must to -- by installing `Devel/
 
 Basing on [this article](http://allaboutvim.blogspot.com/2007/12/vim-python.html) I've created a pack (you can take it [here](http://shaman-sir.by.ru/files/vimfiles.zip)) collected from the last versions of plugins mentioned there ([Project](http://allaboutvim.blogspot.com/2007/07/projecttargz-ide.html), PythonComplete, NERD_Commenter, [VCSCommand](http://allaboutvim.blogspot.com/2007/08/vcscommandvim-svn_09.html), RunScript and TagList plus, over them — [PyDiction](http://www.vim.org/scripts/script.php?script_id=850)) + minimal setting (in `ftplugin/python.vim`, practically identical to the one mention in the article (TabWrapper function changed + another way to include dictionary) -- _omni completion_ is set to `Tab`). You need to extract the contents to the `<path_to_installed_vim>\vimfiles`. For taglist plugin you'll need to download ctags [from here](http://prdownloads.sourceforge.net/ctags/ec57w32.zip), after unpacking to any directory, add its path to the `PATH` environment variable. Then you need to run `vim` and execute the command:
 
-```
-
-:helptags $VIM\vimfiles\doc
-
-```
+    :helptags $VIM\vimfiles\doc
 
 Then you'll have a possibility to use `:help <plugin_name>` to get documentation of the corresponding plugin.
 
