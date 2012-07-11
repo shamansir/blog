@@ -18,10 +18,13 @@ tags: [ psi, password ]
 
 Вот такой:
 
-    #!python
-    import sys
-    u,p=sys.argv[1:3]
-    print "".join([chr(ord(u[x]) ^ eval("0x%s"%(p[4*x:4*x + 4]))) for x in xrange(len(p)/4)])
+``` { python }
+
+import sys
+u,p=sys.argv[1:3]
+print "".join([chr(ord(u[x]) ^ eval("0x%s"%(p[4*x:4*x + 4]))) for x in xrange(len(p)/4)])
+
+```
 
 И запустить с этими параметрами:
 

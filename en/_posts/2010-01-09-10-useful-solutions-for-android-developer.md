@@ -70,9 +70,9 @@ Adapter must contain the information about all of the elements inside, so the `g
 ``` { java }
 
 public int getItemViewType(int position) {
-   if (. . .) return ITEM_VIEW_TYPE;
-   if (. . .) return SECTION_VIEW_TYPE;
-   return IGNORE_ITEM_VIEW_TYPE;
+    if (. . .) return ITEM_VIEW_TYPE;
+    if (. . .) return SECTION_VIEW_TYPE;
+    return IGNORE_ITEM_VIEW_TYPE;
 }
 
 ```
@@ -267,10 +267,10 @@ public View getView(final int position, View convertView, ViewGroup parent) {
 }
 
 public void addSource(Page page) {
-   if (pages.length >= MAX_PAGES_COUNT) return;
-   pages[pages.length] = page;
-   waitingNextPage = false;
-   notifyDataSetChanged();
+    if (pages.length >= MAX_PAGES_COUNT) return;
+    pages[pages.length] = page;
+    waitingNextPage = false;
+    notifyDataSetChanged();
 }
 
 ```

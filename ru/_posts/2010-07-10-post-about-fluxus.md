@@ -17,21 +17,24 @@ tags: [ fluxus, open source, opengl, scheme ]
 
 Вот, например, две вращающиеся меняющие цвет сферы:
 
-    #!lisp
-    (define (animate)
-        (let* ((t (* (time) 2))
-               (x (sin t))
-               (y (cos t)))
+``` { scheme }
 
-        (with-state
-            (translate (vector x y 0))
-            (colour (vector (+ 1.5 (sin (time))) 0 0))
-            (draw-sphere))
+(define (animate)
+    (let* ((t (* (time) 2))
+           (x (sin t))
+           (y (cos t)))
 
-        (with-state
-            (translate (vmul (vector x y 0) 3))
-            (colour (vector 0 0 (- 1.5 (sin (time)))))
-            (draw-sphere))))
+    (with-state
+        (translate (vector x y 0))
+        (colour (vector (+ 1.5 (sin (time))) 0 0))
+        (draw-sphere))
 
-    (every-frame (animate))
+    (with-state
+        (translate (vmul (vector x y 0) 3))
+        (colour (vector 0 0 (- 1.5 (sin (time)))))
+        (draw-sphere))))
+
+(every-frame (animate))
+
+```
 

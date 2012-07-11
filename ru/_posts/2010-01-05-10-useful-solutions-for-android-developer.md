@@ -34,63 +34,84 @@ tags: [ android, java, vimeoid ]
 
 (здесь и далее я буду использовать слово _пункт_ как аналог английскому _item_, чтобы отличать элемент списка, который может быть и заголовком раздела и пунктом, от пункта, обычного элемента, который не может быть заголовком)
 
-![Список с разделами](http://vimeoid.googlecode.com/hg/screens/guest_channel.png)
+![Список с разделами]({{ get_figure(slug, 'guest-channel.png') }})
 
 Заголовки не должны реагировать на нажатия и выбор и должны иметь собственный вид. Этого можно достичь, переопределив кроме `getView` методы `getItemViewType`, `getViewTypeCount` и `isEnabled` адаптера этого списка и отнаследовав его, например, от `BaseAdapter`.
 
-    #!java
-    public class SectionedItemsAdapter extends BaseAdapter { . . .
+``` { java }
+
+public class SectionedItemsAdapter extends BaseAdapter { . . .
+
+```
 
  * Пример из vimeoid: [`SectionedActionsAdapter`](http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/adapter/SectionedActionsAdapter.java?r=85e18485bdda1c526141170f67e65f4e00202f34)
 
 Прежде всего заводятся константы, которые однозначно идентифицируют тип элемента, одна для заголовка, вторая для пункта (то есть типов может быть и больше двух, однако в таком случае лучше использовать `enum` с набором идентификаторов):
 
-    #!java
-    public static final int ITEM_VIEW_TYPE = 0; \\ пункт
-    public static final int SECTION_VIEW_TYPE = 1; \\ раздел
+``` { java }
+
+public static final int ITEM_VIEW_TYPE = 0; \\ пункт
+public static final int SECTION_VIEW_TYPE = 1; \\ раздел
+
+```
 
 Потом константа, содержащая количество типов элементов (в нашем случае - два):
 
-    #!java
-    public static final int VIEW_TYPES_COUNT = SECTION_VIEW_TYPE + 1;
+``` { java }
+
+public static final int VIEW_TYPES_COUNT = SECTION_VIEW_TYPE + 1;
+
+```
 
 Адаптер будет содержать в себе информацию обо всех элементах, поэтому реализации `getCount`, `getItem` и `getItemId` зависят от вашей ситуации.
 
 Метод `getItemViewType` должен возвращать константу соответствующую типу элемента по его позиции. Для неопределённого типа элемента в классе `Adapter` существует константа `IGNORE_ITEM_VIEW_TYPE`.
 
-    #!java
-    public int getItemViewType(int position) {
-       if (. . .) return ITEM_VIEW_TYPE;
-       if (. . .) return SECTION_VIEW_TYPE;
-       return IGNORE_ITEM_VIEW_TYPE;
-    }
+``` { java }
+
+public int getItemViewType(int position) {
+    if (. . .) return ITEM_VIEW_TYPE;
+    if (. . .) return SECTION_VIEW_TYPE;
+    return IGNORE_ITEM_VIEW_TYPE;
+}
+
+```
 
 В моём случае я храню в адаптере список разделов, в которых содержатся им принадлежащие пункты. Таким образом у каждого раздела можно спросить сколько внутри него пунктов и засчёт этого узнать необходимый тип.
 
 Этот метод теперь можно использовать в переопределении `getView`:
 
-    #!java
-    public View getView(int position, View convertView, ViewGroup parent) {
-    	final int viewType = getItemViewType(position);
-    	if (viewType == IGNORE_ITEM_VIEW_TYPE) throw new IllegalStateException("Failed to get object at position " + position);
-    	if (viewType == SECTION_VIEW_TYPE) {
-    	    convertView = . . . // здесь можно через LayoutInflater получить Layout для заголовка раздела
-    	} else if (viewType == ITEM_VIEW_TYPE) {
-    	    convertView = . . . // здесь можно через LayoutInflater получить Layout для пункта
-    	}
-    	return convertView;
-    }
+``` { java }
+
+public View getView(int position, View convertView, ViewGroup parent) {
+	  final int viewType = getItemViewType(position);
+	  if (viewType == IGNORE_ITEM_VIEW_TYPE) throw new IllegalStateException("Failed to get object at position " + position);
+	  if (viewType == SECTION_VIEW_TYPE) {
+	      convertView = . . . // здесь можно через LayoutInflater получить Layout для заголовка раздела
+	  } else if (viewType == ITEM_VIEW_TYPE) {
+	      convertView = . . . // здесь можно через LayoutInflater получить Layout для пункта
+	  }
+	  return convertView;
+}
+
+```
 
 Метод `isEnabled` должен возвращать `false` для элементов, на которые нельзя нажимать и на которые нельзя переходить курсором и `true` для остальных. Здесь снова поможет `getItemViewType`:
 
-    #!java
-    public boolean isEnabled(int position) {
-        return getItemViewType(position) != SECTION_VIEW_TYPE };
+``` { java }
+
+public boolean isEnabled(int position) {
+    return getItemViewType(position) != SECTION_VIEW_TYPE };
+
+```
 
 Метод `getViewTypeCount` возвращает ту самую константу, количество возможных типов элементов:
 
-    #!java
-    public int getViewTypeCount() { return VIEW_TYPES_COUNT; }
+``` { java }
+
+public int getViewTypeCount() { return VIEW_TYPES_COUNT; }
+
+```
 
 Кстати, можно хранить ссылку на `LayoutInflater` в самом адаптере, а получать её от создавшей его активити через конструктор.
 
@@ -102,22 +123,28 @@ tags: [ android, java, vimeoid ]
 
 Таким образом я упростил добавление групп и пунктов в список. Адаптер имеет методы:
 
-    #!java
-    public int addSection(String title);
-    public LActionItem addItem(int section, int icon, String title);
+``` { java }
+
+public int addSection(String title);
+public LActionItem addItem(int section, int icon, String title);
+
+```
 
 Метод `addSection` возвращает идентификатор группы, который затем можно использовать для добавления пунктов в эту группу:
 
-    #!java
-    final int suitsSection = adapter.addSection("Suits");
-    adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
-    adapter.addItem(suitsSection, R.drawable.diamond, "Diamonds");
-    adapter.addItem(suitsSection, R.drawable.spade, "Spades");
-    adapter.addItem(suitsSection, R.drawable.cross, "Crosses");
-    final int figuresSection = adapter.addSection("Figures");
-    adapter.addItem(figuresSection, R.drawable.king, "King");
-    adapter.addItem(figuresSection, R.drawable.queen, "Queen");
-    . . .
+``` { java }
+
+final int suitsSection = adapter.addSection("Suits");
+adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
+adapter.addItem(suitsSection, R.drawable.diamond, "Diamonds");
+adapter.addItem(suitsSection, R.drawable.spade, "Spades");
+adapter.addItem(suitsSection, R.drawable.cross, "Crosses");
+final int figuresSection = adapter.addSection("Figures");
+adapter.addItem(figuresSection, R.drawable.king, "King");
+adapter.addItem(figuresSection, R.drawable.queen, "Queen");
+. . .
+
+```
 
 ### 3. Списки с реагирующими элементами
 
@@ -129,31 +156,43 @@ tags: [ android, java, vimeoid ]
 
 Если вы согласны с этим, ваш адаптер может имплементировать интерфейс `OnItemClickListener`:
 
-    #!java
-    public class ActionsAdapter extends . . . implements OnItemClickListener
+``` { java }
+
+public class ActionsAdapter extends . . . implements OnItemClickListener
+
+```
 
 А в использующей его активити можно сделать:
 
-    #!java
-    final ListView actionsList = (ListView)findViewById(R.id.actionsList);
-    final SectionedActionsAdapter actionsAdapter = new ActionsAdapter(. . .);
-    . . . // заполнить адаптер значениями
-    actionsList.setAdapter(actionsAdapter);
-    actionsList.setOnItemClickListener(actionsAdapter);
+``` { java }
+
+final ListView actionsList = (ListView)findViewById(R.id.actionsList);
+final SectionedActionsAdapter actionsAdapter = new ActionsAdapter(. . .);
+. . . // заполнить адаптер значениями
+actionsList.setAdapter(actionsAdapter);
+actionsList.setOnItemClickListener(actionsAdapter);
+
+```
 
 В моём случае за пункты в каждом разделе выступают какие-то действия - переходы на активити либо изменения вида пункта после запроса к серверу. Поэтому я предпочёл сделать структуры с публично доступными свойствами для разделов и пунктов, при этом структуры пунктов содержат обработчик `OnClick` который принимает `View` на котором произошёл выбор, поэтому можно изменять `View` прямо из них. Благодаря этому в адаптере можно просто передать действие обработчику:
 
-    #!java
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        final LActionItem item = (LActionItem) getItem(position);
-	    if (item.onClick != null) item.onClick(view);
-    }
+``` { java }
+
+public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    final LActionItem item = (LActionItem) getItem(position);
+    if (item.onClick != null) item.onClick(view);
+}
+
+```
 
 Используя описанный выше метод `addItem` можно устанавливать обработчик:
 
-    #!java
-    final LActionItem heartsItem = adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
-    heartsItem.onClick = new OnClickListener() { public void onClick(View view) { . . . } };
+``` { java }
+
+final LActionItem heartsItem = adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
+heartsItem.onClick = new OnClickListener() { public void onClick(View view) { . . . } };
+
+```
 
 ### 4. Принудительная инвалидация видов в списках
 
@@ -161,18 +200,21 @@ tags: [ android, java, vimeoid ]
 
 Если в какой-то момент требуется обновить (инвалидировать) конкретный известный вид элемента (или даже его дочерний вид) списка в то время, когда он видим на экране, можно вызвать `ListView.invalidate()` или `Adapter.notifyDataSetChanged()`, но иногда эти методы нерационально обновляют и соседние виды, а то и вообще все видимые (особенно если layout [построен неправильно](http://www.curious-creature.org/2009/02/22/android-layout-tricks-1/)). Есть способ получить текущий вид элемента списка используя метод `ListView.getChildAt(position)`. Однако `position` в данном случае это не индекс элемента в списке, как можно было бы ожидать, а индекс относительно видимых на экране видов. Поэтому полезными будут такие методы:
 
-    #!java
-	public static View getItemViewIfVisible(AdapterView<?> holder, int itemPos) {
-	    int firstPosition = holder.getFirstVisiblePosition();
-	    int wantedChild = itemPos - firstPosition;
-	    if (wantedChild < 0 || wantedChild >= holder.getChildCount()) return null;
-	    return holder.getChildAt(wantedChild);
-	}
+``` { java }
 
-	public static void invalidateByPos(AdapterView<?> parent, int position) {
-        final View itemView = getItemViewIfVisible(parent, position);
-        if (itemView != null) itemView.invalidate();
-    }
+public static View getItemViewIfVisible(AdapterView<?> holder, int itemPos) {
+	  int firstPosition = holder.getFirstVisiblePosition();
+	  int wantedChild = itemPos - firstPosition;
+	  if (wantedChild < 0 || wantedChild >= holder.getChildCount()) return null;
+	 return holder.getChildAt(wantedChild);
+}
+
+public static void invalidateByPos(AdapterView<?> parent, int position) {
+    final View itemView = getItemViewIfVisible(parent, position);
+    if (itemView != null) itemView.invalidate();
+}
+
+```
 
 `invalidateByPos` обновляет вид только если он видим на экране (насильно вызывая `getView` адаптера), а если элемент не видим - `getView` адаптера будет вызван автоматически когда этот вид появится в области видимости при прокрутке списка. Чтобы обновить некий дочерний вид элемента, вы можете использовать метод `getViewIsVisible`, он вернёт вид элемента из которого можно получить доступ к его дочерним видам и `null`, если вид не видим пользователю и в обновлении нет необходимости.
 
@@ -180,7 +222,7 @@ tags: [ android, java, vimeoid ]
 
 ### 5. Про кэширование изображений для списков
 
-![Список с картинками](http://vimeoid.googlecode.com/hg/screens/guest_videos.png)
+![Список с картинками]({{ get_figure(slug, 'guest-videos.png') }})
 
 Если вы создаёте список `ListView`, содержащий изображения загружаемые из сети, эта глава для вас. Неразумно бы было при каждом вызове `getView` в адаптере получать изображения по URL заново - естественно лучше бы было их а) кэшировать б) запрашивать только тогда, когда вид с изображением видим пользователю. На данный момент эта задача так часто вставала перед программистами на Android, что уже существует [множество её решений](http://stackoverflow.com/questions/541966/android-how-do-i-do-a-lazy-load-of-images-in-listview).
 
@@ -203,32 +245,35 @@ tags: [ android, java, vimeoid ]
 
 Для того, чтобы обеспечить постраничный вывод, можно просто хранить список из контейнеров для страниц (например, курсоров) в адаптере, а в `getView()`, если запрошен один из последних элементов, запускать запрос на следующую страницу (предпочтительно - `AsyncTask`), который при получении нового контейнера добавит его в адаптер и адаптер сможет вызвать `notifyDataSetChanged()`. Примерно так:
 
-    #!java
-    private final Page[] pages = new Page[MAX_PAGES_COUNT];
+``` { java }
 
-    public View getView(final int position, View convertView, ViewGroup parent) {
+private final Page[] pages = new Page[MAX_PAGES_COUNT];
 
-        if (!waitingNextPage &&
-            (pages.length < MAX_PAGES_COUNT) &&
-            (position >= ((pages.length * PER_PAGE) - 2))) {
+public View getView(final int position, View convertView, ViewGroup parent) {
 
-            final AsyncTask<Integer, . . .> nextPageTask = . . .;
-            nextPageTask.execute(pages.length);
-            // nextPageTask вызывает addSource, когда получает новую страницу
+    if (!waitingNextPage &&
+        (pages.length < MAX_PAGES_COUNT) &&
+        (position >= ((pages.length * PER_PAGE) - 2))) {
 
-            waitingNextPage = true;
-        }
+        final AsyncTask<Integer, . . .> nextPageTask = . . .;
+        nextPageTask.execute(pages.length);
+        // nextPageTask вызывает addSource, когда получает новую страницу
 
-        . . .
-
+        waitingNextPage = true;
     }
 
-    public void addSource(Page page) {
-       if (pages.length >= MAX_PAGES_COUNT) return;
-       pages[pages.length] = page;
-       waitingNextPage = false;
-       notifyDataSetChanged();
-    }
+    . . .
+
+}
+
+public void addSource(Page page) {
+    if (pages.length >= MAX_PAGES_COUNT) return;
+    pages[pages.length] = page;
+    waitingNextPage = false;
+    notifyDataSetChanged();
+}
+
+```
 
 `EasyCursorsAdapter` - хороший пример, где в качестве аналога `Page` выступает `Cursor`. Наверняка есть и альтернативные решения, буду рад если их упомянут в комментариях.
 
@@ -280,25 +325,28 @@ tags: [ android, java, vimeoid ]
 
 Код получения потока по URL примерно таков:
 
-    #!java
-    public static InputStream getVideoStream(long videoId)
-           throws FailedToGetVideoStreamException, VideoLinkRequestException {
-		try {
-			final HttpClient client = new DefaultHttpClient();
-			. . .
-			final HttpResponse response = client.execute(request);
-			if ((response == null) || (response.getEntity() == null))
-			    throw new FailedToGetVideoStreamException("Failed to get video stream");
-			lastContentLength = response.getEntity().getContentLength();
-	        return response.getEntity().getContent();
-		} catch (URISyntaxException use) {
-			throw new VideoLinkRequestException("URI creation failed : " + use.getLocalizedMessage());
-		} catch (ClientProtocolException cpe) {
-			throw new VideoLinkRequestException("Client call failed : " + cpe.getLocalizedMessage());
-		} catch (IOException ioe) {
-			throw new VideoLinkRequestException("Connection failed : " + ioe.getLocalizedMessage());
-		}
-	}
+``` { java }
+
+public static InputStream getVideoStream(long videoId)
+       throws FailedToGetVideoStreamException, VideoLinkRequestException {
+    try {
+        final HttpClient client = new DefaultHttpClient();
+        . . .
+        final HttpResponse response = client.execute(request);
+        if ((response == null) || (response.getEntity() == null))
+            throw new FailedToGetVideoStreamException("Failed to get video stream");
+        lastContentLength = response.getEntity().getContentLength();
+        return response.getEntity().getContent();
+    } catch (URISyntaxException use) {
+        throw new VideoLinkRequestException("URI creation failed : " + use.getLocalizedMessage());
+    } catch (ClientProtocolException cpe) {
+        throw new VideoLinkRequestException("Client call failed : " + cpe.getLocalizedMessage());
+    } catch (IOException ioe) {
+        throw new VideoLinkRequestException("Connection failed : " + ioe.getLocalizedMessage());
+    }
+}
+
+```
 
 ### 9. Очереди из `AsyncTask`
 
@@ -306,211 +354,229 @@ tags: [ android, java, vimeoid ]
 
 Вот интерфейс задачи, которая знает что у неё есть следующая задача:
 
-    #!java
-    public interface HasNextTask<Params> {
-        public int getId();
-        void setNextTask(HasNextTask<Params> task);
-        public HasNextTask<Parames> getNextTask();
-        public AsyncTask<?, ?, ?> execute(Params... params);
-                             // совпадение с AsyncTask<Params, ...>
-    }
+``` { java }
+
+public interface HasNextTask<Params> {
+    public int getId();
+    void setNextTask(HasNextTask<Params> task);
+    public HasNextTask<Parames> getNextTask();
+    public AsyncTask<?, ?, ?> execute(Params... params);
+                         // совпадение с AsyncTask<Params, ...>
+}
+
+```
 
 Интерфейс, который следит за всеми моментами, когда задачи удачно или неудачно выполняются:
 
-    #!java
-    public interface PerformHandler<Params, Result> {
-        public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask);
-        public void onError(Exception e, String description);
-    }
+``` { java }
+
+public interface PerformHandler<Params, Result> {
+    public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask);
+    public void onError(Exception e, String description);
+}
+
+```
 
 Реализация интерфейса `HasNextTask`. То что представлено многоточиями, можно вынести в дочерний класс или сделать сам класс абстрактным, чтобы методы `doInBackground`/`onPostExecute` реализовывались прямо в `createTask` очереди:
 
-    #!java
-    public class TaskInQueue<Params, Result> extends AsyncTask<Params, Void, Result>
-                                             implements HasNextTask<Params> {
+``` { java }
 
-        private final int taskId;
-        private HasNextTask<Params> nextTask = null;
-        private final PerformHandler<Params, Result> listener;
+public class TaskInQueue<Params, Result> extends AsyncTask<Params, Void, Result>
+                                         implements HasNextTask<Params> {
 
-        public TaskInQueue(PerformHandler<Params, Result> listener, int taskId) {
-            this.taskId = taskId;
-            this.listener = listener;
-        }
+    private final int taskId;
+    private HasNextTask<Params> nextTask = null;
+    private final PerformHandler<Params, Result> listener;
 
-        @Override
-        public Result doInBackground(Params... params) { . . . /* выполнение задачи */ }
-
-        @Override
-        protected void onPostExecute(Result result) {
-            . . . // обработка результата, если нужно
-            listener.onPerformed(taskId, result, nextTask);
-        }
-
-        @Override public int getId() { return taskId; }
-
-        @Override
-        public void setNextTask(HasNextTask<Params> nextTask) {
-            if (this.nextTask != null)
-                throw new IllegalStateException("Next task is already set");
-            this.nextTask = nextTask;
-        }
-
-        @Override
-        public HasNextTask<Params> getNextTask() { return nextTask; };
-
+    public TaskInQueue(PerformHandler<Params, Result> listener, int taskId) {
+        this.taskId = taskId;
+        this.listener = listener;
     }
+
+    @Override
+    public Result doInBackground(Params... params) { . . . /* выполнение задачи */ }
+
+    @Override
+    protected void onPostExecute(Result result) {
+        . . . // обработка результата, если нужно
+        listener.onPerformed(taskId, result, nextTask);
+    }
+
+    @Override public int getId() { return taskId; }
+
+    @Override
+    public void setNextTask(HasNextTask<Params> nextTask) {
+        if (this.nextTask != null)
+            throw new IllegalStateException("Next task is already set");
+        this.nextTask = nextTask;
+    }
+
+    @Override
+    public HasNextTask<Params> getNextTask() { return nextTask; };
+
+}
+
+```
 
 Ну и самое главное, реализация очереди:
 
-    #!java
-    public abstract class TasksQueue<Params, Result>
-                    implements PerformHandler<Params, Result>, Runnable {
+``` { java }
 
-        public static final String TAG = "TasksQueue";
+public abstract class TasksQueue<Params, Result>
+                implements PerformHandler<Params, Result>, Runnable {
 
-        private HasNextTask<Params> firstTask = null;
-        private HasNextTask<Params> lastTask = null;
-        private Map<Integer, Params> tasksParams = null;
-        private int currentTask = -1;
-        private boolean running = false; // сейчас выполняется одна из задач
-        private boolean started = false; // очередь запущена
-        private int size = 0;
+    public static final String TAG = "TasksQueue";
 
-        protected HasNextTask<Params> createTask(int taskId) { // можно переопределить
-            return new TaskInQueue<Params, Result>(this, taskId);
+    private HasNextTask<Params> firstTask = null;
+    private HasNextTask<Params> lastTask = null;
+    private Map<Integer, Params> tasksParams = null;
+    private int currentTask = -1;
+    private boolean running = false; // сейчас выполняется одна из задач
+    private boolean started = false; // очередь запущена
+    private int size = 0;
+
+    protected HasNextTask<Params> createTask(int taskId) { // можно переопределить
+        return new TaskInQueue<Params, Result>(this, taskId);
+    }
+
+    @Override
+    public HasNextTask<Params> add(int taskId, Params params) {
+        Log.d(TAG, "Adding task " + taskId);
+        final HasNextTask<Params> = createTask(taskId);
+        if (isEmpty()) {
+            firstTask = task;
+            lastTask = task;
+            tasksParams = new HashMap<Integer, Params>();
+        } else {
+            lastTask.setNextTask(task);
+            lastTask = task;
         }
+        tasksParams.put(task.getId(), params);
+        size += 1;
+        return task;
+    }
 
-        @Override
-        public HasNextTask<Params> add(int taskId, Params params) {
-            Log.d(TAG, "Adding task " + taskId);
-            final HasNextTask<Params> = createTask(taskId);
-            if (isEmpty()) {
-                firstTask = task;
-                lastTask = task;
-                tasksParams = new HashMap<Integer, Params>();
-            } else {
-                lastTask.setNextTask(task);
-                lastTask = task;
-            }
-            tasksParams.put(task.getId(), params);
-            size += 1;
-            return task;
-        }
-
-        @Override
-        public void run() {
-        	Log.d(TAG, "Running first task");
-            if (!isEmpty())
-                try {
-                    started = true;
-                    execute(firstTask);
-                } catch (Exception e) {
-                    onError(e, e.getLocalizedMessage());
-                    finish();
-                }
-            else throw new IllegalStateException("Queue is empty");
-        }
-
-        @Override
-        public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask) {
-        	Log.d(TAG, "Task " + taskId + " performed");
-            if (taskId != currentTask)
-                throw new IllegalStateException("Tasks queue desynchronized");
-            running = false;
+    @Override
+    public void run() {
+        Log.d(TAG, "Running first task");
+        if (!isEmpty())
             try {
-                if (nextTask != null) {
-                    execute(nextTask);
-                } else finish();
+                started = true;
+                execute(firstTask);
             } catch (Exception e) {
-                onError(e, "Error while executing task " +
-                           ((nextTask != null) ? nextTask.getId() : taskId));
+                onError(e, e.getLocalizedMessage());
                 finish();
             }
-        }
-
-        protected void execute(HasNextTask<Result> task) throws Exception {
-        	Log.d(TAG, "Trying to run task " + task.getId());
-            if (running) throw new IllegalStateException("Tasks queue desynchronized");
-            currentTask = task.getId();
-            running = true;
-            Log.d(TAG, "Running task " + task.getId());
-            task.execute(tasksParams.get(task.getId())).get(); // wait for result
-        }
-
-        protected void finish() {
-            firstTask = null;
-            lastTask = null;
-            if (tasksParams != null) tasksParams.clear();
-            tasksParams = null;
-            currentTask = -1;
-            running = false;
-            started = false;
-            size = 0;
-        }
-
-        public boolean isEmpty() { return (firstTask == null); }
-
-        public boolean started() { return started; }
-
-        public boolean running() { return running; }
-
-        public int size() { return size; }
-
+        else throw new IllegalStateException("Queue is empty");
     }
+
+    @Override
+    public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask) {
+    	  Log.d(TAG, "Task " + taskId + " performed");
+        if (taskId != currentTask)
+            throw new IllegalStateException("Tasks queue desynchronized");
+        running = false;
+        try {
+            if (nextTask != null) {
+                execute(nextTask);
+            } else finish();
+        } catch (Exception e) {
+            onError(e, "Error while executing task " +
+                       ((nextTask != null) ? nextTask.getId() : taskId));
+            finish();
+        }
+    }
+
+    protected void execute(HasNextTask<Result> task) throws Exception {
+    	  Log.d(TAG, "Trying to run task " + task.getId());
+        if (running) throw new IllegalStateException("Tasks queue desynchronized");
+        currentTask = task.getId();
+        running = true;
+        Log.d(TAG, "Running task " + task.getId());
+        task.execute(tasksParams.get(task.getId())).get(); // wait for result
+    }
+
+    protected void finish() {
+        firstTask = null;
+        lastTask = null;
+        if (tasksParams != null) tasksParams.clear();
+        tasksParams = null;
+        currentTask = -1;
+        running = false;
+        started = false;
+        size = 0;
+    }
+
+    public boolean isEmpty() { return (firstTask == null); }
+
+    public boolean started() { return started; }
+
+    public boolean running() { return running; }
+
+    public int size() { return size; }
+
+}
+
+```
 
 Теперь в ваших активити в любой момент можно с лёгкостью создать очередь фоновых задач:
 
-    #!java
-    protected final TasksQueue secondaryTasks;
+``` { java }
 
-    private final int TASK_1 = 0;
-    private final int TASK_2 = 1;
-    private final int TASK_3 = 2;
+protected final TasksQueue secondaryTasks;
 
-    public ...Activity() { // конструктор
+private final int TASK_1 = 0;
+private final int TASK_2 = 1;
+private final int TASK_3 = 2;
 
-    	secondaryTasks = new TasksQueue<..., ...>() {
+public ...Activity() { // конструктор
 
-    	    // здесь можно переопределить createTask
+    secondaryTasks = new TasksQueue<..., ...>() {
 
-            @Override public void onPerfomed(int taskId, ... result) throws JSONException {
-                super.onPerfomed(taskId, result);
-                onSecondaryTaskPerfomed(taskId, result);
-            }
+        // здесь можно переопределить createTask
 
-            @Override public void onError(Exception e, String message) {
-                Log.e(TAG, message + " / " + e.getLocalizedMessage());
-                Dialogs.makeExceptionToast(ItemsListActivity.this, message, e);
-            }
-
-        };
-
-        secondaryTasks.add(TASK_1, ...);
-        secondaryTasks.add(TASK_2, ...);
-        secondaryTasks.add(TASK_3, ...);
-
-    }
-
-    protected void someMethod() {
-        . . .
-        if (!secondaryTasks.isEmpty()) secondaryTasks.run();
-        . . .
-    }
-
-    protected void onSecondaryTaskPerfomed(int taskId, ... result) {
-        switch (taskId) {
-            case TASK_1: . . .
-            case TASK_2: . . .
-            case TASK_3: . . .
-            . . .
+        @Override public void onPerfomed(int taskId, ... result) throws JSONException {
+            super.onPerfomed(taskId, result);
+            onSecondaryTaskPerfomed(taskId, result);
         }
+
+        @Override public void onError(Exception e, String message) {
+            Log.e(TAG, message + " / " + e.getLocalizedMessage());
+            Dialogs.makeExceptionToast(ItemsListActivity.this, message, e);
+        }
+
+    };
+
+    secondaryTasks.add(TASK_1, ...);
+    secondaryTasks.add(TASK_2, ...);
+    secondaryTasks.add(TASK_3, ...);
+
+}
+
+protected void someMethod() {
+    . . .
+    if (!secondaryTasks.isEmpty()) secondaryTasks.run();
+    . . .
+}
+
+protected void onSecondaryTaskPerfomed(int taskId, ... result) {
+    switch (taskId) {
+        case TASK_1: . . .
+        case TASK_2: . . .
+        case TASK_3: . . .
+        . . .
     }
+}
+
+```
 
 Кстати, благодаря интерфейсу `Runnable` такие очереди можно запускать в отдельном потоке:
 
-    #!java
-    new Thread(secondaryTasks, "Tasks Queue").start();
+``` { java }
+
+new Thread(secondaryTasks, "Tasks Queue").start();
+
+```
 
  * Очередь в vimeoid: [`ApiTasksQueue`](http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/ApiTasksQueue.java?r=85e18485bdda1c526141170f67e65f4e00202f34)
  * Создаётся в: [`SingleItemActivity`](http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/SingleItemActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34#49)
@@ -519,7 +585,7 @@ tags: [ android, java, vimeoid ]
 
 ### 10. Подсветка выбора в ListView
 
-![Выбранная строка в списке](http://vimeoid.googlecode.com/hg/screens/user_video.png)
+![Выбранная строка в списке]({{ get_figure(slug, 'user-video.png') }})
 
 На картинке видно синюю полосу, это кастомная подсветка выбранного элемента, она имеет четыре состояния - нажатая, имеющая фокус, запрещённая и анимация перехода от нажатой в зажатую для долгого тапа. Первые три и зажатое состояние - это так называемые `9-patch`, вы наверняка [о них слышали](http://developer.android.com/guide/developing/tools/draw9patch.html), анимация - `xml`-файл анимации.
 
@@ -531,41 +597,44 @@ tags: [ android, java, vimeoid ]
  * Анимация: [`selector_bg_transition.xml`](http://code.google.com/p/vimeoid/source/browse/apk/res/drawable/selector_bg_transition.xml?r=85e18485bdda1c526141170f67e65f4e00202f34)
  * Объявлен в: [`generic_list.xml`](http://code.google.com/p/vimeoid/source/browse/apk/res/layout/generic_list.xml?r=85e18485bdda1c526141170f67e65f4e00202f34#16)
 
-![редактор 9-patch](http://developer.android.com/images/draw9patch-norm.png)
+![редактор 9-patch]({{ get_figure(slug, 'draw9patch-norm.png') }})
 
 С 9-patch тоже есть хитрости, чуть что не так в лэйауте - и они разъезжаются и весь список разъезжается тоже. Главное правило - проверить прежде описание `ListView`, убедитесь что `layout_width` и `layout_height` установлены в `fill_parent` и кроме того перепроверьте элементы выше по иерархии. Затем, если не помогло, можно исправлять 9-patch. Тонкие чёрные линии сверху и слева обозначают области картинки, которые будут растянуты если контент не влез в картинку. Тонкие чёрные линии (необязательные) справа и снизу обозначают области в которые сам контент будет вписан. Подобрать нужные позиции тоже получается не сразу, приходится экспериментировать. Даже не думайте создавать 9-patch без редактора из коробки, это лишний вынос мозга - в редакторе подсвечиваются области для контента и ошибки, и даже когда всё вроде верно, не всегда раскладка воспринимается инфлейтером как ожидалось.
 
-![Запрещённое состояние](http://vimeoid.googlecode.com/hg/apk/res/drawable/selector_bg_disabled.9.png?r=85e18485bdda1c526141170f67e65f4e00202f34) ![Cостояние фокуса](http://vimeoid.googlecode.com/hg/apk/res/drawable/selector_bg_focus.9.png?r=85e18485bdda1c526141170f67e65f4e00202f34) ![Нажатое состояние](http://vimeoid.googlecode.com/hg/apk/res/drawable/selector_bg_pressed.9.png?r=85e18485bdda1c526141170f67e65f4e00202f34) ![Зажатое состояние](http://vimeoid.googlecode.com/hg/apk/res/drawable/selector_bg_longpress.9.png?r=85e18485bdda1c526141170f67e65f4e00202f34)
+![Запрещённое состояние]({{ get_figure(slug, 'selector_bg_disabled.9.png') }}) ![Cостояние фокуса]({{ get_figure(slug, 'selector_bg_focus.9.png') }}) ![Нажатое состояние]({{ get_figure(slug, 'selector_bg_pressed.9.png') }}) ![Зажатое состояние]({{ get_figure(slug, 'selector_bg_longpress.9.png') }})
 
 ### 11. Добавление QuickActions
 
-![Пример QuickActions](http://vimeoid.googlecode.com/hg/screens/user_videos.png)
+![Пример QuickActions]({{ get_figure(slug, 'user-videos.png') }})
 
 [QuickActions](http://www.londatiga.net/it/how-to-create-quickaction-dialog-in-android/) - небольшая библиотека для всплывающих диалогов с действиями, таких как на рисунке (и не только таких, потому что их дизайн можно менять свободно). Они стали новым популярным веянием при появлении официального твиттер-клиента. Должны быть и другие имплементации, в _vimeoid_ я использую эту, и её тоже немного подправил для своих нужд.
 
 Для того, чтобы отобразить такой диалог вместо контекстного меню при долгом тапе на элементе в списке, достаточно переопределить метод `onCreateContextMenu` в `ListActivity` таким образом:
 
-    #!java
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
-        . . .
-        final AdapterView.AdapterContextMenuInfo info = extractMenuInfo(menuInfo);
-        final QuickAction quickAction =
-              createQuickActions(info.position, getItem(info.position), info.targetView);
-        if (quickAction != null) quickAction.show();
-    }
+``` { java }
 
-    protected QuickAction createQuickActions(final int position, final ... item, View view) {
-        QuickAction qa = new QuickAction(view);
-        qa.addActionItem(getString(R.string...),
-                         getResources().getDrawable(R.drawable...),
-                new QActionClickListener() {
-                    @Override public void onClick(View v, QActionItem item) {
-                        . . .
-                    }
-                });
-        . . .
-        return qa;
-    }
+public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+    . . .
+    final AdapterView.AdapterContextMenuInfo info = extractMenuInfo(menuInfo);
+    final QuickAction quickAction =
+          createQuickActions(info.position, getItem(info.position), info.targetView);
+    if (quickAction != null) quickAction.show();
+}
+
+protected QuickAction createQuickActions(final int position, final ... item, View view) {
+    QuickAction qa = new QuickAction(view);
+    qa.addActionItem(getString(R.string...),
+                     getResources().getDrawable(R.drawable...),
+            new QActionClickListener() {
+                @Override public void onClick(View v, QActionItem item) {
+                    . . .
+                }
+            });
+    . . .
+    return qa;
+}
+
+```
 
  * Каталог, содержащий модифицированную библиотеку [`lib-qactions`](http://code.google.com/p/vimeoid/source/browse/lib-qactions?r=85e18485bdda1c526141170f67e65f4e00202f34)
  * Используется в: [`VideosActivity`](http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/list/VideosActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34#113)
@@ -584,15 +653,18 @@ tags: [ android, java, vimeoid ]
 
 Возможно это очевидно, но в строках из `strings.xml` можно использовать плейсходеры для того, чтобы подставлять какие-то независимые от локали значения внутрь строк, например: `<string name="image_info">Image size: {width}x{height}</string>`. В этом поможет функция `format`, которую можно вызвать так: `format(getString(R.string.image_info), "width", String.valueOf(600), "height", String.valueOf(800))`:
 
-    #!java
-    public static String format(String source, String... params) {
-        String result = source;
-        int pos = 0;
-        while (pos < params.length) {
-            result = result.replaceAll("\\{" + params[pos++] + "\\}", params[pos++]);
-        }
-        return result;
+``` { java }
+
+public static String format(String source, String... params) {
+    String result = source;
+    int pos = 0;
+    while (pos < params.length) {
+        result = result.replaceAll("\\{" + params[pos++] + "\\}", params[pos++]);
     }
+    return result;
+}
+
+```
 
 **Upd.** Оказалось, как я и думал, это велосипед: Есть стандартная функция [`getString(int resId, Object... formatArgs)`](http://developer.android.com/intl/de/reference/android/content/Context.html#getString%28int,%20java.lang.Object...%29). Спасибо [zochek](http://zochek.habrahabr.ru/).
 

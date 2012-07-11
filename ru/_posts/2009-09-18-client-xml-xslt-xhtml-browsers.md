@@ -17,7 +17,7 @@ tags: [ javascript, web-development, xml, xslt ]
 
 Контактные данные, при их большом количестве, можно сгруппировать, поэтому XML-схема построена с учётом группировки элементов. Группа имеет краткое имя (`shortname`) для создания `id` у списка (возможно, потребуется оформить каждую группу по-особому) и, собственно, имя группы. XML-файл может содержать `contact`-ноды и вне групп, но в данном примере в этом нет необходимости. Все контакты имеют тип (`type`) для создания корректных ссылок в будущем (это мы также опустим). С остальным, вроде бы, всё понятно:
 
-![XML Schema Example]({{ get_figure(slug, 'xml-schema-example.png') }})
+![XML Schema Example]({{ get_figure(slug, 'xml-schema-example.jpg') }})
 
 Структура довольно-таки проста, поэтому приведу сразу пример файла (любое сходство с реальными данными какого-либо индивидуума полностью случайно и приведено не намеренно):
 
@@ -135,7 +135,7 @@ tags: [ javascript, web-development, xml, xslt ]
 
 В результате преобразования получается такой блок XHTML:
 
-![XHTML Rendering Result]({{ get_figure(slug, 'xml-rendering-result.png') }})
+![XHTML Rendering Result]({{ get_figure(slug, 'xml-rendering-result.jpg') }})
 
 ### JavaScript
 
