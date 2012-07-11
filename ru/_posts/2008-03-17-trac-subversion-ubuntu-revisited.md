@@ -108,16 +108,19 @@ tags: [ subversion, trac, ubuntu, administration ]
 
 Ниже приведено точное содержимое конфигурационного файла. При обращении на путь `<host>/svn/...` модуль авторизации apache будет обращаться к файлу `/etc/apache2/dav_svn.passwd` за списком пользователей, а затем давать права на доступ к соответствующему проекту из файла `/etc/apache2/dav_svn.authz`. Обратите также внимание на использование `SVNParentPath` вместо `SVNPath` -- таким образом subversion-модуль поймёт, что мы используем мультипроектную структуру и будет обрабатывать путь не как один общий репозиторий, а как несколько внутренних:
 
-    #!xml
-    <Location /svn>
-        DAV svn
-        SVNParentPath /var/svn
-        AuthType Basic
-        AuthName "Subversion Repository"
-        AuthUserFile /etc/apache2/dav_svn.passwd
-        AuthzSVNAccessFile /etc/apache2/dav_svn.authz
-        Require valid-user
-    </Location>
+``` { apache }
+
+<Location /svn>
+    DAV svn
+    SVNParentPath /var/svn
+    AuthType Basic
+    AuthName "Subversion Repository"
+    AuthUserFile /etc/apache2/dav_svn.passwd
+    AuthzSVNAccessFile /etc/apache2/dav_svn.authz
+    Require valid-user
+</Location>
+
+```
 
 Создадим соответствующих пользователей в файлах авторизации. Используйте пароли попроще для проверки и не забудьте их потом поменять:
 
@@ -130,17 +133,21 @@ tags: [ subversion, trac, ubuntu, administration ]
 
 В открытым файле опишем права доступа (на чтение -- “`r`” и на запись -- “`w`“) пользователей в соответствующие репозитории:
 
-    [/]
-    user1=r
-    user2=r
+``` { ini }
 
-    [/someProject]
-    user1=rw
-    user2=r
+[/]
+user1=r
+user2=r
 
-    [/anotherProject]
-    user1=r
-    user2=rw
+[/someProject]
+user1=rw
+user2=r
+
+[/anotherProject]
+user1=r
+user2=rw
+
+```
 
 #### Пункт 6. Создание окружений trac.
 
@@ -164,29 +171,32 @@ tags: [ subversion, trac, ubuntu, administration ]
 
 Есть несколько вариантов такого связывания, мы остановимся на быстром, но надёжном способе -- через `mod_python` ([описания способов](http://trac.edgewall.org/wiki/TracInstall#WebServer) на сайте trac). Для этого модуль нужно установить (также, если он не включился после установки, по завершению настройки используйте `a2enmod mod_python`):
 
-sudo apt-get install libapache2-mod-python
+    sudo apt-get install libapache2-mod-python
 
 Настроим доступ к окружениям trac:
 
-sudo vi /etc/apache2/sites-available/trac
+    sudo vi /etc/apache2/sites-available/trac
 
 Эта настройка специфична для использования `mod_python` ([руководство](http://trac.edgewall.org/wiki/TracModPython) на сайте trac, см. [описания](http://trac.edgewall.org/wiki/TracInstall#WebServer), если необходимы другие способы настройки). Обработчиком обращений по адресу `<host>/localProjects` выступит модуль, он будет рассматривать каталог `/var/trac/` как корень нескольких проектов и содаст страницу с их списком (редактируемый шаблон можно найти внутри исходников trac), аналогично принципам `SVNParentPath`, `URI` передаётся в код trac. Запросы на вход будут обрабатываться по пользователям из того же `passwd` файла, из которого берёт их список subversion, а их права на действия в окружениях trac раздаются через `trac-admin` или в GUI-версии TracAdmin, доступной для аминистраторов окружений (будьте внимательны, пользователи создаваемые через интерфейс также добавляются в этот файл и доступны к использованию для настройки авторизации в subversion через `authz`-файл (по умолчанию у них нет никаких прав)) .
 
-    #!xml
-    <Location /localProjects>
-       SetHandler mod_python
-       PythonInterpreter main_interpreter
-       PythonHandler trac.web.modpython_frontend
-       PythonOption TracEnvParentDir /var/trac
-       PythonOption TracUriRoot /localProjects
-    </Location>
+``` { apache }
 
-    <LocationMatch /localProjects/[^/]+/login>
-       AuthType Basic
-       AuthName “Local Projects”
-       AuthUserFile /etc/apache2/dav_svn.passwd
-       Require valid-user
-    </LocationMatch>
+<Location /localProjects>
+   SetHandler mod_python
+   PythonInterpreter main_interpreter
+   PythonHandler trac.web.modpython_frontend
+   PythonOption TracEnvParentDir /var/trac
+   PythonOption TracUriRoot /localProjects
+</Location>
+
+<LocationMatch /localProjects/[^/]+/login>
+   AuthType Basic
+   AuthName “Local Projects”
+   AuthUserFile /etc/apache2/dav_svn.passwd
+   Require valid-user
+</LocationMatch>
+
+```
 
 Теперь заменим сайт по умолчанию для apache на сайт trac:
 
@@ -228,22 +238,25 @@ sudo vi /etc/apache2/sites-available/trac
 
 В нём:
 
-    #!xml
-    <VirtualHost acme.org:796>
-        ServerName svn.acme.org
-        <Location />
-            DAV svn
-            SVNParentPath /var/svn
-            AuthType Basic
-            AuthName "Subversion Repository"
-            AuthUserFile /etc/apache2/dav_svn.passwd
-            AuthzSVNAccessFile /etc/apache2/dav_svn.authz
-            Require valid-user
-        </Location>
-        SSLEngine on
-        SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
-        SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-    </VirtualHost>
+``` { apache }
+
+<VirtualHost acme.org:796>
+    ServerName svn.acme.org
+    <Location />
+        DAV svn
+        SVNParentPath /var/svn
+        AuthType Basic
+        AuthName "Subversion Repository"
+        AuthUserFile /etc/apache2/dav_svn.passwd
+        AuthzSVNAccessFile /etc/apache2/dav_svn.authz
+        Require valid-user
+    </Location>
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
+    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+</VirtualHost>
+
+```
 
 Trac:
 
@@ -251,28 +264,31 @@ Trac:
 
 В нём:
 
-    #!xml
-    <VirtualHost acme.org:967>
-        ServerName trac.acme.org
+``` { apache }
 
-        <Location />
-            SetHandler mod_python
-            PythonInterpreter main_intepreter
-            PythonHandler trac.web.modpython_frontend
-            PythonOption TracEnvParentDir /var/trac
-            PythonOption TracUriRoot /
-        </Location>
+<VirtualHost acme.org:967>
+    ServerName trac.acme.org
 
-        <LocationMatch /[^/]+/login>
-            AuthType Basic
-            AuthName "Local Projects"
-            AuthUserFile /etc/apache2/dav_svn.passwd
-            Require valid-user
-        </LocationMatch>
-        SSLEngine on
-        SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
-        SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
-    </VirtualHost>
+    <Location />
+        SetHandler mod_python
+        PythonInterpreter main_intepreter
+        PythonHandler trac.web.modpython_frontend
+        PythonOption TracEnvParentDir /var/trac
+        PythonOption TracUriRoot /
+    </Location>
+
+    <LocationMatch /[^/]+/login>
+        AuthType Basic
+        AuthName "Local Projects"
+        AuthUserFile /etc/apache2/dav_svn.passwd
+        Require valid-user
+    </LocationMatch>
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/ssl-cert-snakeoil.pem
+    SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+</VirtualHost>
+
+```
 
 Замените `acme.org` на имя вашего хоста, `796` и `967` на необходимый вам порт для `svn` и `trac` соответственно, и при необходимости укажите свой собственный сертификат/ключ.
 
@@ -280,14 +296,18 @@ Trac:
 
     sudo vi /etc/apache2/ports.conf
 
-    ...
-    NameVirtualHost *:80
-    Listen 80
-    Listen 443
-    # svn.acme.org
-    Listen 796
-    # trac.acme.org
-    Listen 967
+``` { apache }
+
+...
+NameVirtualHost *:80
+Listen 80
+Listen 443
+# svn.acme.org
+Listen 796
+# trac.acme.org
+Listen 967
+
+```
 
 Наступило время включить модуль `svn` и перезапустить `apache`:
 

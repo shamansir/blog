@@ -39,16 +39,19 @@ tags: [ ide, python, vim, gvim, windows, development ]
 
 Также, если вы используете стабильный релиз и хотите заодно установить новейшие патчи -- за файлами патчей обращайтесь [сюда](ftp://ftp.vim.org/pub/vim/patches/7.1/) (исправьте номер версии в ссылке, если нужно). Здесь есть некоторая проблема, поскольку файлы патчей упаковываются в один только при достижении сотни (001-100, 101-200 и т.д.), поэтому если их, например, 275 -- последние 75 файлов придётся закачивать руками или написав batch-скрипт с использованием `telnet`. Однако, у нас уже установлен {{cygwin}}, поэтому можно создать `.sh`-скрипт, выполняющий те же функции через `wget`, выглядеть это может примерно так:
 
-    #!/bin/bash
-    PATCHES_DOWNLOAD_PATH=ftp://ftp.vim.org/pub/vim/patches
-    PATCHES_VER=7.1
-    wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.001-100.gz
-    wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.101-200.gz
+``` { bash }
 
-    for i in `seq 201 278`;
-    do
-        wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.$i
-    done
+PATCHES_DOWNLOAD_PATH=ftp://ftp.vim.org/pub/vim/patches
+PATCHES_VER=7.1
+wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.001-100.gz
+wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.101-200.gz
+
+for i in `seq 201 278`;
+do
+    wget $PATCHES_DOWNLOAD_PATH/$PATCHES_VER/$PATCHES_VER.$i
+done
+
+```
 
 Теперь займёмся расположением исходников в виде, удобном для компиляции.
 
@@ -60,28 +63,32 @@ tags: [ ide, python, vim, gvim, windows, development ]
 
 Для того, чтобы установить патчи, нужно выполнить над каждым из них команду patch из набора Cygwin, предварительно распаковав архивы файлов с сотнями патчей. В этом случае я воспользовался `.bat`-файлом вместо `.sh` скрипта (номера патчей, конечно, нужно, поправить на соответствующие вашему набору):
 
-    @ECHO off
-    ECHO changing directory to parent...
+``` { batch }
 
-    CD ..
+@ECHO off
+ECHO changing directory to parent...
 
-    ECHO -------------------- %Date% -------------------- >> patching-src.log
+CD ..
 
-    ECHO %CD%: applying first 200 patches
+ECHO -------------------- %Date% -------------------- >> patching-src.log
 
-    patch -p0 < patches/7.1.001-100 >> patching-src.log 2>&1
-    patch -p0 < patches/7.1.101-200 >> patching-src.log 2>&1
+ECHO %CD%: applying first 200 patches
 
-    ECHO %CD%: applying the last patches
+patch -p0 < patches/7.1.001-100 >> patching-src.log 2>&1
+patch -p0 < patches/7.1.101-200 >> patching-src.log 2>&1
 
-    FOR /L %%B IN (201,1,278) DO
-        patch -p0 < patches/7.1.%%B >> patching-src.log 2>&1
+ECHO %CD%: applying the last patches
 
-    ECHO Finished
+FOR /L %%B IN (201,1,278) DO
+    patch -p0 < patches/7.1.%%B >> patching-src.log 2>&1
 
-    PAUSE
+ECHO Finished
 
-    @ECHO on
+PAUSE
+
+@ECHO on
+
+```
 
 Этот файл нужно положить в каталог `/patches` и после корректировки выполнить (убедитесь, что вся описанная выше структура дерева исходников сформирована): в корне исходников будет создан файл `patching-src.log`, в котором можно проследить результаты прошедшего патчинга. Если утилита `patch` не была найдена, проверьте `PATH` на наличие пути к Cygwin. Если некоторое (небольшое) количество файлов не было найдено и пропатчено -- можно сильно не беспокоится, это в основном файлы для XWindow-версии.
 
@@ -119,16 +126,20 @@ tags: [ ide, python, vim, gvim, windows, development ]
 
 Для того, чтобы вставлять [предлагаемые](http://www.python.org/dev/peps/pep-0263/) по спецификации строки в заголовки python-файлов при создании, добавьте нижеприведённый код в файл `<путь_к_установленному_vim>\_vimrc` (строка filename добавлена для демонстрации возможности добавления имени файла):
 
-    function! BufNewFile_PY()
-       0put = '#!/usr/bin/env python'
-       1put = '#-*- coding: utf-8 -*-'
-       $put = '#-*- filename: ' . expand('') . ' -*-'
-       $put = ''
-       $put = ''
-       normal G
-    endfunction
+```
 
-    autocmd BufNewFile *.py call BufNewFile_PY()
+function! BufNewFile_PY()
+   0put = '#!/usr/bin/env python'
+   1put = '#-*- coding: utf-8 -*-'
+   $put = '#-*- filename: ' . expand('') . ' -*-'
+   $put = ''
+   $put = ''
+   normal G
+endfunction
+
+autocmd BufNewFile *.py call BufNewFile_PY()
+
+```
 
 …Вот теперь можно c чрезвычайным удобством программировать на Python.
 

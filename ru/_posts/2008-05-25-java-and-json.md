@@ -42,288 +42,310 @@ tags: [ java, json, web-development ]
 
 Теперь приведу код интерфейса `IJSONSerializable` (объекта, который может быть свёрнут в `JSON` и развернут обратно -- думаю, это довольно корректно) и абстрактного класса `JSONBean`, который его имплементирует.
 
-    #!java
-    package com.acme.json;
+``` { java }
 
-    import org.json.JSONObject;
+package com.acme.json;
 
-    public interface IJSONSerializable {
+import org.json.JSONObject;
 
-        public boolean fromJSONObj(JSONObject object);
+public interface IJSONSerializable {
 
-        public JSONObject toJSONObject();
+    public boolean fromJSONObj(JSONObject object);
 
-    }
-
-Обратите внимание, что в стандартной версии JSON по геттерам считает за пары ключ-свойство значения некоторых недозволенных методов, например, `getClass` и `getInstance` — нижеприведённый класс этот недостаток (в случае указанных методов) обходит и, собственно, добавляет функциональность конструирования (а в данном случае правильнее -- инициализации) `Bean`‘а из JSON-объекта. Да, здесь, иcпользуется `reflection`, и если вас не устраивает этот факт -- вы вольны поменять концепцию :) -- JSON выстраивает свой объект из `Bean`‘а точно таким же способом.
-
-    #!java
-    package com.acme.json;
-
-    import java.lang.reflect.Method;
-
-    import org.json.JSONException;
-    import org.json.JSONObject;
-
-    public abstract class JSONBean implements IJSONSerializable {
-
-        public boolean fromJSONObj(JSONObject jsonObj) {
-            Class beanClass = this.getClass();
-            Method[] methods = beanClass.getMethods();
-            for (int i = 0;  i < methods.length; i += 1) {
-                try {
-                    Method method = methods[i];
-                    String name = method.getName();
-                    String key = "";
-                    if (name.startsWith("set")) {
-                        key = name.substring(3);
-                    }
-                    if (key.length() > 0 &&
-                            Character.isUpperCase(key.charAt(0)) &&
-                            method.getParameterTypes().length == 1) {
-                        if (key.length() == 1) {
-                            key = key.toLowerCase();
-                        } else if (!Character.isUpperCase(key.charAt(1))) {
-                            key = key.substring(0, 1).toLowerCase() +
-                                key.substring(1);
-                        }
-                        if (isAllowedKey(key))
-                            method.invoke(this, jsonObj.get(key));
-                    }
-                } catch (Exception e) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public JSONObject toJSONObject() {
-            return new JSONObject(this) {
-                @Override
-                public Object get(String key) throws JSONException {
-                    return isAllowedKey(key) ? super.get(key) : null;
-                }
-            };
-        }
-
-        protected static boolean isAllowedKey(String key) {
-            return ((key != "class") && (key != "instance"));
-        }
+    public JSONObject toJSONObject();
 
 }
 
+```
+
+Обратите внимание, что в стандартной версии JSON по геттерам считает за пары ключ-свойство значения некоторых недозволенных методов, например, `getClass` и `getInstance` — нижеприведённый класс этот недостаток (в случае указанных методов) обходит и, собственно, добавляет функциональность конструирования (а в данном случае правильнее -- инициализации) `Bean`‘а из JSON-объекта. Да, здесь, иcпользуется `reflection`, и если вас не устраивает этот факт -- вы вольны поменять концепцию :) -- JSON выстраивает свой объект из `Bean`‘а точно таким же способом.
+
+``` { java }
+
+package com.acme.json;
+
+import java.lang.reflect.Method;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public abstract class JSONBean implements IJSONSerializable {
+
+    public boolean fromJSONObj(JSONObject jsonObj) {
+        Class beanClass = this.getClass();
+        Method[] methods = beanClass.getMethods();
+        for (int i = 0;  i < methods.length; i += 1) {
+            try {
+                Method method = methods[i];
+                String name = method.getName();
+                String key = "";
+                if (name.startsWith("set")) {
+                    key = name.substring(3);
+                }
+                if (key.length() > 0 &&
+                        Character.isUpperCase(key.charAt(0)) &&
+                        method.getParameterTypes().length == 1) {
+                    if (key.length() == 1) {
+                        key = key.toLowerCase();
+                    } else if (!Character.isUpperCase(key.charAt(1))) {
+                        key = key.substring(0, 1).toLowerCase() +
+                            key.substring(1);
+                    }
+                    if (isAllowedKey(key))
+                        method.invoke(this, jsonObj.get(key));
+                }
+            } catch (Exception e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public JSONObject toJSONObject() {
+        return new JSONObject(this) {
+            @Override
+            public Object get(String key) throws JSONException {
+                return isAllowedKey(key) ? super.get(key) : null;
+            }
+        };
+    }
+
+    protected static boolean isAllowedKey(String key) {
+        return ((key != "class") && (key != "instance"));
+    }
+
+}
+
+```
+
 Ну, и простенький пример `Bean`‘а, с которым мы будем работать.
 
-    #!java
-    package com.acme.json.beans;
+``` { java }
 
-    import com.acme.json.JSONBean;
+package com.acme.json.beans;
 
-    public class PersonBean extends JSONBean {
+import com.acme.json.JSONBean;
 
-        private String personFirstName = "Homer";
-        private String personLastName = "Simpson";
-        private int personAge = 46;
+public class PersonBean extends JSONBean {
 
-        public String getPersonFirstName() {
-            return personFirstName;
-        }
+    private String personFirstName = "Homer";
+    private String personLastName = "Simpson";
+    private int personAge = 46;
 
-        public void setPersonFirstName(String personFirstName) {
-            this.personFirstName = personFirstName;
-        }
-
-        public String getPersonLastName() {
-            return personLastName;
-        }
-
-        public void setPersonLastName(String personLastName) {
-            this.personLastName = personLastName;
-        }
-
-        public int getPersonAge() {
-            return personAge;
-        }
-
-        public void setPersonAge(int personAge) {
-            this.personAge = personAge;
-        }
-
+    public String getPersonFirstName() {
+        return personFirstName;
     }
+
+    public void setPersonFirstName(String personFirstName) {
+        this.personFirstName = personFirstName;
+    }
+
+    public String getPersonLastName() {
+        return personLastName;
+    }
+
+    public void setPersonLastName(String personLastName) {
+        this.personLastName = personLastName;
+    }
+
+    public int getPersonAge() {
+        return personAge;
+    }
+
+    public void setPersonAge(int personAge) {
+        this.personAge = personAge;
+    }
+
+}
+
+```
 
 `JSONBeanManager` управляет подготовкой `Bean`‘ов для отправки и принятия их на основе параметров запроса. Думаю, концентрация этого кода в одном месте оправдана, поскольку вы вряд ли захотите, чтобы отвечающий за пересылку `Bean`‘ов код был разбросан по проекту. В худших случаях паттерны проектирования придут вам на помощь. Кстати, возможно вы захотите сделать некоторые ваши `Bean`‘ы `Singleton`‘ами, тогда здесь вы можете возвращать их единственные инстансы (не забудьте только, что в связи с этим их нужно аккуратнее готовить :) ).
 
-    #!java
-    package com.acme.json;
+``` { java }
 
-    import java.util.Map;
+package com.acme.json;
 
-    import com.acme.json.beans.PersonBean;
+import java.util.Map;
 
-    public class JSONBeanManager {
+import com.acme.json.beans.PersonBean;
 
-        protected JSONBean prepareBeanForReceiving(Map parametersMap) {
-            if (parametersMap.containsKey("source") &&
-               (parametersMap.get("source") == "sampleBean")) {
-                return new PersonBean();
-            }
-            return null;
+public class JSONBeanManager {
+
+    protected JSONBean prepareBeanForReceiving(Map parametersMap) {
+        if (parametersMap.containsKey("source") &&
+           (parametersMap.get("source") == "sampleBean")) {
+            return new PersonBean();
         }
-
-        protected JSONBean prepareBeanForSending(Map parametersMap) {
-            if (parametersMap.containsKey("source") &&
-               (parametersMap.get("source") == "sampleBean")) {
-                return new PersonBean();
-            }
-            return null;
-        }
-
-        protected void onBeanReceived(JSONBean bean) { }
-
-        protected void onBeanSent(JSONBean bean) { }
-
-        protected void onBeanTransferError() { }
-
+        return null;
     }
+
+    protected JSONBean prepareBeanForSending(Map parametersMap) {
+        if (parametersMap.containsKey("source") &&
+           (parametersMap.get("source") == "sampleBean")) {
+            return new PersonBean();
+        }
+        return null;
+    }
+
+    protected void onBeanReceived(JSONBean bean) { }
+
+    protected void onBeanSent(JSONBean bean) { }
+
+    protected void onBeanTransferError() { }
+
+}
+
+```
 
 Ну и наконец -- сервлет. Ядро пересылки. Запрос `GET` на сервер отправляет клиенту `Bean`, отданный менеджером на основе анализа параметров запроса, а затем сконвертированный в JSON-объект, а `POST` -- принимает и заполняет предоставленный тем же менеджером `Bean` полученными из JSON-объекта данными.
 
-     #!java
-     package com.acme.json;
+``` { java }
 
-     import java.io.IOException;
+package com.acme.json;
 
-     import javax.servlet.ServletException;
-     import javax.servlet.http.HttpServlet;
-     import javax.servlet.http.HttpServletRequest;
-     import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-     import org.json.JSONException;
-     import org.json.JSONObject;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-     public class JSONBeanServlet extends HttpServlet {
+import org.json.JSONException;
+import org.json.JSONObject;
 
-         protected static final String JSON_OBJ_PARAM = "jsonBean";
+public class JSONBeanServlet extends HttpServlet {
 
-         private JSONBeanManager beanManager = null;
+    protected static final String JSON_OBJ_PARAM = "jsonBean";
 
-         public JSONBeanServlet(/*Class beanManagerClass*/) {
-             super();
-             this.beanManager = new JSONBeanManager();
-         }
+    private JSONBeanManager beanManager = null;
 
-         @Override
-         public void doGet(HttpServletRequest req,
-                 HttpServletResponse resp)
-                 throws java.io.IOException, ServletException {
-             JSONBean activeBean =
-                 beanManager.prepareBeanForSending(req.getParameterMap());
-             if (activeBean != null) {
-                 resp.setContentType("application/x-json");
-                 resp.getWriter().print(activeBean.toJSONObject());
-                 beanManager.onBeanSent(activeBean);
-             } else {
-                 beanManager.onBeanTransferError();
-                 // throw new ServletException("JSONBeanServlet got no bean for sending");
-             }
-         }
+    public JSONBeanServlet(/*Class beanManagerClass*/) {
+        super();
+        this.beanManager = new JSONBeanManager();
+    }
 
-         @Override
-         protected void doPost(HttpServletRequest req,
-                 HttpServletResponse resp)
-                 throws ServletException, IOException {
+    @Override
+    public void doGet(HttpServletRequest req,
+            HttpServletResponse resp)
+            throws java.io.IOException, ServletException {
+        JSONBean activeBean =
+            beanManager.prepareBeanForSending(req.getParameterMap());
+        if (activeBean != null) {
+            resp.setContentType("application/x-json");
+            resp.getWriter().print(activeBean.toJSONObject());
+            beanManager.onBeanSent(activeBean);
+        } else {
+            beanManager.onBeanTransferError();
+            // throw new ServletException("JSONBeanServlet got no bean for sending");
+        }
+    }
 
-             JSONBean activeBean =
-                 beanManager.prepareBeanForReceiving(req.getParameterMap());
+    @Override
+    protected void doPost(HttpServletRequest req,
+            HttpServletResponse resp)
+            throws ServletException, IOException {
 
-             if (activeBean != null) {
-                 String jsonText = req.getParameter(JSON_OBJ_PARAM);
-                 JSONObject jsonObj = null;
-                 try {
-                     jsonObj = new JSONObject(jsonText);
-                 } catch (JSONException e) {
-                     e.printStackTrace();
-                 }
-                 activeBean.fromJSONObj(jsonObj);
+        JSONBean activeBean =
+            beanManager.prepareBeanForReceiving(req.getParameterMap());
 
-                 beanManager.onBeanReceived(activeBean);
+        if (activeBean != null) {
+            String jsonText = req.getParameter(JSON_OBJ_PARAM);
+            JSONObject jsonObj = null;
+            try {
+                jsonObj = new JSONObject(jsonText);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            activeBean.fromJSONObj(jsonObj);
 
-             } else {
-                 beanManager.onBeanTransferError();
-                 // throw new ServletException("JSONBeanServlet got no bean for receiving");
-             }
+            beanManager.onBeanReceived(activeBean);
 
-         }
+        } else {
+            beanManager.onBeanTransferError();
+            // throw new ServletException("JSONBeanServlet got no bean for receiving");
+        }
 
-     }
+    }
+
+}
+
+```
 
 Для завершения описания серверной части следует напомнить о добавлении сервлета в `web.xml`.
 
-     #!xml
-     <?xml version="1.0" encoding="UTF-8"?>
-     <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-         version="2.4">
+``` { xml }
 
-         <display-name>SomeAplication</display-name>
+ <?xml version="1.0" encoding="UTF-8"?>
+ <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
 
-         . . .
+    <display-name>SomeAplication</display-name>
 
-         <servlet>
-             <description>JSON Beans Manage Servlet</description>
-             <display-name>JSON Beans Servlet</display-name>
-             <servlet-name>JSON Beans Servlet</servlet-name>
-             <servlet-class>
-                 com.acme.json.FNJSONBeanServlet
-             </servlet-class>
-         </servlet>
+    . . .
 
-         <servlet-mapping>
-             <servlet-name>JSON Beans Servlet</servlet-name>
-             <url-pattern>/jsonBean/*</url-pattern>
-         </servlet-mapping>
+    <servlet>
+        <description>JSON Beans Manage Servlet</description>
+        <display-name>JSON Beans Servlet</display-name>
+        <servlet-name>JSON Beans Servlet</servlet-name>
+        <servlet-class>
+            com.acme.json.FNJSONBeanServlet
+        </servlet-class>
+    </servlet>
 
-         . . .
+    <servlet-mapping>
+        <servlet-name>JSON Beans Servlet</servlet-name>
+        <url-pattern>/jsonBean/*</url-pattern>
+    </servlet-mapping>
 
-     </web-app>
+    . . .
 
-Клиентская часть состоит, собственно из [JSON-парсера-конструктора](http://www.json.org/json2.js) (да, всё это можно сделать через `eval()`, но предоставленный разработчиками код делает это, по их обещаниям, аккуратнее) и, в моём случае, класса, облегчающего работу с сервлетом. Класс использует немного модифицированную функцию `makeRequest` из [статьи о решениях JavaScript](?16-really-useful-javascript-solutions) (которую я обновлю до этой версии там сразу же после написания статьи) и обеспечивающие ООП функции `Class` \[[1](?16-really-useful-javascript-solutions#sol-1)\] и `createMethodReference` \[[2](?16-really-useful-javascript-solutions#sol-2)\] оттуда же.
+</web-app>
 
-     #!javascript
-     var JSONManager = Class.extend({
+```
 
-         JSON_BEAN_SERVLET_PATH: "./jsonBean",
-         JSON_BEAN_PARAM_NAME: "jsonBean",
+Клиентская часть состоит, собственно из [JSON-парсера-конструктора](http://www.json.org/json2.js) (да, всё это можно сделать через `eval()`, но предоставленный разработчиками код делает это, по их обещаниям, аккуратнее) и, в моём случае, класса, облегчающего работу с сервлетом. Класс использует немного модифицированную функцию `makeRequest` из [статьи о решениях JavaScript](?16-really-useful-javascript-solutions) (которую я обновлю до этой версии там сразу же после написания статьи) и обеспечивающие ООП функции `Class` \[[1](../16-useful-solutions-for-javascript#sol-1)\] и `createMethodReference` \[[2](../16-useful-solutions-for-javascript#sol-2)\] оттуда же.
 
-         construct:
-             function() {
-                 this._handlerFuncRef =
-                     createMethodReference(this, "_responseHandler");
-             },
+``` { javascript }
 
-         requestJSONBean: function(handlerFunc, addParams) {
-             makeRequest(this.JSON_BEAN_SERVLET_PATH, addParams,
-                     this._handlerFuncRef, handlerFunc);
-         },
+var JSONManager = Class.extend({
 
-         sendJSONBean: function(jsonBean, addParams) {
-             makeRequest(this.JSON_BEAN_SERVLET_PATH,
-                     this.JSON_BEAN_PARAM_NAME + "=" +
-                     JSON.stringify(jsonBean) + (addParams ?
-                     ("&" + addParams) : ""), null, true);
-         },
+    JSON_BEAN_SERVLET_PATH: "./jsonBean",
+    JSON_BEAN_PARAM_NAME: "jsonBean",
 
-         _responseHandler: function(http_request, handlerFunc) {
-             handlerFunc(JSON.parse(http_request.responseText));
-         }
+    construct:
+        function() {
+            this._handlerFuncRef =
+                createMethodReference(this, "_responseHandler");
+        },
 
-     });
+    requestJSONBean: function(handlerFunc, addParams) {
+        makeRequest(this.JSON_BEAN_SERVLET_PATH, addParams,
+                this._handlerFuncRef, handlerFunc);
+    },
+
+    sendJSONBean: function(jsonBean, addParams) {
+        makeRequest(this.JSON_BEAN_SERVLET_PATH,
+                this.JSON_BEAN_PARAM_NAME + "=" +
+                JSON.stringify(jsonBean) + (addParams ?
+                ("&" + addParams) : ""), null, true);
+    },
+
+    _responseHandler: function(http_request, handlerFunc) {
+        handlerFunc(JSON.parse(http_request.responseText));
+    }
+
+});
+
+```
 
 Ну и в завершение -- пример использующего всё вышеприведённое кода:
 
-    #!javascript
+``` { javascript }
+
     var alexanderJSON =
         {"personFirstName":    "Alexander",
          "personLastName":     "Makedonsky",
@@ -339,6 +361,8 @@ tags: [ java, json, web-development ]
     }
     jsonManager.requestJSONBean(onGotObject, "source=SampleBean");
 
+```
+
 В качестве альтернативных идей -- методы `JSONBeanManager`‘а можно сделать статическими, а `JSONBean` научить приготавливать самого себя к отправке (инициировать данными) -- но при сложной структуре менеджера и требовании комплексной подготовки, когда `Bean` не может подготовить сам себя -- придётся от них отказаться. Однако, поскольку выбор `Bean`‘а по параметрам будет общим и для передачи и для приёма -- код выбора можно вынести и в отдельный метод.
 
 ### Заключение
@@ -347,5 +371,5 @@ tags: [ java, json, web-development ]
 
 ### Пояснительные изображения
 
-[![JSON Classes Structure](./img/json-package-structure-thumb.png)](./img/json-package-structure.png) [![JSON Action Diagram](./img/json-action-diagram-thumb.png)](./img/json-action-diagram.png)
+[![JSON Classes Structure]({{ get_figure(slug, 'json-package-structure-thumb.png') }})]({{ get_figure(slug, 'json-package-structure.png') }}) [![JSON Action Diagram]({{ get_figure(slug, 'json-action-diagram-thumb.png') }})]({{ get_figure(slug, 'json-action-diagram.png') }})
 

@@ -17,47 +17,50 @@ tags: [ javascript, web-development, xml, xslt ]
 
 Контактные данные, при их большом количестве, можно сгруппировать, поэтому XML-схема построена с учётом группировки элементов. Группа имеет краткое имя (`shortname`) для создания `id` у списка (возможно, потребуется оформить каждую группу по-особому) и, собственно, имя группы. XML-файл может содержать `contact`-ноды и вне групп, но в данном примере в этом нет необходимости. Все контакты имеют тип (`type`) для создания корректных ссылок в будущем (это мы также опустим). С остальным, вроде бы, всё понятно:
 
-![XML Schema Example](./img/xml-schema-example.jpg)
+![XML Schema Example]({{ get_figure(slug, 'xml-schema-example.png') }})
 
 Структура довольно-таки проста, поэтому приведу сразу пример файла (любое сходство с реальными данными какого-либо индивидуума полностью случайно и приведено не намеренно):
 
-    #!xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <?xml-stylesheet type="text/xsl" href="./contacts.xsl"?>
-    <contacts
-        xmlns="http://any-developer.name"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://any-developer.name ./contacts.xsd">
-        <group shortname="messengers">
-            <name>Messengers</name>
-            <contact type="skype">
-                <id>any.developer</id>
-            </contact>
-            <contact type="jabber">
-                <id>any.developer@jabber.org</id>
-                <name>ulric.wilfred</name>
-            </contact>
-            <contact type="gtalk">
-                <id>any.developer</id>
-            </contact>
-            <contact type="yahoo">
-                <id>any.developer</id>
-            </contact>
-            <contact type="icq">
-                <id>7484939304033345544</id>
-                <name>any.developer</name>
-            </contact>
-        </group>
-        <group shortname="email">
-            <name>E-Mail</name>
-            <contact type="gmail">
-                <id>any.developer</id>
-            </contact>
-            <contact type="yahoo-mail">
-                <id>any.developer</id>
-            </contact>
-        </group>
-    </contacts>
+``` { xml }
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="./contacts.xsl"?>
+<contacts
+    xmlns="http://any-developer.name"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://any-developer.name ./contacts.xsd">
+    <group shortname="messengers">
+        <name>Messengers</name>
+        <contact type="skype">
+            <id>any.developer</id>
+        </contact>
+        <contact type="jabber">
+            <id>any.developer@jabber.org</id>
+            <name>ulric.wilfred</name>
+        </contact>
+        <contact type="gtalk">
+            <id>any.developer</id>
+        </contact>
+        <contact type="yahoo">
+            <id>any.developer</id>
+        </contact>
+        <contact type="icq">
+            <id>7484939304033345544</id>
+            <name>any.developer</name>
+        </contact>
+    </group>
+    <group shortname="email">
+        <name>E-Mail</name>
+        <contact type="gmail">
+            <id>any.developer</id>
+        </contact>
+        <contact type="yahoo-mail">
+            <id>any.developer</id>
+        </contact>
+    </group>
+</contacts>
+
+```
 
 ### XSL
 
@@ -69,67 +72,70 @@ tags: [ javascript, web-development, xml, xslt ]
 
 Исходник:
 
-    #!xml
-    <?xml version="1.0" encoding="utf-8"?>
-    <xsl:stylesheet version="1.0"
-            xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-            xmlns:c="http://any-developer.name" exclude-result-prefixes="c">
-    <!--    xmlns="http://www.w3.org/1999/xhtml" -->
+``` { xml }
 
-    <xsl:output method="xml"
-                encoding="utf-8"
-                standalone="yes"
-                indent="yes"
-                omit-xml-declaration="yes"
-                media-type="text/xhtml"/>
-            <!--
-                doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
-                doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
-            -->
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0"
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:c="http://any-developer.name" exclude-result-prefixes="c">
+<!--    xmlns="http://www.w3.org/1999/xhtml" -->
 
-    <xsl:template name="contact">
-        <li><a href="javascript:alert('{@type}')" title="{@type}" id="contact-{@type}-sitelink">
-                <img alt="{@type}" src="{@type}.ico" id="contact-{@type}-icon" class="contact-icon" />
+<xsl:output method="xml"
+            encoding="utf-8"
+            standalone="yes"
+            indent="yes"
+            omit-xml-declaration="yes"
+            media-type="text/xhtml"/>
+        <!--
+            doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+            doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
+        -->
+
+<xsl:template name="contact">
+    <li><a href="javascript:alert('{@type}')" title="{@type}" id="contact-{@type}-sitelink">
+            <img alt="{@type}" src="{@type}.ico" id="contact-{@type}-icon" class="contact-icon" />
+        </a>
+        <xsl:if test="c:name">
+            <a href="javascript:alert('{@type}:{c:id}');" id="contact-{@type}-link" title="{c:id}" alt="{c:name}" class="contact-link">
+                <xsl:value-of select="c:name"/>
             </a>
+        </xsl:if>
+        <xsl:if test="not(c:name)">
+            <a href="javascript:alert('{@type}:{c:id}');" id="contact-{@type}-link" title="{c:id}" alt="{c:id}" class="contact-link">
+                <xsl:value-of select="c:id"/>
+            </a>
+        </xsl:if>
+        <span class="contact-type">(<xsl:value-of select="@type"/>)</span>
+    </li>
+</xsl:template>
+
+<xsl:template match="/c:contacts">
+    <ul id="contacts">
+    <xsl:for-each select="./c:contact">
+        <xsl:call-template name="contact" />
+    </xsl:for-each>
+    <xsl:for-each select="./c:group">
+        <li>
             <xsl:if test="c:name">
-                <a href="javascript:alert('{@type}:{c:id}');" id="contact-{@type}-link" title="{c:id}" alt="{c:name}" class="contact-link">
-                    <xsl:value-of select="c:name"/>
-                </a>
+                <span class="contact-group-name"><xsl:value-of select="c:name"/></span>
             </xsl:if>
-            <xsl:if test="not(c:name)">
-                <a href="javascript:alert('{@type}:{c:id}');" id="contact-{@type}-link" title="{c:id}" alt="{c:id}" class="contact-link">
-                    <xsl:value-of select="c:id"/>
-                </a>
-            </xsl:if>
-            <span class="contact-type">(<xsl:value-of select="@type"/>)</span>
+            <ul id="{@shortname}">
+                <xsl:for-each select="./c:contact">
+                    <xsl:call-template name="contact" />
+                </xsl:for-each>
+            </ul>
         </li>
-    </xsl:template>
+    </xsl:for-each>
+    </ul>
+</xsl:template>
 
-    <xsl:template match="/c:contacts">
-        <ul id="contacts">
-        <xsl:for-each select="./c:contact">
-            <xsl:call-template name="contact" />
-        </xsl:for-each>
-        <xsl:for-each select="./c:group">
-            <li>
-                <xsl:if test="c:name">
-                    <span class="contact-group-name"><xsl:value-of select="c:name"/></span>
-                </xsl:if>
-                <ul id="{@shortname}">
-                    <xsl:for-each select="./c:contact">
-                        <xsl:call-template name="contact" />
-                    </xsl:for-each>
-                </ul>
-            </li>
-        </xsl:for-each>
-        </ul>
-    </xsl:template>
+</xsl:stylesheet>
 
-    </xsl:stylesheet>
+```
 
 В результате преобразования получается такой блок XHTML:
 
-![XHTML Rendering Result](./xml-rendering-result.jpg)
+![XHTML Rendering Result]({{ get_figure(slug, 'xml-rendering-result.png') }})
 
 ### JavaScript
 
@@ -145,87 +151,93 @@ tags: [ javascript, web-development, xml, xslt ]
 
 Предложу вам свою версию, вы же можете использовать [какую только заблагорассудится](http://ajaxpatterns.org/XMLHttpRequest_Call).  Моя версия отличается тем, что принимает в параметры функцию, которая будет вызвана при успешном завершении вызова, позволяет делать и `POST` и `GET` запросы, позволяет передавать объекты и позволяет делать синхронный вызов (тогда она возвращает объект по его завершению).
 
-    #!javascript
-    /**
-     * Browser-independent [A]JAX call
-     *
-     * @param {String} locationURL an URL to call, without parameters
-     * @param {String} [parameters=null] a parameters list, in the form
-     *        'param1=value1&param2=value2&param3=value3'
-     * @param {Function(XHMLHTTPRequest, Object)} [onComplete=null] a function that
-     *        will be called when the response (responseText or responseXML of
-     *        XHMLHTTPRequest) will be received
-     * @param {Boolean} [doSynchronous=false] make a synchronous request (onComplete
-     *        will /not/ be called)
-     * @param {Boolean} [doPost=false] make a POST request instead of GET
-     * @param {Object} [dataPackage=null] any object to transfer to the onComplete
-     *        listener
-     * @return {XHMLHTTPRequest} request object, if no exceptions occured
-     */
-    function makeRequest(locationURL, parameters, onComplete, doSynchronous, doPost, dataPackage) {
+``` { javascript }
 
-        var http_request = false;
+/**
+ * Browser-independent [A]JAX call
+ *
+ * @param {String} locationURL an URL to call, without parameters
+ * @param {String} [parameters=null] a parameters list, in the form
+ *        'param1=value1&param2=value2&param3=value3'
+ * @param {Function(XHMLHTTPRequest, Object)} [onComplete=null] a function that
+ *        will be called when the response (responseText or responseXML of
+ *        XHMLHTTPRequest) will be received
+ * @param {Boolean} [doSynchronous=false] make a synchronous request (onComplete
+ *        will /not/ be called)
+ * @param {Boolean} [doPost=false] make a POST request instead of GET
+ * @param {Object} [dataPackage=null] any object to transfer to the onComplete
+ *        listener
+ * @return {XHMLHTTPRequest} request object, if no exceptions occured
+ */
+function makeRequest(locationURL, parameters, onComplete, doSynchronous, doPost, dataPackage) {
+
+    var http_request = false;
+    try {
+        http_request = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (e1) {
         try {
-            http_request = new ActiveXObject("Msxml2.XMLHTTP");
-        } catch (e1) {
-            try {
-                http_request= new ActiveXObject("Microsoft.XMLHTTP");
-            } catch (e2) {
-                http_request = new XMLHttpRequest();
-            }
+            http_request= new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (e2) {
+            http_request = new XMLHttpRequest();
         }
-
-        //if (http_request.overrideMimeType) { // optional
-        //  http_request.overrideMimeType('text/xml');
-        //}
-
-        if (!http_request) {
-          alert('Cannot create XMLHTTP instance');
-          return false;
-        }
-
-        if (onComplete && !doSynchronous) {
-            completeListener = function() {
-                if (http_request.readyState == 4) {
-                    if (http_request.status == 200) {
-                        onComplete(http_request, dataPackage)
-                    }
-                }
-            };
-            http_request.onreadystatechange = completeListener;
-        }
-
-        //var salt = hex_md5(new Date().toString());
-        if (doPost) {
-            http_request.open('POST', locationURL, !doSynchronous);
-            http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            http_request.setRequestHeader("Content-length", parameters.length);
-            http_request.setRequestHeader("Connection", "close");
-            http_request.send(parameters);
-        } else {
-            http_request.open('GET', locationURL + (parameters ? ("?" + parameters) : ""), !doSynchronous);
-            //http_request.open('GET', './proxy.php?' + parameters +
-                        // "&salt=" + salt, true);
-            http_request.send(null);
-        }
-
-        return http_request;
-
     }
+
+    //if (http_request.overrideMimeType) { // optional
+    //  http_request.overrideMimeType('text/xml');
+    //}
+
+    if (!http_request) {
+      alert('Cannot create XMLHTTP instance');
+      return false;
+    }
+
+    if (onComplete && !doSynchronous) {
+        completeListener = function() {
+            if (http_request.readyState == 4) {
+                if (http_request.status == 200) {
+                    onComplete(http_request, dataPackage)
+                }
+            }
+        };
+        http_request.onreadystatechange = completeListener;
+    }
+
+    //var salt = hex_md5(new Date().toString());
+    if (doPost) {
+        http_request.open('POST', locationURL, !doSynchronous);
+        http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http_request.setRequestHeader("Content-length", parameters.length);
+        http_request.setRequestHeader("Connection", "close");
+        http_request.send(parameters);
+    } else {
+        http_request.open('GET', locationURL + (parameters ? ("?" + parameters) : ""), !doSynchronous);
+        //http_request.open('GET', './proxy.php?' + parameters +
+                    // "&salt=" + salt, true);
+        http_request.send(null);
+    }
+
+    return http_request;
+
+}
+
+```
 
 При использовании этого метода, функция загрузки XML будет выглядеть довольно просто — например, так:
 
-    #!javascript
-    /**
-     * Loads any XML using synchronous XMLHttpRequest call.
-     * @param {String} fileName name of the file to be loaded
-     * @return {XMLDocument|Object}
-     */
-    function loadXML(fileName) {
-                                                  // no parameters, no handler, but synchronous
-    	var request = makeRequest(fileName, null, null, true);
-        return request.responseXML;
-    }
+``` { javascript }
+
+/**
+ * Loads any XML using synchronous XMLHttpRequest call.
+ * @param {String} fileName name of the file to be loaded
+ * @return {XMLDocument|Object}
+ */
+function loadXML(fileName) {
+                                              // no parameters, no handler, but synchronous
+    var request = makeRequest(fileName, null, null, true);
+    return request.responseXML;
+}
+
+```
 
 #### Метод 2. В зависимости от браузера
 
@@ -233,37 +245,40 @@ tags: [ javascript, web-development, xml, xslt ]
 
 Итак, функция будет делать прямой синхронный вызов XHMHttpRequest (вернее, функции описанной в предыдущем разделе) только в случае вызова из Safari, в остальных же случаях прибегать к средствам конкретного браузера (Не забываем правило: _Никаких прямых проверок браузера, только проверка, поддерживается ли вызываемая функция_):
 
-    #!javascript
-    /**
-     * Loads any XML document using ActiveX (for IE) or createDocumentFunction (for
-     * other browsers)
-     * @param {String} fileName name of the file to be loaded
-     * @return {XMLDocument|Object}
-     */
-    function loadXML(fileName) { // http://www.w3schools.com/xsl/xsl_client.asp
-        var xmlFile = null;
+``` { javascript }
 
-        if (window.ActiveXObject) { // IE
-            xmlFile = new ActiveXObject("Microsoft.XMLDOM");
-        } else if (document.implementation
-                && document.implementation.createDocument) { // Mozilla, Firefox, Opera, etc.
-            xmlFile = document.implementation.createDocument("","",null);
-            if (!xmlFile.load) { // Safari lacks on this method,
-        	   // so we make a synchronous XMLHttpRequest
-                var request = makeRequest(fileName, null, null, true);
-                return request.responseXML;
-            }
-        } else {
-            alert('Your browser cannot create XML DOM Documents');
+/**
+ * Loads any XML document using ActiveX (for IE) or createDocumentFunction (for
+ * other browsers)
+ * @param {String} fileName name of the file to be loaded
+ * @return {XMLDocument|Object}
+ */
+function loadXML(fileName) { // http://www.w3schools.com/xsl/xsl_client.asp
+    var xmlFile = null;
+
+    if (window.ActiveXObject) { // IE
+        xmlFile = new ActiveXObject("Microsoft.XMLDOM");
+    } else if (document.implementation
+            && document.implementation.createDocument) { // Mozilla, Firefox, Opera, etc.
+        xmlFile = document.implementation.createDocument("","",null);
+        if (!xmlFile.load) { // Safari lacks on this method,
+    	   // so we make a synchronous XMLHttpRequest
+            var request = makeRequest(fileName, null, null, true);
+            return request.responseXML;
         }
-        xmlFile.async = false;
-        try {
-            xmlFile.load(fileName);
-        } catch(e) {
-            alert('an error occured while loading XML file ' + fileName);
-        }
-        return(xmlFile);
+    } else {
+        alert('Your browser cannot create XML DOM Documents');
     }
+    xmlFile.async = false;
+    try {
+        xmlFile.load(fileName);
+    } catch(e) {
+        alert('an error occured while loading XML file ' + fileName);
+    }
+    return(xmlFile);
+}
+
+```
 
 В результате, функция возвращает XML-объект по заданному имени файла. Можно приступать собственно к трансформации.
 
@@ -275,44 +290,50 @@ tags: [ javascript, web-development, xml, xslt ]
 
 В случае Internet Explorer используется функция `transformNode` XML-объекта, в остальных браузерах используется `XSLTProcessor`.
 
-    #!javascript
-    /**
-     * Applies specified XSL stylesheet to the specified XML file and returns
-     * the result as a string. ActiveX is used in IE, otherwise, XSLTProcessor
-     * is used.
-     * @param {String} xmlFileName path to the xml file to be transformed
-     * @param {String} xslFileName path to the xsl file to be applied to the xml
-     * @return {String} xsl transformation result as a text
-     */
-    function getStylingResult(xmlFileName, xslFileName) {
-        var xmlContent = loadXML(xmlFileName);
-        var xslContent = loadXML(xslFileName);
-        if (window.ActiveXObject) { // IE
-            return xmlContent.transformNode(xslContent);
-        } else if (window.XSLTProcessor) { // Mozilla, Firefox, Opera, Safari etc.
-            var xsltProcessor=new XSLTProcessor();
-            xsltProcessor.importStylesheet(xslContent);
-            // return xsltProcessor.transformToFragment(xmlContent, document);
-                // somehow, transformToFragment works incorrectly, recognizing the
-                // result of transformation as xml, not html, because
-                // xsl:output="xhtml" is still not supported, and for xhtml
-                // xsl:output="xml" is used
-                // (xsl:output="html" strips namespaces)
-                // see: http://osdir.com/ml/mozilla.devel.layout.xslt/2003-10/msg00008.html
-                // also, see: https://developer.mozilla.org/en/Using_the_Mozilla_JavaScript_interface_to_XSL_Transformations
-            var resultDocument = xsltProcessor.transformToDocument(xmlContent);
-            var xmls = new XMLSerializer();
-            return xmls.serializeToString(resultDocument);
-        }
+``` { javascript }
+
+/**
+ * Applies specified XSL stylesheet to the specified XML file and returns
+ * the result as a string. ActiveX is used in IE, otherwise, XSLTProcessor
+ * is used.
+ * @param {String} xmlFileName path to the xml file to be transformed
+ * @param {String} xslFileName path to the xsl file to be applied to the xml
+ * @return {String} xsl transformation result as a text
+ */
+function getStylingResult(xmlFileName, xslFileName) {
+    var xmlContent = loadXML(xmlFileName);
+    var xslContent = loadXML(xslFileName);
+    if (window.ActiveXObject) { // IE
+        return xmlContent.transformNode(xslContent);
+    } else if (window.XSLTProcessor) { // Mozilla, Firefox, Opera, Safari etc.
+        var xsltProcessor=new XSLTProcessor();
+        xsltProcessor.importStylesheet(xslContent);
+        // return xsltProcessor.transformToFragment(xmlContent, document);
+            // somehow, transformToFragment works incorrectly, recognizing the
+            // result of transformation as xml, not html, because
+            // xsl:output="xhtml" is still not supported, and for xhtml
+            // xsl:output="xml" is used
+            // (xsl:output="html" strips namespaces)
+            // see: http://osdir.com/ml/mozilla.devel.layout.xslt/2003-10/msg00008.html
+            // also, see: https://developer.mozilla.org/en/Using_the_Mozilla_JavaScript_interface_to_XSL_Transformations
+        var resultDocument = xsltProcessor.transformToDocument(xmlContent);
+        var xmls = new XMLSerializer();
+        return xmls.serializeToString(resultDocument);
     }
+}
+
+```
 
 ### Итог
 
 Всё, весь необходимый код готов и вы можете использовать функцию `getStylingResult` для преобразования XML-файлов и вставки результата в XHTML. Например, таким образом:
 
-    #!javascript
-    document.getElementById('content').innerHTML =
-                getStylingResult('./contacts.xml', './contacts.xsl');
+``` { javascript }
+
+document.getElementById('content').innerHTML =
+            getStylingResult('./contacts.xml', './contacts.xsl');
+
+```
 
 Как итог, мы получили действительно кросс-браузерную версию обработки XML на клиенте. Спасибо за внимание.
 
