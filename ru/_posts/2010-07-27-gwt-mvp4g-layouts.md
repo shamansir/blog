@@ -7,7 +7,7 @@ tags: [ gwt, mvp4g, java ]
 
 ### Вступление
 
-![mvp4g logo](http://mvp4g.googlecode.com/svn/logo/mvp4g-logo-small.png)
+![mvp4g logo]({{ get_figure(slug, 'mvp4g-logo-small.png') }})
 
 Несомненно, сейчас уже многие знают, что такое [GWT](http://code.google.com/webtoolkit/). Многие знают, что за концепция — [MVP](http://en.wikipedia.org/wiki/Model-view-presenter). При этом, ещё не многие слышали о фреймворке [mvp4g](http://code.google.com/p/mvp4g/) (облегчённая реализация MVP для GWT) — а я бы хотел, чтобы на него обратили внимание как можно больше GWT-программистов: фреймворк значительно упрощает написание MVP-кода и явно повышает его наглядность. По этой причине я делал о нём [доклад](http://addconf.ru/event.sdf/ru/add_2011/authors/AntonKotenko/313) на конференции [ADDConf](http://addconf.ru), видео которого представляю ниже.
 
