@@ -15,7 +15,7 @@ tags: [ javascript, xml, blog, projects ]
 
 ### Картинка ###
 
-![Screenshot](http://showdown-blog.googlecode.com/hg/img/screenshot-small.png)
+![Screenshot]({{ get_figure(slug, 'screenshot-small.png') }})
 
 ### Компоненты ###
 

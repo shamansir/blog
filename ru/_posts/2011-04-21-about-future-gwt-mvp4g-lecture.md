@@ -7,7 +7,7 @@ tags: [ gwt, mvp4g, lecture ]
 
 Буду читать мастер-класс на [ADDConf 2011](http://addconf.ru/) по разработке веб-приложений с помощью [GWT](http://code.google.com/webtoolkit/) и [mvp4g](http://code.google.com/p/mvp4g/) (29 апреля, 15:10). Санкт-Петербург, Россия
 
-<center>![Первый слайд презентации](http://dl.dropbox.com/u/928694/blog/ru/img/gwtmvp4g_firstslide.png)</center>
+<center>![Первый слайд презентации]({{ get_figure(slug, 'firstslide.png') }})</center>
 
 ### План
 
@@ -38,7 +38,7 @@ tags: [ gwt, mvp4g, lecture ]
 
 Будут рассказы о недостатках, можно будет обсудить опыт написания проектов на GWT (пример с моей стороны &mdash; сайт [Experika](http://experika.com)) и тонкие моменты. Ещё не знаю, получится ли уложить всё это в полтора часа, возможно придётся от чего-то отказаться (от частей доклада, в пользу вопросов и обсуждений).
 
-<center>![Логотип ADDConf](http://dl.dropbox.com/u/928694/blog/ru/img/gwtmvp4g_add_logo.png)</center>
+<center>![Логотип ADDConf]({{ get_figure(slug, 'add_logo.png') }})</center>
 
 ### Анонс
 

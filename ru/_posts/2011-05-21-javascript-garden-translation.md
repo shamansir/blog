@@ -9,7 +9,7 @@ tags: [ javascript, translation ]
 
 *JavaScript Garden* — обновляющаяся (с учётом новых веяний и поправок) документация по трюкам и хитростям JavaScript, находящаяся в одном, постоянном, месте. В этой документации рассматриваются практически все распространённые и влияющие на производительность ошибки программистов, поясняются таинства спецификаций и премудрости работы движков JavaScript.
 
-[![JavaScript Гарден на русском](http://img163.imageshack.us/img163/3707/screenshot058n.png)](http://shamansir.github.com/JavaScript-Garden/)
+[![JavaScript Гарден на русском]({{ get_figure(slug, 'screenshot.png') }})](http://shamansir.github.com/JavaScript-Garden/)
 
 Поскольку это слишком крупный перевод и нет смысла переносить один симпатичный маркдаун в другой менее симпатичный, просто даю вам ссылку: [JavaScript Гарден на русском](http://shamansir.github.com/JavaScript-Garden/).
 

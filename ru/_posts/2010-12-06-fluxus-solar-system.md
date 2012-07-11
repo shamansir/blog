@@ -9,9 +9,9 @@ tags: [ fluxus, racket, scheme, solar system, livecoding, 3d ]
 
 В посте исходники, краткое описание на русском и livecoding-видеоролики на славянском английском в подробностях рассматривающие и следящие за всем процессом написания этого сложного кода.
 
-[![Screenshot 01](http://dl.dropbox.com/u/928694/blog/ru/img/fluxus-solar-screen04-thumb.png)](http://dl.dropbox.com/u/928694/blog/ru/img/fluxus-solar-screen04.png)
+[![Screenshot 01]({{ get_figure(slug, 'screen04-thumb.png') }})]({{ get_figure(slug, 'screen04.png') }})
 
-[![Screenshot 02](http://dl.dropbox.com/u/928694/blog/ru/img/fluxus-solar-screen05-thumb.png)](http://dl.dropbox.com/u/928694/blog/ru/img/fluxus-solar-screen05.png)
+[![Screenshot 02]({{ get_figure(slug, 'screen05-thumb.png') }})]({{ get_figure(slug, 'screen05.png') }})
 
 ### Исходники
 

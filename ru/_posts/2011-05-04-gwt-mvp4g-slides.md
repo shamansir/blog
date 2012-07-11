@@ -9,7 +9,7 @@ tags: [ gwt, mvp4g, slides ]
 
 ### Слайды
 
-[![Cлайды](http://dl.dropbox.com/u/928694/blog/ru/img/gwtmvp4g_gdocs.png)](https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B9lKUPDNyz1vYTViZjYwZTEtODNmNC00OWZlLWFhODUtMDNkYzE5N2NjM2Fk&hl=en)
+[![Cлайды]({{ get_figure(slug, 'gdocs.ru.png') }})](https://docs.google.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B9lKUPDNyz1vYTViZjYwZTEtODNmNC00OWZlLWFhODUtMDNkYzE5N2NjM2Fk&hl=en)
 
 [Также на Scribd](http://www.scribd.com/doc/54690967/)
 

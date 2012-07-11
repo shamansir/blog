@@ -17,8 +17,7 @@ tags: [ javascript, snippet, assert, oop, each ]
 
 ----------
 
-Исторический взгляд
--------------------
+### Исторический взгляд
 
 Что мы получим, если рассмотрим исторический процесс становления JavaScript? (это мой вольный взгляд по памяти на историю JS, вполне возможно в нём есть реальные отклонения от настоящего).
 
@@ -37,8 +36,7 @@ tags: [ javascript, snippet, assert, oop, each ]
 
 Видно, что ошибки научили ещё не всех.
 
-Логический взгляд
------------------
+### Логический взгляд
 
 - _Почему в JS не рекомендуется использовать оператор <code>for-in</code>?_
 - **Неправильный ответ:** потому что в перечисление могут попасть ненужные свойства и методы объекта
@@ -55,43 +53,45 @@ tags: [ javascript, snippet, assert, oop, each ]
 
 - **Правильный ответ:** Давно пора образумить этих программистов.
 
-Практический взгляд
--------------------
+### Практический взгляд
 
-    #!javascript
-    var a = [12, 14, 13, 6];
-    for (var i in a) { console.log(i, a[i]); }
-    > 0 12
-    > 1 14
-    > 2 13
-    > 3 6
+``` { javascript }
 
-    Array.prototype.foo = function() { console.log('bar'); }
-    for (var i in a) { console.log(i, a[i]); }
-    > 0 12
-    > 1 14
-    > 2 13
-    > 3 6
-    > foo bar
+var a = [12, 14, 13, 6];
+for (var i in a) { console.log(i, a[i]); }
+> 0 12
+> 1 14
+> 2 13
+> 3 6
 
-    for (var a in { 'a': 2, 'b': 3 }) { console.log(a); }
-    > a
-    > b
-    Object.prototype.foo = function() { };
-    for (var a in { 'a': 2, 'b': 3 }) { console.log(a); }
-    > a
-    > b
-    > foo
+Array.prototype.foo = function() { console.log('bar'); }
+for (var i in a) { console.log(i, a[i]); }
+> 0 12
+> 1 14
+> 2 13
+> 3 6
+> foo bar
 
-    Array.prototype.forEach = function(...) { ... };
-    var matches = 'test'.match(/t/);
-    console.log( matches instanceof Array ); 
-    > true
-    for (var i in matches) console.log(i, matches[i]);
-    > 0 t
-    > index 0
-    > input test
-    > forEach function() { }
+for (var a in { 'a': 2, 'b': 3 }) { console.log(a); }
+> a
+> b
+Object.prototype.foo = function() { };
+for (var a in { 'a': 2, 'b': 3 }) { console.log(a); }
+> a
+> b
+> foo
+
+Array.prototype.forEach = function(...) { ... };
+var matches = 'test'.match(/t/);
+console.log( matches instanceof Array ); 
+> true
+for (var i in matches) console.log(i, matches[i]);
+> 0 t
+> index 0
+> input test
+> forEach function() { }
+
+```
 
 (за обнаружение последнего примера спасибо [TheShock](http://habrahabr.ru/users/TheShock/))
 
@@ -105,21 +105,18 @@ tags: [ javascript, snippet, assert, oop, each ]
 
 > JQuery пользуется расширением прототипа собственного объекта – это вполне себе ок и как раз соответствует идеологии. А мы говорим о расширении встроенных типов — это две разные вещи. Встроенные типы по правилам any-типизированных языков должны быть закрыты для расширения. В JS у вас есть возможность их расширить и это сработало как неизвестное медленно-текущее вирусное заболевание. Заразились одни, не ощутили последствий, а через месяцы оказались заражены все вокруг.
 
-Разумный взгляд
----------------
+### Разумный взгляд
 
 Вы помните чем кончается переопределение операторов в C++? Вы знаете, что не можете расширить встроенные классы Java? Вы пытаетесь отнаследоваться от `str` в Python? **Нет**. Так почему же вы это делаете в JS?
 
 Сейчас мы живём в эру быстро сменяющихся версий браузеров, избавления от старых, и перехода на HTML5, так может и в JS стоит забыть некоторые первобытные страхи?
 
-Когда можно
------------
+### Когда можно
 
 * Если вам нужно в своём личном скрипте обеспечить наличие метода, который будет в будущем имплементирован. При этом нужно, чтобы интерфейс который он возвращает также соответствовал спецификации
 * Всё
 
-Альтернативы
-------------
+### Альтернативы
 
 Да какие хотите (ок, все приведённые функции – в видимости какого-то своего объекта, не в глобальной):
 
@@ -129,14 +126,13 @@ tags: [ javascript, snippet, assert, oop, each ]
 * `var a = new ExtendedString("   string to trim   "); a.trim();`
 * `$.each([ 1, 2, 6, 6], …);`
 
-<h2>Статьи по теме</h2>
+### Статьи по теме
 
 * [Extending built-in native objects. Evil or not?](http://perfectionkills.com/extending-built-in-native-objects-evil-or-not/) by [kangax](http://perfectionkills.com) (спасибо [smashercosmo](http://habrahabr.ru/users/smashercosmo/))
 * [What's wrong with extending DOM?](http://perfectionkills.com/whats-wrong-with-extending-the-dom/) by [kangax](http://perfectionkills.com) (спасибо [smashercosmo](http://habrahabr.ru/users/smashercosmo/))
 * [Javascript `for...in` with arrays](http://stackoverflow.com/questions/500504/javascript-for-in-with-arrays) @ [SO](http://stackoverflow.com)
 * [Exploring JavaScript `for...in` loops](http://javascriptweblog.wordpress.com/2011/01/04/exploring-javascript-for-in-loops/)
 
-Тесты
------
+### Тесты
 
 [В этом комментарии](http://habrahabr.ru/blogs/javascript/132690/#comment_4405362) [Zibx](http://habrahabr.ru/users/Zibx/) провёл тест по скорости двух способов: через расширение прототипа и отдельную функцию и _работа через прототип чуть не показалась нам действительно значительно быстрее_. Но, к счастью, [Markel](http://habrahabr.ru/users/Markel/) [_опроверг_](http://habrahabr.ru/blogs/javascript/132690/#comment_4408606) этот факт, создав [соответствующий тест](http://jsperf.com/132690) на jsperf.

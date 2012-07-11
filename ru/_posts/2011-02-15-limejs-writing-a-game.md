@@ -17,7 +17,7 @@ _Open Source_, _кроссплатформенность_ и _HTML5_ - это т
 
 В течении прочтения статьи мы напишем очень упрощённую версию пинг-понга на LimeJS. Вот так будет выглядеть результат:
 
-![Мужчины в синих шортах на футбольном поле с детским мячиком](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage-designed.png)
+![Мужчины в синих шортах на футбольном поле с детским мячиком]({{ get_figure(slug, 'stage-designed.png') }})
 
 В конце статьи видео с демонстрацией написанной игры на iPad, iPhone и Android.
 
@@ -67,85 +67,103 @@ _Open Source_, _кроссплатформенность_ и _HTML5_ - это т
 
 Оставим из переданной нам от разработчиков функции `pingpong.start` только несколько строк:
 
-    #!javascript
-    // entrypoint
-    pingpong.start = function(){
+``` { javascript }
 
-        var director = new lime.Director(document.body),
-            scene = new lime.Scene();
+// entrypoint
+pingpong.start = function(){
 
-        director.makeMobileWebAppCapable();
+    var director = new lime.Director(document.body),
+        scene = new lime.Scene();
 
-        // set current scene active
-        director.replaceScene(scene);
+    director.makeMobileWebAppCapable();
 
-    }
+    // set current scene active
+    director.replaceScene(scene);
+
+}
+
+```
 
 Не забудьте убрать ненужные строки `goog.require`. Я не буду напоминать про это в дальнейшем, как должен будет выглядеть заголовок файла вы всегда сможете посмотреть в конце статьи. Добавим в сцену три слоя - фон `floor_`, стены `walls_` и доску, на которой будет происходить всё действие - `board_`:
 
-    #!javascript
-    var director = new lime.Director(document.body),
-        scene = new lime.Scene(),
+``` { javascript }
 
-        floor_ = new lime.Layer().setPosition(0,0),
-        walls_ = new lime.Layer().setPosition(0,0),
-        board_ = new lime.Layer().setPosition(0,0);
+var director = new lime.Director(document.body),
+    scene = new lime.Scene(),
 
-    scene.appendChild(floor_);
-    scene.appendChild(walls_);
-    scene.appendChild(board_);
+    floor_ = new lime.Layer().setPosition(0,0),
+    walls_ = new lime.Layer().setPosition(0,0),
+    board_ = new lime.Layer().setPosition(0,0);
 
-    . . .
+scene.appendChild(floor_);
+scene.appendChild(walls_);
+scene.appendChild(board_);
+
+. . .
+
+```
 
 #### Заготовка игрока
 
 В отдельном файле `player.js` опишем класс игрока - это будет полигон в форме скейтборда (чтобы хорошо проверить как работают коллизии):
 
-    #!javascript
-    goog.provide('pingpong.Player');
+``` { javascript }
 
-    goog.require('lime.Polygon');
+goog.provide('pingpong.Player');
 
-    pingpong.Player = function() {
-        goog.base(this);
+goog.require('lime.Polygon');
 
-        // ... собираем полигон
-    }
-    goog.inherits(pingpong.Player, lime.Polygon);
+pingpong.Player = function() {
+    goog.base(this);
+
+    // ... собираем полигон
+}
+goog.inherits(pingpong.Player, lime.Polygon);
+
+```
 
 На месте комментария опишем точки полигона и зальём полупрозрачным синим. Так будет выглядеть игрок (в руководстве для координат полигона используются дробные числа от -1 до 1, но в текущей версии они у меня не заработали):
 
-    #!javascript
-    // -1,-2.5, 0,-3.5, 1,-2.5, 1,2.5, 0,3.5, -1,2.5, 0,1.5, 0,-1.5
-    this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
-        .setFill(0,0,210,.7)
-        .setScale(.4);
+``` { javascript }
 
-![Игрок](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-player.png)
+// -1,-2.5, 0,-3.5, 1,-2.5, 1,2.5, 0,3.5, -1,2.5, 0,1.5, 0,-1.5
+this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
+    .setFill(0,0,210,.7)
+    .setScale(.4);
+
+```
+
+![Игрок]({{ get_figure(slug, 'player.png') }})
 
 Красной точкой на рисунке помечена так называемая `anchorPoint`, для полигона она рассчитывается автоматически. Это точка отсчёта локальной системы координат спрайта - от неё высчитываются все относительные размеры и расстояния, к нему относящиеся.
 
 Пока что код равноценен вызову:
 
-    #!javascript
-    var playerOne = new lime.Polygon().addPoints(...).setFill(...);
+``` { javascript }
+
+var playerOne = new lime.Polygon().addPoints(...).setFill(...);
+
+```
 
 Но позже мы добавим поведение к игроку и будет очевидно, что выделить класс было разумным. Давайте проверим, корректно ли отображается игрок в сцене - вернёмся к файлу `pingpong.js`... впрочем, что уж тянуть, давайте добавим сразу обоих игроков и отразим первого, чтобы они стояли лицом к лицу:
 
-    #!javascript
-    . . .
-    goog.require('pingpong.Player');
+``` { javascript }
 
-    . . .
-        board_ = new lime.Layer().setPosition(0,0),
+. . .
+goog.require('pingpong.Player');
 
-        playerOne = new pingpong.Player().setPosition(50,150).setRotation(180),
-        playerTwo = new pingpong.Player().setPosition(400,150);
+. . .
+    board_ = new lime.Layer().setPosition(0,0),
 
-    board_.appendChild(playerOne);
-    board_.appendChild(playerTwo);
+    playerOne = new pingpong.Player().setPosition(50,150).setRotation(180),
+    playerTwo = new pingpong.Player().setPosition(400,150);
 
-    . . .
+board_.appendChild(playerOne);
+board_.appendChild(playerTwo);
+
+. . .
+
+```
 
 Перед запуском в браузере, нужно произвести ещё одно мановение - обновить зависимости Closure (за счёт этого в `.html` могут быть включены только `base.js` и `pingpong.js`, а остальные внешние файлы подгружаются автоматически через `goog.require`). При этом в текущей версии библиотеки есть небольшой баг - при создании имя проекта не добавляется в файл `./bin/projects`. Поэтому прежде нужно добавить строку `pingpong` в `./bin.projects`, а потом обновить зависимости:
 
@@ -154,24 +172,27 @@ _Open Source_, _кроссплатформенность_ и _HTML5_ - это т
 
 Итак, вот что сейчас на экране:
 
-![Пляжники в синих плавках](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage1.png)
+![Пляжники в синих плавках]({{ get_figure(slug, 'stage1.png') }})
 
 #### Заготовка мячика
 
 Создадим файл `ball.js` с таким содержимым:
 
-    #!javascript
-    goog.provide('pingpong.Ball');
+``` { javascript }
 
-    goog.require('lime.Circle');
+goog.provide('pingpong.Ball');
 
-    pingpong.Ball = function() {
-        goog.base(this);
+goog.require('lime.Circle');
 
-        this.setFill(255,0,0,.7)
-            .setSize(20,20);
-    }
-    goog.inherits(pingpong.Ball, lime.Circle);
+pingpong.Ball = function() {
+    goog.base(this);
+
+    this.setFill(255,0,0,.7)
+        .setSize(20,20);
+}
+goog.inherits(pingpong.Ball, lime.Circle);
+
+```
 
 Обновим зависимости:
 
@@ -179,68 +200,83 @@ _Open Source_, _кроссплатформенность_ и _HTML5_ - это т
 
 И добавим мячик на доску в `pingpong.js`:
 
-    #!javascript
-    . . .
-    goog.require('pingpong.Ball');
-    . . .
+``` { javascript }
 
-        playerOne = new pingpong.Player().setPosition(50,150).setRotation(180),
-        playerTwo = new pingpong.Player().setPosition(400,150),
-        ball = new pingpong.Ball().setPosition(275,150);
+. . .
+goog.require('pingpong.Ball');
+. . .
 
-    board_.appendChild(playerOne);
-    board_.appendChild(playerTwo);
-    board_.appendChild(ball);
+    playerOne = new pingpong.Player().setPosition(50,150).setRotation(180),
+    playerTwo = new pingpong.Player().setPosition(400,150),
+    ball = new pingpong.Ball().setPosition(275,150);
 
-![Пляжники в синих плавках с мячиком](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage2.png)
+board_.appendChild(playerOne);
+board_.appendChild(playerTwo);
+board_.appendChild(ball);
+
+```
+
+![Пляжники в синих плавках с мячиком]({{ get_figure(slug, 'stage2.png') }})
 
 #### Фон
 
 Давайте зададим фон на поле с игроками, для каждого игрока половина поля своего цвета. Добавим к `Director` параметры размеров экрана игры:
 
-    #!javascript
-    var director = new lime.Director(document.body,600,480),
+``` { javascript }
+
+var director = new lime.Director(document.body,600,480),
+
+```
 
 Эти размеры никак не соотносятся с какими-либо пикселями - полотно игры автоматически масштабируется или разворачивается на весь экран при необходимости, но эти размеры позволяют задавать относительное положение элементов на полотне. Поправим позиции мяча и игроков в соответствии с ними:
 
-    #!javascript
-    playerOne = new pingpong.Player().setPosition(40,240).setRotation(180),
-    playerTwo = new pingpong.Player().setPosition(600,240),
-    ball = new pingpong.Ball().setPosition(320,240);
+``` { javascript }
+
+playerOne = new pingpong.Player().setPosition(40,240).setRotation(180),
+playerTwo = new pingpong.Player().setPosition(600,240),
+ball = new pingpong.Ball().setPosition(320,240);
+
+```
 
 При изменении размеров окна так, чтобы поле было меньше чем указанные размеры, логика может сбиваться - хотя скорее всего, это я при тестированиях указал в каком-то месте координаты не так, как нужно было.
 
 Теперь, наконец, фон. Это будут просто два спрайта, разделяющие экран пополам - никакой побочной логики.
 
-    #!javascript
-    floor_.appendChild(new lime.Sprite().setPosition(160,240)
-                                        .setSize(320,480)
-                                        .setFill(100,100,100));
-    floor_.appendChild(new lime.Sprite().setPosition(480,240)
-                                        .setSize(320,480)
-                                        .setFill(200,200,200));
+``` { javascript }
 
-    board_.appendChild(...);
-    . . .
+floor_.appendChild(new lime.Sprite().setPosition(160,240)
+                                    .setSize(320,480)
+                                    .setFill(100,100,100));
+floor_.appendChild(new lime.Sprite().setPosition(480,240)
+                                    .setSize(320,480)
+                                    .setFill(200,200,200));
 
-![Пляжники в синих плавках с мячиком на асфальте](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage3.png)
+board_.appendChild(...);
+. . .
+
+```
+
+![Пляжники в синих плавках с мячиком на асфальте]({{ get_figure(slug, 'stage3.png') }})
 
 #### Заготовка стен
 
 У стен будет совсем немного логики, но тем не менее тоже выделим их в отдельный класс. Стены будут размером 20x20. Создадим файл `wall.js` с таким содержимым:
 
-    #!javascript
-    goog.provide('pingpong.Wall');
+``` { javascript }
 
-    goog.require('lime.Sprite');
+goog.provide('pingpong.Wall');
 
-    pingpong.Wall = function() {
-        goog.base(this);
+goog.require('lime.Sprite');
 
-        this.setFill(255,255,0)
-            .setSize(20,20);
-    }
-    goog.inherits(pingpong.Wall, lime.Sprite);
+pingpong.Wall = function() {
+    goog.base(this);
+
+    this.setFill(255,255,0)
+        .setSize(20,20);
+}
+goog.inherits(pingpong.Wall, lime.Sprite);
+
+```
 
 Обновим зависимости:
 
@@ -248,259 +284,298 @@ _Open Source_, _кроссплатформенность_ и _HTML5_ - это т
 
 И расставим стены вдоль краёв полотна в `pingpong.js`:
 
-    #!javascript
-    . . .
-    goog.require('pingpong.Wall');
-    . . .
+``` { javascript }
 
-    floor_.appendChild(...);
+. . .
+goog.require('pingpong.Wall');
+. . .
 
-    // horizontal walls
-    for (x = 10; x <= 630; x += 20) {
-        walls_.appendChild(new pingpong.Wall().setPosition(x, 10));
-        walls_.appendChild(new pingpong.Wall().setPosition(x, 470));
-    }
-    // vertical walls
-    for (y = 30; y <= 450; y += 20) {
-        walls_.appendChild(new pingpong.Wall().setPosition(10, y));
-        walls_.appendChild(new pingpong.Wall().setPosition(630, y));
-    }
+floor_.appendChild(...);
 
-    board_.appendChild(...);
+// horizontal walls
+for (x = 10; x <= 630; x += 20) {
+    walls_.appendChild(new pingpong.Wall().setPosition(x, 10));
+    walls_.appendChild(new pingpong.Wall().setPosition(x, 470));
+}
+// vertical walls
+for (y = 30; y <= 450; y += 20) {
+    walls_.appendChild(new pingpong.Wall().setPosition(10, y));
+    walls_.appendChild(new pingpong.Wall().setPosition(630, y));
+}
+
+board_.appendChild(...);
+
+```
 
 Всё, поле наконец готово - можно приступать к логике!
 
-![Пляжники в синих плавках с мячиком на серых квадратах, окружённые жёлтыми ящиками](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage4.png)
+![Пляжники в синих плавках с мячиком на серых квадратах, окружённые жёлтыми ящиками]({{ get_figure(slug, 'stage4.png') }})
 
 #### Логика игроков
 
 Спрайт игрока должен постепенно двигаться по вертикали к точке, в которую нажали мышью или пальцем, при этом не врезаясь в стены. Движение делается просто:
 
-    #!javascript
-    . . .
+``` { javascript }
 
-    director.makeMobileWebAppCapable();
+. . .
 
-    goog.events.listen(floor_,['mousedown','touchstart'],function(e){
-        var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
-        player_.runAction(
-                new lime.animation.MoveTo(
-                            player_.alignBounds(player_.getPosition().x,
-                                                e.position.y))
-                                  .setDuration(1));
-    });
+director.makeMobileWebAppCapable();
 
-    director.replaceScene(scene);
+goog.events.listen(floor_,['mousedown','touchstart'],function(e){
+    var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
+    player_.runAction(
+            new lime.animation.MoveTo(
+                        player_.alignBounds(player_.getPosition().x,
+                                            e.position.y))
+                              .setDuration(1));
+});
+
+director.replaceScene(scene);
+
+```
 
 Но при таком поведении игроки проходят сквозь стены. Не будем сохранять экзепляры каждой стены, чтобы тестировать на столкновение с игроками, просто позволим программисту задать за какие границы игроку нельзя попадать - добавим два метода в конец `player.js`:
 
-    #!javascript
-    pingpong.Player.prototype.setMovementBounds = function(top,right,bottom,left) {
-        this._moveBounds = new goog.math.Box(top,right,bottom,left);
-        return this;
-    }
+``` { javascript }
 
-    pingpong.Player.prototype.alignBounds = function(x, y) {
-        if (this._moveBounds === undefined) return new goog.math.Coordinate(x, y);
-        var size_ = new goog.math.Size(this.getSize().width * this.getScale().x,
-                                       this.getSize().height * this.getScale().y);
-        var newX = x, newY = y;
-        if (x < (this._moveBounds.left + (size_.width / 2)))
-                      newX = this._moveBounds.left + (size_.width / 2);
-        if (x > (this._moveBounds.right - (size_.width / 2)))
-                      newX = this._moveBounds.right - (size_.width / 2);
-        if (y < (this._moveBounds.top + (size_.height / 2)))
-                      newY = this._moveBounds.top + (size_.height / 2);
-        if (y > (this._moveBounds.bottom - (size_.height / 2)))
-                      newY = this._moveBounds.bottom - (size_.height / 2);
-        return new goog.math.Coordinate(newX, newY);
-    }
+pingpong.Player.prototype.setMovementBounds = function(top,right,bottom,left) {
+    this._moveBounds = new goog.math.Box(top,right,bottom,left);
+    return this;
+}
+
+pingpong.Player.prototype.alignBounds = function(x, y) {
+    if (this._moveBounds === undefined) return new goog.math.Coordinate(x, y);
+    var size_ = new goog.math.Size(this.getSize().width * this.getScale().x,
+                                   this.getSize().height * this.getScale().y);
+    var newX = x, newY = y;
+    if (x < (this._moveBounds.left + (size_.width / 2)))
+                  newX = this._moveBounds.left + (size_.width / 2);
+    if (x > (this._moveBounds.right - (size_.width / 2)))
+                  newX = this._moveBounds.right - (size_.width / 2);
+    if (y < (this._moveBounds.top + (size_.height / 2)))
+                  newY = this._moveBounds.top + (size_.height / 2);
+    if (y > (this._moveBounds.bottom - (size_.height / 2)))
+                  newY = this._moveBounds.bottom - (size_.height / 2);
+    return new goog.math.Coordinate(newX, newY);
+}
+
+```
 
 Первый позволяет устанавливать прямоугольные границы для игрока, а второй - вернуть выровненную относительно этих границ позицию. Заметьте, что при расчётах учитывается вектор масштабирования.
 
 Теперь в `pingpong.js` обновим определение игроков:
 
-    #!javascript
-    playerOne = new pingpong.Player().setPosition(40,240)
-                                     .setRotation(180)
-                                     .setMovementBounds(20,620,460,20),
-    playerTwo = new pingpong.Player().setPosition(600,240)
-                                     .setMovementBounds(20,620,460,20),
+``` { javascript }
+
+playerOne = new pingpong.Player().setPosition(40,240)
+                                 .setRotation(180)
+                                 .setMovementBounds(20,620,460,20),
+playerTwo = new pingpong.Player().setPosition(600,240)
+                                 .setMovementBounds(20,620,460,20),
+
+```
 
 И исправим событие, их перемещающее:
 
-    #!javascript
-    goog.events.listen(floor_,['mousedown','touchstart'],function(e){
-        var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
-        player_.runAction(
-                new lime.animation.MoveTo(
-                        player_.alignBounds(player_.getPosition().x,
-                                            e.screenPosition.y))
-                                  .setDuration(2));
-    });
+``` { javascript }
+
+goog.events.listen(floor_,['mousedown','touchstart'],function(e){
+    var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
+    player_.runAction(
+            new lime.animation.MoveTo(
+                    player_.alignBounds(player_.getPosition().x,
+                                        e.screenPosition.y))
+                              .setDuration(2));
+});
+
+```
 
 #### Логика мяча
 
 Для мяча понадобится несколько дополнительных функций. Одна позволяет ограничивать движение прямоугольным регионом, так же как и у и игрока, другая устанавливает скорость движения мяча, третья сбрасывает его положение в начальную точку (`ball.js`):
 
-    #!javascript
-    pingpong.Ball = function() {
-        goog.base(this);
+``` { javascript }
 
-        this.setFill(255,0,0,.7)
-            .setSize(20,20);
+pingpong.Ball = function() {
+    goog.base(this);
 
-        this._xCoef = 1;
-        this._yCoef = 1;
+    this.setFill(255,0,0,.7)
+        .setSize(20,20);
 
-        this._resetPos = new goog.math.Coordinate(0, 0);
-        this._velocity = 2;
-    }
-    goog.inherits(pingpong.Ball,lime.Circle);
+    this._xCoef = 1;
+    this._yCoef = 1;
 
-    pingpong.Ball.prototype.setMovementBounds = function(top,right,bottom,left) {
-        this._moveBounds = new goog.math.Box(top,right,bottom,left);
-        return this;
-    }
+    this._resetPos = new goog.math.Coordinate(0, 0);
+    this._velocity = 2;
+}
+goog.inherits(pingpong.Ball,lime.Circle);
 
-    pingpong.Ball.prototype.setVelocity = function(velocity) {
-        if (velocity) this._velocity = velocity;
-        return this;
-    }
+pingpong.Ball.prototype.setMovementBounds = function(top,right,bottom,left) {
+    this._moveBounds = new goog.math.Box(top,right,bottom,left);
+    return this;
+}
 
-    pingpong.Ball.prototype.setResetPosition = function(x, y) {
-        this._resetPos = new goog.math.Coordinate(x, y);
-        return this;
-    }
+pingpong.Ball.prototype.setVelocity = function(velocity) {
+    if (velocity) this._velocity = velocity;
+    return this;
+}
+
+pingpong.Ball.prototype.setResetPosition = function(x, y) {
+    this._resetPos = new goog.math.Coordinate(x, y);
+    return this;
+}
+
+```
 
 Туда же допишем основную функцию проверки, поймал ли один из игроков мяч и сброса позиции мяча, если нет. Если произошёл удар о вертикальную стенку, функция возвращает позицию удара, чтобы внешняя функция смогла определить, кто из игроков виноват, рассудив по их расположению.
 
-    #!javascript
-    pingpong.Ball.prototype.updateAndCheckHit = function(dt,playerOne,playerTwo) {
-        var newPos_ = this.getPosition();
-        var size_ = new goog.math.Size(this.getSize().width * this.getScale().x,
-                                       this.getSize().height * this.getScale().y);
-        newPos_.x += this._xCoef * this._velocity * dt;
-        newPos_.y += this._yCoef * this._velocity * dt;
-        var hitVBounds_ = false; // vertical bounds were hit
-        if (this._moveBounds !== undefined) {
-            if (newPos_.x <= (this._moveBounds.left + (size_.width / 2)))
-                             { this._xCoef = 1; hitVBounds_ = true; }
-            if (newPos_.x >= (this._moveBounds.right - (size_.width / 2)))
-                             { this._xCoef = -1; hitVBounds_ = true; }
-            if (newPos_.y <= (this._moveBounds.top + (size_.height / 2)))
-                             this._yCoef = 1;
-            if (newPos_.y >= (this._moveBounds.bottom - (size_.height / 2)))
-                             this._yCoef = -1;
-        }
-        var p1catched_ = playerOne.catched(this.getParent().localToScreen(newPos_));
-        var p2catched_ = playerTwo.catched(this.getParent().localToScreen(newPos_));
-        if (hitVBounds_ && !p1catched_ && !p2catched_) {
-            this.setPosition(this._resetPos.x,this._resetPos.y);
-            return newPos_;
-        } else if (p1catched_) { this.xCoef = 1; return null; }
-          else if (p2catched_) { this.xCoef = -1; return null; }
-        this.setPosition(newPos_.x, newPos_.y);
-        return null;
+``` { javascript }
+
+pingpong.Ball.prototype.updateAndCheckHit = function(dt,playerOne,playerTwo) {
+    var newPos_ = this.getPosition();
+    var size_ = new goog.math.Size(this.getSize().width * this.getScale().x,
+                                   this.getSize().height * this.getScale().y);
+    newPos_.x += this._xCoef * this._velocity * dt;
+    newPos_.y += this._yCoef * this._velocity * dt;
+    var hitVBounds_ = false; // vertical bounds were hit
+    if (this._moveBounds !== undefined) {
+        if (newPos_.x <= (this._moveBounds.left + (size_.width / 2)))
+                         { this._xCoef = 1; hitVBounds_ = true; }
+        if (newPos_.x >= (this._moveBounds.right - (size_.width / 2)))
+                         { this._xCoef = -1; hitVBounds_ = true; }
+        if (newPos_.y <= (this._moveBounds.top + (size_.height / 2)))
+                         this._yCoef = 1;
+        if (newPos_.y >= (this._moveBounds.bottom - (size_.height / 2)))
+                         this._yCoef = -1;
     }
+    var p1catched_ = playerOne.catched(this.getParent().localToScreen(newPos_));
+    var p2catched_ = playerTwo.catched(this.getParent().localToScreen(newPos_));
+    if (hitVBounds_ && !p1catched_ && !p2catched_) {
+        this.setPosition(this._resetPos.x,this._resetPos.y);
+        return newPos_;
+    } else if (p1catched_) { this.xCoef = 1; return null; }
+      else if (p2catched_) { this.xCoef = -1; return null; }
+    this.setPosition(newPos_.x, newPos_.y);
+    return null;
+}
+
+```
 
 > В подобных функциях требуется внимательно следить за координатной системой, с которой вы
 работаете в данный момент и правильно их конвертировать при необходимости. В данном случае `parent`  - это слой, на котором располагается мяч и позиция мяча - это позиция относительно системы координат слоя. Таким образом, мы переводим координату позиции мяча в системе координат слоя в экранную систему координат перед передачей, а в методе `catched`, описанном ниже, переводим переданную позицию из экранной системы координат в локальную систему координат игрока.
 
 В `player.js` добавим использующуйся в предыдущей функции метод `catched`. Он, учитывая координаты всех точек полигона игрока + масштаб и поворот, возвращает попала ли переданная позиция в область полигона или нет:
 
-    #!javascript
-    pingpong.Player.prototype.catched = function(pos) {
-        var p = this.getPoints(),
-            s = this.getScale(),
-            r = this.getRotation(),
-            plen = p.length,
-            coord = this.screenToLocal(pos),
-            inPoly = false;
+``` { javascript }
 
-        var rsin = Math.sin(r * Math.PI / 180),
-            rcos = Math.cos(r * Math.PI / 180),
-            csx = coord.x * s.x,
-            csy = coord.y * s.y,
-            crx = (csx * rcos) - (csy * rsin),
-            cry = (csx * rsin) + (csy * rcos);
-            crx = coord.x, cry = coord.y;
+pingpong.Player.prototype.catched = function(pos) {
+    var p = this.getPoints(),
+        s = this.getScale(),
+        r = this.getRotation(),
+        plen = p.length,
+        coord = this.screenToLocal(pos),
+        inPoly = false;
 
-        if (plen > 2) {
-            var i, j, c = 0;
+    var rsin = Math.sin(r * Math.PI / 180),
+        rcos = Math.cos(r * Math.PI / 180),
+        csx = coord.x * s.x,
+        csy = coord.y * s.y,
+        crx = (csx * rcos) - (csy * rsin),
+        cry = (csx * rsin) + (csy * rcos);
+        crx = coord.x, cry = coord.y;
 
-            for (i = 0, j = plen - 1; i < plen; j = i++) {
-                var pix_ = p[i].x, piy_ = p[i].y,
-                    pjx_ = p[j].x, pjy_ = p[j].y;
+    if (plen > 2) {
+        var i, j, c = 0;
 
-                if (((piy_ > cry) != (pjy_ > cry)) &&
-                    (crx < (pjx_ - pix_) * (cry - piy_) /
-                        (pjy_ - piy_) + pix_)) {
-                        inPoly = !inPoly;
-                    }
-            }
+        for (i = 0, j = plen - 1; i < plen; j = i++) {
+            var pix_ = p[i].x, piy_ = p[i].y,
+                pjx_ = p[j].x, pjy_ = p[j].y;
+
+            if (((piy_ > cry) != (pjy_ > cry)) &&
+                (crx < (pjx_ - pix_) * (cry - piy_) /
+                    (pjy_ - piy_) + pix_)) {
+                    inPoly = !inPoly;
+                }
         }
-
-        return inPoly;
     }
+
+    return inPoly;
+}
+
+```
 
 Установим все необходимые настройки при инициализации мяча в `pingpong.js`:
 
-    #!javascript
-    ball = new pingpong.Ball().setPosition(320,240)
-                              .setMovementBounds(20,620,460,20)
-                              .setVelocity(.2)
-                              .setResetPosition(320,240);
+``` { javascript }
+
+ball = new pingpong.Ball().setPosition(320,240)
+                          .setMovementBounds(20,620,460,20)
+                          .setVelocity(.2)
+                          .setResetPosition(320,240);
+
+```
 
 И, самое главное, проверка событий, произошедших с мячом. Для этого мы используем метод `schedule` из `sheduleManager`, он вызывает переданную функцию в каждом кадре, сообщая о прошедшем с предыдущего кадра времени. Пока будем хаять проигравшего в консоли, а в следущей подглаве сделаем для этого `Label`:
 
-    #!javascript
-    goog.events.listen(. . .);
+``` { javascript }
 
-    var hitPos_;
-    lime.scheduleManager.schedule(function(dt){
-        if (hitPos_ = ball.updateAndCheckHit(dt, playerOne, playerTwo)) {
-           console.log('player',(hitPos_.x <= 320) ? 1 : 2,'is a loser');
-        };
-    },ball);
+goog.events.listen(. . .);
 
-    director.replaceScene(scene);
+var hitPos_;
+lime.scheduleManager.schedule(function(dt){
+    if (hitPos_ = ball.updateAndCheckHit(dt, playerOne, playerTwo)) {
+       console.log('player',(hitPos_.x <= 320) ? 1 : 2,'is a loser');
+    };
+},ball);
+
+director.replaceScene(scene);
+
+```
 
 #### Сообщение о проигрыше
 
 Теперь добавим лэйбл, который будет сообщать о проигравшем игроке. Не будем сильно заморачиваться отсчитывая очки, просто напишем кто пропустил мяч:
 
-    #!javascript
-    ball = . . .
-           .setResetPosition(320,240),
+``` { javascript }
 
-    label = new lime.Label().setPosition(280,30)
-                            .setText('').setFontFamily('Verdana')
-                            .setFontColor('#c00').setFontSize(18)
-                            .setFontWeight('bold').setSize(150,30);
+ball = . . .
+       .setResetPosition(320,240),
+
+label = new lime.Label().setPosition(280,30)
+                        .setText('').setFontFamily('Verdana')
+                        .setFontColor('#c00').setFontSize(18)
+                        .setFontWeight('bold').setSize(150,30);
+
+```
 
 Не забудем добавить лейбл на слой с доской:
 
-    #!javascript
-    board_.appendChild(ball);
-    board_.appendChild(label);
+``` { javascript }
+
+board_.appendChild(ball);
+board_.appendChild(label);
+
+```
 
 И, исправим вывод текста о проигрыше на лейбл вместо консоли:
 
-    #!javascript
-    goog.events.listen(. . .);
+``` { javascript }
 
-    var hitPos_ = null, defDelay_ = 500, delay_ = defDelay_;
-    lime.scheduleManager.schedule(function(dt){
-        delay_ -= dt;
-        if (delay_ <= 0) label.setText('');
-        if (hitPos_ = ball.updateAndCheckHit(dt, playerOne, playerTwo)) {
-           label.setText('player ' + ((hitPos_.x <= 320) ? 1 : 2) + ' is a loser');
-           delay_ = defDelay_;
-        };
-    },ball);
+goog.events.listen(. . .);
 
-    director.replaceScene(scene);
+var hitPos_ = null, defDelay_ = 500, delay_ = defDelay_;
+lime.scheduleManager.schedule(function(dt){
+    delay_ -= dt;
+    if (delay_ <= 0) label.setText('');
+    if (hitPos_ = ball.updateAndCheckHit(dt, playerOne, playerTwo)) {
+       label.setText('player ' + ((hitPos_.x <= 320) ? 1 : 2) + ' is a loser');
+       delay_ = defDelay_;
+    };
+},ball);
+
+director.replaceScene(scene);
+
+```
 
 Всё, мячик летается по полю, отбивается от игроков, пропустивший наказывается страшной красной надписью - для демонстрационной игры, я считаю, достаточно.
 
@@ -510,51 +585,63 @@ _Open Source_, _кроссплатформенность_ и _HTML5_ - это т
 
 Сделаем фон приятного зелёно-травяного цвета - поменяем инициализацию фоновых спрайтов в `pingpong.js`:
 
-    #!javascript
-    floor_.appendChild(new lime.Sprite().setPosition(160,240)
-                                        .setSize(321,480)
-                                        .setFill(new lime.fill.LinearGradient()
-                                                         .setDirection(0,1,1,0)
-                                                         .addColorStop(0,0,92,0,1)
-                                                         .addColorStop(1,134,200,105,1)));
-    floor_.appendChild(new lime.Sprite().setPosition(480,240)
-                                        .setSize(320,480)
-                                        .setFill(new lime.fill.LinearGradient()
-                                                         .setDirection(1,1,0,0)
-                                                         .addColorStop(0,0,92,0,1)
-                                                         .addColorStop(1,134,200,105,1)));
+``` { javascript }
+
+floor_.appendChild(new lime.Sprite().setPosition(160,240)
+                                    .setSize(321,480)
+                                    .setFill(new lime.fill.LinearGradient()
+                                                     .setDirection(0,1,1,0)
+                                                     .addColorStop(0,0,92,0,1)
+                                                     .addColorStop(1,134,200,105,1)));
+floor_.appendChild(new lime.Sprite().setPosition(480,240)
+                                    .setSize(320,480)
+                                    .setFill(new lime.fill.LinearGradient()
+                                                     .setDirection(1,1,0,0)
+                                                     .addColorStop(0,0,92,0,1)
+                                                     .addColorStop(1,134,200,105,1)));
+
+```
 
 Сделаем игрокам (`player.js`) немного прозрачный синий морской градиент:
 
-    #!javascript
-    this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
-        .setFill(new lime.fill.LinearGradient()
-                              .setDirection(0,1,1,0)
-                              .addColorStop(0,0,0,210,.7)
-                              .addColorStop(1,0,0,105,.7))
-        .setScale(.4);
+``` { javascript }
+
+this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
+    .setFill(new lime.fill.LinearGradient()
+                          .setDirection(0,1,1,0)
+                          .addColorStop(0,0,0,210,.7)
+                          .addColorStop(1,0,0,105,.7))
+    .setScale(.4);
+
+```
 
 Мячу (`ball.js`) поставим текстуру с мячиком:
 
-    #!javascript
-    this.setFill('./ball.png')
-        .setSize(20,20);
+``` { javascript }
+
+this.setFill('./ball.png')
+    .setSize(20,20);
+
+```
 
 Стену (`wall.js`) раскрасим в бетонно-синий цвет и отнаследуем от `RoundedRect`:
 
-    #!javascript
-    pingpong.Wall = function() {
-        goog.base(this);
+``` { javascript }
 
-        this.setFill(109,122,181)
-            .setSize(20,20)
-            .setRadius(3);
-    }
-    goog.inherits(pingpong.Wall, lime.RoundedRect);
+pingpong.Wall = function() {
+    goog.base(this);
+
+    this.setFill(109,122,181)
+        .setSize(20,20)
+        .setRadius(3);
+}
+goog.inherits(pingpong.Wall, lime.RoundedRect);
+
+```
 
 Вот, теперь у нас всё выглядит много симпатичнее:
 
-![Мужчины в синих шортах на футбольном поле с детским мячиком](http://dl.dropbox.com/u/928694/blog/ru/img/limejs-stage-designed.png)
+![Мужчины в синих шортах на футбольном поле с детским мячиком]({{ get_figure(slug, 'stage-designed.png') }})
 
 #### Компиляция
 
@@ -570,18 +657,21 @@ _Open Source_, _кроссплатформенность_ и _HTML5_ - это т
 Теперь в папку `compiled` можно скопировать `pingpong.html` и в заголовке поменять
 вызовы JavaScript:
 
-    #!html
-    <!DOCTYPE HTML>
+``` { html }
 
-    <html>
-    <head>
-	    <title>pingpong</title>
-	    <script type="text/javascript" src="pp.js"></script>
-    </head>
+<!DOCTYPE HTML>
 
-    <body onload="pingpong.start()"></body>
+<html>
+<head>
+    <title>pingpong</title>
+    <script type="text/javascript" src="pp.js"></script>
+</head>
 
-    </html>
+<body onload="pingpong.start()"></body>
+
+</html>
+
+```
 
 ### Резюме
 
@@ -603,7 +693,7 @@ _Open Source_, _кроссплатформенность_ и _HTML5_ - это т
 
 [Здесь можно попробовать поиграть](http://shamansir.madfire.net/_pingpong/pingpong.html) (может глючить, потому что это очень упрощённая версия, сравнивайте пожалуйста ожидания работы на вашей платформе с приведёнными выше видео)
 
-![QRCode](http://qrcode.kaywa.com/img.php?s=6&d=http%3A%2F%2Fshamansir.madfire.net%2F_pingpong%2Fpingpong.html)
+![QRCode]({{ get_figure(slug, 'qrcode.png') }})
 
 P.S. Отдельное спасибо [lazio_od](http://www.lazio.com.ua/), он помогал мне в тестировании одновременно с авторами движка.
 
