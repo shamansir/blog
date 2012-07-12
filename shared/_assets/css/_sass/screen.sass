@@ -71,14 +71,14 @@ body
     margin: 0
 
 #nwao-page
-    margin: 0 16% -10% 16%
+    margin: 0 0 0 23%
     background-color: $page-color
 
 article
     //padding: 100px 75px 40px 75px
     //padding: 100px 60px 40px 60px
     //padding: 130px 75px 200px 75px
-    padding: 75px 75px 100px 75px
+    padding: 132px 15% 200px 15%
 
 article, section
 
@@ -260,58 +260,70 @@ a.nwao-button
 
 // .nwao-selection
 //    color: $hilite-color
+
+// SIDEBAR
+
+#nwao-sidebar
+
+    width: 23%
+    height: 100%
+    background-color: #c0cccc
+    position: fixed
+    @include gradient-bg(#909999, #c0cccc)
+    border-right: 8px solid #909999
+    min-width: 226px
+
+    h1
+        
+        margin: 0
+        padding: 18px 5px
+        color: #fff
+        border-bottom: 2px solid #fff
+       
+        font:
+            family: $title-font
+            size: 1.4em
+            weight: 400
+        
+        text-align: center
+        margin: 0
+        word-spacing: 0.05em
+        //@include radial-gradient-bg(#ffffd9, #ffeec0, $heading-bg-color)
+
+        a
+            color: inherit
+
+        a:hover
+            background-color: $transp-tilt
+
+        a:visited
+            color: inherit
+
+        &:hover
+            //background: $heading-bg-color
+            //@include radial-gradient-bg(#fffbd5, #ffeabd, $heading-bg-color)
+            //@include transition(background 2s linear)
+            background-color: #909999
+
+    div#nwao-subtitle
+        color: #eee
+        width: 100%
+        text-align: center
+        font:
+            family: $heading-font
+            size: 1em
+            //style: italic
+        padding: 10 5px 5px 5px
+        //border:
+        //    style: solid
+        //    color: #eee
+        //    width: 8px 0 0 0
        
 // TOP HEADER
 
 #nwao-header
     margin: 0
     text-align: center
-
-    a
-        color: #000
-
-    #nwao-holder
-        border:
-            style: solid none
-            color: #666
-            width: 0 1px 4px 1px
-       
-        h1
-            
-            margin: 0
-            padding: 0
-           
-            font:
-                family: $title-font
-                size: 3.8em
-                weight: 400
-            
-            padding: 70px 5px 25px 20px
-            margin: 0
-            word-spacing: 0.05em
-            //@include radial-gradient-bg(#ffffd9, #ffeec0, $heading-bg-color)
-
-            &:hover
-                //background: $heading-bg-color
-                //@include radial-gradient-bg(#fffbd5, #ffeabd, $heading-bg-color)
-                //@include transition(background 2s linear)
-                background-color: #fefefe
-
-            a:hover
-                background-color: $transp-tilt
-       
-
-    div#nwao-subtitle
-        color: #999
-        font:
-            family: $heading-font
-            size: 1.5em
-            //style: italic
-        padding: 10 5px 5px 5px
-        border:
-            style: solid
-            color: #eee
-            width: 8px 0 0 0
        
     // em
     //   position: relative
@@ -348,6 +360,8 @@ a.nwao-button
 // PAGE TITLE
 
 .nwao-page-title-anchor
+    display: none
+
     margin: 30px
     padding: 20px
     border-bottom: 2px solid black
@@ -456,8 +470,8 @@ ul#nwao-social
     display: inline-block
     background-color: #eee
     position: fixed
-    right: 5px
-    top: 5px    
+    left: 5px
+    bottom: 200px    
     @include border-radius(3px)
     @include opacity(0.5)
     border:
@@ -488,26 +502,25 @@ ul#nwao-social
 
 #nwao-onion
     //display: none // TODO: show on scroll to end
-    //@include opacity(0.8)
-    float: right
-    right: 0
+    position: fixed
+    left: 0
     bottom: 0
-    width: 310px
-    height: 207px
+    margin: 0 10px
+    width: 184px
+    height: 123px
     z-index: 1
     background:
         repeat: no-repeat
         image: url('/assets/img/onions.png')
-        position: 0 -207px
+        position: 0 -125px
 
     &:hover
-        //@include opacity(1.0)
         @include transition(background-image 3s ease)
         //@include transition(background 10s)
         background:
             repeat: no-repeat
             image: url('/assets/img/onions.png')
-            position: 0 0
+            position: 0 -1px
 
 // TO-TOP
 
@@ -517,7 +530,7 @@ ul#nwao-social
     @include opacity(0.3)
     font-size: 1.1em
     position: fixed
-    left: 14%
+    left: 25%
     bottom: 0
 
     a
@@ -532,7 +545,7 @@ ul#nwao-social
 
 #nwao-blog-feed, #nwao-archives, #nwao-archive, #nwao-tagged
 
-    padding: 50px 75px 100px 75px
+    padding: 50px 15% 100px 15%
 
     .nwao-post-header
         
@@ -559,6 +572,9 @@ ul#nwao-social
             &:hover
                 background-color: #ccc
                 @include transition(background 1s ease)
+
+#nwao-blog-feed
+    padding-top: 132px
 
 .nwao-blog-feed-item
     margin: 0 0 60px 0

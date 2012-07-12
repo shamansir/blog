@@ -1,4 +1,5 @@
 
+- Detection of rotating bounds intersection
 - pegjs / markdown.pegjs
 - mvp4g-layouting as a separate jar
 - Rhino in Android
