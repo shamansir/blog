@@ -443,7 +443,7 @@ ul#nwao-social li {
   height: 207px;
   z-index: 1;
   background-repeat: no-repeat;
-  background-image: url("/assets/img/onions.png");
+  background-image: url("../../assets/img/onions.png");
   background-position: 0 -207px;
 }
 #nwao-onion:hover {
@@ -453,7 +453,7 @@ ul#nwao-social li {
   -o-transition: background-image 3s ease;
   transition: background-image 3s ease;
   background-repeat: no-repeat;
-  background-image: url("/assets/img/onions.png");
+  background-image: url("../../assets/img/onions.png");
   background-position: 0 0;
 }
 
