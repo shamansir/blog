@@ -34,14 +34,14 @@ article p, article ul, article ol, article dl, section p, section ul, section ol
   line-height: 1.8em;
 }
 article p, section p {
-  padding: 0 1px 16px 0;
+  padding: 2px 0 16px 0;
 }
 article img, section img {
   border: 1px solid #999999;
   -webkit-box-shadow: #6c6c6c 1px 1px 9px -2px;
   box-shadow: #6c6c6c 1px 1px 9px -2px;
   display: block;
-  margin: 30px auto;
+  margin: 10px auto;
   padding: 4px;
   color: #999999;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.8 * 100)";
@@ -63,9 +63,9 @@ article pre > code, section pre > code {
   display: block;
   background-color: #f3f3f3;
   padding: 10px;
-  margin: 8px;
+  margin: 8px 8px 30px 8px;
   font-size: 1em;
-  line-height: 1.6em;
+  line-height: 1.4em;
   overflow: hidden;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -79,12 +79,13 @@ article pre > code:hover, section pre > code:hover {
 }
 article .linenos, article table.highlighttable td.code, section .linenos, section table.highlighttable td.code {
   background-color: #f3f3f3;
+  padding: 10px;
 }
 article div.code, section div.code {
   overflow: hidden;
   font-size: 1em;
   line-height: 1.6em;
-  margin: 8px;
+  margin: 8px 8px 30px 8px;
   background-color: #f3f3f3;
   -webkit-border-radius: 5px;
   border-radius: 5px;
