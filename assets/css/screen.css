@@ -31,10 +31,10 @@ article {
 
 article p, article ul, article ol, article dl, section p, section ul, section ol, section dl {
   font-size: 1.1em;
-  line-height: 1.4em;
+  line-height: 1.8em;
 }
 article p, section p {
-  padding: 0 1px 7px 0;
+  padding: 0 1px 16px 0;
 }
 article img, section img {
   border: 1px solid #999999;
@@ -65,6 +65,7 @@ article pre > code, section pre > code {
   padding: 10px;
   margin: 8px;
   font-size: 1em;
+  line-height: 1.6em;
   overflow: hidden;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -82,6 +83,7 @@ article .linenos, article table.highlighttable td.code, section .linenos, sectio
 article div.code, section div.code {
   overflow: hidden;
   font-size: 1em;
+  line-height: 1.6em;
   margin: 8px;
   background-color: #f3f3f3;
   -webkit-border-radius: 5px;
