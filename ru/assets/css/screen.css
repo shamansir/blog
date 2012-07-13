@@ -31,7 +31,7 @@ article {
 
 article p, article ul, article ol, article dl, section p, section ul, section ol, section dl {
   font-size: 1.1em;
-  line-height: 1.8em;
+  line-height: 1.6em;
 }
 article p, section p {
   padding: 2px 0 16px 0;
@@ -84,7 +84,7 @@ article .linenos, article table.highlighttable td.code, section .linenos, sectio
 article div.code, section div.code {
   overflow: hidden;
   font-size: 1em;
-  line-height: 1.6em;
+  line-height: 1.4em;
   margin: 8px 8px 30px 8px;
   background-color: #f3f3f3;
   -webkit-border-radius: 5px;
