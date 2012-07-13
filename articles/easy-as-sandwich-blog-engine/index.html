@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Blog about programming and only about it. No word about onion. At all. Totally none." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/" />
+<link rel="index" href="/blog/archives/" />
+
+<link rel="shortcut icon" href="/blog/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-4']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — Easy as Sandwich: Blog Engine in JavaScript and XML &ndash; No word about onion</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/" rel="contents" title="Blog"><i class="icon-home"></i>&nbsp;Blog</a></li>
+                    <li><a href="/blog/archives/" rel="index" title="Archives"><i class="icon-book"></i>&nbsp;Archives</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Author"><i class="icon-user"></i>&nbsp;Author</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/feed.xml" title="Feed"><i class="icon-rss"></i>&nbsp;Feed</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/" title="No word about onion">&raquo;No word about onion&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>shaman.sir's telling you about stuff</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Previous post</a><span> | </span>
+            <a href="#" id="nwao-next">Next post →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="Easy as Sandwich: Blog Engine in JavaScript and XML">
+                    Easy as Sandwich: Blog Engine in JavaScript and XML
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Published at</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;17 November 2010, Wednesday</dd>
+    
+    <dt class="nwao-hidden">Tags</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/tags/blog/" rel="tag" title="Posts with 'blog' tag"><i class="icon-tag"></i>&nbsp;blog</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/tags/javascript/" rel="tag" title="Posts with 'javascript' tag"><i class="icon-tag"></i>&nbsp;javascript</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/tags/projects/" rel="tag" title="Posts with 'projects' tag"><i class="icon-tag"></i>&nbsp;projects</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/tags/xml/" rel="tag" title="Posts with 'xml' tag"><i class="icon-tag"></i>&nbsp;xml</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p>Say you suddenly needed a personal blog. I already have some puny free hosting, and it hosting is puny for real, so it has no PHP and it even has no possibilities to set up any server-side at all. Or even worse, you have only a Dropbox account and in this very moment, suddenly, the personal blog is needed.</p>
+
+<p>And more, may be you prefer to write you posts in Markdown-syntax instead of writing a heavy sad posts using dull HTML. The more, Markdown is now supported at a lot of places (excluding MSDN articles, may be). And there wouldn&#39;t be out of place to store separate posts in separate files, so you can take one and copy-paste it in Tumblr or somewhere else. And it gives you a possibility to push files in some repository and to make your articles versioned this way&hellip;</p>
+
+<p>And more, you&#39;d like to have two versions of your blog in one entry point. English and russian, for example.</p>
+
+<p>I think you now feel what I mean: I have a proposal for you abou this all. It&#39;d be better to give more than one link already but I am an evil geek so I&#39;ll put one in the end of article.</p>
+<h3 id="picture"><a href="#picture" title="Picture">Picture</a></h3>
+<p><img src="/blog/figures/easy-as-sandwich-blog-engine/screenshot-small.png" alt="Screenshot"></p>
+<h3 id="components"><a href="#components" title="Components">Components</a></h3>
+<ul>
+<li><a href="http://jquery.com">JQuery</a>, for bread</li>
+<li><a href="http://www.attacklab.net/showdown/">Showdown</a>, for a sausage</li>
+<li>And a dates parser for a mustard</li>
+</ul>
+
+<p>Not to make things to hard, I&#39;ve taken <a href="http://jquery.com">JQuery</a> (I use only DOM-operations and a helper to load XML files asynchronously from it, so for the cruel need it can be accurately excised). Then I&#39;ve taken  <a href="http://www.attacklab.net/showdown/">Showdown</a>, it is Markdown syntax parser moved to JavaScript. Then I&#39;ve taken some strange dates parser (to display them nicely). And I&#39;ve mixed all these stuff into one solid thing, so I&#39;ve got a crazy little thing called JS/XML-driven blog engine. Easy as sandwich.</p>
+<h3 id="receipt"><a href="#receipt" title="Receipt">Receipt</a></h3>
+<p>To write your first post in a blog, get <a href="http://code.google.com/p/showdown-blog/downloads/detail?name=swblog.zip">this package</a>, unpack. Update your preferences (<code>prefs.xml</code>), create some post (<code>posts/&lt;post-id&gt;.xml</code>), add <code>&lt;post-id&gt;</code> in <code>posts.xml</code>. That&#39;s all, you&#39;re ready, post is published. For the next posts just repeat only last two steps. (In <code>./create.html</code> you&#39;ll find an editor that is ripped out from Showdown, and it will help your phantasy to imagine what Markdown-syntax parsing result will look like).</p>
+
+<p>Now, once more</p>
+
+<ol>
+<li>Set up ising <code>prefs.xml</code></li>
+<li>Put <code>some-post.xml</code> in <code>posts</code> directory</li>
+<li>Add <code>some-post</code> to <code>posts.xml</code></li>
+<li>Repeat steps 2 and 3 for next posts</li>
+</ol>
+<h3 id="advantages"><a href="#advantages" title="Advantages">Advantages</a></h3>
+<ul>
+<li>Minimalism.</li>
+<li>No server side. At all.</li>
+<li>Posts are written with Markdown-syntax.</li>
+<li>One post - one XML file</li>
+<li>Configuration-over-XML</li>
+<li>Styles-over-CSS</li>
+<li>Tags, tags cloud and tags navigation</li>
+<li>Permalink for every post</li>
+<li>Supports mobile browsers (some)</li>
+<li>Several entry-points are supported</li>
+<li>RSS-generating script is included out-of-the-box</li>
+</ul>
+<h3 id="disadvantages"><a href="#disadvantages" title="Disadvantages">Disadvantages</a></h3>
+<ul>
+<li>No commenting support</li>
+<li>No indexing with search engines</li>
+<li>Only for JavaScript-powered browsers</li>
+<li>Javascript and JQuery sometimes go slowly in slow networks</li>
+<li>If you have no <code>.htaccess</code>, user must name <code>index.html</code> explicitly</li>
+<li>Things to optimize</li>
+</ul>
+<h3 id="may-be-later"><a href="#may-be-later" title="May be later">May be later</a></h3>
+<ul>
+<li>Paging</li>
+<li>Templates support</li>
+<li>More Nice RSS / RSS Automation</li>
+<li>Calendar</li>
+</ul>
+<h3 id="example"><a href="#example" title="Example">Example</a></h3>
+<p><a href="http://showdown-blog.googlecode.com/hg/index.html">Path to example</a></p>
+<h3 id="source-code"><a href="#source-code" title="Source code">Source code</a></h3>
+<p><a href="http://showdown-blog.googlecode.com/">Googlecode project</a></p>
+
+<p><strong>Upd.</strong> Advantages and disadvatages had a bit changed through time, visit the project page to see how exactly they&#39;ve changed.</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="Twitter profile"><img src="/blog/assets/img/social/twitter.png" width="16" height="16" alt="Twitter profile"></a></li>
+    <li><a href="https://github.com/shamansir" title="Github profile"><img src="/blog/assets/img/social/github.png" width="16" height="16" alt="GitHub profile"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="Facebook profile"><img src="/blog/assets/img/social/facebook.png" width="16" height="16" alt="Facebook profile"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="Stackoverflow profile"><img src="/blog/assets/img/social/stack-overflow.png" width="16" height="16" alt="Stack Overflow profile"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Jump to top">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

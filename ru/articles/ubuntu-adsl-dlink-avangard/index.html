@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/ru/" />
+<link rel="index" href="/blog/ru/archives/" />
+
+<link rel="shortcut icon" href="/blog/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/ru/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/ru/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/ru/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — Ubuntu 7.04, Пыхтерский Авангард-ADSL, модем D-Link &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/ru/" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="/blog/ru/archives/" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/ru/feed.xml" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/ru/" title="Ни слова о луке">&raquo;Ни слова о луке&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="Ubuntu 7.04, Пыхтерский Авангард-ADSL, модем D-Link">
+                    Ubuntu 7.04, Пыхтерский Авангард-ADSL, модем D-Link
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Опубликован</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;21 июля 2007, суббота</dd>
+    
+    <dt class="nwao-hidden">Тэги</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/ru/tags/administration/" rel="tag" title="Посты с тэгом 'administration'"><i class="icon-tag"></i>&nbsp;administration</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/avangard/" rel="tag" title="Посты с тэгом 'avangard'"><i class="icon-tag"></i>&nbsp;avangard</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/d-link/" rel="tag" title="Посты с тэгом 'd-link'"><i class="icon-tag"></i>&nbsp;d-link</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/ubuntu/" rel="tag" title="Посты с тэгом 'ubuntu'"><i class="icon-tag"></i>&nbsp;ubuntu</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p>Вот она, первая статья о невечном :)</p>
+
+<p>На самом деле статей в сети на эту тему много (ну либо они повествуют о настройке для веб-плюса – она схожа) – но результаты у всех разные – поэтому расскажу свою историю.</p>
+
+<p>подопытные:</p>
+
+<ul>
+<li><a href="http://releases.ubuntu.com/7.04/">Ubuntu 7.40 Feisty Fawn</a></li>
+<li>USB-модем <a href="http://eciadsl.flashtux.org/modems.php?modem=86">D-Link DSL-200 Generation III</a></li>
+</ul>
+
+<p>дополнительные ссылки:</p>
+
+<ul>
+<li><a href="http://starl1te.wordpress.com/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC%D0%B0-d-link-dsl-200/">Как Starl1te настраивал Веб-плюс</a></li>
+<li><a href="http://forum.ubuntu.ru/index.php?topic=8712.45">Беседа с человеком у которого однажды это всё-таки получилось</a></li>
+<li><a href="http://eciadsl.flashtux.org/">Основной источник файлов</a></li>
+<li><a href="http://ru.gentoo-wiki.com/ADSL_%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC%D1%8B_%D0%BD%D0%B0_%D1%87%D0%B8%D0%BF%D0%B0%D1%85_GlobeSpan_(D-Link_DSL200">Как это делают в Gentoo</a>)</li>
+</ul>
+
+<blockquote>
+<p>(дополнительные ссылки также есть в конце статьи)</p>
+</blockquote>
+
+<p>Итак, Live/Install CD <a href="http://releases.ubuntu.com/7.04/">был скачан</a> из интернета, прожжен на болванку и установлен буквально за 10-15 минут, чем Ubuntu и славится. практически все что нужно обнаружилось и отдетектилось сразу, за исключением собственно интернета :). сразу говорю, четких рекомендаций как не было так и нет, насколько я понял у большинства все “_как-то вышло_” и вполне может быть так, что мой или чей-то способ может не подойти. у меня, например, интернет пока что подключается раза с пятого, но хотя бы уже до отключения руками, поэтому я стараюсь не перезагружаться :). если я найду способы улучшения ситуации – я напишу.</p>
+
+<p>Впрочем, меньше прелюдий – беремся за терминал. Вернее, лучше заранее достать где-нибудь интернет и скачать вот эту пару файлов: :).</p>
+
+<ul>
+<li><a href="http://eciadsl.flashtux.org/download/debian/etch/eciadsl-usermode_0.11-1_i386_with_synch_patch.deb">ECI-ADSL с патчем синхронизации</a> (<strong>Upd.</strong> <a href="http://shaman-sir.by.ru/files/eciadsl-usermode_0.11-1_i386_with_synch_patch.deb">альтернативная ссылка</a>)</li>
+<li><a href="http://debian.charite.de/ubuntu/pool/universe/r/rp-pppoe/pppoe_3.8-1.1_i386.deb">утилита PPPoE</a> (или <a href="http://ftp.cica.es/debian/pool/main/r/rp-pppoe/pppoe_3.8-1.1_i386.deb">тут</a>)</li>
+<li><a href="http://eciadsl.flashtux.org/download/eciadsl-synch_bin.tar.bz2">файлы синхронизации</a> (<strong>Upd.</strong> <a href="http://shaman-sir.by.ru/files/eciadsl-usermode-0.11-synch-patch.tar.bz2">альтернативная ссылка</a>)</li>
+</ul>
+
+<p>С этого момента мы считаем что вы находитесь в той директории, куда вы положили эти файлы, например <code>~/Downloads</code>:</p>
+<pre><code>$ cd ~/Downloads
+</code></pre>
+<p>Одно магическое действие, которое вам скорее всего понадобится для корректной работы <code>eciadsl</code> – смена среды. Честно говоря я не успел посмотреть что там было до этого, потому что в <code>bash</code> я не сомневаюсь(лся?), но вероятнее всего на то, как было, если вам будет надо – можно будет запросто вернуть командой <code>sudo ln -sf /bin/dash /bin/sh</code>:</p>
+<pre><code>$ sudo ln sf /bin/bash /bin/sh
+</code></pre>
+<p>устанавливаем пакеты:</p>
+<pre><code>$ sudo dpkg -i ./pppoe_3.8-1.1_i386.deb
+$ sudo dpkg -i ./eciadsl-usermode_0.11-1_i386_with_sync_patch.deb
+</code></pre>
+<p>распаковываем дополнительные файлы синхронизации и переносим их в каталог <code>eciadsl</code>:</p>
+<pre><code>$ bzip2 -d ./eciadsl-synch_bin.tar.bz2
+$ tar -xvf ./eciadsl-synch_bin.tar
+$ sudo mv ./eciadsl-synch_bin/*.bin /etc/eciadsl/
+$ rm -Rf ./eciadsl-synch_bin
+</code></pre>
+<p>далее, нужно проверить выгружен ли модуль <code>dabusb</code>, который по идее и не должен быть загружен – в ранних версиях он приводил к ошибкам.</p>
+<pre><code>$ sudo lsmod | grep dabusb
+</code></pre>
+<p>и если он все-таки найдется – надо его убить, вот так: :)</p>
+<pre><code>$ sudo modprobe -r dabsusb
+</code></pre>
+<p>теперь включаем нужные модули:</p>
+<pre><code>$ sudo modprobe tun
+$ sudo lsmod | grep tun
+$ sudo modprobe n_hdlc
+$ sudo lsmod | grep n_hdlc
+</code></pre>
+<p>сейчас нам нужно узнать <em>VID/PID</em> нашего момеда (насколько я себе представил –- это код USB-порта на материнской плате, но истинным знанием я временно не обладаю).</p>
+<pre><code>$ lsusb
+</code></pre>
+<p>там должно быть либо <em>D-Link</em> либо <em>GlobeSpan</em>, либо какой-то еще вариант (если что можно выяснить отключив модем, выполнив <code>lsusb</code> и подключив снова) –- у меня мой модем был в этой строчке:</p>
+
+<p><code>Bus 004 Device 006: ID</code> _<code>0915:8104</code>_ <code>GlobeSpan, Inc.</code></p>
+
+<p>выделенные курсивом числа – и есть <em>VID:PID</em> – запомните их. Настало время приступить к конфигурации. можно запустить текстовую версию и следовать указаниям (пояснения ниже):</p>
+<pre><code>$ sudo eciadsl-config-text
+</code></pre>
+<p>для Авангард-ADSL настройки (примерно :) ) таковы (номера пунктов могут отличаться):</p>
+
+<ul>
+<li>(1) configure all settings</li>
+<li><em>юзернейм/пароль</em>: <em>ptn</em>/<em>ptn</em></li>
+<li><em>provider</em>: (58) Other</li>
+<li><em>DNS1</em>: <code>213.158.0.6</code></li>
+<li><em>DNS2</em>: <code>213.48.193.36</code> (на июль 2007 они таковы, в будущем могут потенциально поменяться – следите за новостями Авангарда)</li>
+<li><em>VPI</em>: <code>0</code></li>
+<li><em>VCI</em>: <code>35</code></li>
+<li><em>modem</em>: (16) D-Link DSL200 B1 (засисит от модели вашего модема, но у меня кажется не B и работает и я побаиваюсь пока все нестабильно но работает тестировать другие варианты :) )</li>
+<li><em>VID1</em>: <code>__0915__</code> (первое число из двух, которые показала команда <code>lsusb</code>)</li>
+<li><em>PID1</em>: <code>__8104__</code> (второе число из двух, которые показала команда <code>lsusb</code>)</li>
+<li><em>VID2</em>: <code>__0915__</code> (первое число из двух, которые показала команда <code>lsusb</code>)</li>
+<li><em>PID2</em>: <code>__8104__</code> (второе число из двух, которые показала команда <code>lsusb</code>)</li>
+<li><em>chipset</em>: (3) <code>GS7470</code></li>
+<li><em>SYNCH</em>: <code>0</code> (этот пункт и следующий пункты люди часто ставят наугад, я тоже пишу как работает у меня и не знаю почему я это ставил :) )</li>
+<li><em>PPPOECI</em>: <code>4</code></li>
+<li>_<code>.bin</code>_ <code>file</code>: (18) <code>/etc/eciadsl/gs7470_synch20.bin</code> (очень важный пункт, на сайте Авангарда пишут использовать именно этот файл , но если у вас все еще будут проблемы с синхронизацией – нужно будет перебрать все по одному а в самом худшем случае – собирать свой)</li>
+<li><em>PPP Mode</em>: (5) <code>LLC_SNAP_RFC1483_BRIDGED_ETH_NO_FCS</code> (еще используют <code>LLC_RFC1483_ROUTED_IP</code>)</li>
+<li><em>DHCP</em>: no</li>
+<li>_<em>Static IP</em>: no (по дефолту у Авангарда динамический IP, но если у вас статический за денюжку то наверное стоит поставить yes :) )</li>
+</ul>
+
+<p>ниже я приведу сам файл <code>/etc/eciadsl/eciadsl.conf</code>, который и изменяет эта утилита –- в том состоянии, в каком он у меня.</p>
+
+<p>далее –- запускаем собственно синхронизацию:</p>
+<pre><code>$ sudo eciadsl-start
+</code></pre>
+<p>тут могут обнаружиться самые обидные проблемы – если будут ошибки про _interrupt_ы – значит вместо первого файла установлена версия без патча синхронизации и вы меня не слушаетесь :). В моем случае тоже не всё гладко - первые разы после удачной синхронизации гаснут обе лампочки на модеме, а среди карт/интерфейсов отстутствует <code>tap0</code>:</p>
+<pre><code>$ ifconfig
+</code></pre>
+<p>но раз на пятый-десятый лампочки все-таки не гаснут и тогда хорошо. По этим причинам я поставил скрипт на автозагрузку, но о нем - ниже. Если уж совсем много раз не выходит –- что-то не чисто –- проверять настройки и файлы синхронизации. Вам нужно добиться чтобы лампочки не гасли :). После этого - набрать:</p>
+<pre><code>$ sudo pppoeconf
+</code></pre>
+<p>это собственно конфигурация <code>PPPoE</code>. Утилита должна найти инет на интерфейсе <code>tap0</code> и задавать диалогами вопросы и просьбы, среди которых попросят ввести пароль/юзернейм снова, а на все остальные - отвечать разумно, чаще всего – “да” :).</p>
+
+<p>после этого можно попытаться подключиться:</p>
+<pre><code>$ sudo pppoe-start
+</code></pre>
+<p>и если не <code>TIMED OUT</code> а <code>CONNECT OK</code> то все замечательно :).<br>
+желаю чтобы у вас так и было :).</p>
+
+<p><em>P.S. Статья будет исправляться и дополняться</em></p>
+<h4 id="пояснения"><a href="#пояснения" title="Пояснения:">Пояснения:</a></h4>
+<p>теперь по поводу гаснущих лампочек. я взял <a href="http://starl1te.wordpress.com/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC%D0%B0-d-link-dsl-200/#comment-52">скрипт starl1t‘а</a>, чуток исправил, добавив <code>pppoe-start</code> и выставил его в автозагрузку:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c"># This is an improved eciadsl launch script, which</span>
+<span class="c"># tries to connect after failures until success.</span>
+<span class="c"># Feel free to share and modify</span>
+<span class="c"># by Starlite</span>
+
+<span class="k">case</span> <span class="s2">&quot;$1&quot;</span> in
+    start<span class="o">)</span>
+        sudo eciadsl-start
+        <span class="nv">result</span><span class="o">=</span><span class="nv">$?</span>
+        <span class="c">#echo &#39;exit code:&#39; $result</span>
+        <span class="k">until</span> <span class="o">[</span> <span class="nv">$result</span> -eq 0 <span class="o">]</span>
+        <span class="k">do</span>
+<span class="k">            </span><span class="nb">echo</span> ‘Error: connection failed’
+            sudo eciadsl-stop
+            sudo eciadsl-start
+            <span class="nv">result</span><span class="o">=</span><span class="nv">$?</span>
+        <span class="c">#   echo ‘exit code:’ $result</span>
+        <span class="k">done</span>
+<span class="k">        </span><span class="nb">echo</span> ‘connection established’
+        sudo pppoe-start
+        <span class="nb">exit</span> <span class="nv">$?</span>
+        ;;
+    stop<span class="o">)</span>
+        sudo eciadsl-stop
+        <span class="nb">exit</span> <span class="nv">$?</span>
+        ;;
+    restart|force-reload<span class="o">)</span>
+        <span class="nv">$0</span> stop <span class="o">&amp;&amp;</span> <span class="nv">$0</span> start
+        <span class="nb">exit</span> <span class="nv">$?</span>
+        ;;
+    *<span class="o">)</span>
+        <span class="nb">echo</span> ‘Usage: eciadsl <span class="o">{</span>start|stop|restart<span class="o">}</span>’
+        <span class="nb">exit </span>1
+        ;;
+<span class="k">esac</span>
+<span class="nb">exit </span>0
+</pre></div>
+</td></tr></table></div></div>
+<p>потом - ставим его на автозагрузку:</p>
+<pre><code>$ sudo chmod +x /etc/init.d/eciadsl
+$ update-rc.d eciadsl defaults
+</code></pre>
+<p>если нужно - можно запускать его самостоятельно:</p>
+<pre><code>$ sudo /etc/init.d/eciadsl restart
+</code></pre><h4 id="тексты"><a href="#тексты" title="Тексты:">Тексты:</a></h4><h5 id="etceciadsleciadsl.conf"><a href="#etceciadsleciadsl.conf" title="/etc/eciadsl/eciadsl.conf">/etc/eciadsl/eciadsl.conf</a></h5><pre><code>
+VID1=0915
+PID1=8104
+VID2=0915
+PID2=8104
+#MODE=LLC_RFC1483_ROUTED_IP
+MODE=LLC_SNAP_RFC1483_BRIDGED_ETH_NO_FCS
+VCI=35
+VPI=0
+FIRMWARE=/etc/eciadsl/firmware00.bin
+SYNCH=/etc/eciadsl/gs7470_synch20.bin
+PPPD_USER=ptn
+PPPD_PASSWD=
+USE_DHCP=no
+USE_STATICIP=no
+STATICIP=
+GATEWAY=
+MODEM=D-Link DSL200 rev B1
+MODEM_CHIPSET=GS7470
+SYNCH_ALTIFACE=0
+PPPOECI_ALTIFACE=1
+PROVIDER=Other
+DNS1=213.158.0.6
+DNS2=213.18.193.36
+
+</code></pre><h5 id="etcppppppoe.conf"><a href="#etcppppppoe.conf" title="/etc/ppp/pppoe.conf">/etc/ppp/pppoe.conf</a></h5><pre><code>
+ETH=&#39;tap0&#39;
+USER=&#39;ptn&#39;
+DEMAND=no
+#DEMAND=300
+DNSTYPE=SERVER
+PEERDNS=yes
+DNS1=
+DNS2=
+DEFAULTROUTE=yes
+CONNECT_TIMEOUT=30
+CONNECT_POLL=2
+ACNAME=
+SERVICENAME=
+PING=&#34;.&#34;
+CF_BASE=`basename $CONFIG`
+PIDFILE=&#34;/var/run/$CF_BASE-pppoe.pid&#34;
+SYNCHRONOUS=no
+#SYNCHRONOUS=yes
+CLAMPMSS=1412
+#CLAMPMSS=100
+#CLAMPMSS=no
+LCP_INTERVAL=20
+LCP_FAILURE=3
+#LCP_FAILURE=30
+PPPOE_TIMEOUT=80
+FIREWALL=NONE
+LINUX_PLUGIN=
+PPPOE_EXTRA=&#34;&#34;
+PPPD_EXTRA=&#34;&#34;
+
+</code></pre><h4 id="примечания"><a href="#примечания" title="Примечания:">Примечания:</a></h4>
+<hr>
+
+<p><em>от человека, настраивавшего модем ZTE ZXDSL 852, добавляю:</em></p>
+
+<blockquote>
+<p>Для модема ZTE ZXDSL 852 нужно еще (кроме драйвера <code>cxacru.ko</code>) втыкать мост <code>ATM</code> &lt;-&gt; <code>ETHERNET</code> (<code>PPPoA</code> &lt;-&gt; <code>PPPoE</code>), а для этого ставить драйвер <code>br2648.ko</code> и настраивать через контрольную утилиту <code>br2684ctl</code> (должна входить в пакет <code>linux-atm-lib</code> - если нет - можно взять с <a href="http://linux-atm.sourceforge.net/">linux-atm.sourceforge.net</a>).</p>
+</blockquote>
+
+<p>К сожалению ссылка на руководство по сборке файла синхронизации руками &ndash; периодически умирает :( , если так произошло &ndash; эту статью можно <a href="http://www.linuxup.ru/index.php?id=99">найти</a> на <a href="http://www.linuxup.ru">LinuxUp.Ru</a> (<a href="http://www.linuxup.ru/print.php?id=99">версия для печати</a> и <a href="http://www.linuxup.ru/index.php?id=100">первая часть статьи</a>) или, в <a href="http://linux.yaroslavl.ru/docs/conf/hardware/FlashCode.pdf">pdf-версии</a> на <a href="http://linux.yaroslavl.ru">linux.yaroslavl.ru</a> (<a href="http://64.233.183.104/search?q=cache:CIYtpkx9cj0J:linux.yaroslavl.ru/docs/conf/hardware/FlashCode.pdf+%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE+%D0%BF%D0%BE+%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B5+EciAdsl+%D0%B4%D1%80%D0%B0%D0%B9%D0%B2%D0%B5%D1%80%D0%B0&amp;hl=ru&amp;ct=clnk&amp;cd=1&amp;gl=ru">HTML-версия</a>).</p>
+
+<p>И, нашлась еще одна очень неплохая ссылка на <a href="http://www.gentoo.ru/?q=node/807">настройку этого дела в Gentoo</a>, с использованием ATM. (И еще <a href="http://ru.gentoo-wiki.com/ADSL_%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC%D1%8B_%D0%BD%D0%B0_%D1%87%D0%B8%D0%BF%D0%B0%D1%85_GlobeSpan_(D-Link_DSL200">вот</a>) &ndash; о том же но по-другому). И, плюс - <a href="http://f0x.ru/wiki/29/249_%CD%E0%F1%F2%F0%EE%E9%EA%E0_Acorp_Sprinter@ADSL_USB_%EF%EE%E4_Ubuntu">ADSL@Ubuntu &amp; модем ACORP</a>.</p>
+
+<hr>
+
+<p>Для полноты картины нужно на <a href="http://forum.runtu.org/index.php?topic=260.0">установку Acorp Sprinter</a> дать ссылку. Там разобрались по-своему.</p>
+
+<hr>
+
+<p>Будьте внимательны!</p>
+
+<p>На сайте <a href="http://eciadsl.flashtux.org/">eciadsl</a> убрали версию с патчем синхронизации. Временно я выложил ее <a href="http://rapidshare.com/files/67709667/eciadsl-synch_bin.tar.html">на rapidshare.com</a> и на на <a href="http://www.rapidshare.ru/456097">rapidshare.ru</a>. Также могу выслать по почте. Если есть информация, работает ли схема с новой версией (по слухам - не работает и других схем нет) - прошу поделиться :) .</p>
+
+<p><strong>Upd.</strong> <a href="http://forum.ubuntu.ru/index.php?topic=14502.0">Здесь</a> у человека возникла проблема с новым драйвером eciadsl 0.12 на ubuntu 7.10.</p>
+
+<p>И вообще - с опытом выясняется, что модемы D-Link-200 - из ряда тех вещей, которые если уж достались - то лучше их сразу поменять.</p>
+
+<hr>
+
+<p>А <a href="http://forum.ubuntu.ru/index.php?topic=14502.msg112057#msg112057">вот тут</a> - про дружбу Ubuntu 7.10 на AMD64, DLink-модема и Авангард ADSL.</p>
+
+<hr>
+
+<p>Ещё раз выкладываю eciadsl-0.11, (в том комменте зачем-то выложил файлы синхронизации):<a href="http://rapidshare.com/files/77521022/eciadsl-usermode-0.11-synch-patch.tar.bz2.html">.tar.bz2</a>, <a href="http://rapidshare.com/files/77521743/eciadsl-usermode_0.11-1_i386_with_synch_patch.deb.html">.deb</a></p>
+
+<p><a href="http://forum.stream.uz/index.php?s=&amp;showtopic=5085&amp;view=findpost&amp;p=340627">Здесь</a> человек настроил всё на 7.10/eciadsl0.10 и довольно подробно описывает (и там же раньше подробное описание <a href="http://forum.stream.uz/index.php?s=&amp;showtopic=5085&amp;view=findpost&amp;p=230190">для Gentoo</a> + решения некоторых проблем).</p>
+
+<p>Сейчас работаю над установкой на 7.04 с ADSL-модемом ZyXEL omni P-630S EE и eciadsl 0.12.</p>
+
+<p>Отметки:</p>
+
+<ul>
+<li>действительно, дефолтовый шелл &ndash; <code>dash</code></li>
+<li>утилита конфигурации <code>eliadsl-config-text</code> для 0.11 почему-то вылетала на вводе логина/пароля ошибку скрипта, поэтому повесил 0.12.</li>
+<li>0.12 выпадает с ошибкой <code>double free or courruption</code> на этапе синхронизации, теоретические решения из инета: поставить 0.10 из сурсов, скомпилить 0.12 из сурсов, <a href="http://eciadsl.flashtux.org/forum/viewtopic.php?t=3344">использовать патч</a> (логин/пароль: <code>eciadsl</code>/<code>eciadsl</code>), <a href="http://eciadsl.flashtux.org/forum/viewtopic.php?t=3358">выбрать <code>RFC_2364</code></a>, проверить все файлы синхронизации…</li>
+</ul>
+
+<hr>
+
+<p><em>от Анонима:</em></p>
+
+<p>Поясню<br>
+VID - vendor id<br>
+PID - product id</p>
+
+<p>alt интерфейсы сейчас указаны на flashtux для каждого модема</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/blog/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль на Github"><img src="/blog/ru/assets/img/social/github.png" width="16" height="16" alt="профиль на Github"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/blog/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль на Stackoverflow"><img src="/blog/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/ru/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/ru/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

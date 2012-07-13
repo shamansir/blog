@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/ru/" />
+<link rel="index" href="/blog/ru/archives/" />
+
+<link rel="shortcut icon" href="/blog/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/ru/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/ru/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/ru/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — Trac + Subversion + Ubuntu: интересная забава на день &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/ru/" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="/blog/ru/archives/" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/ru/feed.xml" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/ru/" title="Ни слова о луке">&raquo;Ни слова о луке&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="Trac + Subversion + Ubuntu: интересная забава на день">
+                    Trac + Subversion + Ubuntu: интересная забава на день
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Опубликован</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;16 декабря 2006, суббота</dd>
+    
+    <dt class="nwao-hidden">Тэги</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/ru/tags/administration/" rel="tag" title="Посты с тэгом 'administration'"><i class="icon-tag"></i>&nbsp;administration</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/subversion/" rel="tag" title="Посты с тэгом 'subversion'"><i class="icon-tag"></i>&nbsp;subversion</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/trac/" rel="tag" title="Посты с тэгом 'trac'"><i class="icon-tag"></i>&nbsp;trac</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/ubuntu/" rel="tag" title="Посты с тэгом 'ubuntu'"><i class="icon-tag"></i>&nbsp;ubuntu</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p>Приветствую всех заинтересованных. Ведь вас, наверняка, не очень много :).</p>
+
+<blockquote>
+<p><strong>Upd.</strong>: Более структурированное и последовательное (правда менее повествовательное) руководство для <a href="http://ubuntuguide.org/wiki/Ubuntu:Feisty%20Ubuntu%207.04">Ubuntu Feisty</a> находится <a href="./trac-subersion-ubuntu-revisited">здесь</a></p>
+</blockquote>
+
+<p>Ну а я, в свою очередь, славлюсь среди знающих меня извращенными подходами к простым вещам, так что и в этот раз решил не ломать традиций :).</p>
+
+<p>Предыстория статьи такова:</p>
+
+<p>Автор находится на испытательном сроке в некой фирме и по прибытию туда обнаруживает, что единственный коллега кроме начальника пишет Систему Управления Проектами (не путать с блоггерскими захватчиками - СУПом) на PHP сроком на две недели (правда, за эти две недели начальник разумно (имхо) требует лишь на-коленочного-статуса). Автор присматривается к требованиям, удивляется и сообщает начальнику, что есть уже такая система, бесплатная, расширяемая и все-в-одном-что-вам-нужно - <a href="http://trac.edgewall.org">Trac</a> - система, которой он с радостью и удовольствием пользовался на прошлой работе. Благо начальник знает что такое SVN, про его замечательную поддержку было упомянуто тоже. Ну и конечно за свои слова пришлось отвечать - за это автору было заказано установить эту хитрую систему (как некоторые пишут, один из самых сложных пакетов для установки).</p>
+
+<p>В свою очередь, в связи с извращенскими посылами автора, он умолчал о непредназначенности для Trac’а такой заботливой-о-пользователе-системы как Ubuntu, да еще и поставил это дело для демонстрации a) на vmWare (что, собственно, сути не меняет) (далее - “твари”) с опцией <code>Host-Only</code> и б) на <code>apache2</code>. Это потому что a) другого нового Unix’а у автора под рукой не было, а устанавливать его основной ОС было делом неперспективным и б) руководства в инете для Trac + Ubuntu почему-то именно про <code>apache2</code>.</p>
+
+<p>Соответственно, действующие лица aka Оперируемые:</p>
+
+<p><em>Ubuntu 6.06 TLS</em> (руссская, хе-хе :) ), <em>Trac 0.10.3</em>, Subversion <em>1.4.2</em> в роли <em>Subversion 1.3.1</em> (почему - смотрите ниже), <em>Python 2.4.3</em> (побоялся ставить на 2.5).</p>
+
+<p>Более поздний P.S. В скором времени я, вероятно, буду ставить всю эту компанию (более злободневные версии) на Ubuntu 7.04 с Python 2.5, и статья, ввиду опыта нескольких установок, будет чуть пограмотнее…</p>
+
+<p>Система устанавливалась прямиком с LiveCD, без каких-либо хитрых настроек, вот как есть - шесть пунктов установки и ничего больше. Вы, конечно же, можете все сделать хитрее - думаю на процессе это отразится не сильно (в отличие, например, от подстановки другой ОС :) ).</p>
+
+<p>Итак, второй апач и 2.4-ый питон нашлись в русских архивах Ubuntu (вернее Python уже был установлен, но я немного привру :) ), поэтому здесь все было просто:</p>
+<pre><code>sudo apt-get install apache2 python2.4
+</code></pre>
+<blockquote>
+<p><strong>Upd.</strong>: Если вы используете английскую юбунту и апача, например, не нашлось, делаем следующее:</p>
+<pre><code>sudo vi /etc/apt/sources.list
+</code></pre>
+<p>Добавляем (<code>Insert</code>):</p>
+<pre><code>deb http://ru.archive.ubuntu.com/ubuntu dapper universe main restricted multiverse
+deb-src http://ru.archive.ubuntu.com/ubuntu dapper universe
+</code></pre>
+<p>Если нужно, снимаем комменты со строк с <code>http://**.archive.ubuntu.com</code> и делаем:</p>
+<pre><code>sudo apt-get update
+</code></pre></blockquote>
+
+<p>На интернациональных (читай англоязычных) порталах (конечно же можно действительно, как подсказал <code>@cyberskunk</code>, раскомментить их в <code>/etc/apt/sources.list</code>) мог бы отыскаться и Trac, но в русской ОС его не нашлось, поэтому я решил сделать его установку ручками, благо это лишь пара лишних команд:</p>
+
+<blockquote>
+<p><strong>Upd.:</strong> Здесь и далее все адреса из ссылок «взять» и «забрать» можно использовать как параметры для команды <code>wget &lt;ссылка&gt;</code>, при этом надо находится в каталоге <code>~/distr</code> - по статье все файлы скачиваются туда.</p>
+</blockquote>
+
+<p>Надо <a href="http://ftp.edgewall.com/pub/trac/trac-0.10.3.tar.gz">взять</a> его <a href="http://trac.edgewall.org/wiki/TracDownload">с официального сайта</a> и положить куда-нибудь, например в папку <code>distr</code> в домашней директории и затем, собственно, инсталлировать (установленных пакетов вам должно хватить и все должно обойтись без зависимостей):</p>
+
+<blockquote>
+<p>(все-все дистрибутивы я складывал в <code>~/distr</code>, что и вам советую, дабы не запутаться)</p>
+</blockquote>
+<pre><code>cd /home/some-user/distr
+tar xvfz trac-0.10.3.tar.gz
+cd ./trac-0.10.3
+sudo python ./setup.py install
+</code></pre>
+<p>Далее, создадим каталог, куда будем складывать окружения (aka environments - гм…. проектов?) trac:</p>
+<pre><code>sudo mkdir /var/trac
+</code></pre>
+<p>Этот каталог должен быть доступен апачу:</p>
+<pre><code>sudo chown www-data:www-data /var/trac
+</code></pre>
+<p>Теперь необходимо настроить доступ апача к trac’у:</p>
+<pre><code>sudo vi /etc/apache2/sites-available/trac
+</code></pre>
+<p>Содержимое этого файла должно выглядеть так:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="s">*</span><span class="nt">&gt;</span>
+    <span class="nb">ServerAdmin</span> webmaster@localhost
+    <span class="nb">ServerName</span> trac.example.com
+    <span class="nb">DocumentRoot</span> <span class="sx">/usr/share/trac/cgi-bin</span>
+    <span class="nt">&lt;Directory</span> <span class="s">/usr/share/trac/cgi-bin</span><span class="nt">&gt;</span>
+        <span class="nb">Options</span> Indexes FollowSymLinks MultiViews ExecCGI
+        <span class="nb">AllowOverride</span> <span class="k">All</span>
+        <span class="nb">Order</span> allow,deny
+        <span class="nb">allow</span> from <span class="k">all</span>
+    <span class="nt">&lt;/Directory&gt;</span>
+    <span class="nb">Alias</span> <span class="sx">/trac</span> <span class="s2">&quot;/usr/share/trac/htdocs&quot;</span>
+
+    <span class="nt">&lt;Location</span> <span class="s">/trac.cgi</span><span class="nt">&gt;</span>
+        <span class="nb">SetEnv</span> TRAC_ENV_PARENT_DIR <span class="s2">&quot;/var/trac&quot;</span>
+    <span class="nt">&lt;/Location&gt;</span>
+
+    <span class="nb">DirectoryIndex</span> trac.cgi
+    <span class="nb">ErrorLog</span> <span class="sx">/var/log/apache2/error.trac.log</span>
+    <span class="nb">CustomLog</span> <span class="sx">/var/log/apache2/access.trac.log</span> combined
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Если кратко, мы настраиваем виртуальный хост, устанавливаеваем корневой каталог для <a href="http://en.wikipedia.org/wiki/Common_Gateway_Interface%20Common%20Gateway%20Interface">CGI</a>-скриптов и документов в <code>/usr/share/trac/cgi-bin/</code>, а адрес <code>http://localhost/trac</code> привязываем к пути <code>/usr/share/trac/htdocs</code> - там лежат всяческие веб-документы. Для доступа к проектам для запросов на <code>http://localhost/trac.cgi</code> устанавливается корневой каталог для окружений trac’а - <code>/var/trac</code>. В принципе,знающему английский все должно быть понятно :).</p>
+
+<p>Теперь следует включить обработку <code>cgi</code>-скриптов:</p>
+<pre><code>sudo vi /etc/apache2/apache2.conf
+</code></pre>
+<p>В этом файле раскомментируйте строку <code>AddHandler cgi-script .cgi</code>.</p>
+
+<p>Переключим apache на сайт trac’а в качестве основного:</p>
+<pre><code>sudo a2dissite default
+sudo a2ensite trac
+</code></pre>
+<blockquote>
+<p>(проверьте, является ли теперь <code>/etc/apache2/sites-enabled/trac</code> ссылкой на <code>/etc/apache2/sites-available/trac</code>)</p>
+</blockquote>
+
+<p>Так что пусть апач перечитает настройки:</p>
+<pre><code>sudo /etc/init.d/apache2 reload
+</code></pre>
+<blockquote>
+<p><strong>Upd.:</strong> Теперь можно проверить, все ли в порядке - если в браузере вы набираете <code>http://localhost/trac.cgi/BlahBlah</code> и видите строку “<code>Environment not found</code>” - значит все в порядке. Также <code>http://localhost/trac</code> должен открывать каталог <code>/usr/share/trac/htdocs</code>, а <code>http://localhost/trac.cgi</code> говорить, что нет <code>Clearsilver</code>’a. Не забудьте кстати потом настроить апачевские права доступа, если надо &ndash; это выходит за рамки статьи, в отличие от траковских :).</p>
+</blockquote>
+
+<p>Настало время взяться за установку <code>Subversion</code>. Его тоже не оказалось в <code>apt-cache</code>, поэтому я его <a href="http://subversion.tigris.org/downloads/subversion-1.4.2.tar.gz">забрал</a> последний на тот момент (1.4.2) <a href="http://subversion.tigris.org/servlets/ProjectDocumentList?folderID=260&amp;expandFolder=260&amp;folderID=7495">отсюда</a> и, также, положил в каталог <code>~/distr</code>, там распаковал, установил необходимые зависимости, собрал и установил, вот так (<strong>Upd.:</strong> Обратите внимание, пакет называется <code>zlib**1**g-dev</code>, а не <code>zlib**l**g-dev</code>):</p>
+<pre><code>cd /home/some-user/distr/
+tar xvfz subversion-1.4.2.tar.gz
+sudo apt-get install gcc
+sudo apt-get install libtool
+sudo apt-get install libapr0-dev
+sudo apt-get install zlib1g-dev
+sudo apt-get install make
+cd ./subversion-1.4.2
+./configure
+make
+sudo make install
+</code></pre>
+<p>Затем установим модуль <code>svn</code> для <code>apache</code>, утановим <code>swig</code> и установим через пакет <code>subversion</code> версию <code>swig</code> для <code>python</code> (текущий каталог - <code>/home/some-user/distr/subversion-1.4.2</code>).</p>
+<pre><code>sudo apt-get install libapache2-svn
+sudo apt-get install swig
+sudo apt-get install python-dev
+./configure
+sudo make swig-py
+sudo make install-swig-py
+</code></pre>
+<blockquote>
+<p><strong>Upd.:</strong> По возможности не обращайте внимания на warning’и при установке - насчет redefin’ов - на них установлена пауза дабы вы с ними ознакомились, но она кончается :))</p>
+</blockquote>
+
+<p>Установим ссылки на установленные модули так, чтобы они были видны питону.</p>
+<pre><code>cd /usr/local/lib/python2.4/site-packages
+sudo ln -s /usr/local/lib/svn-python/libsvn
+sudo ln -s /usr/local/lib/svn-python/svn
+</code></pre>
+<p>Установим модуль <code>pysqlite</code>, чтобы <code>trac</code> мог работать со своей базой данных.</p>
+<pre><code>sudo apt-get install python-pysqlite2
+</code></pre>
+<p>Ввиду новых изменений переустановим <code>trac</code>.</p>
+<pre><code>cd /home/some-user/distr/trac-0.10.3
+sudo python setup.py install
+</code></pre>
+<p>Теперь нужно установить <code>clearsilver</code> - чтобы <code>trac</code> мог использовать шаблоны для страниц. Этот пакет тоже пришлось <a href="http://www.clearsilver.net/downloads/clearsilver-0.10.4.tar.gz">забирать</a> <a href="http://www.clearsilver.net/downloads/">из сети</a> и собирать тут же.</p>
+<pre><code>cd /home/some-user/distr
+tar xvfz clearsilver_0.10.3.orig.tar.gz
+cd ./clearsilver_0.10.3.orig
+./configure
+make
+sudo make install
+</code></pre>
+<p>Наконец, создадим каталог для репозитория <code>subversion</code> и базовую структуру для него в каталоге <code>/tmp</code>.</p>
+<pre><code>sudo mkdir /var/svn
+cd /tmp
+sudo rm -rfR *
+sudo rm -rfR .*
+sudo mkdir /tmp/trunk
+sudo mkdir /tmp/tags
+sudo mkdir /tmp/branches
+</code></pre>
+<p>А теперь начинаются вещи, которые чаще всего генерируют проблемы. Будьте внимательны - в командах я еще мог ошибиться, но мои пояснения верны просто потому что пол-дня были потрачены именно на их решение, а потом еще меня проконсультировал действующий админ и друг (за что ему, конечно же, благодарность и которого, конечно же, я мог понять неверно и переврать :) ).</p>
+
+<p>Более того, вся настройка ниже имеет условие - “используется только один репозиторий для создаваемого проекта”. Пояснения - ниже. (<em>а еще лучше - по поводу нескольких репозиториев - см. в <strong>Upd.</strong> внизу - тут тоже я, в принципе, не вру - но там об этом корректнее</em>).</p>
+
+<p>Используя <code>svnadmin</code> инициализируем репозиторий в соответствующей папке. Опция <code>–pre-1.4-compatible</code> необходима, если при установке без нее <code>apache</code> стал выдавать в логах нечто вроде “_в <code>/var/svn/SomeTracProject/format</code> ожидалась версия 3, а обнаружена была версия 5_″. Это конфликт разных версий модуля для Если вы используете точно такую же систему что и я (а именно если вы не исправляли ничего в <code>/etc/apt/sources.conf</code> и никто не выкладывал со времени моего поста новых версий пакетов :) ) и в точности следуете моим командам - то если вы не установите эту опцию - точно так и получится. В остальных случаях бросьте монету, протестируйте - пересоздать репозиторий никогда не поздно (закоммитить удаленно в неработающий все равно не получится :) ). Только потом, если вы уже создали окружение для trac - не забудьте потом сделать <code>sudo trac-admin /var/trac/SomeTracProject resync</code></p>
+
+<p>Затем импортируем структуру из <code>/tmp</code> в репозиторий <code>svn</code> и допускаем туда <code>apache</code>&hellip;</p>
+<pre><code>sudo svnadmin create –pre-1.4-compatible /var/svn/SomeTracProject
+cd /tmp
+sudo svn import . file:///var/svn/SomeTracProject -m “Initial import”
+sudo chown -R www-data:www-data /var/svn/SomeTracProject
+</code></pre>
+<p>Как вариант, можно создать репозиторий в файловой системе FSFS, тогда делайте: <code>sudo svnadmin create -pre-1.4-compatible -fs-type=fsfs /var/svn/SomeTracProject</code>.</p>
+
+<p>Настало время инициировать окружение Trac. Отвечайте на вопросы честно, если не знаете ответа &ndash; по умолчанию. На вопрос про тип системы контроля версий ответьте ’<code>svn</code>’, а на вопрос про положение репозитория - ‘<code>/var/svn/SomeTracProject</code>’.</p>
+<pre><code>sudo trac-admin SomeTracProject initenv
+</code></pre>
+<p>И в этот каталог <code>apache</code> тоже должен иметь доступ.</p>
+<pre><code>sudo chown -R www-data /var/trac/SomeTracProject
+</code></pre>
+<p>Каким образом - апачу нужно объяснить:</p>
+<pre><code>sudo vi /etc/apache2/sites-available/trac
+</code></pre>
+<p>Вставьте в этот файл следующий текст (после последнего <code>&lt;/Location&gt;</code>):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;Location</span> <span class="s">/trac.cgi/*/login</span><span class="nt">&gt;</span>
+    <span class="nb">AuthType</span> Basic
+    <span class="nb">AuthName</span> <span class="s2">&quot;Trac&quot;</span>
+    <span class="nb">AuthUserFile</span> <span class="sx">/etc/apache2/dav_svn.passwd</span>
+    <span class="nb">Require</span> valid-user
+<span class="nt">&lt;/Location&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Кратко - это настройка аутентификации для страницы логина. В качестве источника пользователей и <code>md5</code>-хешей-паролей используется файл <code>/etc/apache2/dav_svn.passw</code>, который мы создадим попозже.</p>
+
+<p>А пока - настроим удаленный доступ к репозиторию. Здесь надо остановиться и вдохнуть. Будьте внимательны.</p>
+<pre><code>sudo vi /etc/apache2/mods-available/dav_svn.conf
+</code></pre>
+<p>Ниже приведена конфигурация для доступа к одному репозиторию, если он подразумевается как единственный!</p>
+
+<p>Если вы хотите настроить доступ к нескольким репозитроиям, все происходит совсем по-другому. Во-первых можно выделить как <code>&lt;Location&gt;</code> сам каталог <code>/svn</code>, тогда для него надо задать - ‘<code>SVNPath /var/svn</code>’ и настраивать корректно аутентификацию в <code>authz</code>-файле (смотрите ниже). Если же вы настраиваете <code>Location</code>‘ы для репозиториев со своими (отдельными) файлами авторизации (только тогда это оправдано), для ‘<code>Location /svn</code>’ следует указать вместо ‘<code>SVNPath</code>’ - ‘<code>SVNParentPath /var/svn</code>’, а для <code>Location</code>‘ов репозиториев указывать относительные пути, например: ‘<code>SVNPath /SomeTracProject</code>’. <em>(подробнее см. в <strong>Upd.</strong> ниже)</em>.</p>
+
+<p>В любом случае, если у вас в логах вылезают ошибки типа ‘<code>Unknown/Incorrect SVN FileSystem</code>’ - ошибку следует искать именно здесь, конкретно в <code>SVN[Parent]Path</code>. Причины же неожиданных <code>Forbidden</code>, конечно, кроются в неверных <code>Location</code>‘ах и, соответственно, аутентификации. Отключайте ее, проверяйте <code>Location</code>. Потом авторизацию. Впрочем, если вы осознали (а я хорошо объяснил) предыдущий абзац, то этих ошибок у вас вылезти не должно. Поговорив с я бы уже сделал все немного по-другому (смотрите ниже описание аутентификации), но в этом варианте уже все проверено и работает, а наугад писать опасно.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;Location</span> <span class="s">/svn</span><span class="nt">&gt;</span>
+    <span class="nb">DAV</span> svn
+    <span class="nb">SVNPath</span> <span class="sx">/var/svn/SomeTracProject</span>
+    <span class="nb">AuthType</span> Basic
+    <span class="nb">AuthName</span> <span class="s2">&quot;Subversion Repository&quot;</span>
+    <span class="nb">AuthUserFile</span> <span class="sx">/etc/apache2/dav_svn.passwd</span>
+    <span class="c">#AuthSVNAccessFile /etc/apache2/dav_svn.authz</span>
+    <span class="nb">Require</span> valid-user
+<span class="nt">&lt;/Location&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Создадим файл паролей и добавим туда пользователей (внимание: опция <code>-c</code> не нужна во втором случае - она создает/перезаписывает файл без предупреждения)</p>
+<pre><code>sudo htpasswd2 -c /etc/apache2/dav_svn.passwd user1
+sudo htpasswd2 /etc/apache2/dav_svn.passwd user2
+</code></pre>
+<p>Установим первому пользователю права администратора в Trac’е.</p>
+<pre><code>sudo trac-admin /var/trac/SomeTracProject permission add user1 TRAC_ADMIN
+</code></pre>
+<p>Чтобы прочувствовать эти права на себе, можно поставить плагин <a href="http://trac.edgewall.org/wiki/WebAdmin">TracWebAdmin</a> - он добавляет удобную админскую GUI-страничку в Trac:</p>
+<pre><code>wget http://peak.telecommunity.com/dist/ez_setup.py
+sudo python ez_setup.py
+wget http://trac.edgewall.org/attachment/wiki/WebAdmin/TracWebAdmin-0.1.2dev_r4240 py2.4.egg.zip?format=raw
+mv TracWebAdmin-0.1.2dev_r4240-py2.4.egg.zip\?format\=raw TracWebAdmin.egg
+sudo easy_install TracWebAdmin.egg
+</code></pre>
+<p>В конфигурации проекта включите этот плагин.</p>
+<pre><code>sudo vi /var/trac/SomeTracProject/conf/trac.ini
+</code></pre>
+<p>Вставьте:</p>
+<pre><code>[components]
+webadmin.*=enabled
+</code></pre>
+<p>Теперь добавим авторизацию для проектов в subversion.</p>
+<pre><code>sudo vi /etc/apache2/mods-available/dav_svn.conf
+</code></pre>
+<p>Раскомментируйте ‘<code>AuthSVNAccessFile /etc/apache2/dav_svn.authz</code>’.</p>
+
+<p>Структура файла авторизации проста: пути, пользователи и права (<code>r</code> - чтение, <code>w</code> - запись):</p>
+<pre><code>sudo vi /etc/apache2/dav_svn.authz
+</code></pre>
+<p>Вставьте:</p>
+<pre><code>[/]
+user1 = rw
+user2 = r
+</code></pre>
+<p>Если бы вы указали в файле <code>/etc/apache2/mods-enabled/dav_svn.conf</code> ‘<code>SVNParentPath /var/svn</code>’, то файл аутентификации должен бы был выглядеть как-нибудь так (и это верный вариант для репозиториев с несколькими проектами):</p>
+<pre><code>[/SomeTracProject]
+user1 = rw
+user2 = r
+
+[/AnotherTracProject]
+user1 = rw
+user2 = r
+</code></pre>
+<p>Ну и наконец перезапустим сервер (а если что-нибудь до сих пор не работает - машину :)) )</p>
+<pre><code>sudo /etc/init.d/apache2 restart
+</code></pre>
+<p>…На следующей неделе я буду устанавливать <code>Timing</code> для Trac’а (тикет получает такое понятие как <code>estimation</code> + фактическое время за которое он был сделан, <code>milestone</code> позволяет сложить все это время в часы, в комментах к ревизиям можно писать за сколько времени был выполнен тикет (часть тикета) и время автоматически просуммируется) - и если будет возможность и все пройдет удачно (это <code>diff</code> для версии 0.10), опишу здесь и этот процесс.</p>
+
+<blockquote>
+<p><strong>Upd.:</strong></p>
+
+<p><em>Первое.</em> По поводу нескольких окружений и связанных с ними репозиториях. Легче всего - забить на отдельные репозитории для окружений и сделать (кстати имхо это и для одного проекта неплохой вариант)</p>
+
+<p><code>sudo svnadmin create –pre-1.4-compatible /var/svn/</code> (опция <code>compatible</code> обязательна есть только у вас апач ругается на формат в файле <code>/var/svn/FORMAT</code>)</p>
+
+<p>Затем в <code>/tmp/</code> (очистив его предварительно :) ) <code>mkdir</code>-ом построить структуру “по одному каталогу для каждого проекта”. А в каждом из этих каталогов сделать, соответственно, свои <code>trunk</code>-<code>tags</code>-<code>branches</code>. Затем сделать</p>
+<pre><code>cd /tmp
+sudo svn import . file:///var/svn/ -m “Initial import”
+</code></pre>
+<p>В <code>/etc/apache2/mods-enabled/dav_svn.conf</code> указать:</p>
+<pre><code>&lt;Location /svn&gt;
+    DAV svn
+    SVNPath /var/svn/
+    AuthType Basic
+    AuthName &#34;Subversion Repository&#34;
+    AuthUserFile /etc/apache2/dav_svn.passwd
+    AuthSVNAccessFile /etc/apache2/dav_svn.authz
+    Require valid-user
+&lt;/Location&gt;
+</code></pre>
+<p>и убрать ненужные <code>Location</code>’ы (подкаталоги <code>svn</code>’а), если они там есть.</p>
+
+<p>А вот уже в файле аутентификации <code>/etc/apache2/dav_svn.authz</code> мы прописываем права на проекты:</p>
+<pre><code>[/]
+megaroot = rw
+
+[/SomeProject]
+user1 = rw
+user2 = r
+
+[/AnotherProject]
+user1 = rw
+user2 = r
+</code></pre>
+<p>При создании окружений в <code>trac-admin</code>, мы в пути к репозиторию, соответственно, указываем <code>/var/svn/SomeProject</code></p>
+
+<p>Теперь можно возвращаться и читать про <code>htpasswd</code> и <code>TracWebAdmin</code>. Больше ничего не надо. А, хотя нет - потом вернитесь и прочитайте пункт ///Треть/е. Я расскажу про то, что делать, когда уже все поставлено.</p>
+
+<p><em>Второе.</em> <a href="http://trac.edgewall.org/wiki/TimeTracking">Timing</a> устанавливается точно так, как указано в рководстве, так что пояснений я делать не буду :). Остальные основные плагины (<a href="http://trac-hacks.org/wiki/AccountManagerPlugin">авторизация формой/аккаунты</a>, <a href="http://trac-hacks.org/wiki/DiscussionPlugin">форумы</a> и <a href="http://trac-hacks.org/wiki/WikiGoodiesPlugin">бла-бла-бла</a>) прикручиваются еще легче &ndash; сборкой</p>
+<pre><code>python setup.py bdist_egg
+</code></pre>
+<p>из распакованных сурсов, взятием из каталога <code>dist</code> результирующего яйца (<code>.egg</code>, прошу не обижаться - это почти что питоновский почти что аналог почти что <code>.jar</code>-ов) и укладкой его в каталог <code>plugins</code> окружения <code>trac</code>’a (не забываем про права <code>www-data</code>) (+ прописывание плагина в <code>trac.ini</code> окружения, как указано в описании или включение его в админке) . (для плагина с авторизацией в <code>/etc/apache2/sites-enabled/trac</code> надо закомментить весь <code>Location trac.cgi/*/login</code>, выключить траковский <code>LoginModule</code> и включить <code>LoginModule</code> из этого плагина, указать ему на <code>/etc/apache/dav_svn.passwd</code> и затем рестартовать апач).</p>
+
+<p>Сложнее с плагином <a href="http://trac-hacks.org/wiki/GraphvizPlugin">Graphviz</a>, так что если он действительно нужен и никак его не поставить - пишите мне. Но думаю если вы справились со всем предыдущим - у вас и здесь все пройдет на ура :).</p>
+
+<p><em>Третье.</em> Когда нужно создать новый проект уже после того как все поставлено (а то и через некоторое время) - все просто. Пользователю <code>megaroot</code> (см. <code>/etc/apache2/dav_svn.authz</code>) закоммитить в <code>/var/svn/</code> каталог с этим проектом (+ <code>trunk</code>-<code>tags</code>-<code>branches</code>).</p>
+
+<p>Затем:</p>
+
+<p><code>sudo trac-admin /var/trac/NewProject initenv</code> (в пути к subversion указываем <code>/var/svn/NewProject</code>)</p>
+<pre><code>sudo chown -R www-data:www-data /var/trac/NewProject
+</code></pre>
+<p>Теперь надо настроить аутентификацию, делаем:</p>
+<pre><code>sudo vi /etc/apache2/dav_svn.authz
+
+Жмем `Insert` и вставляем в конец файла:
+
+[/NewProject]
+user1 = rw
+user2 = r
+megaroot = rw
+</code></pre>
+<p>делаем <code>Esc/:wq</code> и…. все. Вот так - если все правильно настроено - делать нужно минимум.</p>
+
+<p>Насчет добавления пользователя. Добавлять его нужно только в <code>/etc/apache2/dav_svn.passwd</code> и никуда больше:</p>
+<pre><code>sudo htpasswd /etc/apache2/dav_svn.passwd new_user
+</code></pre>
+<p>И если у вас все правильно настроено - примет его корректно и trac, и subversion.</p>
+
+<p>Ах, ну да, для subversion его нужно еще пустить в проект :):</p>
+<pre><code>sudo vi /etc/apache2/dav_svn.authz
+</code></pre>
+<p>Вставляем в нужный проект:</p>
+<pre><code>[/SomeProject]
+user1 = rw
+user2 = r
+megaroot = rw
+new_user = rw
+</code></pre></blockquote>
+
+<p>Вот теперь точно все. Успехов :)</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/blog/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль на Github"><img src="/blog/ru/assets/img/social/github.png" width="16" height="16" alt="профиль на Github"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/blog/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль на Stackoverflow"><img src="/blog/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/ru/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/ru/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

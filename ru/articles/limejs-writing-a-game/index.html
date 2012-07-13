@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/ru/" />
+<link rel="index" href="/blog/ru/archives/" />
+
+<link rel="shortcut icon" href="/blog/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/ru/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/ru/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/ru/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — LimeJS: Пишем кроссплатформенную игру на HTML5 с поддержкой прикосновений &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/ru/" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="/blog/ru/archives/" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/ru/feed.xml" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/ru/" title="Ни слова о луке">&raquo;Ни слова о луке&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="LimeJS: Пишем кроссплатформенную игру на HTML5 с поддержкой прикосновений">
+                    LimeJS: Пишем кроссплатформенную игру на HTML5 с поддержкой прикосновений
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Опубликован</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;15 февраля 2011, вторник</dd>
+    
+    <dt class="nwao-hidden">Тэги</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/ru/tags/android/" rel="tag" title="Посты с тэгом 'android'"><i class="icon-tag"></i>&nbsp;android</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/html5/" rel="tag" title="Посты с тэгом 'html5'"><i class="icon-tag"></i>&nbsp;html5</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/ios/" rel="tag" title="Посты с тэгом 'ios'"><i class="icon-tag"></i>&nbsp;ios</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/ipad/" rel="tag" title="Посты с тэгом 'ipad'"><i class="icon-tag"></i>&nbsp;ipad</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/iphone/" rel="tag" title="Посты с тэгом 'iphone'"><i class="icon-tag"></i>&nbsp;iphone</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/limejs/" rel="tag" title="Посты с тэгом 'limejs'"><i class="icon-tag"></i>&nbsp;limejs</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/touch/" rel="tag" title="Посты с тэгом 'touch'"><i class="icon-tag"></i>&nbsp;touch</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p><a href="http://www.limejs.com">LimeJS</a> - 2D Open Source HTML5 движок для написания игр с поддержкой прикосновений и работающий (по описанию) на большинстве мобильных платформ. Я наткнулся на него не сам, мне прислали письмо с просьбой рассказать о нём сообществу и я решил, раз так - что уж мелочиться, надо попробовать его в деле. Кроме того, я заранее договорился с авторами движка, что буду честен - буду рассказывать и о достоинствах и о недостатках, так что надеюсь убрать из статьи ореол рекламы (хотя какая реклама может быть связана с open source)..?</p>
+
+<p><em>Open Source</em>, <em>кроссплатформенность</em> и <em>HTML5</em> - это то, что я люблю - инновации и свобода :). И ещё, сам движок написан на <a href="http://code.google.com/closure/">Closure</a> и поддерживает <em>chaining</em>, это вносит дополнительные яркие цвета в свойства движка и программирование с его использованием. Конечно, необходимо ещё и удобство разработки игр само по себе, на что мы и испытаем LimeJS вместе с вами в этой статье. Движок преподносится как кроссплатформенный, на iPad&#39;е представленные на сайте игры вполне себе работают, немного медленно, но вполне играбельно, ну а на моём Hero/Android2.1 (HTML5, наверное, неполный) они естественно подтормаживают и глючат - то есть буквально, играть в эти игры нельзя. Впрочем, практически все объекты в играх даже на смартфоне отображаются и действуют корректно, так что будем надеяться что с последующуей оптимизацией всё будет отлично даже на хилых смартфонах типа моего.</p>
+
+<p>Движок, кстати, позиционируется как замена Flash-технологий в играх. Это болезненная тема для многих среди нас в связи с общим гноблением флэша, но при этом существующими и даже создающимися на нём отличными играми. (И, как я лично считаю, удобство самого механизма создания анимации в Flash пока ещё не повторено ни для HTML5/SVG ни для альтернатив). Так вот, может быть у этого движка действительно есть шанс завоевать любовь разработчиков на Flash и привить им любовь к HTML5. Решать им и вам. <em>Главное отличие</em> <a href="http://www.limejs.com">LimeJS</a> от, допустим, <a href="http://processingjs.org/">ProcessingJS</a> - ориентировка не на машину состояний, не на обновление в каждом кадре, а на &ldquo;таймлайн&rdquo; - <em>событийность</em> в сценарии игры.</p>
+
+<p>Кстати, вот пример кода: <a href="http://paste.pocoo.org/show/336927/"><code>javascript</code></a> и <a href="http://paste.pocoo.org/show/336929/"><code>html</code></a> - чтобы вы могли сразу сделать какой-то вывод, а то я изначально относился к движку довольно скептически, а вот сейчас думаю, что наверняка зря.</p>
+<h3 id="что-получится"><a href="#что-получится" title="Что получится">Что получится</a></h3>
+<p>В течении прочтения статьи мы напишем очень упрощённую версию пинг-понга на LimeJS. Вот так будет выглядеть результат:</p>
+
+<p><img src="/blog/ru/figures/limejs-writing-a-game/stage-designed.png" alt="Мужчины в синих шортах на футбольном поле с детским мячиком"></p>
+
+<p>В конце статьи видео с демонстрацией написанной игры на iPad, iPhone и Android.</p>
+<h3 id="подготовка-к-разработке"><a href="#подготовка-к-разработке" title="Подготовка к разработке">Подготовка к разработке</a></h3>
+<p>У движка есть небольшой CLI, Command Line Interface. Он написан на Python и скачивает нужные пакеты с помощью <code>git</code>, поэтому для работы с движком нужно установить <a href="http://python.org/download/">Python</a>, <a href="http://git-scm.com/download"><code>git</code></a> и <a href="http://www.kernel.org/pub/software/scm/git/docs/git-svn.html"><code>git-svn</code></a> соответственно, если вдруг они не установлены (разработчикам с Windows видимо <a href="http://stackoverflow.com/questions/350907/git-svn-on-windows-where-to-get-binaries">придётся помучиться</a>). Затем берём исходники <a href="http://github.com/digitalfruit/limejs">из github</a> или <a href="https://github.com/digitalfruit/limejs/zipball/master">скачиваем zip</a> и распаковываем. На Ubuntu это будет выглядеть примерно так:</p>
+<pre><code>$ sudo apt-get install python git-core git-svn
+$ wget https://github.com/digitalfruit/limejs/zipball/master -no-check-certificate
+$ unzip ./master ./digitalfruit-limejs
+$ cd ./digitalfruit-limejs
+</code></pre>
+<p>Чтобы автоматически установить другие нужные для разработки пакеты (включая Closure), запускаем:</p>
+<pre><code>$ ./bin/lime.py init
+</code></pre><h3 id="начинаем-наш-проект"><a href="#начинаем-наш-проект" title="Начинаем наш проект">Начинаем наш проект</a></h3><pre><code>$ ./bin/lime.py create pingpong
+</code></pre>
+<p>Да, пусть это будет пинг-понг, подобный тому, который показывает Dominic в руководстве по <a href="http://vimeo.com/17161851">созданию игры на Impact HTML5 Engine</a>. Я потом обнаружил, что в <a href="https://github.com/digitalfruit/limejs/tree/master/lime/demos/pong">демо-исходниках</a> есть что-то похожее, но пусть у нас будет намного более простой вариант.</p>
+
+<p>В каталоге <code>pingpong</code> будут созданы файлы <code>pingpong.html</code> и <code>pingpong.js</code>. Откройте <code>.html</code> файл в браузере, он уже довольно интересен - в центре вы увидите симпатичный круг, который можно таскать по странице мышкой или пальцем. В <code>.js</code>-файле тоже много полезного - показано как создаётся сцена и видно, как организовывается слежение за событиями. Код остаётся при этом вполне понятным и читаемым. Я не буду разбирать его подробно, это всё-таки просто пример-заглушка, а ссылки по которым можно посмотреть его &ldquo;нутро&rdquo; я привёл в начале статьи.</p>
+<h3 id="основные-классы-и-концепции"><a href="#основные-классы-и-концепции" title="Основные классы и концепции">Основные классы и концепции</a></h3>
+<p>Краткое резюме <a href="http://www.limejs.com/0-getting-started">Programming guide</a>:</p>
+
+<ul>
+<li><code>Director</code> - это <em>режиссёр</em> игры, он управляет переходами между сценами (включая анимацию переходов) и содержит основные настройки игры;</li>
+<li><code>Scene</code> - это сцена, отдельный <em>экран</em> в игре, на него добавляются дочерние объекты и слои;</li>
+<li><code>Layer</code> - это <em>слой</em>, участки экрана удобно разделять/распределять на слои  и слои тоже могут быть контейнерами дочерних объектов. При этом они вполне могут перекрываться, как в фотошопе;</li>
+<li><code>ScheduleManager</code> - <em>планировщик</em>, помогает запускать определённые функции либо в каждом кадре, либо по прошествию указанного времени;</li>
+<li><code>Node</code> - любая <em>сущность</em> в игре, имеет свою позицию, локальную систему координат и размер, может перемещаться, вращаться, масштабироваться и анимироваться;</li>
+<li><code>Sprite</code> - наследник <code>Node</code>, имеет все его свойства/способности и может представлять собой <em>изображение</em> и/или <em>геометрический объект</em> (от круга до любого полигона); спрайты можно отрезать друг от друга с использованием масок, заполнять градиентами и проверять на коллизии методом <code>hitTest</code>;</li>
+</ul>
+
+<hr>
+
+<ul>
+<li>Движок ориентируется на таймлайн, а не на то что должно отображаться в текущем кадре;</li>
+<li>Всё разнообразные события, связанные с контроллерами обрабатываются через механизмы Closure;</li>
+<li>Анимации - переместить, масштабировать, вращать, пропасть - могут применяться и к одному объекту и к нескольким сразу и могут объединяться в цепочки (последовательные, одновременные, циклические);</li>
+<li>Поддерживается <code>DOM</code>- и <code>Canvas</code>-рендеринг. <code>WebGL</code>-реднеринг планируется;</li>
+<li>Если анимация применяется к DOM-эелемнту, она транслируется в CSS3-свойство;</li>
+<li>Скрипты на выходе можно оптимизировать;</li>
+<li>Есть класс <code>Audio</code> для проигрывания звука;</li>
+</ul>
+<h3 id="строим-сцену"><a href="#строим-сцену" title="Строим сцену">Строим сцену</a></h3>
+<p>Оставим из переданной нам от разработчиков функции <code>pingpong.start</code> только несколько строк:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// entrypoint</span>
+<span class="nx">pingpong</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+
+    <span class="kd">var</span> <span class="nx">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Director</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">),</span>
+        <span class="nx">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Scene</span><span class="p">();</span>
+
+    <span class="nx">director</span><span class="p">.</span><span class="nx">makeMobileWebAppCapable</span><span class="p">();</span>
+
+    <span class="c1">// set current scene active</span>
+    <span class="nx">director</span><span class="p">.</span><span class="nx">replaceScene</span><span class="p">(</span><span class="nx">scene</span><span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Не забудьте убрать ненужные строки <code>goog.require</code>. Я не буду напоминать про это в дальнейшем, как должен будет выглядеть заголовок файла вы всегда сможете посмотреть в конце статьи. Добавим в сцену три слоя - фон <code>floor_</code>, стены <code>walls_</code> и доску, на которой будет происходить всё действие - <code>board_</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Director</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">),</span>
+    <span class="nx">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Scene</span><span class="p">(),</span>
+
+    <span class="nx">floor_</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Layer</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+    <span class="nx">walls_</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Layer</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+    <span class="nx">board_</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Layer</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="nx">scene</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">floor_</span><span class="p">);</span>
+<span class="nx">scene</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">walls_</span><span class="p">);</span>
+<span class="nx">scene</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">board_</span><span class="p">);</span>
+
+<span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="заготовка-игрока"><a href="#заготовка-игрока" title="Заготовка игрока">Заготовка игрока</a></h4>
+<p>В отдельном файле <code>player.js</code> опишем класс игрока - это будет полигон в форме скейтборда (чтобы хорошо проверить как работают коллизии):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;pingpong.Player&#39;</span><span class="p">);</span>
+
+<span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lime.Polygon&#39;</span><span class="p">);</span>
+
+<span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">goog</span><span class="p">.</span><span class="nx">base</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+    <span class="c1">// ... собираем полигон</span>
+<span class="p">}</span>
+<span class="nx">goog</span><span class="p">.</span><span class="nx">inherits</span><span class="p">(</span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">,</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>На месте комментария опишем точки полигона и зальём полупрозрачным синим. Так будет выглядеть игрок (в руководстве для координат полигона используются дробные числа от -1 до 1, но в текущей версии они у меня не заработали):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// -1,-2.5, 0,-3.5, 1,-2.5, 1,2.5, 0,3.5, -1,2.5, 0,1.5, 0,-1.5</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">addPoints</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">175</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">75</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">210</span><span class="p">,.</span><span class="mi">7</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">setScale</span><span class="p">(.</span><span class="mi">4</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><img src="/blog/ru/figures/limejs-writing-a-game/player.png" alt="Игрок"></p>
+
+<p>Красной точкой на рисунке помечена так называемая <code>anchorPoint</code>, для полигона она рассчитывается автоматически. Это точка отсчёта локальной системы координат спрайта - от неё высчитываются все относительные размеры и расстояния, к нему относящиеся.</p>
+
+<p>Пока что код равноценен вызову:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">().</span><span class="nx">addPoints</span><span class="p">(...).</span><span class="nx">setFill</span><span class="p">(...);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Но позже мы добавим поведение к игроку и будет очевидно, что выделить класс было разумным. Давайте проверим, корректно ли отображается игрок в сцене - вернёмся к файлу <code>pingpong.js</code>&hellip; впрочем, что уж тянуть, давайте добавим сразу обоих игроков и отразим первого, чтобы они стояли лицом к лицу:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+<span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pingpong.Player&#39;</span><span class="p">);</span>
+
+<span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+    <span class="nx">board_</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Layer</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+
+    <span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">150</span><span class="p">).</span><span class="nx">setRotation</span><span class="p">(</span><span class="mi">180</span><span class="p">),</span>
+    <span class="nx">playerTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">150</span><span class="p">);</span>
+
+<span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">playerOne</span><span class="p">);</span>
+<span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">playerTwo</span><span class="p">);</span>
+
+<span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Перед запуском в браузере, нужно произвести ещё одно мановение - обновить зависимости Closure (за счёт этого в <code>.html</code> могут быть включены только <code>base.js</code> и <code>pingpong.js</code>, а остальные внешние файлы подгружаются автоматически через <code>goog.require</code>). При этом в текущей версии библиотеки есть небольшой баг - при создании имя проекта не добавляется в файл <code>./bin/projects</code>. Поэтому прежде нужно добавить строку <code>pingpong</code> в <code>./bin.projects</code>, а потом обновить зависимости:</p>
+<pre><code>$ vim ./bin/projects   # add `pingpong` line
+$ ./bin/lime.py update
+</code></pre>
+<p>Итак, вот что сейчас на экране:</p>
+
+<p><img src="/blog/ru/figures/limejs-writing-a-game/stage1.png" alt="Пляжники в синих плавках"></p>
+<h4 id="заготовка-мячика"><a href="#заготовка-мячика" title="Заготовка мячика">Заготовка мячика</a></h4>
+<p>Создадим файл <code>ball.js</code> с таким содержимым:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;pingpong.Ball&#39;</span><span class="p">);</span>
+
+<span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lime.Circle&#39;</span><span class="p">);</span>
+
+<span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">goog</span><span class="p">.</span><span class="nx">base</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,.</span><span class="mi">7</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">goog</span><span class="p">.</span><span class="nx">inherits</span><span class="p">(</span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">,</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Circle</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Обновим зависимости:</p>
+<pre><code>$ ./bin/lime.py update
+</code></pre>
+<p>И добавим мячик на доску в <code>pingpong.js</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+<span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pingpong.Ball&#39;</span><span class="p">);</span>
+<span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+
+    <span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">150</span><span class="p">).</span><span class="nx">setRotation</span><span class="p">(</span><span class="mi">180</span><span class="p">),</span>
+    <span class="nx">playerTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">150</span><span class="p">),</span>
+    <span class="nx">ball</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">275</span><span class="p">,</span><span class="mi">150</span><span class="p">);</span>
+
+<span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">playerOne</span><span class="p">);</span>
+<span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">playerTwo</span><span class="p">);</span>
+<span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ball</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><img src="/blog/ru/figures/limejs-writing-a-game/stage2.png" alt="Пляжники в синих плавках с мячиком"></p>
+<h4 id="фон"><a href="#фон" title="Фон">Фон</a></h4>
+<p>Давайте зададим фон на поле с игроками, для каждого игрока половина поля своего цвета. Добавим к <code>Director</code> параметры размеров экрана игры:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Director</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">480</span><span class="p">),</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Эти размеры никак не соотносятся с какими-либо пикселями - полотно игры автоматически масштабируется или разворачивается на весь экран при необходимости, но эти размеры позволяют задавать относительное положение элементов на полотне. Поправим позиции мяча и игроков в соответствии с ними:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">240</span><span class="p">).</span><span class="nx">setRotation</span><span class="p">(</span><span class="mi">180</span><span class="p">),</span>
+<span class="nx">playerTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">240</span><span class="p">),</span>
+<span class="nx">ball</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">240</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>При изменении размеров окна так, чтобы поле было меньше чем указанные размеры, логика может сбиваться - хотя скорее всего, это я при тестированиях указал в каком-то месте координаты не так, как нужно было.</p>
+
+<p>Теперь, наконец, фон. Это будут просто два спрайта, разделяющие экран пополам - никакой побочной логики.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+                                    <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">480</span><span class="p">)</span>
+                                    <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">));</span>
+<span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+                                    <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">480</span><span class="p">)</span>
+                                    <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">200</span><span class="p">));</span>
+
+<span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(...);</span>
+<span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><img src="/blog/ru/figures/limejs-writing-a-game/stage3.png" alt="Пляжники в синих плавках с мячиком на асфальте"></p>
+<h4 id="заготовка-стен"><a href="#заготовка-стен" title="Заготовка стен">Заготовка стен</a></h4>
+<p>У стен будет совсем немного логики, но тем не менее тоже выделим их в отдельный класс. Стены будут размером 20x20. Создадим файл <code>wall.js</code> с таким содержимым:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;pingpong.Wall&#39;</span><span class="p">);</span>
+
+<span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lime.Sprite&#39;</span><span class="p">);</span>
+
+<span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">goog</span><span class="p">.</span><span class="nx">base</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">goog</span><span class="p">.</span><span class="nx">inherits</span><span class="p">(</span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span><span class="p">,</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Обновим зависимости:</p>
+<pre><code>$ ./bin/lime.py update
+</code></pre>
+<p>И расставим стены вдоль краёв полотна в <code>pingpong.js</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+<span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pingpong.Wall&#39;</span><span class="p">);</span>
+<span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+
+<span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(...);</span>
+
+<span class="c1">// horizontal walls</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="mi">630</span><span class="p">;</span> <span class="nx">x</span> <span class="o">+=</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">walls_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">10</span><span class="p">));</span>
+    <span class="nx">walls_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="mi">470</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="c1">// vertical walls</span>
+<span class="k">for</span> <span class="p">(</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span> <span class="nx">y</span> <span class="o">&lt;=</span> <span class="mi">450</span><span class="p">;</span> <span class="nx">y</span> <span class="o">+=</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">walls_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nx">y</span><span class="p">));</span>
+    <span class="nx">walls_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">630</span><span class="p">,</span> <span class="nx">y</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(...);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Всё, поле наконец готово - можно приступать к логике!</p>
+
+<p><img src="/blog/ru/figures/limejs-writing-a-game/stage4.png" alt="Пляжники в синих плавках с мячиком на серых квадратах, окружённые жёлтыми ящиками"></p>
+<h4 id="логика-игроков"><a href="#логика-игроков" title="Логика игроков">Логика игроков</a></h4>
+<p>Спрайт игрока должен постепенно двигаться по вертикали к точке, в которую нажали мышью или пальцем, при этом не врезаясь в стены. Движение делается просто:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+
+<span class="nx">director</span><span class="p">.</span><span class="nx">makeMobileWebAppCapable</span><span class="p">();</span>
+
+<span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">floor_</span><span class="p">,[</span><span class="s1">&#39;mousedown&#39;</span><span class="p">,</span><span class="s1">&#39;touchstart&#39;</span><span class="p">],</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">player_</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="mi">320</span><span class="p">)</span> <span class="o">?</span> <span class="nx">playerOne</span> <span class="o">:</span> <span class="nx">playerTwo</span><span class="p">;</span>
+    <span class="nx">player_</span><span class="p">.</span><span class="nx">runAction</span><span class="p">(</span>
+            <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">animation</span><span class="p">.</span><span class="nx">MoveTo</span><span class="p">(</span>
+                        <span class="nx">player_</span><span class="p">.</span><span class="nx">alignBounds</span><span class="p">(</span><span class="nx">player_</span><span class="p">.</span><span class="nx">getPosition</span><span class="p">().</span><span class="nx">x</span><span class="p">,</span>
+                                            <span class="nx">e</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">y</span><span class="p">))</span>
+                              <span class="p">.</span><span class="nx">setDuration</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">director</span><span class="p">.</span><span class="nx">replaceScene</span><span class="p">(</span><span class="nx">scene</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Но при таком поведении игроки проходят сквозь стены. Не будем сохранять экзепляры каждой стены, чтобы тестировать на столкновение с игроками, просто позволим программисту задать за какие границы игроку нельзя попадать - добавим два метода в конец <code>player.js</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setMovementBounds</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span><span class="nx">right</span><span class="p">,</span><span class="nx">bottom</span><span class="p">,</span><span class="nx">left</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Box</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span><span class="nx">right</span><span class="p">,</span><span class="nx">bottom</span><span class="p">,</span><span class="nx">left</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">alignBounds</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Coordinate</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">size_</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Size</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getSize</span><span class="p">().</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">getScale</span><span class="p">().</span><span class="nx">x</span><span class="p">,</span>
+                                   <span class="k">this</span><span class="p">.</span><span class="nx">getSize</span><span class="p">().</span><span class="nx">height</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">getScale</span><span class="p">().</span><span class="nx">y</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">newX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">newY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)))</span>
+                  <span class="nx">newX</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)))</span>
+                  <span class="nx">newX</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)))</span>
+                  <span class="nx">newY</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">-</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)))</span>
+                  <span class="nx">newY</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">-</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Coordinate</span><span class="p">(</span><span class="nx">newX</span><span class="p">,</span> <span class="nx">newY</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Первый позволяет устанавливать прямоугольные границы для игрока, а второй - вернуть выровненную относительно этих границ позицию. Заметьте, что при расчётах учитывается вектор масштабирования.</p>
+
+<p>Теперь в <code>pingpong.js</code> обновим определение игроков:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+                                 <span class="p">.</span><span class="nx">setRotation</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+                                 <span class="p">.</span><span class="nx">setMovementBounds</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">620</span><span class="p">,</span><span class="mi">460</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span>
+<span class="nx">playerTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+                                 <span class="p">.</span><span class="nx">setMovementBounds</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">620</span><span class="p">,</span><span class="mi">460</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>И исправим событие, их перемещающее:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">floor_</span><span class="p">,[</span><span class="s1">&#39;mousedown&#39;</span><span class="p">,</span><span class="s1">&#39;touchstart&#39;</span><span class="p">],</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">player_</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="mi">320</span><span class="p">)</span> <span class="o">?</span> <span class="nx">playerOne</span> <span class="o">:</span> <span class="nx">playerTwo</span><span class="p">;</span>
+    <span class="nx">player_</span><span class="p">.</span><span class="nx">runAction</span><span class="p">(</span>
+            <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">animation</span><span class="p">.</span><span class="nx">MoveTo</span><span class="p">(</span>
+                    <span class="nx">player_</span><span class="p">.</span><span class="nx">alignBounds</span><span class="p">(</span><span class="nx">player_</span><span class="p">.</span><span class="nx">getPosition</span><span class="p">().</span><span class="nx">x</span><span class="p">,</span>
+                                        <span class="nx">e</span><span class="p">.</span><span class="nx">screenPosition</span><span class="p">.</span><span class="nx">y</span><span class="p">))</span>
+                              <span class="p">.</span><span class="nx">setDuration</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+<span class="p">});</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="логика-мяча"><a href="#логика-мяча" title="Логика мяча">Логика мяча</a></h4>
+<p>Для мяча понадобится несколько дополнительных функций. Одна позволяет ограничивать движение прямоугольным регионом, так же как и у и игрока, другая устанавливает скорость движения мяча, третья сбрасывает его положение в начальную точку (<code>ball.js</code>):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">goog</span><span class="p">.</span><span class="nx">base</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,.</span><span class="mi">7</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">_xCoef</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_yCoef</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">_resetPos</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Coordinate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_velocity</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">goog</span><span class="p">.</span><span class="nx">inherits</span><span class="p">(</span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">,</span><span class="nx">lime</span><span class="p">.</span><span class="nx">Circle</span><span class="p">);</span>
+
+<span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setMovementBounds</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span><span class="nx">right</span><span class="p">,</span><span class="nx">bottom</span><span class="p">,</span><span class="nx">left</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Box</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span><span class="nx">right</span><span class="p">,</span><span class="nx">bottom</span><span class="p">,</span><span class="nx">left</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setVelocity</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">velocity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">velocity</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">_velocity</span> <span class="o">=</span> <span class="nx">velocity</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setResetPosition</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_resetPos</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Coordinate</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Туда же допишем основную функцию проверки, поймал ли один из игроков мяч и сброса позиции мяча, если нет. Если произошёл удар о вертикальную стенку, функция возвращает позицию удара, чтобы внешняя функция смогла определить, кто из игроков виноват, рассудив по их расположению.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">updateAndCheckHit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dt</span><span class="p">,</span><span class="nx">playerOne</span><span class="p">,</span><span class="nx">playerTwo</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">newPos_</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getPosition</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">size_</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Size</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getSize</span><span class="p">().</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">getScale</span><span class="p">().</span><span class="nx">x</span><span class="p">,</span>
+                                   <span class="k">this</span><span class="p">.</span><span class="nx">getSize</span><span class="p">().</span><span class="nx">height</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">getScale</span><span class="p">().</span><span class="nx">y</span><span class="p">);</span>
+    <span class="nx">newPos_</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_xCoef</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_velocity</span> <span class="o">*</span> <span class="nx">dt</span><span class="p">;</span>
+    <span class="nx">newPos_</span><span class="p">.</span><span class="nx">y</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_yCoef</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_velocity</span> <span class="o">*</span> <span class="nx">dt</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">hitVBounds_</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// vertical bounds were hit</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">newPos_</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)))</span>
+                         <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">_xCoef</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">hitVBounds_</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">newPos_</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">right</span> <span class="o">-</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)))</span>
+                         <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">_xCoef</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">hitVBounds_</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">newPos_</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)))</span>
+                         <span class="k">this</span><span class="p">.</span><span class="nx">_yCoef</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">newPos_</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span><span class="p">.</span><span class="nx">bottom</span> <span class="o">-</span> <span class="p">(</span><span class="nx">size_</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)))</span>
+                         <span class="k">this</span><span class="p">.</span><span class="nx">_yCoef</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">p1catched_</span> <span class="o">=</span> <span class="nx">playerOne</span><span class="p">.</span><span class="nx">catched</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getParent</span><span class="p">().</span><span class="nx">localToScreen</span><span class="p">(</span><span class="nx">newPos_</span><span class="p">));</span>
+    <span class="kd">var</span> <span class="nx">p2catched_</span> <span class="o">=</span> <span class="nx">playerTwo</span><span class="p">.</span><span class="nx">catched</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getParent</span><span class="p">().</span><span class="nx">localToScreen</span><span class="p">(</span><span class="nx">newPos_</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">hitVBounds_</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">p1catched_</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">p2catched_</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setPosition</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_resetPos</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_resetPos</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">newPos_</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">p1catched_</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">xCoef</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">p2catched_</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">xCoef</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setPosition</span><span class="p">(</span><span class="nx">newPos_</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">newPos_</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<blockquote>
+<p>В подобных функциях требуется внимательно следить за координатной системой, с которой вы<br>
+работаете в данный момент и правильно их конвертировать при необходимости. В данном случае <code>parent</code>  - это слой, на котором располагается мяч и позиция мяча - это позиция относительно системы координат слоя. Таким образом, мы переводим координату позиции мяча в системе координат слоя в экранную систему координат перед передачей, а в методе <code>catched</code>, описанном ниже, переводим переданную позицию из экранной системы координат в локальную систему координат игрока.</p>
+</blockquote>
+
+<p>В <code>player.js</code> добавим использующуйся в предыдущей функции метод <code>catched</code>. Он, учитывая координаты всех точек полигона игрока + масштаб и поворот, возвращает попала ли переданная позиция в область полигона или нет:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">catched</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getPoints</span><span class="p">(),</span>
+        <span class="nx">s</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getScale</span><span class="p">(),</span>
+        <span class="nx">r</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getRotation</span><span class="p">(),</span>
+        <span class="nx">plen</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+        <span class="nx">coord</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">screenToLocal</span><span class="p">(</span><span class="nx">pos</span><span class="p">),</span>
+        <span class="nx">inPoly</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">rsin</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">),</span>
+        <span class="nx">rcos</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">r</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">),</span>
+        <span class="nx">csx</span> <span class="o">=</span> <span class="nx">coord</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span>
+        <span class="nx">csy</span> <span class="o">=</span> <span class="nx">coord</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="nx">s</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span>
+        <span class="nx">crx</span> <span class="o">=</span> <span class="p">(</span><span class="nx">csx</span> <span class="o">*</span> <span class="nx">rcos</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="nx">csy</span> <span class="o">*</span> <span class="nx">rsin</span><span class="p">),</span>
+        <span class="nx">cry</span> <span class="o">=</span> <span class="p">(</span><span class="nx">csx</span> <span class="o">*</span> <span class="nx">rsin</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nx">csy</span> <span class="o">*</span> <span class="nx">rcos</span><span class="p">);</span>
+        <span class="nx">crx</span> <span class="o">=</span> <span class="nx">coord</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">cry</span> <span class="o">=</span> <span class="nx">coord</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">plen</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">j</span><span class="p">,</span> <span class="nx">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">plen</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">plen</span><span class="p">;</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">pix_</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">x</span><span class="p">,</span> <span class="nx">piy_</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">y</span><span class="p">,</span>
+                <span class="nx">pjx_</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">x</span><span class="p">,</span> <span class="nx">pjy_</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">j</span><span class="p">].</span><span class="nx">y</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(((</span><span class="nx">piy_</span> <span class="o">&gt;</span> <span class="nx">cry</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="nx">pjy_</span> <span class="o">&gt;</span> <span class="nx">cry</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+                <span class="p">(</span><span class="nx">crx</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">pjx_</span> <span class="o">-</span> <span class="nx">pix_</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="nx">cry</span> <span class="o">-</span> <span class="nx">piy_</span><span class="p">)</span> <span class="o">/</span>
+                    <span class="p">(</span><span class="nx">pjy_</span> <span class="o">-</span> <span class="nx">piy_</span><span class="p">)</span> <span class="o">+</span> <span class="nx">pix_</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">inPoly</span> <span class="o">=</span> <span class="o">!</span><span class="nx">inPoly</span><span class="p">;</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">inPoly</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Установим все необходимые настройки при инициализации мяча в <code>pingpong.js</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">ball</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+                          <span class="p">.</span><span class="nx">setMovementBounds</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">620</span><span class="p">,</span><span class="mi">460</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+                          <span class="p">.</span><span class="nx">setVelocity</span><span class="p">(.</span><span class="mi">2</span><span class="p">)</span>
+                          <span class="p">.</span><span class="nx">setResetPosition</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">240</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>И, самое главное, проверка событий, произошедших с мячом. Для этого мы используем метод <code>schedule</code> из <code>sheduleManager</code>, он вызывает переданную функцию в каждом кадре, сообщая о прошедшем с предыдущего кадра времени. Пока будем хаять проигравшего в консоли, а в следущей подглаве сделаем для этого <code>Label</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(.</span> <span class="p">.</span> <span class="p">.);</span>
+
+<span class="kd">var</span> <span class="nx">hitPos_</span><span class="p">;</span>
+<span class="nx">lime</span><span class="p">.</span><span class="nx">scheduleManager</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dt</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">hitPos_</span> <span class="o">=</span> <span class="nx">ball</span><span class="p">.</span><span class="nx">updateAndCheckHit</span><span class="p">(</span><span class="nx">dt</span><span class="p">,</span> <span class="nx">playerOne</span><span class="p">,</span> <span class="nx">playerTwo</span><span class="p">))</span> <span class="p">{</span>
+       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;player&#39;</span><span class="p">,(</span><span class="nx">hitPos_</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="mi">320</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span><span class="s1">&#39;is a loser&#39;</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">},</span><span class="nx">ball</span><span class="p">);</span>
+
+<span class="nx">director</span><span class="p">.</span><span class="nx">replaceScene</span><span class="p">(</span><span class="nx">scene</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="сообщение-о-проигрыше"><a href="#сообщение-о-проигрыше" title="Сообщение о проигрыше">Сообщение о проигрыше</a></h4>
+<p>Теперь добавим лэйбл, который будет сообщать о проигравшем игроке. Не будем сильно заморачиваться отсчитывая очки, просто напишем кто пропустил мяч:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">ball</span> <span class="o">=</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+       <span class="p">.</span><span class="nx">setResetPosition</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">240</span><span class="p">),</span>
+
+<span class="nx">label</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Label</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">280</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+                        <span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">setFontFamily</span><span class="p">(</span><span class="s1">&#39;Verdana&#39;</span><span class="p">)</span>
+                        <span class="p">.</span><span class="nx">setFontColor</span><span class="p">(</span><span class="s1">&#39;#c00&#39;</span><span class="p">).</span><span class="nx">setFontSize</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+                        <span class="p">.</span><span class="nx">setFontWeight</span><span class="p">(</span><span class="s1">&#39;bold&#39;</span><span class="p">).</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">30</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Не забудем добавить лейбл на слой с доской:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ball</span><span class="p">);</span>
+<span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">label</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>И, исправим вывод текста о проигрыше на лейбл вместо консоли:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(.</span> <span class="p">.</span> <span class="p">.);</span>
+
+<span class="kd">var</span> <span class="nx">hitPos_</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">defDelay_</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="nx">delay_</span> <span class="o">=</span> <span class="nx">defDelay_</span><span class="p">;</span>
+<span class="nx">lime</span><span class="p">.</span><span class="nx">scheduleManager</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dt</span><span class="p">){</span>
+    <span class="nx">delay_</span> <span class="o">-=</span> <span class="nx">dt</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">delay_</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">label</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">hitPos_</span> <span class="o">=</span> <span class="nx">ball</span><span class="p">.</span><span class="nx">updateAndCheckHit</span><span class="p">(</span><span class="nx">dt</span><span class="p">,</span> <span class="nx">playerOne</span><span class="p">,</span> <span class="nx">playerTwo</span><span class="p">))</span> <span class="p">{</span>
+       <span class="nx">label</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="s1">&#39;player &#39;</span> <span class="o">+</span> <span class="p">((</span><span class="nx">hitPos_</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="mi">320</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; is a loser&#39;</span><span class="p">);</span>
+       <span class="nx">delay_</span> <span class="o">=</span> <span class="nx">defDelay_</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">},</span><span class="nx">ball</span><span class="p">);</span>
+
+<span class="nx">director</span><span class="p">.</span><span class="nx">replaceScene</span><span class="p">(</span><span class="nx">scene</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Всё, мячик летается по полю, отбивается от игроков, пропустивший наказывается страшной красной надписью - для демонстрационной игры, я считаю, достаточно.</p>
+<h4 id="марафет"><a href="#марафет" title="Марафет">Марафет</a></h4>
+<p>Отлично, теперь давайте наведём небольшой марафет, чтобы продемонстрировать работу с градиентами и текстурами.</p>
+
+<p>Сделаем фон приятного зелёно-травяного цвета - поменяем инициализацию фоновых спрайтов в <code>pingpong.js</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+                                    <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">321</span><span class="p">,</span><span class="mi">480</span><span class="p">)</span>
+                                    <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">fill</span><span class="p">.</span><span class="nx">LinearGradient</span><span class="p">()</span>
+                                                     <span class="p">.</span><span class="nx">setDirection</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+                                                     <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">92</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+                                                     <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">134</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">105</span><span class="p">,</span><span class="mi">1</span><span class="p">)));</span>
+<span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+                                    <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">480</span><span class="p">)</span>
+                                    <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">fill</span><span class="p">.</span><span class="nx">LinearGradient</span><span class="p">()</span>
+                                                     <span class="p">.</span><span class="nx">setDirection</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+                                                     <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">92</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+                                                     <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">134</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">105</span><span class="p">,</span><span class="mi">1</span><span class="p">)));</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Сделаем игрокам (<code>player.js</code>) немного прозрачный синий морской градиент:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">this</span><span class="p">.</span><span class="nx">addPoints</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">175</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">75</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">fill</span><span class="p">.</span><span class="nx">LinearGradient</span><span class="p">()</span>
+                          <span class="p">.</span><span class="nx">setDirection</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+                          <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">210</span><span class="p">,.</span><span class="mi">7</span><span class="p">)</span>
+                          <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">105</span><span class="p">,.</span><span class="mi">7</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">setScale</span><span class="p">(.</span><span class="mi">4</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Мячу (<code>ball.js</code>) поставим текстуру с мячиком:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="s1">&#39;./ball.png&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Стену (<code>wall.js</code>) раскрасим в бетонно-синий цвет и отнаследуем от <code>RoundedRect</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">goog</span><span class="p">.</span><span class="nx">base</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">109</span><span class="p">,</span><span class="mi">122</span><span class="p">,</span><span class="mi">181</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">setRadius</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">goog</span><span class="p">.</span><span class="nx">inherits</span><span class="p">(</span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span><span class="p">,</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">RoundedRect</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Вот, теперь у нас всё выглядит много симпатичнее:</p>
+
+<p><img src="/blog/ru/figures/limejs-writing-a-game/stage-designed.png" alt="Мужчины в синих шортах на футбольном поле с детским мячиком"></p>
+<h4 id="компиляция"><a href="#компиляция" title="Компиляция">Компиляция</a></h4>
+<p>Итак, демонстрационная игра готова. Исходники, которые получились у меня:</p>
+
+<p><a href="http://paste.pocoo.org/show/338943/"><code>pingpong.js</code></a> | <a href="http://paste.pocoo.org/show/338944/"><code>player.js</code></a> | <a href="http://paste.pocoo.org/show/338945/"><code>ball.js</code></a> | <a href="http://paste.pocoo.org/show/338946/"><code>wall.js</code></a> | <a href="http://dl.dropbox.com/u/928694/test-pingpong/ball.png"><code>ball.png</code></a> | <a href="http://paste.pocoo.org/show/338948/"><code>pingpong.html</code></a></p>
+
+<p>Теперь перепроверьте все <code>goog.require</code> - уберите неиспользуемые вызовы, затем обновите зависимости и соберите всё в один скрипт:</p>
+<pre><code>$ ./bin/lime.py update
+$ ./bin/lime.py build pingpong -o pingpong/compiled/pp.js
+</code></pre>
+<p>Теперь в папку <code>compiled</code> можно скопировать <code>pingpong.html</code> и в заголовке поменять<br>
+вызовы JavaScript:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
+
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>pingpong<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;pp.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body</span> <span class="na">onload=</span><span class="s">&quot;pingpong.start()&quot;</span><span class="nt">&gt;&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="резюме"><a href="#резюме" title="Резюме">Резюме</a></h3>
+<p>Сначала я относился к движку немного скептически, представленные на сайте две (всего) игры чересчур каузальны, я не очень это люблю. Мало примеров и подробностей в документации и многовато всего нужно для установки. И ещё очень кислотный незамысловатый квадратик в <code>favicon</code>&hellip; :)</p>
+
+<p>Но потом я поиграл в игру с числами и она оказалась довольно-таки захватывающей (похожа на <code>Super 7 HD</code> для iPad - попроще конечно, раз демка). А потом, когда потренировался при написании игры из статьи, всё оказалось довольно удобно, продумано и даже минималистично. Есть мелкие сырости и неосвещённые в документации вещи, но если код forward-compatible, то почему-бы и нет - ребята прямо сейчас исправляют все эти вещи.</p>
+
+<p>Главное - это действительно не state-machine, которые сейчас модно делать - здесь можно отталкиваться от сценария игры, привязываясь к событиям, а не ко времени или текущему кадру, вам не надо думать как оптимизировать отрисовку многих объектов в следующем кадре - да, почти что Flash, жаль что без редактора.</p>
+<h3 id="видео"><a href="#видео" title="Видео">Видео</a></h3>
+<p><iframe src="http://player.vimeo.com/video/19973495" width="400" height="300" frameborder="0"></iframe><p><a href="http://vimeo.com/19973495">LimeJS Engine demonstation on iPhone - PingPong game</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p><br>
+<iframe src="http://player.vimeo.com/video/19973601" width="400" height="706" frameborder="0"></iframe><p><a href="http://vimeo.com/19973601">LimeJS Engine demonstation on Android - PingPong game</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p><br>
+<iframe src="http://player.vimeo.com/video/19973167" width="400" height="225" frameborder="0"></iframe><p><a href="http://vimeo.com/19973167">LimeJS Engine demonstation on iPad - PingPong game</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p></p>
+
+<p>(Видео записаны с помощью авторов движка)</p>
+<h3 id="поиграть"><a href="#поиграть" title="Поиграть">Поиграть</a></h3>
+<p><a href="http://shamansir.madfire.net/_pingpong/pingpong.html">Здесь можно попробовать поиграть</a> (может глючить, потому что это очень упрощённая версия, сравнивайте пожалуйста ожидания работы на вашей платформе с приведёнными выше видео)</p>
+
+<p><img src="/blog/ru/figures/limejs-writing-a-game/qrcode.png" alt="QRCode"></p>
+
+<p>P.S. Отдельное спасибо <a href="http://www.lazio.com.ua/">lazio_od</a>, он помогал мне в тестировании одновременно с авторами движка.</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/blog/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль на Github"><img src="/blog/ru/assets/img/social/github.png" width="16" height="16" alt="профиль на Github"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/blog/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль на Stackoverflow"><img src="/blog/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/ru/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/ru/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

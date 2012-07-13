@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/ru/" />
+<link rel="index" href="/blog/ru/archives/" />
+
+<link rel="shortcut icon" href="/blog/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/ru/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/ru/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/ru/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — Клиент для Google Wave в виде Java Web Application &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/ru/" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="/blog/ru/archives/" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/ru/feed.xml" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/ru/" title="Ни слова о луке">&raquo;Ни слова о луке&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="Клиент для Google Wave в виде Java Web Application">
+                    Клиент для Google Wave в виде Java Web Application
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Опубликован</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;13 октября 2009, вторник</dd>
+    
+    <dt class="nwao-hidden">Тэги</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/ru/tags/dwr/" rel="tag" title="Посты с тэгом 'dwr'"><i class="icon-tag"></i>&nbsp;dwr</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/google-wave/" rel="tag" title="Посты с тэгом 'google wave'"><i class="icon-tag"></i>&nbsp;google wave</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/java/" rel="tag" title="Посты с тэгом 'java'"><i class="icon-tag"></i>&nbsp;java</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/jquery/" rel="tag" title="Посты с тэгом 'jquery'"><i class="icon-tag"></i>&nbsp;jquery</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/reverse-ajax/" rel="tag" title="Посты с тэгом 'reverse ajax'"><i class="icon-tag"></i>&nbsp;reverse ajax</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p>Здравствуйте.</p>
+
+<p><a href="http://code.google.com/p/sametimed"><img src="/blog/ru/figures/sametimed-google-wave-client/logo.png" alt="sametimed"></a></p>
+
+<p>Итак, я написал небольшой проект на Java, который представляет собой клиент к Google Wave, который, в свою очередь, вы можете расширить необходимыми вам возможностями. Визуально выглядит он не очень презентабельно <s>(впрочем, а-ля Windows 3.11, почему бы и нет)</s>, поскольку веб-дизайнер из меня не очень хороший, однако абсолютно за весь исходный код я отвечаю головой :). Так, например, требующиеся для отображения CSS-стили при этом выглядят максимально понятно, а XHTML-структура максимально упрощена (не в ущерб стандартам) для того, чтобы настоящий дизайнер мог развернуться и сделать действительно красиво :).</p>
+
+<p><a href="/blog/ru/figures/sametimed-google-wave-client/screenshot-full.png"><img src="/blog/ru/figures/sametimed-google-wave-client/screenshot.png" alt="screenshot"></a></p>
+
+<p>Сайт, исходные коды, и war-пакет с текущим состоянием проекта находятся по адресу <a href="http://code.google.com/p/sametimed">http://code.google.com/p/sametimed</a></p>
+
+<p>Сейчас у меня нет под рукой общедоступного хостинга, чтобы я мог прямо вот так запустить проект и дать поиграться с ним не отходя от хабра, однако, я могу предложить вам <a href="https://vimeo.com/7036141">видео (на vimeo)</a>, демонстирующее его основные возможности, что, думаю, тоже вполне ничего, а запустить проект вы сможете сами, благо подробные инструкции есть на сайте проекта, а развёрнутые пояснения и подробное описание работы (и руководство к расширению возможностей) — внутри&hellip;</p>
+
+<p><a href="http://vimeo.com/7036141"><img src="/blog/ru/figures/sametimed-google-wave-client/vimeo.png" alt="video"></a></p>
+<h3 id="установка"><a href="#установка" title="Установка">Установка</a></h3>
+<p>Для того, чтобы запустить этот клиент, нужно, по идее, четыре вещи:</p>
+
+<ul>
+<li>WAR-пакет клиента, его можно взять из <a href="http://code.google.com/p/sametimed">проекта на googlecode</a></li>
+<li>Установленный с настройками по умолчанию wave-protocol сервер текущей версии (0.2) (<a href="http://code.google.com/p/wave-protocol/wiki/Installation">описание установки на английском</a>, <a href="http://habrahabr.ru/blogs/google/65964/">перевод с английского</a> by <a href="http://DarwinTenk.habrahabr.ru">DarwinTenk</a> и <a href="http://habrahabr.ru/blogs/google/65984/">описание установки на Windows</a> (на русском), by <a href="http://vadbars.habrahabr.ru">vadbars</a>)</li>
+<li>Любой Web-сервер, реализующий спецификации Java EE (тестировалось на встроенном в Eclipse Jetty)</li>
+<li>Браузер Firefox</li>
+</ul>
+
+<p>Чуть более подробные инструкции <a href="http://code.google.com/p/sametimed/wiki/SametimedInstallationInstructions">как его запустить сам по себе</a> или <a href="http://code.google.com/p/sametimed/wiki/CreatingEclipseProject">в виде рабочего проекта для Eclipse</a> представлены на странице проекта. Здесь же я рассмотрю структуру кода и опишу как он действует (пока без что UML-диаграмм, извините, по мере возможности я их добавлю).</p>
+<h3 id="общая-концепция"><a href="#общая-концепция" title="Общая концепция">Общая концепция</a></h3>
+<blockquote>
+<p>Здесь под сочетанием «серверная сторона/часть» подразумевается не сервер wave-protocol, а серверная строна веб-приложения.</p>
+</blockquote>
+
+<p>Поскольку в wave-protocol сейчас существует только консольный клиент, релизованный в виде jar-приложения, основной вопрос состоит в своевременной передаче информации с клиента на серверную часть и наоборот.</p>
+
+<p>Посему стало необходимо ввести два понятия:</p>
+
+<ul>
+<li><strong>Команда</strong>: отправляется с клиента на сервер, требует «открыть волну», «добавить участника», «отменить действие», «сказать привет» и т.п., отправляется по действию пользователя.</li>
+<li><strong>Сообщение</strong>: отправляется с сервера на клиент, сообщает о том, что «кто-то пригласил в волну», «sonya ответила привет», «добавился участник», «произошла ошибка», отправляется при любом обновлении.</li>
+</ul>
+
+<p>При этом, команду с клиента можно отправить сразу, сильно не задумываясь о нагрузке на сервер, а вот сообщения об обновлениях требуется отсылать только по факту происшествия. Однако, на клиенте находится javascript, который без сложных приспоcоблений не может осуществлять такие вещи. Здесь потребовался <a href="http://en.wikipedia.org/wiki/Reverse_Ajax">Reverse Ajax</a>, вернее его реализация для Java — библиотека <a href="http://directwebremoting.org/dwr/index.html">DWR</a> (Direct Web Remoting), она позволяет вызывать функцию на клинете с сервера в тот момент, когда решит сервер, а не клиент. Их сайт рассказывает о всех возможностях, которые вовсе не ограничены данным применением, но для проекта, как я уже сказал, из всех возможностей я использовал только эту.</p>
+
+<p>Команды и сообщения передаются в виде XML, а содержимое сообщений об обновлениях в виде JSON, засчёт чего в построении интерфейса участвует только JavaScript (я использовал JQuery), а серверная сторона даже не задумывается о существовании UI.</p>
+
+<blockquote>
+<p>(для серверной стороны в проекте есть интерфейс Renderer, реализация которого вызывается при необходимых обновлениях, но он предназначен как раз для случаев вроде консольного клиента)</p>
+</blockquote>
+<h3 id="описание-процесса-происходящего-в-текущей-версии"><a href="#описание-процесса-происходящего-в-текущей-версии" title="Описание процесса, происходящего в текущей версии">Описание процесса, происходящего в текущей версии</a></h3>
+<p>При запуске клиента, вы видите страницу с полем для ввода юзернейма и единственной кнопкой. Wave-protocol сервер при этом должен быть запущен. При нажатии на кнопку введённый вами юзернейм передаётся в сервлет (<code>GetClientViewServlet</code>), который подключает вас «к волне», и возвращает всю структуру (модель) клиента в виде JSON. JQuery на клиентской стороне строит весь интерфейс вейвлета. Если вы нажмёте кнопку ещё раз, вы запросите ещё один вейвлет, при этом между собой они будут различаться по внутреннему ID (сгенерированному автоматически), указанному на синей полоске в скобках. По этому ID и сервер и клиент определяют, к какому клиенту относится команда и/или сообщение.</p>
+
+<p>Одновременно с этим DWR начинает ожидать вестей об обновлениях, а вы в это время можете ввести любую из доступных команд в поле консоли и нажать «send». Например, создать волну командой «<code>\new</code>» , открыть её командой «<code>\open &lt;id&gt;</code>» и что-нибудь сказать, набрав просто текст (как в скайпе). При нажатии на кнопку «send» отправляется POST-запрос к другому сервлету (<code>CommandsReceiverServlet</code>), который получает сгенерированную в виде XML команду и тут же её выполняет, передавая данные серверу wave-protocol.</p>
+
+<p>Обновления в данный момент приходят с серверной стороны (и от сервера wave-protocol) в виде XML-сообщения (на клиентской стороне есть обработчик, который вызывается при получении новых сообщений), в котором содержится алиас изменившейся модели (например, &ldquo;chat&rdquo;, &ldquo;inbox&rdquo;, &ldquo;userslist&rdquo;, &ldquo;errors&rdquo; или &ldquo;editor&rdquo;) и её содержимое в виде JSON, которое тут же обрабатывается и обновляет соответствующую часть вейвлета.</p>
+
+<p>Как видите, всё до невозможности просто.</p>
+<h3 id="структура-проекта-и-возможности-для-расширения"><a href="#структура-проекта-и-возможности-для-расширения" title="Структура проекта и возможности для расширения">Структура проекта и возможности для расширения</a></h3><h4 id="java"><a href="#java" title="Java:">Java:</a></h4>
+<ul>
+<li>**<code>name.shamansir.sametimed.wave</code>** <em>Все классы, лежащие «снаружи» и относящиеся к клиенту непосредственно</em>; здесь находятся абстрактные классы <code>AUpdatingWavelet</code> и <code>ADocumentsWavelet</code> — определяющие структуру соответствующего типа вейвлетов (обновляющийся вейвлет и его расширение, вейвлет содержащий документы). Класс <code>SimpleWavelet</code> служит примером такой реализации. Класс <code>WavesClient</code> занимается обработкой команд и именно он возвращает модель содержащегося в нём вейвлета в <code>GetClientViewServlet</code>.</li>
+<li>**<code>name.shamansir.sametimed.wave.messaging</code>** <em>Все, что относится к командам и сообщениям</em>; Идентификаторы команд/сообщений в <code>CommandID</code>/<code>MessageTypeID</code>, сами классы <code>Command</code> и <code>UpdateMessage</code>, сервлет-обработчик <code>CommandsReceiverServlet</code>.</li>
+<li>**<code>name.shamansir.sametimed.wave.model</code>** <em>Классы, описывающие модель вейвлета</em>; Они содержат описание каждой суб-модели, вроде списка участников, чата или текстового документа. И <code>ModelID</code>, описывающий возможные модели с абстрактным классом <code>AModel</code>, конечно. Плюс, <code>ModelFactory</code>, фабрика моделей.</li>
+<li><strong><code>name.shamansir.sametimed.wave.model.base</code></strong> <em>Значения моделей, вроде «набора строк чата», «набора блоков текста в документе», «списка доступных волн» и т.д.</em>; Именно в этих классах описывается преобразование в JSON.</li>
+<li><strong><code>name.shamansir.sametimed.wave.model.base.atom</code></strong> <em>То, из чего состоят значения, если это необходимо для их структуры — «строка чата», «блок текста», «идентификатор волны»</em>;</li>
+<li><strong><code>name.shamansir.sametimed.wave.model.base.chat</code></strong> <em>Вейвлет с функцией чата и клиент для него</em>;</li>
+<li><strong><code>name.shamansir.sametimed.wave.model.base.editor</code></strong> <em>Вейвлет с поддержкой редактируемого документа, на данный момент не имплементирован, поэтому отключен</em>;</li>
+<li>**<code>name.shamansir.sametimed.wave.render</code>** <em>Классы, относящиеся к рендерингу</em>; Здесь находится тот самый класс <code>JSUpdatesListener</code>, который средствами DWR вызывает функцию обновления на клиенте.</li>
+</ul>
+
+<p>Самый логичный способ расширения — имплементация класса <code>ADocumentsWavelet</code> или расширение класса <code>WaveletWithChat</code>. Поскольку, в наиболее вероятном случае, вы будете оперировать понятием «документ» (А чат или что-либо другое, как раз являются документами), то именно такой способ должен подойти вам лучше всего. Также вам понадобится задуматься о модели данного документа (создав соответсвующий тип, реализующий <code>AModel</code>, добавить id модели в тип <code>ModelID</code> и генерацию модели в <code>ModelFactory</code>).</p>
+
+<p>Если документ не будет обрабатывать какие-либо новые команды, то этого достаточно — можно заменить в <code>GetClientViewServlet</code> возвращаемый вейвлет на ваш собственный и вуаля!. Ах, да, ещё генерация UI на клиенте, но об этом ниже.</p>
+
+<p>Если же необходимы свои собственные, предназначенные сугубо для него команды, то необходимо добавить соответствующие команды в тип <code>CommandID</code>. После этого нужно расширить класс <code>WavesClient</code> для поддержки вашего вейвлета и для того, чтобы он обрабатывал и передавал новые команды вейвлету независимо от предка. И, в этом случае, заменить в <code>GetClientViewServlet</code> реализацию <code>WavesClient</code> на вашу собственную. И снова вуаля! (снова, не учитывая UI)</p>
+
+<p>Вам понадобится, конечно же, учесть пару тонкостей при написании обработки команд, но в общих чертах это весь необходимый процесс для расширения функциональности клиента.</p>
+<h4 id="javascript"><a href="#javascript" title="JavaScript">JavaScript</a></h4>
+<ul>
+<li><strong><code>ui.js</code></strong> занимается генерацией интерфейса, для каждого блока модели есть собственный метод</li>
+<li><strong><code>command.js</code></strong> отправляет и генерирует команды, принимает сообщения об обновлениях, а также содержит обработчики для кнопок</li>
+<li><strong><code>ajax.js</code></strong> скрипт, который давно пора заменить на соответствующий метод jquery, но никак не доходят руки :). используется в command.js</li>
+</ul>
+
+<p>Для того, чтобы добавить генерацию вашей модели, достаточно добавить строку, вызывающую ваш метод обработки в методы <code>сreateClient</code> и <code>renderUpdate</code> объекта <code>ClientRenderer</code> в <code>ui.js</code> и собственно написать этот метод. Всё остальное будет (должно) работать самостоятельно.</p>
+<h4 id="css"><a href="#css" title="CSS">CSS</a></h4>
+<ul>
+<li><strong><code>sametimed-plain.css</code></strong> ещё чуть более ужасный интерфейс чем цветной :)</li>
+<li><strong><code>sametimed-colored.css</code></strong> цветной, Windows 3.11-подобный интерфейс :)</li>
+</ul>
+
+<p>Пока что стили, определяющие позиционирование и внешний вид (цветность) не разделены, хотя они разделяются комментариями в самих файлах. Думаю, я не буду этого менять.</p>
+<h3 id="эпилог"><a href="#эпилог" title="Эпилог">Эпилог</a></h3>
+<p>Вышло много текста про одно небольшое веб-приложение, но зато пост описывает все его возможности. Надеюсь найдётся не один человек, которому эта разработка будет интересна и если найдётся, планирую усовершенствовать его дальше. Пока это небольшая поделка «из интереса», но немного стараний — и её можно превратить в полноценный проект.</p>
+
+<p>Тех, кто это будет тестировать, прошу постить баги в <a href="http://code.google.com/p/sametimed/issues/list">соответствующее место</a>, в разумных пределах и не относящиеся к дизайну :).</p>
+
+<p>Участие в разработке приветствуется но поощрить нечем, только лицензией :).</p>
+<h3 id="важное-пояснение"><a href="#важное-пояснение" title="Важное пояснение">Важное пояснение</a></h3>
+<p>Если вы будете проверять приложение в работе одновременно с консольным клиентом wave-protocol, сообщения отосланные из консольного клиента  будут приходить на одно позже. Это не баг и не фича, это способ генерации «документа» чата. В консольном случае Google, по крайней мере как посчитал я, изменили порядок записи элементов документа так, чтобы их было удобнее отображать в консоли (начало элемента, конец элемента, затем его содержимое). В моём случае элемент строится в привычном порядке (начало, содержимое, конец), этим и обусловлено это несоответствие. Если исправить порядок генерации в моём проекте на тот же, что и в консоли, они будут будут полностью друг другу соответствовать.</p>
+
+<p>И да, специальной проверки/валидации введённых на клиенте данных пока не производится.</p>
+
+<p><strong>P.S.</strong> <em>Сопутствующая история.</em> Где-то с месяц назад в поисках работы я получил тестовое задание от некоторой фирмы X, аж на три недели. При том, что большую часть задания я выполнил и показал текущий на то время вариант в работе и прошёл 80% тестов на собеседовании, меня не приняли. Посему я считаю что имею право поделиться и исходным кодом и руководством к использованию с хабраобществом. Код я развил немного в другом направлении, но тем не менее он может оказаться полезным, даже если у гугла неожиданно окажется есть всё необходимое и в рабочем (доступном разработчикам) варианте.</p>
+
+<blockquote>
+<p>да-да, слово editor используется часто применительно к проекту, потому что изначально он планировался (и планируется) как одновременный редактор</p>
+</blockquote>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/blog/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль на Github"><img src="/blog/ru/assets/img/social/github.png" width="16" height="16" alt="профиль на Github"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/blog/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль на Stackoverflow"><img src="/blog/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/ru/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/ru/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

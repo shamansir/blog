@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/ru/" />
+<link rel="index" href="/blog/ru/archives/" />
+
+<link rel="shortcut icon" href="/blog/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/ru/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/ru/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/ru/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — UI-Паттерн Validator, может так? &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/ru/" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="/blog/ru/archives/" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/ru/feed.xml" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/ru/" title="Ни слова о луке">&raquo;Ни слова о луке&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="UI-Паттерн Validator, может так?">
+                    UI-Паттерн Validator, может так?
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Опубликован</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;21 ноября 2010, воскресенье</dd>
+    
+    <dt class="nwao-hidden">Тэги</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/ru/tags/development/" rel="tag" title="Посты с тэгом 'development'"><i class="icon-tag"></i>&nbsp;development</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/java/" rel="tag" title="Посты с тэгом 'java'"><i class="icon-tag"></i>&nbsp;java</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/patterns/" rel="tag" title="Посты с тэгом 'patterns'"><i class="icon-tag"></i>&nbsp;patterns</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/ui/" rel="tag" title="Посты с тэгом 'ui'"><i class="icon-tag"></i>&nbsp;ui</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/validation/" rel="tag" title="Посты с тэгом 'validation'"><i class="icon-tag"></i>&nbsp;validation</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p>Достаточно часто в пользовательском интерфейсе нужно отображать, подходящие данные ввёл пользователь или нет. В зависимости от ситуации подсвечивать зелёным или красным поля или показывать около них подсказки. Существует много плагинов/библиотек для множества фреймворков, но какого-либо особого, в меру простого, стандарта, похоже нет. То есть, может стоит изобрести ещё один велосипед, но попробовать сделать его поудобнее.</p>
+
+<p>Есть <a href="http://people.redhat.com/%7Eebernard/validation/">JSR-303</a> (<a href="http://habrahabr.ru/blogs/java/68318/">о нём на хабре</a>, <a href="http://java.dzone.com/articles/bean-validation-and-jsr-303">и ещё немного на английском</a>), он предназначен для валидации java-бинов с помощью аннотаций, похожа на него (и одновременно на мою версию) и библиотека <a href="http://code.google.com/p/gwt-validation/">gwt-validation</a> для GWT - эти вещи попроще чем обычно. Предлагаемый мной вариант ориентирован больше на UI-компоненты, чем данные с которыми они работают, на разных страницах может потребоваться валидация разной строгости и разное оформление (+<code>i18n</code>), да и управлять ограничениями формы по-моему удобнее в самой форме.</p>
+
+<p>Кстати, тут наверное множество UI-профессионалов, поэтому я только за, чтобы отмечаться в комментариях.</p>
+
+<p>Постараюсь описать максимально независимо от языка программирования, но примеры придётся приводить на Java :).</p>
+<h3 id="концепция"><a href="#концепция" title="Концепция">Концепция</a></h3>
+<ul>
+<li>Один метод <code>validate()</code> для композитного компонента (формы) который возвращает первый тип ограничения, не прошедший валидацию или <code>null</code>, если валидация пройдена. Этот метод может использоваться для проверок при нажатии на кнопки типа &ldquo;Сохранить&rdquo; или &ldquo;Отправить&rdquo;, когда важен только первый не прошедший тест.</li>
+<li>Этот же метод <code>validate()</code> можно вызвать для любого UI-компонента в форме и он изменит своё визуальное состояние в соответствии с введённым в него значением. А также при вызове этого метода у формы в целом - каждый компонент на ней также обновит своё состояние.</li>
+<li>Валидирующий код может иметь возможность бросить исключение о валидации, но не обязан.</li>
+<li>В общем случае все компоненты реагируют на корректные/некорректные значения одинаково.</li>
+<li>Не более трёх основных классов/интерфейсов.</li>
+</ul>
+<h3 id="диаграмма"><a href="#диаграмма" title="Диаграмма">Диаграмма</a></h3>
+<p>Сама диаграмма охватывает все описанные в статье классы, поэтому выглядит довольно (мягко говоря) эпично, но к самому паттерну, как я считаю, следует относить только верхний левый пакет <code>[Core]</code>.</p>
+
+<p><a href="/blog/ru/figures/may-be-a-validator-pattern/diagram.png"><img src="/blog/ru/figures/may-be-a-validator-pattern/diagram-thumb.png" alt="Диаграмма рассматриваемого паттерна"></a></p>
+
+<hr>
+<h3 id="основные-классы"><a href="#основные-классы" title="Основные классы">Основные классы</a></h3><h4 id="ограничение"><a href="#ограничение" title="Ограничение">Ограничение</a></h4>
+<p>Отправной точкой будет самый весомый класс - базовый <code>Constraint</code> - какое-либо ограничение. В моём случае тип ограничения задан простым <code>enum</code>-ом, поскольку возможные виды ограничений обычно вполне исчислимы. Вместо <code>enum</code>-а может быть и просто какое-либо абстрактное уникальное число, которое передаётся из наследников <code>ValidationConstraint</code>, тогда о типе ограничения будут знать только они и <code>i18n</code>-модуль.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ValidationConstraint</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">enum</span> <span class="n">ConstraintType</span> <span class="o">{</span> <span class="n">INVALID_FORMAT</span><span class="o">,</span> <span class="c1">// Значение в поле не соответствует регулярному выражению</span>
+                                 <span class="n">ILLEGAL_CHARACTERS</span><span class="o">,</span> <span class="c1">// Частный случай первого, в поле введены недопустимые символы</span>
+                                 <span class="n">INVALID_VALUE</span><span class="o">,</span> <span class="c1">// Частный случай первого, вместо числа введена строка или подобные ограничения</span>
+                                 <span class="n">REQUIRED_VALUE</span><span class="o">,</span> <span class="c1">// Поле требуется к заполнению</span>
+                                 <span class="n">BOTH_OR_NONE_REQUIRED</span><span class="o">,</span> <span class="c1">// Требуется указать оба поля или ни одно из них</span>
+                                 <span class="n">MUST_BE_GREATER_THAN</span><span class="o">,</span> <span class="c1">// Значение в поле должно быть больше чем...</span>
+                                 <span class="n">MORE_ITEMS_THAN_ALLOWED</span><span class="o">,</span> <span class="c1">// Выбрано больше элементов, чем требуется</span>
+                                 <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+                               <span class="o">};</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ConstraintType</span> <span class="n">type</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">subject</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">expectedValue</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">failedValue</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ValidationMessages</span> <span class="n">messages</span> <span class="o">=</span> <span class="cm">/* Получить локализованные сообщения */</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ValidationConstraint</span><span class="o">(</span><span class="n">ConstraintType</span> <span class="n">type</span><span class="o">,</span> <span class="n">String</span> <span class="n">subject</span><span class="o">,</span> <span class="n">String</span> <span class="n">expectedValue</span><span class="o">,</span> <span class="n">String</span> <span class="n">failedValue</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">type</span> <span class="o">=</span> <span class="n">type</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">subject</span> <span class="o">=</span> <span class="n">subject</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">expectedValue</span> <span class="o">=</span> <span class="n">expectedValue</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">failedValue</span> <span class="o">=</span> <span class="n">failedValue</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">ConstraintType</span> <span class="nf">getType</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">type</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSubject</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">subject</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getExpectedValue</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">expectedValue</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getFailedValue</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">failedValue</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getLocalizedDescription</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">getType</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="nl">INVALID_CHARACTERS:</span> <span class="k">return</span> <span class="n">messages</span><span class="o">.</span><span class="na">invalidCharacters</span><span class="o">(</span><span class="n">subject</span><span class="o">,</span> <span class="n">expectedValue</span><span class="o">,</span> <span class="n">failedValue</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nl">INVALID_FORMAT:</span> <span class="k">return</span> <span class="n">messages</span><span class="o">.</span><span class="na">invalidFormat</span><span class="o">(</span><span class="n">subject</span><span class="o">,</span> <span class="n">expectedValue</span><span class="o">,</span> <span class="n">failedValue</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nl">INVALID_VALUE:</span> <span class="k">return</span> <span class="n">messages</span><span class="o">.</span><span class="na">invalidValue</span><span class="o">(</span><span class="n">subject</span><span class="o">,</span> <span class="n">expectedValue</span><span class="o">,</span> <span class="n">failedValue</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nl">REQUIRED_VALUE:</span> <span class="k">return</span> <span class="n">messages</span><span class="o">.</span><span class="na">requiredValue</span><span class="o">(</span><span class="n">subject</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nl">MORE_ITEMS_THAN_ALLOWED:</span> <span class="k">return</span> <span class="n">messages</span><span class="o">.</span><span class="na">moreThanAllowed</span><span class="o">(</span><span class="n">subject</span><span class="o">,</span> <span class="n">expectedValue</span><span class="o">,</span> <span class="n">failedValue</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nl">BOTH_OR_NONE_REQUIRED:</span> <span class="k">return</span> <span class="n">messages</span><span class="o">.</span><span class="na">bothOrNoneRequired</span><span class="o">(</span><span class="n">subject</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nl">MUST_BE_GREATER_THAN:</span> <span class="k">return</span> <span class="n">messages</span><span class="o">.</span><span class="na">mustBeGreaterThan</span><span class="o">(</span><span class="n">subject</span><span class="o">,</span> <span class="n">expectedValue</span><span class="o">,</span> <span class="n">failedValue</span><span class="o">);</span>
+            <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+            <span class="k">default</span><span class="o">:</span> <span class="k">return</span> <span class="n">messages</span><span class="o">.</span><span class="na">unknownConstraint</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="объект-который-можно-проверить"><a href="#объект-который-можно-проверить" title="Объект, который можно проверить">Объект, который можно проверить</a></h4>
+<p>Любой объект, который может быть проверен на соответствие ограничениям, должен имплементировать интерфейс <code>IValidatable</code>. Метод <code>validate()</code> можно вызвать, если нужно получить [первый] свалившийся <code>Constraint</code> или нужно обновить состояние компонента (когда не важно возвращаемое значение). Метод <code>isValid</code> можно вызвать если требуется просто проверить, прошло ограничения (ограничения) или нет - в подавляющем большинстве случаев <code>isValid()</code> равноценно <code>(validate() == null)</code>.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IValidatable</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">ValidationConstraint</span> <span class="nf">validate</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ValidationException</span><span class="o">;</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Также <code>isValid()</code> может бросать исключение, содержащее тип ограничения, которое не прошло:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ValidationException</span> <span class="kd">extends</span> <span class="n">Exception</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ValidationConstraint</span> <span class="n">constraint</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ValidationException</span><span class="o">(</span><span class="n">ValidationConstraint</span> <span class="n">constraint</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">constraint</span><span class="o">.</span><span class="na">getFailedValue</span><span class="o">());</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">constraint</span> <span class="o">=</span> <span class="n">constraint</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getLocalizedMessage</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">constraint</span><span class="o">.</span><span class="na">getLocalizedDescription</span><span class="o">()</span><span class="cm">/* + &quot; (&quot; + constraint.getType() + &quot;)&quot;*/</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="объект-содержащий-несколько-ограничений"><a href="#объект-содержащий-несколько-ограничений" title="Объект, содержащий несколько ограничений">Объект, содержащий несколько ограничений</a></h4>
+<p>Таким объектом может стать, например, форма или страница с полями для заполнения или какой-либо бин. Этот объект должен имплементировать интерфейс <code>HasConstraints</code>. Метод <code>initContraints()</code> можно вызывать в конструкторе имплементирующего класса или в каком-либо другом методе, выполняющемся один раз перед использованием объекта. <code>addConstraint(...)</code> добавляет новое ограничение, за которым следит объект. Также он наследует метод <code>validate()</code>, который перебирает все ограничения и возвращает первое упавшее. В этот объект можно встроить возможность удаления ограничений, тогда он будет действовать примерно как <code>Observer</code>.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HasConstraints</span> <span class="kd">extends</span> <span class="n">IValidatable</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initConstraints</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addConstraint</span><span class="o">(</span><span class="n">IValidatable</span> <span class="n">validatable</span><span class="o">);</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="как-использовать-снаружи"><a href="#как-использовать-снаружи" title="Как использовать снаружи">Как использовать снаружи</a></h4>
+<p>То, что доступно конечному разработчику в результате - любые формы и страницы, которые могут переопределить метод <code>initConstraints</code> и вызвать поочерёдно для каждого ограничения на какое-либо поле метод <code>addConstraint(...)</code>. Метод <code>addConstraint(...)</code> принимает параметром любой объект, который умеет себя валидировать (имплементирует <code>IValidatable</code>) или, для ограничений, экзепляр из уже готового набора ограничений (которые, в свою очередь, тоже имплементируют тот самый <code>IValidatable</code>). Перед сохранением/отправкой формы разработчик может вызывать у этих страниц/форм метод <code>validate()</code> или <code>isValid()</code>, чтобы узнать что именно упало или перехватить/передать исключение валидации. Все ограничения автоматически проверяются при изменении значений в этих полях.</p>
+
+<p>Ниже я рассмотрю дополнения и примеры, которые никоим образом не изменяют это утверждение.</p>
+
+<hr>
+<h3 id="дополнения"><a href="#дополнения" title="Дополнения">Дополнения</a></h3><h4 id="обновляющий-состояние-объект"><a href="#обновляющий-состояние-объект" title="Обновляющий состояние объект">Обновляющий состояние объект</a></h4>
+<p>Если какой-либо объект содержит значение, то он может сам проверять своё состояние на основе ограничений. Такой объект может имплементировать интерфейс <code>Validator</code>. Методы <code>whenValueInvalid(...)</code> и <code>whenValueValid(...)</code> могут вызываться напрямую при проверке из имплементируемого <code>validate()</code>, тогда вызов <code>validate()</code> всегда будет обновлять состояние объекта.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Validator</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">IValidatable</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">V</span> <span class="nf">getValue</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueInvalid</span><span class="o">(</span><span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="n">ValidationConstraint</span> <span class="n">constraint</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueValid</span><span class="o">(</span><span class="n">V</span> <span class="n">value</span><span class="o">);</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="делегирование-объекта-обновляющего-состояние"><a href="#делегирование-объекта-обновляющего-состояние" title="Делегирование объекта, обновляющего состояние">Делегирование объекта, обновляющего состояние</a></h3>
+<p>Чаще удобнее делегировать такой объект, потому что он может быть уже готовым компонентом, цепочку наследования которого нельзя изменять. Будем называть делегируемый объект целью - <code>Target</code>. Ожидаемое поведение здесь такое же как и в интерфейсе <code>Validator</code>.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TargetValidator</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">IValidatable</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">V</span> <span class="nf">getValue</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="n">T</span> <span class="nf">getTarget</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueInvalid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="n">ValidationConstraint</span> <span class="n">constraint</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueValid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">);</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Впрочем, могут понадобиться несколько слушателей, реагирующих на изменение значения. Поэтому я создал интерфейс <code>ValueChangeReactor</code> и изменил <code>TargetValidator</code>, чтобы он расширял этот интерфейс (хотя это необязательно). В примерах я буду придерживаться этого варианта.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ValueChangeReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueInvalid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="n">ValidationConstraint</span> <span class="n">constraint</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueValid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">);</span>
+
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TargetValidator</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">IValidatable</span><span class="o">,</span> <span class="n">ValueChangeReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="n">V</span> <span class="nf">getValue</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="n">T</span> <span class="nf">getTarget</span><span class="o">();</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Теперь можно создавать объекты, которые содержат слушателей на изменения значений. Допустим, один из слушателей добавляет к объекту CSS-класс, другой - подсказку.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HasValueReactors</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addReactor</span><span class="o">(</span><span class="n">ValueChangeReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">reactor</span><span class="o">);</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Без примеров статья была бы неполной&hellip;</p>
+
+<hr>
+<h3 id="примеры"><a href="#примеры" title="Примеры">Примеры</a></h3><h4 id="базовая-quotкоробка-проверяемых-объектовquot"><a href="#базовая-quotкоробка-проверяемых-объектовquot" title="Базовая &quot;коробка проверяемых объектов&quot;">Базовая &ldquo;коробка проверяемых объектов&rdquo;</a></h4>
+<p>Вот класс, от которого может наследоваться любой объект (например, та самая форма или страница), который содержит в себе другие проверяемые объекты (в том числе ограничения) и собственно проверяет их при вызове <code>validate()</code>. Дочерние классы должны иметь метод <code>initConstraints()</code>, который будет добавлять все неоходимые для проверки объекты.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ValidationSupport</span> <span class="kd">implements</span> <span class="n">HasConstraints</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">IValidatable</span><span class="o">&gt;</span> <span class="n">validatables</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">&lt;</span><span class="n">IValidatable</span><span class="o">&gt;();</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">ValidationConstraint</span> <span class="nf">validate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">IValidatable</span> <span class="nl">validatable:</span> <span class="n">validatables</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">final</span> <span class="n">ValidationConstraint</span> <span class="n">constraint</span> <span class="o">=</span> <span class="n">validatable</span><span class="o">.</span><span class="na">validate</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">constraint</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">constraint</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">};</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addConstraint</span><span class="o">(</span><span class="n">IValidatable</span> <span class="n">validatable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">validatables</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">validatable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">validate</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Однако, если нельзя нарушать цепочку наследования, удобнее делегировать объект этого класса, переопределив <code>initConstraints</code> на вызов <code>initContraints</code> у оборачивающего объекта.</p>
+
+<blockquote>
+<p>Обратите внимание на то, что у наследуемого или делегирующего объекта <code>initConstraints</code> нужно вызывать вручную, например после подготовки и создания всех компонентов формы. В большинстве случаев, однако, подойдёт и просто вызов в конструкторе.</p>
+</blockquote>
+<h4 id="базовое-ограничение"><a href="#базовое-ограничение" title="Базовое ограничение">Базовое ограничение</a></h4>
+<p>От этого класса могут наследоваться все конкретные ограничения. Он позволяет передать валидируемый компонент (<code>target</code>), тип ограничения (<code>constraintType</code>), &ldquo;название&rdquo; компонента (<code>subject</code>) и ожидаемое значение (<code>expectation</code>). Собственно, он и выполняет описанные выше ожидания от <code>TargetValidator</code>. Метод <code>passes()</code> наследника должен проверять, соответствует ли текущее значение типу ограничения.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">BaseValidator</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">TargetValidator</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;,</span> <span class="n">HasValueReactors</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">T</span> <span class="n">target</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">subject</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">expectation</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ConstraintType</span> <span class="n">constraintType</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">ValueChangeReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;&gt;</span> <span class="n">reactors</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">&lt;</span><span class="n">ValueChangeReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="nf">BaseValidator</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">ConstraintType</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">String</span> <span class="n">subject</span><span class="o">,</span> <span class="n">String</span> <span class="n">expectation</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">subject</span> <span class="o">=</span> <span class="n">subject</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">expectation</span> <span class="o">=</span> <span class="n">expectation</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">constraintType</span> <span class="o">=</span> <span class="n">constraintType</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="nf">BaseValidator</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">ConstraintType</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">String</span> <span class="n">subject</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="kt">boolean</span> <span class="nf">passes</span><span class="o">(</span><span class="n">V</span> <span class="n">value</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">T</span> <span class="nf">getTarget</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">target</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="n">ValidationConstraint</span> <span class="nf">validate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">V</span> <span class="n">value</span> <span class="o">=</span> <span class="n">getValue</span><span class="o">();</span>
+        <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">passes</span> <span class="o">=</span> <span class="n">passes</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+        <span class="n">ValidationConstraint</span> <span class="n">constraint</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">passes</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">whenValueValid</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">constraint</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ValidationConstraint</span><span class="o">(</span><span class="n">constraintType</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">expectation</span><span class="o">,</span> <span class="o">(</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">value</span><span class="o">.</span><span class="na">toString</span><span class="o">()</span> <span class="o">:</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+            <span class="n">whenValueInvalid</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">constraint</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">constraint</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">validate</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/* Либо:</span>
+<span class="cm">    public boolean isValid() throws ValidationException {</span>
+<span class="cm">        ValidationConstraint constraint = validate();</span>
+<span class="cm">        if (constraint != null) throw new ValidationException(constraint);</span>
+<span class="cm">        return (constraint == null);</span>
+<span class="cm">    } */</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueInvalid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="n">ValidationConstraint</span> <span class="n">constraint</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">ValueChangeReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="nl">reactor:</span> <span class="n">reactors</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">reactor</span><span class="o">.</span><span class="na">whenValueInvalid</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">constraint</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueValid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">ValueChangeReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="nl">reactor:</span> <span class="n">reactors</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">reactor</span><span class="o">.</span><span class="na">whenValueValid</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addReactor</span><span class="o">(</span><span class="n">ValueChangeReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">reactor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">reactors</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">reactor</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<hr>
+<h3 id="практика"><a href="#практика" title="Практика">Практика</a></h3><h4 id="практика-валидирование-ui-компонентов"><a href="#практика-валидирование-ui-компонентов" title="Практика: Валидирование UI-компонентов">Практика: Валидирование UI-компонентов</a></h4>
+<p>Допустим, в нашем UI-фреймворке у нас чётко выделяются компоненты, которые имеют какое-то значение и имеют хэндлеры, которые вызываются при его изменении - то есть имплементируют некий интерфейс <code>HasValue</code> (см., например, <a href="http://google-web-toolkit.googlecode.com/svn/javadoc/2.0/com/google/gwt/user/client/ui/HasValue.html">HasValue в GWT</a>). Можно создать валидатор, который будет автоматически следить за изменениями значения таких объектов (событие изменения вызывается, к примеру, при потере фокуса у текстового поля) и сразу же валидировать значение (вызывая <code>validate()</code>).</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ValueContainerValidator</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span> <span class="kd">extends</span> <span class="n">HasValue</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;&gt;</span> <span class="kd">extends</span> <span class="n">BaseValidator</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">ValueContainerValidator</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">ConstraintType</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">String</span> <span class="n">fieldName</span><span class="o">,</span> <span class="n">String</span> <span class="n">expectation</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">fieldName</span><span class="o">,</span> <span class="n">expectation</span><span class="o">);</span>
+
+        <span class="n">addValidationHandlers</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">ValueContainerValidator</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">ConstraintType</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">String</span> <span class="n">fieldName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">fieldName</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">addValidationHandlers</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="n">target</span><span class="o">.</span><span class="na">addValueChangeHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">ValueChangeHandler</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onValueChange</span><span class="o">(</span><span class="n">ValueChangeEvent</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">validate</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="cm">/* if (target instanceof HasKeyUpHandlers) {</span>
+<span class="cm">            ((HasKeyUpHandlers)target).addKeyUpHandler(new KeyUpHandler() {</span>
+<span class="cm">                @Override</span>
+<span class="cm">                public void onKeyUp(KeyUpEvent event) {</span>
+<span class="cm">                    validate();</span>
+<span class="cm">                }</span>
+<span class="cm">            });</span>
+<span class="cm">        } */</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">V</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">getTarget</span><span class="o">().</span><span class="na">getValue</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>В комментарии показано, что вы можете проверить и другие интерфейсы объекта и, допустим обновлять состояние не только при потере фокуса, но и при нажатии клавиши и т.п.</p>
+
+<p>И наконец, вот несколько часто используемых ограничений:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RegexConstraint</span><span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">HasValue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="kd">extends</span> <span class="n">ValueContainerValidator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">regex</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">RegexConstraint</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">String</span> <span class="n">fieldName</span><span class="o">,</span> <span class="n">String</span> <span class="n">regex</span><span class="o">,</span> <span class="n">String</span> <span class="n">regexDescription</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">ConstraintType</span><span class="o">.</span><span class="na">INVALID_FORMAT</span><span class="o">,</span> <span class="n">fieldName</span><span class="o">,</span> <span class="n">regexDescription</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">regex</span> <span class="o">=</span> <span class="n">regex</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">passes</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">||</span> <span class="n">value</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">regex</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RequiredFieldConstraint</span><span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">HasValue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="kd">extends</span> <span class="n">ValueContainerValidator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">RequiredFieldConstraint</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">String</span> <span class="n">fieldName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">ConstraintType</span><span class="o">.</span><span class="na">REQUIRED_VALUE</span><span class="o">,</span> <span class="n">fieldName</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">passes</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">value</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MinimumLengthConstraint</span><span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">HasValue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="kd">extends</span> <span class="n">ValueContainerValidator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">minLength</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">MinimumLengthConstraint</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">String</span> <span class="n">fieldName</span><span class="o">,</span> <span class="kt">int</span> <span class="n">minLength</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">ConstraintType</span><span class="o">.</span><span class="na">LESS_ITEMS_THAN_REQUIRED</span><span class="o">,</span> <span class="n">fieldName</span><span class="o">,</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">minLength</span><span class="o">));</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">minLength</span> <span class="o">=</span> <span class="n">minLength</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">passes</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">||</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">minLength</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Иногда требуется проверить несколько полей в совокупности. Например, для двух полей требуется заполнить либо оба, либо ни одного. Вот пример базового класса для ограничений на два поля:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">TwoTargetsConstraint</span><span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">HasValue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="kd">extends</span> <span class="n">ValueContainerValidator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">T</span> <span class="n">targetTwo</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">TwoTargetsConstraint</span><span class="o">(</span><span class="n">T</span> <span class="n">targetOne</span><span class="o">,</span> <span class="n">T</span> <span class="n">targetTwo</span><span class="o">,</span> <span class="n">ConstraintType</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">String</span> <span class="n">fieldName</span><span class="o">,</span> <span class="n">String</span> <span class="n">expectation</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">targetOne</span><span class="o">,</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">fieldName</span><span class="o">,</span> <span class="n">expectation</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">targetTwo</span> <span class="o">=</span> <span class="n">targetTwo</span><span class="o">;</span>
+
+        <span class="n">addValidationHandlers</span><span class="o">(</span><span class="n">targetTwo</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">TwoTargetsConstraint</span><span class="o">(</span><span class="n">T</span> <span class="n">targetOne</span><span class="o">,</span> <span class="n">T</span> <span class="n">targetTwo</span><span class="o">,</span> <span class="n">ConstraintType</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">String</span> <span class="n">fieldName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">targetOne</span><span class="o">,</span> <span class="n">targetTwo</span><span class="o">,</span> <span class="n">constraintType</span><span class="o">,</span> <span class="n">fieldName</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueInvalid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">String</span> <span class="n">value</span><span class="o">,</span> <span class="n">ValidationConstraint</span> <span class="n">constraint</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">whenValueInvalid</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">constraint</span><span class="o">);</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">whenValueInvalid</span><span class="o">(</span><span class="n">targetTwo</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">constraint</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueValid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">whenValueValid</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">whenValueValid</span><span class="o">(</span><span class="n">targetTwo</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="nf">passes</span><span class="o">(</span><span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">passes</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="n">targetTwo</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kd">abstract</span> <span class="kt">boolean</span> <span class="nf">passes</span><span class="o">(</span><span class="n">String</span> <span class="n">valueOne</span><span class="o">,</span> <span class="n">String</span> <span class="n">valueTwo</span><span class="o">);</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>А вот реализация, которая собственно и удостоверяется, что заполнено либо оба поля, либо ни одного:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BothOrNoneRequiredConstraint</span><span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">HasValue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="kd">extends</span> <span class="n">TwoTargetsConstraint</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">BothOrNoneRequiredConstraint</span><span class="o">(</span><span class="n">T</span> <span class="n">targetOne</span><span class="o">,</span> <span class="n">T</span> <span class="n">targetTwo</span><span class="o">,</span> <span class="n">String</span> <span class="n">fieldName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">targetOne</span><span class="o">,</span> <span class="n">targetTwo</span><span class="o">,</span> <span class="n">ConstraintType</span><span class="o">.</span><span class="na">BOTH_OR_NONE_REQUIRED</span><span class="o">,</span> <span class="n">fieldName</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">boolean</span> <span class="nf">passes</span><span class="o">(</span><span class="n">String</span> <span class="n">valueOne</span><span class="o">,</span> <span class="n">String</span> <span class="n">valueTwo</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">valueOne</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">valueTwo</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">||</span>
+               <span class="o">(!</span><span class="n">valueOne</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">valueTwo</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">());</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>В GWT основная часть компонентов наследуется от класса <a href="http://google-web-toolkit.googlecode.com/svn/javadoc/1.6/com/google/gwt/user/client/ui/UIObject.html"><code>UIObject</code></a>, для такого элемента можно добавлять и убирать CSS-стили. Учитывая это можно сделать <code>StylingReactor</code>, который при изменении значения добавляет нужный CSS-стиль к объекту:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StylingReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span> <span class="kd">extends</span> <span class="n">UIObject</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">ValueChangeReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">StylingReactor</span><span class="o">()</span> <span class="o">{</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueInvalid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="n">ValidationConstraint</span> <span class="n">constraint</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">target</span><span class="o">.</span><span class="na">addStyleName</span><span class="o">(</span><span class="s">&quot;b-invalid-value&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">whenValueValid</span><span class="o">(</span><span class="n">T</span> <span class="n">target</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">target</span><span class="o">.</span><span class="na">removeStyleName</span><span class="o">(</span><span class="s">&quot;b-invalid-value&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Формы, панели и страницы наследуются в GWT от класса <a href="http://google-web-toolkit.googlecode.com/svn/javadoc/2.0/com/google/gwt/user/client/ui/Composite.html"><code>Composite</code></a>. Сделаем базовый <code>CompositeWithConstraints</code>, от которого смогут наследоваться такие формы и страницы. По сути он просто делегирует <code>ValidationSupport</code>, но кроме этого автоматически добавляет всем внутренним ограничениям, которые вешаются на <code>UIObject</code>-компоненты <code>StylingReactor</code> (при жуткой необходимости его можно переиспользовать).</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">CompositeWithConstraints</span> <span class="kd">extends</span> <span class="n">Composite</span> <span class="kd">implements</span> <span class="n">HasConstraints</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ValidationSupport</span> <span class="n">validationSupport</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ValidationSupport</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initConstraints</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">CompositeWithConstraints</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">initConstraints</span><span class="o">();</span>
+        <span class="o">};</span>
+
+    <span class="o">};</span>
+
+    <span class="kd">protected</span> <span class="nf">CompositeWithConstraints</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addConstraint</span><span class="o">(</span><span class="n">IValidatable</span> <span class="n">validatable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">validationSupport</span><span class="o">.</span><span class="na">addConstraint</span><span class="o">(</span><span class="n">validatable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span> <span class="kd">extends</span> <span class="n">UIObject</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">addConstraint</span><span class="o">(</span><span class="n">BaseValidator</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">validator</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">validator</span><span class="o">.</span><span class="na">addReactor</span><span class="o">(</span><span class="k">new</span> <span class="n">StylingReactor</span><span class="o">&lt;</span><span class="n">V</span><span class="o">,</span> <span class="n">T</span><span class="o">&gt;());</span>
+        <span class="n">validationSupport</span><span class="o">.</span><span class="na">addConstraint</span><span class="o">(</span><span class="n">validator</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isValid</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">ValidationException</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">validationSupport</span><span class="o">.</span><span class="na">isValid</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">ValidationConstraint</span> <span class="nf">validate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">validationSupport</span><span class="o">.</span><span class="na">validate</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<blockquote>
+<p>Ещё раз обратите внимание на то, что у наследуемого или делегирующего объекта <code>initConstraints</code> нужно вызывать вручную, например после подготовки и создания всех компонентов формы. В большинстве случаев, однако, подойдёт и просто вызов в конструкторе.</p>
+</blockquote>
+<h4 id="пример-использования"><a href="#пример-использования" title="Пример использования">Пример использования</a></h4>
+<p>Допустим <code>FormWithValidation</code> наследуется от класса <code>CompositeWithConstraints</code>, а <code>TextBox</code>, <code>TextArea</code> имплементируют интерфейс <code>HasValue</code> (так и есть в штатных компонентах GWT):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProfileEditForm</span> <span class="kd">extends</span> <span class="n">FormWithValidation</span> <span class="kd">implements</span> <span class="n">View</span> <span class="o">{</span>
+
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initConstraints</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="n">addConstraint</span><span class="o">(</span><span class="k">new</span> <span class="n">RequiredFieldConstraint</span><span class="o">&lt;</span><span class="n">TextBox</span><span class="o">&gt;(</span><span class="n">nameField</span><span class="o">,</span> <span class="s">&quot;Name&quot;</span><span class="o">));</span>
+        <span class="n">addConstraint</span><span class="o">(</span><span class="k">new</span> <span class="n">RequiredFieldConstraint</span><span class="o">&lt;</span><span class="n">TextArea</span><span class="o">&gt;(</span><span class="n">aboutMe</span><span class="o">,</span> <span class="s">&quot;AboutMe&quot;</span><span class="o">));</span>
+        <span class="n">addConstraint</span><span class="o">(</span><span class="k">new</span> <span class="n">MinimumLengthConstraint</span><span class="o">&lt;</span><span class="n">TextArea</span><span class="o">&gt;(</span><span class="n">aboutMe</span><span class="o">,</span> <span class="s">&quot;AboutMe&quot;</span><span class="o">,</span> <span class="n">ProfileBean</span><span class="o">.</span><span class="na">MIN_ABOUT_LENGTH</span><span class="o">));</span>
+        <span class="n">addConstraint</span><span class="o">(</span><span class="k">new</span> <span class="n">RegexConstraint</span><span class="o">&lt;</span><span class="n">TextBox</span><span class="o">&gt;(</span><span class="n">academyStartField</span><span class="o">,</span> <span class="s">&quot;Academy start&quot;</span><span class="o">,</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">DATE_REGEX</span><span class="o">,</span> <span class="s">&quot;NN-NN-NNNN&quot;</span><span class="o">));</span>
+        <span class="n">addConstraint</span><span class="o">(</span><span class="k">new</span> <span class="n">RegexConstraint</span><span class="o">&lt;</span><span class="n">TextBox</span><span class="o">&gt;(</span><span class="n">academyFinishField</span><span class="o">,</span> <span class="s">&quot;Academy finish&quot;</span><span class="o">,</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">DATE_REGEX</span><span class="o">,</span> <span class="s">&quot;NN-NN-NNNN&quot;</span><span class="o">));</span>
+        <span class="n">addConstraint</span><span class="o">(</span><span class="k">new</span> <span class="n">BothOrNoneRequiredConstraint</span><span class="o">&lt;</span><span class="n">TextBox</span><span class="o">&gt;(</span><span class="n">academyStartField</span><span class="o">,</span> <span class="n">academyFinishField</span><span class="o">,</span> <span class="s">&quot;Academy&quot;</span><span class="o">));</span>
+        <span class="n">addConstraint</span><span class="o">(</span><span class="k">new</span> <span class="n">FirstLessThanSecondConstraint</span><span class="o">&lt;</span><span class="n">TextBox</span><span class="o">&gt;(</span><span class="n">academyStartField</span><span class="o">,</span> <span class="n">academyFinishField</span><span class="o">,</span> <span class="s">&quot;Academy&quot;</span><span class="o">));</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">HasClickHandlers</span> <span class="nf">getSavingButton</span><span class="o">()</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Теперь эти поля автоматически валидируются при изменении их значений. Для того чтобы проверить соответствие ограничениям перед сохранением формы, достаточно вызвать <code>validate</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProfileEditPresenter</span> <span class="kd">implements</span> <span class="n">Presenter</span> <span class="o">{</span>
+
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">assignSaveHandler</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">view</span><span class="o">.</span><span class="na">getSavingButton</span><span class="o">().</span><span class="na">addClickHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">ClickHandler</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onClick</span><span class="o">(</span><span class="n">ClickEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+                <span class="kd">final</span> <span class="n">ValidationConstraint</span> <span class="n">constraint</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">validate</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">constraint</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="kd">final</span> <span class="n">ProfileBean</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">gatherFields</span><span class="o">();</span>
+                    <span class="n">updateProfile</span><span class="o">(</span><span class="n">profile</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">eventBus</span><span class="o">.</span><span class="na">displayMessage</span><span class="o">(</span><span class="n">MessageType</span><span class="o">.</span><span class="na">VALIDATION_ERROR</span><span class="o">,</span> <span class="n">constraint</span><span class="o">.</span><span class="na">getLocalizedDescription</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="резюме"><a href="#резюме" title="Резюме">Резюме</a></h3>
+<p>Мне хотелось вывести какой-то общий, в меру простой, паттерн, который поместился бы на одной (хоть и большой) диаграмме классов и был понятен с первого взгляда. Надеюсь это получилось.</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/blog/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль на Github"><img src="/blog/ru/assets/img/social/github.png" width="16" height="16" alt="профиль на Github"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/blog/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль на Stackoverflow"><img src="/blog/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/ru/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/ru/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Blog about programming and only about it. No word about onion. At all. Totally none." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/" />
+<link rel="index" href="/blog/archives/" />
+
+<link rel="shortcut icon" href="/blog/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-4']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — 10 Useful Solutions for Android Developer &ndash; No word about onion</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/" rel="contents" title="Blog"><i class="icon-home"></i>&nbsp;Blog</a></li>
+                    <li><a href="/blog/archives/" rel="index" title="Archives"><i class="icon-book"></i>&nbsp;Archives</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Author"><i class="icon-user"></i>&nbsp;Author</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/feed.xml" title="Feed"><i class="icon-rss"></i>&nbsp;Feed</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/" title="No word about onion">&raquo;No word about onion&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>shaman.sir's telling you about stuff</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Previous post</a><span> | </span>
+            <a href="#" id="nwao-next">Next post →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="10 Useful Solutions for Android Developer">
+                    10 Useful Solutions for Android Developer
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Published at</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;09 January 2010, Saturday</dd>
+    
+    <dt class="nwao-hidden">Tags</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/tags/android/" rel="tag" title="Posts with 'android' tag"><i class="icon-tag"></i>&nbsp;android</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/tags/java/" rel="tag" title="Posts with 'java' tag"><i class="icon-tag"></i>&nbsp;java</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/tags/vimeoid/" rel="tag" title="Posts with 'vimeoid' tag"><i class="icon-tag"></i>&nbsp;vimeoid</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p>This post contains several useful solutions for Android developers. If you are starting to dive in it, I think the detailed description of the problems I solved will help you in your Android adventures.</p>
+<h3 id="contents"><a href="#contents" title="Contents">Contents</a></h3>
+<ol>
+<li>Introduction</li>
+<li>About list adapters with sections (to group elements in the lists)</li>
+<li>About lists containing some actions (list elements do something complex or change themselves when selected)</li>
+<li>About list views manual invalidation</li>
+<li>About caching images in <code>ListView</code> (for lists with remote images)</li>
+<li>About adapters that iterate over cursors (to support pagination in lists)</li>
+<li>About OAuth autorization in Android</li>
+<li>About using <code>MediaPlayer</code> to play remote video received using HTTP</li>
+<li>About queues containing several <code>AsyncTask</code>s (to execute background tasks sequentially)</li>
+<li>About changing the list element selection style</li>
+<li>About adding <a href="http://www.londatiga.net/it/how-to-create-quickaction-dialog-in-android/">QuickActions</a> to your project</li>
+<li>Three more mini-solutions</li>
+</ol>
+<h3 id="1.-introduction"><a href="#1.-introduction" title="1. Introduction">1. Introduction</a></h3>
+<p>Last summer I had ignited the desire to write an Android client for <a href="http://vimeo.com">vimeo</a> web-service. I like this service and I think it would be cool to monitor updates on video subscriptions from your communicator.</p>
+
+<p>I сonceived <a href="http://code.google.com/p/vimeoid">this project</a> to be learning one (means I am learning), however as a result I&#39;ve found that a valuable part was done (you can check out <a href="http://code.google.com/p/vimeoid/wiki/Screenshots">screenshots of the finished things</a>), but it is still in progress. Almost simultaneously with me, being first, <a href="http://vimeo.com/makotosan">makotosan</a> started to write his <a href="http://www.androlib.com/android.application.com-makotosan-vimeodroid-qmBCn.aspx">own version</a> of client aimed at video upload and he is also has not finished it yet, but his version can do things that my version can not (and converse is also true, seems).</p>
+
+<p>Anyway, through programming process I&#39;ve got some knowledge base which I want to share. Not all the themes are exclusive but some tricks are hidden in the web or even not covered there. <em>I will also give examples from vimeoid source code, so it will allow you to spy how the paragraph subject works in real-time</em> (<em>NB</em>: some achors point to concrete lines in code).</p>
+<h3 id="2.-lists-with-subsections"><a href="#2.-lists-with-subsections" title="2. Lists with subsections">2. Lists with subsections</a></h3>
+<p>Among with the regular <code>ListView</code> usage, it is frequently required to make a list with elements grouped in sections like this: section header, item, item, item, &hellip;, section header, item, item, item, &hellip;, section header, item, item, &hellip;, section header, item, item, &hellip; &amp; s.o. See &ldquo;Statistics&rdquo; and &ldquo;Information&rdquo; sections at the image.</p>
+
+<p><img src="/blog/figures/10-useful-solutions-for-android-developer/guest-channel.png" alt="List with sections"></p>
+
+<p>Headers must not react on selection or press and they must have their own layout. This may be accomplished extending the adapter of this list from <code>BaseAdapter</code>, for example, and by overriding its <code>getItemViewType</code>, <code>getViewTypeCount</code> and <code>isEnabled</code> methods, among with <code>getView</code>.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SectionedItemsAdapter</span> <span class="kd">extends</span> <span class="n">BaseAdapter</span> <span class="o">{</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Example from vimeoid: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/adapter/SectionedActionsAdapter.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>SectionedActionsAdapter</code></a></li>
+</ul>
+
+<p>The first step is creating a constants which identify element type, one for header, one for item (so there is a possibility to have more than two types, but it&#39;s better to use <code>enum</code> to store idenitifiers in cases like those):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">ITEM_VIEW_TYPE</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="c1">// item</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SECTION_VIEW_TYPE</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// section</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Then a constant containing a number of element types (there&#39;s two in our case):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">VIEW_TYPES_COUNT</span> <span class="o">=</span> <span class="n">SECTION_VIEW_TYPE</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Adapter must contain the information about all of the elements inside, so the <code>getCount</code>, <code>getItem</code> and <code>getItemId</code> realizations are depend on your situation.</p>
+
+<p><code>getItemViewType</code> method must return the constant that conforms with the element type in the passed position. There is a special constant named <code>IGNORE_ITEM_VIEW_TYPE</code> exist in <code>Adapter</code> class for the case when type is undefined.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getItemViewType</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(.</span> <span class="o">.</span> <span class="o">.)</span> <span class="k">return</span> <span class="n">ITEM_VIEW_TYPE</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(.</span> <span class="o">.</span> <span class="o">.)</span> <span class="k">return</span> <span class="n">SECTION_VIEW_TYPE</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">IGNORE_ITEM_VIEW_TYPE</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>I my case I store the list of sections inside the adapter and they contain their items inside. So I can ask any section to tell me how many items it holds inside and to determine the element type using this data.</p>
+
+<p>This method can be used in overriden <code>getView</code> now:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="kt">int</span> <span class="n">viewType</span> <span class="o">=</span> <span class="n">getItemViewType</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">viewType</span> <span class="o">==</span> <span class="n">IGNORE_ITEM_VIEW_TYPE</span><span class="o">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Failed to get object at position &quot;</span> <span class="o">+</span> <span class="n">position</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">viewType</span> <span class="o">==</span> <span class="n">SECTION_VIEW_TYPE</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">convertView</span> <span class="o">=</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="c1">// here you can get a header layout using LayoutInflater</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">viewType</span> <span class="o">==</span> <span class="n">ITEM_VIEW_TYPE</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">convertView</span> <span class="o">=</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="c1">// here you can get an item layout using LayoutInflater</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">convertView</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><code>isEnabled</code> must return <code>false</code> for elements that can not be pressed or selected and <code>true</code> for others. Here we can use <code>getItemViewType</code> again:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEnabled</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">getItemViewType</span><span class="o">(</span><span class="n">position</span><span class="o">)</span> <span class="o">!=</span> <span class="n">SECTION_VIEW_TYPE</span> <span class="o">};</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><code>getViewTypeCount</code> method returns the very constant determing a number of elements types:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getViewTypeCount</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">VIEW_TYPES_COUNT</span><span class="o">;</span> <span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>By the way, you can keep a pointer to <code>LayoutInflater</code> in your adapter and get it passed using constructor.</p>
+
+<p>It is all the required things to make a list with sections, if you need to ensure in something - just look into example, but I&#39;ll make some notices before.</p>
+
+<p>I use separate structures to store the data about sections and items. The section identifier, its title and child items structures are stored within the section structure. A pointer to parent section structure, item title, icon path and click handler (it will be covered in next paragraph) are stored within the item structure. Both structures&#39; constructors are accessible only from adapters:</p>
+
+<ul>
+<li>Example from vimeoid: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/adapter/LActionItem.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>LActionItem</code></a></li>
+</ul>
+
+<p>I simplified adding sections and items to list using this way. Adapter has methods:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">int</span> <span class="nf">addSection</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">);</span>
+<span class="kd">public</span> <span class="n">LActionItem</span> <span class="nf">addItem</span><span class="o">(</span><span class="kt">int</span> <span class="n">section</span><span class="o">,</span> <span class="kt">int</span> <span class="n">icon</span><span class="o">,</span> <span class="n">String</span> <span class="n">title</span><span class="o">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Method <code>addSection</code> returns the section identifier so you can use it to add items in this section:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">final</span> <span class="kt">int</span> <span class="n">suitsSection</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="na">addSection</span><span class="o">(</span><span class="s">&quot;Suits&quot;</span><span class="o">);</span>
+<span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">heart</span><span class="o">,</span> <span class="s">&quot;Hearts&quot;</span><span class="o">);</span>
+<span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">diamond</span><span class="o">,</span> <span class="s">&quot;Diamonds&quot;</span><span class="o">);</span>
+<span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">spade</span><span class="o">,</span> <span class="s">&quot;Spades&quot;</span><span class="o">);</span>
+<span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">cross</span><span class="o">,</span> <span class="s">&quot;Crosses&quot;</span><span class="o">);</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">figuresSection</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="na">addSection</span><span class="o">(</span><span class="s">&quot;Figures&quot;</span><span class="o">);</span>
+<span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">figuresSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">king</span><span class="o">,</span> <span class="s">&quot;King&quot;</span><span class="o">);</span>
+<span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">figuresSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">queen</span><span class="o">,</span> <span class="s">&quot;Queen&quot;</span><span class="o">);</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="3.-lists-with-elements-that-react-on-something"><a href="#3.-lists-with-elements-that-react-on-something" title="3. Lists with elements that react on something">3. Lists with elements that react on something</a></h3>
+<p>Sometimes it is required to change the list element content and/or switch activity when it is clicked. For example, the list of possible actions with some twitter account may contain &ldquo;follow&rdquo; element with minus icon, if you still do not follow this man and change its icon to plus when click happened and positive response (to following request) is received from twitter server. You can handle the selected element in current <code>ListActivity</code> and depending on position take a decision, but if your list is inside the general <code>Activity</code>, so may be it will be easier to handle selection inside the adapter.</p>
+
+<ul>
+<li>Example from vimeoid: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/adapter/SectionedActionsAdapter.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>SectionedActionsAdapter</code></a></li>
+<li>Uses: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/adapter/LActionItem.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>LActionItem</code></a></li>
+<li>Used in: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/base/SingleItemActivity_.java?r=85e18485bdda1c526141170f67e65f4e00202f34#49"><code>SingleItemActivity_</code></a></li>
+</ul>
+
+<p>If you agree with that, your adapter can implement <code>OnItemClickListener</code> interface:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ActionsAdapter</span> <span class="kd">extends</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="kd">implements</span> <span class="n">OnItemClickListener</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>And inside the activity that uses this adapter you can do:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">final</span> <span class="n">ListView</span> <span class="n">actionsList</span> <span class="o">=</span> <span class="o">(</span><span class="n">ListView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">actionsList</span><span class="o">);</span>
+<span class="kd">final</span> <span class="n">SectionedActionsAdapter</span> <span class="n">actionsAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ActionsAdapter</span><span class="o">(.</span> <span class="o">.</span> <span class="o">.);</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="c1">// fill adapter with values</span>
+<span class="n">actionsList</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">actionsAdapter</span><span class="o">);</span>
+<span class="n">actionsList</span><span class="o">.</span><span class="na">setOnItemClickListener</span><span class="o">(</span><span class="n">actionsAdapter</span><span class="o">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>In my case some actions are responsible for each item in the section - they switch the activity or change the corresponding item content after server request. So I decided to create structures with public-access properties for sections and items, and the item structures contain a pointer to <code>OnClick</code> handler that gets <code>View</code> to change, so you it is possible to change the view just inside the handler. So it is just required to pass a click action to the appropriate handler inside the adapter:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemClick</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">parent</span><span class="o">,</span> <span class="n">View</span> <span class="n">view</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kt">long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">LActionItem</span> <span class="n">item</span> <span class="o">=</span> <span class="o">(</span><span class="n">LActionItem</span><span class="o">)</span> <span class="n">getItem</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">onClick</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">item</span><span class="o">.</span><span class="na">onClick</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Using the <code>addItem</code> method described above you can set a handler directly from activity:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">final</span> <span class="n">LActionItem</span> <span class="n">heartsItem</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">heart</span><span class="o">,</span> <span class="s">&quot;Hearts&quot;</span><span class="o">);</span>
+<span class="n">heartsItem</span><span class="o">.</span><span class="na">onClick</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OnClickListener</span><span class="o">()</span> <span class="o">{</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">}</span> <span class="o">};</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="4.-manual-invalidation-of-list-views"><a href="#4.-manual-invalidation-of-list-views" title="4. Manual invalidation of list views">4. Manual invalidation of list views</a></h3>
+<p>As you may know, <code>ListView</code> in Android has a [little trick inside] named <a href="http://android.amberfog.com/?p=296"><em>ListView Recycler</em></a>. Its principle is in reusage of old elements views for elements that not fit the screen instead of creating new views while user scrolls the list like this, this principle is used in adapters&#39; <code>getView</code> implementations.</p>
+
+<p>If you need to update (invalidate) concrete known element view (or even its child view) at some moment, when it is visible to user, you may call <code>ListView.invalidate()</code> or <code>Adapter.notifyDataSetChanged()</code>, but sometimes these methods update not only the required view but also its neighbours or even all the visible elements (especially when layout is <a href="http://www.curious-creature.org/2009/02/22/android-layout-tricks-1/">built incorrectly</a>). There is a way to get the current view of list element using <code>ListView.getChildAt(position)</code> method. But <code>position</code> in this case is not index of the element in a list, as you may considered, but an index relative to visible views on the screen. So a methods like these would help:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="n">View</span> <span class="nf">getItemViewIfVisible</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">holder</span><span class="o">,</span> <span class="kt">int</span> <span class="n">itemPos</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">firstPosition</span> <span class="o">=</span> <span class="n">holder</span><span class="o">.</span><span class="na">getFirstVisiblePosition</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">wantedChild</span> <span class="o">=</span> <span class="n">itemPos</span> <span class="o">-</span> <span class="n">firstPosition</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">wantedChild</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">wantedChild</span> <span class="o">&gt;=</span> <span class="n">holder</span><span class="o">.</span><span class="na">getChildCount</span><span class="o">())</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">holder</span><span class="o">.</span><span class="na">getChildAt</span><span class="o">(</span><span class="n">wantedChild</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">invalidateByPos</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">parent</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">View</span> <span class="n">itemView</span> <span class="o">=</span> <span class="n">getItemViewIfVisible</span><span class="o">(</span><span class="n">parent</span><span class="o">,</span> <span class="n">position</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">itemView</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">itemView</span><span class="o">.</span><span class="na">invalidate</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><code>invalidateByPos</code> updates view only if it is shown on the screen (forcing an adapter&#39;s <code>getView</code> method call), if this element is not visible - adapter&#39;s <code>getView</code> will be called automatically when this view will appear to user after scrolling. To update some child view of an element, you can use <code>getViewIsVisible</code> method, it will return the element view which gives access to its child views and it returns <code>null</code> if this element is not visible so update is not required.</p>
+
+<ul>
+<li>Methods are defined in class: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/util/Utils.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>Utils</code></a></li>
+</ul>
+<h3 id="5.-caching-remote-images-for-lists"><a href="#5.-caching-remote-images-for-lists" title="5. Caching remote images for lists">5. Caching remote images for lists</a></h3>
+<p><img src="/blog/figures/10-useful-solutions-for-android-developer/guest-videos.png" alt="List with remote images"></p>
+
+<p>If you are creating <code>ListView</code> containing images taken from web, this chapter is for you. It would be unwise to get images by URL again each time <code>getView</code> is called in adapter - it is obvious that it would be better to a) cache them b) ask for them only when view with this image is visible. For the moment this task arose so recently for Android programmers, so there are a lot of <a href="http://stackoverflow.com/questions/541966/android-how-do-i-do-a-lazy-load-of-images-in-listview">solutions for it</a>.</p>
+
+<p>My variant is also from that list, it is <a href="http://stackoverflow.com/questions/541966/android-how-do-i-do-a-lazy-load-of-images-in-listview/3068012#3068012">Fedor Vlasov</a>&#39;s solution, that is corrected for my needs. First, I changed a directory for cached images to be static, so it is created once for application cycle and surely cleaned when calling <code>clearCache</code> (it is good to call this method in <code>onDestroy()</code> of <code>Activity</code> using <code>ImageLoader</code> or in <code>finalize()</code> method of adapter using it), also I&#39;ve changed a bit a way of this directory creation (see <code>Utils.createCacheDir()</code>). Secondly, you may pass the drawables IDs to constructor to determine what drawables to show in this place while loading an image and/or if loading image is failed. Thidly, some minor changes. Though, this class can be a singleton and you can just change its options before using it, but it is left for your decision. In my case the instance is created for each <code>ListActivity</code> started and is passed to adapters of inner <code>ListView</code>s that need it (or created directly in adapters if <code>ListView</code>s are inside a regular <code>Activity</code>). The main method id <code>displayImage(String url, ImageView view)</code>, its definition speaks for itself.</p>
+
+<ul>
+<li>Source from vimeoid: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/com/fedorvlasov/lazylist/ImageLoader.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>ImageLoader</code></a></li>
+<li>Uses methods from: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/util/Utils.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>Utils</code></a></li>
+</ul>
+<h3 id="6.-adapters-iterating-over-cursors"><a href="#6.-adapters-iterating-over-cursors" title="6. Adapters iterating over cursors">6. Adapters iterating over cursors</a></h3>
+<p>This chapter is about pagination in <code>ListView</code>. So, user gets first <code>n</code> elements, scrolls list to <code>n</code>-th element and only after that happen the response for <code>n</code> elements to DB or server is performed. Then the user scrolls the element <code>2n</code> and we ask for next package with <code>n</code> size and so on. In <em>vimeoid</em> I make a resonse only after <code>footerView</code> with &#39;Load more&hellip;&#39; label is clicked, it is not automatic way, but the technique is similar to subject.</p>
+
+<ul>
+<li>Loading by click on <code>footerView</code>: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/base/ItemsListActivity_.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>ItemsListActivity_</code></a></li>
+<li>Guest implementation: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/guest/ItemsListActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>ItemsListActivity</code></a></li>
+<li>Logged-in user implementation: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/ItemsListActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>ItemsListActivity</code></a></li>
+</ul>
+
+<p>The classes hieararchy is a lit bit more complex, each page is loaded with special <code>AsyncTask</code> that calls Vimeo API in background and notifies the calling activity about are there any elements left or is it the last page, and the activity updates its views according to this data.</p>
+
+<ul>
+<li>Adapter containing a set of cursors: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/adapter/EasyCursorsAdapter.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>EasyCursorsAdapter</code></a></li>
+</ul>
+
+<p>To make a pagination possible, you may just keep a set of page containers (cursors, for example) in adapter and in <code>getView()</code>, if one of last elements is asked for, run the query for next page (<code>AsyncTask</code> is preferred), which will add new container to adapter when it will be received, so the adapter will have a possibility to call <code>notifyDataSetChanged()</code>. Like this:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">private</span> <span class="kd">final</span> <span class="n">Page</span><span class="o">[]</span> <span class="n">pages</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Page</span><span class="o">[</span><span class="n">MAX_PAGES_COUNT</span><span class="o">];</span>
+
+<span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="k">if</span> <span class="o">(!</span><span class="n">waitingNextPage</span> <span class="o">&amp;&amp;</span>
+        <span class="o">(</span><span class="n">pages</span><span class="o">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="n">MAX_PAGES_COUNT</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+        <span class="o">(</span><span class="n">position</span> <span class="o">&gt;=</span> <span class="o">((</span><span class="n">pages</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">PER_PAGE</span><span class="o">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">)))</span> <span class="o">{</span>
+
+        <span class="kd">final</span> <span class="n">AsyncTask</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.&gt;</span> <span class="n">nextPageTask</span> <span class="o">=</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.;</span>
+        <span class="n">nextPageTask</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">pages</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+        <span class="c1">// nextPageTask calls addSource, when next page is received</span>
+
+        <span class="n">waitingNextPage</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addSource</span><span class="o">(</span><span class="n">Page</span> <span class="n">page</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">pages</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;=</span> <span class="n">MAX_PAGES_COUNT</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+    <span class="n">pages</span><span class="o">[</span><span class="n">pages</span><span class="o">.</span><span class="na">length</span><span class="o">]</span> <span class="o">=</span> <span class="n">page</span><span class="o">;</span>
+    <span class="n">waitingNextPage</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="n">notifyDataSetChanged</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><code>EasyCursorsAdapter</code> is a good example for a case where <code>Cursor</code> is <code>Page</code> analogue. I am sure there are several alternative solution exists and I will be glad if someone will mention them in comments.</p>
+<h3 id="7.-oauth-in-android"><a href="#7.-oauth-in-android" title="7. OAuth in Android">7. OAuth in Android</a></h3>
+<p>If you are writing a client for a complex web-service - you need to fight with authorization problem and in current moment most web-services use <a href="http://en.wikipedia.org/wiki/OAuth">OAuth</a> for its realization and Vimeo is one of those.</p>
+
+<p>There is no need to write your own implementation of OAuth, there is very cool library named <a href="http://code.google.com/p/oauth-signpost/">signpost</a> exist, and I do not know any better alternatives for now.</p>
+
+<ul>
+<li>Example from vimeoid: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/connection/VimeoApi.java?r=85e18485bdda1c526141170f67e65f4e00202f34#101"><code>VimeoApi</code></a></li>
+<li>Uses signpost through: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/connection/JsonOverHttp.java?r=85e18485bdda1c526141170f67e65f4e00202f34#164"><code>JsonOverHttp</code></a></li>
+<li>Activity that gets user token: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/ReceiveCredentials.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>ReceiveCredentials</code></a></li>
+<li>Its definition at manifest: <a href="http://code.google.com/p/vimeoid/source/browse/apk/AndroidManifest.xml?r=85e18485bdda1c526141170f67e65f4e00202f34#22"><code>AndroidManifest.xml</code></a></li>
+</ul>
+
+<p>To start, you need to get the exclusive key for your application from web-service and set a callback URL to return user there after successful authorization (i.e. <code>vimeoid://oauth.done</code>) (but in case of Android, tou can pass it with call to <code>/request_token</code>). Recently it is done using service web-interface for programmer.</p>
+
+<p>The first authorization algorythm for Android is:</p>
+
+<ol>
+<li>Point signpost to a service&#39;s OAuth entry-points</li>
+<li>Send a request to <code>/request_token</code>, get a token/secret pair using this key for unauthorized requests of your applization (<code>vimeoid://oauth.done</code> callback URL is passed here): <code>provider.retrieveRequestToken(Uri callbackUri)</code>. <em>NB:</em> <code>retrieveRequestToken</code> returns not token but <code>Uri</code> that you need to call in next step at once.</li>
+<li>Launch browser activity, call <code>/authorize</code> with passing the application token and, optionally, appending additional parameters about required access rights: <code>startActivity(new Intent(Intent.ACTION_VIEW, authUri + ...))</code></li>
+<li>User will see a page in &#39;Allow this application to access your account?&#39; style (if he is logged out of service, service will ask him to log in). If user grants access, browser will be redirected to callback URL <code>vimeoid://oauth.done?...</code>, but in case in your <code>AndroidManifest.xml</code> there is a special activity to handle URLs like this, Android will return a user to your application and open this very activity - <code>ReceiveCredentials</code>.</li>
+<li>In <code>ReceiveCredentials</code> activity you get user token in parameters <code>Uri uri = getIntent().getData()</code>, now you need to get secret using this token by requesting <code>/access_token</code>: <code>provider.retrieveAccessToken(Uri uri)</code>.</li>
+<li>Now you can save user&#39;s token and secret in private <code>SharedPreferences</code>, for example: <code>consumer.getToken()</code>, <code>consumer.getTokenSecret()</code>.</li>
+</ol>
+
+<p>After all these things done you can just sign every request to web-service API with the token/secret you&#39;ve got: <code>consumer.sign(Object request)</code>. If your application was restarted, before doing any request you can check if you have saved tokens in <code>SharedPreferences</code>, if you are - just remember <code>signpost</code> with them: <code>consumer.setTokenWithSecret(String token, String secret)</code>, in not - request access token again (or just refresh tokens, if web-service allows it).</p>
+
+<p>Important notice: signpost in Android works only with <code>CommonsHttpOAuthConsumer</code>/<code>CommonsHttpOAuthProvider</code>. <code>DefaultOAuth*</code> classes do not work.</p>
+<h3 id="8.-getting-video-by-http-and-playing-it-in-mediaplayer"><a href="#8.-getting-video-by-http-and-playing-it-in-mediaplayer" title="8. Getting video by HTTP and playing it in MediaPlayer">8. Getting video by HTTP and playing it in MediaPlayer</a></h3>
+<p>It is very hard to make <a href="http://developer.android.com/reference/android/media/MediaPlayer.html"><code>MediaPlayer</code></a> do the things you want in case of playing video, as I discovered. To get a video it was required for me to make an unusual HTTP request with special headers, so I had to implement getting stream and its buffering manually. I could not get stream playing using the <a href="http://blog.pocketjourney.com/2009/12/27/android-streaming-mediaplayer-tutorial-updated-to-v1-5-cupcake/">audio-files-related examples</a> as a pattern, so I download the full video file and start playing just when downloading is finished (if there will be not enough space to get video on SD card, I warn user about it). When player is closed or failed to play, I clear the cache.</p>
+
+<p>Moreover, <code>VideoView</code>/<code>SurfaceView</code> behavior works ambiguously when switching views inside one single layout (black screen from time to time), so I had to just leave a single <code>VideoView</code> in layout and show  <code>ProgressDialog</code> on the top of it, while video is loading. Again, if you know something about stream playing videos using <code>MediaPlayer</code> (or getting chunks manually), write to comments.</p>
+
+<p>So, if there is enough to call <code>MediaPlayer.setDataSource(Uri uri)</code> in your case, you can skip some next paragraphs.</p>
+
+<p>And if you also had to get a stream manually, I will notice a few moments and just demonstrate the code, it must speak for itself:</p>
+
+<ul>
+<li>Example from vimeoid: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/media/VimeoVideoPlayingTask.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>VimeoVideoPlayingTask</code></a></li>
+<li>Called from activity: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/Player.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>Player</code></a></li>
+<li>Layout: <a href="http://code.google.com/p/vimeoid/source/browse/apk/res/layout/player.xml?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>player.xml</code></a></li>
+</ul>
+
+<p>It is better to get a stream using <code>AsyncTask</code>. I just aggregate <code>MediaPlayer</code> with <code>...PlayingTask</code> for convenience, you may use any other way you want, but definitely it is better to get a stream using <code>AsyncTask</code>.<br>
+In this case in <code>onPreExecute</code> method you may set up yout player, in <code>doInBackground</code> you can get a video stream and return it to <code>onPostExecute</code> and start playing from there. Also, it is handy to show percentage progress of downloading, because you know an amount of data received in <code>doInBackground</code>.</p>
+
+<p>And if there is an exception was raised while getting a stream, it is required to show a message about in using <code>runOnUiThread</code>, because task execution was interrupted.</p>
+
+<p>Calling <code>getWindow().setFormat(PixelFormat.TRANSPARENT);</code> is aimed to prevent views shown above the player to stay above even when they are closed/hidden. Anyway, when it is required to use <code>ViewSwitcher</code>, this stuff do not helps.</p>
+
+<p>Code to get video stream by URL is similar to this one:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="n">InputStream</span> <span class="nf">getVideoStream</span><span class="o">(</span><span class="kt">long</span> <span class="n">videoId</span><span class="o">)</span>
+       <span class="kd">throws</span> <span class="n">FailedToGetVideoStreamException</span><span class="o">,</span> <span class="n">VideoLinkRequestException</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">HttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultHttpClient</span><span class="o">();</span>
+        <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+        <span class="kd">final</span> <span class="n">HttpResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">((</span><span class="n">response</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getEntity</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">))</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">FailedToGetVideoStreamException</span><span class="o">(</span><span class="s">&quot;Failed to get video stream&quot;</span><span class="o">);</span>
+        <span class="n">lastContentLength</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getEntity</span><span class="o">().</span><span class="na">getContentLength</span><span class="o">();</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="na">getEntity</span><span class="o">().</span><span class="na">getContent</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">URISyntaxException</span> <span class="n">use</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">VideoLinkRequestException</span><span class="o">(</span><span class="s">&quot;URI creation failed : &quot;</span> <span class="o">+</span> <span class="n">use</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ClientProtocolException</span> <span class="n">cpe</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">VideoLinkRequestException</span><span class="o">(</span><span class="s">&quot;Client call failed : &quot;</span> <span class="o">+</span> <span class="n">cpe</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ioe</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">VideoLinkRequestException</span><span class="o">(</span><span class="s">&quot;Connection failed : &quot;</span> <span class="o">+</span> <span class="n">ioe</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="9.-asynctask-queues"><a href="#9.-asynctask-queues" title="9. AsyncTask Queues">9. AsyncTask Queues</a></h3>
+<p>If you need to execute several background tasks sequentially (when one finished - run next), this freestyle pattern (walking by linked list inside) will fir you. For example when your activity started you need to perform several successive calls to some web-server API or database. The main thing is that parameters and result types for all these tasks must be similar.</p>
+
+<p>Here is a task-that-knows-it-has-next-task inteface:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getId</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">setNextTask</span><span class="o">(</span><span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">task</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Parames</span><span class="o">&gt;</span> <span class="n">getNextTask</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="n">AsyncTask</span><span class="o">&lt;?,</span> <span class="o">?,</span> <span class="o">?&gt;</span> <span class="n">execute</span><span class="o">(</span><span class="n">Params</span><span class="o">...</span> <span class="n">params</span><span class="o">);</span>
+                      <span class="c1">// must much with AsyncTask&lt;Params, ...&gt;</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Here is an interface that monitors when tasks are performed successfully or not:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PerformHandler</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPerfomed</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="n">Result</span> <span class="n">result</span><span class="o">,</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">nextTask</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">,</span> <span class="n">String</span> <span class="n">description</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><code>HasNextTask</code> interface implementation. The hollows given with three dots, you may move them into child class or make this class abstract to implement <code>doInBackground</code>/<code>onPostExecute</code> methods right in <code>createTask</code> method of queue:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TaskInQueue</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AsyncTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Void</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span>
+                                         <span class="kd">implements</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">taskId</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">nextTask</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">PerformHandler</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span> <span class="n">listener</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">TaskInQueue</span><span class="o">(</span><span class="n">PerformHandler</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span> <span class="n">listener</span><span class="o">,</span> <span class="kt">int</span> <span class="n">taskId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">taskId</span> <span class="o">=</span> <span class="n">taskId</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">listener</span> <span class="o">=</span> <span class="n">listener</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Result</span> <span class="nf">doInBackground</span><span class="o">(</span><span class="n">Params</span><span class="o">...</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="cm">/* task execution */</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPostExecute</span><span class="o">(</span><span class="n">Result</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="c1">// handling a result, if required</span>
+        <span class="n">listener</span><span class="o">.</span><span class="na">onPerformed</span><span class="o">(</span><span class="n">taskId</span><span class="o">,</span> <span class="n">result</span><span class="o">,</span> <span class="n">nextTask</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">int</span> <span class="n">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">taskId</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNextTask</span><span class="o">(</span><span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">nextTask</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">nextTask</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Next task is already set&quot;</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">nextTask</span> <span class="o">=</span> <span class="n">nextTask</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">getNextTask</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">nextTask</span><span class="o">;</span> <span class="o">};</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>And the main thing, the queue implementation:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">TasksQueue</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span>
+                <span class="kd">implements</span> <span class="n">PerformHandler</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;,</span> <span class="n">Runnable</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&quot;TasksQueue&quot;</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">firstTask</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">lastTask</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Params</span><span class="o">&gt;</span> <span class="n">tasksParams</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">currentTask</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">running</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// some task is running now</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">started</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="c1">// the whole queue is running now</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kd">protected</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">createTask</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// can be overriden</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">TaskInQueue</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;(</span><span class="k">this</span><span class="o">,</span> <span class="n">taskId</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="n">Params</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;Adding task &quot;</span> <span class="o">+</span> <span class="n">taskId</span><span class="o">);</span>
+        <span class="kd">final</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">createTask</span><span class="o">(</span><span class="n">taskId</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">firstTask</span> <span class="o">=</span> <span class="n">task</span><span class="o">;</span>
+            <span class="n">lastTask</span> <span class="o">=</span> <span class="n">task</span><span class="o">;</span>
+            <span class="n">tasksParams</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Params</span><span class="o">&gt;();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">lastTask</span><span class="o">.</span><span class="na">setNextTask</span><span class="o">(</span><span class="n">task</span><span class="o">);</span>
+            <span class="n">lastTask</span> <span class="o">=</span> <span class="n">task</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">tasksParams</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">task</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">params</span><span class="o">);</span>
+        <span class="n">size</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">task</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;Running first task&quot;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">isEmpty</span><span class="o">())</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">started</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="n">execute</span><span class="o">(</span><span class="n">firstTask</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">onError</span><span class="o">(</span><span class="n">e</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
+                <span class="n">finish</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="k">else</span> <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Queue is empty&quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPerfomed</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="n">Result</span> <span class="n">result</span><span class="o">,</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">nextTask</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;Task &quot;</span> <span class="o">+</span> <span class="n">taskId</span> <span class="o">+</span> <span class="s">&quot; performed&quot;</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">taskId</span> <span class="o">!=</span> <span class="n">currentTask</span><span class="o">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Tasks queue desynchronized&quot;</span><span class="o">);</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">nextTask</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">execute</span><span class="o">(</span><span class="n">nextTask</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="n">finish</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">onError</span><span class="o">(</span><span class="n">e</span><span class="o">,</span> <span class="s">&quot;Error while executing task &quot;</span> <span class="o">+</span>
+                       <span class="o">((</span><span class="n">nextTask</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">nextTask</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">:</span> <span class="n">taskId</span><span class="o">));</span>
+            <span class="n">finish</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&gt;</span> <span class="n">task</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;Trying to run task &quot;</span> <span class="o">+</span> <span class="n">task</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">running</span><span class="o">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Tasks queue desynchronized&quot;</span><span class="o">);</span>
+        <span class="n">currentTask</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;Running task &quot;</span> <span class="o">+</span> <span class="n">task</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+        <span class="n">task</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">tasksParams</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">task</span><span class="o">.</span><span class="na">getId</span><span class="o">())).</span><span class="na">get</span><span class="o">();</span> <span class="c1">// wait for result</span>
+    <span class="o">}</span>
+
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">finish</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">firstTask</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="n">lastTask</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">tasksParams</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">tasksParams</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+        <span class="n">tasksParams</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="n">currentTask</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">started</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="o">(</span><span class="n">firstTask</span> <span class="o">==</span> <span class="kc">null</span><span class="o">);</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">started</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">started</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">running</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">running</span><span class="o">;</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">size</span><span class="o">;</span> <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Now in your activities you can easily create a queue of background tasks:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">protected</span> <span class="kd">final</span> <span class="n">TasksQueue</span> <span class="n">secondaryTasks</span><span class="o">;</span>
+
+<span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">TASK_1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">TASK_2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">TASK_3</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="o">...</span><span class="na">Activity</span><span class="o">()</span> <span class="o">{</span> <span class="c1">// constructor</span>
+
+    <span class="n">secondaryTasks</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TasksQueue</span><span class="o">&lt;...,</span> <span class="o">...&gt;()</span> <span class="o">{</span>
+
+        <span class="c1">// here you can override createTask</span>
+
+        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onPerfomed</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="o">...</span> <span class="n">result</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JSONException</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">.</span><span class="na">onPerfomed</span><span class="o">(</span><span class="n">taskId</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+            <span class="n">onSecondaryTaskPerfomed</span><span class="o">(</span><span class="n">taskId</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onError</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">message</span> <span class="o">+</span> <span class="s">&quot; / &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
+            <span class="n">Dialogs</span><span class="o">.</span><span class="na">makeExceptionToast</span><span class="o">(</span><span class="n">ItemsListActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+
+    <span class="o">};</span>
+
+    <span class="n">secondaryTasks</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">TASK_1</span><span class="o">,</span> <span class="o">...);</span>
+    <span class="n">secondaryTasks</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">TASK_2</span><span class="o">,</span> <span class="o">...);</span>
+    <span class="n">secondaryTasks</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">TASK_3</span><span class="o">,</span> <span class="o">...);</span>
+
+<span class="o">}</span>
+
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">someMethod</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">secondaryTasks</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="n">secondaryTasks</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="o">}</span>
+
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onSecondaryTaskPerfomed</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="o">...</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">switch</span> <span class="o">(</span><span class="n">taskId</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="nl">TASK_1:</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+        <span class="k">case</span> <span class="nl">TASK_2:</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+        <span class="k">case</span> <span class="nl">TASK_3:</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+        <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>By the way, thanks to <code>Runnable</code> interface you can run queues like this in separate thread:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">secondaryTasks</span><span class="o">,</span> <span class="s">&quot;Tasks Queue&quot;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Tasks queue in vimeoid: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/ApiTasksQueue.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>ApiTasksQueue</code></a></li>
+<li>Created in: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/SingleItemActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34#49"><code>SingleItemActivity</code></a></li>
+<li>Filled with tasks in: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/item/UserActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34#122"><code>UserActivity</code></a></li>
+<li>Handling completed tasks in: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/item/UserActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34#301"><code>UserActivity</code></a></li>
+</ul>
+<h3 id="10.-listview-selection-highlight"><a href="#10.-listview-selection-highlight" title="10. ListView selection highlight">10. ListView selection highlight</a></h3>
+<p><img src="/blog/figures/10-useful-solutions-for-android-developer/user-video.png" alt="Selected element in list"></p>
+
+<p>You see a blue line on the image, it is a custom selected element highlight and it has four conditions - pressed, focused, disabled and transition animation from pressed to held condition for long tap. First three and held condition - it is so-called <code>9-patch</code>, sure you <a href="http://developer.android.com/guide/developing/tools/draw9patch.html">heard something about them</a>, animation is an <code>xml</code>-file.</p>
+
+<p>To define the states for selection highlight, set <code>android:listSelector=&quot;@drawable/selector_bg&quot;</code> for your <code>ListView</code> in layout. The algorythm is simple, but it to build rules in proper order in not an easy task sometimes. See examples:</p>
+
+<ul>
+<li>Definition: <a href="http://code.google.com/p/vimeoid/source/browse/apk/res/drawable/selector_bg.xml?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>selector_bg.xml</code></a></li>
+<li>Animation: <a href="http://code.google.com/p/vimeoid/source/browse/apk/res/drawable/selector_bg_transition.xml?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>selector_bg_transition.xml</code></a></li>
+<li>Declared at: <a href="http://code.google.com/p/vimeoid/source/browse/apk/res/layout/generic_list.xml?r=85e18485bdda1c526141170f67e65f4e00202f34#16"><code>generic_list.xml</code></a></li>
+</ul>
+
+<p><img src="/blog/figures/10-useful-solutions-for-android-developer/draw9patch-norm.png" alt="9-patch editor"></p>
+
+<p>There are also a tricks with 9-patch, each time when there is something wrong in layout, the whole list becomes a mess. Main rule is to check <code>ListView</code> declaration first of all, ensure that <code>layout_width</code> and <code>layout_height</code> are set to <code>fill_parent</code> and re-check the parent elements higher in the hierarchy. Then, if it has not helped, you may try to correct 9-patches. The thick black lines on top and to the left determine what image areas will be stretched if the content can&#39;t fill the image. The thick black lines (optional) on bottom and to the right determine in what image area the content will fit itself. It is also not so easy to get the correct positions at first time, have to experiment. Don&#39;t even think about creating 9-patches without editor, it is a brainfuck - content areas and errors are highlighted in editor, but even when everything seems ok, inflater understands a layout as you expect not every time.</p>
+
+<p><img src="/blog/figures/10-useful-solutions-for-android-developer/selector_bg_disabled.9.png" alt="Disabled state"> <img src="/blog/figures/10-useful-solutions-for-android-developer/selector_bg_focus.9.png" alt="Focused state"> <img src="/blog/figures/10-useful-solutions-for-android-developer/selector_bg_pressed.9.png" alt="Pressed state"> <img src="/blog/figures/10-useful-solutions-for-android-developer/selector_bg_longpress.9.png" alt="Held state"></p>
+<h3 id="11.-adding-quickactions"><a href="#11.-adding-quickactions" title="11. Adding QuickActions">11. Adding QuickActions</a></h3>
+<p><img src="/blog/figures/10-useful-solutions-for-android-developer/user-videos.png" alt="QuickActions example"></p>
+
+<p><a href="http://www.londatiga.net/it/how-to-create-quickaction-dialog-in-android/">QuickActions</a> - is small library for the popping out dialogs with actions like the one shown on the picture (and not just like this, because the design can be changed freely). They became a new trend when official twitter-client appeared. Sure there are another implemantations exists but in <em>vimeoid</em> I use this one and also changed it a bit for my needs.</p>
+
+<p>To show a dialog like this instead of context menu when element in list is long-tapped, it is enough to override <code>onCreateContextMenu</code> method in <code>ListActivity</code> like this:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreateContextMenu</span><span class="o">(</span><span class="n">ContextMenu</span> <span class="n">menu</span><span class="o">,</span> <span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="n">ContextMenuInfo</span> <span class="n">menuInfo</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+    <span class="kd">final</span> <span class="n">AdapterView</span><span class="o">.</span><span class="na">AdapterContextMenuInfo</span> <span class="n">info</span> <span class="o">=</span> <span class="n">extractMenuInfo</span><span class="o">(</span><span class="n">menuInfo</span><span class="o">);</span>
+    <span class="kd">final</span> <span class="n">QuickAction</span> <span class="n">quickAction</span> <span class="o">=</span>
+          <span class="n">createQuickActions</span><span class="o">(</span><span class="n">info</span><span class="o">.</span><span class="na">position</span><span class="o">,</span> <span class="n">getItem</span><span class="o">(</span><span class="n">info</span><span class="o">.</span><span class="na">position</span><span class="o">),</span> <span class="n">info</span><span class="o">.</span><span class="na">targetView</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">quickAction</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">quickAction</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">protected</span> <span class="n">QuickAction</span> <span class="nf">createQuickActions</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kd">final</span> <span class="o">...</span> <span class="n">item</span><span class="o">,</span> <span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">QuickAction</span> <span class="n">qa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QuickAction</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
+    <span class="n">qa</span><span class="o">.</span><span class="na">addActionItem</span><span class="o">(</span><span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">...),</span>
+                     <span class="n">getResources</span><span class="o">().</span><span class="na">getDrawable</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">...),</span>
+            <span class="k">new</span> <span class="nf">QActionClickListener</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="n">QActionItem</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+    <span class="k">return</span> <span class="n">qa</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<ul>
+<li>Directory contating a modified version of a library <a href="http://code.google.com/p/vimeoid/source/browse/lib-qactions?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>lib-qactions</code></a></li>
+<li>Used in: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/list/VideosActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34#113"><code>VideosActivity</code></a></li>
+</ul>
+
+<p>Adding external library to Eclipse project is described <a href="http://developer.android.com/guide/developing/eclipse-adt.html#libraryProject">in this article</a>. To be short, it is enough to create the separate Android project with sources for a library, set <code>isLibrary</code> checkbox in <code>Android</code> section in project properties, and in the original project just add the library project using <code>Library</code> -&gt; <code>Add</code> button from the same section. <code>R</code>-file from the library project will be added to the original project after rebuild.</p>
+<h3 id="12.-three-additional-mini-solutions"><a href="#12.-three-additional-mini-solutions" title="12. Three additional mini-solutions">12. Three additional mini-solutions</a></h3><h4 id="12a.-one-entry-point-to-invoke-different-activities"><a href="#12a.-one-entry-point-to-invoke-different-activities" title="12a. One entry point to invoke different activities">12a. One entry point to invoke different activities</a></h4>
+<p>If your application uses a lot of different activities that called similar way, may be it will be useful for you to move this calls to a separate class, including filling <code>Extras</code> with data:</p>
+
+<ul>
+<li>Example from vimeoid: <a href="http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/util/Invoke.java?r=85e18485bdda1c526141170f67e65f4e00202f34"><code>Invoke</code></a></li>
+</ul>
+<h4 id="12b.-placeholders-in-localization-strings"><a href="#12b.-placeholders-in-localization-strings" title="12b. Placeholders in localization strings">12b. Placeholders in localization strings</a></h4>
+<p>My be it is obvious, but in strings from <code>strings.xml</code> you can use placeholders to insert some locale-independent values inside these strings, i.e.: <code>&lt;string name=&quot;image_info&quot;&gt;Image size: {width}x{height}&lt;/string&gt;</code>. <code>format</code> function can help you like this: <code>format(getString(R.string.image_info), &quot;width&quot;, String.valueOf(600), &quot;height&quot;, String.valueOf(800))</code></p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">format</span><span class="o">(</span><span class="n">String</span> <span class="n">source</span><span class="o">,</span> <span class="n">String</span><span class="o">...</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">source</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">pos</span> <span class="o">&lt;</span> <span class="n">params</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;\\{&quot;</span> <span class="o">+</span> <span class="n">params</span><span class="o">[</span><span class="n">pos</span><span class="o">++]</span> <span class="o">+</span> <span class="s">&quot;\\}&quot;</span><span class="o">,</span> <span class="n">params</span><span class="o">[</span><span class="n">pos</span><span class="o">++]);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>Upd.</strong> As I expected, I had missed this method in Android library: there is a standard function <a href="http://developer.android.com/intl/de/reference/android/content/Context.html#getString%28int,%20java.lang.Object...%29"><code>getString(int resId, Object... formatArgs)</code></a>. Thanks to <a href="http://zochek.habrahabr.ru/">zochek</a>.</p>
+<h4 id="12c.-about-wrong-layouts"><a href="#12c.-about-wrong-layouts" title="12c. About wrong layouts">12c. About wrong layouts</a></h4>
+<p>Be sure to read these articles, inflater in Android is very sensitive to complicated structures and if you are writing a complex application, you&#39;ll have to fix your layouts sooner or later:</p>
+
+<ul>
+<li><a href="http://www.curious-creature.org/2009/02/22/android-layout-tricks-1/">Layout Tricks #1</a></li>
+<li><a href="http://www.curious-creature.org/2009/02/25/android-layout-trick-2-include-to-reuse/">Layout Tricks #2</a></li>
+<li><a href="http://www.curious-creature.org/2009/03/01/android-layout-tricks-3-optimize-part-1/">Layout Tricks #3</a></li>
+<li><a href="http://www.curious-creature.org/2009/03/16/android-layout-tricks-4-optimize-part-2/">Layout Tricks #4</a></li>
+<li><a href="http://www.curious-creature.org/2009/03/04/speed-up-your-android-ui/">Speed up your Android UI</a></li>
+</ul>
+
+<p>My frequently re-rendedered layouts in one moment collapsed and <code>getView</code> has called approximately once per second (and I also meet this case now, but in much rare moments). After replacing a lot of nested complicated  <code>LinearLayout</code>s to less-nested and elegant <code>RelativeLayout</code>, inflater clearly felt itself easier and me too, mysefl, because a hierarchy also became less complicated and it became easier to make changes. I do not had time to fix all of these, but now I am more attentive to layouts. Also check that you use <code>width/height=wrap_content</code> only for simple elements if possible, using <code>wrap_content</code> for width/height of <code>LinearLayout</code>s and other compound views is dangerous and may lead to unexpected consequences. It may not lead, but who is forewarned&hellip;</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="Twitter profile"><img src="/blog/assets/img/social/twitter.png" width="16" height="16" alt="Twitter profile"></a></li>
+    <li><a href="https://github.com/shamansir" title="Github profile"><img src="/blog/assets/img/social/github.png" width="16" height="16" alt="GitHub profile"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="Facebook profile"><img src="/blog/assets/img/social/facebook.png" width="16" height="16" alt="Facebook profile"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="Stackoverflow profile"><img src="/blog/assets/img/social/stack-overflow.png" width="16" height="16" alt="Stack Overflow profile"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Jump to top">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/ru/" />
+<link rel="index" href="/blog/ru/archives/" />
+
+<link rel="shortcut icon" href="/blog/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/ru/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/ru/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/ru/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — HTML5 — не язык разметки, а мессиво &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/ru/" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="/blog/ru/archives/" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/ru/feed.xml" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/ru/" title="Ни слова о луке">&raquo;Ни слова о луке&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="HTML5 — не язык разметки, а мессиво">
+                    HTML5 — не язык разметки, а мессиво
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Опубликован</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;16 августа 2011, вторник</dd>
+    
+    <dt class="nwao-hidden">Тэги</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/ru/tags/html5/" rel="tag" title="Посты с тэгом 'html5'"><i class="icon-tag"></i>&nbsp;html5</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/mime/" rel="tag" title="Посты с тэгом 'mime'"><i class="icon-tag"></i>&nbsp;mime</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/web-future/" rel="tag" title="Посты с тэгом 'web future'"><i class="icon-tag"></i>&nbsp;web future</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p>Позволю себе, первую в блоге, теоретическую статью. Если вы легко возбудимы, не обращайте на неё внимания. И более того, эта статья — NSFW.</p>
+<h3 id="вступление"><a href="#вступление" title="Вступление">Вступление</a></h3>
+<p>Когда черновик спецификации HTML5 только появился, многие были восхищены. Многие ворчали. Так часто бывает, когда приходит что-то новое. Появляются восхищённые и негативные статьи, практически в равном количестве. Лично я почти никак к этому не относился и скорее заинтересованно ждал, что будет потом, поскольку с чем-то новым и непростым так происходит всегда — всегда есть почти равнозначные плюсы и минусы. Но потом, со временем, что-то превалирует. Плюсы и минусы были в спецификации HTML4. И в спецификации XHTML. Но со временем превалировали плюсы, вернее пользователи их просто душевно приняли (за безысходностью?).</p>
+
+<p>Canvas/WebGL, LocalStorage, встроенная поддержка видео, избавление от устаревших тэгов — очевидные плюсы, с этим глупо спорить. Но только сейчас, совершенно неожиданно для себя, я осознал, что эти <em>нововведения</em> сомнительны просто потому, что действительно <strong>введены куда-то не туда</strong>.</p>
+
+<p><img src="/blog/ru/figures/html5-not-a-markup-language-but-a-mess/inserted-not-there.png" alt="Inserted not there"></p>
+
+<p>(Обращу ваше внимание: я считаю, что по отдельности эти возможности просто прекрасны)</p>
+
+<p>Факт этой хм&hellip; <em>диспозиции</em> замечают давно, в конце статьи я приведу ссылки на самые популярные статьи по этой теме (тысячи их). Вот <a href="http://habrahabr.ru/blogs/webdev/125990/">эта</a>, например, и вдохновила меня на написание данной. Ну, приведу те, которые найду — это будет не полный список: ведь хуже всего прочего, этот факт имел место и раньше и замечали его раньше тоже.</p>
+
+<p>Вообще, все наблюдения по этому поводу довольно банальны и скорее относятся к категории троллинга, но я вдруг подумал — да, проблема есть ­— <em>а есть ли решение</em>? Пусть просто пофантазировать, ведь можно пофантазировать иногда. Революции действительно <a href="http://habrahabr.ru/blogs/webdev/125990/#comment_4153164">не будет</a>, но ведь мечты никто не отменял.</p>
+<h3 id="всё-же-почему-не-туда"><a href="#всё-же-почему-не-туда" title="Всё же, почему «не туда»?">Всё же, почему «не туда»?</a></h3>
+<p>Не буду разбирать по косточкам историю HTML: старожилы сети помнят как всё было, а молодые не раз про это читали.</p>
+
+<p>Самое главное — <em>вначале была веб-страница</em>. Думаю, она задумывалась как <em>документ + немного интерактива</em>. Для навигации придумали понятие <em>ссылки</em>. Но при этом веб-страницей довольно часто был просто <em>документ</em>: сплошным текстом с минимальным оформлением, шрифт Times New Roman. Резюме, статья, обзор фильма, фотография с гик-вечеринки.</p>
+
+<p>В результате (D)HTML и отразил эти требования:</p>
+
+<ul>
+<li>разметка текста документа: жирный, курсив, шрифт, цвет, таблицы;</li>
+<li>ссылки и якоря (ещё был image map, помните такое?);</li>
+<li>возможность прикрутить динамику;</li>
+<li>базовые стили?;</li>
+</ul>
+
+<p>Может быть уже тогда всё пошло не так? Зачем <em>внутри</em> текстового документа динамика? Почему вдруг в документе определяется шрифт и цвет? Последний вопрос решили, когда придумали CSS — и это был правильный ход. Но вопрос с динамикой открыт и сейчас. То есть да, <em>HyperText</em> — это и есть, буквально, «текст, но круче чем текст», «супер-текст», «текст-супермэн» — да, <strong>но зачем</strong>, дорогой бобёр?</p>
+
+<p><img src="/blog/ru/figures/html5-not-a-markup-language-but-a-mess/beaver-error.jpg" alt="Beaver"></p>
+
+<p>Тогда это не было остро заметно, но именно сейчас мы пожинаем плоды. Мы вставляем в документы интерактивные игры, мы меняем части документа на другие части, мы вообще, можно сказать, издеваемся над документами. Пусть так, в этом вроде ничего плохого, но мы продолжаем делать это <em>внутри них самих</em>, <em>внутри их разметки</em>.</p>
+
+<p>Мы берём то, что называется <strong>язык разметки</strong> и с его помощью делаем то, что совершенно с этим определением не вяжется:</p>
+
+<ul>
+<li>Интерактивные магазины</li>
+<li>Приложения для прочтения почты и сохранения заметок</li>
+<li>Редакторы кода</li>
+<li>Редакторы графики</li>
+<li>Игры</li>
+<li>Группы обсуждения</li>
+<li>Порно-хабы</li>
+<li>Операционные системы, блять!</li>
+<li><em>Впишите ещё 200 вариантов</em></li>
+</ul>
+
+<p><img src="/blog/ru/figures/html5-not-a-markup-language-but-a-mess/markup-vs-stuff.png" alt="Markup vs Stuff"></p>
+
+<p>Теперь в одной спецификации разметки у нас <em>перемешаны</em> (сравните с вариантом из прошлого):</p>
+
+<ul>
+<li>разметка документа (кстати, таблицы всё ещё чрезвычайно сложны и имеют много древних артефактов);</li>
+<li>поддержка Unicode;</li>
+<li>ссылки и якоря;</li>
+<li>возможность прикрутить динамику (стало хорошей традицией выносить вовне);</li>
+<li>CSS-стили (стало хорошей традицией выносить вовне);</li>
+<li>непонятно вообще куда записать: <code>&lt;head&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;aside&gt;</code>, &hellip; (насколько я знаю, у этих тэгов до сих пор нет однозначного и короткого определения; при этом ещё открыт вопрос: кто их реально использует?);</li>
+<li>видео/аудио (ну ок, видео и аудио относятся к понятию документа. Но почему тогда нет встроенной поддержки слайдов презентаций?);</li>
+<li>векторная графика;</li>
+<li>улучшенные формы; (форма — это документ?)</li>
+<li><code>iframe</code>; (документ в документе, по сути)</li>
+<li>работа с историей; (что-то для браузера)</li>
+<li>работа с USB и RS232; (<em>ээээ&hellip;</em>)</li>
+<li>поддержка видеокарт; (<strong>стоп, ЧТО!?</strong>)</li>
+</ul>
+
+<blockquote>
+<p>Возьмём термин «Игра на HTML5» и посмотрим цепочку, откуда она такая берётся:</p>
+
+<p>Игра на HTML5 ← Canvas ← WebGL ← видеокарта ← ничего общего с разметкой</p>
+
+<p><img src="/blog/ru/figures/html5-not-a-markup-language-but-a-mess/html5-canvas-videocard.png" alt="HTML5 ← Canvas"></p>
+
+<p>Явно видно, что логическая цепочка рвётся уже между понятиями «HTML» и «Canvas»</p>
+</blockquote>
+
+<p>И это — одна спецификация, один <em>МНОГОФУНКЦИОНАЛЬНЫЙ-СУКА-ГИПЕРДОКУМЕНТ</em>!</p>
+
+<p><img src="/blog/ru/figures/html5-not-a-markup-language-but-a-mess/multi-dammit-hyperdocument.png" alt="Multi-dammit-hyper-document"></p>
+
+<p>Ведь это правда <strong>МЕССИВО</strong>!!</p>
+
+<p><img src="/blog/ru/figures/html5-not-a-markup-language-but-a-mess/mess.png" alt="mess"></p>
+
+<p>И при этом у нас до сих пор нет унифицированного, легко читаемого формата для книги (<code>fb2</code> хорош, но не подходит для книг издательства <a href="http://oreilly.com/">OReilly</a>!). (Зато есть интерактивные книги: это, кстати, хорошо). Нет поддержки математических формул, до сих пор нет редакторов, которые бы производили <em>стандартный</em> результат, одинаковый между ними самими.</p>
+
+<p>Ошибки двигают прогресс, это давно известно. И благодаря HTML у нас появилось куча полезных вещей, кстати как раз <em>вопреки</em> — как, например, <a href="http://www.wikipedia.org/">Wiki</a>, <a href="http://daringfireball.net/projects/markdown/">Markdown</a>, <a href="http://nodejs.org/">Node.JS</a>. Но источник революционного вдохновения от ошибок когда-то кончается, и тогда настаёт пора эти ошибки <em>исправлять</em>.</p>
+<h3 id="как-решить.-метатипы."><a href="#как-решить.-метатипы." title="Как решить. Метатипы.">Как решить. Метатипы.</a></h3>
+<p>Я считаю, что основная цель — добиться типизации: отделить мух (разметку документа) от тараканов (блоков аудио/видео/канвас), тараканов от котлет (блочной разметки aside/nav/header). Поэтому требуется <em>классифицировать</em> все те варианты, которые сейчас оказались перемешаны в кучу. Выделим пяток основных пунктов:</p>
+
+<p><img src="/blog/ru/figures/html5-not-a-markup-language-but-a-mess/fly-cockroach-cutlet.png" alt="Fly-Cockroach-Cutlet"></p>
+
+<ul>
+<li>Простой Текстовый Документ (статья, резюме, обзор, докторская)</li>
+<li>Блог, Вики-портал (набор статей) (<a href="http://tumblr.com">tumblr</a>, <a href="http://blogspot.com">blogspot</a>, &hellip;)</li>
+<li>Презентация (слайды) (<a href="http://slideshare.net">slideshare</a>, <a href="http://scribd.com">scribd</a>, &hellip;)</li>
+<li>Веб-приложение (структура виджетов + локальный storage) (<a href="http://gmail.com">gmail</a>, <a href="http://evernote.com">evernote</a>, &hellip;)</li>
+<li>Игра (интерактивная растровая и векторная графика, работа с видеокартой) (<a href="http://www.yvoschaap.com/chainrxn/">chain reaction</a>, <a href="http://playbiolab.com/">biolab disaster</a>, <a href="http://www.benjoffe.com/code/games/torus/">torus</a>, <a href="http://chrome.angrybirds.com/">angry birds</a>&hellip;)</li>
+<li>Видео, Аудио, Изображение</li>
+<li>и т.п.</li>
+</ul>
+
+<p>Как плавно ввести эти метатипы в современный веб? Например, у нас есть в вооружении такая превосходная вещь как <a href="http://ru.wikipedia.org/wiki/Internet_media_type">MIME-типы</a>. Уже сейчас браузеры умеют сами (через плагины) отображать файлы PDF, видео, XML, RSS, так что путь начат.</p>
+
+<p>Например:</p>
+
+<ul>
+<li>Вы запрашиваете в браузере адрес <code>http://steve.jobs/resume</code>, браузер обнаруживает в заголовке ответа MIME-тип <code>text/markdown</code> или <code>text/extended-markdown</code>, собственноручно рендерит полученный markdown-текст в нынешний HTML — и всё ок; (в markdown-документе можно использовать параметры в заголовке, например пути к теме-стилю (но ни в коем случае не к скриптам!), как в <a href="http://jekyllrb.com/">jekyll</a>). Или, например, он может получить MIME-тип <code>text/latex</code> и отрендерить это дело в PDF или HTML. <code>text/wiki-like-in-wikipedia</code> тоже подойдёт.</li>
+<li>Вы запрашиваете в браузере адрес <code>http://idsoftware.org/quake7.game</code>, браузер обнаруживает в заголовке ответа MIME-тип <code>game/webgl</code>, отображает один только <code>canvas</code> и отдаёт управление пришедшему WebGL-скрипту. Понятное дело, <code>game/flash</code> нужно запретить сразу же.</li>
+<li><p>Вы запрашиваете в браузере адрес <code>http://mikashkin/blog</code>, браузер прищуривается, распознаёт MIME-тип <code>text/blog</code>, а внутри (например) YAML-структуру типа</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="l-Scalar-Plain">blog</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mikashkin</span>
+    <span class="l-Scalar-Plain">sort-by</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">date</span>
+    <span class="l-Scalar-Plain">paging</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">20</span>
+    <span class="l-Scalar-Plain">style</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">blog.css</span>
+    <span class="l-Scalar-Plain">entries</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">buildout-lecture.markdown</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">python-is-great.markdown</span>
+        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">why-gae-is-cool.markdown</span>
+        <span class="l-Scalar-Plain">. . .</span>
+</pre></div>
+</td></tr></table></div></div></li>
+</ul>
+
+<p>Ну, вы представляете что получится в результате.</p>
+
+<ul>
+<li><p>Вы запрашиваете в браузере адрес <code>http://evernote.app</code>, браузер получает в ответ структуру виджетов на неком UI-языке, MIME-тип, например: <code>application/ui-declarative</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="l-Scalar-Plain">DockLayout</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">north</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">evn-Toolbar</span>
+        <span class="l-Scalar-Plain">evn-LoginBlock loggedin=true</span>
+    <span class="l-Scalar-Plain">west</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">evn-NotesTree</span>
+    <span class="l-Scalar-Plain">center</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">evn-NotepadWidget</span>
+    <span class="l-Scalar-Plain">south height=0.1</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">text &quot;copyright © %year&quot;</span>
+        <span class="l-Scalar-Plain">link &quot;http://evernote.app&quot;</span>
+        <span class="l-Scalar-Plain">input &quot;Feedback&quot; active=true</span>
+        <span class="l-Scalar-Plain">button &quot;send&quot;</span>
+</pre></div>
+</td></tr></table></div></div></li>
+</ul>
+
+<p>В результате, браузер <em>сам</em> парсит этот язык и отображает его как надо. Кстати, такой UI хорошо смасштабруется и на мобильный браузер.</p>
+
+<ul>
+<li>Вы запрашиваете в браузере адрес <code>http://chromium.os</code>, браузер видит MIME-тип <code>application/os</code> и редерит полученный ассемблерный код на клиенте</li>
+</ul>
+
+<p>А потом, постепенно, можно заменить в этих сценариях HTML на что-то более вразумительное и строгое: но это будет внутренний формат браузера, обычному веб-разработчику до него не должно будет быть дела: блоггеру нужно будет знать только markdown/latex/wiki, веб-UI-разработчику — декларативный язык виджетов, разработчику игр — только WebGL. Им не нужно будет знать HTML.</p>
+
+<p><img src="/blog/ru/figures/html5-not-a-markup-language-but-a-mess/inserted-there-happy.png" alt="Inserted there: happy"></p>
+
+<p>Я думаю, вы поняли принцип. По-моему этот подход вполне логичен и оправдан, типы контента <em>строго разделены</em> и разработчики и пользователи счастливы, им не нужно знать кучу веб-стандартов.</p>
+
+<p>Правда, после этих манипуляций браузер станет чем-то вроде напичканного плагинами <em>просмотрщика файлов</em>, только исключительно по сети. Ну, а к чему мы шли? Разве это не лучше, чем спецификация, у которой внутри одно <strong>мессиво</strong>?</p>
+<h3 id="ссылки"><a href="#ссылки" title="Ссылки">Ссылки</a></h3>
+<p>(Несмотря на скудное разнообразие названий — ручаюсь, это разные статьи)</p>
+
+<ul>
+<li><a href="http://marvinserrano.wordpress.com/2011/05/26/html5-the-good-the-bad-and-the-ugly/">HTML5 — The Goog, The Bad, The Ugly</a></li>
+<li><a href="http://channel9.msdn.com/Series/HTML5-Day/HTML5-The-Bad-The-Good-and-the-Ugly">HTML5 — The Good, The Bad, The Ugly</a> (видео, польский)</li>
+<li><a href="http://www.slideshare.net/x00mario/html5-preso-rub2010">HTML5 — The Good, The Bad, The Ugly</a> (слайды)</li>
+<li><a href="http://www.whitewallweb.com/blog/2010/05/20/the-html5-buzz/">HTML5 Buzz</a></li>
+<li><a href="http://www.slideshare.net/CannedTuna/the-good-the-bad-and-the-ugly-of-html-5-presentation">The Good, The Bad And The Ugly of HTML5</a> (слайды)</li>
+<li><a href="http://www.itworld.com/open-source/113469/preparing-good-and-bad-html5">Preparing for the Goog and Bad with HTML5</a></li>
+<li><a href="http://www.eccnet.com/xmlug/html5">HTML5 — Bad Idea</a></li>
+</ul>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/blog/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль на Github"><img src="/blog/ru/assets/img/social/github.png" width="16" height="16" alt="профиль на Github"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/blog/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль на Stackoverflow"><img src="/blog/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/ru/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/ru/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

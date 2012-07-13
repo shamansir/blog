@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/ru/" />
+<link rel="index" href="/blog/ru/archives/" />
+
+<link rel="shortcut icon" href="/blog/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/ru/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/ru/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/ru/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — На клиенте! Получить XML! Получить XSL! Сделать XHTML! Марш! &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/ru/" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="/blog/ru/archives/" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/ru/feed.xml" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/ru/" title="Ни слова о луке">&raquo;Ни слова о луке&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="На клиенте! Получить XML! Получить XSL! Сделать XHTML! Марш!">
+                    На клиенте! Получить XML! Получить XSL! Сделать XHTML! Марш!
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Опубликован</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;18 сентября 2009, пятница</dd>
+    
+    <dt class="nwao-hidden">Тэги</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/ru/tags/javascript/" rel="tag" title="Посты с тэгом 'javascript'"><i class="icon-tag"></i>&nbsp;javascript</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/web-development/" rel="tag" title="Посты с тэгом 'web-development'"><i class="icon-tag"></i>&nbsp;web-development</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/xml/" rel="tag" title="Посты с тэгом 'xml'"><i class="icon-tag"></i>&nbsp;xml</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/xslt/" rel="tag" title="Посты с тэгом 'xslt'"><i class="icon-tag"></i>&nbsp;xslt</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p><strong>(X-Task: &ldquo;On your Client! Get XML! Get XSL! Do XHTML! Go!&rdquo;)</strong></p>
+<h3 id="вступление"><a href="#вступление" title="Вступление">Вступление</a></h3>
+<p>Статья рассматривает преобразование XML в XHTML посредством XSLT на клиенте средствами JavaScript. К примеру, у вас есть какие-либо данные в виде XML, а вам требуется по какому-либо действию клиента (по клику на ссылке), оформить их в [X]HTML и динамически вставить в страницу. Это не так сложно, но по пути, как оказалось, встречается несколько подводных камней — в основном, относительно кросс-браузерности этого подхода и малой освещённости процесса в сети. <em>Генерация XHTML-страниц средствами браузера (прямой запрос на XML файл, содержащий информацию о стиле) — это другая тема, она намного проще, и здесь затронута не будет.</em></p>
+
+<p>Задача будет рассмотрена на банальном примере личного сайта. Дано: Файл с контактными данными (XML), некая главная страница (XHTML) и пять браузеров: Firefox 3, Opera 9.5, IE7, Safari 3, Google Chrome. На главной странице есть ссылка, при нажатии которой контактные данные преобразуются в несортированный список (UL) и отображаются в специально выделенной области прямо на этой странице. Это реальный рабочий пример, который я сейчас использую для создания своего сайта (ещё не выложенного).</p>
+<h3 id="xml"><a href="#xml" title="XML">XML</a></h3>
+<p>Контактные данные, при их большом количестве, можно сгруппировать, поэтому XML-схема построена с учётом группировки элементов. Группа имеет краткое имя (<code>shortname</code>) для создания <code>id</code> у списка (возможно, потребуется оформить каждую группу по-особому) и, собственно, имя группы. XML-файл может содержать <code>contact</code>-ноды и вне групп, но в данном примере в этом нет необходимости. Все контакты имеют тип (<code>type</code>) для создания корректных ссылок в будущем (это мы также опустим). С остальным, вроде бы, всё понятно:</p>
+
+<p><img src="/blog/ru/figures/client-xml-xslt-xhtml-browsers/xml-schema-example.jpg" alt="XML Schema Example"></p>
+
+<p>Структура довольно-таки проста, поэтому приведу сразу пример файла (любое сходство с реальными данными какого-либо индивидуума полностью случайно и приведено не намеренно):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;./contacts.xsl&quot;?&gt;</span>
+<span class="nt">&lt;contacts</span>
+    <span class="na">xmlns=</span><span class="s">&quot;http://any-developer.name&quot;</span>
+    <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+    <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://any-developer.name ./contacts.xsd&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;group</span> <span class="na">shortname=</span><span class="s">&quot;messengers&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Messengers<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;contact</span> <span class="na">type=</span><span class="s">&quot;skype&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;id&gt;</span>any.developer<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;/contact&gt;</span>
+        <span class="nt">&lt;contact</span> <span class="na">type=</span><span class="s">&quot;jabber&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;id&gt;</span>any.developer@jabber.org<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>ulric.wilfred<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;/contact&gt;</span>
+        <span class="nt">&lt;contact</span> <span class="na">type=</span><span class="s">&quot;gtalk&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;id&gt;</span>any.developer<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;/contact&gt;</span>
+        <span class="nt">&lt;contact</span> <span class="na">type=</span><span class="s">&quot;yahoo&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;id&gt;</span>any.developer<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;/contact&gt;</span>
+        <span class="nt">&lt;contact</span> <span class="na">type=</span><span class="s">&quot;icq&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;id&gt;</span>7484939304033345544<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>any.developer<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;/contact&gt;</span>
+    <span class="nt">&lt;/group&gt;</span>
+    <span class="nt">&lt;group</span> <span class="na">shortname=</span><span class="s">&quot;email&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;name&gt;</span>E-Mail<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;contact</span> <span class="na">type=</span><span class="s">&quot;gmail&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;id&gt;</span>any.developer<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;/contact&gt;</span>
+        <span class="nt">&lt;contact</span> <span class="na">type=</span><span class="s">&quot;yahoo-mail&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;id&gt;</span>any.developer<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;/contact&gt;</span>
+    <span class="nt">&lt;/group&gt;</span>
+<span class="nt">&lt;/contacts&gt;</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="xsl"><a href="#xsl" title="XSL">XSL</a></h3>
+<p>Стиль генерирует XHTML-код, в виде списка UL, состоящего из негруппированных контактов и вложенных списков для групп. Поскольку результат вывода именно <strong>X</strong>HTML, требования к оформлению результата несколько строже, чем если бы это был обычный HTML. Поэтому следует обратить внимание на следующие моменты:</p>
+
+<ul>
+<li><strong>Важно:</strong> В результате преобразования должен получаться файл с одной и только одной корневой нодой, иначе Safari и Google Chrome (<em>Читай:</em> WebKit) не смогут добавить результирующий элемент в документ. Это довольно разумно, поскольку для всех XML объектов (результат в виде XHTML из их числа) есть правило: корневой элемент должен быть только один (<em>There can be the only one</em>).</li>
+<li><strong>Важно:</strong> В качестве <code>xsl:output method</code> должен быть указан либо <code>xml</code> либо <code>html</code> (однако, в последнем случае, при использовании пронстранств имён, таковые будут потеряны). Некоторые ставят это значение в <code>xhtml</code> и в результате получают некорректную обработку или ошибки на клиенте — пока этого метода не введено и не следует его использовать. Для этого есть <code>media-type</code>.</li>
+<li>Код генерируется без заголовков XML: <code>omit-xml-declaration</code> установлен в <code>yes</code> и <code>xmlns</code> не указывается, иначе в результате получится недоXHTML-файл с XML-заголовком, не содержащий <code>html</code>, <code>head</code> и <code>body</code>. Генерация <code>DOCTYPE</code> (<code>doctype-system</code>, <code>doctype-public</code>) также отключена.</li>
+</ul>
+
+<p>Исходник:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;xsl:stylesheet</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span>
+        <span class="na">xmlns:xsl=</span><span class="s">&quot;http://www.w3.org/1999/XSL/Transform&quot;</span>
+        <span class="na">xmlns:c=</span><span class="s">&quot;http://any-developer.name&quot;</span> <span class="na">exclude-result-prefixes=</span><span class="s">&quot;c&quot;</span><span class="nt">&gt;</span>
+<span class="c">&lt;!--    xmlns=&quot;http://www.w3.org/1999/xhtml&quot; --&gt;</span>
+
+<span class="nt">&lt;xsl:output</span> <span class="na">method=</span><span class="s">&quot;xml&quot;</span>
+            <span class="na">encoding=</span><span class="s">&quot;utf-8&quot;</span>
+            <span class="na">standalone=</span><span class="s">&quot;yes&quot;</span>
+            <span class="na">indent=</span><span class="s">&quot;yes&quot;</span>
+            <span class="na">omit-xml-declaration=</span><span class="s">&quot;yes&quot;</span>
+            <span class="na">media-type=</span><span class="s">&quot;text/xhtml&quot;</span><span class="nt">/&gt;</span>
+        <span class="c">&lt;!--</span>
+<span class="c">            doctype-system=&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;</span>
+<span class="c">            doctype-public=&quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;</span>
+<span class="c">        --&gt;</span>
+
+<span class="nt">&lt;xsl:template</span> <span class="na">name=</span><span class="s">&quot;contact&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:alert(&#39;{@type}&#39;)&quot;</span> <span class="na">title=</span><span class="s">&quot;{@type}&quot;</span> <span class="na">id=</span><span class="s">&quot;contact-{@type}-sitelink&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;img</span> <span class="na">alt=</span><span class="s">&quot;{@type}&quot;</span> <span class="na">src=</span><span class="s">&quot;{@type}.ico&quot;</span> <span class="na">id=</span><span class="s">&quot;contact-{@type}-icon&quot;</span> <span class="na">class=</span><span class="s">&quot;contact-icon&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;xsl:if</span> <span class="na">test=</span><span class="s">&quot;c:name&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:alert(&#39;{@type}:{c:id}&#39;);&quot;</span> <span class="na">id=</span><span class="s">&quot;contact-{@type}-link&quot;</span> <span class="na">title=</span><span class="s">&quot;{c:id}&quot;</span> <span class="na">alt=</span><span class="s">&quot;{c:name}&quot;</span> <span class="na">class=</span><span class="s">&quot;contact-link&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;xsl:value-of</span> <span class="na">select=</span><span class="s">&quot;c:name&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/xsl:if&gt;</span>
+        <span class="nt">&lt;xsl:if</span> <span class="na">test=</span><span class="s">&quot;not(c:name)&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:alert(&#39;{@type}:{c:id}&#39;);&quot;</span> <span class="na">id=</span><span class="s">&quot;contact-{@type}-link&quot;</span> <span class="na">title=</span><span class="s">&quot;{c:id}&quot;</span> <span class="na">alt=</span><span class="s">&quot;{c:id}&quot;</span> <span class="na">class=</span><span class="s">&quot;contact-link&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;xsl:value-of</span> <span class="na">select=</span><span class="s">&quot;c:id&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/xsl:if&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;contact-type&quot;</span><span class="nt">&gt;</span>(<span class="nt">&lt;xsl:value-of</span> <span class="na">select=</span><span class="s">&quot;@type&quot;</span><span class="nt">/&gt;</span>)<span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+<span class="nt">&lt;/xsl:template&gt;</span>
+
+<span class="nt">&lt;xsl:template</span> <span class="na">match=</span><span class="s">&quot;/c:contacts&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;contacts&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;xsl:for-each</span> <span class="na">select=</span><span class="s">&quot;./c:contact&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;xsl:call-template</span> <span class="na">name=</span><span class="s">&quot;contact&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/xsl:for-each&gt;</span>
+    <span class="nt">&lt;xsl:for-each</span> <span class="na">select=</span><span class="s">&quot;./c:group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li&gt;</span>
+            <span class="nt">&lt;xsl:if</span> <span class="na">test=</span><span class="s">&quot;c:name&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;contact-group-name&quot;</span><span class="nt">&gt;&lt;xsl:value-of</span> <span class="na">select=</span><span class="s">&quot;c:name&quot;</span><span class="nt">/&gt;&lt;/span&gt;</span>
+            <span class="nt">&lt;/xsl:if&gt;</span>
+            <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;{@shortname}&quot;</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;xsl:for-each</span> <span class="na">select=</span><span class="s">&quot;./c:contact&quot;</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;xsl:call-template</span> <span class="na">name=</span><span class="s">&quot;contact&quot;</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/xsl:for-each&gt;</span>
+            <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/xsl:for-each&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/xsl:template&gt;</span>
+
+<span class="nt">&lt;/xsl:stylesheet&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>В результате преобразования получается такой блок XHTML:</p>
+
+<p><img src="/blog/ru/figures/client-xml-xslt-xhtml-browsers/xml-rendering-result.jpg" alt="XHTML Rendering Result"></p>
+<h3 id="javascript"><a href="#javascript" title="JavaScript">JavaScript</a></h3>
+<p>Настало время выполнить само преобразование на стороне клиента. В этом абзаце придётся использовать немного больше хитростей, ввиду того, что каждый браузер предлагает это делать по-своему.</p>
+<h3 id="загрузка-xml-файлов"><a href="#загрузка-xml-файлов" title="Загрузка XML-файлов">Загрузка XML-файлов</a></h3>
+<p>Для начала нам потребуется загрузить оба файла — XML и XSLT. По своей природе они оба — файлы XML,  Internet Explorer предоставляет для этих целей ActiveX-объект <code>XMLDOM</code>, Firefox и Opera — фунцию <code>createDocument</code>, позволяющую загрузить XML-файл в созданный объект. Safari и Chrome (<em>Читай:</em> WebKit), однако, предоставляя эту же функцию, возвращают объект, не поддерживающий загрузку — опять же, вполне разумно, в соответствии со спецификациями W3C.</p>
+<h4 id="метод-1.-xmlhttprequest"><a href="#метод-1.-xmlhttprequest" title="Метод 1. XMLHttpRequest">Метод 1. XMLHttpRequest</a></h4>
+<p>Поэтому, плюнув на всё, мы можем загружать файлы через <code>XMLHttpRequest</code> (<em>синхронный</em> или нет — по вашему выбору), используя всем известный шаблон AJAX.</p>
+
+<p>Предложу вам свою версию, вы же можете использовать <a href="http://ajaxpatterns.org/XMLHttpRequest_Call">какую только заблагорассудится</a>.  Моя версия отличается тем, что принимает в параметры функцию, которая будет вызвана при успешном завершении вызова, позволяет делать и <code>POST</code> и <code>GET</code> запросы, позволяет передавать объекты и позволяет делать синхронный вызов (тогда она возвращает объект по его завершению).</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Browser-independent [A]JAX call</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param {String} locationURL an URL to call, without parameters</span>
+<span class="cm"> * @param {String} [parameters=null] a parameters list, in the form</span>
+<span class="cm"> *        &#39;param1=value1&amp;param2=value2&amp;param3=value3&#39;</span>
+<span class="cm"> * @param {Function(XHMLHTTPRequest, Object)} [onComplete=null] a function that</span>
+<span class="cm"> *        will be called when the response (responseText or responseXML of</span>
+<span class="cm"> *        XHMLHTTPRequest) will be received</span>
+<span class="cm"> * @param {Boolean} [doSynchronous=false] make a synchronous request (onComplete</span>
+<span class="cm"> *        will /not/ be called)</span>
+<span class="cm"> * @param {Boolean} [doPost=false] make a POST request instead of GET</span>
+<span class="cm"> * @param {Object} [dataPackage=null] any object to transfer to the onComplete</span>
+<span class="cm"> *        listener</span>
+<span class="cm"> * @return {XHMLHTTPRequest} request object, if no exceptions occured</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">makeRequest</span><span class="p">(</span><span class="nx">locationURL</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">onComplete</span><span class="p">,</span> <span class="nx">doSynchronous</span><span class="p">,</span> <span class="nx">doPost</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">http_request</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nx">http_request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Msxml2.XMLHTTP&quot;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nx">http_request</span><span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Microsoft.XMLHTTP&quot;</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">http_request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//if (http_request.overrideMimeType) { // optional</span>
+    <span class="c1">//  http_request.overrideMimeType(&#39;text/xml&#39;);</span>
+    <span class="c1">//}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">http_request</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Cannot create XMLHTTP instance&#39;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">onComplete</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">doSynchronous</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">completeListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">http_request</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">http_request</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">onComplete</span><span class="p">(</span><span class="nx">http_request</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="nx">completeListener</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//var salt = hex_md5(new Date().toString());</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">doPost</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="nx">locationURL</span><span class="p">,</span> <span class="o">!</span><span class="nx">doSynchronous</span><span class="p">);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">&quot;Content-type&quot;</span><span class="p">,</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">&quot;Content-length&quot;</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">&quot;Connection&quot;</span><span class="p">,</span> <span class="s2">&quot;close&quot;</span><span class="p">);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">parameters</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="nx">locationURL</span> <span class="o">+</span> <span class="p">(</span><span class="nx">parameters</span> <span class="o">?</span> <span class="p">(</span><span class="s2">&quot;?&quot;</span> <span class="o">+</span> <span class="nx">parameters</span><span class="p">)</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="o">!</span><span class="nx">doSynchronous</span><span class="p">);</span>
+        <span class="c1">//http_request.open(&#39;GET&#39;, &#39;./proxy.php?&#39; + parameters +</span>
+                    <span class="c1">// &quot;&amp;salt=&quot; + salt, true);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">http_request</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>При использовании этого метода, функция загрузки XML будет выглядеть довольно просто — например, так:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Loads any XML using synchronous XMLHttpRequest call.</span>
+<span class="cm"> * @param {String} fileName name of the file to be loaded</span>
+<span class="cm"> * @return {XMLDocument|Object}</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">loadXML</span><span class="p">(</span><span class="nx">fileName</span><span class="p">)</span> <span class="p">{</span>
+                                              <span class="c1">// no parameters, no handler, but synchronous</span>
+    <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">makeRequest</span><span class="p">(</span><span class="nx">fileName</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">request</span><span class="p">.</span><span class="nx">responseXML</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="метод-2.-в-зависимости-от-браузера"><a href="#метод-2.-в-зависимости-от-браузера" title="Метод 2. В зависимости от браузера">Метод 2. В зависимости от браузера</a></h4>
+<p>Однако, если вы хотите использовать именно те способы, которые (как ни забавно) <a href="http://www.w3schools.com/xsl/xsl_client.asp">рекомендуются</a> на W3Schools, функцию <code>loadXML</code> придётся усложнить, потому что приведённые на W3Schoolds примеры не работают на браузерах WebKit (<em>Читай:</em> Safari и Chrome). Пусть это будет, так сказать, <em>«рекомендованный вид»</em>. Подозреваю, правда, что все эти обходы скрывают под собой те же вызовы XMLHttpRequest, поэтому, если вы не сторонник неоправданных действий, пропустите этот раздел.</p>
+
+<p>Итак, функция будет делать прямой синхронный вызов XHMHttpRequest (вернее, функции описанной в предыдущем разделе) только в случае вызова из Safari, в остальных же случаях прибегать к средствам конкретного браузера (Не забываем правило: <em>Никаких прямых проверок браузера, только проверка, поддерживается ли вызываемая функция</em>):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Loads any XML document using ActiveX (for IE) or createDocumentFunction (for</span>
+<span class="cm"> * other browsers)</span>
+<span class="cm"> * @param {String} fileName name of the file to be loaded</span>
+<span class="cm"> * @return {XMLDocument|Object}</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">loadXML</span><span class="p">(</span><span class="nx">fileName</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// http://www.w3schools.com/xsl/xsl_client.asp</span>
+    <span class="kd">var</span> <span class="nx">xmlFile</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">ActiveXObject</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// IE</span>
+        <span class="nx">xmlFile</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Microsoft.XMLDOM&quot;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">implementation</span>
+            <span class="o">&amp;&amp;</span> <span class="nb">document</span><span class="p">.</span><span class="nx">implementation</span><span class="p">.</span><span class="nx">createDocument</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Mozilla, Firefox, Opera, etc.</span>
+        <span class="nx">xmlFile</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">implementation</span><span class="p">.</span><span class="nx">createDocument</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="kc">null</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">xmlFile</span><span class="p">.</span><span class="nx">load</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Safari lacks on this method,</span>
+           <span class="c1">// so we make a synchronous XMLHttpRequest</span>
+            <span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">makeRequest</span><span class="p">(</span><span class="nx">fileName</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">request</span><span class="p">.</span><span class="nx">responseXML</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Your browser cannot create XML DOM Documents&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">xmlFile</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nx">xmlFile</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">fileName</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;an error occured while loading XML file &#39;</span> <span class="o">+</span> <span class="nx">fileName</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span><span class="p">(</span><span class="nx">xmlFile</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>В результате, функция возвращает XML-объект по заданному имени файла. Можно приступать собственно к трансформации.</p>
+<h3 id="преобразование-через-xslt"><a href="#преобразование-через-xslt" title="Преобразование через XSLT">Преобразование через XSLT</a></h3>
+<p>Преобразованием будет заниматься ещё одна функция, которая будет принимать в качестве аргументов пути к XML-файлу и XSL-файлу. Загружать эти файлы она будет описанной выше функцией  <code>loadXML</code>. А возвращать эта функция будет строку с XHTML-кодом, который можно будет вставить прямо в <code>innerHTML</code> нужного элемента.</p>
+
+<p>Почему строку? Потому что метод <code>transformFragment</code> объекта <code>XSLTProcessor</code> не поддерживает рендеринг XML (<code>xsl:output method=&quot;xml&quot;</code>), а поддерживает только HTML (<code>xsl:output method=&quot;html&quot;</code>). В результате преобразования с <code>xsl:output method=&quot;xml&quot;</code> и <code>transformFragment</code> генерируется корректный <code>DocumentFragment</code>, который, однако, при вставке в XHTML-код действует как некая XML-нода — поэтому визуально виден только, так называемый, <code>plain text</code>. Если вас не смущает потеря пространств имён, вы можете изменить <code>xsl:output method</code> на <code>html</code> и использовать <code>transformFragment</code>, добившись в результате, чтобы функция возвращала <code>DocumentFragment</code>.</p>
+
+<p>В случае Internet Explorer используется функция <code>transformNode</code> XML-объекта, в остальных браузерах используется <code>XSLTProcessor</code>.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Applies specified XSL stylesheet to the specified XML file and returns</span>
+<span class="cm"> * the result as a string. ActiveX is used in IE, otherwise, XSLTProcessor</span>
+<span class="cm"> * is used.</span>
+<span class="cm"> * @param {String} xmlFileName path to the xml file to be transformed</span>
+<span class="cm"> * @param {String} xslFileName path to the xsl file to be applied to the xml</span>
+<span class="cm"> * @return {String} xsl transformation result as a text</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">getStylingResult</span><span class="p">(</span><span class="nx">xmlFileName</span><span class="p">,</span> <span class="nx">xslFileName</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">xmlContent</span> <span class="o">=</span> <span class="nx">loadXML</span><span class="p">(</span><span class="nx">xmlFileName</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">xslContent</span> <span class="o">=</span> <span class="nx">loadXML</span><span class="p">(</span><span class="nx">xslFileName</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">ActiveXObject</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// IE</span>
+        <span class="k">return</span> <span class="nx">xmlContent</span><span class="p">.</span><span class="nx">transformNode</span><span class="p">(</span><span class="nx">xslContent</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">XSLTProcessor</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Mozilla, Firefox, Opera, Safari etc.</span>
+        <span class="kd">var</span> <span class="nx">xsltProcessor</span><span class="o">=</span><span class="k">new</span> <span class="nx">XSLTProcessor</span><span class="p">();</span>
+        <span class="nx">xsltProcessor</span><span class="p">.</span><span class="nx">importStylesheet</span><span class="p">(</span><span class="nx">xslContent</span><span class="p">);</span>
+        <span class="c1">// return xsltProcessor.transformToFragment(xmlContent, document);</span>
+            <span class="c1">// somehow, transformToFragment works incorrectly, recognizing the</span>
+            <span class="c1">// result of transformation as xml, not html, because</span>
+            <span class="c1">// xsl:output=&quot;xhtml&quot; is still not supported, and for xhtml</span>
+            <span class="c1">// xsl:output=&quot;xml&quot; is used</span>
+            <span class="c1">// (xsl:output=&quot;html&quot; strips namespaces)</span>
+            <span class="c1">// see: http://osdir.com/ml/mozilla.devel.layout.xslt/2003-10/msg00008.html</span>
+            <span class="c1">// also, see: https://developer.mozilla.org/en/Using_the_Mozilla_JavaScript_interface_to_XSL_Transformations</span>
+        <span class="kd">var</span> <span class="nx">resultDocument</span> <span class="o">=</span> <span class="nx">xsltProcessor</span><span class="p">.</span><span class="nx">transformToDocument</span><span class="p">(</span><span class="nx">xmlContent</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">xmls</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLSerializer</span><span class="p">();</span>
+        <span class="k">return</span> <span class="nx">xmls</span><span class="p">.</span><span class="nx">serializeToString</span><span class="p">(</span><span class="nx">resultDocument</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="итог"><a href="#итог" title="Итог">Итог</a></h3>
+<p>Всё, весь необходимый код готов и вы можете использовать функцию <code>getStylingResult</code> для преобразования XML-файлов и вставки результата в XHTML. Например, таким образом:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span>
+            <span class="nx">getStylingResult</span><span class="p">(</span><span class="s1">&#39;./contacts.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;./contacts.xsl&#39;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Как итог, мы получили действительно кросс-браузерную версию обработки XML на клиенте. Спасибо за внимание.</p>
+
+<hr>
+
+<p><strong>P.S.</strong> Для того, чтобы иметь возможность передавать параметры XSL-шаблону через метод <code>addParameter</code>, в качестве документа XSL нужно использовать экземпляр <code>Msxml2.FreeThreadedDOMDocument.3.0</code>, а не обычный <code>Microsoft.XMLDOM</code>. Если вам это необходимо, обратитесь к <a href="http://www.mindlence.com/WP/?page_id=224">данной статье</a> (вам потребуется перегрузить функцию <code>loadXML</code> из моего примера).</p>
+
+<p><strong>P.P.S.</strong> И да, с использованием JQuery всё <a href="http://johannburkard.de/software/xsltjs/">делается</a> <a href="http://jquery.glyphix.com/">проще</a>, но ведь иногда приходится обходиться без JQuery&hellip;</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/blog/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль на Github"><img src="/blog/ru/assets/img/social/github.png" width="16" height="16" alt="профиль на Github"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/blog/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль на Stackoverflow"><img src="/blog/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/ru/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/ru/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Blog about programming and only about it. No word about onion. At all. Totally none." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/" />
+<link rel="index" href="/blog/archives/" />
+
+<link rel="shortcut icon" href="/blog/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-4']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — Google Wave Client as Java Web Application &ndash; No word about onion</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/" rel="contents" title="Blog"><i class="icon-home"></i>&nbsp;Blog</a></li>
+                    <li><a href="/blog/archives/" rel="index" title="Archives"><i class="icon-book"></i>&nbsp;Archives</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Author"><i class="icon-user"></i>&nbsp;Author</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/feed.xml" title="Feed"><i class="icon-rss"></i>&nbsp;Feed</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/" title="No word about onion">&raquo;No word about onion&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>shaman.sir's telling you about stuff</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Previous post</a><span> | </span>
+            <a href="#" id="nwao-next">Next post →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="Google Wave Client as Java Web Application">
+                    Google Wave Client as Java Web Application
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Published at</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;13 October 2009, Tuesday</dd>
+    
+    <dt class="nwao-hidden">Tags</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/tags/dwr/" rel="tag" title="Posts with 'dwr' tag"><i class="icon-tag"></i>&nbsp;dwr</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/tags/google-wave/" rel="tag" title="Posts with 'google wave' tag"><i class="icon-tag"></i>&nbsp;google wave</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/tags/java/" rel="tag" title="Posts with 'java' tag"><i class="icon-tag"></i>&nbsp;java</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/tags/jquery/" rel="tag" title="Posts with 'jquery' tag"><i class="icon-tag"></i>&nbsp;jquery</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/tags/reverse-ajax/" rel="tag" title="Posts with 'reverse ajax' tag"><i class="icon-tag"></i>&nbsp;reverse ajax</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p>Zdrawstwooyte.</p>
+
+<p><a href="http://code.google.com/p/sametimed"><img src="/blog/figures/sametimed-google-wave-client/logo.png" alt="sametimed"></a></p>
+
+<p>&hellip;So I wrote a small project in Java, which is a client for Google Wave, which in its turn can be extended with the features you need. Its current visual style is not very presentable <s>(though, why not, a-la Windows 3.1 ;) )</s>, &#39;cause I am not so good in web-design - but for all the project&#39;s source code I am responsible with my head :). Then, for example, the required CSS-styles looks the most understandable and the XHTML-structure is the most simplified (not to the detriment of standards) and the real designer can apply his skills in most and make this all look really beautiful.</p>
+
+<p><a href="/blog/figures/sametimed-google-wave-client/screenshot-full.png"><img src="/blog/figures/sametimed-google-wave-client/screenshot.png" alt="screenshot"></a></p>
+
+<p>Source code and war-package with current condition of the project are located at <a href="http://code.google.com/p/sametimed">http://code.google.com/p/sametimed</a></p>
+
+<p>Right now I have no public hosting ready at hand, so I can&#39;t show the project in action with ease. However I can, may be, please you with a <a href="https://vimeo.com/7036141">video (at vimeo)</a>, it demonstrates its main possibilities, and perhaps it is pretty enough if you just want to know what the project can do. Anyway, you can run it by yourself, since there are detailed instructions at project site and the detailed source code inspection and concept description are in this very post&hellip;</p>
+
+<p><a href="http://vimeo.com/7036141"><img src="/blog/figures/sametimed-google-wave-client/vimeo.png" alt="video"></a></p>
+<h3 id="installation"><a href="#installation" title="Installation">Installation</a></h3>
+<p>Just four items required to run this client:</p>
+
+<ul>
+<li>Client WAR-package, you can take it at <a href="http://code.google.com/p/sametimed">googlecode project</a></li>
+<li>Wave-protocol server installed with default settings, current version (0.2) (<a href="http://code.google.com/p/wave-protocol/wiki/Installation">installation tutorial</a>)</li>
+<li>Any web-сервер applying Java EE specification (I used Jetty server integrated in Eclipse)</li>
+<li>Firefox browser</li>
+</ul>
+
+<p>The more detailed instruction on <a href="http://code.google.com/p/sametimed/wiki/SametimedInstallationInstructions">how to run the client per se</a> or <a href="http://code.google.com/p/sametimed/wiki/CreatingEclipseProject">as working Eclipse project</a> are at the project page. Here I will consider the code structure and will describe how it works (sorry, without UML-diagrams).</p>
+<h3 id="general-concept"><a href="#general-concept" title="General concept">General concept</a></h3>
+<blockquote>
+<p>Here when I mention «server side» I mean not a wave-protocol server, but a server side of web-application.</p>
+</blockquote>
+
+<p>Because there is only console (terminal) client for wave-protocol released now as a simple desktop jar-application, the main question is how to transfer information from web-client to server and back well-timed.</p>
+
+<p>That&#39;s why it&#39;s necessary to introduce the two notions:</p>
+
+<ul>
+<li><strong>Command</strong>: is sent from client to server and asks to &ldquo;open a wave&rdquo;, &ldquo;add a participant&rdquo;, &ldquo;undo some action&rdquo;, &ldquo;say hi&rdquo; &amp; s.o., it is sent after user makes some action to call it.</li>
+<li><strong>Message</strong>: is sent from server to client and reports/informs that &ldquo;someone has invited to a wave&rdquo;, «sonya replied hi», «participant was added to wave», «error happened» &amp; s.o., it is sent with every update related to current client.</li>
+</ul>
+
+<p>With this rules, a command may be sent from client immediately, not much thinking about server load, but the messages about updates are required to be sent only on the fact of the event. However, we have Javascript at server-side and currently it can not handle a things like these. It is the moment when <a href="http://en.wikipedia.org/wiki/Reverse_Ajax">Reverse Ajax</a> was needed, rather its Java realization - <a href="http://directwebremoting.org/dwr/index.html">DWR</a> (Direct Web Remoting) library. It allows to call some client function from the server in the time when server decides but not client. Their site describes all the features which are not limited with this application.</p>
+
+<p><strong>Upd</strong>: Current source code state is rewriting to <code>cometd</code> library, this library is more simple and hm&hellip; intuitive. And we&#39;re waiting for WebSockets&hellip;</p>
+
+<p>Commands and messages are sent in XML, and the content of messages about updates is sent in JSON, that&#39;s why JavaSvript is the only one who builds a user interface (I&#39;ve used JQuery), and a server side is don&#39;t even thinks about existence of UI.</p>
+
+<blockquote>
+<p>(there is a <code>Renderer</code> interface for server-side in project, its realization is called on required updates, but it is just intended for the cases similar to console client)</p>
+</blockquote>
+<h3 id="current-flow-description"><a href="#current-flow-description" title="Current flow description">Current flow description</a></h3>
+<p>When you run a client, you see a page with text input for username and a single button. Wave-protocol server is required to be running herwith. When you press a button, the username you&#39;ve got is passed to servlet (<code>GetClientViewServlet</code>), which connects you to a wave and returns the complete client model in JSON view. On the client side, JQuery build full wavelet insterface using this info. If you&#39;ll press this button again, you&#39;ll request another wavelet, they both [wavelets] will differ in internal ID (which is generated automatically) that is shown on a blue bar in brackets. Using this ID both server and client determine which client is owner/target for command or a message.</p>
+
+<p>At the same time DWR starts to wait for updates, so you can enter one of allowed commands and press &ldquo;send&rdquo;. For example, you can create a wave with &ldquo;<code>\new</code>&rdquo; command, open it with &ldquo;<code>\open &lt;id&gt;</code>&rdquo; command and say something just by entering the text (like in Skype). When you press &ldquo;send&rdquo; button, POST request is sent to another servlet (<code>CommandsReceiverServlet</code>), who gets the generated XML-command and permorms it immediately, passing the data to wave-protocol server.</p>
+
+<p>Currently the updates are coming from server-side (and from wave-protocol server) in XML-encoded message (there is a callback on a client-side which called when new messages arrive), that includes the alias of the changed model (i.e. &ldquo;chat&rdquo;, &ldquo;inbox&rdquo;, &ldquo;userslist&rdquo;, &ldquo;errors&rdquo; or &ldquo;editor&rdquo;) and its content in JSON view, which is decoded immediately and updates the corresponding wavelet part.</p>
+
+<p><strong>Upd:</strong> I really do not remember why I haven&#39;t used JSON in JSON packages (without XML).</p>
+
+<p>As you see, everything is simple.</p>
+<h3 id="project-structure"><a href="#project-structure" title="Project structure">Project structure</a></h3><h4 id="java"><a href="#java" title="Java:">Java:</a></h4>
+<ul>
+<li>**<code>name.shamansir.sametimed.wave</code>** <em>All the classes that lie &ldquo;outside&rdquo; and that are directly related to client</em>; here are the abstract <code>AUpdatingWavelet</code> and <code>ADocumentsWavelet</code> classes, they determine the structure of the according wavelet type (the updating wavelet and its extension, a wavelet containg documents). <code>SimpleWavelet</code> class is an example of such realization. <code>WavesClient</code> class handles all the commands and returns the model of wavelet it contains to <code>GetClientViewServlet</code>.</li>
+<li>**<code>name.shamansir.sametimed.wave.messaging</code>** <em>All the things related to commands and messages</em>; Commands/messages identifiers in <code>CommandID</code>/<code>MessageTypeID</code>, the <code>Command</code> and <code>UpdateMessage</code> classes themselves, and the commands receiving servlet <code>CommandsReceiverServlet</code>.</li>
+<li>**<code>name.shamansir.sametimed.wave.model</code>** <em>Classes that define wavelet model</em>; They contain each sub-model definition, like a participants list, chat ot text document. And a <code>ModelID</code> classes that define the possible models with abstract <code>AModel</code> class. Plus <code>ModelFactory</code>, model factory.</li>
+<li><strong><code>name.shamansir.sametimed.wave.model.base</code></strong> <em>The models values, something like &ldquo;chat lines set&rdquo;, &ldquo;document text blocks set&rdquo;, &ldquo;list of waves online&rdquo; and so on</em>; Here in these classes the encoding to JSON is defined.</li>
+<li><strong><code>name.shamansir.sametimed.wave.model.base.atom</code></strong> <em>What values are consist of, if it is required for their structure — «chat line», «text block», «wave identifier»</em>;</li>
+<li><strong><code>name.shamansir.sametimed.wave.model.base.chat</code></strong> <em>Wavelet with chat extension and its client</em>;</li>
+<li><strong><code>name.shamansir.sametimed.wave.model.base.editor</code></strong> <em>Wavelet with editable document support extenstion, not implemented currently, so disabled</em>;</li>
+<li>**<code>name.shamansir.sametimed.wave.render</code>** <em>Classes related to rendering</em>; There is the very class <code>JSUpdatesListener</code> that calls updates callback function at client using DWR.</li>
+</ul>
+
+<p>The most logical way to make an extension is to implement <code>ADocumentWavelet</code> class and to extend <code>WaveletWithChat</code> class. Since in the most likely case you will operate with a &ldquo;document&rdquo; term (and a chat or anything other in this style is a document), this approach will fit you best. Also you&#39;ll need to realize what you document model is (by implementing <code>AModel</code> with some type, adding model ID in <code>ModelID</code> enum and adding this model generation in <code>ModelFactory</code>).</p>
+
+<p>If your document will not handle any new commands, then it is enough - you can replace the wavelet that <code>GetClientViewSelvlet</code> returns with your own and voila!.. Oh yes, do no forget to build UI at the client, but I&#39;ll mention it below.</p>
+
+<p>Else, if you&#39;ll need your own commands, strictly related to your document, you need to add these commands to <code>CommandID</code> type. After that, you need to extend <code>WavesClient</code> class to support your wavelet and to make it handle and pass new commands to wavelet independently from parent class. And, in this case, replace the <code>WavesClient</code> implementation in <code>GetClientViewServlet</code> with your and voila again! (and again, not mentioning the UI)</p>
+
+<p>You&#39;ll need, of course, to handle some tricks when writing commands processing, but in outline it is all the required process for client extension.</p>
+<h4 id="javascript"><a href="#javascript" title="JavaScript">JavaScript</a></h4>
+<ul>
+<li><strong><code>ui.js</code></strong> is involved in the UI generation, each model block has the corresponding method</li>
+<li><strong><code>command.js</code></strong> sends and generates commands, gets updates messages and contains buttons handlers</li>
+<li>**<code>ajax.js</code>** script to be replaced with the appropriate JQuery method, but my hands haven&#39;t reached it :). used in <code>command.js</code></li>
+</ul>
+
+<p>To add UI generation for your model, you need just to add a line that calls your handling method in <code>createClient</code> and <code>renderUpdate</code> methods of <code>ClientRenderer</code> object in <code>ui.js</code> and to write that method itself. Everything else will (must to) work on its own.</p>
+<h4 id="css"><a href="#css" title="CSS">CSS</a></h4>
+<ul>
+<li><strong><code>sametimed-plain.css</code></strong> interface that is even a little bit worse than colored :)</li>
+<li><strong><code>sametimed-colored.css</code></strong> Windows-3.11-like, colored interface</li>
+</ul>
+
+<p>Currently the styles that handle positioning and the appearance (coloring) are not separated in different files (just using comments in that files), but may be I plan to.</p>
+<h3 id="epilogue"><a href="#epilogue" title="Epilogue">Epilogue</a></h3>
+<p>I hope there will be a person who will be interested in this project, and if there will be, I plan to improve it more. For this moment, it is just an odd job &ldquo;for interest&rdquo;, but a little more efforts - ant it can become a sterling project.</p>
+
+<p>I ask those who will test it to send issues and bugs to the <a href="http://code.google.com/p/sametimed/issues/list">appropriate place</a>, within reasonable limits and not about design :).</p>
+
+<p>Participation in development is welcomed, but only for free license :).</p>
+<h4 id="an-important-notice"><a href="#an-important-notice" title="An important notice">An important notice</a></h4>
+<p>If you will test this application simultaneously with wave-protocol console (terminal) client, the messages that you send from terminal client will be received one later. It is not a bug and not an issue, it a way how chat &ldquo;document&rdquo; is generated. In the case of terminal Google had changed the document elements order so that is will be readable in console (as I suppose) - element start, element end and its body next). In my case the document is built in a &ldquo;standard&rdquo; way (start, body, end), this is the reason of discrepancy. If you will correct the way of generation either in my code or in terminal client code to be the same, they will fully comply with each other.</p>
+
+<p>And yes, no input validation is performed currently at client.</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="Twitter profile"><img src="/blog/assets/img/social/twitter.png" width="16" height="16" alt="Twitter profile"></a></li>
+    <li><a href="https://github.com/shamansir" title="Github profile"><img src="/blog/assets/img/social/github.png" width="16" height="16" alt="GitHub profile"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="Facebook profile"><img src="/blog/assets/img/social/facebook.png" width="16" height="16" alt="Facebook profile"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="Stackoverflow profile"><img src="/blog/assets/img/social/stack-overflow.png" width="16" height="16" alt="Stack Overflow profile"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Jump to top">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

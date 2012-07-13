@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/ru/" />
+<link rel="index" href="/blog/ru/archives/" />
+
+<link rel="shortcut icon" href="/blog/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/ru/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/ru/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/ru/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — Просто, как сэндвич: Движок блога на JavaScript и XML &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/ru/" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="/blog/ru/archives/" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/ru/feed.xml" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/ru/" title="Ни слова о луке">&raquo;Ни слова о луке&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="Просто, как сэндвич: Движок блога на JavaScript и XML">
+                    Просто, как сэндвич: Движок блога на JavaScript и XML
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Опубликован</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;17 ноября 2010, среда</dd>
+    
+    <dt class="nwao-hidden">Тэги</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/ru/tags/blog/" rel="tag" title="Посты с тэгом 'blog'"><i class="icon-tag"></i>&nbsp;blog</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/javascript/" rel="tag" title="Посты с тэгом 'javascript'"><i class="icon-tag"></i>&nbsp;javascript</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/projects/" rel="tag" title="Посты с тэгом 'projects'"><i class="icon-tag"></i>&nbsp;projects</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/xml/" rel="tag" title="Посты с тэгом 'xml'"><i class="icon-tag"></i>&nbsp;xml</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p>Предположим, вам внезапно понадобился личный блог. У вас есть какой-то хилый бесплатный хостинг, и потому что он хилый на нём нет ни PHP, ни возможности поставить туда какой-либо server-side вообще. Или хуже, у вас есть только аккаунт на Dropbox, и вот тут вдруг внезапно нужен блог.</p>
+
+<p>А ещё, может быть, вы предпочитаете Markdown-синтаксис написанию тяжёлых постов в унылом HTML. Тем более Markdown уже много где поддерживается (ну, исключая хабр). Тут было бы кстати хранить посты в отдельных файлах, чтобы взять и скопировать отдельный пост в Tumblr или ещё куда. И ещё это даёт возможность хранить файлы в каком-нибудь репозитории и даже устроить себе версионирование статей (если очень надо).</p>
+
+<p>А ещё, хотелось бы иметь две версии блога в одной входной точке. Например, русскую и английскую.</p>
+
+<p>Думаю, вы понимаете, к чему я веду: у меня есть что на всё это предложить. Надо было бы уже вставить не одну ссылку, но я совсем сволочь и поставлю одну в конце поста.</p>
+<h3 id="картинка"><a href="#картинка" title="Картинка">Картинка</a></h3>
+<p><img src="/blog/ru/figures/easy-as-sandwich-blog-engine/screenshot-small.png" alt="Screenshot"></p>
+<h3 id="компоненты"><a href="#компоненты" title="Компоненты">Компоненты</a></h3>
+<ul>
+<li><a href="http://jquery.com">JQuery</a>, вместо хлеба</li>
+<li><a href="http://www.attacklab.net/showdown/">Showdown</a>, вместо колбасы</li>
+<li>И парсер дат заместо горчицы</li>
+</ul>
+
+<p>Чтобы не сильно париться, я взял <a href="http://jquery.com">JQuery</a> (я использую из него только операции над DOM-ом и асинхронную загрузку XML-файлов, так что при лютой необходимости его можно аккуратно выковырнуть). Потом я взял <a href="http://www.attacklab.net/showdown/">Showdown</a>, это парсер синтаксиса Markdown переведённый в JavaScript. Потом взял какой-то сторонний парсер дат (это чтобы красиво эти даты отображать). И всё это смешал в одно целое, вот таким образом и получился маленький JS/XML-driven движок блога. Простой как сэндвич.</p>
+<h3 id="рецепт"><a href="#рецепт" title="Рецепт">Рецепт</a></h3>
+<p>Для создания первого поста в блоге, скачайте <a href="http://code.google.com/p/showdown-blog/downloads/detail?name=swblog.zip">этот пакет</a>, распакуйте. Отредактируйте настройки (<code>prefs.xml</code>), создайте какой-нибудь пост, (<code>posts/&lt;post-id&gt;.xml</code>), добавьте <code>&lt;post-id&gt;</code> в <code>posts.xml</code>. Всё, готово, пост опубликован. Для следующих постов повторяйте только последние два шага. (По адресу <code>./create.html</code> вы найдёте редактор, выдранный из Showdown, он поможет вашей фантазии представлять, что получится из Markdown-синтаксиса).</p>
+
+<p>Итак, ещё раз.</p>
+
+<ol>
+<li>Настроить через <code>prefs.xml</code></li>
+<li>Положить <code>some-post.xml</code> в каталог <code>posts</code></li>
+<li>Добавить <code>some-post</code> в <code>posts.xml</code></li>
+<li>Повторять шаги 2 и 3 для следующих постов</li>
+</ol>
+<h3 id="достоинства"><a href="#достоинства" title="Достоинства">Достоинства</a></h3>
+<ul>
+<li>Минимализм</li>
+<li>Никакой серверной стороны. Вообще.</li>
+<li>Посты написаны синтаксисом Markdown</li>
+<li>Один пост - один файл XML</li>
+<li>Конфигурация-через-XML</li>
+<li>Стили-через-CSS</li>
+<li>Тэги, облако тэгов и навигация по ним</li>
+<li>Пермалинк на каждый пост</li>
+<li>Поддерживает мобильные браузеры (парочку)</li>
+<li>Можно делать несколько точек вхождения</li>
+<li>В поставку включен скрипт для генерации RSS</li>
+</ul>
+<h3 id="недостатки"><a href="#недостатки" title="Недостатки">Недостатки</a></h3>
+<ul>
+<li>Нет поддержки комментариев</li>
+<li>Никакой индексации поисковиками</li>
+<li>Только для браузеров с включенным JavaScript</li>
+<li>Javascript и JQuery иногда долго работают на медленных сетях</li>
+<li>Если не использовать <code>.htaccess</code>, надо указывать <code>index.html</code> явно</li>
+<li>Есть что пооптимизировать</li>
+</ul>
+<h3 id="может-потом"><a href="#может-потом" title="Может потом">Может потом</a></h3>
+<ul>
+<li>Страницы</li>
+<li>Поддержка шаблонов</li>
+<li>Более приятный на вид RSS / Автоматизировать обновления RSS</li>
+<li>Календарь</li>
+</ul>
+<h3 id="пример"><a href="#пример" title="Пример">Пример</a></h3>
+<p><a href="http://showdown-blog.googlecode.com/hg/index.html">Ссылка на пример</a></p>
+<h3 id="исходный-код"><a href="#исходный-код" title="Исходный код">Исходный код</a></h3>
+<p><a href="http://showdown-blog.googlecode.com/">Проект на Googlecode</a></p>
+
+<p>** Upd. ** Достоинства и недостатки со временем изменились, посетите страницу проекта чтобы узнать как именно.</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/blog/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль на Github"><img src="/blog/ru/assets/img/social/github.png" width="16" height="16" alt="профиль на Github"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/blog/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль на Stackoverflow"><img src="/blog/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/ru/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/ru/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>

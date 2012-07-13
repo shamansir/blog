@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.2.3-dev" />
+
+<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="contents start home" href="/blog/ru/" />
+<link rel="index" href="/blog/ru/archives/" />
+
+<link rel="shortcut icon" href="/blog/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/blog/ru/feed.xml" type="application/atom+xml" />
+
+<link rel="stylesheet" href="/blog/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/blog/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/blog/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/blog/ru/assets/css/pygments.trac.css" type="text/css" />
+
+<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<link rel="stylesheet" href="/blog/ru/assets/css/font-awesome.css" />
+
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20770637-6']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+    
+    <title>nwao — Eric IDE 4.0.1 на Ubuntu 7.04 &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+    <div id="nwao-page">
+        <div id="nwao-header">
+            <div id="nwao-holder">
+                <nav id="nwao-nav"><ul>
+                    <li><a href="/blog/ru/" rel="contents" title="Блог"><i class="icon-home"></i>&nbsp;Блог</a></li>
+                    <li><a href="/blog/ru/archives/" rel="index" title="Архив"><i class="icon-book"></i>&nbsp;Архив</a></li>
+                    <li><a href="http://shamansir.github.com" rel="author" title="Автор"><i class="icon-user"></i>&nbsp;Автор</a></li>
+                    <!-- TODO: TAGS PAGE -->
+                    <li><a href="/blog/ru/feed.xml" title="Лента"><i class="icon-rss"></i>&nbsp;RSS</a></li>
+                </ul></nav>
+
+                <h1 id="nwao-title"><a href="/blog/ru/" title="Ни слова о луке">&raquo;Ни слова о луке&laquo;</a></h1>
+            </div>
+            <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+        </div>
+
+        <!--
+        <nav>
+          <div id="nwao-dive">
+            <a href="#" id="nwao-prev">← Предыдущий пост</a><span> | </span>
+            <a href="#" id="nwao-next">Следующий пост →</a>
+          </div>
+        </nav>
+        -->
+        
+        <div id="nwao-content">
+            
+    <article id="nwao-post">
+        <div class="nwao-post-header">
+            <h2 class="nwao-post-title" id="top">
+                <a href="#top" title="Eric IDE 4.0.1 на Ubuntu 7.04">
+                    Eric IDE 4.0.1 на Ubuntu 7.04
+                </a>
+            </h2>
+            <dl>
+    <dt class="nwao-hidden">Опубликован</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;22 июля 2007, воскресенье</dd>
+    
+    <dt class="nwao-hidden">Тэги</dt>
+    <dd class="nwao-tags">
+    
+        <a href="/blog/ru/tags/eric/" rel="tag" title="Посты с тэгом 'eric'"><i class="icon-tag"></i>&nbsp;eric</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/ide/" rel="tag" title="Посты с тэгом 'ide'"><i class="icon-tag"></i>&nbsp;ide</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/python/" rel="tag" title="Посты с тэгом 'python'"><i class="icon-tag"></i>&nbsp;python</a><span class="nwao-hidden">,</span> 
+    
+        <a href="/blog/ru/tags/ubuntu/" rel="tag" title="Посты с тэгом 'ubuntu'"><i class="icon-tag"></i>&nbsp;ubuntu</a>
+    
+    </dd>
+    
+</dl>
+        </div>
+        
+        <div class="nwao-post-content">
+            <p><a href="http://www.die-offenbachs.de/eric/index.html">Eric</a> – очень даже хорошее IDE под <a href="http://www.python.org/">Python</a>. И <a href="http://www.die-offenbachs.de/eric/eric-news.html">не далее как вчера</a> вышла версия <a href="http://sourceforge.net/project/showfiles.php?group_id=119070&amp;package_id=233329">4.0.1</a>, в репозиториях же на данный момент лежит версия 3.9. и захотелось мне вспомнить старые добрые времена и собрать этот пакет. Представляю вам на всякий случай листинг того, что делать – чтобы не возвращаться обратно, выясняя что нужно поставить еще что-то или разбираясь в ошибках компиляции, которые меня посещали :). Кое-где – ориентировка на последние версии :). Так как устанавливалось на чистой практически убунте – все должно быть адекватно… если что-то упустил – прошу сообщать.</p>
+
+<p><em>Используется:</em></p>
+
+<ul>
+<li><a href="http://www.die-offenbachs.de/eric/index.html">eric</a> 4.0.0.1</li>
+<li><a href="http://www.python.org/">Python</a> 2.5.1</li>
+<li><a href="http://trolltech.com/products/qt">Qt</a> 4.2.3 + <a href="http://www.riverbankcomputing.co.uk/pyqt/index.php">PyQt</a> v4.1 + <a href="http://www.riverbankcomputing.co.uk/qscintilla/index.php">QScintilla</a> 2</li>
+<li><a href="http://www.riverbankcomputing.co.uk/sip/index.php">SIP</a> 4.6</li>
+<li><a href="http://gcc.gnu.org/">G++</a> 3.4 (наверняка можно взять и поздний)</li>
+</ul>
+
+<p>итак, переходим в какой-нибудь каталог для сборки и приступаем:</p>
+<pre><code>$ cd ~/distr-temp/
+</code></pre>
+<p>берем <a href="http://sourceforge.net/project/showfiles.php?group_id=119070&amp;package_id=233329">сурсы</a> с sourceforge‘a:</p>
+<pre><code>$ wget http://mesh.dl.sourceforge.net/sourceforge/eric-ide/eric4-4.0.1.tar.gz
+</code></pre>
+<p>устанавливаем всяческие библиотеки для связки <a href="http://www.riverbankcomputing.co.uk/pyqt/index.php">PyQt</a> (в зависимости от настроек <code>apt-get</code>‘а может понадобиться установочный CD):</p>
+<pre><code>$ sudo apt-get install python2.5-dev
+$ sudo apt-get install python-qt4
+$ sudo apt-get install libqt4-dev
+$ sudo apt-get install python-qt4-dev
+</code></pre>
+<p>устанавливаем компилятор <code>g++</code> и делаем на него ссылку <code>/usr/bin/g++</code>:</p>
+<pre><code>$ sudo apt-get install g++-3.4
+$ sudo ln -s /usr/bin/g++-3.4 /usr/bin/g++
+</code></pre>
+<p>скачиваем и устанавливаем последнюю на данный момент версию <a href="http://www.riverbankcomputing.co.uk/sip/index.php">SIP</a> – он позволяет библиотекам, написанным на C[++] вести себя как модули <a href="http://www.python.org/">Python</a>:</p>
+<pre><code>$ wget http://www.riverbankcomputing.com/Downloads/sip4/sip-4.6.tar.gz
+$ tar -xvzf ./sip-4.6.tar.gz
+$ cd ./sip-4.6.tar.gz
+$ python ./configure.py
+$ make
+$ sudo make install
+$ cd ..
+</code></pre>
+<p>скачиваем и устанавливаем последнюю на данный момент версию <a href="http://www.riverbankcomputing.co.uk/qscintilla/index.php">QScintilla</a> – Qt-порт компонента для редактирования исходных кодов (устанавливаем версию для Qt4):</p>
+<pre><code>$ wget http://www.riverbankcomputing.com/Downloads/Snapshots/QScintilla2/QScintilla-gpl-2-snapshot-20070709.tar.gz
+$ tar -xvzf ./QScintilla-gpl-2-snapshot-20070709.tar.gz
+$ cd ./QScintilla-gpl-2-snapshot-20070709/Qt4
+$ qmake qscintilla.pro
+$ sudo make
+$ sudo make install
+</code></pre>
+<p>теперь нужно установить связи на <a href="http://www.riverbankcomputing.co.uk/qscintilla/index.php">QScintilla</a> для <a href="http://www.python.org/">Python</a> – они находятся собственно в директории Python:</p>
+<pre><code>$ cd ../Python
+$ python ./configure.py
+$ make
+$ sudo make install
+</code></pre>
+<p>ну а теперь очередь собственно <a href="http://www.die-offenbachs.de/eric/index.html">eric</a>:</p>
+<pre><code>$ cd ../../eric4-4.0.1/
+$ sudo python install.py
+</code></pre>
+<p>при установке нужно сказать ему директорию где лежит Qt: <code>/usr/share/qt4</code>.</p>
+
+<p>Ну вот собственно и все. Набираем <code>eric4</code> и, если хочется, радуемся :).</p>
+
+        </div>
+    </article>
+
+        </div>
+        
+        
+            <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/blog/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль на Github"><img src="/blog/ru/assets/img/social/github.png" width="16" height="16" alt="профиль на Github"></a></li>                
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/blog/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль на Stackoverflow"><img src="/blog/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+        
+
+        <div id="nwao-footer">
+            <p>Copyright &copy; 2012 Ulric Wilfred &ndash; запитано <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+        </div>
+
+        <div id="nwao-jump-to-top"><a href="#top" title="Вира!">&#x2912;</a></div>
+
+        <!--
+        <script type="text/javascript" src="/blog/ru/assets/js/scrolls.js"></script>
+        <script type="text/javascript" src="/blog/ru/assets/js/page.scrolls.js"></script> -->
+
+
+        </script>
+    </div>
+
+    <div id="nwao-onion"></div>
+</body>
+</html>
