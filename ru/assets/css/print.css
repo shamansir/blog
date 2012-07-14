@@ -1,3 +1,108 @@
-/* Welcome to Compass. Use this file to define print styles.
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" /> */
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,400italic&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,400italic&subset=latin,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic&text=%D0%BD%D0%B8%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5&oq=%D0%BD%D0%B8+%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5Nowordaboutonion%20);
+nav, #nwao-social, #nwao-jump-to-top {
+  display: none;
+}
+
+body {
+  font-family: Ubuntu, "Lucida Grande", "Open Sans", "Droid Sans", "PT Sans", Geneva, Helvetica, Georgia, sans-serif;
+  font-size: 16px;
+  margin: 0 2%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "PT Sans", "Droid Sans", "Droid Serif", Palatino, Geneva, Helvetica, serif;
+  border-bottom: 2px solid black;
+  margin-top: 60px;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: black;
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 2em;
+  border-bottom: none;
+}
+
+h3 {
+  font-size: 1.6em;
+}
+
+h4 {
+  font-size: 1.4em;
+  margin-left: 10px;
+}
+
+h5, h6, h7 {
+  font-size: 1.2em;
+  margin-left: 20px;
+}
+
+#nwao-header {
+  padding-bottom: 20px;
+  border-bottom: 4px solid black;
+  margin-bottom: 80px;
+}
+#nwao-header h1 {
+  font-size: 2.6em;
+  border: none;
+  font-family: "Droid Serif", "Platan BG", Palatino, Baskerville, serif;
+  margin: 13px 0;
+}
+
+pre code, div.code pre {
+  font-family: Menlo, "Courier New", "Ubuntu Mono", "Droid Sans Mono";
+  font-size: 0.9em;
+}
+
+.nwao-tags a {
+  color: black;
+  text-decoration: none;
+}
+
+article p {
+  margin: 20px 0;
+  line-height: 1.6em;
+}
+article img {
+  display: block;
+  margin: 20px auto;
+  border: 1px solid black;
+}
+article blockquote {
+  border-left: 4px solid black;
+  padding-left: 40px;
+}
+
+#nwao-content {
+  margin-bottom: 60px;
+}
+
+.nwao-archives-year a {
+  text-decoration: none;
+  border-bottom: 1px dashed #cccccc;
+}
+.nwao-archives-year .nwao-tags a {
+  border: none;
+}
+
+.nwao-archive-items dd > a {
+  font-family: "PT Sans", "Droid Sans", "Droid Serif", Palatino, Geneva, Helvetica, serif;
+  font-size: 1.4em;
+  margin: 10px 0;
+  display: block;
+}
+.nwao-archive-items > dt {
+  margin-top: 20px;
+}
+
+#nwao-blog-feed .nwao-page-title-anchor, #nwao-blog-feed .nwao-continue, #nwao-blog-feed .nwao-item-marker, #nwao-blog-feed #nwao-pagination {
+  display: none;
+}
+
+.nwao-post-header {
+  margin-bottom: 60px;
+}
