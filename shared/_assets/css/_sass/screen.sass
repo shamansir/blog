@@ -85,7 +85,7 @@ article, section
     p, ul, ol, dl
         // font-family: $text-font
         font-size: 1.1em
-        line-height: 1.8em
+        line-height: 1.6em
 
     p
         padding: 2px 0 16px 0
@@ -130,7 +130,7 @@ article, section
     div.code
         overflow: hidden
         font-size: 1.0em
-        line-height: 1.6em
+        line-height: 1.4em
         margin: 8px 8px 30px 8px
         background-color: $code-bg-color
         @include border-radius(5px)
@@ -351,19 +351,17 @@ a.nwao-button
 // PAGE TITLE
 
 .nwao-page-title-anchor
-    margin: 30px
-    padding: 20px
+    margin: 0 30px 60px 30px
     border-bottom: 2px solid black
 
     h2#nwao-page-title
-        margin: 15px 18% 50px 18%
         text-align: center
         background-color: white
         font-size: 2.6em
         color: black
-        border: 2px solid black
         padding: 10px
-        @include border-radius(13px)
+        margin: 0
+        margin-bottom: 0
 
         a
             color: black
@@ -371,12 +369,12 @@ a.nwao-button
             left: -10px
 
             &:hover
-                color: white
+                color: #606
                 @include transition(color 1s ease)
 
         &:hover
-            @include transition(background-color 1s ease)
-            background-color: $hilite-dark-color
+            @include transition(background-color 0.5s ease)
+            background-color: #eee
 
 // POST HEADER
 
@@ -544,7 +542,7 @@ ul#nwao-social
 
         h2
             text-align: center
-            background-color: #ddd
+            #background-color: #ddd
             border-bottom: 2px solid #067
 
             &:hover:before
@@ -560,28 +558,20 @@ ul#nwao-social
                     @include transition(color 1s ease)
 
             &:hover
-                background-color: #ccc
+                background-color: #eee
                 @include transition(background 1s ease)
 
+#nwao-blog-feed .nwao-page-title-anchor
+
+    display: none
+
 .nwao-blog-feed-item
-    margin: 0 0 60px 0
-    background-color: $lite-transp-tilt
-
-    @include border-radius(9px)
-    //@include box-shadow(#ccc 0px 1px 10px 0px)
-    border:
-        style: solid
-        color: #666 #999
-        width: 2px 1px 4px 1px
-
-    &:hover
-        background-color: $transp-tilt
-        @include transition(background 0.3s ease)
+    margin: 0 0 80px 0
 
     .nwao-continue
         display: inline-block
         width: 49%
-        font-size: 1.2em
+        font-size: 1em
         position: relative
         left: 14px
         bottom: 7px
@@ -596,7 +586,10 @@ ul#nwao-social
         right: 8px
 
 .nwao-post-excerpt
-    margin: 0 30px 30px 47px
+    margin: 0 15px 15px 15px
+
+    p
+        padding: 0
 
 .nwao-continue p
     margin: 10px
@@ -606,13 +599,10 @@ ul#nwao-social
     width: 100%
     text-align: center
 
-/*#nwao-archive
+#nwao-archive, #nwao-archives, #nwao-tagged
 
-    .nwao-page-title-anchor h2#nwao-page-title
-        font-size: 2.4em
-
-        a
-            left: 0*/
+    .nwao-page-title-anchor
+        margin-bottom: 50px
 
 dl.nwao-archives-year
 
