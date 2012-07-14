@@ -1,6 +1,111 @@
-/*
-  Welcome to Compass. Use this file to define print styles.
-  Import this file using the following HTML or equivalent:
-  <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,400italic&subset=latin,cyrillic)
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic&subset=latin,cyrillic)
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,400italic&subset=latin,cyrillic)
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic&text=%D0%BD%D0%B8%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5&oq=%D0%BD%D0%B8+%D1%81%D0%BB%D0%BE%D0%B2%D0%B0%D0%BE%D0%BB%D1%83%D0%BA%D0%B5Nowordaboutonion%20)
 
+$title-font: 'Droid Serif', 'Platan BG', Palatino, Baskerville, serif
+$heading-font: 'PT Sans', 'Droid Sans', 'Droid Serif', Palatino, Geneva, Helvetica, serif
+$text-font: Ubuntu, 'Lucida Grande', 'Open Sans', 'Droid Sans', 'PT Sans', Geneva, Helvetica, Georgia, sans-serif
+$code-font: Menlo, 'Courier New', 'Ubuntu Mono', 'Droid Sans Mono' 
+//$default-font: 'Droid Serif', 'PT Sans', sans-serif;
+
+$base-font-size: 16px
+
+nav, #nwao-social, #nwao-jump-to-top
+    display: none
+
+body
+    font-family: $text-font
+    font-size: $base-font-size
+    margin: 0 2%
+
+h1, h2, h3, h4, h5, h6
+
+    font-family: $heading-font
+    border-bottom: 2px solid #000
+    margin-top: 60px
+
+    a
+        color: black
+        text-decoration: none
+
+h2
+    font-size: 2em
+    border-bottom: none
+
+h3
+    font-size: 1.6em
+
+h4
+    font-size: 1.4em
+    margin-left: 10px
+
+h5, h6, h7
+    font-size: 1.2em
+    margin-left: 20px
+
+#nwao-header
+    padding-bottom: 20px
+    border-bottom: 4px solid #000
+    margin-bottom: 80px
+
+    h1
+        font-size: 2.6em
+        border: none
+        font-family: $title-font
+        margin: 13px 0
+
+pre code, div.code pre
+    font-family: $code-font
+    font-size: 0.9em
+
+.nwao-tags 
+
+    a
+        color: black
+        text-decoration: none
+
+article
+
+    p
+        margin: 20px 0
+        line-height: 1.6em
+
+    img
+        display: block
+        margin: 20px auto
+        border: 1px solid #000
+
+    blockquote
+        border-left: 4px solid #000
+        padding-left: 40px
+
+#nwao-content
+    margin-bottom: 60px
+
+.nwao-archives-year
+    
+    a
+        text-decoration: none
+        border-bottom: 1px dashed #ccc
+
+    .nwao-tags a
+        border: none
+
+.nwao-archive-items
+
+    dd > a
+        font-family: $heading-font
+        font-size: 1.4em
+        margin: 10px 0
+        display: block
+
+    & > dt
+        margin-top: 20px
+
+#nwao-blog-feed
+    .nwao-page-title-anchor, .nwao-continue, .nwao-item-marker, #nwao-pagination
+        display: none
+
+.nwao-post-header
+    margin-bottom: 60px
