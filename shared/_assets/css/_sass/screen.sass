@@ -480,6 +480,7 @@ ul#nwao-social
     right: 0
     bottom: 0
     z-index: 2
+    @include border-radius(6px, top-left)
 
     p 
         margin: 0
@@ -561,10 +562,6 @@ ul#nwao-social
                 background-color: #eee
                 @include transition(background 1s ease)
 
-#nwao-blog-feed .nwao-page-title-anchor
-
-    display: none
-
 .nwao-blog-feed-item
     margin: 0 0 80px 0
 
@@ -578,11 +575,10 @@ ul#nwao-social
 
     .nwao-item-marker
         display: inline-block
-        visibility: hidden
         width: 50%
         text-align: right
         font-size: 2.1em
-        color: #999
+        color: #eee
         position: relative
         right: 20px
 
@@ -600,6 +596,11 @@ ul#nwao-social
     width: 100%
     text-align: center
 
+#nwao-blog-feed, #nwao-archives
+
+    .nwao-page-title-anchor
+        display: none
+
 #nwao-archive, #nwao-archives, #nwao-tagged
 
     .nwao-page-title-anchor
@@ -610,11 +611,17 @@ dl.nwao-archives-year
     padding: 20px 0
     margin: 30px 0
 
+    dd
+        margin: 0
+
+    .nwao-archive-items dd
+        margin-left: 20px
+
     & > dt
         text-align: center
 
         & > a
-            font-size: 2em
+            font-size: 1.7em
 
 dl.nwao-archive-items
         
@@ -669,3 +676,5 @@ dl.nwao-archive-items
        
 //    #nwao-next
 //        float: right
+
+@import _media
