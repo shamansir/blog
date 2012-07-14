@@ -2,7 +2,7 @@
 layout: post.html
 title: Fluxus — Prototyping OpenGL graphics and games on-the-fly (add Scheme to taste)
 datetime: 10 Jul 2010 13:10
-tags: [ fluxus, open source, opengl, scheme ]
+tags: [ fluxus, open source, opengl, scheme, graphics ]
 ---
 
 The internet for a programmer who insterested in 3D-graphics for several years is full of videos where people programming music visualizers, complex color-morphing effects or even more tricky things working at the intersection of technology - literally the author writes code and somewhere on background it is compiled and executed and the author sees the result - this process named _livecoding_. Most recently the programs like these are written in lisp-family languages, the similar editor exists for ProcessingJS, it renders code immediately in browser, but its not about it.

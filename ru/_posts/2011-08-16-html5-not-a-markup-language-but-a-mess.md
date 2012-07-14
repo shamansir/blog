@@ -2,7 +2,7 @@
 layout: post.html
 title: HTML5 — не язык разметки, а мессиво
 datetime: Tue 16 Aug 2011 20:05
-tags: [ html5, web future, mime ]
+tags: [ rage, html5, web-dev ]
 ---
 
 Позволю себе, первую в блоге, теоретическую статью. Если вы легко возбудимы, не обращайте на неё внимания. И более того, эта статья — NSFW.

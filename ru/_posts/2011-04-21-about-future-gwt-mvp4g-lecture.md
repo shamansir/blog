@@ -2,7 +2,7 @@
 layout: post.html
 title: Лекция по GWT+mvp4g на ADDConf '11
 datetime: 21 Apr 2011 11:46
-tags: [ gwt, mvp4g, lecture ]
+tags: [ gwt, mvp4g, java, lecture, web-dev ]
 ---
 
 Буду читать мастер-класс на [ADDConf 2011](http://addconf.ru/) по разработке веб-приложений с помощью [GWT](http://code.google.com/webtoolkit/) и [mvp4g](http://code.google.com/p/mvp4g/) (29 апреля, 15:10). Санкт-Петербург, Россия

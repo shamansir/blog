@@ -2,7 +2,7 @@
 layout: post.html
 title: Modelling a Solar System in Fluxus
 datetime: 6 Dec 2010 21:38
-tags: [ fluxus, racket, scheme, solar system, livecoding, 3d ]
+tags: [ fluxus, racket, scheme, solar system, livecoding, graphics, lecture ]
 ---
 
 Some time ago I [wrote a post](#post-about-fluxus) about [fluxus](http://www.pawfal.org/fluxus/), livecoding and 3D-prototyping system. Now I want to demonstrate some of its features and describe how you may use them in pseudo(;))scientific needs. For example, you can create a model of a simplified solar system and make it fit in only 125 lines of code (including comments) -- it is the advantage of [Racket](http://racket-lang.org/) language with graphic steroids, the core of fluxus and a descendant of PLT Scheme. Here how the result will look like:

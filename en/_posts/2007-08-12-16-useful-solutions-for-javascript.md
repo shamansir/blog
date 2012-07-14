@@ -2,7 +2,7 @@
 layout: post.html
 title: 16 Practical Solutions for Javascript
 datetime: 12 Aug 2007 17:55
-tags: [ javascript, web-development ]
+tags: [ javascript, web-dev ]
 ---
 
 Let me present you a set of functions that I keep in separate `utils.js` file - they are the most frequent functions I used. They do trying very hard to be compliant with the modern browsers and they are tested in IE6/7, FF2 and Safari 2 and also in a hard complicated web-system. And they are supposed to work in other, not very old, browsers - I've used browser detection only for exceptional cases. Some of them, surely, are just mixes of something found in the open web (I am pointing to the source everywhere I remember it) and the bigger part is constructed on the base of my own ideas (and colleagues advices) intended to work properly - just because in that variety of scripts the subtleties (which become generics with closer examination :) ) are not taken into account, and to remain legible.

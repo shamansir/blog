@@ -2,7 +2,7 @@
 layout: post.html
 title: PHP и UTF-8 (Unicode) - Неинтересная забава на полдня
 datetime: 22 Dec 2006 12:48
-tags: [ mysql, php, unicode, web-development ]
+tags: [ php, unicode, mysql, web-dev, bug ]
 ---
 
 Это [не мой совет](http://live.julik.nl/2005/03/unicode-php) (я разместил объяву :) ), но уж очень неимоверно он мне помог.

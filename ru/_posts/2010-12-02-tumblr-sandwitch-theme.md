@@ -2,7 +2,7 @@
 layout: post.html
 title: "Sandwitch: Тема для Tumblr"
 datetime: 2 Dec 2010 19:31
-tags: [ tumblr, theme, sandwitch, sandwich ]
+tags: [ tumblr, theme, sandwitch ]
 ---
 
 Сделал [тему для Tumblr](http://www.tumblr.com/theme/18012) под названием [Sandwitch](http://uncyclopedia.wikia.com/wiki/Sandwitch). Хотел чтобы tumblr-блог был похож стилем на тот, который я сделал для движка [showdown blog](http://code.google.com/p/showdown-blog/), а получилось даже лучше!

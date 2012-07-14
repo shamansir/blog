@@ -2,7 +2,7 @@
 layout: post.html
 title: Слайды мастер-класса по GWT и mvp4g
 datetime: 4 May 2011 19:17
-tags: [ gwt, mvp4g, slides ]
+tags: [ gwt, mvp4g, java, lecture, web-dev ]
 ---
 
 29 апреля я читал мастер-класс по веб-разработке на [GWT](http://code.google.com/intl/ru/webtoolkit/) с использованием фреймворка [mvp4g](http://code.google.com/p/mvp4g/), на конференции [Application Developer Days](http://addconf.ru) 2011. Предоставляю вам слайды (видео должно быть позже).

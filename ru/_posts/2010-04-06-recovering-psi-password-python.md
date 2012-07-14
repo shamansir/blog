@@ -2,7 +2,7 @@
 layout: post.html
 title: Восстановление пароля в клиенте Psi (Python)
 datetime: 06 Apr 2010 02:14
-tags: [ psi, password ]
+tags: [ psi, password, python, bug ]
 ---
 
 Часто требуется восстановить пароль от аккаунта в клиенте Psi. Для этого можно использовать любой язык программирования, см. [статью](http://blogmal.42.org/rev-eng/psi-password.story).
