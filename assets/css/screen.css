@@ -294,20 +294,17 @@ a.nwao-button:hover {
 }
 
 .nwao-page-title-anchor {
-  margin: 30px;
-  padding: 20px;
+  margin: 0 30px 60px 30px;
   border-bottom: 2px solid black;
 }
 .nwao-page-title-anchor h2#nwao-page-title {
-  margin: 15px 18% 50px 18%;
   text-align: center;
   background-color: white;
   font-size: 2.6em;
   color: black;
-  border: 2px solid black;
   padding: 10px;
-  -webkit-border-radius: 13px;
-  border-radius: 13px;
+  margin: 0;
+  margin-bottom: 0;
 }
 .nwao-page-title-anchor h2#nwao-page-title a {
   color: black;
@@ -315,7 +312,7 @@ a.nwao-button:hover {
   left: -10px;
 }
 .nwao-page-title-anchor h2#nwao-page-title a:hover {
-  color: white;
+  color: #660066;
   -webkit-transition: color 1s ease;
   -moz-transition: color 1s ease;
   -ms-transition: color 1s ease;
@@ -323,12 +320,12 @@ a.nwao-button:hover {
   transition: color 1s ease;
 }
 .nwao-page-title-anchor h2#nwao-page-title:hover {
-  -webkit-transition: background-color 1s ease;
-  -moz-transition: background-color 1s ease;
-  -ms-transition: background-color 1s ease;
-  -o-transition: background-color 1s ease;
-  transition: background-color 1s ease;
-  background-color: #005577;
+  -webkit-transition: background-color 0.5s ease;
+  -moz-transition: background-color 0.5s ease;
+  -ms-transition: background-color 0.5s ease;
+  -o-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+  background-color: #eeeeee;
 }
 
 .nwao-post-header {
@@ -491,7 +488,7 @@ ul#nwao-social li {
 }
 #nwao-blog-feed .nwao-post-header h2, #nwao-archives .nwao-post-header h2, #nwao-archive .nwao-post-header h2, #nwao-tagged .nwao-post-header h2 {
   text-align: center;
-  background-color: #dddddd;
+  #background-color: #dddddd;
   border-bottom: 2px solid #006677;
 }
 #nwao-blog-feed .nwao-post-header h2:hover:before, #nwao-archives .nwao-post-header h2:hover:before, #nwao-archive .nwao-post-header h2:hover:before, #nwao-tagged .nwao-post-header h2:hover:before {
@@ -510,7 +507,7 @@ ul#nwao-social li {
   transition: color 1s ease;
 }
 #nwao-blog-feed .nwao-post-header h2:hover, #nwao-archives .nwao-post-header h2:hover, #nwao-archive .nwao-post-header h2:hover, #nwao-tagged .nwao-post-header h2:hover {
-  background-color: #cccccc;
+  background-color: #eeeeee;
   -webkit-transition: background 1s ease;
   -moz-transition: background 1s ease;
   -ms-transition: background 1s ease;
@@ -518,27 +515,17 @@ ul#nwao-social li {
   transition: background 1s ease;
 }
 
-.nwao-blog-feed-item {
-  margin: 0 0 60px 0;
-  background-color: rgba(200, 200, 200, 0.1);
-  -webkit-border-radius: 9px;
-  border-radius: 9px;
-  border-style: solid;
-  border-color: #666666 #999999;
-  border-width: 2px 1px 4px 1px;
+#nwao-blog-feed .nwao-page-title-anchor {
+  display: none;
 }
-.nwao-blog-feed-item:hover {
-  background-color: rgba(200, 200, 200, 0.2);
-  -webkit-transition: background 0.3s ease;
-  -moz-transition: background 0.3s ease;
-  -ms-transition: background 0.3s ease;
-  -o-transition: background 0.3s ease;
-  transition: background 0.3s ease;
+
+.nwao-blog-feed-item {
+  margin: 0 0 80px 0;
 }
 .nwao-blog-feed-item .nwao-continue {
   display: inline-block;
   width: 49%;
-  font-size: 1.2em;
+  font-size: 1em;
   position: relative;
   left: 14px;
   bottom: 7px;
@@ -547,14 +534,17 @@ ul#nwao-social li {
   display: inline-block;
   width: 50%;
   text-align: right;
-  font-size: 3em;
+  font-size: 2.1em;
   color: #999999;
   position: relative;
-  right: 8px;
+  right: 20px;
 }
 
 .nwao-post-excerpt {
-  margin: 0 30px 30px 47px;
+  margin: 0 15px 15px 15px;
+}
+.nwao-post-excerpt p {
+  padding: 0;
 }
 
 .nwao-continue p {
@@ -567,13 +557,10 @@ ul#nwao-social li {
   text-align: center;
 }
 
-/*#nwao-archive
- *
- * .nwao-page-title-anchor h2#nwao-page-title
- *     font-size: 2.4em
- *
- *     a
- *         left: 0 */
+#nwao-archive .nwao-page-title-anchor, #nwao-archives .nwao-page-title-anchor, #nwao-tagged .nwao-page-title-anchor {
+  margin-bottom: 50px;
+}
+
 dl.nwao-archives-year {
   padding: 20px 0;
   margin: 30px 0;

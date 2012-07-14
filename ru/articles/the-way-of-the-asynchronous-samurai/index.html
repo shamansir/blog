@@ -89,9 +89,7 @@
     
         <a href="/blog/ru/tags/javascript/" rel="tag" title="Посты с тэгом 'javascript'"><i class="icon-tag"></i>&nbsp;javascript</a><span class="nwao-hidden">,</span> 
     
-        <a href="/blog/ru/tags/monads/" rel="tag" title="Посты с тэгом 'monads'"><i class="icon-tag"></i>&nbsp;monads</a><span class="nwao-hidden">,</span> 
-    
-        <a href="/blog/ru/tags/succeccive-functions/" rel="tag" title="Посты с тэгом 'succeccive functions'"><i class="icon-tag"></i>&nbsp;succeccive functions</a>
+        <a href="/blog/ru/tags/web-dev/" rel="tag" title="Посты с тэгом 'web-dev'"><i class="icon-tag"></i>&nbsp;web-dev</a>
     
     </dd>
     
@@ -844,7 +842,7 @@ Error: Not exist
 <span class="c1">// &quot;aaacYYddYYdd&quot; -&gt; [ [&quot;a&quot;,&quot;a&quot;,&quot;a&quot;], &quot;c&quot;, &quot;YY,d,d:YY,d,d&quot; ]</span>
 
 <span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">sequence</span><span class="p">(</span>
-                        <span class="nx">choise</span><span class="p">(</span>
+                        <span class="nx">choice</span><span class="p">(</span>
                             <span class="nx">any</span><span class="p">(</span><span class="nx">match</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)),</span>
                             <span class="nx">match</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
                         <span class="p">),</span>
@@ -868,7 +866,7 @@ Error: Not exist
 
 <p>Такие функции вполне могут возвратить и пустые строки и <code>undefined</code> (см. <code>action</code>), которые будут являться вполне полноправным значением и оно не будет значить, что что-то упало, что-то не найдено: просто не совпал элемент, но парсинг-то продолжается.</p>
 
-<p>Ни одна из этих функций не должна выполняться по месту вызова, <code>choise</code> может пропустить последний элемент, если совпал первый, должен иметь возможность остановиться в нужный момент и откатиться назад. В этом коде я использую тот же самый <code>deferrable</code>, который я привёл выше, и это мой единственный молоток.</p>
+<p>Ни одна из этих функций не должна выполняться по месту вызова, <code>choice</code> может пропустить последний элемент, если совпал первый, должен иметь возможность остановиться в нужный момент и откатиться назад. В этом коде я использую тот же самый <code>deferrable</code>, который я привёл выше, и это мой единственный молоток.</p>
 
 <p>Все <a href="https://github.com/shamansir/pegjs/blob/compact-result/test/temp.js">используемые функции парсера</a> не сильно сложнее по коду, чем примеры выше, пара-тройка строк на каждую простую, пять-десять на каждую сложную. </p>
 
@@ -910,7 +908,7 @@ Error: Not exist
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Именно функция <code>safe</code> подавляет ошибки, брошенные при несовпадении, например, от <code>match</code>, перехватывая их, например, для <code>choise</code>, который при неудаче просто переходит к следующему варианту.  </p>
+<p>Именно функция <code>safe</code> подавляет ошибки, брошенные при несовпадении, например, от <code>match</code>, перехватывая их, например, для <code>choice</code>, который при неудаче просто переходит к следующему варианту.  </p>
 
 <p>Минус такого подхода в том, что эта самая блуждающая переменная результата при выбросе исключения теряется. Вернее, каждый раз перед потенциальной неудачей, её нужно сохранять (например, передавать в <code>failed</code>). То есть, если вы собираетесь использовать сгенерированный парсер чтобы подсвечивать текст в редакторе (например, маркдаун) на лету, то вы могли бы как раз и опираться на этот эксепшн для сборки табика <em>code completion</em>. Но предыдущий-то код тоже надо подсвечивать, а прошлый результат парсинга мог и устареть. </p>
 
