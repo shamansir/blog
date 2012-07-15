@@ -24,7 +24,7 @@ CUR_BRANCH=${CUR_BRANCH:-HEAD}
 echo "moving away from branch $CUR_BRANCH"
 echo "..."
 sleep 3
-git stash
+#git stash
 git checkout gh-pages
 rm -Rf ./*
 cp -R ./$TMP_DIR/_site/* . 
@@ -37,5 +37,5 @@ echo "..."
 sleep 6
 git push origin gh-pages
 git checkout $CUR_BRANCH
-git stash apply
+#git stash apply
 
