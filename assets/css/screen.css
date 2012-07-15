@@ -623,6 +623,10 @@ dl.nwao-archive-items > dd > a:hover {
   #nwao-blog-feed, #nwao-archives, #nwao-archive, #nwao-tagged {
     padding: 50px 16% 100px 16%;
   }
+
+  #nwao-blog-feed {
+    padding-top: 75px;
+  }
 }
 @media screen and (max-width: 1400px) {
   #nwao-footer {
@@ -741,6 +745,10 @@ dl.nwao-archive-items > dd > a:hover {
 
   #nwao-blog-feed, #nwao-archives, #nwao-archive, #nwao-tagged {
     padding: 50px 35px 35px 35px;
+  }
+
+  #nwao-blog-feed {
+    padding-top: 35px;
   }
 
   #nwao-pagination {
