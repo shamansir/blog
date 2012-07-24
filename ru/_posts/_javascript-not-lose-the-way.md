@@ -95,9 +95,9 @@ Here is the way the standard function in JavaScript looks like:
 
 ##### return. I.
 
-Если в функции не указано оператора `return ...;`, она возвращает `undefined`. То что `undefined`, как и `null`, как и `0`, как и пустая строка, считается ложью, позволяет вам определять "неудачу" операции, если функция ничего не вернула
+Если в функции не указано оператора `return ...;`, она возвращает `undefined`. То, что `undefined`, как и `null`, как и `0`, как и пустая строка, считается ложью, позволяет вам легко определять "неудачу" выполнения операции, за которую отвечает функция, если последняя ничего не вернула:
 
-> но не в случае арифметических операций: если только у вас нет пунктика, который позволяет вам считать нулевой результат неудачным независимо от обстоятельств.
+> но не в случае арифметических операций: ну, если только у вас нет пунктика, который позволяет вам считать нулевой результат неудачным независимо от обстоятельств.
 
     function has_coffee() {
         // какой-то сложный код, который подключается к мейнфрейму
@@ -414,7 +414,7 @@ Here is the way the standard function in JavaScript looks like:
 
 Если возвращать из такой функции объект — то получится вполне такой себе паттерн Фасад. Используя анонимную функцию вы просто совмещаете два действия в одном — конструирование объекта фасада и его возвращение наружу, ничего больше. При этом в неё можно передать внешние переменные и манипулировать ими как захочется.
 
-    var re_pool = (function(opts) {
+    var re_pool = (function(re) {
 
         var cur_re = null;
 
@@ -434,6 +434,31 @@ Here is the way the standard function in JavaScript looks like:
         }
 
     })(opts || {});
+
+function Y(f) {
+    return (
+        (function (x) {
+            return f(function (v) { return x(x)(v); }); })
+        (function (x) {
+            return f(function (v) { return x(x)(v); }); })
+    );
+}
+
+
+
+Factorial function using the Y combinator
+var factorial = Y(function (fac) {
+    return function (n) {
+        if (n == 0) { return 1; }
+        else { return n * fac(n - 1); }
+    };
+});
+
+factorial(5);
+
+==> 120
+
+http://en.wikipedia.org/wiki/Fixed-point_combinator#Example_in_JavaScript
 
 ##### Рекурсия.
 
@@ -804,7 +829,7 @@ Here is the way the standard function in JavaScript looks like:
 
 А если надо найти всех, у кого одновременно есть хвост и кто может кричать (ну, чтобы дёрнуть), так это надо заводить новый интерфейс `HasATailAndMayScream` или возвращать `List<Animal>`, что тоже как-то не ок.
 
-Смотрите, насколько изящнее это же делается в JavaScript, всего лишь одна функция, которая ищет хвостатых и нежных жертв, чтобы над ними поиздеваться: она принимает массив из абсолютно любых объектов и накапливает из них тех, у кого есть хвост и они могут издавать звуки
+Смотрите, насколько изящнее это же делается в JavaScript, всего лишь одна функция, которая ищет хвостатых и нежных жертв, чтобы над ними поиздеваться: она принимает массив из абсолютно любых объектов и накапливает из них тех, у кого есть хвост и они могут издавать звуки:
 
     function find_victims(zoo) {
         var victims = [];
@@ -830,15 +855,15 @@ Here is the way the standard function in JavaScript looks like:
 
 Так-с, теперь сами животные на подходе:
 
-    var Cat = WithTailAndMayScream,
-        Elephant = WithTailAndMayScream,
-        TinyBird = WithTailAndMayScream,
-        Lion = WithTailAndMayScream,
-        Bear = WithTailAndMayScream; // Всегда будьте осторожны с запятыми,
+    var Cat = new WithTailAndMayScream(),
+        Elephant = new WithTailAndMayScream(),
+        TinyBird = new WithTailAndMayScream(),
+        Lion = new WithTailAndMayScream(),
+        Bear = new WithTailAndMayScream(); // Всегда будьте осторожны с запятыми,
                                  // одна точка с запятой в неверном месте
                                  // и глобальный scope загажен. Но JSHint
                                  // вам поможет. Просто будьте ответственны.
-    var Tortoise = SilentButHasTail;
+    var Tortoise = new SilentButHasTail();
 
 Наконец, используем её.
 
@@ -852,8 +877,8 @@ Here is the way the standard function in JavaScript looks like:
         { 'tail': false, 'scream': function() {} },
         // тоже не жертва
         { 'tail': true, 'scream': null },
-        // ну наконец-то, хоть и непонятно кто!
-        // (я же говорил, конструкторы необязательны)
+        // ну наконец-то жертва, хоть и непонятно кто!
+        // (я же говорил, конструкторы абсолютно необязательны)
         { 'tail': true, 'scream': function() {}, 'foo': 42 },
         // подходит!
         new Cat(),
