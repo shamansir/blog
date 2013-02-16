@@ -9,7 +9,7 @@ In [previous article](../16-useful-solutions-for-javascript) I have presented yo
 
 So, the basic functions (I'll say it again, I have taken them from [AJAXPath](http://www.ajaxpath.com/javascript-inheritance) and [AJAXPatterns](http://ajaxpatterns.org/Javascript_Inheritance) sources):
 
-``` { javascript }
+```
 
 function Class() { };
 
