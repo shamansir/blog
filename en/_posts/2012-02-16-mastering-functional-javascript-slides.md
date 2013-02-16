@@ -20,16 +20,16 @@ OK, Here we go:
 Links to the examples:
 
 * Deferred functions: 
-    * [http://codepen.io/shamansir/pen/HskmE]()
-    * [http://codepen.io/shamansir/pen/kBzJe]()
+    * [codepen.io/shamansir/pen/HskmE](http://codepen.io/shamansir/pen/HskmE) _(parser example)_
+    * [codepen.io/shamansir/pen/kBzJe](http://codepen.io/shamansir/pen/kBzJe)
 * Partial applications: 
-    * [http://codepen.io/shamansir/pen/xCrgz]() 
+    * [codepen.io/shamansir/pen/xCrgz](http://codepen.io/shamansir/pen/xCrgz) 
 * Queues of functions: 
-    * [http://codepen.io/shamansir/pen/AaHqy]()
+    * [codepen.io/shamansir/pen/AaHqy](http://codepen.io/shamansir/pen/AaHqy)
 * Composed functions: 
-    * [http://codepen.io/shamansir/pen/Funwt]()
+    * [codepen.io/shamansir/pen/Funwt](http://codepen.io/shamansir/pen/Funwt)
 
-Lyfe.js: [http://bitbucket.org/balpha/lyfe]()<br/>
-Article on lyfe.js: [http://balpha.de/2011/06/introducing-lyfe-yield-in-javascript]()
+Lyfe.js: [bitbucket.org/balpha/lyfe](http://bitbucket.org/balpha/lyfe)<br/>
+Article on lyfe.js: [Introducing Lyfe: yield in JavaScript](http://balpha.de/2011/06/introducing-lyfe-yield-in-javascript)
 
 
