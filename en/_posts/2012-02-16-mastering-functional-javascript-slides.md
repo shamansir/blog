@@ -13,7 +13,7 @@ However, a bit of basics at the start are also there, of course.
 
 OK, Here we go:
 
-[![Slides]({{ get_figure(slug, 'first_slide.jpg') }})](https://speakerdeck.com/shamansir/mastering-functional-javascript)
+[![Slides]({{ get_figure(slug, 'first_slide.png') }})](https://speakerdeck.com/shamansir/mastering-functional-javascript)
 
 <!-- <script async class="speakerdeck-embed" data-id="e7f6bbc0599d0130d1bf1231392d87a1" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script> -->
 
