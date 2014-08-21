@@ -14,12 +14,12 @@ If you (ever) want to run this locally, you'll need to:
 1. Then clone my fork of mynt:
 
         git clone git@github.com:shamansir/mynt.git
-        
+
 1. Run there this command:
 
-        python setup.py install  
-      
-1. Run `static.sh` from the blog directory, so it will host a version of blog at `http://127.0.0.1:8080/`, watching for changes of `.sass`-files (you'll need to reload a page with every change, anyway) 
+        python setup.py install
+
+1. Run `make && make serve` from the blog directory, so it will host a version of blog at `http://127.0.0.1:8080/`, watching for changes of `.sass`-files (you'll need to reload a page with every change, anyway)
 
 
 
