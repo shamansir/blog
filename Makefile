@@ -26,17 +26,6 @@ build:
 
 	mynt gen -f --locale=$(DEF_LANG) --base-url=/ ./$(SRC_DIR)/$(DEF_LANG) ./$(TRG_DIR)
 	mynt gen -f --locale=$(SEC_LANG) --base-url=/$(SEC_LANG)/ ./$(SRC_DIR)/$(SEC_LANG) ./$(TRG_DIR)/$(SEC_LANG)
-
-	mkdir ./$(TRG_DIR)/_site
-	mkdir ./$(TRG_DIR)/_site/$(SEC_LANG)
-	mkdir ./$(TRG_DIR)/_subsites
-	mkdir ./$(TRG_DIR)/_subsites/$(SEC_LANG)
-	cp -R ./$(DEF_LANG)/* ./$(TRG_DIR)
-	cp -R ./shared/* ./$(TRG_DIR)
-	cp -R ./$(SEC_LANG)/* ./$(TRG_DIR)/_subsites/$(SEC_LANG)
-	cp -R ./shared/* ./$(TRG_DIR)/_subsites/$(SEC_LANG)
-	mynt gen -f --locale=$(DEF_LANG) --base-url=/ ./$(TRG_DIR) ./$(TRG_DIR)/_site
-	mynt gen -f --locale=$(SEC_LANG) --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/_subsites/$(SEC_LANG) ./$(TRG_DIR)/_site/$(SEC_LANG)
 	# compass watch --config shared/_assets/css/_sass/config.rb --sass-dir ./shared/_assets/css/_sass --css-dir ./$(TRG_DIR)/assets/css/ &
 	# compass watch --config shared/_assets/css/_sass/config.rb --sass-dir ./shared/_assets/css/_sass --css-dir ./$(TRG_DIR)/$(SEC_LANG)/assets/css/ &
 
@@ -44,10 +33,10 @@ serve:
 	mynt serve --base-url=/ ./$(TRG_DIR)
 
 serve-sec:
-	mynt serve --base-url=/ ./$(TRG_DIR)/$(SEC_LANG)
+	mynt serve --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/$(SEC_LANG)
 
 watch:
 	mynt watch --base-url=/ ./$(TRG_DIR)
 
 watch-sec:
-	mynt watch --base-url=/ ./$(TRG_DIR)/$(SEC_LANG)
+	mynt watch --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/$(SEC_LANG)
