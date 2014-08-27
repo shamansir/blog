@@ -1,6 +1,4 @@
-It is the [mynt](http://mynt.mirroredwhite.com/) sources of
-[my 'No Word about Onion' blog](http://shamansir.github.com/blog).
-( [Russian version](http://shamansir.github.com/blog/ru) ).
+It is the [mynt](http://mynt.mirroredwhite.com/) sources of my 'No Word about Onion' blog: [English version](http://shamansir.github.com/blog) | [Russian version](http://shamansir.github.com/blog/ru).
 
 In fact, this one is implemented with [a bit modified version](https://github.com/shamansir/mynt) of [mynt](http://mynt.mirroredwhite.com/).
 
@@ -10,7 +8,7 @@ If you (ever) want to run this locally, you'll need to:
 
         git clone git@github.com:shamansir/blog.git
 
-1. Install [Compass](http://compass-style.org/), to use it from command-line
+1. Install [Compass](http://compass-style.org/), to use it from command-line (or [CodeKit](https://incident57.com/codekit/) to compile SASS files on the fly)
 1. Then clone my fork of mynt:
 
         git clone git@github.com:shamansir/mynt.git

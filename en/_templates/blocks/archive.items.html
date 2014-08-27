@@ -1,9 +1,0 @@
-<dl class="nwao-archive-items">
-    {% for month, posts in archive.months %}
-        {% for post in posts %}
-            <dt><i class="icon-time"></i>&nbsp;{{ post.timestamp|date('%B %d') }}</dt>
-            <dd>
-            	<a href="{{ get_url(post.url) }}"><i class="icon-file"></i>&nbsp;{{ post.title }}</a>{% if post.tags %}<div class="nwao-tags"><span class="nwao-hidden">&nbsp;Tagged <span>&raquo;</span> </span>{% for tag in post.tags %}<a href="{{ get_url(tags[tag].url) }}" rel="tag" title="Posts with '{{ tag }}' tag"><i class="icon-tag"></i>&nbsp;{{ tag }}</a>{% if not loop.last %}<span class="nwao-hidden">,</span> {% endif %}{% endfor %}</div>{% endif %}</dd>
-        {% endfor %}
-    {% endfor %}
-</dl>

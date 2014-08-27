@@ -4,12 +4,20 @@
 {% set title = 'nwao — Архив  &rsaquo; ' ~ archive.year %}
 
 {% block content %}
-	<div id="nwao-archive">
-		<div id="top" class="nwao-page-title-anchor">
-			<h2 id="nwao-page-title">
-				<a href="#top" title="Архив — {{ archive.year }}"><i class="icon-book"></i><span class="nwao-hidden">&nbsp;Архив&nbsp;&raquo;</span>&nbsp;{{ archive.year }}</a>
-			</h2>
-		</div>
-	    {% include 'blocks/archive.items.html' %}
-	</div>
+    <div id="nwao-archive">
+        <div id="top" class="nwao-page-title-anchor">
+            <h2 id="nwao-page-title">
+                <a href="#top" title="Архив — {{ archive.year }}"><i class="icon-book"></i><span class="nwao-hidden">&nbsp;Archive&nbsp;&raquo;</span>&nbsp;{{ archive.year }}</a>
+            </h2>
+        </div>
+        <dl class="nwao-archive-items">
+            {% for month, items in archive.months|items %}
+                {% for item in items %}
+                    <dt><i class="icon-time"></i>&nbsp;{{ item.timestamp|date('%B %d') }}</dt>
+                    <dd>
+                        <a href="{{ get_url(item.url) }}"><i class="icon-file"></i>&nbsp;{{ item.title }}</a>{% if item.tags %}<div class="nwao-tags"><span class="nwao-hidden">&nbsp;С тэгами <span>&raquo;</span> </span>{% for tag in item.tags %}<a href="{{ get_url(posts.tags[tag].url) }}" rel="tag" title="Посты с тэгом '{{ tag }}' tag"><i class="icon-tag"></i>&nbsp;{{ tag }}</a>{% if not loop.last %}<span class="nwao-hidden">,</span> {% endif %}{% endfor %}</div>{% endif %}</dd>
+                {% endfor %}
+            {% endfor %}
+        </dl>
+    </div>
 {% endblock %}
