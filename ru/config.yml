@@ -15,7 +15,8 @@
 base_url: /blog/ru/
 domain: shamansir.github.com
 # Posts URL
-posts_url: /articles/<title>/
+posts_root: /articles/
+posts_url: /articles/<slug>/
 
 
 #

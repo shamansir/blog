@@ -4,8 +4,9 @@
 {% set title = 'nwao — ' + item.title %}
 
 {% block breadcrumbs %}
-    <ul id="breadcrumbs">
-        <li><a href="{{ get_url() }}">■</a></li>
+    <ul id="nwao-breadcrumbs">
+        <li><a href="{{ get_url() }}">Blog</a></li>
+        <li><a href="{{ get_url('/articles') }}">Articles</a></li>
         <li>{{ item.title|truncate(75) }}</li>
     </ul>
 {% endblock %}

@@ -25,6 +25,10 @@
             {% if site.subtitle %}<div id="nwao-subtitle"><span>{{ site.subtitle }}</span></div>{% endif %}
         </div>
 
+        {% block breadcrumbs %}{% endblock %}
+
+        {% block dive %}{% endblock %}
+
         <div id="nwao-content">
             {% block content %}{% endblock %}
         </div>

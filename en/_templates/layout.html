@@ -25,14 +25,9 @@
             {% if site.subtitle %}<div id="nwao-subtitle"><span>{{ site.subtitle }}</span></div>{% endif %}
         </div>
 
-        <!--
-        <nav>
-          <div id="nwao-dive">
-            <a href="#" id="nwao-prev">← Previous post</a><span> | </span>
-            <a href="#" id="nwao-next">Next post →</a>
-          </div>
-        </nav>
-        -->
+        {% block breadcrumbs %}{% endblock %}
+
+        {% block dive %}{% endblock %}
 
         <div id="nwao-content">
             {% block content %}{% endblock %}

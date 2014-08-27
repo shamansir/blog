@@ -3,6 +3,14 @@
 
 {% set title = 'nwao — Архив  &rsaquo; ' ~ archive.year %}
 
+{% block breadcrumbs %}
+    <ul id="nwao-breadcrumbs">
+        <li><a href="{{ get_url() }}">Блог</a></li>
+        <li><a href="{{ get_url('/archives') }}">Архив</a></li>
+        <li>{{ archive.year }}</li>
+    </ul>
+{% endblock %}
+
 {% block content %}
     <div id="nwao-archive">
         <div id="top" class="nwao-page-title-anchor">
@@ -11,8 +19,8 @@
             </h2>
         </div>
         <dl class="nwao-archive-items">
-            {% for month, items in archive.months|items %}
-                {% for item in items %}
+            {% for month in archive.months|values %}
+                {% for item in month %}
                     <dt><i class="icon-time"></i>&nbsp;{{ item.timestamp|date('%B %d') }}</dt>
                     <dd>
                         <a href="{{ get_url(item.url) }}"><i class="icon-file"></i>&nbsp;{{ item.title }}</a>{% if item.tags %}<div class="nwao-tags"><span class="nwao-hidden">&nbsp;С тэгами <span>&raquo;</span> </span>{% for tag in item.tags %}<a href="{{ get_url(posts.tags[tag].url) }}" rel="tag" title="Посты с тэгом '{{ tag }}' tag"><i class="icon-tag"></i>&nbsp;{{ tag }}</a>{% if not loop.last %}<span class="nwao-hidden">,</span> {% endif %}{% endfor %}</div>{% endif %}</dd>
