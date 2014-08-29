@@ -1,0 +1,16 @@
+<!-- <dt class="nwao-date"><i class="icon-time"></i>&nbsp;{{ item.timestamp|date('%B %d') }}</dt>
+<dd class="nwao-post">
+    <h2>
+        <a href="{{ get_url(item.url) }}">
+            <i class="icon-file"></i>&nbsp;{{ item.title }}
+        </a>
+    </h2>
+    {% include 'blocks/post.info.html' %}
+</dd> -->
+
+<div class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="{{ get_url(item.url) }}" title="{{ item.title }}">{{ item.title }}</a>
+    </h2>
+    {% include 'blocks/post.info.html' %}
+</div>

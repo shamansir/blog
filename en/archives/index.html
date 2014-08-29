@@ -19,15 +19,15 @@
             <dl class="nwao-archives-year">
                 <dt><a href="{{ get_url(archive.url) }}" title="Archives — {{ year }}" class="nwao-button"><i class="icon-calendar"></i>&nbsp;{{ year }}</a></dt>
                 <dd>
-                    <dl class="nwao-archive-items">
+                    <ul class="nwao-archive-items">
                         {% for month, items in archive.months|items %}
-                            {% for item in items %}
-                                <dt><i class="icon-time"></i>&nbsp;{{ item.timestamp|date('%B %d') }}</dt>
-                                <dd>
-                                    <a href="{{ get_url(item.url) }}"><i class="icon-file"></i>&nbsp;{{ item.title }}</a>{% if item.tags %}<div class="nwao-tags"><span class="nwao-hidden">&nbsp;Tagged <span>&raquo;</span> </span>{% for tag in item.tags %}<a href="{{ get_url(posts.tags[tag].url) }}" rel="tag" title="Posts with '{{ tag }}' tag"><i class="icon-tag"></i>&nbsp;{{ tag }}</a>{% if not loop.last %}<span class="nwao-hidden">,</span> {% endif %}{% endfor %}</div>{% endif %}</dd>
+                            {% for item in month %}
+                                <li>
+                                    {% include 'blocks/post.header.html' %}
+                                </li>
                             {% endfor %}
                         {% endfor %}
-                    </dl>
+                    </ul>
                 </dd>
             </dl>
         {% endfor %}

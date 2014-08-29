@@ -1,0 +1,14 @@
+<div id="nwao-header">
+    <div id="nwao-holder">
+        <nav id="nwao-nav"><ul>
+            <li><a href="{{ get_url() }}" rel="contents" title="Blog"><i class="icon-home"></i>&nbsp;Blog</a></li>
+            <li><a href="{{ get_url('archives/') }}" rel="index" title="Archives"><i class="icon-book"></i>&nbsp;Archives</a></li>
+            <li><a href="http://shamansir.github.com" rel="author" title="Author"><i class="icon-user"></i>&nbsp;Author</a></li>
+            <!-- TODO: TAGS PAGE -->
+            {% if site.feed %}<li><a href="{{ get_url('feed.xml') }}" title="Feed"><i class="icon-rss"></i>&nbsp;Feed</a></li>{% endif %}
+        </ul></nav>
+
+        <h1 id="nwao-title"><a href="{{ get_url() }}" title="{{ site.title }}">{{ site.title }}</a></h1>
+    </div>
+    {% if site.subtitle %}<div id="nwao-subtitle"><span>{{ site.subtitle }}</span></div>{% endif %}
+</div>

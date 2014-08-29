@@ -1,0 +1,19 @@
+<dl class="nwao-post-infoline">
+    <dt class="nwao-hidden">Published at</dt>
+    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;{{ item.timestamp|date('%d %B %Y, %A') }}</dd>
+    {% if item.tags %}
+        <dt class="nwao-tags-title">Tags</dt>
+        <dd>
+            <div class="nwao-tags">
+                {% for tag in item.tags %}
+                    <a href="{{ get_url(posts.tags[tag].url) }}" rel="tag" title="Posts with '{{ tag }}' tag">
+                        <i class="icon-tag"></i>&nbsp;{{ tag }}
+                    </a>
+                    {% if not loop.last %}
+                        <span class="nwao-comma">,&nbsp;</span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </dd>
+    {% endif %}
+</dl>

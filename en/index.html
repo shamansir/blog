@@ -10,30 +10,20 @@
 
     <div id="nwao-blog-feed">
 
-    <div id="top" class="nwao-page-title-anchor"><h2 id="nwao-page-title"><a href="#top" title="Incoming"><i class="icon-arrow-down"></i>&nbsp;Incoming</a></h2></div>
+    <div id="top" class="nwao-page-title-anchor">
+        <h2 id="nwao-page-title">
+            <a href="#top" title="Incoming">
+                <i class="icon-arrow-down"></i>&nbsp;Incoming
+            </a>
+        </h2>
+    </div>
 
     {% for item in posts.items %}
         {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}
 
         <section class="nwao-blog-feed-item">
 
-            <div class="nwao-post-header">
-                <h2 class="nwao-post-title">
-                    <a href="{{ get_url(item.url) }}" title="{{ item.title }}">{{ item.title }}</a>
-                </h2>
-                <dl class="nwao-post-infoline">
-                    <dt class="nwao-hidden">Published at</dt>
-                    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;{{ item.timestamp|date('%d %B %Y, %A') }}</dd>
-                    {% if item.tags %}
-                        <dt class="nwao-hidden">Tags</dt>
-                        <dd class="nwao-tags">
-                        {% for tag in item.tags %}
-                            <a href="{{ get_url(posts.tags[tag].url) }}" rel="tag" title="Posts with '{{ tag }}' tag"><i class="icon-tag"></i>&nbsp;{{ tag }}</a>{% if not loop.last %}<span class="nwao-hidden">,</span> {% endif %}
-                        {% endfor %}
-                        </dd>
-                    {% endif %}
-                </dl>
-            </div>
+            {% include 'blocks/post.header.html' %}
 
             <div class="nwao-post-excerpt">
                 <p>{% if item.excerpt %}{{ item.excerpt }}{% else %}{{ item.content }}{% endif %}</p>
