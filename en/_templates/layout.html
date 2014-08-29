@@ -11,7 +11,7 @@
 <body>
     <div id="nwao-page">
 
-        {% include 'blocks/blog.header.html' %}
+        {% include '_blocks/blog.header.html' %}
 
         <ul id="nwao-lang-switch">
             <li>English Version</li>
@@ -29,7 +29,7 @@
         </div>
 
         {% if site.social.values()|sort(true)|first %}
-            {% include 'blocks/social.html' %}
+            {% include '_blocks/social.html' %}
         {% endif %}
 
         <div id="nwao-footer">

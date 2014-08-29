@@ -23,7 +23,7 @@
 
             <div class="nwao-item-marker"><i class="icon-file"></i></div>
 
-            {% include 'blocks/post.header.html' %}
+            {% include '_blocks/post.header.html' %}
 
             <div class="nwao-post-excerpt">
                 <p>{% if post.excerpt %}{{ post.excerpt }}{% else %}{{ post.content }}{% endif %}</p>
@@ -39,7 +39,7 @@
 
     {% if site.post_limit and posts.items|length > site.post_limit %}
         <div id="nwao-pagination">
-            <p><a href="{{ get_url('archives/') }}" title="All Articles">Previous articles</a></p>
+            <p><a href="{{ get_url('archives/') }}" title="All Articles">Previous&nbsp;articles</a></p>
         </div>
     {% endif %}
 
