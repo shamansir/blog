@@ -10,6 +10,7 @@
 
 <body>
     <div id="nwao-page">
+
         {% include 'blocks/header.html' %}
 
         <ul id="nwao-lang-switch">
@@ -20,6 +21,8 @@
         {% block breadcrumbs %}{% endblock %}
 
         {% block dive %}{% endblock %}
+
+        <div id="top"></div>
 
         <div id="nwao-content">
             {% block content %}{% endblock %}
@@ -33,7 +36,7 @@
             <p>{% if site.author %}Copyright &copy; {{ none|date('%Y') }} {{ site.author }} &ndash; {% endif %}powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
         </div>
 
-        <div id="nwao-jump-to-top"><a href="#top" title="Jump to top">Top</a></div>
+        <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
 
         <!--
         <script type="text/javascript" src="{{ get_asset('js/scrolls.js') }}"></script>

@@ -13,18 +13,19 @@
 
 {% block content %}
 	<div id="nwao-archive">
-		<div id="top" class="nwao-page-title-anchor">
-			<h2 id="nwao-page-title">
-				<a href="#top" title="Archives — {{ archive.year }}"><i class="icon-book"></i><span class="nwao-hidden">&nbsp;Archives&nbsp;&raquo;</span>&nbsp;{{ archive.year }}</a>
-			</h2>
-		</div>
+
+        <h2 id="nwao-page-title">
+            <a href="#top" title="Archives — {{ archive.year }}">
+                <i class="icon-book"></i>
+                <span id="nwao-page-title-primary">Archives</span>
+                <span id="nwao-page-title-splitter">&mdash;</span>
+                <span id="nwao-page-title-secondary">{{ archive.year }}</span>
+            </a>
+        </h2>
+
 	    <ul class="nwao-archive-items">
-            {% for month in archive.months|values %}
-                {% for item in month %}
-                    <li>
-                        {% include 'blocks/post.header.html' %}
-                    </li>
-                {% endfor %}
+            {% for month, item in archive.months|items %}
+                {% include 'blocks/archive.month.html' %}
             {% endfor %}
         </ul>
 	</div>

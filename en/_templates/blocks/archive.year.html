@@ -1,0 +1,14 @@
+<dl class="nwao-archives-year">
+    <dt>
+        <a href="{{ get_url(archive.url) }}" title="Archives — {{ year }}">
+            <i class="icon-calendar"></i>{{ year }}
+        </a>
+    </dt>
+    <dd>
+        <ul class="nwao-archive-items">
+            {% for month, items in archive.months|items %}
+                {% include 'blocks/archive.month.html' %}
+            {% endfor %}
+        </ul>
+    </dd>
+</dl>
