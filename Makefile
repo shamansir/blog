@@ -1,6 +1,10 @@
 ROOT_DIR=`pwd`
+
 DEF_LANG=en
 SEC_LANG=ru
+DEF_LANG_LOCALE=en_EN.UTF-8
+SEC_LANG_LOCALE=ru_RU.UTF-8
+
 TRG_DIR=.site
 SRC_DIR=.cache
 
@@ -24,8 +28,8 @@ build:
 	cp -R ./$(SEC_LANG)/* ./$(SRC_DIR)/$(SEC_LANG)
 	cp -R ./shared/* ./$(SRC_DIR)/$(SEC_LANG)
 
-	mynt gen -f --locale=$(DEF_LANG) --base-url=/ ./$(SRC_DIR)/$(DEF_LANG) ./$(TRG_DIR)
-	mynt gen -f --locale=$(SEC_LANG) --base-url=/$(SEC_LANG)/ ./$(SRC_DIR)/$(SEC_LANG) ./$(TRG_DIR)/$(SEC_LANG)
+	mynt gen -f --base-url=/ ./$(SRC_DIR)/$(DEF_LANG) ./$(TRG_DIR)
+	mynt gen -f --locale=$(SEC_LANG_LOCALE) --base-url=/$(SEC_LANG)/ ./$(SRC_DIR)/$(SEC_LANG) ./$(TRG_DIR)/$(SEC_LANG)
 	# compass watch --config shared/_assets/css/_sass/config.rb --sass-dir ./shared/_assets/css/_sass --css-dir ./$(TRG_DIR)/assets/css/ &
 	# compass watch --config shared/_assets/css/_sass/config.rb --sass-dir ./shared/_assets/css/_sass --css-dir ./$(TRG_DIR)/$(SEC_LANG)/assets/css/ &
 
