@@ -17,3 +17,20 @@
         </li>
     {% endfor %}
 {% endmacro %}
+
+<!--
+
+        if self.render_flags & h.HTML_TOC:
+
+            def print_leaf(leaf, prefix = ''):
+                print '-----'
+                print(prefix + 'level:' + str(leaf.level))
+                print(prefix + 'hlevel:' + str(leaf.hlevel))
+                print(prefix + 'text:' + (leaf.text or 'None'))
+                print(prefix + 'identifier:' + (leaf.identifier or 'None'))
+                for child_leaf in leaf.children:
+                    print_leaf(child_leaf, '  ' + prefix)
+
+            print_leaf(self._toc_tree)
+
+-->

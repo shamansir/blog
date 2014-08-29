@@ -24,12 +24,6 @@
 
         <div id="top"></div>
 
-        {% if toc %}
-            <ul id="toc">
-                {{ _m.toc(toc) }}
-            </ul>
-        {% endif %}        
-
         <div id="nwao-content">
             {% block content %}{% endblock %}
         </div>

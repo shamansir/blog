@@ -40,7 +40,7 @@ title: No word about onion
 # The amount of posts that will be displayed on the front page.
 #   Leave blank or set to `false` to disable.
 post_limit: 10
-#time_locale: ru_RU.UTF-8
+#time_locale: en_EN.UTF-8
 
 
 #
@@ -66,17 +66,15 @@ social:
     # TODO: add coderwall & speakerdeck
 
 
-#
-# Chances are you probably don't need to touch anything below here.
-#
 archive_layout: archive.html
 archives_url: /archives/
 figures_url: /figures/
 jinja:
     extensions:
         - jinja2.ext.loopcontrols
-misaka:
+hoep:
     render_flags:
         toc: true
 tag_layout: tag.html
 tags_url: /tags/
+pygmentize: true
