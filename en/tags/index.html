@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+
+{% set title = 'nwao — Tags' %}
+
+{% block breadcrumbs %}
+    <ul id="nwao-breadcrumbs">
+        <li><a href="{{ get_url() }}">Blog</a></li>
+        <li>Tags</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div id="nwao-all-tags">
+
+        <h2 id="nwao-page-title">
+            <a href="#top" title="Tags">
+                <i class="icon-tag"></i>Tags
+            </a>
+        </h2>
+
+        <ul class="nwao-tag-cloud">
+            {% for tag in posts.tags|values %}
+                <li>
+                    <a href="{{ get_url(tag.url) }}" rel="tag"
+                      title="Posts with '{{ tag }}' tag"><i class="icon-tag"></i>{{ tag.name }}</a>
+                    {% if tag.count %}
+                        <span class="tag-count">{{ tag.count }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}
