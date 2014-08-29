@@ -28,12 +28,8 @@
                 </dt>
                 <dd>
                     <ul class="nwao-archive-items">
-                        {% for month, items in archive.months|items %}
-                            {% for item in month %}
-                                <li>
-                                    {% include 'blocks/post.header.html' %}
-                                </li>
-                            {% endfor %}
+                        {% for month, posts in archive.months|items %}
+                            {% include 'blocks/archive.month.html' %}
                         {% endfor %}
                     </ul>
                 </dd>

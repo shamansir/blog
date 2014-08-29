@@ -16,7 +16,7 @@
         </a>
     </h2>
 
-    {% for item in posts.items %}
+    {% for post in posts %}
         {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}
 
         <section class="nwao-blog-feed-item">
@@ -26,10 +26,10 @@
             {% include 'blocks/post.header.html' %}
 
             <div class="nwao-post-excerpt">
-                <p>{% if item.excerpt %}{{ item.excerpt }}{% else %}{{ item.content }}{% endif %}</p>
+                <p>{% if post.excerpt %}{{ post.excerpt }}{% else %}{{ post.content }}{% endif %}</p>
             </div>
 
-            <a href="{{ get_url(item.url) }}" title="Continue Reading" class="nwao-continue">
+            <a href="{{ get_url(post.url) }}" title="Continue Reading" class="nwao-continue">
                 Continue&nbsp;Reading
             </a>
 

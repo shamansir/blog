@@ -24,7 +24,7 @@
         </h2>
 
 	    <ul class="nwao-archive-items">
-            {% for month, item in archive.months|items %}
+            {% for month, month_posts in archive.months|items %}
                 {% include 'blocks/archive.month.html' %}
             {% endfor %}
         </ul>
