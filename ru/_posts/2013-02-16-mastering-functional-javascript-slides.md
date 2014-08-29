@@ -31,5 +31,3 @@ tags: [ javascript, lecture, web-dev, functions ]
 
 Lyfe.js: [bitbucket.org/balpha/lyfe](http://bitbucket.org/balpha/lyfe)<br/>
 Статья о lyfe.js: [Introducing Lyfe: yield in JavaScript](http://balpha.de/2011/06/introducing-lyfe-yield-in-javascript)
-
-

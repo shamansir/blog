@@ -13,8 +13,8 @@
 
 {% block dive %}
   <div id="nwao-dive">
-    {% if item.prev %}<a href="{{ item.prev.url }}" id="nwao-prev">← Previous post</a>{% endif %}
-    {% if item.next %}<a href="{{ item.next.url }}" id="nwao-next">Next post →</a>{% endif %}
+    {% if item.prev %}<a href="{{ item.prev.url }}" id="nwao-prev">Previous post</a>{% endif %}
+    {% if item.next %}<a href="{{ item.next.url }}" id="nwao-next">Next post</a>{% endif %}
   </div>
 {% endblock %}
 
