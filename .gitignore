@@ -1,3 +1,5 @@
 .site
 .cache
-shared/_assets/css/**/_src.*
+.sass-cache
+.fonts
+config.codekit
