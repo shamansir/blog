@@ -1,6 +1,8 @@
+<!-- {{ post.timestamp|date('%B %d') }} -->
+
 <header class="nwao-post-header">
-    <h2 class="nwao-post-title">
+    <h3 class="nwao-post-title">
         <a href="{{ get_url(post.url) }}" title="{{ post.title }}">{{ post.title }}</a>
-    </h2>
+    </h3>
     {% include '_blocks/post.info.html' %}
 </header>

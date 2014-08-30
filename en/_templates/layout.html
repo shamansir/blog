@@ -1,4 +1,5 @@
 {% from 'macros.html' import toc as build_toc %}
+{% from 'macros.html' import breadcrumbs %}
 
 <!DOCTYPE html>
 
@@ -11,45 +12,43 @@
 </head>
 
 <body>
-    <div id="nwao-page">
 
-        {% include '_blocks/blog.header.html' %}
+    {% include '_blocks/blog.header.html' %}
 
-        <ul id="nwao-lang-switch">
-            <li>English Version</li>
-            <li><a href="./ru" title="Russian Version">Russian Version</a></li>
-        </ul>
+    <ul id="nwao-lang-switch">
+        <li>English Version</li>
+        <li><a href="./ru" title="Russian Version">Russian Version</a></li>
+    </ul>
 
-        {% block breadcrumbs %}{% endblock %}
+    {% if crumbs %}
+        {{ breadcrumbs(crumbs) }}
+    {% endif %}
 
-        {% block dive %}{% endblock %}
+    {% block dive %}{% endblock %}
 
-        {% block toc %}{% endblock %}
+    {% if toc %}
+        {{ build_toc(toc) }}
+    {% endif %}
 
-        <div id="top"></div>
+    <div id="top"></div>
 
-        <div id="nwao-content">
-            {% block content %}{% endblock %}
-        </div>
+    <section id="nwao-content">
+        {% block content %}{% endblock %}
+    </section>
 
-        {% if site.social.values()|sort(true)|first %}
-            {% include '_blocks/social.html' %}
-        {% endif %}
+    {% if site.social.values()|sort(true)|first %}
+        {% include '_blocks/social.html' %}
+    {% endif %}
 
-        <div id="nwao-footer">
-            <p>{% if site.author %}Copyright &copy; {{ none|date('%Y') }} {{ site.author }} &ndash; {% endif %}powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
-        </div>
+    <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
 
-        <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
+    <footer id="nwao-footer">
+        <p>{% if site.author %}Copyright &copy; {{ none|date('%Y') }} {{ site.author }} &ndash; {% endif %}powered by <a href="http://mynt.mirroredwhite.com/">mynt</a></p>
+    </footer>
 
-        <!--
-        <script type="text/javascript" src="{{ get_asset('js/scrolls.js') }}"></script>
-        <script type="text/javascript" src="{{ get_asset('js/page.scrolls.js') }}"></script> -->
+    <!--
+    <script type="text/javascript" src="{{ get_asset('js/scrolls.js') }}"></script>
+    <script type="text/javascript" src="{{ get_asset('js/page.scrolls.js') }}"></script> -->
 
-
-        </script>
-    </div>
-
-    <div id="nwao-onion"></div>
 </body>
 </html>

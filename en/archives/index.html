@@ -3,15 +3,13 @@
 
 {% set title = 'nwao — Archives' %}
 
-{% block breadcrumbs %}
-    <ul id="nwao-breadcrumbs">
-        <li><a href="{{ get_url() }}">Blog</a></li>
-        <li>Archives</li>
-    </ul>
-{% endblock %}
+{% set crumbs = (
+    ('Blog',''),
+    ('Archives',None)
+) %}
 
 {% block content %}
-    <div id="nwao-archives">
+    <section id="nwao-archives">
 
         <h2 id="nwao-page-title">
             <a href="#top" title="Articles">
@@ -29,7 +27,7 @@
                 <dd>
                     <ul class="nwao-archive-items">
                         {% for month, month_posts in archive.months|items %}
-                            {% include '_blocks/archive.month.html' %}
+                            {% include '_blocks/list.month.html' %}
                         {% endfor %}
                     </ul>
                 </dd>

@@ -3,16 +3,14 @@
 
 {% set title = 'nwao — Tag  &rsaquo; ' ~ tag.name %}
 
-{% block breadcrumbs %}
-    <ul id="nwao-breadcrumbs">
-        <li><a href="{{ get_url() }}">Blog</a></li>
-        <li><a href="{{ get_url('/tags') }}">Tags</a></li>
-        <li>{{ tag.name }}</li>
-    </ul>
-{% endblock %}
+{% set crumbs = (
+    ('Blog',''),
+    ('Tags','/tags'),
+    (tag.name, None)
+) %}
 
 {% block content %}
-    <div id="nwao-tagged">
+    <section id="nwao-tagged">
 
         <h2 id="nwao-page-title">
             <a href="#top" title="Tag — {{ tag.name }}">
@@ -24,7 +22,7 @@
         </h2>
 
         {% for year, archive in tag.archives|items %}
-            {% include '_blocks/archive.year.html' %}
+            {% include '_blocks/list.year.html' %}
         {% endfor %}
-    </div>
+    </section>
 {% endblock %}

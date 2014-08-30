@@ -1,10 +1,8 @@
 {% extends 'layout.html' %}
 
-{% block breadcrumbs %}
-    <ul id="nwao-breadcrumbs">
-        <li>Blog</li>
-    </ul>
-{% endblock %}
+{% set crumbs = (
+    ('Blog',None),
+) %}
 
 {% block content %}
 
@@ -23,7 +21,7 @@
 
             <div class="nwao-item-marker"><i class="icon-file"></i></div>
 
-            {% include '_blocks/post.header.html' %}
+            {% include '_blocks/list.post.header.html' %}
 
             <div class="nwao-post-excerpt">
                 <p>{% if post.excerpt %}{{ post.excerpt }}{% else %}{{ post.content }}{% endif %}</p>

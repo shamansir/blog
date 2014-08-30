@@ -3,12 +3,10 @@
 
 {% set title = 'nwao — Tags' %}
 
-{% block breadcrumbs %}
-    <ul id="nwao-breadcrumbs">
-        <li><a href="{{ get_url() }}">Blog</a></li>
-        <li>Tags</li>
-    </ul>
-{% endblock %}
+{% set crumbs = (
+    ('Blog',''),
+    ('Tags',None)
+) %}
 
 {% block content %}
     <div id="nwao-all-tags">

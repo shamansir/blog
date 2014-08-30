@@ -1,7 +1,11 @@
 <dl class="nwao-post-infoline">
     <dt class="nwao-published">Published at</dt>
     <dd class="nwao-published">
-        <i class="icon-time"></i>{{ post.timestamp|date('%d %B %Y, %A') }}
+        <a href="{{ get_url('archives/' + post.timestamp|date('%Y') + '/') }}"
+           title="{{ post.timestamp|date('%d %B %Y, %A. %H:%M') }}">
+           <i class="icon-time"></i>
+           <time datetime="%d-%m-%Y" pubdate>{{ post.timestamp|date('%B %d') }}</time>
+        </a>
     </dd>
     {% if post.tags %}
         <dt class="nwao-tags-title">Tags</dt>

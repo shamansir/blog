@@ -5,37 +5,35 @@
 
 {% set title = 'nwao — ' + post.title %}
 
-{% block breadcrumbs %}
-    <ul id="nwao-breadcrumbs">
-        <li><a href="{{ get_url() }}">Blog</a></li>
-        <li><a href="{{ get_url('/articles') }}">Articles</a></li>
-        <li>{{ post.title|truncate(75) }}</li>
-    </ul>
-{% endblock %}
+{% set crumbs = (
+    ('Blog',''),
+    ('Articles','/articles'),
+    (post.title|truncate(75), None)
+) %}
+
+{% set toc = post.toc %}
 
 {% block dive %}
-  <div id="nwao-dive">
-    {% if post.prev %}<a href="{{ post.prev.url }}" id="nwao-prev">Previous article</a>{% endif %}
-    {% if post.next %}<a href="{{ post.next.url }}" id="nwao-next">Next article</a>{% endif %}
-  </div>
+    <nav role="dive">
+        <ul id="nwao-dive">
+            {% if post.prev %}
+                <li>
+                    <a href="{{ post.prev.url }}"
+                       title="{{ post.prev.title }}" id="nwao-prev">Previous article</a>
+                </li>
+            {% endif %}
+            {% if post.next %}
+                <li>
+                    <a href="{{ post.next.url }}"
+                       title="{{ post.next.title }}" id="nwao-next">Next article</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 {% endblock %}
-
-{% if post.toc %}
-    {% block toc %}
-        {% if post.toc.children|length > 0 %}
-            <nav role="article-navigation">
-                <label for="nwao-toc">Contents:</label>
-                <ul id="nwao-toc">
-                    {{ build_toc(post.toc) }}
-                </ul>
-            </nav>
-        {% endif %}
-    {% endblock %}
-{% endif %}
 
 {% block content %}
     <article id="nwao-post">
-        <div id="top"></div>
         {% include '_blocks/post.header.html' %}
 
         <div class="nwao-post-content">
