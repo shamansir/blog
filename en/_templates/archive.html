@@ -3,6 +3,8 @@
 
 {% set title = 'nwao — Archives  &rsaquo; ' ~ archive.year %}
 
+{% set section_id = 'archive' %}
+
 {% set crumbs = (
     ('Blog',''),
     ('Archives','/archives'),
@@ -10,21 +12,16 @@
 ) %}
 
 {% block content %}
-	<div id="nwao-archive">
+    <h2 id="nwao-page-title">
+        <a href="#top" title="Archives — {{ archive.year }}">
+            <i class="icon-book"></i>
+            <span id="nwao-page-title-primary">Archives</span>
+            <span id="nwao-page-title-splitter">&ndash;</span>
+            <span id="nwao-page-title-secondary">{{ archive.year }}</span>
+        </a>
+    </h2>
 
-        <h2 id="nwao-page-title">
-            <a href="#top" title="Archives — {{ archive.year }}">
-                <i class="icon-book"></i>
-                <span id="nwao-page-title-primary">Archives</span>
-                <span id="nwao-page-title-splitter">&ndash;</span>
-                <span id="nwao-page-title-secondary">{{ archive.year }}</span>
-            </a>
-        </h2>
-
-	    <ul class="nwao-archive-items">
-            {% for month, month_posts in archive.months|items %}
-                {% include '_blocks/list.month.html' %}
-            {% endfor %}
-        </ul>
-	</div>
+    {% for month, month_posts in archive.months|items %}
+        {% include '_blocks/list.month.html' %}
+    {% endfor %}
 {% endblock %}

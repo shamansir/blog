@@ -1,12 +1,13 @@
 {% extends 'layout.html' %}
 
+
+{% set section_id = 'feed' %}
+
 {% set crumbs = (
     ('Blog',None),
 ) %}
 
 {% block content %}
-
-    <div id="nwao-blog-feed">
 
     <h2 id="nwao-page-title">
         <a href="#top" title="Articles">
@@ -17,7 +18,7 @@
     {% for post in posts %}
         {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}
 
-        <section class="nwao-blog-feed-item">
+        <article class="nwao-blog-feed-item">
 
             <div class="nwao-item-marker"><i class="icon-file"></i></div>
 
@@ -31,7 +32,7 @@
                 Continue&nbsp;Reading
             </a>
 
-        </section>
+        </article>
 
     {% endfor %}
 
@@ -40,7 +41,5 @@
             <p><a href="{{ get_url('archives/') }}" title="All Articles">Previous&nbsp;articles</a></p>
         </div>
     {% endif %}
-
-    </div> <!-- / #nwao-blog-feed -->
 
 {% endblock %}

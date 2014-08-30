@@ -5,6 +5,8 @@
 
 {% set title = 'nwao — ' + post.title %}
 
+{% set section_id = 'post' %}
+
 {% set crumbs = (
     ('Blog',''),
     ('Articles','/articles'),
@@ -33,7 +35,7 @@
 {% endblock %}
 
 {% block content %}
-    <article id="nwao-post">
+    <article>
         {% include '_blocks/post.header.html' %}
 
         <div class="nwao-post-content">

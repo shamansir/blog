@@ -32,7 +32,7 @@
 
     <div id="top"></div>
 
-    <section id="nwao-content">
+    <section id="nwao-content"{% if section_id %} class="nwao-{{ section_id }}"{% endif %}>
         {% block content %}{% endblock %}
     </section>
 
