@@ -22,12 +22,14 @@
 
 {% if post.toc %}
     {% block toc %}
-        <nav role="article-navigation">
-            <label for="nwao-toc">Contents:</label>
-            <ul id="nwao-toc">
-                {{ build_toc(post.toc) }}
-            </ul>
-        </nav>
+        {% if post.toc.children|length > 0 %}
+            <nav role="article-navigation">
+                <label for="nwao-toc">Contents:</label>
+                <ul id="nwao-toc">
+                    {{ build_toc(post.toc) }}
+                </ul>
+            </nav>
+        {% endif %}
     {% endblock %}
 {% endif %}
 
