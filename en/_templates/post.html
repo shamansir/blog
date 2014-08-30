@@ -20,7 +20,16 @@
   </div>
 {% endblock %}
 
-<!-- TODO: TOC -->
+{% if post.toc %}
+    {% block toc %}
+        <nav role="article-navigation">
+            <label for="nwao-toc">Contents:</label>
+            <ul id="nwao-toc">
+                {{ build_toc(post.toc) }}
+            </ul>
+        </nav>
+    {% endblock %}
+{% endif %}
 
 {% block content %}
     <article id="nwao-post">

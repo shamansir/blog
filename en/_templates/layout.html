@@ -1,3 +1,5 @@
+{% from 'macros.html' import toc as build_toc %}
+
 <!DOCTYPE html>
 
 <html>
@@ -21,6 +23,8 @@
         {% block breadcrumbs %}{% endblock %}
 
         {% block dive %}{% endblock %}
+
+        {% block toc %}{% endblock %}
 
         <div id="top"></div>
 

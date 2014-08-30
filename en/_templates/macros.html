@@ -1,36 +1,22 @@
-<!-- from https://github.com/Anomareh/mynt/blob/master/docs/_templates/macros.html -->
-
-{% macro toc(tree, parent = none) %}
-    {% for node in tree %}
-        {% set name = node[0] %}
-        {% set anchor = name|lower|replace(' ', '-') %}
-        {% set children = node[1]|default(none) %}
-
-        <li>
-            <a href="#{% if parent %}{{ parent }}.{% endif %}{{ anchor }}">{{ name }}</a>
-
-            {% if children %}
-                <ul class="toc-section">
-                    {{ toc(children, '%s.%s'|format(parent, anchor) if parent else anchor) }}
-                </ul>
-            {% endif %}
-        </li>
-    {% endfor %}
-{% endmacro %}
-
-<!--
-
-        if self.render_flags & h.HTML_TOC:
-
-            def print_leaf(leaf, prefix = ''):
-                print '-----'
-                print(prefix + 'level:' + str(leaf.level))
-                print(prefix + 'hlevel:' + str(leaf.hlevel))
-                print(prefix + 'text:' + (leaf.text or 'None'))
-                print(prefix + 'identifier:' + (leaf.identifier or 'None'))
-                for child_leaf in leaf.children:
-                    print_leaf(child_leaf, '  ' + prefix)
-
-            print_leaf(self._toc_tree)
-
--->
+{% macro toc(leaf) %}
+    {% if leaf %}
+        {% if leaf.parent %}
+            {# the root leaf has no parent #}
+            <li>
+                <a href="#{{ leaf.identifier }}" title="{{ leaf.text }}">{{ leaf.text }}</a>
+                {% if leaf.children %}
+                    <ul>
+                        {% for subleaf in leaf.children %}
+                            {{ toc(subleaf) }}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% else %}
+            {# the root leaf should just fall inside #}
+            {% for subleaf in leaf.children %}
+                {{ toc(subleaf) }}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+{%- endmacro %}
