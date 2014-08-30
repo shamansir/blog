@@ -25,6 +25,7 @@ build:
 
 	cp -R ./$(DEF_LANG)/* ./$(SRC_DIR)/$(DEF_LANG)
 	cp -R ./shared/* ./$(SRC_DIR)/$(DEF_LANG)
+
 	cp -R ./$(SEC_LANG)/* ./$(SRC_DIR)/$(SEC_LANG)
 	cp -R ./shared/* ./$(SRC_DIR)/$(SEC_LANG)
 
