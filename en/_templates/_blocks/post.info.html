@@ -4,7 +4,7 @@
         <a href="{{ get_url('archives/' + post.timestamp|date('%Y') + '/') }}"
            title="{{ post.timestamp|date('%d %B %Y, %A. %H:%M') }}">
            <i class="icon-time"></i>
-           <time datetime="%d-%m-%Y" pubdate>{{ post.timestamp|date('%B %d') }}</time>
+           <time datetime="%d-%m-%Y" pubdate>{{ post.timestamp|date('%d %b %Y') }}</time>
         </a>
     </dd>
     {% if post.tags %}
