@@ -9,7 +9,7 @@ p, .nwao-post ul
     line-height: 1.45em
     font-size: 0.9em
 
-code, pre
+code, pre, div.code
     font-family: 'Input Mono Ex Lt'
     font-size: 0.85em
 
@@ -71,9 +71,11 @@ a:hover
 
 /* nav[role='breadcrumbs'] */
 #nwao-breadcrumbs
+    border-top: 1px dashed #eee
     list-style-type: none
     font-size: 0.8em
     padding-left: 0
+    margin-top: 0.3em
 
     &:before
         float: left
@@ -93,36 +95,110 @@ a:hover
             position: relative
             left: 0.3em
 
-    &:after
-        clear: both
-
 #nwao-toc
     position: fixed
     left: 70%
     top: 30%
 
+#nwao-social
+    display: none
+    // position: fixed
+    // bottom: 3em
+    // opacity: 0.6
+    // list-style-type: none
+    //
+    // li
+    //     float: left
+    //
+    //     a
+    //         border: none
+
+
 #nwao-content.nwao-post
     margin-top: 7em
 
-    ul
+    ul, ol
         margin-bottom: 2em
+        font-size: 0.9em
 
-        ul
+        ul, ol
             margin-bottom: 1.3em
 
         li
             line-height: 1.8em
             margin: 0.3em 0
 
-#nwao-header h1
-    position: relative
-    left: -0.8em
+#nwao-header
 
-    &:before
-        content: '»'
+    h1
+        position: relative
+        left: -0.8em
+        margin-bottom: 0.45em
+
+        &:before
+            content: '»'
+
+        &:after
+            content: '«'
+
+    #nwao-subtitle
+        font-size: 0.9em
+
+#nwao-page-title
+    position: relative
+    left: -1.5em
+    margin-bottom: 1.75em
+
+    a
+        border-bottom: 1px dashed #ccc
+        color: #000
+
+        &:before
+            content: '↩'
+            color: #ccc
+            position: relative
+            left: 0.2em
+            top: 5px
+
+.nwao-post-header
+
+    .nwao-post-title
+        margin-bottom: 0.3em
+
+    .nwao-post-infoline
+        margin-top: 0.3em
+        font-size: 0.7em
+        width: 100%
+        text-align: right
+        opacity: 0.8
+
+        dt, dd
+            float: left
+            margin: 0 0.3em
+
+.nwao-continue
+    font-size: 0.7em
 
     &:after
-        content: '«'
+        content: '»'
+
+.nwao-post-content
+    margin-top: 5em
+
+.nwao-post-excerpt
+    margin-top: 2.5em
+
+    p
+        margin-bottom: 0.3em
+
+article
+    margin-bottom: 1.75em
+
+.nwao-archives-year
+    margin-bottom: 4em
+
+article, .nwao-post-content, .nwao-post-excerpt, .nwao-archives-year, #nwao-jump-to-top
+    clear: both
 
 footer
     text-align: right
