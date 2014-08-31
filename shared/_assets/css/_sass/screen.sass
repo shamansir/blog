@@ -33,8 +33,12 @@ a:hover
 #nwao-nav
     position: absolute
     left: 0
-    top: 12.2em
-    margin-left: 1em
+    top: 13.6em
+    margin-left: 3.5em
+
+    ul, li
+        margin: 0
+        padding: 0
 
 #nwao-dive
     position: absolute
@@ -98,7 +102,26 @@ a:hover
 #nwao-toc
     position: fixed
     left: 70%
-    top: 30%
+    // top: 16.9em
+    top: 29.5em
+    font-size: 0.7em
+    border-top: 1px dashed #ccc
+    width: 25%
+    opacity: 0.5
+    max-height: 56%
+    overflow: scroll
+
+    &:hover
+        opacity: 1
+
+    h3
+        margin-top: 0.2em
+        margin-bottom: 0.1em
+
+    ul
+        margin-top: 0.1em
+        // list-style-type: decimal-leading-zero
+        list-style-type: lower-greek
 
 #nwao-social
     display: none
@@ -163,14 +186,20 @@ a:hover
 .nwao-post-header
 
     .nwao-post-title
+        line-height: 1.6em
         margin-bottom: 0.3em
 
     .nwao-post-infoline
         margin-top: 0.3em
         font-size: 0.7em
+        line-height: 1.4em
         width: 100%
         text-align: right
-        opacity: 0.8
+        margin-left: -0.2em
+        opacity: 0.5
+
+        &:hover
+            opacity: 1
 
         dt, dd
             float: left
