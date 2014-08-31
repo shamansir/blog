@@ -4,7 +4,7 @@ body
     font-family: 'Input Sans Cond Ex Lt'
     line-height: 1.5em
 
-p
+p, .nwao-post ul
     font-family: 'Input Sans Cond Lt'
     line-height: 1.45em
     font-size: 0.9em
@@ -23,6 +23,112 @@ a:hover
     background-color: #eee
     border-radius: 2px
 
-#nwao-content, #nwao-header
+#nwao-content, #nwao-header, #nwao-breadcrumbs
     margin-left: 15%
-    margin-right: 45%
+    margin-right: 40%
+
+#nwao-header
+    margin-top: 2em
+
+#nwao-nav
+    position: absolute
+    left: 0
+    top: 12.2em
+    margin-left: 1em
+
+#nwao-dive
+    position: absolute
+    left: 0
+    top: 50%
+    margin-left: 1em
+    font-size: 0.8em
+
+#nwao-content
+    margin-top: 7em
+
+#nwao-lang-switch
+    position: absolute
+    top: 0
+    right: 1em
+    font-size: 0.7em
+    list-style-type: none
+    margin: 0
+    padding-left: 0
+
+    li
+        float: left
+        margin: 0.3em
+
+        &:not(:last-child)
+            margin-right: 0
+
+        &:not(:last-child):after
+            content: "|"
+            margin-left: 0.3em
+
+    &:after
+        clear: both
+
+/* nav[role='breadcrumbs'] */
+#nwao-breadcrumbs
+    list-style-type: none
+    font-size: 0.8em
+    padding-left: 0
+
+    &:before
+        float: left
+        content: '☞'
+
+    li
+        float: left
+        margin: 0
+        position: relative
+        left: 0.35em
+
+        &:not(:first-child)
+            margin-left: 0.5em
+
+        &:not(:last-child):after
+            content: '»'
+            position: relative
+            left: 0.3em
+
+    &:after
+        clear: both
+
+#nwao-toc
+    position: fixed
+    left: 70%
+    top: 30%
+
+#nwao-content.nwao-post
+    margin-top: 7em
+
+    ul
+        margin-bottom: 2em
+
+        ul
+            margin-bottom: 1.3em
+
+        li
+            line-height: 1.8em
+            margin: 0.3em 0
+
+#nwao-header h1
+    position: relative
+    left: -0.8em
+
+    &:before
+        content: '»'
+
+    &:after
+        content: '«'
+
+footer
+    text-align: right
+    max-width: 12%
+    opacity: 0.4
+    font-size: 0.6em
+    position: fixed
+    right: 0.8em
+    bottom: 0.3em
