@@ -12,7 +12,7 @@ p, .nwao-post ul
 
 code, pre, div.code
     font-family: 'Input Mono Ex Lt'
-    font-size: 0.85em
+    font-size: 0.9em
 
 a
     text-decoration: none
@@ -32,10 +32,11 @@ a:hover
     margin-top: 2em
 
 #nwao-nav
+    //position: fixed
     position: absolute
     left: 0
     top: 13.6em
-    margin-left: 3.5em
+    margin-left: 1em
 
     ul
         list-style-type: none
@@ -46,9 +47,10 @@ a:hover
 
 #nwao-dive
     clear: both
+    // position: fixed
     position: absolute
-    left: 3em
-    top: 50%
+    left: 1em
+    top: 40em
     margin: 0
     padding: 0
     font-size: 0.8em
@@ -135,7 +137,7 @@ a:hover
 
 #nwao-toc
     position: fixed
-    left: 73%
+    left: 75%
     // top: 16.9em
     top: 28.95em
     font-size: 0.7em
@@ -152,6 +154,7 @@ a:hover
         opacity: 1
 
     h3
+        float: left
         margin-top: 0.2em
         margin-bottom: 0.1em
 
@@ -162,6 +165,12 @@ a:hover
             position: absolute
             margin-left: -0.95em
 
+        &+a
+            position: absolute
+            line-height: 1em
+            top: 1em
+            margin-left: 0.3em
+
     ul
         margin-top: 0.1em
         // list-style-type: decimal-leading-zero
@@ -170,6 +179,7 @@ a:hover
         padding-left: 2em
 
     > ul
+        clear: both
         padding: 0
         max-height: 83%
         overflow-y: scroll

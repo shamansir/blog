@@ -16,7 +16,7 @@
             {# the root leaf  #}
             {% if leaf.children|length > 0 %}
                 <nav role="table-of-contents" id="nwao-toc">
-                    <h3>Contents:</h3>
+                    <h3>Contents:</h3><a href="#top">(top)</a>
                     <ul>
                         {% for subleaf in leaf.children %}
                             {{ toc(subleaf) }}

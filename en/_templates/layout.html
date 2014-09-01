@@ -20,6 +20,8 @@
         <li><a href="/ru" title="Russian Version">Russian Version</a></li>
     </ul>
 
+    <div id="top"></div>
+
     {% if crumbs %}
         {{ breadcrumbs(crumbs) }}
     {% endif %}
@@ -29,8 +31,6 @@
     {% if toc %}
         {{ build_toc(toc) }}
     {% endif %}
-
-    <div id="top"></div>
 
     <section id="nwao-content"{% if section_id %} class="nwao-{{ section_id }}"{% endif %}>
         {% block content %}{% endblock %}
