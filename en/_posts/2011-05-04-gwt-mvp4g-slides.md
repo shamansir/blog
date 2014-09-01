@@ -72,4 +72,3 @@ April 29, I've presented a lecture on Web-development with [GWT](http://code.goo
    * [Mikhail Kashkin site](http://www.vurt.ru)
    * [EmDev company site](http://emdev.ru)
    * [My Google-profile](http://profiles.google.com/shaman.sir)
-

@@ -21,7 +21,7 @@ I'll show you the result and will give a description on hard moments (if they ar
 
 > (to make highlighting correct I've splitted the code in five blocks, they just go one by one, following each other: if you just select them all and copy - everything will work ok)
 
-``` { html }
+``` html
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34,7 +34,7 @@ I'll show you the result and will give a description on hard moments (if they ar
 
 ```
 
-``` { css }
+``` css
 
         /**/.invisible {
             display: none;
@@ -140,7 +140,7 @@ I'll show you the result and will give a description on hard moments (if they ar
 
 ```
 
-``` { html }
+``` html
 
     </style>
 
@@ -150,7 +150,7 @@ I'll show you the result and will give a description on hard moments (if they ar
 
 ```
 
-``` { javascript }
+``` javascript
 
         function showElement(elementId) {
             element = document.getElementById(elementId);
@@ -210,7 +210,7 @@ I'll show you the result and will give a description on hard moments (if they ar
 
 ```
 
-``` { html }
+``` html
 
      //-->
  </script>
@@ -248,7 +248,7 @@ I'll show you the result and will give a description on hard moments (if they ar
 
 And the receiving script - `q.php` (_pay attention_ - it is in `utf-8`, to conform with the page in encoding):
 
-``` { php }
+``` php
 
 <?php
 ob_start();
@@ -309,4 +309,3 @@ In `JavaScript`, after the `var ajax = new sack();` line, the `Sack`-related cod
 I think - that is great.
 
 Dunno about arrays in `SACK`, but if you'll watch the demo that exist in the sackage - this problem is also perfectly solved.
-

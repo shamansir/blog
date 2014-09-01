@@ -15,7 +15,7 @@ Ok, let's take a decision what properties this tag must own. Obviously, it must 
 
 This is the specification:
 
-``` { java }
+``` java
 
 /**
  * @author uwilfred
@@ -57,7 +57,7 @@ So, using some funny symbols and aliases, I've included a support of almost ever
 
 Following the specification, let us define our tag in `.tld`-file (a library of tags):
 
-``` { xml }
+``` xml
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE taglib PUBLIC
@@ -105,7 +105,7 @@ So the body of our tag is something calculated with JSP-code (normal text result
 
 Now, not to be a downers - let's define our tag class:
 
-``` { java }
+``` java
 
 package org.individpro.uwilfred.tag;
 
@@ -332,7 +332,7 @@ If our tag was designed not to have a body (`empty` in `.tld`) - we'd extend it 
 
 Now let's look on the usage of tag:
 
-``` { html }
+``` html
 
 <%@ taglib uri="/WEB-INF/uwilfred.tld" prefix="uwilfred" %>...
 <html><%

@@ -9,7 +9,7 @@ In [previous article](../16-useful-solutions-for-javascript) I have presented yo
 
 So, the basic functions (I'll say it again, I have taken them from [AJAXPath](http://www.ajaxpath.com/javascript-inheritance) and [AJAXPatterns](http://ajaxpatterns.org/Javascript_Inheritance) sources):
 
-```
+``` javascript
 
 function Class() { };
 
@@ -47,7 +47,7 @@ These three functions were used as a foundation of OOP-Drag'n'Drop framework for
 
 Let's return to business. For a code like this you need an example. I have build a little script that emulates a Windows OS, I hope it will match your needs:
 
-``` { javascript }
+``` javascript
 
 /* some helping functions */
 
@@ -203,7 +203,7 @@ function perform() {
 
 If you have disliked the previous example -- I can offer you a useful class, that really helps if the idea of DOM element intersects with the manipulated object idea inside your project:
 
-``` { javascript }
+``` javascript
 
 var ElementWrapper = Class.extend({
 
@@ -246,7 +246,7 @@ var ElementWrapper = Class.extend({
 
 You can comfortly extend this class with other classes expanding the DOM elements functionality. Also, you can use a code like this:
 
-``` { javascript }
+``` javascript
 
 var someElement = new ElementWrapper('someElmId');
 
@@ -258,7 +258,7 @@ The following class inherits `ElementWrapper` and allows to work with element as
 
 > As it is for some functions from [previous article](../16-useful-solutions-for-javascript), the code is changed through times -- in this case it was parallelly simplified and growed in functionality:
 
-``` { javascript }
+``` javascript
 
 var DND_NS 				= 'dnd'; // to use in getAttributeNS and setAttributeNS
 
@@ -515,4 +515,3 @@ about this…
 * …[shortly, from Kevin Lindsey](http://www.kevlindev.com/tutorials/javascript/inheritance/index.htm)
 * …[shortly, from Dave Johnson](http://blogs.nitobi.com/dave/?p=166)
 * … - [links from Zeroglif (rus)](http://forum.vingrad.ru/index.php?showtopic=120066&view=findpost&p=1215304)
-

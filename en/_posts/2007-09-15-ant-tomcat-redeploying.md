@@ -15,7 +15,7 @@ So I have taken an existing script and started to revise it. I've found several 
 
 Here is the `build.properties` file. It contains a values that may change frequently so it is better to store them separately from the ant script.
 
-``` { ini }
+``` ini
 
 # package name
 war.name = SomeProjectPackage
@@ -48,7 +48,7 @@ web.dir = ${root.dir}/WebContent/
 
 Now let us consider the script part by part. In the heading - we include our `.properties` file.
 
-``` { xml }
+``` xml
 
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -61,7 +61,7 @@ Now let us consider the script part by part. In the heading - we include our `.p
 
 Now the compilation target goes (`build`), the target cleaning temporary directories used while building (`clean`), and the rebuilding which, in fact, cleans and then builds the package (`rebuild`).
 
-``` { xml }
+``` xml
 
     . . .
 
@@ -107,7 +107,7 @@ To unload a package from server (`undeploy`) we stop the server using the rules 
 
 When we redeploy (`redeploy`) -- a default target -- the old version of the package is removed from the server (`undeploy`), temporay directories are cleaned up (`clean`), then package is constructed and deployed to server (`deploy`).
 
-``` { xml }
+``` xml
 
     . . .
 
@@ -199,4 +199,3 @@ Seems that's all :)
 And yes, there are another ways to do it like [CruiseControl](http://cruisecontrol.sourceforge.net/) but it seems for me, it is not so required to setup a packages like this just to redeploy something fast.
 
 And yes I also know now that [Maven](http://maven.apache.org/) has a [war-plugin](http://maven.apache.org/maven-1.x/plugins/war/goals.html) for something similar our targets... Maven is fat, forget it :)
-

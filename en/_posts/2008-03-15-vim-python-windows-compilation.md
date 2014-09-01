@@ -40,7 +40,7 @@ It is also important to get the sources, so we [download them](ftp://ftp.vim.org
 
 Also, if you use a stable release and you want to install the newest patches -- follow [this link](ftp://ftp.vim.org/pub/vim/patches/7.1/) (correct the version number if you need) to get them. There is a problem gere, because they pack the patches only when their count reaches one hundred (001-100, 101-200 and so on), so for example if their count is 275 - you'll need to download the late 75 files manually or by creating a batch-script which uses `telnet`. However, we have Cygwin installed, so we can make an `.sh`-script, executing the same functions using `wget`, it can look something like this:
 
-``` { bash }
+``` bash
 
 PATCHES_DOWNLOAD_PATH=ftp://ftp.vim.org/pub/vim/patches
 PATCHES_VER=7.1
@@ -64,7 +64,7 @@ In `/runtime` subdirectory you can place `.vim` files, `/doc` and `/plugins` fro
 
 To install patches, you need to execute `patch` command from Cygwin set over every one of them, unpacking the archives with bunches of hundreds of patches, provisionally. In this case I've used `.bat`-files instead of `.sh`-script (you need to correct the numbers of patches to apply your variant, of course):
 
-``` { batch }
+``` batch
 
 @ECHO off
 ECHO changing directory to parent...
@@ -95,7 +95,7 @@ Place this file in `/patches` directory, ensure the directories structure matche
 
 Now we go directly to the compilation process, from Cygwin console. There is only execution of three commands required -- change to the source directory (Cygwin mounts your drives in `/cygdrive/` point: correct the paths to you Python and Tcl installation folder and their concrete versions, but if you compiling a version without Tcl support -- just remove the coinciding parameters) and create `vim.exe` (console version) and `gvim.exe` (GUI-version) files:
 
-``` { bash }
+``` bash
 
 $ cd /cygdrive/c/devel/vim-src/vim71
 $ make -B -f Make_cyg.mak GUI=no \
@@ -147,4 +147,3 @@ autocmd BufNewFile *.py call BufNewFile_PY()
 ```
 
 …So now you can program in Python with comfort.
-

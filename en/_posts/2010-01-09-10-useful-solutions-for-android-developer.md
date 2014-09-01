@@ -38,7 +38,7 @@ Among with the regular `ListView` usage, it is frequently required to make a lis
 
 Headers must not react on selection or press and they must have their own layout. This may be accomplished extending the adapter of this list from `BaseAdapter`, for example, and by overriding its `getItemViewType`, `getViewTypeCount` and `isEnabled` methods, among with `getView`.
 
-``` { java }
+``` java
 
 public class SectionedItemsAdapter extends BaseAdapter { . . .
 
@@ -48,7 +48,7 @@ public class SectionedItemsAdapter extends BaseAdapter { . . .
 
 The first step is creating a constants which identify element type, one for header, one for item (so there is a possibility to have more than two types, but it's better to use `enum` to store idenitifiers in cases like those):
 
-``` { java }
+``` java
 
 public static final int ITEM_VIEW_TYPE = 0; // item
 public static final int SECTION_VIEW_TYPE = 1; // section
@@ -57,7 +57,7 @@ public static final int SECTION_VIEW_TYPE = 1; // section
 
 Then a constant containing a number of element types (there's two in our case):
 
-``` { java }
+``` java
 
 public static final int VIEW_TYPES_COUNT = SECTION_VIEW_TYPE + 1;
 
@@ -67,7 +67,7 @@ Adapter must contain the information about all of the elements inside, so the `g
 
 `getItemViewType` method must return the constant that conforms with the element type in the passed position. There is a special constant named `IGNORE_ITEM_VIEW_TYPE` exist in `Adapter` class for the case when type is undefined.
 
-``` { java }
+``` java
 
 public int getItemViewType(int position) {
     if (. . .) return ITEM_VIEW_TYPE;
@@ -81,7 +81,7 @@ I my case I store the list of sections inside the adapter and they contain their
 
 This method can be used in overriden `getView` now:
 
-``` { java }
+``` java
 
 public View getView(int position, View convertView, ViewGroup parent) {
     final int viewType = getItemViewType(position);
@@ -98,7 +98,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
 `isEnabled` must return `false` for elements that can not be pressed or selected and `true` for others. Here we can use `getItemViewType` again:
 
-``` { java }
+``` java
 
 public boolean isEnabled(int position) {
     return getItemViewType(position) != SECTION_VIEW_TYPE };
@@ -107,7 +107,7 @@ public boolean isEnabled(int position) {
 
 `getViewTypeCount` method returns the very constant determing a number of elements types:
 
-``` { java }
+``` java
 
 public int getViewTypeCount() { return VIEW_TYPES_COUNT; }
 
@@ -123,7 +123,7 @@ I use separate structures to store the data about sections and items. The sectio
 
 I simplified adding sections and items to list using this way. Adapter has methods:
 
-``` { java }
+``` java
 
 public int addSection(String title);
 public LActionItem addItem(int section, int icon, String title);
@@ -132,7 +132,7 @@ public LActionItem addItem(int section, int icon, String title);
 
 Method `addSection` returns the section identifier so you can use it to add items in this section:
 
-``` { java }
+``` java
 
 final int suitsSection = adapter.addSection("Suits");
 adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
@@ -156,7 +156,7 @@ Sometimes it is required to change the list element content and/or switch activi
 
 If you agree with that, your adapter can implement `OnItemClickListener` interface:
 
-``` { java }
+``` java
 
 public class ActionsAdapter extends . . . implements OnItemClickListener
 
@@ -164,7 +164,7 @@ public class ActionsAdapter extends . . . implements OnItemClickListener
 
 And inside the activity that uses this adapter you can do:
 
-``` { java }
+``` java
 
 final ListView actionsList = (ListView)findViewById(R.id.actionsList);
 final SectionedActionsAdapter actionsAdapter = new ActionsAdapter(. . .);
@@ -176,7 +176,7 @@ actionsList.setOnItemClickListener(actionsAdapter);
 
 In my case some actions are responsible for each item in the section - they switch the activity or change the corresponding item content after server request. So I decided to create structures with public-access properties for sections and items, and the item structures contain a pointer to `OnClick` handler that gets `View` to change, so you it is possible to change the view just inside the handler. So it is just required to pass a click action to the appropriate handler inside the adapter:
 
-``` { java }
+``` java
 
 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     final LActionItem item = (LActionItem) getItem(position);
@@ -187,7 +187,7 @@ public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 
 Using the `addItem` method described above you can set a handler directly from activity:
 
-``` { java }
+``` java
 
 final LActionItem heartsItem = adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
 heartsItem.onClick = new OnClickListener() { public void onClick(View view) { . . . } };
@@ -200,7 +200,7 @@ As you may know, `ListView` in Android has a [little trick inside] named [_ListV
 
 If you need to update (invalidate) concrete known element view (or even its child view) at some moment, when it is visible to user, you may call `ListView.invalidate()` or `Adapter.notifyDataSetChanged()`, but sometimes these methods update not only the required view but also its neighbours or even all the visible elements (especially when layout is [built incorrectly](http://www.curious-creature.org/2009/02/22/android-layout-tricks-1/)). There is a way to get the current view of list element using `ListView.getChildAt(position)` method. But `position` in this case is not index of the element in a list, as you may considered, but an index relative to visible views on the screen. So a methods like these would help:
 
-``` { java }
+``` java
 
 public static View getItemViewIfVisible(AdapterView<?> holder, int itemPos) {
     int firstPosition = holder.getFirstVisiblePosition();
@@ -245,7 +245,7 @@ The classes hieararchy is a lit bit more complex, each page is loaded with speci
 
 To make a pagination possible, you may just keep a set of page containers (cursors, for example) in adapter and in `getView()`, if one of last elements is asked for, run the query for next page (`AsyncTask` is preferred), which will add new container to adapter when it will be received, so the adapter will have a possibility to call `notifyDataSetChanged()`. Like this:
 
-``` { java }
+``` java
 
 private final Page[] pages = new Page[MAX_PAGES_COUNT];
 
@@ -326,7 +326,7 @@ Calling `getWindow().setFormat(PixelFormat.TRANSPARENT);` is aimed to prevent vi
 
 Code to get video stream by URL is similar to this one:
 
-``` { java }
+``` java
 
 public static InputStream getVideoStream(long videoId)
        throws FailedToGetVideoStreamException, VideoLinkRequestException {
@@ -355,7 +355,7 @@ If you need to execute several background tasks sequentially (when one finished 
 
 Here is a task-that-knows-it-has-next-task inteface:
 
-``` { java }
+``` java
 
 public interface HasNextTask<Params> {
     public int getId();
@@ -369,7 +369,7 @@ public interface HasNextTask<Params> {
 
 Here is an interface that monitors when tasks are performed successfully or not:
 
-``` { java }
+``` java
 
 public interface PerformHandler<Params, Result> {
     public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask);
@@ -380,7 +380,7 @@ public interface PerformHandler<Params, Result> {
 
 `HasNextTask` interface implementation. The hollows given with three dots, you may move them into child class or make this class abstract to implement `doInBackground`/`onPostExecute` methods right in `createTask` method of queue:
 
-``` { java }
+``` java
 
 public class TaskInQueue<Params, Result> extends AsyncTask<Params, Void, Result>
                                          implements HasNextTask<Params> {
@@ -421,7 +421,7 @@ public class TaskInQueue<Params, Result> extends AsyncTask<Params, Void, Result>
 
 And the main thing, the queue implementation:
 
-``` { java }
+``` java
 
 public abstract class TasksQueue<Params, Result>
                 implements PerformHandler<Params, Result>, Runnable {
@@ -522,7 +522,7 @@ public abstract class TasksQueue<Params, Result>
 
 Now in your activities you can easily create a queue of background tasks:
 
-``` { java }
+``` java
 
 protected final TasksQueue secondaryTasks;
 
@@ -573,7 +573,7 @@ protected void onSecondaryTaskPerfomed(int taskId, ... result) {
 
 By the way, thanks to `Runnable` interface you can run queues like this in separate thread:
 
-``` { java }
+``` java
 
 new Thread(secondaryTasks, "Tasks Queue").start();
 
@@ -610,7 +610,7 @@ There are also a tricks with 9-patch, each time when there is something wrong in
 
 To show a dialog like this instead of context menu when element in list is long-tapped, it is enough to override `onCreateContextMenu` method in `ListActivity` like this:
 
-``` { java }
+``` java
 
 public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
     . . .
@@ -652,7 +652,7 @@ If your application uses a lot of different activities that called similar way, 
 
 My be it is obvious, but in strings from `strings.xml` you can use placeholders to insert some locale-independent values inside these strings, i.e.: `<string name="image_info">Image size: {width}x{height}</string>`. `format` function can help you like this: `format(getString(R.string.image_info), "width", String.valueOf(600), "height", String.valueOf(800))`
 
-``` { java }
+``` java
 
 public static String format(String source, String... params) {
     String result = source;
@@ -678,4 +678,3 @@ Be sure to read these articles, inflater in Android is very sensitive to complic
  * [Speed up your Android UI](http://www.curious-creature.org/2009/03/04/speed-up-your-android-ui/)
 
 My frequently re-rendedered layouts in one moment collapsed and `getView` has called approximately once per second (and I also meet this case now, but in much rare moments). After replacing a lot of nested complicated  `LinearLayout`s to less-nested and elegant `RelativeLayout`, inflater clearly felt itself easier and me too, mysefl, because a hierarchy also became less complicated and it became easier to make changes. I do not had time to fix all of these, but now I am more attentive to layouts. Also check that you use `width/height=wrap_content` only for simple elements if possible, using `wrap_content` for width/height of `LinearLayout`s and other compound views is dangerous and may lead to unexpected consequences. It may not lead, but who is forewarned...
-

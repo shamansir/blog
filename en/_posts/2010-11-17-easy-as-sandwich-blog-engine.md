@@ -75,4 +75,3 @@ Now, once more
 [Googlecode project](http://showdown-blog.googlecode.com/)
 
 **Upd.** Advantages and disadvatages had a bit changed through time, visit the project page to see how exactly they've changed.
-

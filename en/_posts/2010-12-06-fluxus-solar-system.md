@@ -53,4 +53,3 @@ When we know this data, we can calculate the angles for planets positions (the o
 <iframe src="http://player.vimeo.com/video/17515694" width="400" height="300" frameborder="0"></iframe><p><a href="http://vimeo.com/17515694">Fluxus Livecoding: Building 3D Solar System / Part 2</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
 
 <iframe src="http://player.vimeo.com/video/17516078" width="400" height="300" frameborder="0"></iframe><p><a href="http://vimeo.com/17516078">Fluxus Livecoding: Building 3D Solar System / Part 3</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
-

@@ -17,7 +17,7 @@ When application launched, it is started in interpretor mode. To switch to code 
 
 Hereis, for example, two rotating spheres that change their colors through time:
 
-``` { scheme }
+``` scheme
 
 (define (animate)
     (let* ((t (* (time) 2))

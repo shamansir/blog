@@ -101,4 +101,3 @@ And finally a video that show program in work. It loads a lot of libraries at st
 [![Link to Vimeo video]({{ get_figure(slug, 'vimeo-video-frame.png') }})](http://vimeo.com/14073181)
 
 **P.S.** Some (not a lot of) phrases in this article are related to the Russian epic sci-fi movie named [Kin-dza-dza](http://www.imdb.com/title/tt0091341/), so I promote it with this article :)
-
