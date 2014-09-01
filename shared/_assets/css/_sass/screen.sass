@@ -3,10 +3,11 @@
 body
     font-family: 'Input Sans Cond Ex Lt'
     line-height: 1.5em
+    color: #000
 
 p, .nwao-post ul
     font-family: 'Input Sans Cond Lt'
-    line-height: 1.45em
+    line-height: 1.65em
     font-size: 0.9em
 
 code, pre, div.code
@@ -24,8 +25,8 @@ a:hover
     border-radius: 2px
 
 #nwao-content, #nwao-header, #nwao-breadcrumbs
-    margin-left: 15%
-    margin-right: 40%
+    margin-left: 16%
+    margin-right: 37%
 
 #nwao-header
     margin-top: 2em
@@ -36,19 +37,52 @@ a:hover
     top: 13.6em
     margin-left: 3.5em
 
+    ul
+        list-style-type: none
+
     ul, li
         margin: 0
         padding: 0
 
 #nwao-dive
+    clear: both
     position: absolute
-    left: 0
+    left: 3em
     top: 50%
-    margin-left: 1em
+    margin: 0
+    padding: 0
     font-size: 0.8em
+    list-style-type: none
+
+    #nwao-next
+        &:before
+            float: left
+            content: '→'
+
+        a
+            position: relative
+            left: 0.3em
+
+    #nwao-prev
+        &:before
+            float: left
+            content: '←'
+
+        a
+            position: relative
+            left: 0.3em
 
 #nwao-content
     margin-top: 7em
+    margin-bottom: 7em
+
+    &:after
+        text-align: center
+        opacity: 0.5
+        content: '–※–'
+        position: relative
+        top: 2em
+        left: 47%
 
 #nwao-lang-switch
     position: absolute
@@ -101,15 +135,18 @@ a:hover
 
 #nwao-toc
     position: fixed
-    left: 70%
+    left: 73%
     // top: 16.9em
-    top: 29.5em
+    top: 28.95em
     font-size: 0.7em
-    border-top: 1px dashed #ccc
-    width: 25%
-    opacity: 0.5
-    max-height: 56%
-    overflow: scroll
+    // border-top: 1px dashed #ccc
+    // border-left: 1px dashed #ccc
+    // border-bottom: 1px dashed #ccc
+    // padding-left: 2em
+    // padding-top: 0.3em
+    width: 20%
+    height: 56%
+    //opacity: 0.5
 
     &:hover
         opacity: 1
@@ -118,10 +155,24 @@ a:hover
         margin-top: 0.2em
         margin-bottom: 0.1em
 
+        &:before
+            content: '⚜'
+            margin-right: 0.3em
+            font-size: 1.1em
+            position: absolute
+            margin-left: -0.95em
+
     ul
         margin-top: 0.1em
         // list-style-type: decimal-leading-zero
-        list-style-type: lower-greek
+        // list-style-type: lower-greek
+        list-style-type: none
+        padding-left: 2em
+
+    > ul
+        padding: 0
+        max-height: 83%
+        overflow-y: scroll
 
 #nwao-social
     display: none
@@ -205,6 +256,26 @@ a:hover
             float: left
             margin: 0 0.3em
 
+.nwao-post .nwao-post-header
+
+    .nwao-post-title
+        margin-bottom: 0
+
+        &:before
+            position: absolute
+            margin-left: -1.1em
+            font-size: 0.9em
+            content: '¶'
+            color: #eee
+
+        a
+            color: #000
+            border: none
+
+    .nwao-post-infoline
+        margin-top: 0
+        opacity: 1
+
 .nwao-continue
     font-size: 0.7em
 
@@ -213,6 +284,60 @@ a:hover
 
 .nwao-post-content
     margin-top: 5em
+
+    h3, h4, h5, h6
+        border-bottom: 1px solid #ccc
+        padding-bottom: 0.1em
+        margin-top: 2.5em
+
+        &:not(:first-child)
+            margin-top: 4em
+
+        &:before
+            position: absolute
+            margin-left: -1.1em
+            margin-top: -1px
+            font-size: 0.9em
+            color: #eee
+            content: '§'
+
+    h4, h5, h6
+        &:not(:first-child)
+            margin-top: 4.5em
+
+    p
+        padding: 0.5em 0
+
+    p:first-child, h3+p, h4+p, h5+p, h6+p
+        text-indent: 2em
+
+        &:first-letter
+            font-size: 1.5em
+
+    p code
+        background-color: #eee
+        border-radius: 2px
+        padding: 0 0.1em
+
+    div.code
+        position: relative
+        top: -0.3em
+        border: 1px dashed #eee
+        overflow: scroll
+
+    img
+        opacity: 0.6
+        border: 2px solid #000
+        margin: 0.5em 0
+
+        &:hover
+            opacity: 1
+
+    hr
+        height: 7px
+        background-color: #eee
+        border: none
+        margin: 2em 0
 
 .nwao-post-excerpt
     margin-top: 2.5em
@@ -228,6 +353,9 @@ article
 
 article, .nwao-post-content, .nwao-post-excerpt, .nwao-archives-year, #nwao-jump-to-top
     clear: both
+
+#nwao-jump-to-top
+    font-size: 0.8em
 
 footer
     text-align: right

@@ -19,15 +19,15 @@
     <nav role="dive">
         <ul id="nwao-dive">
             {% if post.prev %}
-                <li>
+                <li id="nwao-prev">
                     <a href="{{ post.prev.url }}"
-                       title="{{ post.prev.title }}" id="nwao-prev">Previous article</a>
+                       title="{{ post.prev.title }}">Previous article</a>
                 </li>
             {% endif %}
             {% if post.next %}
-                <li>
+                <li id="nwao-next">
                     <a href="{{ post.next.url }}"
-                       title="{{ post.next.title }}" id="nwao-next">Next article</a>
+                       title="{{ post.next.title }}">Next article</a>
                 </li>
             {% endif %}
         </ul>
