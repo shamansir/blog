@@ -7,3 +7,78 @@
 //
 // 	#nwao-footer
 // 		max-width: 200px
+
+@media screen and (max-width: 1100px)
+
+    #nwao-content, #nwao-header, #nwao-breadcrumbs
+        margin-left: 10%
+        margin-right: 30%
+
+    #nwao-nav
+        font-size: 0.8em
+        top: 16.8em
+
+    #nwao-dive
+        top: 7.7em
+        right: 30%
+
+        #nwao-prev
+
+            &:before
+                content: '{'
+
+            &:after
+                content: '|'
+
+        #nwao-next
+
+            &:before
+                content: ''
+
+            &:after
+                content: '}'
+
+
+@media screen and (max-width: 870px)
+
+    #nwao-header
+
+        #nwao-title
+            font-size: 1.7em
+
+@media screen and (max-width: 960px)
+
+    #nwao-content, #nwao-header, #nwao-breadcrumbs
+        margin-left: 2em
+
+    #nwao-dive
+        top: 19em
+
+    #nwao-nav
+        top: 3em
+        left: 75%
+
+
+@media screen and (max-width: 645px)
+
+    #nwao-nav, #nwao-toc
+        display: none
+
+    #nwao-content, #nwao-header, #nwao-breadcrumbs
+        margin-right: 1.5em
+
+    #nwao-dive
+        right: 1.5em
+
+    footer
+        position: absolute
+        max-width: 30%
+        top: auto
+        bottom: auto
+
+@media screen and (max-width: 425px)
+
+    #nwao-header
+
+        #nwao-title
+            font-size: 1.4em
