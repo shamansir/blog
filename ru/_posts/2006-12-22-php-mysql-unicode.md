@@ -20,7 +20,7 @@ tags: [ php, unicode, mysql, web-dev, bug ]
 
 Затем я добавил в `.htaccess` всех `html`/`php` каталогов (почему и о чем это я - [в том самом совете](http://live.julik.nl/2005/03/unicode-php)) следующее:
 
-``` { apache }
+``` apache
 
 # unicode support
 AddDefaultCharset utf-8
@@ -46,7 +46,7 @@ php_value       mbstring.detect_order   "UTF-8,KOI8-R,CP1251"
 
 В `HTML`-ках на всякий случай указал вот это:
 
-``` { html }
+``` html
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -55,4 +55,3 @@ php_value       mbstring.detect_order   "UTF-8,KOI8-R,CP1251"
 ```
 
 И все заработало! (этот метод использовался и при сборке кода из предыдущего поста)
-

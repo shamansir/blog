@@ -38,7 +38,7 @@ tags: [ deferred, gwt, java, json, requestbuilder ]
 
 Поэтому такой контекст может быть обычным `HashMap<String, Object>`:
 
-``` { java }
+``` java
 
 public class APICallContext extends HashMap<String, Object> { }
 
@@ -48,7 +48,7 @@ public class APICallContext extends HashMap<String, Object> { }
 
 Опишем интерфейс хэндлера, который будет срабатывать после успешного вызова _каждой_ функции в цепочке (`statusCode == 200`, `'status': 'ok'`):
 
-``` { java }
+``` java
 
 public interface APIResponseHandler {
     public void handleResponse(JSONObject answer);
@@ -58,7 +58,7 @@ public interface APIResponseHandler {
 
 Опишем интерфейс хэндлера, который будет срабатывать после того, как выполнение _всей_ цепочки закончилось успешно и получать изменённый, в соответствии с ответами на запросы, контекст:
 
-``` { java }
+``` java
 
 public interface APIChainResponseHandler {
     public void handleSuccess(EurekaAPICallContext context);
@@ -68,7 +68,7 @@ public interface APIChainResponseHandler {
 
 Опишем интерфейс хэндлера, который будет срабатывать после _первого_ неудачного вызова функции из цепочки:
 
-``` { java }
+``` java
 
 public interface APIErrorHandler {
     public void handleError(String errorText);
@@ -85,7 +85,7 @@ public interface APIErrorHandler {
 
 Так будет выглядеть описание функции, вызывающей такую цепочку:
 
-``` { java }
+``` java
 
 public void callServerFuncsChain(List<String> funcsCodes, APICallContext context,
                                  APIChainResponseHandler finalSuccessHandler, APIErrorHandler errorHandler);
@@ -96,7 +96,7 @@ public void callServerFuncsChain(List<String> funcsCodes, APICallContext context
 
 Создадим оборачивающий класс, который будет управлять связью с API и вставим в него все приведённые выше интерфейсы:
 
-``` { java }
+``` java
 
 public class APIConnector {
 
@@ -120,7 +120,7 @@ public class APIConnector {
 
 Укажем в этом классе общий URL API, к которому он будет подключаться:
 
-``` { java }
+``` java
 
 public static final String SERVER_URL = "http://127.0.0.1/api";
 
@@ -128,7 +128,7 @@ public static final String SERVER_URL = "http://127.0.0.1/api";
 
 Опишем в нём хэш, который будет содержать данные о том, какие параметры необходимо передавать в каждую из функций API. Если функция не принимает параметров - её можно не указывать.
 
-``` { java }
+``` java
 
 public class APIConnector {
 
@@ -149,7 +149,7 @@ public class APIConnector {
 
 Опишем те параметры, которые можно не сохранять в контексте, дабы его не засорять:
 
-``` { java }
+``` java
 
     private final Set<String> filterFields = new HashSet<String>(Arrays.asList("status", "description"));
 
@@ -157,7 +157,7 @@ public class APIConnector {
 
 Пусть класс будет иметь возможность работать в одном из режимов: `GET` или `POST` и принимать для этого в конструктор boolean-параметр `getMode`, при значении `true` будет включаться режим `GET`, при значении `false` - `POST`
 
-``` { java }
+``` java
 
     private final boolean getMode;
 
@@ -171,7 +171,7 @@ public class APIConnector {
 
 Кроме этого требуется указать коллбэк, который будет вызван из GWT после асинхронного вызова, для этого дополнительно опишем внутренний класс. И, будем запоминать последнюю ошибку на всякий случай (обратите внимание, как обрабатывается ошибка в коллбэке):
 
-``` { java }
+``` java
 
 private boolean wasError = false;
 private String lastErrorText = null;
@@ -278,7 +278,7 @@ public final class APIRequestCallback implements RequestCallback {
 
 Настало время написать приватный метод, который будет вызывать одну функцию из цепочки зная о том, что при удаче ему нужно вызвать следующую, при ошибке - `errorHandler`, а при заключительном успехе - `finalSuccessHandler` (обратите внимание, что это другой интерфейс -  этот хэндлер вызывается не для каждой функции, а только при условии успеха выполнения всей цепочки).  Для этого кроме имени текущей выполняемой функции API ему будет передаваться итератор по именам из цепочки функций, и собственно оба хэндлера. Если следующей функции нет - цепочка окончена - будет вызваться хэндлер успеха,  если она есть - рекурсивно будет вызван тот же самой метод, уже для следующей функции, со сделавшим шаг итератором.
 
-``` { java }
+``` java
 
 private void callChainFunc(String function, final Iterator<String> funcsIter,
                            final APICallContext context,
@@ -327,7 +327,7 @@ private void callChainFunc(String function, final Iterator<String> funcsIter,
 
 И, наконец, внешний (публичный) метод, который позволит запустить весь процесс и который мы декларировали в самом начале. Он берёт итератор по списку функций, передаёт первую функцию из списка и сам этот итератор в тот самый приватный метод, который мы только что написали. Хэндлеры уходят туда же.
 
-``` { java }
+``` java
 
 public void callServerFuncsChain(List<String> funcsCodes, final APICallContext context,
                                  final APIChainResponseHandler finalSuccessHandler,
@@ -344,7 +344,7 @@ public void callServerFuncsChain(List<String> funcsCodes, final APICallContext c
 
 Кстати, метод, который помогает внешнему пользователю создать контекст (это не статический метод, поскольку для внутреннего класса необходимо присутствие инстанса):
 
-``` { java }
+``` java
 
     public APICallContext newCallsContext() {
         return new APICallContext();
@@ -354,7 +354,7 @@ public void callServerFuncsChain(List<String> funcsCodes, final APICallContext c
 
 Теперь, пример использования. Общий контекст для всех цепочек можно хранить в приватном поле и передавать при соответствующей необходимости:
 
-``` { java }
+``` java
 
 public abstract class UsersGroup {
     private final APIConnector apiConnector = APIConnector.getInstance(); // удобнее сделать APIConnector синглтоном
@@ -410,4 +410,3 @@ public abstract class UsersGroup {
 Если необходимо известить о принятых объектах несколько целей, можно использовать механизм событий `GwtEvent<H>` из самого GWT или паттерн шины событий.
 
 Что ж, на этом всё, спасибо за внимание. Прошу указывать на ошибки и возмущаться. если есть повод.
-

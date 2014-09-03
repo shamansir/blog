@@ -27,7 +27,7 @@ tags: [ ant, java, junit, web-dev ]
 
 Вот ant-task для его вызова:
 
-``` { xml }
+``` xml
 
 <target name="easy-test" depends="test-clean, compile">
     <mkdir dir="out/junit"/>
@@ -60,7 +60,7 @@ tags: [ ant, java, junit, web-dev ]
 
 И, собственно, код:
 
-``` { java }
+``` java
 
 package com.undefined.testing;
 

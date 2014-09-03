@@ -13,17 +13,16 @@ tags: [ php, textpattern, bug ]
 
 Сделать надо всего лишь два действия. Раз – забрать с вашего хостинга файл `./textpattern/include/txp_prefs.php`, найти в нем строку 89:
 
-``` { php }
+``` php
 $evt_list = safe_column('event', 'txp_prefs',
      "type = 0 and prefs_id = 1 group by 'event' order by event desc");
 ```
 
 и удалить из нее кавычки вокруг event (чтобы она совпадала с [этим вариантом](http://dev.textpattern.com/browser/development/4.0/textpattern/include/txp_prefs.php?rev=2156#L89)):
 
-``` { php }
+``` php
 $evt_list = safe_column('event', 'txp_prefs',
      "type = 0 and prefs_id = 1 group by event order by event desc");
 ```
 
 два -- залить файл обратно. Финита ля комедия -- добро пожаловать в настройки, в пункт _Comments:Disabled after_.
-

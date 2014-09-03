@@ -11,7 +11,7 @@ tags: [ javascript, web-dev ]
 
 Работает с массивами и объектами. В случае объектов в колбэк передаются ключ и значение. В случае массивов - элемент.
 
-``` { javascript }
+``` javascript
 
 /**
  * Нано-each
@@ -30,7 +30,7 @@ function each(iterable, func) {
 
 Это совсем чуть-чуть изменённая версия [из этой прелестной статьи](http://www.willmcgugan.com/blog/tech/2009/12/5/javascript-snippets/). Кстати, функция `bind` полезна для случаев типа такого: `var catMeow = bind(cat, Cat.meow);`.
 
-``` { javascript }
+``` javascript
 
 function class_(def) {
     var _proto = def;
@@ -72,7 +72,7 @@ function bind(obj, method) {
 
 #### Использование
 
-``` { javascript }
+``` javascript
 
 var Base = class_({
 
@@ -123,7 +123,7 @@ console.log(c instanceof Child);
 
 Для быстрого TDD, если вам оно нравится. Если вам нужно просто проверять ассерты, а не запускать большие сложные тесты, берите только `AssertException` и функцию `assert` - это всё что вам нужно. Если нет, `runTests` позволяет вам запускать `JUnit`-подобные коллекции текстов, даже с использованием  `setUp` и `tearDown`. (Использует консоль для вывода результатов тестов, так что в этом варианте может работать только в Firefox и WebKit)
 
-``` { javascript }
+``` javascript
 
 function AssertException(result, expectation) { this.result = result;
                                                 this.expectation = expectation; }
@@ -215,7 +215,7 @@ function runTests(suite, _name, _stopWhenFailed) {
 
 #### Примеры
 
-``` { javascript }
+``` javascript
 
 var T1 = class_({
 
@@ -275,4 +275,3 @@ _f();
 [Test Suite](http://paste.pocoo.org/show/344963/) | [Все сниппеты](http://paste.pocoo.org/show/344962/)
 
 **P.S.** См. тж. [atom.js](https://github.com/theshock/nanojs) ([статья](http://habrahabr.ru/blogs/javascript/109762/))
-

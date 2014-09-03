@@ -15,7 +15,7 @@ tags: [ java, jsp, web-dev ]
 
 Спецификация получилась примерно такой:
 
-``` { java }
+``` java
 
 /**
  * @author uwilfred
@@ -57,7 +57,7 @@ tags: [ java, jsp, web-dev ]
 
 По спецификации, опишем тег в `.tld`-файле - библиотеке тегов:
 
-``` { xml }
+``` xml
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE taglib PUBLIC
@@ -105,7 +105,7 @@ tags: [ java, jsp, web-dev ]
 
 Ну и сразу чтобы не тянуть - описываем класс тега:
 
-``` { java }
+``` java
 
 package org.individpro.uwilfred.tag;
 
@@ -332,7 +332,7 @@ public class PriorityFontTag extends BodyTagSupport implements Tag {
 
 Ну и посмотрим на использование тега:
 
-``` { html }
+``` html
 
 <%@ taglib uri="/WEB-INF/uwilfred.tld" prefix="uwilfred" %>...
 <html><%

@@ -108,7 +108,7 @@ tags: [ trac, subversion, ubuntu, administration ]
 
 Ниже приведено точное содержимое конфигурационного файла. При обращении на путь `<host>/svn/...` модуль авторизации apache будет обращаться к файлу `/etc/apache2/dav_svn.passwd` за списком пользователей, а затем давать права на доступ к соответствующему проекту из файла `/etc/apache2/dav_svn.authz`. Обратите также внимание на использование `SVNParentPath` вместо `SVNPath` -- таким образом subversion-модуль поймёт, что мы используем мультипроектную структуру и будет обрабатывать путь не как один общий репозиторий, а как несколько внутренних:
 
-``` { apache }
+``` apache
 
 <Location /svn>
     DAV svn
@@ -133,7 +133,7 @@ tags: [ trac, subversion, ubuntu, administration ]
 
 В открытым файле опишем права доступа (на чтение -- “`r`” и на запись -- “`w`“) пользователей в соответствующие репозитории:
 
-``` { ini }
+``` ini
 
 [/]
 user1=r
@@ -179,7 +179,7 @@ user2=rw
 
 Эта настройка специфична для использования `mod_python` ([руководство](http://trac.edgewall.org/wiki/TracModPython) на сайте trac, см. [описания](http://trac.edgewall.org/wiki/TracInstall#WebServer), если необходимы другие способы настройки). Обработчиком обращений по адресу `<host>/localProjects` выступит модуль, он будет рассматривать каталог `/var/trac/` как корень нескольких проектов и содаст страницу с их списком (редактируемый шаблон можно найти внутри исходников trac), аналогично принципам `SVNParentPath`, `URI` передаётся в код trac. Запросы на вход будут обрабатываться по пользователям из того же `passwd` файла, из которого берёт их список subversion, а их права на действия в окружениях trac раздаются через `trac-admin` или в GUI-версии TracAdmin, доступной для аминистраторов окружений (будьте внимательны, пользователи создаваемые через интерфейс также добавляются в этот файл и доступны к использованию для настройки авторизации в subversion через `authz`-файл (по умолчанию у них нет никаких прав)) .
 
-``` { apache }
+``` apache
 
 <Location /localProjects>
    SetHandler mod_python
@@ -238,7 +238,7 @@ user2=rw
 
 В нём:
 
-``` { apache }
+``` apache
 
 <VirtualHost acme.org:796>
     ServerName svn.acme.org
@@ -264,7 +264,7 @@ Trac:
 
 В нём:
 
-``` { apache }
+``` apache
 
 <VirtualHost acme.org:967>
     ServerName trac.acme.org
@@ -296,7 +296,7 @@ Trac:
 
     sudo vi /etc/apache2/ports.conf
 
-``` { apache }
+``` apache
 
 ...
 NameVirtualHost *:80
@@ -317,4 +317,3 @@ Listen 967
 Теперь по адресам `https://svn.acme.org:796` и `https://trac.acme.org:967` должны быть доступны ваши `svn` и `trac`. Всё.
 
 **Upd.** По мотивам этой статьи пользователь `MaroonOrg` создал [другую](http://maroonorg.wikidot.com/trac), где описал свою конфигурацию.
-

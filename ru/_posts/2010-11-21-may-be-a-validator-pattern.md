@@ -35,7 +35,7 @@ tags: [ java, pattern, ui, validation ]
 
 Отправной точкой будет самый весомый класс - базовый `Constraint` - какое-либо ограничение. В моём случае тип ограничения задан простым `enum`-ом, поскольку возможные виды ограничений обычно вполне исчислимы. Вместо `enum`-а может быть и просто какое-либо абстрактное уникальное число, которое передаётся из наследников `ValidationConstraint`, тогда о типе ограничения будут знать только они и `i18n`-модуль.
 
-``` { java }
+``` java
 
 public class ValidationConstraint {
 
@@ -90,7 +90,7 @@ public class ValidationConstraint {
 
 Любой объект, который может быть проверен на соответствие ограничениям, должен имплементировать интерфейс `IValidatable`. Метод `validate()` можно вызвать, если нужно получить \[первый\] свалившийся `Constraint` или нужно обновить состояние компонента (когда не важно возвращаемое значение). Метод `isValid` можно вызвать если требуется просто проверить, прошло ограничения (ограничения) или нет - в подавляющем большинстве случаев `isValid()` равноценно `(validate() == null)`.
 
-``` { java }
+``` java
 
 public interface IValidatable {
 
@@ -103,7 +103,7 @@ public interface IValidatable {
 
 Также `isValid()` может бросать исключение, содержащее тип ограничения, которое не прошло:
 
-``` { java }
+``` java
 
 public class ValidationException extends Exception {
 
@@ -127,7 +127,7 @@ public class ValidationException extends Exception {
 
 Таким объектом может стать, например, форма или страница с полями для заполнения или какой-либо бин. Этот объект должен имплементировать интерфейс `HasConstraints`. Метод `initContraints()` можно вызывать в конструкторе имплементирующего класса или в каком-либо другом методе, выполняющемся один раз перед использованием объекта. `addConstraint(...)` добавляет новое ограничение, за которым следит объект. Также он наследует метод `validate()`, который перебирает все ограничения и возвращает первое упавшее. В этот объект можно встроить возможность удаления ограничений, тогда он будет действовать примерно как `Observer`.
 
-``` { java }
+``` java
 
 public interface HasConstraints extends IValidatable {
 
@@ -152,7 +152,7 @@ public interface HasConstraints extends IValidatable {
 
 Если какой-либо объект содержит значение, то он может сам проверять своё состояние на основе ограничений. Такой объект может имплементировать интерфейс `Validator`. Методы `whenValueInvalid(...)` и `whenValueValid(...)` могут вызываться напрямую при проверке из имплементируемого `validate()`, тогда вызов `validate()` всегда будет обновлять состояние объекта.
 
-``` { java }
+``` java
 
 public interface Validator<V> extends IValidatable {
 
@@ -169,7 +169,7 @@ public interface Validator<V> extends IValidatable {
 
 Чаще удобнее делегировать такой объект, потому что он может быть уже готовым компонентом, цепочку наследования которого нельзя изменять. Будем называть делегируемый объект целью - `Target`. Ожидаемое поведение здесь такое же как и в интерфейсе `Validator`.
 
-``` { java }
+``` java
 
 public interface TargetValidator<V, T> extends IValidatable {
 
@@ -185,7 +185,7 @@ public interface TargetValidator<V, T> extends IValidatable {
 
 Впрочем, могут понадобиться несколько слушателей, реагирующих на изменение значения. Поэтому я создал интерфейс `ValueChangeReactor` и изменил `TargetValidator`, чтобы он расширял этот интерфейс (хотя это необязательно). В примерах я буду придерживаться этого варианта.
 
-``` { java }
+``` java
 
 public interface ValueChangeReactor<V, T> {
 
@@ -205,7 +205,7 @@ public interface TargetValidator<V, T> extends IValidatable, ValueChangeReactor<
 
 Теперь можно создавать объекты, которые содержат слушателей на изменения значений. Допустим, один из слушателей добавляет к объекту CSS-класс, другой - подсказку.
 
-``` { java }
+``` java
 
 public interface HasValueReactors<V, T> {
 
@@ -225,7 +225,7 @@ public interface HasValueReactors<V, T> {
 
 Вот класс, от которого может наследоваться любой объект (например, та самая форма или страница), который содержит в себе другие проверяемые объекты (в том числе ограничения) и собственно проверяет их при вызове `validate()`. Дочерние классы должны иметь метод `initConstraints()`, который будет добавлять все неоходимые для проверки объекты.
 
-``` { java }
+``` java
 
 public abstract class ValidationSupport implements HasConstraints {
 
@@ -261,7 +261,7 @@ public abstract class ValidationSupport implements HasConstraints {
 
 От этого класса могут наследоваться все конкретные ограничения. Он позволяет передать валидируемый компонент (`target`), тип ограничения (`constraintType`), "название" компонента (`subject`) и ожидаемое значение (`expectation`). Собственно, он и выполняет описанные выше ожидания от `TargetValidator`. Метод `passes()` наследника должен проверять, соответствует ли текущее значение типу ограничения.
 
-``` { java }
+``` java
 
 public abstract class BaseValidator<V, T> implements TargetValidator<V, T>, HasValueReactors<V, T> {
 
@@ -343,7 +343,7 @@ public abstract class BaseValidator<V, T> implements TargetValidator<V, T>, HasV
 
 Допустим, в нашем UI-фреймворке у нас чётко выделяются компоненты, которые имеют какое-то значение и имеют хэндлеры, которые вызываются при его изменении - то есть имплементируют некий интерфейс `HasValue` (см., например, [HasValue в GWT](http://google-web-toolkit.googlecode.com/svn/javadoc/2.0/com/google/gwt/user/client/ui/HasValue.html)). Можно создать валидатор, который будет автоматически следить за изменениями значения таких объектов (событие изменения вызывается, к примеру, при потере фокуса у текстового поля) и сразу же валидировать значение (вызывая `validate()`).
 
-``` { java }
+``` java
 
 public abstract class ValueContainerValidator<V, T extends HasValue<V>> extends BaseValidator<V, T> {
 
@@ -389,7 +389,7 @@ public abstract class ValueContainerValidator<V, T extends HasValue<V>> extends 
 
 И наконец, вот несколько часто используемых ограничений:
 
-``` { java }
+``` java
 
 public class RegexConstraint<T extends HasValue<String>> extends ValueContainerValidator<String, T> {
 
@@ -440,7 +440,7 @@ public class MinimumLengthConstraint<T extends HasValue<String>> extends ValueCo
 
 Иногда требуется проверить несколько полей в совокупности. Например, для двух полей требуется заполнить либо оба, либо ни одного. Вот пример базового класса для ограничений на два поля:
 
-``` { java }
+``` java
 
 public abstract class TwoTargetsConstraint<T extends HasValue<String>> extends ValueContainerValidator<String, T> {
 
@@ -482,7 +482,7 @@ public abstract class TwoTargetsConstraint<T extends HasValue<String>> extends V
 
 А вот реализация, которая собственно и удостоверяется, что заполнено либо оба поля, либо ни одного:
 
-``` { java }
+``` java
 
 public class BothOrNoneRequiredConstraint<T extends HasValue<String>> extends TwoTargetsConstraint<T> {
 
@@ -502,7 +502,7 @@ public class BothOrNoneRequiredConstraint<T extends HasValue<String>> extends Tw
 
 В GWT основная часть компонентов наследуется от класса [`UIObject`](http://google-web-toolkit.googlecode.com/svn/javadoc/1.6/com/google/gwt/user/client/ui/UIObject.html), для такого элемента можно добавлять и убирать CSS-стили. Учитывая это можно сделать `StylingReactor`, который при изменении значения добавляет нужный CSS-стиль к объекту:
 
-``` { java }
+``` java
 
 public class StylingReactor<V, T extends UIObject> implements ValueChangeReactor<V, T> {
 
@@ -524,7 +524,7 @@ public class StylingReactor<V, T extends UIObject> implements ValueChangeReactor
 
 Формы, панели и страницы наследуются в GWT от класса [`Composite`](http://google-web-toolkit.googlecode.com/svn/javadoc/2.0/com/google/gwt/user/client/ui/Composite.html). Сделаем базовый `CompositeWithConstraints`, от которого смогут наследоваться такие формы и страницы. По сути он просто делегирует `ValidationSupport`, но кроме этого автоматически добавляет всем внутренним ограничениям, которые вешаются на `UIObject`-компоненты `StylingReactor` (при жуткой необходимости его можно переиспользовать).
 
-``` { java }
+``` java
 
 public abstract class CompositeWithConstraints extends Composite implements HasConstraints {
 
@@ -570,7 +570,7 @@ public abstract class CompositeWithConstraints extends Composite implements HasC
 
 Допустим `FormWithValidation` наследуется от класса `CompositeWithConstraints`, а `TextBox`, `TextArea` имплементируют интерфейс `HasValue` (так и есть в штатных компонентах GWT):
 
-``` { java }
+``` java
 
 public class ProfileEditForm extends FormWithValidation implements View {
 
@@ -599,7 +599,7 @@ public class ProfileEditForm extends FormWithValidation implements View {
 
 Теперь эти поля автоматически валидируются при изменении их значений. Для того чтобы проверить соответствие ограничениям перед сохранением формы, достаточно вызвать `validate`:
 
-``` { java }
+``` java
 
 public class ProfileEditPresenter implements Presenter {
 
@@ -628,4 +628,3 @@ public class ProfileEditPresenter implements Presenter {
 ### Резюме
 
 Мне хотелось вывести какой-то общий, в меру простой, паттерн, который поместился бы на одной (хоть и большой) диаграмме классов и был понятен с первого взгляда. Надеюсь это получилось.
-

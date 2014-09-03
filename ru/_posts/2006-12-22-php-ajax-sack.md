@@ -21,7 +21,7 @@ tags: [ php, ajax, sack, javascript, web-dev ]
 
 > (для корректной подсветки я разбил код на пять блоков, которые по сути просто идут друг за другом: если их выделить подряд и скопировать -- всё будет верно)
 
-``` { html }
+``` html
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34,7 +34,7 @@ tags: [ php, ajax, sack, javascript, web-dev ]
 
 ```
 
-``` { css }
+``` css
 
         /**/.invisible {
             display: none;
@@ -140,7 +140,7 @@ tags: [ php, ajax, sack, javascript, web-dev ]
 
 ```
 
-``` { html }
+``` html
 
     </style>
 
@@ -150,7 +150,7 @@ tags: [ php, ajax, sack, javascript, web-dev ]
 
 ```
 
-``` { javascript }
+``` javascript
 
         function showElement(elementId) {
             element = document.getElementById(elementId);
@@ -210,7 +210,7 @@ tags: [ php, ajax, sack, javascript, web-dev ]
 
 ```
 
-``` { html }
+``` html
 
         //-->
     </script>
@@ -248,7 +248,7 @@ tags: [ php, ajax, sack, javascript, web-dev ]
 
 И принимающий скрипт -- `q.php` (_Обратите внимание_ -- он на `utf-8`, дабы совпадать в кодировке со страницей):
 
-``` { php }
+``` php
 
 <?php
 ob_start();
@@ -308,4 +308,3 @@ echo $responce_str;
 Имхо - великолепно.
 
 Не знаю как насчет пересылки массивов в `SACK`, но судя по демо, которое есть в пакетике - и с этим все в порядке.
-

@@ -67,7 +67,7 @@ _Open Source_, _кроссплатформенность_ и _HTML5_ - это т
 
 Оставим из переданной нам от разработчиков функции `pingpong.start` только несколько строк:
 
-``` { javascript }
+``` javascript
 
 // entrypoint
 pingpong.start = function(){
@@ -86,7 +86,7 @@ pingpong.start = function(){
 
 Не забудьте убрать ненужные строки `goog.require`. Я не буду напоминать про это в дальнейшем, как должен будет выглядеть заголовок файла вы всегда сможете посмотреть в конце статьи. Добавим в сцену три слоя - фон `floor_`, стены `walls_` и доску, на которой будет происходить всё действие - `board_`:
 
-``` { javascript }
+``` javascript
 
 var director = new lime.Director(document.body),
     scene = new lime.Scene(),
@@ -107,7 +107,7 @@ scene.appendChild(board_);
 
 В отдельном файле `player.js` опишем класс игрока - это будет полигон в форме скейтборда (чтобы хорошо проверить как работают коллизии):
 
-``` { javascript }
+``` javascript
 
 goog.provide('pingpong.Player');
 
@@ -124,7 +124,7 @@ goog.inherits(pingpong.Player, lime.Polygon);
 
 На месте комментария опишем точки полигона и зальём полупрозрачным синим. Так будет выглядеть игрок (в руководстве для координат полигона используются дробные числа от -1 до 1, но в текущей версии они у меня не заработали):
 
-``` { javascript }
+``` javascript
 
 // -1,-2.5, 0,-3.5, 1,-2.5, 1,2.5, 0,3.5, -1,2.5, 0,1.5, 0,-1.5
 this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
@@ -139,7 +139,7 @@ this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
 
 Пока что код равноценен вызову:
 
-``` { javascript }
+``` javascript
 
 var playerOne = new lime.Polygon().addPoints(...).setFill(...);
 
@@ -147,7 +147,7 @@ var playerOne = new lime.Polygon().addPoints(...).setFill(...);
 
 Но позже мы добавим поведение к игроку и будет очевидно, что выделить класс было разумным. Давайте проверим, корректно ли отображается игрок в сцене - вернёмся к файлу `pingpong.js`... впрочем, что уж тянуть, давайте добавим сразу обоих игроков и отразим первого, чтобы они стояли лицом к лицу:
 
-``` { javascript }
+``` javascript
 
 . . .
 goog.require('pingpong.Player');
@@ -178,7 +178,7 @@ board_.appendChild(playerTwo);
 
 Создадим файл `ball.js` с таким содержимым:
 
-``` { javascript }
+``` javascript
 
 goog.provide('pingpong.Ball');
 
@@ -200,7 +200,7 @@ goog.inherits(pingpong.Ball, lime.Circle);
 
 И добавим мячик на доску в `pingpong.js`:
 
-``` { javascript }
+``` javascript
 
 . . .
 goog.require('pingpong.Ball');
@@ -222,7 +222,7 @@ board_.appendChild(ball);
 
 Давайте зададим фон на поле с игроками, для каждого игрока половина поля своего цвета. Добавим к `Director` параметры размеров экрана игры:
 
-``` { javascript }
+``` javascript
 
 var director = new lime.Director(document.body,600,480),
 
@@ -230,7 +230,7 @@ var director = new lime.Director(document.body,600,480),
 
 Эти размеры никак не соотносятся с какими-либо пикселями - полотно игры автоматически масштабируется или разворачивается на весь экран при необходимости, но эти размеры позволяют задавать относительное положение элементов на полотне. Поправим позиции мяча и игроков в соответствии с ними:
 
-``` { javascript }
+``` javascript
 
 playerOne = new pingpong.Player().setPosition(40,240).setRotation(180),
 playerTwo = new pingpong.Player().setPosition(600,240),
@@ -242,7 +242,7 @@ ball = new pingpong.Ball().setPosition(320,240);
 
 Теперь, наконец, фон. Это будут просто два спрайта, разделяющие экран пополам - никакой побочной логики.
 
-``` { javascript }
+``` javascript
 
 floor_.appendChild(new lime.Sprite().setPosition(160,240)
                                     .setSize(320,480)
@@ -262,7 +262,7 @@ board_.appendChild(...);
 
 У стен будет совсем немного логики, но тем не менее тоже выделим их в отдельный класс. Стены будут размером 20x20. Создадим файл `wall.js` с таким содержимым:
 
-``` { javascript }
+``` javascript
 
 goog.provide('pingpong.Wall');
 
@@ -284,7 +284,7 @@ goog.inherits(pingpong.Wall, lime.Sprite);
 
 И расставим стены вдоль краёв полотна в `pingpong.js`:
 
-``` { javascript }
+``` javascript
 
 . . .
 goog.require('pingpong.Wall');
@@ -315,7 +315,7 @@ board_.appendChild(...);
 
 Спрайт игрока должен постепенно двигаться по вертикали к точке, в которую нажали мышью или пальцем, при этом не врезаясь в стены. Движение делается просто:
 
-``` { javascript }
+``` javascript
 
 . . .
 
@@ -336,7 +336,7 @@ director.replaceScene(scene);
 
 Но при таком поведении игроки проходят сквозь стены. Не будем сохранять экзепляры каждой стены, чтобы тестировать на столкновение с игроками, просто позволим программисту задать за какие границы игроку нельзя попадать - добавим два метода в конец `player.js`:
 
-``` { javascript }
+``` javascript
 
 pingpong.Player.prototype.setMovementBounds = function(top,right,bottom,left) {
     this._moveBounds = new goog.math.Box(top,right,bottom,left);
@@ -365,7 +365,7 @@ pingpong.Player.prototype.alignBounds = function(x, y) {
 
 Теперь в `pingpong.js` обновим определение игроков:
 
-``` { javascript }
+``` javascript
 
 playerOne = new pingpong.Player().setPosition(40,240)
                                  .setRotation(180)
@@ -377,7 +377,7 @@ playerTwo = new pingpong.Player().setPosition(600,240)
 
 И исправим событие, их перемещающее:
 
-``` { javascript }
+``` javascript
 
 goog.events.listen(floor_,['mousedown','touchstart'],function(e){
     var player_ = (e.position.x <= 320) ? playerOne : playerTwo;
@@ -394,7 +394,7 @@ goog.events.listen(floor_,['mousedown','touchstart'],function(e){
 
 Для мяча понадобится несколько дополнительных функций. Одна позволяет ограничивать движение прямоугольным регионом, так же как и у и игрока, другая устанавливает скорость движения мяча, третья сбрасывает его положение в начальную точку (`ball.js`):
 
-``` { javascript }
+``` javascript
 
 pingpong.Ball = function() {
     goog.base(this);
@@ -429,7 +429,7 @@ pingpong.Ball.prototype.setResetPosition = function(x, y) {
 
 Туда же допишем основную функцию проверки, поймал ли один из игроков мяч и сброса позиции мяча, если нет. Если произошёл удар о вертикальную стенку, функция возвращает позицию удара, чтобы внешняя функция смогла определить, кто из игроков виноват, рассудив по их расположению.
 
-``` { javascript }
+``` javascript
 
 pingpong.Ball.prototype.updateAndCheckHit = function(dt,playerOne,playerTwo) {
     var newPos_ = this.getPosition();
@@ -466,7 +466,7 @@ pingpong.Ball.prototype.updateAndCheckHit = function(dt,playerOne,playerTwo) {
 
 В `player.js` добавим использующуйся в предыдущей функции метод `catched`. Он, учитывая координаты всех точек полигона игрока + масштаб и поворот, возвращает попала ли переданная позиция в область полигона или нет:
 
-``` { javascript }
+``` javascript
 
 pingpong.Player.prototype.catched = function(pos) {
     var p = this.getPoints(),
@@ -506,7 +506,7 @@ pingpong.Player.prototype.catched = function(pos) {
 
 Установим все необходимые настройки при инициализации мяча в `pingpong.js`:
 
-``` { javascript }
+``` javascript
 
 ball = new pingpong.Ball().setPosition(320,240)
                           .setMovementBounds(20,620,460,20)
@@ -517,7 +517,7 @@ ball = new pingpong.Ball().setPosition(320,240)
 
 И, самое главное, проверка событий, произошедших с мячом. Для этого мы используем метод `schedule` из `sheduleManager`, он вызывает переданную функцию в каждом кадре, сообщая о прошедшем с предыдущего кадра времени. Пока будем хаять проигравшего в консоли, а в следущей подглаве сделаем для этого `Label`:
 
-``` { javascript }
+``` javascript
 
 goog.events.listen(. . .);
 
@@ -536,7 +536,7 @@ director.replaceScene(scene);
 
 Теперь добавим лэйбл, который будет сообщать о проигравшем игроке. Не будем сильно заморачиваться отсчитывая очки, просто напишем кто пропустил мяч:
 
-``` { javascript }
+``` javascript
 
 ball = . . .
        .setResetPosition(320,240),
@@ -550,7 +550,7 @@ label = new lime.Label().setPosition(280,30)
 
 Не забудем добавить лейбл на слой с доской:
 
-``` { javascript }
+``` javascript
 
 board_.appendChild(ball);
 board_.appendChild(label);
@@ -559,7 +559,7 @@ board_.appendChild(label);
 
 И, исправим вывод текста о проигрыше на лейбл вместо консоли:
 
-``` { javascript }
+``` javascript
 
 goog.events.listen(. . .);
 
@@ -585,7 +585,7 @@ director.replaceScene(scene);
 
 Сделаем фон приятного зелёно-травяного цвета - поменяем инициализацию фоновых спрайтов в `pingpong.js`:
 
-``` { javascript }
+``` javascript
 
 floor_.appendChild(new lime.Sprite().setPosition(160,240)
                                     .setSize(321,480)
@@ -604,7 +604,7 @@ floor_.appendChild(new lime.Sprite().setPosition(480,240)
 
 Сделаем игрокам (`player.js`) немного прозрачный синий морской градиент:
 
-``` { javascript }
+``` javascript
 
 this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
     .setFill(new lime.fill.LinearGradient()
@@ -617,7 +617,7 @@ this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
 
 Мячу (`ball.js`) поставим текстуру с мячиком:
 
-``` { javascript }
+``` javascript
 
 this.setFill('./ball.png')
     .setSize(20,20);
@@ -626,7 +626,7 @@ this.setFill('./ball.png')
 
 Стену (`wall.js`) раскрасим в бетонно-синий цвет и отнаследуем от `RoundedRect`:
 
-``` { javascript }
+``` javascript
 
 pingpong.Wall = function() {
     goog.base(this);
@@ -657,7 +657,7 @@ goog.inherits(pingpong.Wall, lime.RoundedRect);
 Теперь в папку `compiled` можно скопировать `pingpong.html` и в заголовке поменять
 вызовы JavaScript:
 
-``` { html }
+``` html
 
 <!DOCTYPE HTML>
 
@@ -696,4 +696,3 @@ goog.inherits(pingpong.Wall, lime.RoundedRect);
 ![QRCode]({{ get_figure(slug, 'qrcode.png') }})
 
 P.S. Отдельное спасибо [lazio_od](http://www.lazio.com.ua/), он помогал мне в тестировании одновременно с авторами движка.
-

@@ -42,7 +42,7 @@ tags: [ java, json, javascript, web-dev ]
 
 Теперь приведу код интерфейса `IJSONSerializable` (объекта, который может быть свёрнут в `JSON` и развернут обратно -- думаю, это довольно корректно) и абстрактного класса `JSONBean`, который его имплементирует.
 
-``` { java }
+``` java
 
 package com.acme.json;
 
@@ -60,7 +60,7 @@ public interface IJSONSerializable {
 
 Обратите внимание, что в стандартной версии JSON по геттерам считает за пары ключ-свойство значения некоторых недозволенных методов, например, `getClass` и `getInstance` — нижеприведённый класс этот недостаток (в случае указанных методов) обходит и, собственно, добавляет функциональность конструирования (а в данном случае правильнее -- инициализации) `Bean`‘а из JSON-объекта. Да, здесь, иcпользуется `reflection`, и если вас не устраивает этот факт -- вы вольны поменять концепцию :) -- JSON выстраивает свой объект из `Bean`‘а точно таким же способом.
 
-``` { java }
+``` java
 
 package com.acme.json;
 
@@ -120,7 +120,7 @@ public abstract class JSONBean implements IJSONSerializable {
 
 Ну, и простенький пример `Bean`‘а, с которым мы будем работать.
 
-``` { java }
+``` java
 
 package com.acme.json.beans;
 
@@ -162,7 +162,7 @@ public class PersonBean extends JSONBean {
 
 `JSONBeanManager` управляет подготовкой `Bean`‘ов для отправки и принятия их на основе параметров запроса. Думаю, концентрация этого кода в одном месте оправдана, поскольку вы вряд ли захотите, чтобы отвечающий за пересылку `Bean`‘ов код был разбросан по проекту. В худших случаях паттерны проектирования придут вам на помощь. Кстати, возможно вы захотите сделать некоторые ваши `Bean`‘ы `Singleton`‘ами, тогда здесь вы можете возвращать их единственные инстансы (не забудьте только, что в связи с этим их нужно аккуратнее готовить :) ).
 
-``` { java }
+``` java
 
 package com.acme.json;
 
@@ -200,7 +200,7 @@ public class JSONBeanManager {
 
 Ну и наконец -- сервлет. Ядро пересылки. Запрос `GET` на сервер отправляет клиенту `Bean`, отданный менеджером на основе анализа параметров запроса, а затем сконвертированный в JSON-объект, а `POST` -- принимает и заполняет предоставленный тем же менеджером `Bean` полученными из JSON-объекта данными.
 
-``` { java }
+``` java
 
 package com.acme.json;
 
@@ -274,7 +274,7 @@ public class JSONBeanServlet extends HttpServlet {
 
 Для завершения описания серверной части следует напомнить о добавлении сервлета в `web.xml`.
 
-``` { xml }
+``` xml
 
  <?xml version="1.0" encoding="UTF-8"?>
  <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
@@ -309,7 +309,7 @@ public class JSONBeanServlet extends HttpServlet {
 
 Клиентская часть состоит, собственно из [JSON-парсера-конструктора](http://www.json.org/json2.js) (да, всё это можно сделать через `eval()`, но предоставленный разработчиками код делает это, по их обещаниям, аккуратнее) и, в моём случае, класса, облегчающего работу с сервлетом. Класс использует немного модифицированную функцию `makeRequest` из [статьи о решениях JavaScript](?16-really-useful-javascript-solutions) (которую я обновлю до этой версии там сразу же после написания статьи) и обеспечивающие ООП функции `Class` \[[1](../16-useful-solutions-for-javascript#sol-1)\] и `createMethodReference` \[[2](../16-useful-solutions-for-javascript#sol-2)\] оттуда же.
 
-``` { javascript }
+``` javascript
 
 var JSONManager = Class.extend({
 
@@ -344,7 +344,7 @@ var JSONManager = Class.extend({
 
 Ну и в завершение -- пример использующего всё вышеприведённое кода:
 
-``` { javascript }
+``` javascript
 
     var alexanderJSON =
         {"personFirstName":    "Alexander",
@@ -372,4 +372,3 @@ var JSONManager = Class.extend({
 ### Пояснительные изображения
 
 [![JSON Classes Structure]({{ get_figure(slug, 'json-package-structure-thumb.png') }})]({{ get_figure(slug, 'json-package-structure.png') }}) [![JSON Action Diagram]({{ get_figure(slug, 'json-action-diagram-thumb.png') }})]({{ get_figure(slug, 'json-action-diagram.png') }})
-

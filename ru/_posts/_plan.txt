@@ -106,4 +106,3 @@ ln -s ./libraries/OpenCV/library/libOpenCV.so /usr/lib
 ...
 
 ]]></markdown></p>
-

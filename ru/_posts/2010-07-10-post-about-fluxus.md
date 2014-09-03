@@ -17,7 +17,7 @@ tags: [ fluxus, open source, opengl, scheme, graphics ]
 
 Вот, например, две вращающиеся меняющие цвет сферы:
 
-``` { scheme }
+``` scheme
 
 (define (animate)
     (let* ((t (* (time) 2))
@@ -37,4 +37,3 @@ tags: [ fluxus, open source, opengl, scheme, graphics ]
 (every-frame (animate))
 
 ```
-

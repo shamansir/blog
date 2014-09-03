@@ -16,4 +16,3 @@ tags: [ tumblr, theme, sandwitch ]
 Для трансляции твитов пропишите в [настройках темы](http://www.tumblr.com/customize) "Twitter username".
 
 Для того чтобы включить [Disqus](http://disqus.com), укажите в [тех же настройках](http://www.tumblr.com/customize) "Disqus shortname" вашего блога.
-

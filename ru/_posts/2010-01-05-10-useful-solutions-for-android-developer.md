@@ -38,7 +38,7 @@ tags: [ java, android, vimeoid, mobile-dev ]
 
 Заголовки не должны реагировать на нажатия и выбор и должны иметь собственный вид. Этого можно достичь, переопределив кроме `getView` методы `getItemViewType`, `getViewTypeCount` и `isEnabled` адаптера этого списка и отнаследовав его, например, от `BaseAdapter`.
 
-``` { java }
+``` java
 
 public class SectionedItemsAdapter extends BaseAdapter { . . .
 
@@ -48,7 +48,7 @@ public class SectionedItemsAdapter extends BaseAdapter { . . .
 
 Прежде всего заводятся константы, которые однозначно идентифицируют тип элемента, одна для заголовка, вторая для пункта (то есть типов может быть и больше двух, однако в таком случае лучше использовать `enum` с набором идентификаторов):
 
-``` { java }
+``` java
 
 public static final int ITEM_VIEW_TYPE = 0; \\ пункт
 public static final int SECTION_VIEW_TYPE = 1; \\ раздел
@@ -57,7 +57,7 @@ public static final int SECTION_VIEW_TYPE = 1; \\ раздел
 
 Потом константа, содержащая количество типов элементов (в нашем случае - два):
 
-``` { java }
+``` java
 
 public static final int VIEW_TYPES_COUNT = SECTION_VIEW_TYPE + 1;
 
@@ -67,7 +67,7 @@ public static final int VIEW_TYPES_COUNT = SECTION_VIEW_TYPE + 1;
 
 Метод `getItemViewType` должен возвращать константу соответствующую типу элемента по его позиции. Для неопределённого типа элемента в классе `Adapter` существует константа `IGNORE_ITEM_VIEW_TYPE`.
 
-``` { java }
+``` java
 
 public int getItemViewType(int position) {
     if (. . .) return ITEM_VIEW_TYPE;
@@ -81,7 +81,7 @@ public int getItemViewType(int position) {
 
 Этот метод теперь можно использовать в переопределении `getView`:
 
-``` { java }
+``` java
 
 public View getView(int position, View convertView, ViewGroup parent) {
 	  final int viewType = getItemViewType(position);
@@ -98,7 +98,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 
 Метод `isEnabled` должен возвращать `false` для элементов, на которые нельзя нажимать и на которые нельзя переходить курсором и `true` для остальных. Здесь снова поможет `getItemViewType`:
 
-``` { java }
+``` java
 
 public boolean isEnabled(int position) {
     return getItemViewType(position) != SECTION_VIEW_TYPE };
@@ -107,7 +107,7 @@ public boolean isEnabled(int position) {
 
 Метод `getViewTypeCount` возвращает ту самую константу, количество возможных типов элементов:
 
-``` { java }
+``` java
 
 public int getViewTypeCount() { return VIEW_TYPES_COUNT; }
 
@@ -123,7 +123,7 @@ public int getViewTypeCount() { return VIEW_TYPES_COUNT; }
 
 Таким образом я упростил добавление групп и пунктов в список. Адаптер имеет методы:
 
-``` { java }
+``` java
 
 public int addSection(String title);
 public LActionItem addItem(int section, int icon, String title);
@@ -132,7 +132,7 @@ public LActionItem addItem(int section, int icon, String title);
 
 Метод `addSection` возвращает идентификатор группы, который затем можно использовать для добавления пунктов в эту группу:
 
-``` { java }
+``` java
 
 final int suitsSection = adapter.addSection("Suits");
 adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
@@ -156,7 +156,7 @@ adapter.addItem(figuresSection, R.drawable.queen, "Queen");
 
 Если вы согласны с этим, ваш адаптер может имплементировать интерфейс `OnItemClickListener`:
 
-``` { java }
+``` java
 
 public class ActionsAdapter extends . . . implements OnItemClickListener
 
@@ -164,7 +164,7 @@ public class ActionsAdapter extends . . . implements OnItemClickListener
 
 А в использующей его активити можно сделать:
 
-``` { java }
+``` java
 
 final ListView actionsList = (ListView)findViewById(R.id.actionsList);
 final SectionedActionsAdapter actionsAdapter = new ActionsAdapter(. . .);
@@ -176,7 +176,7 @@ actionsList.setOnItemClickListener(actionsAdapter);
 
 В моём случае за пункты в каждом разделе выступают какие-то действия - переходы на активити либо изменения вида пункта после запроса к серверу. Поэтому я предпочёл сделать структуры с публично доступными свойствами для разделов и пунктов, при этом структуры пунктов содержат обработчик `OnClick` который принимает `View` на котором произошёл выбор, поэтому можно изменять `View` прямо из них. Благодаря этому в адаптере можно просто передать действие обработчику:
 
-``` { java }
+``` java
 
 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     final LActionItem item = (LActionItem) getItem(position);
@@ -187,7 +187,7 @@ public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 
 Используя описанный выше метод `addItem` можно устанавливать обработчик:
 
-``` { java }
+``` java
 
 final LActionItem heartsItem = adapter.addItem(suitsSection, R.drawable.heart, "Hearts");
 heartsItem.onClick = new OnClickListener() { public void onClick(View view) { . . . } };
@@ -200,7 +200,7 @@ heartsItem.onClick = new OnClickListener() { public void onClick(View view) { . 
 
 Если в какой-то момент требуется обновить (инвалидировать) конкретный известный вид элемента (или даже его дочерний вид) списка в то время, когда он видим на экране, можно вызвать `ListView.invalidate()` или `Adapter.notifyDataSetChanged()`, но иногда эти методы нерационально обновляют и соседние виды, а то и вообще все видимые (особенно если layout [построен неправильно](http://www.curious-creature.org/2009/02/22/android-layout-tricks-1/)). Есть способ получить текущий вид элемента списка используя метод `ListView.getChildAt(position)`. Однако `position` в данном случае это не индекс элемента в списке, как можно было бы ожидать, а индекс относительно видимых на экране видов. Поэтому полезными будут такие методы:
 
-``` { java }
+``` java
 
 public static View getItemViewIfVisible(AdapterView<?> holder, int itemPos) {
 	  int firstPosition = holder.getFirstVisiblePosition();
@@ -245,7 +245,7 @@ public static void invalidateByPos(AdapterView<?> parent, int position) {
 
 Для того, чтобы обеспечить постраничный вывод, можно просто хранить список из контейнеров для страниц (например, курсоров) в адаптере, а в `getView()`, если запрошен один из последних элементов, запускать запрос на следующую страницу (предпочтительно - `AsyncTask`), который при получении нового контейнера добавит его в адаптер и адаптер сможет вызвать `notifyDataSetChanged()`. Примерно так:
 
-``` { java }
+``` java
 
 private final Page[] pages = new Page[MAX_PAGES_COUNT];
 
@@ -325,7 +325,7 @@ public void addSource(Page page) {
 
 Код получения потока по URL примерно таков:
 
-``` { java }
+``` java
 
 public static InputStream getVideoStream(long videoId)
        throws FailedToGetVideoStreamException, VideoLinkRequestException {
@@ -354,7 +354,7 @@ public static InputStream getVideoStream(long videoId)
 
 Вот интерфейс задачи, которая знает что у неё есть следующая задача:
 
-``` { java }
+``` java
 
 public interface HasNextTask<Params> {
     public int getId();
@@ -368,7 +368,7 @@ public interface HasNextTask<Params> {
 
 Интерфейс, который следит за всеми моментами, когда задачи удачно или неудачно выполняются:
 
-``` { java }
+``` java
 
 public interface PerformHandler<Params, Result> {
     public void onPerfomed(int taskId, Result result, HasNextTask<Params> nextTask);
@@ -379,7 +379,7 @@ public interface PerformHandler<Params, Result> {
 
 Реализация интерфейса `HasNextTask`. То что представлено многоточиями, можно вынести в дочерний класс или сделать сам класс абстрактным, чтобы методы `doInBackground`/`onPostExecute` реализовывались прямо в `createTask` очереди:
 
-``` { java }
+``` java
 
 public class TaskInQueue<Params, Result> extends AsyncTask<Params, Void, Result>
                                          implements HasNextTask<Params> {
@@ -420,7 +420,7 @@ public class TaskInQueue<Params, Result> extends AsyncTask<Params, Void, Result>
 
 Ну и самое главное, реализация очереди:
 
-``` { java }
+``` java
 
 public abstract class TasksQueue<Params, Result>
                 implements PerformHandler<Params, Result>, Runnable {
@@ -521,7 +521,7 @@ public abstract class TasksQueue<Params, Result>
 
 Теперь в ваших активити в любой момент можно с лёгкостью создать очередь фоновых задач:
 
-``` { java }
+``` java
 
 protected final TasksQueue secondaryTasks;
 
@@ -572,7 +572,7 @@ protected void onSecondaryTaskPerfomed(int taskId, ... result) {
 
 Кстати, благодаря интерфейсу `Runnable` такие очереди можно запускать в отдельном потоке:
 
-``` { java }
+``` java
 
 new Thread(secondaryTasks, "Tasks Queue").start();
 
@@ -611,7 +611,7 @@ new Thread(secondaryTasks, "Tasks Queue").start();
 
 Для того, чтобы отобразить такой диалог вместо контекстного меню при долгом тапе на элементе в списке, достаточно переопределить метод `onCreateContextMenu` в `ListActivity` таким образом:
 
-``` { java }
+``` java
 
 public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
     . . .
@@ -653,7 +653,7 @@ protected QuickAction createQuickActions(final int position, final ... item, Vie
 
 Возможно это очевидно, но в строках из `strings.xml` можно использовать плейсходеры для того, чтобы подставлять какие-то независимые от локали значения внутрь строк, например: `<string name="image_info">Image size: {width}x{height}</string>`. В этом поможет функция `format`, которую можно вызвать так: `format(getString(R.string.image_info), "width", String.valueOf(600), "height", String.valueOf(800))`:
 
-``` { java }
+``` java
 
 public static String format(String source, String... params) {
     String result = source;
@@ -679,4 +679,3 @@ public static String format(String source, String... params) {
  * [Speed up your Android UI](http://www.curious-creature.org/2009/03/04/speed-up-your-android-ui/)
 
 Мои часто перерендеривающиеся лэйауты в один момент потерпели крах и `getView` адаптера стал вызываться практически каждую секунду (и до сих пор бывает такое, но уже сильно реже). После замены многих вложенных сложноструктурированных `LinearLayout`ов на менее вложенные и элегантные `RelativeLayout`, инфлэйтеру стало явно легче и мне самому тоже, потому что иерархия стала короче и делать мелкие изменения стало проще. Я их ещё не везде успел подменить, но теперь отнощусь к лэйаутам внимательнее. Также следите за тем, чтобы `width/height=wrap_content` использовался по возможности только для простых элементов, использование `wrap_content` в качестве параметров ширины/высоты `LinearLayout` и прочих сложных видов может привести к сложным последствиям. Может и не привести, но кто предупреждён...
-

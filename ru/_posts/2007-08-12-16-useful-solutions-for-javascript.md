@@ -25,7 +25,7 @@ tags: [ javascript, web-dev ]
 
 <a name="sol-1"></a> _1._ Первый блок -- набор из трех функций (две из которых пустые :) ), позволяющих применять (эмулировать?) все три принципа **ООП** в **JavaScript**. Из нескольких предложенных на [AJAXPath](http://www.ajaxpath.com/javascript-inheritance) и на [AJAXPatterns](http://ajaxpatterns.org/Javascript_Inheritance) вариантов я выбрал именно этот ввиду его одновременной понятности и быстрой скорости выполнения и немного его видоизменил так? чтобы отдельно объявленные свойства воспринимались как статические константы.
 
-``` { javascript }
+``` javascript
 
 function Class() { }
 
@@ -59,7 +59,7 @@ Class.extend = function(def) {
 
 <a name="sol-2"></a> _2._ Следующая функция -- простая, но изящная -- полезна в сочетании с предыдущим набором -- она **создает функцию-ссылку на метод**:
 
-``` { javascript }
+``` javascript
 
 function createMethodReference(object, methodName) {
     return function () {
@@ -71,7 +71,7 @@ function createMethodReference(object, methodName) {
 
 Теперь можно, например, сделать так:
 
-``` { javascript }
+``` javascript
 
 var ScrollingHandler = Class.extend({
 
@@ -106,7 +106,7 @@ var elmScrollHandler = new ScrollHandler('SomeElmId');
 
 <a name="sol-3"></a> _3._ Нижеприведенная функция **клонирует** любой **объект** вместе со всеми его свойствами:
 
-``` { javascript }
+``` javascript
 
 function cloneObj(objToClone) {
     var clone = [];
@@ -120,7 +120,7 @@ function cloneObj(objToClone) {
 
 Использование -- простейшее до невозможности:
 
-``` { javascript }
+``` javascript
 
 var clonedObj = cloneObj(objToClone);
 
@@ -128,7 +128,7 @@ var clonedObj = cloneObj(objToClone);
 
 <a name="sol-4"></a> _4._ **Конвертер объектов**, следующая функция, позволяет удобно использовать всяческие условные (и претендующие ими быть :) ) конструкции вида `if (tablet.toLowerCase() in oc(['cialis','mevacor','zocor'])) { alert(’I will not!’) };`. Код заимствован [отсюда](http://snook.ca/archives/javascript/testing_for_a_v/).
 
-``` { javascript }
+``` javascript
 
 function oc(a) {
     var o = {};
@@ -142,7 +142,7 @@ function oc(a) {
 
 Для примера возьмем ситуацию, когда сначала требуется определить, входит ли объект в какое-либо множество одиночных объектов, а затем - не входит ли он в сочетании с другим объектом в другое множество пар объектов. Допустим, на вечеринку пускают одиночек только с определенными именами, либо пары из списка с позволенными сочетаниями имен:
 
-``` { javascript }
+``` javascript
 
 function isPersonAllowed(maleName, femaleName) {
     var pairsAllowed = new Array([ "John", "Yoko" ],
@@ -166,7 +166,7 @@ alert(isPersonAllowed("Martin","Luther")); // false
 
 <a name="sol-5"></a> _5._ Функция, позволяющая создавать **хэш** сначала кажется немного излишней: объекты в JavaScript -- те же хеши, но вот иногда в качестве имени проперти/ключа требуется задать значение переменной и тогда приходит на помощь функия `Hash`. (да-да, конечно же есть встроенные возможности, но так возможно просто немного очевиднее :) -- можете исключить эту функцию из полезных, если хотите :) )
 
-``` { javascript }
+``` javascript
 
 function Hash()
 {
@@ -181,7 +181,7 @@ function Hash()
 
 Доступ к элементам производится засчет свойства `items` (кстати, следует, может, в более тяжелой версии добавить `keys` :) ?):
 
-``` { javascript }
+``` javascript
 
 var Game = Class.extend({
 
@@ -213,7 +213,7 @@ alert("You are in "+stateMap.items[someGame.getStage()]+" stage!");
 
 <a name="sol-6"></a> _6._ Три других функции просто упрощают и/или делают очевиднее некоторые операции: `getTime` на 11 символов сокращает доступ к получению **текущего времени**, `getTimeDelta` позволяет найти **промежуток в милисекундах** между отрезками времени (или указанным моментом и текущим временем, в формате с одним параметром), а последняя функция расширяет **свойства** объекта **`Number`** для того чтобы **при** его **значении `NaN`** можно было чуть быстрее **получить 0**.
 
-``` { javascript }
+``` javascript
 
 function getTime() {
     return new Date().getTime();
@@ -232,7 +232,7 @@ Number.prototype.NaN0=function() { return isNaN(this) ? 0 : this; }
 
 <a name="sol-7"></a> _7._ Небольшой объект, поименованные по названиям браузеров свойства которого -- суть условия. Этим достигается более читабельное (но не настолько скурпулезное насколько могло бы быть) **определение большинства типов браузеров**. Этот объект был заимствован мной из проекта, в котором я учавствовал -- и как-то прижился, но, думаю, истинные авторы всё-таки где-то в сети, да и код не так уж сложен и громоздок чтобы на него сильно претендовать :). Кроме того, он конечно не идеально надежен (а некоторые говорят что не надежен вообще), но пока на перечисленных браузерах он меня не подвел ни разу :). Если вас не устраивает такое положение дел - вы можете использовать нечто похожее [с HowToCreate](http://www.howtocreate.co.uk/jslibs/htmlhigh/sniffer.html). И повторюсь: данное определение я стараюсь использовать (как и сказано, например, по ссылке) "_только в случае если известен конкретный баг в конкретном браузере и его нужно обойти_". Также -- несложно пересобрать этот объект в одно длинное условие, для меньшей скорости исполнения (см., опять же, [ссылку](http://www.howtocreate.co.uk/jslibs/htmlhigh/sniffer.html))
 
-``` { javascript }
+``` javascript
 
 var USER_DATA = {
 
@@ -262,7 +262,7 @@ var USER_DATA = {
 
 Если ваш документ статичен относительно окна и не имеет скроллбаров -- лучше использовать функцию `getPosition` -- так будет быстрее. В обратном случае используйте `getAlignedPosition` -- она учитывает положения скроллбаров. Только обратите внимание: значение `top` или `left` у элемента может быть орицательным, если элемент частично расположен за пределами окна -- для синхронизации с курсором мыши иногда нужно обнулить в этом случае высоту. Основной скрипт позаимствован из [одного блога](http://blog.firetree.net/2005/07/04/javascript-find-position/), Aligned-версия -- результат поисков по сусекам и совмещения с информацией из [двух](http://xhtml.ru/2007/03/10/advanced-thumbnail-creator/) [статей](http://www.habrahabr.ru/blog/webdev/13897.html) (при обнаружении `DOCTYPE` IE входит в свой собственный, несколько непредсказуемый, режим). Также этот метод скомбинирован с получением позиций из [исходников](http://www.webreference.com/programming/javascript/mk/column2/Dragging%20and%20Dropping%20in%20JavaScript_files/drag_drop.js) [руководства по Drag’n'Drop](http://www.webreference.com/programming/javascript/mk/column2/). Обратите внимание: здесь используется функция `NaN0` из пункта _[6](#sol-6)_, вам нужно будет добавить ее в скрипт чтобы все работало как надо :) (спасибо, [Homer](http://invisibleman.ru/)).
 
-``` { javascript }
+``` javascript
 
 function getPosition(e) {
     var left = 0;
@@ -314,7 +314,7 @@ function getAlignedPosition(e) {
 
 > Со временем две приведённые функции слились в одну, несколько более упрощённую, универсальную и при этом корректную (однако, если вы определяете позицию элемента внутри другого элемента, имеющего скроллинг -- не забудьте к координатам первого прибавить значение `scrollTop` или, соответсвенно, `scrollLeft` последнего: если вы сделаете это в отдельном месте -- ваш код будет работать быстрее и выглядеть логичнее, чем если бы вы использовали Aligned-версию):
 
-``` { javascript }
+``` javascript
 
 function findPos(e) {
 	var baseEl = e;
@@ -339,7 +339,7 @@ function findPos(e) {
 
 <a name="sol-9"></a> _9._ Определить текущие **координаты курсора** мыши и **смещение элемента относительно курсора** легко, если использовать соответствующие функции (собранные на [основе](http://xhtml.ru/2007/03/10/advanced-thumbnail-creator/) [трёх](http://www.habrahabr.ru/blog/webdev/13897.html) [источников](http://quirksmode.org/js/events_properties.html)):
 
-``` { javascript }
+``` javascript
 
 function mouseCoords(ev){
 	if (ev.pageX || ev.pageY) {
@@ -372,7 +372,7 @@ function getMouseOffset(target, ev, aligned) {
 
 > Обновлённая версия функии `getMouseOffset` для варианта с одной функцией нахождения позиции:
 >
-> ``` { javascript }
+> ``` javascript
 >
 > function getMouseOffset(target, ev) {
 >     ev = ev || window.event;
@@ -390,7 +390,7 @@ function getMouseOffset(target, ev, aligned) {
 
 Последняя функция также может использоваться в двух режимах засчет атрибута `aligned` и предназначена для удобного использования в обработчиках событий, например:
 
-``` { javascript }
+``` javascript
 
 function onMouseMove(elm, ev) {
     var mouseOffset = getMouseOffset(elm, ev);
@@ -399,7 +399,7 @@ function onMouseMove(elm, ev) {
 
 ```
 
-``` { html }
+``` html
 
 <div id="someId" onmousemove="onMouseMove(this, event);
     return false;"></div>
@@ -410,7 +410,7 @@ function onMouseMove(elm, ev) {
 
 <a name="sol-10"></a> _10._ Определение **высоты элемента** иногда более нелегкая задача чем определение других его параметров, но эти две функции придут на помощь:
 
-``` { javascript }
+``` javascript
 
 function findOffsetHeight(e) {
     var res = 0;
@@ -433,7 +433,7 @@ function getOffsetHeight(e) {
 
 <a name="sol-11"></a> _11._ Иногда нужно **пройти рекурсивно по дереву DOM**, начиная с некоторого элемента и выполняя некоторую функцию над каждым из потомков, забираясь в самую глубь. В DOM есть объект `TreeWalker`, но он не работает в IE и не всегда удобен/прост в использовании. Функция `walkTree` позволяет выполнить некоторую другую функцию над каждым из элементов и позволяет также передать в нее некоторый пакет данных. Функция `searchTree` отличается от нее тем, что останавливает проход по дереву при первом удачном результате и возвращает результат в точку вызова:
 
-``` { javascript }
+``` javascript
 
 function walkTree(node, mapFunction, dataPackage) {
 	if (node == null) return;
@@ -457,7 +457,7 @@ function searchTree(node, searchFunction, dataPackage) {
 
 В примере используются функции `setElmAttr` и `getElmAttr`, которые будут рассмотрены позже - в пункте _[13](#sol-13)_. По сути они делают то же что и `getAttribute` и `setAttribute`. Пояснения к используемой функции `oc` вы можете посмотреть в пукте _[4](#sol-4)_. В первой части примера корневому элементу атрибут "`nodeType`" устанавливается в "`root`", а всем его потомкам - в "`child`". Во второй части демонстрируется также передача пакета данных -- при нахождении первого элемента с атрибутом "`class`", равным одному из перечисленных в пакете имен, атрибут "`isTarget`" ему устанавливается в "`true`".
 
-``` { javascript }
+``` javascript
 
 var rootElement = document.getElementById('rootElm');
 
@@ -487,7 +487,7 @@ setElmAttr(targetNode, "isTarget", true);
 
 <a name="sol-12"></a> _12._ **Удаление узлов** - иногда необходимая задача. Иногда нужно удалить сам узел, а иногда -- только его потомков. Функция `removeChildrenRecursively` рекурсивно удаляет всех потомков указанного узла, не затрагивая, конечно, его самого. Функция `removeElementById`, как и сказано в названии, удалает узел по его `id` - при всей простоте задачи способ относительно хитрый:
 
-``` { javascript }
+``` javascript
 
 function removeChildrenRecursively(node)
 {
@@ -507,7 +507,7 @@ function removeElementById(nodeId) {
 
 <a name="sol-13"></a> _13._ Казалось бы -- элементарная задача работы с атрибутами элемента -- иногда наталкивает на абсолютно неожиданные проблемы: например, IE бросает исключение при попытке доступа к атрибутам высоты/ширины элемента `table`, а у Safari отличается способ доступа к атрибутам с пространствами имен. Приведенные ниже функции обходят все встреченные мной проблемы без сильного ущерба к скорости выполнения (конечно же, в стандартных случаях лучше использовать встроенные функции):
 
-``` { javascript }
+``` javascript
 
 var IS_SAFARI = USER_DATA['Browser'].Safari;
 
@@ -559,7 +559,7 @@ function remElmAttr(elm, attrName, ns) {
 
 <a name="sol-14"></a> _14._ Если вам не нужно ничего большего, чем просто **выполнить асинхронный запрос** и на основе полученных данных сделать нечто -- для вас эта функция. Способ получения объекта `XMLHttpRequest` безусловно может быть заменен. Комментарии намеренно оставлены, дабы показать некоторые идеи по расширению:
 
-``` { javascript }
+``` javascript
 
 /* AJAX call */
 
@@ -620,7 +620,7 @@ function makeRequest(locationURL, parameters, onComplete, doPost, dataPackage) {
 
 Пример использования -- из одного моего рабочего тестового задания, которое занималось поиском в базе музыки и/или фильмов по введенной в элемент (с `id` "`searchStr`") строке, используя SQL’ный `LIKE`:
 
-``` { javascript }
+``` javascript
 
 function gotSearchResults(http_request, dataPackage) {
     request_result = http_request.responseText;
@@ -652,7 +652,7 @@ function insertVideoSearchResults(divId) {
 
 <a name="sol-15"></a> _15._ Представленная ниже функция для помощи в **ведении логов** очень проста, добавьте в нужное место в документе элемент `<div id="LOG_DIV"></div>`, задайте ему необходимую высоту, и в него будет сбрасываться информация + обеспечиваться ее скроллинг:
 
-``` { javascript }
+``` javascript
 
 function LOG(informerName, text) {
     var logElement = document.getElementById('LOG_DIV');
@@ -668,7 +668,7 @@ function LOG(informerName, text) {
 
 <a name="sol-16"></a> _16._ В замечательном плагине [Firebug](http://www.getfirebug.com/) для браузера Firefox есть замечательная **консоль**, в которую с широкими возможностями можно [производить логгинг](http://www.getfirebug.com/console.html). Однако, если вы отлаживаете параллельно код в других браузерах -- обращения к ней могут вызывать ошибки и даже крэши. Для того чтобы не очищать каждый раз код от логов, можно использовать такую заглушку:
 
-``` { javascript }
+``` javascript
 
 var Console = Class.extend({
     // the stub class to allow using console when browser have it,
@@ -692,7 +692,7 @@ if (!window.console) {
 
 В качестве бонуса (чтобы не портить приятно отдающее двоичностью число в заголовке :) ) рассажу о проблеме **двойного клика** -- бился над ней не я, а мои коллеги, решение также сетевое -- но в некоторой обработке. Проблема состоит в том, что при регистрации события `ondblclick` все равно вызывается событие `onclick`. Поэтому, если уж очень это событие (неочевидное, стоит заметить, для пользователя сети) необходимо - лучше всего иметь в скриптах что-то вроде такого кода (с необходимым вам количеством миллисекунд и сохраняя, если необходимо, элемент, на котором был совершен клик):
 
-``` { javascript }
+``` javascript
 
 var dblClicked = false;
 var dblClickedNode = null;
@@ -712,7 +712,7 @@ function releaseDblClick() {
 
 Его использование накладывает относительно сложные условия. Теперь в обработчике `ondblclick` нужно вызывать сначала первую функцию, затем - закончив собственно обработку - вторую, а в обработчике `onclick` проверять, не совершен ли двойной клик:
 
-``` { html }
+``` html
 
 <div id="someId" onclick="if (!dblClicked) alert('click');"
      ondblick="dblClick(this); alert('dblclick'); releaseDblClick();";></div>
@@ -721,7 +721,7 @@ function releaseDblClick() {
 
 Также, к пункту _[1](#sol-1)_ можно добавить небольшую функцию **получения инстанса** (на ваше усмотрение вы можете изменить ее так, чтобы она предавала аргументы в конструктор):
 
-``` { javascript }
+``` javascript
 
 function getInstanceOf(className) {
     return eval('new ' + className + '()');
@@ -731,7 +731,7 @@ function getInstanceOf(className) {
 
 К пункту _[6](#sol-6)_ подойдет функция **паузы** (именно паузы, а не выполнения в отдельном поптоке, как делает setTimeout):
 
-``` { javascript }
+``` javascript
 
 function pause(millis)
 {
@@ -747,19 +747,19 @@ function pause(millis)
 
 Определение **Вхождения числа в область** чисел, ограниченную числом `start` спереди включительно и числом `stop` в конце исключительно:
 
-``` { javascript }
+``` javascript
 Number.prototype.inBounds=function(start,stop){return ((this>=start)&&(this<stop))?true:false;};
 ```
 
 **Срезание** начальных и конечных **пробельных символов строки**:
 
-``` { javascript }
+``` javascript
 String.prototype.trim=function(){var temp = this.replace( /^\s+/g, "" );return temp.replace( /\s+$/g, "" );}
 ```
 
 **Преобразование** объекта и строки **в тип `boolean`**. Для `boolean`-объектов метод также описан, ввиду того, что данные о типе переданного объекта (строка или `boolean`) могут быть неизвестны:
 
-``` { javascript }
+``` javascript
 function boolFromObj(obj){return(((obj=="true")||(obj == true))?true:false);}
 
 String.prototype.asBoolVal=function(){return ((this=="true")?true:false);}
@@ -769,14 +769,14 @@ Boolean.prototype.asBoolVal=function(){return ((this==true)?true:false);}
 
 **Дополнение нулями** числа до тех пор, пока количество цифр в нём не достигнет указанного:
 
-``` { javascript }
+``` javascript
 Number.prototype.getFStr=function(fillNum){var fillNum=fillNum?fillNum:2;var
 temp=""+this;while(temp.length<fillNum)temp="0"+temp;return temp;}
 ```
 
 Кроме этого, ко [второй части](#объектная-модель-js) можно отнести функции, связанные с **сортировкой**,...
 
-``` { javascript }
+``` javascript
 
 function intComparator(a, b) {
 	return a - b;
@@ -796,7 +796,7 @@ function getObjSortedProps(obj, sortFunc) {
 
 ...и две функции для **работы с массивами**:
 
-``` { javascript }
+``` javascript
 
 function indexOf(arr, elem) {
 	for (itemIdx in arr) {
@@ -822,4 +822,3 @@ function removeFromArray(arr, element) { // removes only one item!
 ### Заключение
 
 Ну вот -- кажется, пока всё. Статья -- в состоянии готовности к исправлениям (если понадобятся :) ), можно переходить к следующим :). В [следующей статье](#javascript-oop) я намереваюсь рассказать поподробнее про ООП в JavaScript и привести в пример пару простых, но полезных классов. Надеюсь, эта статья вам помогла и хоть немного сократила имеющие потенциальную возможность быть потраченными на решение всяких причуд браузеров рабочие человекочасы.
-

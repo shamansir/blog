@@ -21,7 +21,7 @@ tags: [ xml, xslt, javascript, web-dev ]
 
 Структура довольно-таки проста, поэтому приведу сразу пример файла (любое сходство с реальными данными какого-либо индивидуума полностью случайно и приведено не намеренно):
 
-``` { xml }
+``` xml
 
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="./contacts.xsl"?>
@@ -72,7 +72,7 @@ tags: [ xml, xslt, javascript, web-dev ]
 
 Исходник:
 
-``` { xml }
+``` xml
 
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0"
@@ -151,7 +151,7 @@ tags: [ xml, xslt, javascript, web-dev ]
 
 Предложу вам свою версию, вы же можете использовать [какую только заблагорассудится](http://ajaxpatterns.org/XMLHttpRequest_Call).  Моя версия отличается тем, что принимает в параметры функцию, которая будет вызвана при успешном завершении вызова, позволяет делать и `POST` и `GET` запросы, позволяет передавать объекты и позволяет делать синхронный вызов (тогда она возвращает объект по его завершению).
 
-``` { javascript }
+``` javascript
 
 /**
  * Browser-independent [A]JAX call
@@ -224,7 +224,7 @@ function makeRequest(locationURL, parameters, onComplete, doSynchronous, doPost,
 
 При использовании этого метода, функция загрузки XML будет выглядеть довольно просто — например, так:
 
-``` { javascript }
+``` javascript
 
 /**
  * Loads any XML using synchronous XMLHttpRequest call.
@@ -245,7 +245,7 @@ function loadXML(fileName) {
 
 Итак, функция будет делать прямой синхронный вызов XHMHttpRequest (вернее, функции описанной в предыдущем разделе) только в случае вызова из Safari, в остальных же случаях прибегать к средствам конкретного браузера (Не забываем правило: _Никаких прямых проверок браузера, только проверка, поддерживается ли вызываемая функция_):
 
-``` { javascript }
+``` javascript
 
 /**
  * Loads any XML document using ActiveX (for IE) or createDocumentFunction (for
@@ -290,7 +290,7 @@ function loadXML(fileName) { // http://www.w3schools.com/xsl/xsl_client.asp
 
 В случае Internet Explorer используется функция `transformNode` XML-объекта, в остальных браузерах используется `XSLTProcessor`.
 
-``` { javascript }
+``` javascript
 
 /**
  * Applies specified XSL stylesheet to the specified XML file and returns
@@ -328,7 +328,7 @@ function getStylingResult(xmlFileName, xslFileName) {
 
 Всё, весь необходимый код готов и вы можете использовать функцию `getStylingResult` для преобразования XML-файлов и вставки результата в XHTML. Например, таким образом:
 
-``` { javascript }
+``` javascript
 
 document.getElementById('content').innerHTML =
             getStylingResult('./contacts.xml', './contacts.xsl');
@@ -342,4 +342,3 @@ document.getElementById('content').innerHTML =
 **P.S.** Для того, чтобы иметь возможность передавать параметры XSL-шаблону через метод `addParameter`, в качестве документа XSL нужно использовать экземпляр `Msxml2.FreeThreadedDOMDocument.3.0`, а не обычный `Microsoft.XMLDOM`. Если вам это необходимо, обратитесь к [данной статье](http://www.mindlence.com/WP/?page_id=224) (вам потребуется перегрузить функцию `loadXML` из моего примера).
 
 **P.P.S.** И да, с использованием JQuery всё [делается](http://johannburkard.de/software/xsltjs/) [проще](http://jquery.glyphix.com/), но ведь иногда приходится обходиться без JQuery...
-

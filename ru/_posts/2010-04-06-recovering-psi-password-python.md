@@ -18,7 +18,7 @@ tags: [ psi, password, python, bug ]
 
 Вот такой:
 
-``` { python }
+``` python
 
 import sys
 u,p=sys.argv[1:3]
@@ -31,4 +31,3 @@ print "".join([chr(ord(u[x]) ^ eval("0x%s"%(p[4*x:4*x + 4]))) for x in xrange(le
     $ python ./psi-recover.py user@jabber.server 000100020003007e
 
 That's all
-

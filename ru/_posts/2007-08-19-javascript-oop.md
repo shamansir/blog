@@ -9,7 +9,7 @@ tags: [ javascript, web-dev ]
 
 Итак, исходные данные (повторюсь, заимствованы из источников на [AJAXPath](http://www.ajaxpath.com/javascript-inheritance) и на [AJAXPatterns](http://ajaxpatterns.org/Javascript_Inheritance)):
 
-``` { javascript }
+``` javascript
 
 function Class() { };
 
@@ -47,7 +47,7 @@ Class.extend = function(def) {
 
 Впрочем, ближе к делу. Для такого кода требуется пример. Я наваял тут небольшой скрипт, эмулирующий операционную систему Windows, надеюсь он подойдет:
 
-``` { javascript }
+``` javascript
 
 /* пара вспомогательных функций */
 
@@ -204,7 +204,7 @@ function perform() {
 
 Если предыдущий пример вам не понравился -- я могу предложить вам довольно полезный класс, который сильно помогает, если в вашем проекте понятие элемента DOM пересекается с понятием объекта, над которым производятся манипуляции:
 
-``` { javascript }
+``` javascript
 
 var ElementWrapper = Class.extend({
 
@@ -247,7 +247,7 @@ var ElementWrapper = Class.extend({
 
 От этого класса очень удобно наследовать классы, расширяющие функциональность элементов DOM. Также, теперь вы можете использовать код типа этого:
 
-``` { javascript }
+``` javascript
 var someElement = new ElementWrapper('someElmId');
 ```
 
@@ -257,7 +257,7 @@ var someElement = new ElementWrapper('someElmId');
 
 > Как и у некоторых функций из [предыдущей статьи](../16-useful-solutions-for-javascript), со временем код изменился -- в данном случае он оброс функциональностью и одновременно несколько упростился:
 
-``` { javascript }
+``` javascript
 
 var DND_NS 				= 'dnd'; // to use in getAttributeNS and setAttributeNS
 
@@ -514,4 +514,3 @@ var GraphicalElementWrapper = ExpandedElementWrapper.extend({
 * …[кратко, от Kevin Lindsey](http://www.kevlindev.com/tutorials/javascript/inheritance/index.htm)
 * …[кратко, от Dave Johnson](http://blogs.nitobi.com/dave/?p=166)
 * … - [ссылки от Zeroglif](http://forum.vingrad.ru/index.php?showtopic=120066&view=findpost&p=1215304)
-

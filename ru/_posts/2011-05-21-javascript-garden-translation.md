@@ -25,4 +25,3 @@ tags: [ javascript, translation, web-dev ]
 Весь перевод производится в [соответствующем github-репозитории](https://github.com/shamansir/JavaScript-Garden), так что если вы хотите помогать — you're welcome.
 
 **P.S.** Когда авторы вольют перевод к себе на сайт, если примут, он будет также располагаться [где-то здесь](http://bonsaiden.github.com/JavaScript-Garden/ru), но всё равно обновлять его мы будем чаще по ссылке из поста.
-

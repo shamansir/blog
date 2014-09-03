@@ -129,7 +129,7 @@ _P.S. Статья будет исправляться и дополняться
 
 теперь по поводу гаснущих лампочек. я взял [скрипт starl1t‘а](http://starl1te.wordpress.com/%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0-%D0%BC%D0%BE%D0%B4%D0%B5%D0%BC%D0%B0-d-link-dsl-200/#comment-52), чуток исправил, добавив `pppoe-start` и выставил его в автозагрузку:
 
-``` { bash }
+``` bash
 
 #!/bin/bash
 
@@ -302,4 +302,3 @@ VID - vendor id
 PID - product id
 
 alt интерфейсы сейчас указаны на flashtux для каждого модема
-

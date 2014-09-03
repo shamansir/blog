@@ -75,4 +75,3 @@ tags: [ javascript, xml, blog, web-dev ]
 [Проект на Googlecode](http://showdown-blog.googlecode.com/)
 
 ** Upd. ** Достоинства и недостатки со временем изменились, посетите страницу проекта чтобы узнать как именно.
-

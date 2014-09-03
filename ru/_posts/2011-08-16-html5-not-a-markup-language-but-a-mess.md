@@ -112,7 +112,7 @@ Canvas/WebGL, LocalStorage, встроенная поддержка видео, 
  - Вы запрашиваете в браузере адрес `http://idsoftware.org/quake7.game`, браузер обнаруживает в заголовке ответа MIME-тип `game/webgl`, отображает один только `canvas` и отдаёт управление пришедшему WebGL-скрипту. Понятное дело, `game/flash` нужно запретить сразу же.
  - Вы запрашиваете в браузере адрес `http://mikashkin/blog`, браузер прищуривается, распознаёт MIME-тип `text/blog`, а внутри (например) YAML-структуру типа
 
-    ``` { yaml }
+    ``` yaml
 
     blog:
         author: mikashkin
@@ -131,7 +131,7 @@ Canvas/WebGL, LocalStorage, встроенная поддержка видео, 
 
  - Вы запрашиваете в браузере адрес `http://evernote.app`, браузер получает в ответ структуру виджетов на неком UI-языке, MIME-тип, например: `application/ui-declarative`:
 
-     ``` { yaml }
+     ``` yaml
 
     DockLayout:
         north:
@@ -181,4 +181,3 @@ Canvas/WebGL, LocalStorage, встроенная поддержка видео, 
 [wikipedia]: http://www.wikipedia.org/
 [mime]: http://ru.wikipedia.org/wiki/Internet_media_type
 [jekyll]: http://jekyllrb.com/
-
