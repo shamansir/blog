@@ -3,23 +3,23 @@
     <feed xmlns="http://www.w3.org/2005/Atom">
         <title>No word about onion</title>
         <subtitle>shaman.sir's telling you about stuff</subtitle>
-        <link rel="alternate" href="http://shamansir.github.com/" />
-        <link rel="self" href="http://shamansir.github.com/feed.xml" type="application/atom+xml" />
-        <id>http://shamansir.github.com/</id>
-        <updated>2014-09-07T22:21:13Z</updated>
+        <link rel="alternate" href="http://shamansir.github.io/blog/" />
+        <link rel="self" href="http://shamansir.github.io/blog/feed.xml" type="application/atom+xml" />
+        <id>http://shamansir.github.io/blog/</id>
+        <updated>2014-09-07T23:01:29Z</updated>
         
         <author>
             <name>Ulric Wilfred</name>
             <email>shaman.sir@gmail.com</email>
-            <uri>http://shamansir.github.com/</uri>
+            <uri>http://shamansir.github.io/blog/</uri>
         </author>
         
         
             <entry>
                 <title>Generating Functional Parsers</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/generating-functional-parsers/" type="text/html" />
-                <id>http://shamansir.github.com/articles/generating-functional-parsers/</id>
-                <updated>2014-09-06T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/generating-functional-parsers/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/generating-functional-parsers/</id>
+                <updated>2014-09-06T23:01:00Z</updated>
                 
                 <summary type="html">Are you interested in a functional approach to parsers generation? Well, I&#39;m sure you do, even if, at your side, you&#39;re not sure what it means exactly. It&#39;s just because anything that connects parsers and functional programming in practice can be nothing but joyful...</summary>
                 <content type="html">&lt;p&gt;&lt;em&gt;Disclaimer:&lt;/em&gt; The author of this text is still and eternally non-native English-writer, so please excuse him for his grammar errors, mistypes and stupid bravity without any malice, but please consider correcting his mistakes &lt;a href=&#34;mailto://shaman.sir@gmail.com&#34;&gt;using his e-mail&lt;/a&gt; without any commiseration. (TODO: Remove this portion of text when everything wrong will be fixed).&lt;/p&gt;
@@ -48,7 +48,7 @@
 
 &lt;p&gt;You may open this image in new tab (right click &amp;rarr; Open in new Tab) to see it in full size.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/generating-functional-parsers/comparison.png&#34; alt=&#34;Comparison of generated parsers&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/generating-functional-parsers/comparison.png&#34; alt=&#34;Comparison of generated parsers&#34;&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code data-lang=&#34;peg&#34;&gt;&amp;#x2F;*
  * Classic example grammar, which recognizes simple arithmetic expressions like
  * &amp;quot;2*(3+4)&amp;quot;. The parser generated from this grammar then computes their value.
@@ -647,9 +647,9 @@ additive
         
             <entry>
                 <title>Mastering Functional JavaScript Lecture Slides</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/mastering-functional-javascript-slides/" type="text/html" />
-                <id>http://shamansir.github.com/articles/mastering-functional-javascript-slides/</id>
-                <updated>2013-02-16T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/mastering-functional-javascript-slides/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/mastering-functional-javascript-slides/</id>
+                <updated>2013-02-16T23:01:00Z</updated>
                 
                 <summary type="html">In JavaScript, like, say, in Python, functions are also objects. It gives developer the opportunity to write pure (or not so, since there are no native monads support ;) ) functional code. Most people among us do easily forget about this fact, but it is still true and, what&amp;rsquo;s truly great, it was true from the start.</summary>
                 <content type="html">&lt;p&gt;In JavaScript, like, say, in Python, functions are also objects. It gives developer the opportunity to write pure (or not so, since there are no native monads support ;) ) functional code. Most people among us do easily forget about this fact, but it is still true and, what&amp;rsquo;s truly great, it was true from the start.&lt;/p&gt;
@@ -660,7 +660,7 @@ additive
 
 &lt;p&gt;OK, Here we go:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/shamansir/mastering-functional-javascript&#34;&gt;&lt;img src=&#34;http://shamansir.github.com/figures/mastering-functional-javascript-slides/first_slide.png&#34; alt=&#34;Slides&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://speakerdeck.com/shamansir/mastering-functional-javascript&#34;&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/mastering-functional-javascript-slides/first_slide.png&#34; alt=&#34;Slides&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;links&#34;&gt;Links&lt;/h3&gt;
 &lt;p&gt;Links to the examples:&lt;/p&gt;
 
@@ -695,14 +695,14 @@ Article on lyfe.js: &lt;a href=&#34;http://balpha.de/2011/06/introducing-lyfe-yi
         
             <entry>
                 <title>GWT + mvp4g Lecture Slides</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/gwt-mvp4g-slides/" type="text/html" />
-                <id>http://shamansir.github.com/articles/gwt-mvp4g-slides/</id>
-                <updated>2011-05-04T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/gwt-mvp4g-slides/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/gwt-mvp4g-slides/</id>
+                <updated>2011-05-04T23:01:00Z</updated>
                 
                 <summary type="html">April 29, I&amp;rsquo;ve presented a lecture on Web-development with &lt;a href=&#34;http://code.google.com/intl/ru/webtoolkit/&#34;&gt;GWT&lt;/a&gt; and &lt;a href=&#34;http://code.google.com/p/mvp4g/&#34;&gt;mvp4g&lt;/a&gt; Framework, at &lt;a href=&#34;http://addconf.ru&#34;&gt;Application Developer Days&lt;/a&gt; 2011 Conference. Here are the slides.</summary>
                 <content type="html">&lt;p&gt;April 29, I&amp;rsquo;ve presented a lecture on Web-development with &lt;a href=&#34;http://code.google.com/intl/ru/webtoolkit/&#34;&gt;GWT&lt;/a&gt; and &lt;a href=&#34;http://code.google.com/p/mvp4g/&#34;&gt;mvp4g&lt;/a&gt; Framework, at &lt;a href=&#34;http://addconf.ru&#34;&gt;Application Developer Days&lt;/a&gt; 2011 Conference. Here are the slides.&lt;/p&gt;
 &lt;h3 id=&#34;slides&#34;&gt;Slides&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://docs.google.com/viewer?a=v&amp;amp;pid=explorer&amp;amp;chrome=true&amp;amp;srcid=0B9lKUPDNyz1vYzAzMzQxMzItYmQyMy00NjdhLWFiYzQtZDRjMjZkNTc2MDEy&amp;amp;hl=en&#34;&gt;&lt;img src=&#34;http://shamansir.github.com/figures/gwt-mvp4g-slides/gdocs.en.png&#34; alt=&#34;Slides&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.google.com/viewer?a=v&amp;amp;pid=explorer&amp;amp;chrome=true&amp;amp;srcid=0B9lKUPDNyz1vYzAzMzQxMzItYmQyMy00NjdhLWFiYzQtZDRjMjZkNTc2MDEy&amp;amp;hl=en&#34;&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/gwt-mvp4g-slides/gdocs.en.png&#34; alt=&#34;Slides&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;(&lt;a href=&#34;http://www.scribd.com/doc/54956722&#34;&gt;Also on Scribd&lt;/a&gt;)&lt;/p&gt;
 &lt;h3 id=&#34;schedule&#34;&gt;Schedule&lt;/h3&gt;
@@ -800,9 +800,9 @@ Article on lyfe.js: &lt;a href=&#34;http://balpha.de/2011/06/introducing-lyfe-yi
         
             <entry>
                 <title>LimeJS: Writing a cross-platform game in HTML5 with touch support</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/limejs-writing-a-game/" type="text/html" />
-                <id>http://shamansir.github.com/articles/limejs-writing-a-game/</id>
-                <updated>2011-02-15T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/limejs-writing-a-game/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/limejs-writing-a-game/</id>
+                <updated>2011-02-15T23:01:00Z</updated>
                 
                 <summary type="html">&lt;a href=&#34;http://www.limejs.com&#34;&gt;LimeJS&lt;/a&gt; is 2D Open Source HTML5-engine for game development with touch-events support and it works (following to the description on the site) with most of mobile platfroms. I have found it not by myself, but last week I&amp;rsquo;ve got a letter with a proposition to tell community about the engine [in russian, this is an english version] and I&amp;rsquo;ve decided - so if this is the case, why waste time on trifles, why not to try this engine in action. Among with that, I have agreed in advance with engine authors that I will tell both advantages and disadvantages, so I hope to clear the advertisment halo from the article with that (though, what means advertisment to open-source)..?</summary>
                 <content type="html">&lt;p&gt;&lt;a href=&#34;http://www.limejs.com&#34;&gt;LimeJS&lt;/a&gt; is 2D Open Source HTML5-engine for game development with touch-events support and it works (following to the description on the site) with most of mobile platfroms. I have found it not by myself, but last week I&amp;rsquo;ve got a letter with a proposition to tell community about the engine [in russian, this is an english version] and I&amp;rsquo;ve decided - so if this is the case, why waste time on trifles, why not to try this engine in action. Among with that, I have agreed in advance with engine authors that I will tell both advantages and disadvantages, so I hope to clear the advertisment halo from the article with that (though, what means advertisment to open-source)..?&lt;/p&gt;
@@ -816,7 +816,7 @@ However, almost all of the objects look and act correctly even on smartphone - s
 &lt;h3 id=&#34;how-the-result-will-look-like&#34;&gt;How The Result Will Look Like&lt;/h3&gt;
 &lt;p&gt;During the article we will develop the very simplified version of ping-pong virtual game with the help of LimeJS. Here is how the result will look like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/limejs-writing-a-game/stage-designed.png&#34; alt=&#34;Men in blue shorts on a green soccer field playing with a children-styled ball&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/limejs-writing-a-game/stage-designed.png&#34; alt=&#34;Men in blue shorts on a green soccer field playing with a children-styled ball&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;There will be videos demonstrating the game we will write running on iPad, iPhone and Android in the end of the article.&lt;/p&gt;
 &lt;h3 id=&#34;preparation&#34;&gt;Preparation&lt;/h3&gt;
@@ -911,7 +911,7 @@ this.addPoints(-50,-125, 0,-175, 50,-125, 50,125, 0,175, -50,125, 0,75, 0,-75)
     .setScale(.4);
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/limejs-writing-a-game/player.png&#34; alt=&#34;Player&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/limejs-writing-a-game/player.png&#34; alt=&#34;Player&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;The red dot on a picture is an &lt;code&gt;anchorPoint&lt;/code&gt;, it is calculated automatically for polygon. This point is a reference point of local coordinates system of the sprite - all the relative sizes and distances related to polygon are calculated starting from this point.&lt;/p&gt;
 
@@ -943,7 +943,7 @@ $ .&amp;#x2F;bin&amp;#x2F;lime.py update
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;So, this is what you can see on the screen:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/limejs-writing-a-game/stage1.png&#34; alt=&#34;Beach-boys wearing blue shorts&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/limejs-writing-a-game/stage1.png&#34; alt=&#34;Beach-boys wearing blue shorts&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;ball-blank&#34;&gt;Ball blank&lt;/h4&gt;
 &lt;p&gt;Now let&amp;rsquo;s make a &lt;code&gt;ball.js&lt;/code&gt; file with this content:&lt;/p&gt;
 &lt;pre&gt;&lt;code data-lang=&#34;javascript&#34;&gt;
@@ -978,7 +978,7 @@ board_.appendChild(playerTwo);
 board_.appendChild(ball);
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/limejs-writing-a-game/stage2.png&#34; alt=&#34;Beach-boys wearing blue shorts playing with a ball&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/limejs-writing-a-game/stage2.png&#34; alt=&#34;Beach-boys wearing blue shorts playing with a ball&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;background&#34;&gt;Background&lt;/h4&gt;
 &lt;p&gt;Now let&amp;rsquo;s create a field with a players, every player will have a half of the field with its own color. We will say &lt;code&gt;Director&lt;/code&gt; what are the game screen size parameters:&lt;/p&gt;
 &lt;pre&gt;&lt;code data-lang=&#34;javascript&#34;&gt;
@@ -1005,7 +1005,7 @@ board_.appendChild(...);
 . . .
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/limejs-writing-a-game/stage3.png&#34; alt=&#34;Beach-boys wearing blue shorts playing on a asphalt&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/limejs-writing-a-game/stage3.png&#34; alt=&#34;Beach-boys wearing blue shorts playing on a asphalt&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;wall-blank&#34;&gt;Wall blank&lt;/h4&gt;
 &lt;p&gt;Wall will not have a lot of logic, but as a tradition we will also place it in a separate class. Walls will have 20x20 size. Create a file &lt;code&gt;wall.js&lt;/code&gt; with this content:&lt;/p&gt;
 &lt;pre&gt;&lt;code data-lang=&#34;javascript&#34;&gt;
@@ -1049,7 +1049,7 @@ board_.appendChild(...);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;That&amp;rsquo;s all, the game board is complete - we can start to program logic!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/limejs-writing-a-game/stage4.png&#34; alt=&#34;Beach-boys wearing blue shorts with a ball over a grey rectangles surrounded with yellow crates&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/limejs-writing-a-game/stage4.png&#34; alt=&#34;Beach-boys wearing blue shorts with a ball over a grey rectangles surrounded with yellow crates&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;players-logic&#34;&gt;Players logic&lt;/h4&gt;
 &lt;p&gt;Player sprite must move vertically towards the touched or clicked point, omitting the walls. Moving is done easy:&lt;/p&gt;
 &lt;pre&gt;&lt;code data-lang=&#34;javascript&#34;&gt;
@@ -1324,7 +1324,7 @@ goog.inherits(pingpong.Wall, lime.RoundedRect);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now everything looks much prettier:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/limejs-writing-a-game/stage-designed.png&#34; alt=&#34;Men in blue shorts on a soccer field playing with children ball&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/limejs-writing-a-game/stage-designed.png&#34; alt=&#34;Men in blue shorts on a soccer field playing with children ball&#34;&gt;&lt;/p&gt;
 &lt;h4 id=&#34;compilation&#34;&gt;Compilation&lt;/h4&gt;
 &lt;p&gt;So, the demonstration game is complete. Here are the sources I&amp;rsquo;ve got:&lt;/p&gt;
 
@@ -1363,7 +1363,7 @@ $ .&amp;#x2F;bin&amp;#x2F;lime.py build pingpong -o pingpong&amp;#x2F;compiled&a
 &lt;h3 id=&#34;to-play&#34;&gt;To play&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;http://shamansir.madfire.net/_pingpong/pingpong.html&#34;&gt;Here you can try to play&lt;/a&gt; (it can be a little buggy, because it is a very simplified version, please compare the platform-related experience you get with what you see on video)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/limejs-writing-a-game/qrcode.png&#34; alt=&#34;QRCode&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/limejs-writing-a-game/qrcode.png&#34; alt=&#34;QRCode&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;P.S. Special thanks to &lt;a href=&#34;http://www.lazio.com.ua/&#34;&gt;lazio_od&lt;/a&gt;, he helped me with testing among with engine authors.&lt;/p&gt;
 </content>
@@ -1371,9 +1371,9 @@ $ .&amp;#x2F;bin&amp;#x2F;lime.py build pingpong -o pingpong&amp;#x2F;compiled&a
         
             <entry>
                 <title>3 Tiny JavaScript Snippets</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/3-tiny-javascript-snippets/" type="text/html" />
-                <id>http://shamansir.github.com/articles/3-tiny-javascript-snippets/</id>
-                <updated>2011-02-03T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/3-tiny-javascript-snippets/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/3-tiny-javascript-snippets/</id>
+                <updated>2011-02-03T23:01:00Z</updated>
                 
                 <summary type="html">Currently I am doing some stuff in JavaScript and I need to have just a tiny amounts of code to work with. As tiny as this article. But there are some things I really need to make the development comfortable for myself. So I require them to be tiny too.</summary>
                 <content type="html">&lt;p&gt;Currently I am doing some stuff in JavaScript and I need to have just a tiny amounts of code to work with. As tiny as this article. But there are some things I really need to make the development comfortable for myself. So I require them to be tiny too.&lt;/p&gt;
@@ -1622,16 +1622,16 @@ _f();
         
             <entry>
                 <title>Modelling a Solar System in Fluxus</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/fluxus-solar-system/" type="text/html" />
-                <id>http://shamansir.github.com/articles/fluxus-solar-system/</id>
-                <updated>2010-12-06T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/fluxus-solar-system/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/fluxus-solar-system/</id>
+                <updated>2010-12-06T23:01:00Z</updated>
                 
                 <summary type="html">Some time ago I &lt;a href=&#34;#post-about-fluxus&#34;&gt;wrote a post&lt;/a&gt; about &lt;a href=&#34;http://www.pawfal.org/fluxus/&#34;&gt;fluxus&lt;/a&gt;, livecoding and 3D-prototyping system. Now I want to demonstrate some of its features and describe how you may use them in pseudo(;))scientific needs. For example, you can create a model of a simplified solar system and make it fit in only 125 lines of code (including comments) &amp;ndash; it is the advantage of &lt;a href=&#34;http://racket-lang.org/&#34;&gt;Racket&lt;/a&gt; language with graphic steroids, the core of fluxus and a descendant of PLT Scheme. Here how the result will look like:</summary>
                 <content type="html">&lt;p&gt;Some time ago I &lt;a href=&#34;#post-about-fluxus&#34;&gt;wrote a post&lt;/a&gt; about &lt;a href=&#34;http://www.pawfal.org/fluxus/&#34;&gt;fluxus&lt;/a&gt;, livecoding and 3D-prototyping system. Now I want to demonstrate some of its features and describe how you may use them in pseudo(;))scientific needs. For example, you can create a model of a simplified solar system and make it fit in only 125 lines of code (including comments) &amp;ndash; it is the advantage of &lt;a href=&#34;http://racket-lang.org/&#34;&gt;Racket&lt;/a&gt; language with graphic steroids, the core of fluxus and a descendant of PLT Scheme. Here how the result will look like:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://shamansir.github.com/figures/fluxus-solar-system/screen04.png&#34;&gt;&lt;img src=&#34;http://shamansir.github.com/figures/fluxus-solar-system/screen04-thumb.png&#34; alt=&#34;Screenshot 01&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://shamansir.github.io/blog/figures/fluxus-solar-system/screen04.png&#34;&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/fluxus-solar-system/screen04-thumb.png&#34; alt=&#34;Screenshot 01&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://shamansir.github.com/figures/fluxus-solar-system/screen05.png&#34;&gt;&lt;img src=&#34;http://shamansir.github.com/figures/fluxus-solar-system/screen05-thumb.png&#34; alt=&#34;Screenshot 02&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://shamansir.github.io/blog/figures/fluxus-solar-system/screen05.png&#34;&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/fluxus-solar-system/screen05-thumb.png&#34; alt=&#34;Screenshot 02&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;There are sources in the post, a short desription of code structure, tutorial movies in Slavic English, examining in detail the whole process of writing this complicated (;)) code.&lt;/p&gt;
 &lt;h3 id=&#34;sources&#34;&gt;Sources&lt;/h3&gt;
@@ -1684,14 +1684,14 @@ _f();
         
             <entry>
                 <title>Sandwitch Tumblr Theme</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/tumblr-sandwitch-theme/" type="text/html" />
-                <id>http://shamansir.github.com/articles/tumblr-sandwitch-theme/</id>
-                <updated>2010-12-02T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/tumblr-sandwitch-theme/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/tumblr-sandwitch-theme/</id>
+                <updated>2010-12-02T23:01:00Z</updated>
                 
                 <summary type="html">Have created &lt;a href=&#34;http://www.tumblr.com/theme/18012&#34;&gt;Tumblr theme&lt;/a&gt; named &lt;a href=&#34;http://uncyclopedia.wikia.com/wiki/Sandwitch&#34;&gt;Sandwitch&lt;/a&gt;. I was going to make tumblr-blog look like &lt;a href=&#34;http://code.google.com/p/showdown-blog/&#34;&gt;showdown blog&lt;/a&gt;-engine style I&amp;rsquo;ve made, and seems the result in the end is even better!</summary>
                 <content type="html">&lt;p&gt;Have created &lt;a href=&#34;http://www.tumblr.com/theme/18012&#34;&gt;Tumblr theme&lt;/a&gt; named &lt;a href=&#34;http://uncyclopedia.wikia.com/wiki/Sandwitch&#34;&gt;Sandwitch&lt;/a&gt;. I was going to make tumblr-blog look like &lt;a href=&#34;http://code.google.com/p/showdown-blog/&#34;&gt;showdown blog&lt;/a&gt;-engine style I&amp;rsquo;ve made, and seems the result in the end is even better!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/tumblr-sandwitch-theme/screen.png&#34; alt=&#34;Screenshot&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/tumblr-sandwitch-theme/screen.png&#34; alt=&#34;Screenshot&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;You can turn on tweets translation, allow &lt;a href=&#34;http://disqus.com&#34;&gt;Disqus&lt;/a&gt; comments and&amp;hellip; write posts with source code highlighting!&lt;/p&gt;
 
@@ -1705,9 +1705,9 @@ _f();
         
             <entry>
                 <title>Easy as Sandwich: Blog Engine in JavaScript and XML</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/easy-as-sandwich-blog-engine/" type="text/html" />
-                <id>http://shamansir.github.com/articles/easy-as-sandwich-blog-engine/</id>
-                <updated>2010-11-17T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/easy-as-sandwich-blog-engine/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/easy-as-sandwich-blog-engine/</id>
+                <updated>2010-11-17T23:01:00Z</updated>
                 
                 <summary type="html">Say you suddenly needed a personal blog. I already have some puny free hosting, and it hosting is puny for real, so it has no PHP and it even has no possibilities to set up any server-side at all. Or even worse, you have only a Dropbox account and in this very moment, suddenly, the personal blog is needed.</summary>
                 <content type="html">&lt;p&gt;Say you suddenly needed a personal blog. I already have some puny free hosting, and it hosting is puny for real, so it has no PHP and it even has no possibilities to set up any server-side at all. Or even worse, you have only a Dropbox account and in this very moment, suddenly, the personal blog is needed.&lt;/p&gt;
@@ -1718,7 +1718,7 @@ _f();
 
 &lt;p&gt;I think you now feel what I mean: I have a proposal for you abou this all. It&amp;rsquo;d be better to give more than one link already but I am an evil geek so I&amp;rsquo;ll put one in the end of article.&lt;/p&gt;
 &lt;h3 id=&#34;picture&#34;&gt;Picture&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/easy-as-sandwich-blog-engine/screenshot-small.png&#34; alt=&#34;Screenshot&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/easy-as-sandwich-blog-engine/screenshot-small.png&#34; alt=&#34;Screenshot&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;components&#34;&gt;Components&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://jquery.com&#34;&gt;JQuery&lt;/a&gt;, for bread&lt;/li&gt;
@@ -1779,9 +1779,9 @@ _f();
         
             <entry>
                 <title>Way of the Rainbow: Fingers Motion Detection Algorythm Based on a Colors Differentiation (Driven by LISP)</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/nijiato-detection-of-fingers-motion-algorithm/" type="text/html" />
-                <id>http://shamansir.github.com/articles/nijiato-detection-of-fingers-motion-algorithm/</id>
-                <updated>2010-08-12T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/nijiato-detection-of-fingers-motion-algorithm/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/nijiato-detection-of-fingers-motion-algorithm/</id>
+                <updated>2010-08-12T23:01:00Z</updated>
                 
                 <summary type="html">I am crazy a little bit, so in my spare time I&amp;rsquo;ve started to study Lisp and, to make my studying more interesting, I&amp;rsquo;ve tried to make a realization of my own algorithm. &amp;ldquo;Algorythm&amp;rdquo;, for sure, is spoken too loudly, it has no matrix multiplication, no arrays sorting, no bubbles and no hard work in optimization (even no colors calibration, I sorry myself with the fact that this version if for learning). And yes, there are a lot of pictures in the article, and in the end there even will be a video.</summary>
                 <content type="html">&lt;p&gt;I am crazy a little bit, so in my spare time I&amp;rsquo;ve started to study Lisp and, to make my studying more interesting, I&amp;rsquo;ve tried to make a realization of my own algorithm. &amp;ldquo;Algorythm&amp;rdquo;, for sure, is spoken too loudly, it has no matrix multiplication, no arrays sorting, no bubbles and no hard work in optimization (even no colors calibration, I sorry myself with the fact that this version if for learning). And yes, there are a lot of pictures in the article, and in the end there even will be a video.&lt;/p&gt;
@@ -1807,7 +1807,7 @@ _f();
 
 &lt;p&gt;So, let us put the slips on our fingers.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/nijiato-detection-of-fingers-motion-algorithm/colors.png&#34; alt=&#34;Color values&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/nijiato-detection-of-fingers-motion-algorithm/colors.png&#34; alt=&#34;Color values&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;The RGB-components on a picture are presented in the range from 0 to 1, the overflow when adding/subtracting is ignored. More of that, this colors are individual for my case, that&amp;rsquo;s whay they look like not ideal.&lt;/p&gt;
 &lt;h3 id=&#34;koo.-first-pass.-detecting-possible-fingers39-locations-areas.&#34;&gt;Koo. First pass. Detecting possible fingers&amp;#39; locations areas.&lt;/h3&gt;
@@ -1826,21 +1826,21 @@ _f();
 
 &lt;p&gt;If pixel does not filled with any color defined before plus-minus delta, we write &lt;code&gt;0&lt;/code&gt; to the corresponding &lt;code&gt;*fingers-values*&lt;/code&gt; array cell. If here is &lt;em&gt;may be&lt;/em&gt; some concrete finger (color of pixel matches to one of predefined colors plus-minus delta), we write the correnponding number to the corresponding cell - &lt;code&gt;1-9&lt;/code&gt; for thumb, &lt;code&gt;10-19&lt;/code&gt; for index, &lt;code&gt;20-29&lt;/code&gt; for middle, &lt;code&gt;30-39&lt;/code&gt; for ring-finger and &lt;code&gt;40-49&lt;/code&gt; for little one. Currently I write only &lt;code&gt;9&lt;/code&gt;,&lt;code&gt;19&lt;/code&gt;, &lt;code&gt;29&lt;/code&gt;, &lt;code&gt;39&lt;/code&gt;, &lt;code&gt;49&lt;/code&gt; values in the cells - I expected to make an additional gradation depending on how close was the value to the &amp;ldquo;middle&amp;rdquo; color, but this proved unnecessary (but ranges of &lt;code&gt;10&lt;/code&gt; are making great help in future). It is expected that fingers of left hand are found by default. The number of detected areas of same color are not controlled or regulated any way at this step.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/nijiato-detection-of-fingers-motion-algorithm/values.png&#34; alt=&#34;Сorrespondence of colors and fingers&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/nijiato-detection-of-fingers-motion-algorithm/values.png&#34; alt=&#34;Сorrespondence of colors and fingers&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s all, the frame was scanned, but it is just a first step: &lt;em&gt;there are values less than &lt;code&gt;50&lt;/code&gt; in our array&lt;/em&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;koo.-second-pass.-detecting-coordinates-and-angles.&#34;&gt;Koo. Second pass. Detecting coordinates and angles.&lt;/h3&gt;
 &lt;p&gt;Before second pass over the frame the temporary array of 10 booleans named &lt;code&gt;hits&lt;/code&gt; is created. We control what fingers are already detected with this array. No we are going over every cell of main &lt;code&gt;*fingers-values*&lt;/code&gt; array, one by one. If the value of current cell is greater than zero and less than &lt;code&gt;100&lt;/code&gt; then we check if that finger was already detected, if was- we skip this cell, if not - we&amp;rsquo;re trying to make decision on what hand can it be using the &lt;code&gt;x&lt;/code&gt; coodinate for this cell. If the same finger for left hand was found and its &lt;code&gt;x&lt;/code&gt; coordinate was greater than current (but not too close to current, I check if no closer than &lt;code&gt;80px&lt;/code&gt;) so we, seems, got the right hand - so we add &lt;code&gt;50&lt;/code&gt; to current value and work with already updated one.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/nijiato-detection-of-fingers-motion-algorithm/distance.png&#34; alt=&#34;Distance between fingers&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/nijiato-detection-of-fingers-motion-algorithm/distance.png&#34; alt=&#34;Distance between fingers&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;Now we now which hand it is and the estimated finger location area, it is left to detect its coordinates. So we save &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; of current pixel and then in cycle through angles from &lt;code&gt;0&lt;/code&gt; to &lt;code&gt;pi&lt;/code&gt; with a &lt;code&gt;pi / 20&lt;/code&gt; step (for example) we calculate the pixels&amp;#39; coords for each beam with the corresponding angle which extends from the saved point (in a non-learning version we can make a cache for relative values of these), the beams length is set to the predefined value, in my case it is &lt;code&gt;31px&lt;/code&gt; (including current pixel, 15 to the end and 15 to the start), and their center is located in current point.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/nijiato-detection-of-fingers-motion-algorithm/angles.png&#34; alt=&#34;Angles detection algorithm&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/nijiato-detection-of-fingers-motion-algorithm/angles.png&#34; alt=&#34;Angles detection algorithm&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;The pixels&amp;#39; coordinates of each beam are uniquely correspond with indexes of neigbour cells in &lt;code&gt;*fingers-values*&lt;/code&gt; array. While staying in current point with cursor we count pixel-by-pixel for every beam the number of matched values (those whos value between &lt;code&gt;1&lt;/code&gt; and &lt;code&gt;50&lt;/code&gt;, adding &lt;code&gt;50&lt;/code&gt; if the current hand is right) and if this number is acceptable for this length (I grant it to have error in 4 pixels, so for minimum 27 pixels of 31 must match) then bingo - &lt;strong&gt;we have detected the angle and finger position&lt;/strong&gt;: finger coordinates (relative) - it is the start and end points of the beam and the finger pinch is the angle of matched beam. We can write to &lt;code&gt;*hits*&lt;/code&gt; that finger is found and pass this data to the screen (or to &lt;code&gt;stdout&lt;/code&gt;).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/nijiato-detection-of-fingers-motion-algorithm/smile.png&#34; alt=&#34;Smile&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/nijiato-detection-of-fingers-motion-algorithm/smile.png&#34; alt=&#34;Smile&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;koo.-possible-applications.&#34;&gt;Koo. Possible applications.&lt;/h3&gt;
 &lt;p&gt;When we know fingers coordinates and their tilt angles, we can identify almost any gesture. But the analysator need to have the ability of &amp;ldquo;prediction&amp;rdquo; of fingers position using the previous states - if the finger was suddenly lost in the center of frame so may be a hand was tightened into a fist or else, if it was lost at the edge of the frame, may be it was a fast outward movement. There is a solvable problem about detecting the hand that owns a single finger - it can be solved using additional markers for palms (if marker is not seen and a fingers are in back order on the frame - it is the backside), there are navy blue and violet colors left (I&amp;rsquo;ve added them to pictures for clarity). Or it even may be ignored what hand it is for gestures if there is insuffiecient amount of data (only two fingers are visible from camera). These gestures may be used to manipulate interfaces (as in the &lt;a href=&#34;http://www.ted.com/talks/lang/eng/john_underkoffler_drive_3d_data_with_a_gesture.html&#34;&gt;mentioned video&lt;/a&gt; - to move windows, watching images in albums, making all like in Minority Report, and there&amp;rsquo;s only web-camera and psychological barrier overcome (to put the colored slips or the similar controllers on the fingers) required). Currently it is cheaper than densors and more funny than current applications of Microsoft Kinect :).&lt;/p&gt;
 
@@ -1871,7 +1871,7 @@ _f();
 &lt;h3 id=&#34;koo.-video&#34;&gt;Koo. Video&lt;/h3&gt;
 &lt;p&gt;And finally a video that show program in work. It loads a lot of libraries at start, you can skip first 30 seconds approximately. &amp;ldquo;Detected&amp;rdquo; positions of fingers are shown with slim 1-pixel black line (those matched beams) and shown in the console in readable form. In the middle of video two thumbs of both hands are not detected, that is because the distance between them is less than 80 pixels that I have set to be minimal width between hands. The window from camera is intentionally small to ease the calculations for a program :).&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://vimeo.com/14073181&#34;&gt;&lt;img src=&#34;http://shamansir.github.com/figures/nijiato-detection-of-fingers-motion-algorithm/vimeo-video-frame.png&#34; alt=&#34;Link to Vimeo video&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://vimeo.com/14073181&#34;&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/nijiato-detection-of-fingers-motion-algorithm/vimeo-video-frame.png&#34; alt=&#34;Link to Vimeo video&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;P.S.&lt;/strong&gt; Some (not a lot of) phrases in this article are related to the Russian epic sci-fi movie named &lt;a href=&#34;http://www.imdb.com/title/tt0091341/&#34;&gt;Kin-dza-dza&lt;/a&gt;, so I promote it with this article :)&lt;/p&gt;
 </content>
@@ -1879,9 +1879,9 @@ _f();
         
             <entry>
                 <title>Fluxus — Prototyping OpenGL graphics and games on-the-fly (add Scheme to taste)</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/post-about-fluxus/" type="text/html" />
-                <id>http://shamansir.github.com/articles/post-about-fluxus/</id>
-                <updated>2010-07-10T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/post-about-fluxus/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/post-about-fluxus/</id>
+                <updated>2010-07-10T23:01:00Z</updated>
                 
                 <summary type="html">The internet for a programmer who insterested in 3D-graphics for several years is full of videos where people programming music visualizers, complex color-morphing effects or even more tricky things working at the intersection of technology - literally the author writes code and somewhere on background it is compiled and executed and the author sees the result - this process named &lt;em&gt;livecoding&lt;/em&gt;. Most recently the programs like these are written in lisp-family languages, the similar editor exists for ProcessingJS, it renders code immediately in browser, but its not about it.</summary>
                 <content type="html">&lt;p&gt;The internet for a programmer who insterested in 3D-graphics for several years is full of videos where people programming music visualizers, complex color-morphing effects or even more tricky things working at the intersection of technology - literally the author writes code and somewhere on background it is compiled and executed and the author sees the result - this process named &lt;em&gt;livecoding&lt;/em&gt;. Most recently the programs like these are written in lisp-family languages, the similar editor exists for ProcessingJS, it renders code immediately in browser, but its not about it.&lt;/p&gt;
@@ -1918,9 +1918,9 @@ _f();
         
             <entry>
                 <title>Ant JUnit Nice Output Formatter</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/ant-junit-one-liner-output-formatter/" type="text/html" />
-                <id>http://shamansir.github.com/articles/ant-junit-one-liner-output-formatter/</id>
-                <updated>2010-04-08T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/ant-junit-one-liner-output-formatter/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/ant-junit-one-liner-output-formatter/</id>
+                <updated>2010-04-08T23:01:00Z</updated>
                 
                 <summary type="html">I&amp;rsquo;ve seached for nice Apache Ant formatter which do not writes full stack trace in console/file and just writes what methods are passed, what methods are failed, and if failed - where and why they failed (and only trace about methods from test class). I haven&amp;rsquo;t found any. So I&amp;rsquo;ve written one.</summary>
                 <content type="html">&lt;p&gt;I&amp;rsquo;ve seached for nice Apache Ant formatter which do not writes full stack trace in console/file and just writes what methods are passed, what methods are failed, and if failed - where and why they failed (and only trace about methods from test class). I haven&amp;rsquo;t found any. So I&amp;rsquo;ve written one.&lt;/p&gt;
@@ -2322,9 +2322,9 @@ public class OneLinerFormatter implements JUnitResultFormatter {
         
             <entry>
                 <title>10 Useful Solutions for Android Developer</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/10-useful-solutions-for-android-developer/" type="text/html" />
-                <id>http://shamansir.github.com/articles/10-useful-solutions-for-android-developer/</id>
-                <updated>2010-01-09T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/10-useful-solutions-for-android-developer/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/10-useful-solutions-for-android-developer/</id>
+                <updated>2010-01-09T23:01:00Z</updated>
                 
                 <summary type="html">This post contains several useful solutions for Android developers. If you are starting to dive in it, I think the detailed description of the problems I solved will help you in your Android adventures.</summary>
                 <content type="html">&lt;p&gt;This post contains several useful solutions for Android developers. If you are starting to dive in it, I think the detailed description of the problems I solved will help you in your Android adventures.&lt;/p&gt;
@@ -2352,7 +2352,7 @@ public class OneLinerFormatter implements JUnitResultFormatter {
 &lt;h3 id=&#34;lists-with-subsections&#34;&gt;2. Lists with subsections&lt;/h3&gt;
 &lt;p&gt;Among with the regular &lt;code&gt;ListView&lt;/code&gt; usage, it is frequently required to make a list with elements grouped in sections like this: section header, item, item, item, &amp;hellip;, section header, item, item, item, &amp;hellip;, section header, item, item, &amp;hellip;, section header, item, item, &amp;hellip; &amp;amp; s.o. See &amp;ldquo;Statistics&amp;rdquo; and &amp;ldquo;Information&amp;rdquo; sections at the image.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/10-useful-solutions-for-android-developer/guest-channel.png&#34; alt=&#34;List with sections&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/10-useful-solutions-for-android-developer/guest-channel.png&#34; alt=&#34;List with sections&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;Headers must not react on selection or press and they must have their own layout. This may be accomplished extending the adapter of this list from &lt;code&gt;BaseAdapter&lt;/code&gt;, for example, and by overriding its &lt;code&gt;getItemViewType&lt;/code&gt;, &lt;code&gt;getViewTypeCount&lt;/code&gt; and &lt;code&gt;isEnabled&lt;/code&gt; methods, among with &lt;code&gt;getView&lt;/code&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code data-lang=&#34;java&#34;&gt;
@@ -2500,7 +2500,7 @@ public static void invalidateByPos(AdapterView&amp;lt;?&amp;gt; parent, int posi
 &lt;li&gt;Methods are defined in class: &lt;a href=&#34;http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/util/Utils.java?r=85e18485bdda1c526141170f67e65f4e00202f34&#34;&gt;&lt;code&gt;Utils&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;caching-remote-images-for-lists&#34;&gt;5. Caching remote images for lists&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/10-useful-solutions-for-android-developer/guest-videos.png&#34; alt=&#34;List with remote images&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/10-useful-solutions-for-android-developer/guest-videos.png&#34; alt=&#34;List with remote images&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;If you are creating &lt;code&gt;ListView&lt;/code&gt; containing images taken from web, this chapter is for you. It would be unwise to get images by URL again each time &lt;code&gt;getView&lt;/code&gt; is called in adapter - it is obvious that it would be better to a) cache them b) ask for them only when view with this image is visible. For the moment this task arose so recently for Android programmers, so there are a lot of &lt;a href=&#34;http://stackoverflow.com/questions/541966/android-how-do-i-do-a-lazy-load-of-images-in-listview&#34;&gt;solutions for it&lt;/a&gt;.&lt;/p&gt;
 
@@ -2844,7 +2844,7 @@ new Thread(secondaryTasks, &amp;quot;Tasks Queue&amp;quot;).start();
 &lt;li&gt;Handling completed tasks in: &lt;a href=&#34;http://code.google.com/p/vimeoid/source/browse/apk/src/org/vimeoid/activity/user/item/UserActivity.java?r=85e18485bdda1c526141170f67e65f4e00202f34#301&#34;&gt;&lt;code&gt;UserActivity&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;listview-selection-highlight&#34;&gt;10. ListView selection highlight&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/10-useful-solutions-for-android-developer/user-video.png&#34; alt=&#34;Selected element in list&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/10-useful-solutions-for-android-developer/user-video.png&#34; alt=&#34;Selected element in list&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;You see a blue line on the image, it is a custom selected element highlight and it has four conditions - pressed, focused, disabled and transition animation from pressed to held condition for long tap. First three and held condition - it is so-called &lt;code&gt;9-patch&lt;/code&gt;, sure you &lt;a href=&#34;http://developer.android.com/guide/developing/tools/draw9patch.html&#34;&gt;heard something about them&lt;/a&gt;, animation is an &lt;code&gt;xml&lt;/code&gt;-file.&lt;/p&gt;
 
@@ -2856,13 +2856,13 @@ new Thread(secondaryTasks, &amp;quot;Tasks Queue&amp;quot;).start();
 &lt;li&gt;Declared at: &lt;a href=&#34;http://code.google.com/p/vimeoid/source/browse/apk/res/layout/generic_list.xml?r=85e18485bdda1c526141170f67e65f4e00202f34#16&#34;&gt;&lt;code&gt;generic_list.xml&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/10-useful-solutions-for-android-developer/draw9patch-norm.png&#34; alt=&#34;9-patch editor&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/10-useful-solutions-for-android-developer/draw9patch-norm.png&#34; alt=&#34;9-patch editor&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;There are also a tricks with 9-patch, each time when there is something wrong in layout, the whole list becomes a mess. Main rule is to check &lt;code&gt;ListView&lt;/code&gt; declaration first of all, ensure that &lt;code&gt;layout_width&lt;/code&gt; and &lt;code&gt;layout_height&lt;/code&gt; are set to &lt;code&gt;fill_parent&lt;/code&gt; and re-check the parent elements higher in the hierarchy. Then, if it has not helped, you may try to correct 9-patches. The thick black lines on top and to the left determine what image areas will be stretched if the content can&amp;rsquo;t fill the image. The thick black lines (optional) on bottom and to the right determine in what image area the content will fit itself. It is also not so easy to get the correct positions at first time, have to experiment. Don&amp;rsquo;t even think about creating 9-patches without editor, it is a brainfuck - content areas and errors are highlighted in editor, but even when everything seems ok, inflater understands a layout as you expect not every time.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/10-useful-solutions-for-android-developer/selector_bg_disabled.9.png&#34; alt=&#34;Disabled state&#34;&gt; &lt;img src=&#34;http://shamansir.github.com/figures/10-useful-solutions-for-android-developer/selector_bg_focus.9.png&#34; alt=&#34;Focused state&#34;&gt; &lt;img src=&#34;http://shamansir.github.com/figures/10-useful-solutions-for-android-developer/selector_bg_pressed.9.png&#34; alt=&#34;Pressed state&#34;&gt; &lt;img src=&#34;http://shamansir.github.com/figures/10-useful-solutions-for-android-developer/selector_bg_longpress.9.png&#34; alt=&#34;Held state&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/10-useful-solutions-for-android-developer/selector_bg_disabled.9.png&#34; alt=&#34;Disabled state&#34;&gt; &lt;img src=&#34;http://shamansir.github.io/blog/figures/10-useful-solutions-for-android-developer/selector_bg_focus.9.png&#34; alt=&#34;Focused state&#34;&gt; &lt;img src=&#34;http://shamansir.github.io/blog/figures/10-useful-solutions-for-android-developer/selector_bg_pressed.9.png&#34; alt=&#34;Pressed state&#34;&gt; &lt;img src=&#34;http://shamansir.github.io/blog/figures/10-useful-solutions-for-android-developer/selector_bg_longpress.9.png&#34; alt=&#34;Held state&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;adding-quickactions&#34;&gt;11. Adding QuickActions&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;http://shamansir.github.com/figures/10-useful-solutions-for-android-developer/user-videos.png&#34; alt=&#34;QuickActions example&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/10-useful-solutions-for-android-developer/user-videos.png&#34; alt=&#34;QuickActions example&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.londatiga.net/it/how-to-create-quickaction-dialog-in-android/&#34;&gt;QuickActions&lt;/a&gt; - is small library for the popping out dialogs with actions like the one shown on the picture (and not just like this, because the design can be changed freely). They became a new trend when official twitter-client appeared. Sure there are another implemantations exists but in &lt;em&gt;vimeoid&lt;/em&gt; I use this one and also changed it a bit for my needs.&lt;/p&gt;
 
@@ -2933,24 +2933,24 @@ public static String format(String source, String... params) {
         
             <entry>
                 <title>Google Wave Client as Java Web Application</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/sametimed-google-wave-client/" type="text/html" />
-                <id>http://shamansir.github.com/articles/sametimed-google-wave-client/</id>
-                <updated>2009-10-13T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/sametimed-google-wave-client/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/sametimed-google-wave-client/</id>
+                <updated>2009-10-13T23:01:00Z</updated>
                 
                 <summary type="html">Zdrawstwooyte.</summary>
                 <content type="html">&lt;p&gt;Zdrawstwooyte.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/sametimed&#34;&gt;&lt;img src=&#34;http://shamansir.github.com/figures/sametimed-google-wave-client/logo.png&#34; alt=&#34;sametimed&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/sametimed&#34;&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/sametimed-google-wave-client/logo.png&#34; alt=&#34;sametimed&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&amp;hellip;So I wrote a small project in Java, which is a client for Google Wave, which in its turn can be extended with the features you need. Its current visual style is not very presentable &lt;s&gt;(though, why not, a-la Windows 3.1 ;) )&lt;/s&gt;, &amp;lsquo;cause I am not so good in web-design - but for all the project&amp;rsquo;s source code I am responsible with my head :). Then, for example, the required CSS-styles looks the most understandable and the XHTML-structure is the most simplified (not to the detriment of standards) and the real designer can apply his skills in most and make this all look really beautiful.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://shamansir.github.com/figures/sametimed-google-wave-client/screenshot-full.png&#34;&gt;&lt;img src=&#34;http://shamansir.github.com/figures/sametimed-google-wave-client/screenshot.png&#34; alt=&#34;screenshot&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://shamansir.github.io/blog/figures/sametimed-google-wave-client/screenshot-full.png&#34;&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/sametimed-google-wave-client/screenshot.png&#34; alt=&#34;screenshot&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Source code and war-package with current condition of the project are located at &lt;a href=&#34;http://code.google.com/p/sametimed&#34;&gt;http://code.google.com/p/sametimed&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Right now I have no public hosting ready at hand, so I can&amp;rsquo;t show the project in action with ease. However I can, may be, please you with a &lt;a href=&#34;https://vimeo.com/7036141&#34;&gt;video (at vimeo)&lt;/a&gt;, it demonstrates its main possibilities, and perhaps it is pretty enough if you just want to know what the project can do. Anyway, you can run it by yourself, since there are detailed instructions at project site and the detailed source code inspection and concept description are in this very post&amp;hellip;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;http://vimeo.com/7036141&#34;&gt;&lt;img src=&#34;http://shamansir.github.com/figures/sametimed-google-wave-client/vimeo.png&#34; alt=&#34;video&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://vimeo.com/7036141&#34;&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/sametimed-google-wave-client/vimeo.png&#34; alt=&#34;video&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;installation&#34;&gt;Installation&lt;/h3&gt;
 &lt;p&gt;Just four items required to run this client:&lt;/p&gt;
 
@@ -3044,9 +3044,9 @@ public static String format(String source, String... params) {
         
             <entry>
                 <title>[g]Vim in Python mode : Recompilation in Windows</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/vim-python-windows-compilation/" type="text/html" />
-                <id>http://shamansir.github.com/articles/vim-python-windows-compilation/</id>
-                <updated>2008-03-15T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/vim-python-windows-compilation/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/vim-python-windows-compilation/</id>
+                <updated>2008-03-15T23:01:00Z</updated>
                 
                 <summary type="html">Vim editor is best known between the developers who work on Unix systems &amp;ndash; it&amp;rsquo;s a &lt;code&gt;emacs&lt;/code&gt; competitor, something to call IDE-in-a-terminal &amp;ndash; this editor, with proper dexterity and tuning (it seems to me, the amount of required dexterity is a little less and the required efforts for tuning are more obvious than in &lt;code&gt;emacs&lt;/code&gt;, but the last has the real powerful functionality &amp;ndash; it&amp;rsquo;s a programmer&amp;rsquo;s choice what to use) can make most of development processes faster and easier not in the expense of such advantages like auto-completion and project navigation. But if you plan to use it for Python development in Windows with all the advantages like these &amp;ndash; you&amp;#39;&amp;rsquo;ll need to make some efforts, and the main effort is recompilation&amp;hellip;</summary>
                 <content type="html">&lt;p&gt;Vim editor is best known between the developers who work on Unix systems &amp;ndash; it&amp;rsquo;s a &lt;code&gt;emacs&lt;/code&gt; competitor, something to call IDE-in-a-terminal &amp;ndash; this editor, with proper dexterity and tuning (it seems to me, the amount of required dexterity is a little less and the required efforts for tuning are more obvious than in &lt;code&gt;emacs&lt;/code&gt;, but the last has the real powerful functionality &amp;ndash; it&amp;rsquo;s a programmer&amp;rsquo;s choice what to use) can make most of development processes faster and easier not in the expense of such advantages like auto-completion and project navigation. But if you plan to use it for Python development in Windows with all the advantages like these &amp;ndash; you&amp;#39;&amp;rsquo;ll need to make some efforts, and the main effort is recompilation&amp;hellip;&lt;/p&gt;
@@ -3170,9 +3170,9 @@ autocmd BufNewFile *.py call BufNewFile_PY()
         
             <entry>
                 <title>Redeploying an Application to Tomcat with Ant</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/ant-tomcat-redeploying/" type="text/html" />
-                <id>http://shamansir.github.com/articles/ant-tomcat-redeploying/</id>
-                <updated>2007-09-15T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/ant-tomcat-redeploying/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/ant-tomcat-redeploying/</id>
+                <updated>2007-09-15T23:01:00Z</updated>
                 
                 <summary type="html">The process of out project development has one drawback, which is common to many serious J2EE-projects: after applying changes to the code code and further recompilation, a server do not catches a new version automatically, but requires stoping it, cleaning cache, restarting it again and then, redeploying a package.</summary>
                 <content type="html">&lt;p&gt;The process of out project development has one drawback, which is common to many serious J2EE-projects: after applying changes to the code code and further recompilation, a server do not catches a new version automatically, but requires stoping it, cleaning cache, restarting it again and then, redeploying a package.&lt;/p&gt;
@@ -3362,9 +3362,9 @@ web.dir = ${root.dir}&amp;#x2F;WebContent&amp;#x2F;
         
             <entry>
                 <title>OOP &amp;amp; JavaScript</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/javascript-oop/" type="text/html" />
-                <id>http://shamansir.github.com/articles/javascript-oop/</id>
-                <updated>2007-08-19T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/javascript-oop/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/javascript-oop/</id>
+                <updated>2007-08-19T23:01:00Z</updated>
                 
                 <summary type="html">In &lt;a href=&#34;../16-useful-solutions-for-javascript&#34;&gt;previous article&lt;/a&gt; I have presented you a small example of code, which allows you to use the three pillars of OOP theory in JavaScript. The way it is accomplished is a little tricky, but I have afforded mysefl to modify &lt;code&gt;extend&lt;/code&gt; function a bit, to give a possibility of having a static constants for classes (in fact, the constants in result are just conventional, of course). Here I will provide a special example for it.</summary>
                 <content type="html">&lt;p&gt;In &lt;a href=&#34;../16-useful-solutions-for-javascript&#34;&gt;previous article&lt;/a&gt; I have presented you a small example of code, which allows you to use the three pillars of OOP theory in JavaScript. The way it is accomplished is a little tricky, but I have afforded mysefl to modify &lt;code&gt;extend&lt;/code&gt; function a bit, to give a possibility of having a static constants for classes (in fact, the constants in result are just conventional, of course). Here I will provide a special example for it.&lt;/p&gt;
@@ -3869,9 +3869,9 @@ var GraphicalElementWrapper = ExpandedElementWrapper.extend({
         
             <entry>
                 <title>16 Practical Solutions for Javascript</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/16-useful-solutions-for-javascript/" type="text/html" />
-                <id>http://shamansir.github.com/articles/16-useful-solutions-for-javascript/</id>
-                <updated>2007-08-12T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/16-useful-solutions-for-javascript/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/16-useful-solutions-for-javascript/</id>
+                <updated>2007-08-12T23:01:00Z</updated>
                 
                 <summary type="html">Let me present you a set of functions that I keep in separate &lt;code&gt;utils.js&lt;/code&gt; file - they are the most frequent functions I used. They do trying very hard to be compliant with the modern browsers and they are tested in IE6/7, FF2 and Safari 2 and also in a hard complicated web-system. And they are supposed to work in other, not very old, browsers - I&amp;rsquo;ve used browser detection only for exceptional cases. Some of them, surely, are just mixes of something found in the open web (I am pointing to the source everywhere I remember it) and the bigger part is constructed on the base of my own ideas (and colleagues advices) intended to work properly - just because in that variety of scripts the subtleties (which become generics with closer examination :) ) are not taken into account, and to remain legible.</summary>
                 <content type="html">&lt;p&gt;Let me present you a set of functions that I keep in separate &lt;code&gt;utils.js&lt;/code&gt; file - they are the most frequent functions I used. They do trying very hard to be compliant with the modern browsers and they are tested in IE6/7, FF2 and Safari 2 and also in a hard complicated web-system. And they are supposed to work in other, not very old, browsers - I&amp;rsquo;ve used browser detection only for exceptional cases. Some of them, surely, are just mixes of something found in the open web (I am pointing to the source everywhere I remember it) and the bigger part is constructed on the base of my own ideas (and colleagues advices) intended to work properly - just because in that variety of scripts the subtleties (which become generics with closer examination :) ) are not taken into account, and to remain legible.&lt;/p&gt;
@@ -4582,9 +4582,9 @@ function removeFromArray(arr, element) { &amp;#x2F;&amp;#x2F; removes only one i
         
             <entry>
                 <title>Occasional Textpattern Bug</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/occasional-textpattern-bug/" type="text/html" />
-                <id>http://shamansir.github.com/articles/occasional-textpattern-bug/</id>
-                <updated>2007-07-23T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/occasional-textpattern-bug/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/occasional-textpattern-bug/</id>
+                <updated>2007-07-23T23:01:00Z</updated>
                 
                 <summary type="html">While I&amp;rsquo;ve played with &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt; at &lt;a href=&#34;http://sharedcode.info/&#34;&gt;sharecode&lt;/a&gt;, I faced this issue that may come in touch with those who uses &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt;.</summary>
                 <content type="html">&lt;p&gt;While I&amp;rsquo;ve played with &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt; at &lt;a href=&#34;http://sharedcode.info/&#34;&gt;sharecode&lt;/a&gt;, I faced this issue that may come in touch with those who uses &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt;.&lt;/p&gt;
@@ -4611,9 +4611,9 @@ $evt_list = safe_column(&amp;#x27;event&amp;#x27;, &amp;#x27;txp_prefs&amp;#x27;
         
             <entry>
                 <title>Eric IDE 4.0.1 in Ubuntu 7.04</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/eric-ide-ubuntu/" type="text/html" />
-                <id>http://shamansir.github.com/articles/eric-ide-ubuntu/</id>
-                <updated>2007-07-22T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/eric-ide-ubuntu/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/eric-ide-ubuntu/</id>
+                <updated>2007-07-22T23:01:00Z</updated>
                 
                 <summary type="html">&lt;a href=&#34;http://www.die-offenbachs.de/eric/index.html&#34;&gt;Eric&lt;/a&gt; – is very good IDE for &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;. And &lt;a href=&#34;http://www.die-offenbachs.de/eric/eric-news.html&#34;&gt;just yesterday&lt;/a&gt; the new &lt;a href=&#34;http://sourceforge.net/project/showfiles.php?group_id=119070&amp;amp;package_id=233329&#34;&gt;4.0.1&lt;/a&gt; version was released, but in repositories the last version for the moment is 3.9, and I found myself missing those good old times when I&amp;rsquo;ve compiled packages form sources recently. So I am presenting you a listing of things to be done just in case, to prevent you from meeting the errors that visited me through the process of compilation. Something from this stuff is oriented on new versions :). Just because it was installed on clean Ubuntu - everything must be adequate&amp;hellip; If I missed something, please report.</summary>
                 <content type="html">&lt;p&gt;&lt;a href=&#34;http://www.die-offenbachs.de/eric/index.html&#34;&gt;Eric&lt;/a&gt; – is very good IDE for &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;. And &lt;a href=&#34;http://www.die-offenbachs.de/eric/eric-news.html&#34;&gt;just yesterday&lt;/a&gt; the new &lt;a href=&#34;http://sourceforge.net/project/showfiles.php?group_id=119070&amp;amp;package_id=233329&#34;&gt;4.0.1&lt;/a&gt; version was released, but in repositories the last version for the moment is 3.9, and I found myself missing those good old times when I&amp;rsquo;ve compiled packages form sources recently. So I am presenting you a listing of things to be done just in case, to prevent you from meeting the errors that visited me through the process of compilation. Something from this stuff is oriented on new versions :). Just because it was installed on clean Ubuntu - everything must be adequate&amp;hellip; If I missed something, please report.&lt;/p&gt;
@@ -4680,9 +4680,9 @@ $ sudo python install.py
         
             <entry>
                 <title>SATA, DMA and Ubuntu strange things</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/sata-dma-ubuntu/" type="text/html" />
-                <id>http://shamansir.github.com/articles/sata-dma-ubuntu/</id>
-                <updated>2007-01-24T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/sata-dma-ubuntu/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/sata-dma-ubuntu/</id>
+                <updated>2007-01-24T23:01:00Z</updated>
                 
                 <summary type="html">Today we&amp;rsquo;ve made an installation of &lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Edgy&#34;&gt;Ubuntu 6.06 LTS&lt;/a&gt; to &lt;code&gt;SATA&lt;/code&gt; hard drive. And it have failed in angriness, so strange. &lt;code&gt;Live CD&lt;/code&gt; tried to mount this HD eventually long and finally mounted it, seems, but in the end, while running the kernel, it started spitting out with &lt;code&gt;buffer I/O Read Error&lt;/code&gt; and so on.</summary>
                 <content type="html">&lt;p&gt;Today we&amp;rsquo;ve made an installation of &lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Edgy&#34;&gt;Ubuntu 6.06 LTS&lt;/a&gt; to &lt;code&gt;SATA&lt;/code&gt; hard drive. And it have failed in angriness, so strange. &lt;code&gt;Live CD&lt;/code&gt; tried to mount this HD eventually long and finally mounted it, seems, but in the end, while running the kernel, it started spitting out with &lt;code&gt;buffer I/O Read Error&lt;/code&gt; and so on.&lt;/p&gt;
@@ -4702,9 +4702,9 @@ $ sudo python install.py
         
             <entry>
                 <title>PHP + AJAX = SACK</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/php-ajax-sack/" type="text/html" />
-                <id>http://shamansir.github.com/articles/php-ajax-sack/</id>
-                <updated>2006-12-22T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/php-ajax-sack/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/php-ajax-sack/</id>
+                <updated>2006-12-22T23:01:00Z</updated>
                 
                 <summary type="html">Occasionally, I&amp;rsquo;ve got a task to&amp;hellip; But I was too lazy to write my own function, to check the browser and blah-blah-blah (the more, as I remember, there are more progressive methods exist already :) ) &amp;hellip; Tried to attach &lt;a href=&#34;http://dklab.ru/lib/JsHttpRequest/&#34;&gt;JsHttpRequest from dklab.ru&lt;/a&gt;, but &amp;rsquo;ve got different tricky errors and everything from Mr. D. Koteroff is a little bit misty for me :), &amp;lsquo;cause I am not a prof in &lt;code&gt;PHP&lt;/code&gt; still. So I&amp;rsquo;ve taken &lt;a href=&#34;http://www.twilightuniverse.com/projects/sack/&#34;&gt;another sack&lt;/a&gt;, named  &lt;code&gt;SACK&lt;/code&gt; &amp;ndash; Simple AJAX Code-Kit. And in this sack everything is so simple and trivial for real &amp;ndash; I haven&amp;rsquo;t needed anything more.</summary>
                 <content type="html">&lt;p&gt;Occasionally, I&amp;rsquo;ve got a task to&amp;hellip; But I was too lazy to write my own function, to check the browser and blah-blah-blah (the more, as I remember, there are more progressive methods exist already :) ) &amp;hellip; Tried to attach &lt;a href=&#34;http://dklab.ru/lib/JsHttpRequest/&#34;&gt;JsHttpRequest from dklab.ru&lt;/a&gt;, but &amp;rsquo;ve got different tricky errors and everything from Mr. D. Koteroff is a little bit misty for me :), &amp;lsquo;cause I am not a prof in &lt;code&gt;PHP&lt;/code&gt; still. So I&amp;rsquo;ve taken &lt;a href=&#34;http://www.twilightuniverse.com/projects/sack/&#34;&gt;another sack&lt;/a&gt;, named  &lt;code&gt;SACK&lt;/code&gt; &amp;ndash; Simple AJAX Code-Kit. And in this sack everything is so simple and trivial for real &amp;ndash; I haven&amp;rsquo;t needed anything more.&lt;/p&gt;
@@ -5000,9 +5000,9 @@ echo $responce_str;
         
             <entry>
                 <title>PHP and UTF-8 (Unicode) - A funny thing for a half of a day</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/php-mysql-unicode/" type="text/html" />
-                <id>http://shamansir.github.com/articles/php-mysql-unicode/</id>
-                <updated>2006-12-22T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/php-mysql-unicode/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/php-mysql-unicode/</id>
+                <updated>2006-12-22T23:01:00Z</updated>
                 
                 <summary type="html">It is &lt;a href=&#34;http://live.julik.nl/2005/03/unicode-php&#34;&gt;not the advice of mine&lt;/a&gt;, but it helped me enormously.</summary>
                 <content type="html">&lt;p&gt;It is &lt;a href=&#34;http://live.julik.nl/2005/03/unicode-php&#34;&gt;not the advice of mine&lt;/a&gt;, but it helped me enormously.&lt;/p&gt;
@@ -5055,9 +5055,9 @@ php_value       mbstring.detect_order   &amp;quot;UTF-8,KOI8-R,CP1251&amp;quot;
         
             <entry>
                 <title>JSP Custom Tags</title>
-                <link rel="alternate" href="http://shamansir.github.com/articles/jsp-custom-tags/" type="text/html" />
-                <id>http://shamansir.github.com/articles/jsp-custom-tags/</id>
-                <updated>2006-05-15T22:21:00Z</updated>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/jsp-custom-tags/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/jsp-custom-tags/</id>
+                <updated>2006-05-15T23:01:00Z</updated>
                 
                 <summary type="html">Let the first post will be about custom-tags for &lt;a href=&#34;http://java.sun.com/products/jsp/&#34;&gt;JSP&lt;/a&gt;, for example (and Java Server Faces, I think, will also follows these rules). There is a lot of information about them, but I&amp;rsquo;ve wanted to introduce you my sight and also to start from something relatively easy, though.</summary>
                 <content type="html">&lt;p&gt;Let the first post will be about custom-tags for &lt;a href=&#34;http://java.sun.com/products/jsp/&#34;&gt;JSP&lt;/a&gt;, for example (and Java Server Faces, I think, will also follows these rules). There is a lot of information about them, but I&amp;rsquo;ve wanted to introduce you my sight and also to start from something relatively easy, though.&lt;/p&gt;
