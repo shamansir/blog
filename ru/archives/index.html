@@ -10,6 +10,14 @@
     ('Архив',None)
 ) %}
 
+{% block custom_toc %}
+    <ul>
+        {% for year, archive in posts.archives|items %}
+            <li><a href="{{ get_url(archive.url) }}" title="Archives — {{ year }}">{{ year }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
 {% block content %}
     <h2 id="nwao-page-title">
         <a href="#top" title="Архив">Архив</a>

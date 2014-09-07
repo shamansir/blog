@@ -23,13 +23,23 @@
     <div id="top"></div>
 
     {% if crumbs %}
-        {{ breadcrumbs(crumbs) }}
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            {{ breadcrumbs(crumbs) }}
+        </nav>
     {% endif %}
 
     {% block dive %}{% endblock %}
 
     {% if toc %}
-        {{ build_toc(toc) }}
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            {{ build_toc(toc) }}
+        </nav>
+    {% elif custom_toc %}
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            {% block custom_toc %}{% endblock %}
+        </nav>
     {% endif %}
 
     <section id="nwao-content"{% if section_id %} class="nwao-{{ section_id }}"{% endif %}>
