@@ -28,7 +28,11 @@
         </nav>
     {% endif %}
 
-    {% block dive %}{% endblock %}
+    {% if has_diver %}
+        <nav role="dive" id="nwao-dive">
+            {% block dive %}{% endblock %}
+        </nav>
+    {% endif %}
 
     {% if toc %}
         <nav role="table-of-contents" id="nwao-toc">

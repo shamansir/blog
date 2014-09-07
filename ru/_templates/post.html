@@ -15,23 +15,23 @@
 
 {% set toc = post.toc %}
 
+{% set has_diver = true %}
+
 {% block dive %}
-    <nav role="dive">
-        <ul id="nwao-dive">
-            {% if post.prev %}
-                <li id="nwao-prev">
-                    <a href="{{ get_url(post.prev.url) }}"
-                       title="{{ post.prev.title }}">Предыдущая статья</a>
-                </li>
-            {% endif %}
-            {% if post.next %}
-                <li id="nwao-next">
-                    <a href="{{ get_url(post.next.url) }}"
-                       title="{{ post.next.title }}">Следующая статья</a>
-                </li>
-            {% endif %}
-        </ul>
-    </nav>
+    <ul>
+        {% if post.prev %}
+            <li id="nwao-prev">
+                <a href="{{ get_url(post.prev.url) }}"
+                   title="{{ post.prev.title }}">Предыдущая статья</a>
+            </li>
+        {% endif %}
+        {% if post.next %}
+            <li id="nwao-next">
+                <a href="{{ get_url(post.next.url) }}"
+                   title="{{ post.next.title }}">Следующая статья</a>
+            </li>
+        {% endif %}
+    </ul>
 {% endblock %}
 
 {% block content %}
