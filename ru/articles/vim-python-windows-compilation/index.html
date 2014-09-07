@@ -1,0 +1,469 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/ru/" />
+<link rel="index" href="/ru/archives/" />
+
+<link rel="shortcut icon" href="/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/ru/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/ru/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — [g]Vim в режиме Python: Рекомпиляция в Windows &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/ru/" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="/ru/archives/" rel="index" title="Архив">Архив</a></li>
+        <li><a href="/ru/tags/" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        <li><a href="/ru/feed.xml" title="Лента RSS">RSS</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/ru/" title="Ни слова о луке">Ни слова о луке</a></h1>
+    <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li><a href="/" title="English Version">English Version</a></li>
+        <li>Russian Version</li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/ru/">Блог</a></li>
+        
+            
+            
+
+            <li><a href="/ru/articles">Статьи</a></li>
+        
+            
+            
+
+            <li>[g]Vim в режиме Python: ...</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/ru/articles/trac-subversion-ubuntu-revisited/"
+                   title="Trac + Subversion @ Ubuntu: Revisited">Предыдущая статья</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/ru/articles/ant-tomcat-redeploying/"
+                   title="Редеплойинг приложения на Tomcat средствами Ant">Следующая статья</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section" title="Введение">Введение</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-2" title="Версии">Версии</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-3" title="Установка необходимых программ">Установка необходимых программ</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-4" title="Подготовка">Подготовка</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-5" title="Компиляция">Компиляция</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-6" title="Возможные ошибки">Возможные ошибки</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#vim-python" title="Настройка Vim для Python">Настройка Vim для Python</a>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/ru/articles/vim-python-windows-compilation/" title="[g]Vim в режиме Python: Рекомпиляция в Windows">[g]Vim в режиме Python: Рекомпиляция в Windows</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Опубликован</dt>
+    <dd class="nwao-published">
+        <a href="/ru/archives/2008/"
+           title="15 марта 2008, суббота. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>15 мар 2008</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Метки</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/ru/tags/gvim/" rel="tag"
+                       title="Статьи с меткой 'gvim'">gvim</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/ide/" rel="tag"
+                       title="Статьи с меткой 'ide'">ide</a>
+                    
+                        <span class="tag-count">3</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/python/" rel="tag"
+                       title="Статьи с меткой 'python'">python</a>
+                    
+                        <span class="tag-count">3</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/vim/" rel="tag"
+                       title="Статьи с меткой 'vim'">vim</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/windows/" rel="tag"
+                       title="Статьи с меткой 'windows'">windows</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <h3 id="section">Введение</h3>
+<p>Редактор Vim наиболее известен среди разработчиков в системах Unix &ndash; конкурент <code>emacs</code>, что-то вроде консольного IDE &ndash; этот редактор при должной сноровке и настройке (мне кажется, сноровке несколько меньшей и настройке более очевидной чем в <code>emacs</code>, но у последнего также есть мощная мультифункциональность &ndash; выбор за программистом) способен убыстрить и упростить многие процессы на этапах разработки не в ущерб таким удобствам как, например, авто-дополнение и навигация по проекту. Однако, если вы собираетесь использовать его для разработки на Python со всеми подобными удобствами &ndash; потребуются некоторые усилия: а именно, перекомпиляция…</p>
+
+<p>Приведу несколько ссылок по теме:</p>
+
+<ul>
+<li><a href="http://mgul.ac.ru/%7Et-alex/Linux/Vim-Color-Editor-HOW-TO/Vim-9.html">Vim How-To</a> — Работа в <code>vim</code>. Небольшое, но грамотное, вводное руководство. (<a href="http://mgul.ac.ru/%7Et-alex/Linux/Vim-Color-Editor-HOW-TO/Vim.html">полное содержание</a>, содержит <a href="http://mgul.ac.ru/%7Et-alex/Linux/Vim-Color-Editor-HOW-TO/Vim-10.html">справочник по командам</a>)</li>
+<li><a href="http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html">Набор изображений (читшитов)</a> для быстрого и наглядного изучения сочетаний клавиш. <em>(англ.)</em></li>
+<li><a href="http://cachealot.habrahabr.ru/blog/45414.html#habracut">Статья по использованию vim на Хабрахабре</a></li>
+<li><a href="http://allaboutvim.blogspot.com/2007/12/vim-python.html">Настройка Vim для работы с Python</a> &ndash; статья с подробным рассмотрением настройки и упоминанием всех необходимых дополнений</li>
+<li><a href="http://users.skynet.be/antoine.mechelynck/vim/compile.htm">Компилирование (g)Vim для Windows</a> &ndash; статья, послужившая основой для написания той, которую вы читаете. <em>(англ.)</em></li>
+<li><a href="http://people.smu.edu/jrobinet/howto/compile-vim-on-windows.asp">Альтернативная статья</a> на ту же тему &ndash; более краткая, но о Python 2.5</li>
+<li><a href="http://www.petersblog.org/node/461">Некоторые заметки</a> о работе c Python в редакторе Vim. <em>(англ.)</em></li>
+</ul>
+<h3 id="section-2">Версии</h3>
+<p>Компиляция производилась с использованием <code>[g]Vim 7.1</code>, <code>Python 2.5.2</code>, <code>Tcl 8.5.1</code>, <code>Cygwin 1.5.25-11</code> на <code>Windows XP SP2</code>, но сценарий при этом должен быть насколько возможно независим от версий.</p>
+<h3 id="section-3">Установка необходимых программ</h3>
+<p>Итак, подготовка. Нужно заранее установить сам язык &ndash; <a href="http://www.python.org/download/">Python</a> (если он не установлен) и, если вы собираетесь использовать Tcl &ndash; соответственно <a href="http://www.tcl.tk/software/tcltk/">Tcl/Tk</a> (с некоторого времени язык стал владением ActiveState: можно <a href="http://www.activestate.com/store/activetcl">скачать бесплатный ActiveTcl</a>). При компиляции используются динамические библиотеки соответствующих языков.</p>
+
+<p>Для работы с архивами и собственно компиляции нам понадобится эмулятор Unix-утилит под Windows - это <a href="http://cygwin.com/">Cygwin</a>. В нём существуют и компилятор <code>gcc</code>, и необходимые для компиляции файлы (есть путь с компилятором Borland, но он несколько сложнее). <a href="http://cygwin.com/setup.exe">Файл установки</a> работает немного непривычным образом &ndash; скачивая и файлы установки и пакеты уже после вашего выбора (если вы выберете установку из Интернет, которая в первый раз в любом случае необходима) &ndash; при этом для обновления или до/переустановки пакетов вы, возможно, будете возвращаться к инсталлятору довольно-таки часто. Тем не менее, чтобы установить минимальный набор необходимых для нашего случая вещей &ndash; нужно отметить лишь пару пунктов: после выбора способа установки (на данный момент наиболее стабильно для меня работало зеркало <code>ftp://mirror.switch.ch</code> (хотя буквально в эти секунды его исключили из списка официальных зеркал): если будут ошибки закачки &ndash; вас снова вернут к выбору зеркала) в списке выбора пакетов убедитесь что вы находитесь в режиме <code>Category</code> (переключив его, если надо, кнопкой <code>View</code> вверху), рядом с пунктом <code>All</code>, несколько раз потыкав надпись <code>Default</code> поменяйте её на <code>Uninstall</code> (чтобы не устанавливать ненужных пакетов) и выберите следующие пункты &ndash; <code>Utils/patch</code>, <code>Devel/gcc-g++</code>, <code>Devel/make</code>, <code>System/man</code> и <code>Devel/gcc-mingw</code> (последний, возможно, будет уже заранее выбран, значит они уже исправили одну проблему, которая отражалось на удачной компиляции :) ) — при этом у вас автоматически станут выбраны некоторые другие относительно необходимые пакеты (можно перепроверить): <code>Shells/bash</code>, <code>Utils/bzip2</code> и <code>Devel/mingw-runtime</code> (последний, тем не менее, безмерно важен). Также советую установить <code>Web/wget</code> для того, чтобы облегчить в дальнейшем закачку патчей. Всё, можно жать установку.</p>
+
+<p>Затем нужно, собственно, установить <a href="http://www.vim.org/download.php#pc">gVim</a>. Можно заранее его настроить под Python, руководствуясь <a href="http://allaboutvim.blogspot.com/2007/12/vim-python.html">статьей</a>, упомянутой выше — тогда при попытке подключения авто-дополнения Vim будет сообщать о необходимости перекомпиляции с ключом <code>+python</code>, что мы и планируем сделать.</p>
+<h3 id="section-4">Подготовка</h3>
+<p>Запустите <code>cmd</code> и убедитесь, что в переменных окружения <code>USERNAME</code> и <code>USERDOMAIN</code> содержатся ваше имя и имя вашего компьютера и домена соответственно (<code>echo %username%@%userdomain%</code>), а <code>PATH</code> содержит путь к <code>bin</code>-каталогу Cygwin. <code>HOME</code> может указывать на ваш каталог “Мои документы” (туда, где находится ваш файл настройки vim — <code>vimrc</code>), а <code>VIM</code> &ndash; на месторасположение установленного, рабочего редактора vim, желательно в формате <code>8.3</code> (напр.: <code>C:\PROGRA~1\VIM</code>). Значения переменных можно изменять в диалоге, расположенном здесь: <em>Мой компьютер → Свойства → Дополнительно → Переменные среды</em>.</p>
+
+<p>Не менее, а даже более нам необходимы исходники, поэтому <a href="ftp://ftp.vim.org/pub/vim/unix/">скачиваем их</a> для соответствующей установленной версии (будьте внимательны &ndash; именно исходники для Unix, даже при компиляции под Win32) (по предыдущей ссылке также можно скачать файлы для отладки, но отлаживание в этой статье не рассматривается и в их присутствии нет необходимости). Поверх этих исходников нужно добыть дополнение для Windows (<code>-extra</code>) и файлы языков (<code>-lang</code>) соответствующей версии отсюда.</p>
+
+<p>Также, если вы используете стабильный релиз и хотите заодно установить новейшие патчи &ndash; за файлами патчей обращайтесь <a href="ftp://ftp.vim.org/pub/vim/patches/7.1/">сюда</a> (исправьте номер версии в ссылке, если нужно). Здесь есть некоторая проблема, поскольку файлы патчей упаковываются в один только при достижении сотни (001-100, 101-200 и т.д.), поэтому если их, например, 275 &ndash; последние 75 файлов придётся закачивать руками или написав batch-скрипт с использованием <code>telnet</code>. Однако, у нас уже установлен , поэтому можно создать <code>.sh</code>-скрипт, выполняющий те же функции через <code>wget</code>, выглядеть это может примерно так:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">PATCHES_DOWNLOAD_PATH</span><span class="o">=</span>ftp://ftp.vim.org/pub/vim/patches
+<span class="nv">PATCHES_VER</span><span class="o">=</span>7.1
+wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.001-100.gz
+wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.101-200.gz
+
+<span class="k">for </span>i in <span class="sb">`</span>seq 201 278<span class="sb">`</span>;
+<span class="k">do</span>
+<span class="k">    </span>wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.<span class="nv">$i</span>
+<span class="k">done</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Теперь займёмся расположением исходников в виде, удобном для компиляции.</p>
+
+<p>Архивы с исходником, <code>-extra</code> и <code>-lang</code> нужно распаковать (по очереди, с заменой более старых файлов) в какой-либо каталог с сохранением структуры (пусть в нашем случае это будет <code>C:/devel/vim-src/vim71</code>), в нём должны содержаться каталоги <code>/doc</code>, <code>/nsis</code>, <code>/src</code>, <code>/farsi</code> и т.д.. В распаковке вам поможет или <code>bzip2</code> из Cygwin, или встроенный архиватор файлового менеджера <a href="http://www.ghisler.com/">Total Commander</a> или архиватор <a href="http://www.7-zip.org/">7-zip</a> или любой другой архиватор, поддерживающий архивы <code>.tar.gz</code> :).</p>
+
+<p>В подкаталог <code>/runtime</code> можно положить файлы <code>.vim</code>, каталоги <code>/doc</code> и <code>/plugins</code> из рабочей версии вашего редактора vim &ndash; тогда они будут пропатчены соответственно, если вы выбрали путь компилирования с патчами. Патчи при этом можно положить в каталог <code>/patches</code>.</p>
+<h3 id="section-5">Компиляция</h3>
+<p>Для того, чтобы установить патчи, нужно выполнить над каждым из них команду patch из набора Cygwin, предварительно распаковав архивы файлов с сотнями патчей. В этом случае я воспользовался <code>.bat</code>-файлом вместо <code>.sh</code> скрипта (номера патчей, конечно, нужно, поправить на соответствующие вашему набору):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre>@ECHO off
+ECHO changing directory to parent...
+
+CD ..
+
+ECHO -------------------- %Date% -------------------- &gt;&gt; patching-src.log
+
+ECHO %CD%: applying first 200 patches
+
+patch -p0 &lt; patches/7.1.001-100 &gt;&gt; patching-src.log 2&gt;&amp;1
+patch -p0 &lt; patches/7.1.101-200 &gt;&gt; patching-src.log 2&gt;&amp;1
+
+ECHO %CD%: applying the last patches
+
+FOR /L %%B IN (201,1,278) DO
+    patch -p0 &lt; patches/7.1.%%B &gt;&gt; patching-src.log 2&gt;&amp;1
+
+ECHO Finished
+
+PAUSE
+
+@ECHO on
+</pre></div>
+</td></tr></table></div></div>
+<p>Этот файл нужно положить в каталог <code>/patches</code> и после корректировки выполнить (убедитесь, что вся описанная выше структура дерева исходников сформирована): в корне исходников будет создан файл <code>patching-src.log</code>, в котором можно проследить результаты прошедшего патчинга. Если утилита <code>patch</code> не была найдена, проверьте <code>PATH</code> на наличие пути к Cygwin. Если некоторое (небольшое) количество файлов не было найдено и пропатчено &ndash; можно сильно не беспокоится, это в основном файлы для XWindow-версии.</p>
+
+<p>Теперь можно перейти непосредственно к компиляции из консоли Cygwin. Для этого необходимо удачно выполнить лишь три команды — перейти в каталог с исходниками (cygwin монтирует ваши диски в точке <code>/cygdrive/</code>: подставьте корректные пути к вашей установке Python и Tcl а также их корректные версии, а если вы не компилируете версию для Tcl &ndash; просто уберите соответствующие параметры) и создать файлы <code>vim.exe</code> (консольная версия) и <code>gvim.exe</code> (GUI-версия):</p>
+<pre><code>$ cd &#x2F;cygdrive&#x2F;c&#x2F;devel&#x2F;vim-src&#x2F;vim71
+$ make -B -f Make_cyg.mak GUI=no \
+    PYTHON=&#x2F;cygdrive&#x2F;c&#x2F;devel&#x2F;Python PYTHON_VER=25 DYNAMIC_PYTHON=yes \
+    TCL=&#x2F;cygdrive&#x2F;c&#x2F;devel&#x2F;Tcl TCL_VER=85 DYNAMIC_TCL=yes vim.exe
+$ make -B -f Make_cyg.mak OLE=yes \
+    PYTHON=&#x2F;cygdrive&#x2F;c&#x2F;devel&#x2F;Python PYTHON_VER=25 DYNAMIC_PYTHON=yes \
+    TCL=&#x2F;cygdrive&#x2F;c&#x2F;devel&#x2F;Tcl TCL_VER=85 DYNAMIC_TCL=yes gvim.exe
+</code></pre>
+<p>На предупреждения и даже некоторые ошибки, если они относятся к Python или Tcl и если процесс продолжается, а в результате <code>.exe</code>-файлы созданы, можно не обращать внимания. Если всё завершилось удачно, то в каталоге <code>/src</code> вы найдёте оба <code>.exe</code>-файла. Сделайте бэкап существующих файлов в рабочем, установленном vim (например, <code>vim.exe.bak</code> и <code>gvim.exe.bak</code>) и замените их только что скомпилированными. Если вы применяли патчи, то верните обратно <code>*.vim</code> файлы, каталоги <code>/doc</code> и <code>/plugins</code> из каталога <code>/runtime</code>, предварительно сделав бэкапы и для них и заменяя старые версии. После этого запустите gVim и vim из папки рабочего vim, проверьте версию и опции компилирования там же на присутствие <code>+python</code> &ndash; в большинстве случаев всё должно сложиться удачно.</p>
+<h3 id="section-6">Возможные ошибки</h3>
+<p>В процессе компилирования мне встретилось две ошибки: <code>cannot exec</code>cc1&#39;: No such file or directory<code>и</code>ld: cannot find -lgcc<code>. Обе они [известны авторам](http://www.mail-archive.com/cygwin@cygwin.com/msg10910.html) Cygwin, однако в моём случае в скачанных мной версиях они ещё не были решены. Первая временно решается предварительным (перед компиляцией) добавлением каталога с исполняемым файлом</code>cc1.exe<code>в локальный</code>PATH` cygwin:</p>
+<pre><code>$ PATH=$PATH:&#x2F;cygdrive&#x2F;c&#x2F;devel&#x2F;cygwin&#x2F;lib&#x2F;gcc&#x2F;i686-pc-cygwin&#x2F;3.4.4
+</code></pre>
+<p>Вторая решается так, как должна была решаться и первая &ndash; установкой <code>Devel/gcc-mingw</code> (её обещали сделать автоматической при выборе <code>gcc</code> в будущем) при установке Cygwin. При этом важно установить пакеты одновременно, поэтому если ошибка всё равно появляется &ndash; попробуйте выбрать режим <code>Reinstall</code> в установщике Cygwin в том месте, где до этого вы выбирали режим <code>Uninstall</code> и установите Cygwin заново.</p>
+<h3 id="vim-python">Настройка Vim для Python</h3>
+<p>(<strong>Upd.</strong>)</p>
+
+<p>На основе <a href="http://allaboutvim.blogspot.com/2007/12/vim-python.html">этой статьи</a> я создал пак (взять можно <a href="http://shaman-sir.by.ru/files/vimfiles.zip">здесь</a>) из последних версий упомянутый в ней плагинов (<a href="http://allaboutvim.blogspot.com/2007/07/projecttargz-ide.html">Project</a>, PythonComplete, NERD_Commenter, <a href="http://allaboutvim.blogspot.com/2007/08/vcscommandvim-svn_09.html">VCSCommand</a>, RunScript и TagList плюс, поверх — <a href="http://www.vim.org/scripts/script.php?script_id=850">PyDiction</a>) + минимальной настройки (в <code>ftplugin/python.vim</code>, практически идентичный соответствующему в статье (изменённая функция TabWrapper + другой способ подключения словаря) &ndash; только общепринятые стандарты, <em>omni completion</em> повешен на <code>Tab</code>). Содержимое требуется распаковать в каталог <code>&lt;путь_к_установленному_vim&gt;\vimfiles</code>. Для плагина taglist потребуется скачать ctags <a href="http://prdownloads.sourceforge.net/ctags/ec57w32.zip">отсюда</a>, и распаковав полученный архив в некоторый каталог, добавить путь к нему в переменную окружения <code>PATH</code>. Затем нужно запустить vim и выполнить команду:</p>
+<pre><code>:helptags $VIM\vimfiles\doc
+</code></pre>
+<p>После этого можно будет использовать команду <code>:help &lt;название_плагина&gt;</code> для получения документации по соответствующему плагину.</p>
+
+<p>Обычное автодополнение при использовании настроек из пакета работает по <code>Tab</code>, дополнение по контексту (<em>omni completion</em>) &ndash; по <code>Ctrl+Enter</code> и <code>Ctrl+Space</code>, а дополнение по ключевым словам и модулям &ndash; по <code>Ctrl+Tab</code> (при большом количестве вариантов словарь загружается относительно долго, поэтому намеренно установлено не очень удобное сочетание).</p>
+
+<p>Для того, чтобы вставлять <a href="http://www.python.org/dev/peps/pep-0263/">предлагаемые</a> по спецификации строки в заголовки python-файлов при создании, добавьте нижеприведённый код в файл <code>&lt;путь_к_установленному_vim&gt;\_vimrc</code> (строка filename добавлена для демонстрации возможности добавления имени файла):</p>
+<pre><code>
+function! BufNewFile_PY()
+   0put = &#x27;#!&#x2F;usr&#x2F;bin&#x2F;env python&#x27;
+   1put = &#x27;#-*- coding: utf-8 -*-&#x27;
+   $put = &#x27;#-*- filename: &#x27; . expand(&#x27;&#x27;) . &#x27; -*-&#x27;
+   $put = &#x27;&#x27;
+   $put = &#x27;&#x27;
+   normal G
+endfunction
+
+autocmd BufNewFile *.py call BufNewFile_PY()
+
+</code></pre>
+<p>…Вот теперь можно c чрезвычайным удобством программировать на Python.</p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль в Github"><img src="/ru/assets/img/social/github.png" width="16" height="16" alt="профиль в GitHub"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль в Stackoverflow"><img src="/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/ru/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/ru/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

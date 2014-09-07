@@ -1,0 +1,842 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/ru/" />
+<link rel="index" href="/ru/archives/" />
+
+<link rel="shortcut icon" href="/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/ru/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/ru/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — Разбирая фонтан на Renderscript &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/ru/" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="/ru/archives/" rel="index" title="Архив">Архив</a></li>
+        <li><a href="/ru/tags/" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        <li><a href="/ru/feed.xml" title="Лента RSS">RSS</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/ru/" title="Ни слова о луке">Ни слова о луке</a></h1>
+    <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li><a href="/" title="English Version">English Version</a></li>
+        <li>Russian Version</li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/ru/">Блог</a></li>
+        
+            
+            
+
+            <li><a href="/ru/articles">Статьи</a></li>
+        
+            
+            
+
+            <li>Разбирая фонтан на Renderscript</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/ru/articles/limejs-writing-a-game/"
+                   title="LimeJS: Пишем кроссплатформенную игру на HTML5 с поддержкой прикосновений">Предыдущая статья</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/ru/articles/3-tiny-javascript-snippets/"
+                   title="3 Маленьких JS-Сниппета">Следующая статья</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#renderscript" title="Разбирая фонтан на Renderscript">Разбирая фонтан на Renderscript</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#fountain-android-renderscript" title="Пример Fountain на Android Renderscript">Пример Fountain на Android Renderscript</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/ru/articles/android-renderscript-example-translation/" title="Разбирая фонтан на Renderscript">Разбирая фонтан на Renderscript</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Опубликован</dt>
+    <dd class="nwao-published">
+        <a href="/ru/archives/2011/"
+           title="11 февраля 2011, пятница. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>11 фев 2011</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Метки</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/ru/tags/android/" rel="tag"
+                       title="Статьи с меткой 'android'">android</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/mobile-dev/" rel="tag"
+                       title="Статьи с меткой 'mobile-dev'">mobile-dev</a>
+                    
+                        <span class="tag-count">3</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/renderscript/" rel="tag"
+                       title="Статьи с меткой 'renderscript'">renderscript</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/translation/" rel="tag"
+                       title="Статьи с меткой 'translation'">translation</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p><strong>Примечание</strong>: Это не авторская статья, но мой вольный перевод <a href="http://www.inter-fuser.com/2009/11/android-renderscript-more-info-and.html">статьи из далёкого 2009 года</a>, в которой написавший её <a href="http://www.inter-fuser.com/">Neil Davies</a> знакомится с Renderscript и разбирает (не запуская) код из примера Fountain, выдранного из исходников Android. Что такое Renderscript и как он относится к Андроидам подробно рассказано <a href="http://habrahabr.ru/blogs/android_development/113535/">здесь</a>; вкратце - это возможность нативной (без каких-либо прослоек) работы с 3D-механизмами мобильных систем на Android. Вот, кстати, <a href="http://www.andrada-dev.org/android-sdk-mac_x86/samples/android-Honeycomb/RenderScript/Fountain/src/com/android/fountain/">исходники этого самого примера</a> в Honeycomb. Я осознаю, что эта статья не содержит ничего большего чем  разбор исходников, но это пока единственная статья на тему которая, возможно, поможет кому-то легче вникнуть в эту самую тему, чтобы быть в теме&hellip; короче:</p>
+<h3 id="renderscript">Разбирая фонтан на Renderscript</h3>
+<p>Вот несколько суждений, которые я вывел для себя, столкнувшись с Renderscript:</p>
+
+<ul>
+<li>Комилируется на самом устройстве</li>
+<li>Использует компилятор <code>acc</code></li>
+<li>Нет проблем с поддержкой различных архитектур</li>
+<li>Не используются внешние библиотеки</li>
+<li>Никаких <code>#include</code></li>
+<li>Не разрешается выделять память</li>
+<li>Довольно предсказуем</li>
+</ul>
+
+<p>Я признаю, что некоторые из этих утверждений не особо информативны, но на данный момент особо и негде развернуться. Стоит заметить, что сам язык компилируем и похож на C но, похоже, не имеет всей силы C, поскольку выделения памяти запрещены.</p>
+
+<p>В попытках пролить для себя больше света на суть проблемы, я ещё раз взглянул на исходные коды и нашёл пару простых примеров, использующих renderscript, представленных в виде Android-приложений. Один из этих примеров назывался Fountain и, похоже, был наиболее простым из этих приложений, так что я решил - начну именно с него.</p>
+<h4 id="fountain-android-renderscript">Пример Fountain на Android Renderscript</h4>
+<p>Что делает это приложение? Я не особо знаю: я не запускал его самостоятельно и, честно говоря, в коде не так много комментариев, поэтому и правда стоит приглядеться к коду и разобраться. Лучшее, что я мог предположить - это то, что оно воспроизводит схожую с фонтаном анимацию, в которой случайные точки взлетают вверх и вылетают вовне экрана, подобно потокам воды в фонтанах. Анимация запускается когда пользователь прикасается к экрану, взяв эту точку прикосновения за отправную. Это то что я предполагаю, основываясь на исходном коде примера.</p>
+
+<p>Хорошо, так как же всё-таки выглядит код? Сперва давайте взглянем на файлы и на то, как они упорядочены. Структура такова:</p>
+
+<ul>
+<li><code>Android.mk</code></li>
+<li><code>AndroidManifest.xml</code></li>
+<li><code>res</code>
+
+<ul>
+<li><code>drawable</code>
+
+<ul>
+<li><code>gadgets_clock_mp3.png</code></li>
+</ul></li>
+<li>raw
+
+<ul>
+<li><code>fountain.c</code></li>
+</ul></li>
+</ul></li>
+<li><code>src</code>
+
+<ul>
+<li><code>com/android/fountain</code>
+
+<ul>
+<li><code>Fountain.java</code></li>
+<li><code>FountainRS.java</code></li>
+<li><code>FountainView.java</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Большая часть из того, что мы видим - это привычное нам приложение для Android: у нас присутствуют основные android-файлы такие как <code>AndroidManifest</code>. Потом, у нас есть каталог <code>src</code>, в нём хранятся исходные файлы приложения; и ещё у нас есть каталог <code>res</code>, ничего особенного поскольку он содержит каталоги <code>drawable</code> и <code>raw</code>&hellip; но, как вы можете заметить, каталог <code>raw</code> содержит один очень интересный и вполне себе особенный файл, и имя ему <code>fountain.c</code>. Вот где, похоже, покоится код на Renderscript, пусть имя файла и пытается навязать нам, что это файл с исходниками на C. Давайте же взглянем на то, что содержится в этом файле:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// Fountain test script</span>
+<span class="cp">#pragma version(1)</span>
+
+<span class="kt">int</span> <span class="n">newPart</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">launchID</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ct</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">Control</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">rate</span> <span class="o">=</span> <span class="n">Control</span><span class="o">-&gt;</span><span class="n">rate</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">height</span> <span class="o">=</span> <span class="n">getHeight</span><span class="p">();</span>
+    <span class="k">struct</span> <span class="n">point_s</span> <span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">point_s</span> <span class="o">*</span><span class="p">)</span><span class="n">point</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">rate</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">float</span> <span class="n">rMax</span> <span class="o">=</span> <span class="p">((</span><span class="kt">float</span><span class="p">)</span><span class="n">rate</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.005f</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Control</span><span class="o">-&gt;</span><span class="n">x</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Control</span><span class="o">-&gt;</span><span class="n">y</span><span class="p">;</span>
+        <span class="kt">char</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Control</span><span class="o">-&gt;</span><span class="n">r</span> <span class="o">*</span> <span class="mf">255.f</span><span class="p">;</span>
+        <span class="kt">char</span> <span class="n">g</span> <span class="o">=</span> <span class="n">Control</span><span class="o">-&gt;</span><span class="n">g</span> <span class="o">*</span> <span class="mf">255.f</span><span class="p">;</span>
+        <span class="kt">char</span> <span class="n">b</span> <span class="o">=</span> <span class="n">Control</span><span class="o">-&gt;</span><span class="n">b</span> <span class="o">*</span> <span class="mf">255.f</span><span class="p">;</span>
+        <span class="k">struct</span> <span class="n">point_s</span> <span class="o">*</span> <span class="n">np</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">[</span><span class="n">newPart</span><span class="p">];</span>
+
+        <span class="k">while</span> <span class="p">(</span><span class="n">rate</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">vec2Rand</span><span class="p">((</span><span class="kt">float</span> <span class="o">*</span><span class="p">)</span><span class="n">np</span><span class="p">,</span> <span class="n">rMax</span><span class="p">);</span>
+            <span class="n">np</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+            <span class="n">np</span><span class="o">-&gt;</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+            <span class="n">np</span><span class="o">-&gt;</span><span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+            <span class="n">np</span><span class="o">-&gt;</span><span class="n">g</span> <span class="o">=</span> <span class="n">g</span><span class="p">;</span>
+            <span class="n">np</span><span class="o">-&gt;</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+            <span class="n">np</span><span class="o">-&gt;</span><span class="n">a</span> <span class="o">=</span> <span class="mh">0xf0</span><span class="p">;</span>
+            <span class="n">newPart</span><span class="o">++</span><span class="p">;</span>
+            <span class="n">np</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">newPart</span> <span class="o">&gt;=</span> <span class="n">count</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">newPart</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                <span class="n">np</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">[</span><span class="n">newPart</span><span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">ct</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">ct</span> <span class="o">&lt;</span> <span class="n">count</span><span class="p">;</span> <span class="n">ct</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">float</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">dy</span> <span class="o">+</span> <span class="mf">0.15f</span><span class="p">;</span>
+        <span class="kt">float</span> <span class="n">posy</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">posy</span> <span class="o">&gt;</span> <span class="n">height</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">dy</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">dy</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">0.3f</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">dy</span> <span class="o">=</span> <span class="n">dy</span><span class="p">;</span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">+=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">dx</span><span class="p">;</span>
+        <span class="n">p</span><span class="o">-&gt;</span><span class="n">y</span> <span class="o">=</span> <span class="n">posy</span><span class="p">;</span>
+        <span class="n">p</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">uploadToBufferObject</span><span class="p">(</span><span class="n">NAMED_PartBuffer</span><span class="p">);</span>
+    <span class="n">drawSimpleMesh</span><span class="p">(</span><span class="n">NAMED_PartMesh</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Да, очень смахивает на C. Есть структуры, указатели и символы. Начнём с первых строк файла. Есть некий класс или структура <code>Control</code>, из которой мы получаем информацию количестве и частоте распостранения частиц, а также значения <code>x</code>,<code>y</code> и <code>r</code>,<code>g</code>,<code>b</code>. Но где же создаётся структура <code>Control</code>? Я вернусь к этому вопросу. Другая структура, которая используется в коде - это <code>point_s</code>. Эта структура тоже содержит координаты <code>x</code> и <code>y</code>, значения <code>r</code>,<code>g</code>,<code>b</code>, которые, скорее всего представляют собой красный, зелёный и синий компоненты цвета, и значение <code>a</code> которое является величиной прозрачности (<code>alpha</code>). Без дополнительной информации я не могу точно сказать, что происходит в этом коде, но я предполагаю, что скорее всего на основе переданного массива точек создаётся массив новых точек, и всё это чтобы создать какую-то анимацию.</p>
+
+<p>Если мы посмотрим на каталог <code>src</code> с исходными кодами - там у нас лежат три файла <code>.java</code>. <code>Fountain.java</code>, <code>FountainView.java</code> и <code>FountainRS.java</code>. <code>Fountain.java</code> - это обычный потомок <code>Activity</code>, который в методе <code>onCreate</code> устанавливает <code>contentView</code> в экземпляр <code>FountainView</code>. Исходный код файла <code>FountainView.java</code> выглядит так:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm"> * Copyright (C) 2008 The Android Open Source Project</span>
+<span class="cm"> *</span>
+<span class="cm"> * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="cm"> * you may not use this file except in compliance with the License.</span>
+<span class="cm"> * You may obtain a copy of the License at</span>
+<span class="cm"> *</span>
+<span class="cm"> *      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="cm"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="cm"> * limitations under the License.</span>
+<span class="cm"> */</span>
+
+<span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">fountain</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.Writer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Semaphore</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.renderscript.RSSurfaceView</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.renderscript.RenderScript</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.content.Context</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.content.res.Resources</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.graphics.Bitmap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.graphics.drawable.BitmapDrawable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.graphics.drawable.Drawable</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Handler</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Message</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.util.AttributeSet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.Surface</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.SurfaceHolder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.SurfaceView</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.KeyEvent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.view.MotionEvent</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FountainView</span> <span class="kd">extends</span> <span class="n">RSSurfaceView</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="nf">FountainView</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+        <span class="c1">//setFocusable(true);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">RenderScript</span> <span class="n">mRS</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">FountainRS</span> <span class="n">mRender</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">destroyRS</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">mRS</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mRS</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="n">destroyRenderScript</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">System</span><span class="o">.</span><span class="na">gc</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">surfaceChanged</span><span class="o">(</span><span class="n">SurfaceHolder</span> <span class="n">holder</span><span class="o">,</span> <span class="kt">int</span> <span class="n">format</span><span class="o">,</span> <span class="kt">int</span> <span class="n">w</span><span class="o">,</span> <span class="kt">int</span> <span class="n">h</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">surfaceChanged</span><span class="o">(</span><span class="n">holder</span><span class="o">,</span> <span class="n">format</span><span class="o">,</span> <span class="n">w</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+        <span class="n">destroyRS</span><span class="o">();</span>
+        <span class="n">mRS</span> <span class="o">=</span> <span class="n">createRenderScript</span><span class="o">(</span><span class="kc">false</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+        <span class="n">mRender</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FountainRS</span><span class="o">();</span>
+        <span class="n">mRender</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">mRS</span><span class="o">,</span> <span class="n">getResources</span><span class="o">(),</span> <span class="n">w</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">surfaceDestroyed</span><span class="o">(</span><span class="n">SurfaceHolder</span> <span class="n">holder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Surface will be destroyed when we return</span>
+        <span class="n">destroyRS</span><span class="o">();</span>
+    <span class="o">}</span>
+
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onTouchEvent</span><span class="o">(</span><span class="n">MotionEvent</span> <span class="n">ev</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">act</span> <span class="o">=</span> <span class="n">ev</span><span class="o">.</span><span class="na">getAction</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">act</span> <span class="o">==</span> <span class="n">ev</span><span class="o">.</span><span class="na">ACTION_UP</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mRender</span><span class="o">.</span><span class="na">newTouchPosition</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kt">float</span> <span class="n">rate</span> <span class="o">=</span> <span class="o">(</span><span class="n">ev</span><span class="o">.</span><span class="na">getPressure</span><span class="o">()</span> <span class="o">*</span> <span class="mi">50</span><span class="o">.</span><span class="na">f</span><span class="o">);</span>
+        <span class="n">rate</span> <span class="o">*=</span> <span class="n">rate</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">rate</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="o">.</span><span class="na">f</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">rate</span> <span class="o">=</span> <span class="mi">2000</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">mRender</span><span class="o">.</span><span class="na">newTouchPosition</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ev</span><span class="o">.</span><span class="na">getX</span><span class="o">(),</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">ev</span><span class="o">.</span><span class="na">getY</span><span class="o">(),</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">rate</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Класс <code>FountainView</code> - это вид (<code>View</code>) в контексте понятий Android. Как вы можете увидеть из кода, <code>FountainView</code> наследуется от нового подтипа видов по имени <code>RSSurfaceView</code> (<strong>Пер.:</strong> RSS тут не при чём, не запутайтесь). У него также есть ссылки на экземпляры классов <code>RenderScript</code> и описанного нами <code>FountainRS</code>. При создании новой поверхности (<code>surface</code>) в методе <code>surfaceChanged</code> кроме прочего создаются эти экземпляры и устанавливаются соответствующие ссылки. Здесь же мы вызывам метод <code>init</code> класса <code>FountainRS</code> и передаём несколько аргументов, включая ссылку на объект <code>RenderScript</code>. Так что давайте, наконец, посмотрим на файл <code>FountainRS.java</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm"> * Copyright (C) 2008 The Android Open Source Project</span>
+<span class="cm"> *</span>
+<span class="cm"> * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="cm"> * you may not use this file except in compliance with the License.</span>
+<span class="cm"> * You may obtain a copy of the License at</span>
+<span class="cm"> *</span>
+<span class="cm"> *      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="cm"> *</span>
+<span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="cm"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="cm"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="cm"> * limitations under the License.</span>
+<span class="cm"> */</span>
+
+<span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">fountain</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.content.res.Resources</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.renderscript.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
+
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FountainRS</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">PART_COUNT</span> <span class="o">=</span> <span class="mi">20000</span><span class="o">;</span>
+
+    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">SomeData</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="n">x</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="n">y</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="n">rate</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="kt">float</span> <span class="n">r</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="kt">float</span> <span class="n">g</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="kt">float</span> <span class="n">b</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">FountainRS</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">RenderScript</span> <span class="n">rs</span><span class="o">,</span> <span class="n">Resources</span> <span class="n">res</span><span class="o">,</span> <span class="kt">int</span> <span class="n">width</span><span class="o">,</span> <span class="kt">int</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mRS</span> <span class="o">=</span> <span class="n">rs</span><span class="o">;</span>
+        <span class="n">mRes</span> <span class="o">=</span> <span class="n">res</span><span class="o">;</span>
+        <span class="n">initRS</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">newTouchPosition</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">rate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">mSD</span><span class="o">.</span><span class="na">rate</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mSD</span><span class="o">.</span><span class="na">r</span> <span class="o">=</span> <span class="o">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span><span class="o">.</span><span class="na">f</span> <span class="o">:</span> <span class="mi">1</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+            <span class="n">mSD</span><span class="o">.</span><span class="na">g</span> <span class="o">=</span> <span class="o">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x2</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span><span class="o">.</span><span class="na">f</span> <span class="o">:</span> <span class="mi">1</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+            <span class="n">mSD</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="o">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x4</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span><span class="o">.</span><span class="na">f</span> <span class="o">:</span> <span class="mi">1</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">((</span><span class="n">mSD</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">mSD</span><span class="o">.</span><span class="na">g</span> <span class="o">+</span> <span class="n">mSD</span><span class="o">.</span><span class="na">b</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mf">0.9f</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">mSD</span><span class="o">.</span><span class="na">r</span> <span class="o">=</span> <span class="mf">0.8f</span><span class="o">;</span>
+                <span class="n">mSD</span><span class="o">.</span><span class="na">g</span> <span class="o">=</span> <span class="mf">0.5f</span><span class="o">;</span>
+                <span class="n">mSD</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">mSD</span><span class="o">.</span><span class="na">rate</span> <span class="o">=</span> <span class="n">rate</span><span class="o">;</span>
+        <span class="n">mSD</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+        <span class="n">mSD</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+        <span class="n">mIntAlloc</span><span class="o">.</span><span class="na">data</span><span class="o">(</span><span class="n">mSD</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+    <span class="c1">/////////////////////////////////////////</span>
+
+    <span class="kd">private</span> <span class="n">Resources</span> <span class="n">mRes</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">RenderScript</span> <span class="n">mRS</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Allocation</span> <span class="n">mIntAlloc</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">SimpleMesh</span> <span class="n">mSM</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">SomeData</span> <span class="n">mSD</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Type</span> <span class="n">mSDType</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initRS</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">mSD</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SomeData</span><span class="o">();</span>
+        <span class="n">mSDType</span> <span class="o">=</span> <span class="n">Type</span><span class="o">.</span><span class="na">createFromClass</span><span class="o">(</span><span class="n">mRS</span><span class="o">,</span> <span class="n">SomeData</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="s">&quot;SomeData&quot;</span><span class="o">);</span>
+        <span class="n">mIntAlloc</span> <span class="o">=</span> <span class="n">Allocation</span><span class="o">.</span><span class="na">createTyped</span><span class="o">(</span><span class="n">mRS</span><span class="o">,</span> <span class="n">mSDType</span><span class="o">);</span>
+        <span class="n">mSD</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="n">PART_COUNT</span><span class="o">;</span>
+        <span class="n">mIntAlloc</span><span class="o">.</span><span class="na">data</span><span class="o">(</span><span class="n">mSD</span><span class="o">);</span>
+
+        <span class="n">Element</span><span class="o">.</span><span class="na">Builder</span> <span class="n">eb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Element</span><span class="o">.</span><span class="na">Builder</span><span class="o">(</span><span class="n">mRS</span><span class="o">);</span>
+        <span class="n">eb</span><span class="o">.</span><span class="na">addFloat</span><span class="o">(</span><span class="n">Element</span><span class="o">.</span><span class="na">DataKind</span><span class="o">.</span><span class="na">USER</span><span class="o">,</span> <span class="s">&quot;dx&quot;</span><span class="o">);</span>
+        <span class="n">eb</span><span class="o">.</span><span class="na">addFloat</span><span class="o">(</span><span class="n">Element</span><span class="o">.</span><span class="na">DataKind</span><span class="o">.</span><span class="na">USER</span><span class="o">,</span> <span class="s">&quot;dy&quot;</span><span class="o">);</span>
+        <span class="n">eb</span><span class="o">.</span><span class="na">addFloatXY</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">);</span>
+        <span class="n">eb</span><span class="o">.</span><span class="na">addUNorm8RGBA</span><span class="o">(</span><span class="s">&quot;&quot;</span><span class="o">);</span>
+        <span class="n">Element</span> <span class="n">primElement</span> <span class="o">=</span> <span class="n">eb</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+
+
+        <span class="n">SimpleMesh</span><span class="o">.</span><span class="na">Builder</span> <span class="n">smb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleMesh</span><span class="o">.</span><span class="na">Builder</span><span class="o">(</span><span class="n">mRS</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">vtxSlot</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="na">addVertexType</span><span class="o">(</span><span class="n">primElement</span><span class="o">,</span> <span class="n">PART_COUNT</span><span class="o">);</span>
+        <span class="n">smb</span><span class="o">.</span><span class="na">setPrimitive</span><span class="o">(</span><span class="n">Primitive</span><span class="o">.</span><span class="na">POINT</span><span class="o">);</span>
+        <span class="n">mSM</span> <span class="o">=</span> <span class="n">smb</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+        <span class="n">mSM</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&quot;PartMesh&quot;</span><span class="o">);</span>
+
+        <span class="n">Allocation</span> <span class="n">partAlloc</span> <span class="o">=</span> <span class="n">mSM</span><span class="o">.</span><span class="na">createVertexAllocation</span><span class="o">(</span><span class="n">vtxSlot</span><span class="o">);</span>
+        <span class="n">partAlloc</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&quot;PartBuffer&quot;</span><span class="o">);</span>
+        <span class="n">mSM</span><span class="o">.</span><span class="na">bindVertexAllocation</span><span class="o">(</span><span class="n">partAlloc</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+
+        <span class="c1">// All setup of named objects should be done by this point</span>
+        <span class="c1">// because we are about to compile the script.</span>
+        <span class="n">ScriptC</span><span class="o">.</span><span class="na">Builder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ScriptC</span><span class="o">.</span><span class="na">Builder</span><span class="o">(</span><span class="n">mRS</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">setScript</span><span class="o">(</span><span class="n">mRes</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">raw</span><span class="o">.</span><span class="na">fountain</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">setRoot</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="n">mSDType</span><span class="o">,</span> <span class="s">&quot;Control&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="n">mSM</span><span class="o">.</span><span class="na">getVertexType</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span> <span class="s">&quot;point&quot;</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="n">Script</span> <span class="n">script</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+        <span class="n">script</span><span class="o">.</span><span class="na">setClearColor</span><span class="o">(</span><span class="mf">0.0f</span><span class="o">,</span> <span class="mf">0.0f</span><span class="o">,</span> <span class="mf">0.0f</span><span class="o">,</span> <span class="mf">1.0f</span><span class="o">);</span>
+
+        <span class="n">script</span><span class="o">.</span><span class="na">bindAllocation</span><span class="o">(</span><span class="n">mIntAlloc</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+        <span class="n">script</span><span class="o">.</span><span class="na">bindAllocation</span><span class="o">(</span><span class="n">partAlloc</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="n">mRS</span><span class="o">.</span><span class="na">contextBindRootScript</span><span class="o">(</span><span class="n">script</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Я не буду подробно рассматривать каждую строчку этого файла но, похоже, самые интересные вещи находятся в функции <code>initRS</code>. Там у нас есть построитель элементов (<code>element builder</code>), построитель простейших моделей (<code>Simple Mesh builder</code>) и последнее, но совсем не маловажное - у нас есть <em>построитель скриптов</em> (<code>script builder</code>). Мы получаем экземпляр скрипта, связав его с файлом <code>fountain.c</code> и устанавливаем необходимые типы, такие как <code>Control</code> и <code>point</code> (помните, они использовались в файле <code>fountain.c</code>?), а затем создаём и привязываем к контексту сценарий (<strong>Пер.:</strong> как видно, скрипт компилируется во время исполнения Java-кода).</p>
+
+<p>Ну, вот оно и есть - быстрый взгляд на то, как должен использоваться Renderscript. Всё ещё остаётся множетсво неотвеченных вопросов, и много остаётся ещё изучить о том как может, и как сможет, работать Renderscript, но я надеюсь что эти несколько выдержек из кода дадут, по крайней мере, людям начальную точку. Ну и как всегда, если ещё кто-то [в этом мире] знает какие-либо интересные подробности или комментарии, я бы был очень заинтересован <a href="http://www.inter-fuser.com/2009/11/android-renderscript-more-info-and.html#comment-form">их услышать</a>.</p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль в Github"><img src="/ru/assets/img/social/github.png" width="16" height="16" alt="профиль в GitHub"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль в Stackoverflow"><img src="/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/ru/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/ru/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

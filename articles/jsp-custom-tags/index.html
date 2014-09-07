@@ -1,0 +1,952 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="A blog about programming and only about it. No word about onion. At all. Totally none." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/" />
+<link rel="index" href="/archives/" />
+
+<link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-4', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — JSP Custom Tags &ndash; No word about onion</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/" rel="contents" title="Blog">Blog</a></li>
+        <li><a href="/archives/" rel="index" title="Archives">Archives</a></li>
+        <li><a href="/tags/" title="Tags">Tags</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Author">Author</a></li>
+        <li><a href="/feed.xml" title="Feed">Feed</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/" title="No word about onion">No word about onion</a></h1>
+    <div id="nwao-subtitle"><span>shaman.sir's telling you about stuff</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li>English Version</li>
+        <li><a href="/ru" title="Russian Version">Russian Version</a></li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/">Blog</a></li>
+        
+            
+            
+
+            <li><a href="/articles">Articles</a></li>
+        
+            
+            
+
+            <li>JSP Custom Tags</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/articles/php-mysql-unicode/"
+                   title="PHP and UTF-8 (Unicode) - A funny thing for a half of a day">Previous article</a>
+            </li>
+        
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Contents:</h3><a href="#top" title="top">(top)</a>
+            
+    
+        
+            
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/articles/jsp-custom-tags/" title="JSP Custom Tags">JSP Custom Tags</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Published at</dt>
+    <dd class="nwao-published">
+        <a href="/archives/2006/"
+           title="15 May 2006, Monday. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>15 May 2006</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Tags</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/tags/java/" rel="tag"
+                       title="Posts with 'java' tag">java</a>
+                    
+                        <span class="tag-count">6</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/jsp/" rel="tag"
+                       title="Posts with 'jsp' tag">jsp</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/web-dev/" rel="tag"
+                       title="Posts with 'web-dev' tag">web-dev</a>
+                    
+                        <span class="tag-count">11</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p>Let the first post will be about custom-tags for <a href="http://java.sun.com/products/jsp/">JSP</a>, for example (and Java Server Faces, I think, will also follows these rules). There is a lot of information about them, but I&rsquo;ve wanted to introduce you my sight and also to start from something relatively easy, though.</p>
+
+<p>As an example, I&rsquo;ll show you a little bit tricky tag, but kindly demonstrating the possibilities of tags-fabrication.</p>
+
+<p>The task is to integrate in JSP code an option to change style of the text wrapped with this tag, depending on passed value. A demonstrative example is rendering a table of tasks having different priorities, low ones - with italic text, high ones - with bold and doing no changes to style of the tasks with normal priority. Also, it was required to have possibility to pass CSS-style to text, that&rsquo;s why the specification of the tag is event larger than its realization in result :).</p>
+
+<p>Ok, let&rsquo;s take a decision what properties this tag must own. Obviously, it must have body, containing the text to change style. It must have a required attribute with the value of current task priority level and a several optional attributes (initialized with default values) - numeric value of middle level of priority, style (bold by default, for example) for the values with high priority and style for the values with low priority.</p>
+
+<p>This is the specification:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @author uwilfred</span>
+<span class="cm"> *</span>
+<span class="cm"> * Adds priorityFontTag, specified in .tld as</span>
+<span class="cm"> *      &lt;prefix:priorityFont</span>
+<span class="cm"> *      value = Integer       // priority value; if tag body not</span>
+<span class="cm">                specified, also specifies the value</span>
+<span class="cm"> *      [ level = Integer ]       // priority level to change the</span>
+<span class="cm">                style on</span>
+<span class="cm"> *      [ lowChange = String ]    // style description to apply</span>
+<span class="cm">                if priority less than level (format listed below)</span>
+<span class="cm"> *      [ highChange = String ]   // style description to apply</span>
+<span class="cm">                if priority greater than level (format listed below)</span>
+<span class="cm"> *      ( /&gt; |</span>
+<span class="cm"> *          body                  // value</span>
+<span class="cm"> *      &lt;/prefix:priorityFont&gt; )  // may be empty tag,</span>
+<span class="cm">                    so the value it taken from priority value parameter</span>
+<span class="cm"> *</span>
+<span class="cm"> *  default for highChange is “bold”</span>
+<span class="cm"> *  default for lowChange is “italic”</span>
+<span class="cm"> *  default for level is 3</span>
+<span class="cm"> *</span>
+<span class="cm"> *  Formats:</span>
+<span class="cm"> *      bold                                  -&gt; &lt;strong&gt;body&lt;/strong&gt;</span>
+<span class="cm"> *      italic                                -&gt; &lt;em&gt;body&lt;/em&gt;</span>
+<span class="cm"> *      underline                             -&gt; &lt;u&gt;body&lt;/u&gt;</span>
+<span class="cm"> *      strike                                -&gt; &lt;strike&gt;body&lt;/strike&gt;</span>
+<span class="cm"> *      .&lt;css-class&gt;            .foo          -&gt; &lt;span class=”foo”&gt;body&lt;/span&gt;</span>
+<span class="cm"> *      {&lt;css-style&gt;; ...}      {font-weight: bold;} -&gt; &lt;span style=&quot;font-weight: bold;&quot;&gt;body&lt;/span&gt;</span>
+<span class="cm"> *      /&lt;html-tag-name&gt;    /foo              -&gt; &lt;foo&gt;body&lt;/foo&gt;</span>
+<span class="cm"> */</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>So, using some funny symbols and aliases, I&rsquo;ve included a support of almost everything that user might want :)</p>
+
+<blockquote>
+<p>I will include some XDoclet-tags in the code, so you&rsquo;ll have a possinility to generate a record in <code>.tld</code>-file if you&rsquo;ll need to.</p>
+</blockquote>
+
+<p>Following the specification, let us define our tag in <code>.tld</code>-file (a library of tags):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE taglib PUBLIC</span>
+<span class="cp">    &quot;-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN&quot;</span>
+<span class="cp">    &quot;http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd&quot;&gt;</span>
+<span class="nt">&lt;taglib&gt;</span>
+   <span class="nt">&lt;tlibversion&gt;</span>1.0<span class="nt">&lt;/tlibversion&gt;</span>
+   <span class="nt">&lt;jspversion&gt;</span>1.1<span class="nt">&lt;/jspversion&gt;</span>
+   <span class="nt">&lt;shortname&gt;</span>uwilfred<span class="nt">&lt;/shortname&gt;</span>
+
+   <span class="nt">&lt;tag&gt;</span>
+
+      <span class="nt">&lt;name&gt;</span>priorityFont<span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;tagclass&gt;</span>org.individpro.uwilfred.tag.PriorityFontTag<span class="nt">&lt;/tagclass&gt;</span>
+      <span class="nt">&lt;bodycontent&gt;</span>JSP<span class="nt">&lt;/bodycontent&gt;</span>
+
+      <span class="nt">&lt;attribute&gt;</span>
+         <span class="nt">&lt;name&gt;</span>value<span class="nt">&lt;/name&gt;</span>
+         <span class="nt">&lt;required&gt;</span>true<span class="nt">&lt;/required&gt;</span>
+         <span class="nt">&lt;rtexprvalue&gt;</span>true<span class="nt">&lt;/rtexprvalue&gt;</span>
+      <span class="nt">&lt;/attribute&gt;</span>
+
+      <span class="nt">&lt;attribute&gt;</span>
+         <span class="nt">&lt;name&gt;</span>highChange<span class="nt">&lt;/name&gt;</span>
+         <span class="nt">&lt;required&gt;</span>false<span class="nt">&lt;/required&gt;</span>
+      <span class="nt">&lt;/attribute&gt;</span>
+
+      <span class="nt">&lt;attribute&gt;</span>
+         <span class="nt">&lt;name&gt;</span>level<span class="nt">&lt;/name&gt;</span>
+         <span class="nt">&lt;required&gt;</span>false<span class="nt">&lt;/required&gt;</span>
+      <span class="nt">&lt;/attribute&gt;</span>
+
+      <span class="nt">&lt;attribute&gt;</span>
+         <span class="nt">&lt;name&gt;</span>lowChange<span class="nt">&lt;/name&gt;</span>
+         <span class="nt">&lt;required&gt;</span>false<span class="nt">&lt;/required&gt;</span>
+      <span class="nt">&lt;/attribute&gt;</span>
+
+   <span class="nt">&lt;/tag&gt;</span>
+
+<span class="nt">&lt;/taglib&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>So the body of our tag is something calculated with JSP-code (normal text results in normal text), <code>value</code> attribute is required and contains an equation, all other attributes are optional.</p>
+
+<p>Now, not to be a downers - let&rsquo;s define our tag class:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">individpro</span><span class="o">.</span><span class="na">uwilfred</span><span class="o">.</span><span class="na">tag</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.jsp.JspException</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.servlet.jsp.JspWriter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.jsp.tagext.BodyContent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.jsp.tagext.BodyTagSupport</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.jsp.tagext.Tag</span><span class="o">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * @note adds specified-level style change support</span>
+<span class="cm"> * @author uwilfred</span>
+<span class="cm"> *</span>
+<span class="cm"> * @jsp.tag</span>
+<span class="cm"> *   name=&quot;priorityFont&quot;</span>
+<span class="cm"> *   body-content=&quot;JSP&quot;</span>
+<span class="cm"> */</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PriorityFontTag</span> <span class="kd">extends</span> <span class="n">BodyTagSupport</span> <span class="kd">implements</span> <span class="n">Tag</span> <span class="o">{</span>
+
+   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4941606719316390930L</span><span class="o">;</span>
+
+   <span class="kd">private</span> <span class="n">Integer</span> <span class="n">value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">Integer</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">lowChange</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">highChange</span> <span class="o">=</span> <span class="s">&quot;italic&quot;</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">valueHtmlPrefix</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">bodyTextContent</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+
+   <span class="c1">// TODO: private final Map that will store the styles replacements,</span>
+   <span class="c1">//       like &quot;bold&quot; -&gt; &quot;strong&quot;, &quot;italic&quot; -&gt; &quot;em&quot; &amp; s.o.</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">release</span><span class="o">()</span> <span class="o">{</span>
+      <span class="n">value</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+      <span class="n">level</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+      <span class="n">lowChange</span> <span class="o">=</span> <span class="s">&quot;bold&quot;</span><span class="o">;</span>
+      <span class="n">highChange</span> <span class="o">=</span> <span class="s">&quot;italic&quot;</span><span class="o">;</span>
+      <span class="n">valueHtmlPrefix</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+      <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+      <span class="n">bodyTextContent</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * any variable to take the priority from, also</span>
+<span class="cm">    * recognized as value if no body specified, default -1</span>
+<span class="cm">    */</span>
+
+   <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * @jsp.attribute</span>
+<span class="cm">    *   required=&quot;true&quot;</span>
+<span class="cm">    *   rtexprvalue=&quot;true&quot;</span>
+<span class="cm">    */</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="o">(</span><span class="n">Integer</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * style description to apply to the content with value higher</span>
+<span class="cm">    *        than the level.</span>
+<span class="cm">    *        supports: bold, italic, underline or any</span>
+<span class="cm">                                        body-having html tag or css-style</span>
+<span class="cm">    *            format: bold | italic | underline | strike</span>
+<span class="cm">    *                .&lt;CSS-class&gt;</span>
+<span class="cm">    *                {&lt;CSS-Descriptors-Line&gt;}</span>
+<span class="cm">    *                :&lt;HTML-Tag-Name&gt;</span>
+<span class="cm">    *        default: italic</span>
+<span class="cm">    */</span>
+
+   <span class="kd">public</span> <span class="n">String</span> <span class="nf">getHighChange</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">highChange</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * @jsp.attribute</span>
+<span class="cm">    *   required=&quot;false&quot;</span>
+<span class="cm">    */</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setHighChange</span><span class="o">(</span><span class="n">String</span> <span class="n">highChange</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">highChange</span> <span class="o">=</span> <span class="n">highChange</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * level point to change the style, default is 3</span>
+<span class="cm">    */</span>
+
+   <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getLevel</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">level</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * @jsp.attribute</span>
+<span class="cm">    *   required=&quot;false&quot;</span>
+<span class="cm">    */</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLevel</span><span class="o">(</span><span class="n">Integer</span> <span class="n">level</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">level</span> <span class="o">=</span> <span class="n">level</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * style description to apply to the content with value lower</span>
+<span class="cm">    *        than the level.</span>
+<span class="cm">    *        supports: bold, italic, underline or any</span>
+<span class="cm">                                    body-having html tag or css-style</span>
+<span class="cm">    *            format: bold | italic | underline | strike</span>
+<span class="cm">    *                .&lt;CSS-class&gt;</span>
+<span class="cm">    *                {&lt;CSS-Descriptors-Line&gt;}</span>
+<span class="cm">    *                :&lt;HTML-Tag-Name&gt;</span>
+<span class="cm">    *        default: italic</span>
+<span class="cm">    */</span>
+
+   <span class="kd">public</span> <span class="n">String</span> <span class="nf">getLowChange</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">lowChange</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * @jsp.attribute</span>
+<span class="cm">    *   required=&quot;false&quot;</span>
+<span class="cm">    */</span>
+
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLowChange</span><span class="o">(</span><span class="n">String</span> <span class="n">lowChange</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">lowChange</span> <span class="o">=</span> <span class="n">lowChange</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">doStartTag</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JspException</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">EVAL_BODY_BUFFERED</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">doAfterBody</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JspException</span> <span class="o">{</span>
+      <span class="k">try</span> <span class="o">{</span>
+         <span class="n">BodyContent</span> <span class="n">bodyContent</span> <span class="o">=</span> <span class="n">getBodyContent</span><span class="o">();</span>
+         <span class="k">if</span> <span class="o">(</span><span class="n">bodyContent</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">bodyTextContent</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">bodyTextContent</span> <span class="o">=</span> <span class="n">bodyContent</span><span class="o">.</span><span class="na">getString</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">bodyTextContent</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+               <span class="n">bodyTextContent</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+            <span class="o">}</span>
+         <span class="o">}</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">nfe</span><span class="o">)</span> <span class="o">{</span>
+         <span class="n">nfe</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont</span>
+<span class="s">                        tag body couldn&#39;t be parsed&quot;</span><span class="o">,</span> <span class="n">nfe</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="n">SKIP_BODY</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">doEndTag</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JspException</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">==</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(-</span><span class="mi">1</span><span class="o">))</span> <span class="o">{</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag requires</span>
+<span class="s">                  the body xor the value parameter to</span>
+<span class="s">                  be specified (also, negative values are unsupported)&quot;</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">try</span> <span class="o">{</span>
+         <span class="n">JspWriter</span> <span class="n">jspOut</span> <span class="o">=</span> <span class="n">pageContext</span><span class="o">.</span><span class="na">getOut</span><span class="o">();</span>
+         <span class="n">String</span> <span class="n">modificator</span> <span class="o">=</span>
+                  <span class="o">(</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">level</span><span class="o">)</span> <span class="o">?</span> <span class="n">lowChange</span> <span class="o">:</span>
+                           <span class="o">((</span><span class="n">value</span> <span class="o">&gt;</span> <span class="n">level</span><span class="o">)</span> <span class="o">?</span> <span class="n">highChange</span> <span class="o">:</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+         <span class="k">if</span> <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="s">&quot;bold&quot;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">valueHtmlPrefix</span> <span class="o">=</span> <span class="s">&quot;&lt;strong&gt;&quot;</span><span class="o">;</span>
+            <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&lt;/strong&gt;&quot;</span><span class="o">;</span>
+         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="s">&quot;italic&quot;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">valueHtmlPrefix</span> <span class="o">=</span> <span class="s">&quot;&lt;em&gt;&quot;</span><span class="o">;</span>
+            <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&lt;/em&gt;&quot;</span><span class="o">;</span>
+         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="s">&quot;underline&quot;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">valueHtmlPrefix</span> <span class="o">=</span> <span class="s">&quot;&lt;u&gt;&quot;</span><span class="o">;</span>
+            <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&lt;/u&gt;&quot;</span><span class="o">;</span>
+         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="s">&quot;strike&quot;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">valueHtmlPrefix</span> <span class="o">=</span> <span class="s">&quot;&lt;strike&gt;&quot;</span><span class="o">;</span>
+            <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&lt;/strike&gt;&quot;</span><span class="o">;</span>
+         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="n">modificator</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+                                       <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// CSS existing style specify</span>
+            <span class="n">valueHtmlPrefix</span> <span class="o">=</span> <span class="s">&quot;&lt;span class=\&quot;&quot;</span> <span class="o">+</span> <span class="n">modificator</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;\&quot;&gt;&quot;</span><span class="o">;</span>
+            <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&lt;/span&gt;&quot;</span><span class="o">;</span>
+         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="n">modificator</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+                                       <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39;/&#39;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// HTML tag redefine</span>
+            <span class="n">valueHtmlPrefix</span> <span class="o">=</span> <span class="s">&quot;&lt;&quot;</span> <span class="o">+</span> <span class="n">modificator</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&gt;&quot;</span><span class="o">;</span>
+            <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&lt;/&quot;</span> <span class="o">+</span> <span class="n">modificator</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">&quot;&gt;&quot;</span><span class="o">;</span>
+         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="n">modificator</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+                <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39;{&#39;</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+                <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39;}&#39;</span><span class="o">))</span> <span class="o">{</span>
+            <span class="c1">// CSS style line</span>
+            <span class="n">valueHtmlPrefix</span> <span class="o">=</span> <span class="s">&quot;&lt;span style=\&quot;&quot;</span> <span class="o">+</span>
+                   <span class="n">modificator</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">modificator</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span>
+                   <span class="o">+</span> <span class="s">&quot;\&quot;&gt;&quot;</span><span class="o">;</span>
+            <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&lt;/span&gt;&quot;</span><span class="o">;</span>
+         <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+             <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span> <span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag parameters</span>
+<span class="s">                    values couldn&#39;t be parsed&quot;</span><span class="o">);</span>
+         <span class="o">}</span>
+         <span class="n">jspOut</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">valueHtmlPrefix</span> <span class="o">+</span> <span class="n">bodyTextContent</span> <span class="o">+</span>
+               <span class="n">valueHtmlPostfix</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">nfe</span><span class="o">)</span> <span class="o">{</span>
+         <span class="n">nfe</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag parameters</span>
+<span class="s">                        couldn&#39;t be parsed&quot;</span><span class="o">,</span> <span class="n">nfe</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ioe</span><span class="o">)</span> <span class="o">{</span>
+         <span class="n">ioe</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag parameters</span>
+<span class="s">                        couldn&#39;t be parsed&quot;</span><span class="o">,</span> <span class="n">ioe</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="n">release</span><span class="o">();</span>
+      <span class="k">return</span> <span class="n">EVAL_PAGE</span><span class="o">;</span>
+   <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>By extending a tag from <code>BodyTagSupport</code>, we mean that this tag will have a body. The values are discarded in <code>release()</code> method, attributes values are set in compiled JSP - HTTP-servlet - with help of accessors. Methods <code>doStartTag()</code> <code>doAfterBody()</code> and <code>doEndTag()</code> are overriden from the parent (and they implement <code>Tag</code> interface by the way) and they are called in the specified order - after evaluation of opening tag, after evaluation of tag body, and after evaluation of closing tag respectively.</p>
+
+<p><code>doStartTag()</code> returns <code>EVAL_BODY_BUFFERED</code> constant to evaluate tag body right after this method. <code>doAfterBody()</code> sets <code>body</code> to the <code>value</code> value if there is no text inside the tag and returns <code>SKIP_BODY</code> not to let tag body be returned to output without processing required. <code>doEndTag()</code> does the main thing - using the value and attributes settings it generates an output code, calls <code>release()</code> (or the values of attributes will be saved for next tags) and returns <code>EVAL_PAGE</code> to say <code>jasper</code> (JSP compiler) to follow the chain of tags forward through the page content.</p>
+
+<p>If our tag was designed not to have a body (<code>empty</code> in <code>.tld</code>) - we&rsquo;d extend it from <code>javax.servlet.tagext.TagSupport</code> (which is parent of <code>BodyTagSupport</code> following the same reasons) and nothing but <code>release()</code> and <code>doEndTag()</code> (return <code>EVAL_PAGE</code>) methods would be required.</p>
+
+<p>Now let&rsquo;s look on the usage of tag:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre></div></td><td class="code"><div class="highlight"><pre><span class="err">&lt;</span>%@ taglib uri=&quot;/WEB-INF/uwilfred.tld&quot; prefix=&quot;uwilfred&quot; %&gt;...
+<span class="nt">&lt;html&gt;</span><span class="err">&lt;</span>%
+...
+%&gt;
+<span class="nt">&lt;head&gt;</span>
+   <span class="nt">&lt;style&gt;</span>
+
+   <span class="nc">.priorityHigh</span> <span class="p">{</span>
+      <span class="k">font</span><span class="o">-</span><span class="k">color</span><span class="o">:</span> <span class="m">#f00</span><span class="p">;</span>
+      <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+      <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#333</span><span class="p">;</span>
+   <span class="p">}</span>
+
+   <span class="nc">.priorityLow</span> <span class="p">{</span>
+      <span class="k">font</span><span class="o">-</span><span class="k">color</span><span class="o">:</span> <span class="m">#00f</span><span class="p">;</span>
+      <span class="k">font-style</span><span class="o">:</span> <span class="k">italic</span><span class="p">;</span>
+      <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">dotted</span> <span class="m">#999</span><span class="p">;</span>
+   <span class="p">}</span>
+
+   <span class="nt">&lt;/style&gt;</span>
+
+   <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;title&gt;</span>Test priorityFont Tag<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+
+<span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">&quot;layout&quot;</span><span class="nt">&gt;</span>
+
+   <span class="nt">&lt;c:forEach</span> <span class="na">items=</span><span class="s">&quot;${model.tasks}&quot;</span> <span class="na">var=</span><span class="s">&quot;task&quot;</span> <span class="na">varStatus=</span><span class="s">&quot;status&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${task.priority}&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;taskinfo.htm?id=&lt;c:out value=&quot;</span><span class="err">${</span><span class="na">task</span><span class="err">.</span><span class="na">id</span><span class="err">}&quot;</span><span class="nt">/&gt;</span>&quot;&gt;
+                  <span class="nt">&lt;c:out</span> <span class="na">value=</span><span class="s">&quot;${task.name}&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
+   <span class="nt">&lt;/c:forEach&gt;</span>
+
+   <span class="err">&lt;</span>%-- is identical to: --%&gt;
+
+   <span class="nt">&lt;c:forEach</span> <span class="na">items=</span><span class="s">&quot;${model.tasks}&quot;</span> <span class="na">var=</span><span class="s">&quot;task&quot;</span> <span class="na">varStatus=</span><span class="s">&quot;status&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${task.priority}&quot;</span> <span class="na">level=</span><span class="s">&quot;3&quot;</span>
+              <span class="na">highChange=</span><span class="s">&quot;bold&quot;</span> <span class="na">lowChange=</span><span class="s">&quot;italic&quot;</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;taskinfo.htm?id=&lt;c:out value=&quot;</span><span class="err">${</span><span class="na">task</span><span class="err">.</span><span class="na">id</span><span class="err">}&quot;</span><span class="nt">/&gt;</span>&quot;&gt;
+            <span class="nt">&lt;c:out</span> <span class="na">value=</span><span class="s">&quot;${task.name}&quot;</span><span class="nt">/&gt;</span>
+         <span class="nt">&lt;/a&gt;</span>
+      <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
+   <span class="nt">&lt;/c:forEach&gt;</span>
+
+   <span class="err">&lt;</span>%-- different variants: --%&gt;
+
+   <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${someValue}&quot;</span>
+            <span class="na">highChange=</span><span class="s">&quot;{font-color: #f00; font-weight: bold;}&quot;</span>
+            <span class="na">lowChange=</span><span class="s">&quot;{font-color: #00f; font-style: italic;}&quot;</span><span class="nt">&gt;</span>
+                  BlahByCSSInline
+   <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
+
+   <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${someValue}&quot;</span>
+                                    <span class="na">highChange=</span><span class="s">&quot;.priorityHigh&quot;</span>
+                                    <span class="na">lowChange=</span><span class="s">&quot;.priorityLow&quot;</span><span class="nt">&gt;</span>
+         BlahByCSSExistentClass
+   <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
+
+   <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${someValue}&quot;</span>
+               <span class="na">highChange=</span><span class="s">&quot;:strong&quot;</span>
+               <span class="na">lowChange=</span><span class="s">&quot;:em&quot;</span><span class="nt">&gt;</span>
+         BlahByTagRedefine
+   <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
+
+<span class="nt">&lt;/body&gt;</span>
+
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="Twitter profile"><img src="/assets/img/social/twitter.png" width="16" height="16" alt="Twitter profile"></a></li>
+    <li><a href="https://github.com/shamansir" title="Github profile"><img src="/assets/img/social/github.png" width="16" height="16" alt="GitHub profile"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="Facebook profile"><img src="/assets/img/social/facebook.png" width="16" height="16" alt="Facebook profile"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="Stackoverflow profile"><img src="/assets/img/social/stack-overflow.png" width="16" height="16" alt="Stack Overflow profile"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

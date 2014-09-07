@@ -1,0 +1,1515 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="A blog about programming and only about it. No word about onion. At all. Totally none." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/" />
+<link rel="index" href="/archives/" />
+
+<link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-4', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — Generating Functional Parsers &ndash; No word about onion</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/" rel="contents" title="Blog">Blog</a></li>
+        <li><a href="/archives/" rel="index" title="Archives">Archives</a></li>
+        <li><a href="/tags/" title="Tags">Tags</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Author">Author</a></li>
+        <li><a href="/feed.xml" title="Feed">Feed</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/" title="No word about onion">No word about onion</a></h1>
+    <div id="nwao-subtitle"><span>shaman.sir's telling you about stuff</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li>English Version</li>
+        <li><a href="/ru" title="Russian Version">Russian Version</a></li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/">Blog</a></li>
+        
+            
+            
+
+            <li><a href="/articles">Articles</a></li>
+        
+            
+            
+
+            <li>Generating Functional Parsers</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+        
+            <li id="nwao-next">
+                <a href="/articles/mastering-functional-javascript-slides/"
+                   title="Mastering Functional JavaScript Lecture Slides">Next article</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Contents:</h3><a href="#top" title="top">(top)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#part-1.-story." title="Part 1. Story.">Part 1. Story.</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#part-2.-code.-parsing-operators." title="Part 2. Code. Parsing operators.">Part 2. Code. Parsing operators.</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#example" title="0. example">0. example</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#ch" title="1. ch">1. ch</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#match" title="2. match">2. match</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#re" title="3. re">3. re</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#text" title="4. text">4. text</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#maybe" title="5. maybe">5. maybe</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#some" title="6. some">6. some</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#any" title="7. any">7. any</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#and" title="8. and">8. and</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#not" title="9. not">9. not</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#seqnc" title="10. seqnc">10. seqnc</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#choice" title="11. choice">11. choice</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#action" title="12. action">12. action</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#pre" title="13. pre">13. pre</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#xpre" title="14. xpre">14. xpre</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#label" title="15. label">15. label</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#rule" title="16. Rule">16. Rule</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#ref" title="17. ref">17. ref</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#as" title="18. as">18. as</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#details" title="Details">Details</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#global-variables" title="Global Variables">Global Variables</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#user-code" title="User Code">User Code</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#parser-closure" title="Parser Closure">Parser Closure</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#rules" title="Rules">Rules</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#operators" title="Operators">Operators</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#internal-parser-variables" title="Internal Parser Variables">Internal Parser Variables</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#context-management-functions" title="Context Management Functions">Context Management Functions</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#parse-function" title="<code>parse()</code> Function"><code>parse()</code> Function</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#matchfailed-syntaxerror-error-handling" title="<code>MatchFailed</code>, <code>SyntaxError</code>, Error Handling"><code>MatchFailed</code>, <code>SyntaxError</code>, Error Handling</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#markers" title="Markers">Markers</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#parser-closure-call" title="Parser Closure Call">Parser Closure Call</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#conclusion" title="Conclusion">Conclusion</a>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/articles/generating-functional-parsers/" title="Generating Functional Parsers">Generating Functional Parsers</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Published at</dt>
+    <dd class="nwao-published">
+        <a href="/archives/2014/"
+           title="06 September 2014, Saturday. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>06 Sep 2014</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Tags</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/tags/functions/" rel="tag"
+                       title="Posts with 'functions' tag">functions</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/javascript/" rel="tag"
+                       title="Posts with 'javascript' tag">javascript</a>
+                    
+                        <span class="tag-count">9</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/parsers/" rel="tag"
+                       title="Posts with 'parsers' tag">parsers</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p><em>Disclaimer:</em> The author of this text is still and eternally non-native English-writer, so please excuse him for his grammar errors, mistypes and stupid bravity without any malice, but please consider correcting his mistakes <a href="mailto://shaman.sir@gmail.com">using his e-mail</a> without any commiseration. (TODO: Remove this portion of text when everything wrong will be fixed).</p>
+
+<p>Are you interested in a functional approach to parsers generation? Well, I&rsquo;m sure you do, even if, at your side, you&rsquo;re not sure what it means exactly. It&rsquo;s just because anything that connects parsers and functional programming in practice can be nothing but joyful&hellip; Though, I&rsquo;ll try to be very short in sentencing (is there a word like this?), to be sure not to bore you, if it ever may happen. Also in near future I&rsquo;ll provide you with few rather good alternatives to reading this short-sentenced article.</p>
+
+<p>Some links to keep in your background tabs while reading this:</p>
+
+<ul>
+<li><a href="http://github.com/shamansir/pegjs-fn">peg.js-fn repository at github</a></li>
+<li><a href="http://github.com/dmajda/pegjs">peg.js repository at github</a></li>
+<li><a href="https://gist.github.com/shamansir/40eaffb802beaefd9443">all operators in one gist</a></li>
+<li><a href="https://gist.github.com/shamansir/7348144#file-arithmetics-parser-pegjs-fn-js">the generated parser example</a> (<a href="https://gist.github.com/shamansir/7348144#file-arithmetics-pegjs">source</a>, <a href="https://gist.github.com/shamansir/7348144">comparison</a>)</li>
+<li><a href="https://gist.github.com/shamansir/c9738715840775821988#file-arithmetics-parser-pegjs-fn-js">the generated parser example – 2</a> (<a href="https://gist.github.com/shamansir/c9738715840775821988#file-arithmetics-pegjs">source</a>, <a href="https://gist.github.com/shamansir/c9738715840775821988">comparison</a>)</li>
+</ul>
+<h1 id="part-1.-story.">Part 1. Story.</h1>
+<p>Have you tried to read a parser code, generated with a common parser generator? In most cases it&rsquo;s an unreadable crap, especially in comparison to parser grammar you composed. Though what happens is actually right – because the generated parser is totally not intended to be readable by human at all, but parse as fast as possible. Even though the parser code may be self-repeatable in a lot of places and may weight much more KBs or even MBs because of this.</p>
+
+<p>In most cases, a generator takes your grammar, walks over the AST, finds some creepy code template for every used operator, generates a lot of variables named in a way like <code>__myParserStackVar257</code>, injects your values into these templates using these variables, and pushes the filled templates inline, one by one, into the resulting file. Sometimes it minifies a code by grouping templates with functions for every rule, or, in better case, uses binary code, which is though, even less readable.</p>
+
+<p>My last study is based on the question: &ldquo;What if there would be a parser generator which  generates the human-readable code, as folded as possible, less aimed to fastest speed but more to smallest size?&rdquo;. May be there <em>actually is</em> one (or two), but I’m not sure in amount of how <em>functional</em> they are.</p>
+
+<p>It started two years ago, actually I was in need of some specific JS-driven-parser, so I discovered <a href="http://github.com/dmajda/pegjs">peg.js</a> by David Majda and wrote myself a custom grammar. And a parser, which used this grammar as origin, appeared to have a weight of several MBs (!) in result, in my case – so I though I should definitely try to optimize it. The size, not the speed. Here&rsquo;s the exact point where the mentioned question appeared in my head. So I rewrote the generating part of peg.js, considering David&rsquo;s code was quite readable (not the generated one, though – still, the latter one followed the Great Parsers Rule of Non-Readability; and actually there was no binary code support at that point of peg.js development).</p>
+
+<p>But let&rsquo;s skip long stories and I&rsquo;ll show you the resulting code example. And the comparison with the original code and binary code. The source is arithmetics grammar, given below.</p>
+
+<p>You may open this image in new tab (right click &rarr; Open in new Tab) to see it in full size.</p>
+
+<p><img src="/figures/generating-functional-parsers/comparison.png" alt="Comparison of generated parsers"></p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre>/*
+ * Classic example grammar, which recognizes simple arithmetic expressions like
+ * &quot;2*(3+4)&quot;. The parser generated from this grammar then computes their value.
+ */
+
+start
+  = additive
+
+additive
+  = left:multiplicative &quot;+&quot; right:additive { return left + right; }
+  / multiplicative
+
+multiplicative
+  = left:primary &quot;*&quot; right:multiplicative { return left * right; }
+  / primary
+
+primary
+  = integer
+  / &quot;(&quot; additive:additive &quot;)&quot; { return additive; }
+
+integer &quot;integer&quot;
+  = digits:[0-9]+ { return parseInt(digits.join(&quot;&quot;), 10); }
+</pre></div>
+</td></tr></table></div></div>
+<p>So you see, the one on the right is much much more readable and compact. Though yeah, this variant of parser is also much slower, but I do not consider this fact as a failure of my version, since the aim was not to focus on speed at all. To forget about it completely, why not – a life in digital age makes us learn that at some future point your optimized code will work for user at almost the same speed as similar non-optimized one. So, if  the point of your research is some moment in next ten years or so, you may freely omit the time factor&hellip; ;).</p>
+
+<blockquote>
+<p>Actually I know that main cause of this speed decrease is in the fact that generated parsers are overwhelmingly exception-driven (yes they do, which means some largely re-used <code>try</code>/<code>catch</code> blocks mentioned later in this article, but is does not affect operators or rules code a lot) and it&rsquo;s a known common performance flaw of JS engines, which may quite easily be solved with hacks – but using them will break parsers readability just in favor of a single language, so I won&rsquo;t do it in this article, since it&rsquo;s more a theoretical one. Anyway, you may better replace it with some similar code, with your own hands.</p>
+</blockquote>
+
+<p>What I consider innovative is massive usage of partial function application in generated code and, as it appeared in the end, the overall simplicity and functional beauty of operators&#39; code &lsquo;mini-patterns&rsquo;. Most part of my life I am truly a modest guy, so please note that I overcome myself to make you pay proper attention to the benefits of the approach). And also, without David&rsquo;s hard work there&rsquo;d be no basement for me to build on. No, false comparison. No walls, fundament, finely tuned electricity network, gas tubes system, properly configured and built water system, to put my roof on. That&rsquo;s closer.</p>
+
+<p>I named it <code>peg.js-fn</code> and all the code is located <a href="">at github</a>.</p>
+
+<p>Since people will probably ask, I need to mention that, of course, all of peg.js tests are successfully passed by peg.js-fn.</p>
+
+<p>So the third part of the article is about the structure of generated parser code, in details, on how it works from the inside, and a second one is a just a list of all 18 operators&#39; code snippets with short comments. Just in case I&rsquo;ll get your interest in internals of the approach.</p>
+<h1 id="part-2.-code.-parsing-operators.">Part 2. Code. Parsing operators.</h1>
+<p>The main fuel for parsing process in <code>peg.js-fn</code> is <em>partial function application</em> – this power is achieved with an ability of slightly modified functions to be called twice and to get all of the required arguments saved at first call, and second one just says &ldquo;please apply the arguments you&rsquo;ve stored before and call this function NOW, I mean IMMEDIATELY&rdquo;. Actually, it&rsquo;s just a sub-case of <em>partial application</em>, so I call this variant with special name, &ldquo;_postponed functions_&rdquo; (or &ldquo;_postponable_&rdquo;, whatever you like). The way its done is not important for this article, if you really want to know, though, think of <code>Function.bind</code> or take a look at generated parser examples. All the parsers we produce in our Great Parser Factory are powered with this fine-selected fuel. This moves us the fastest way towards both parser readability and execution economy, since it allow us to write, say,</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">sequence</span><span class="p">(</span><span class="nx">match</span><span class="p">(</span><span class="s1">&#39;Gand&#39;</span><span class="p">),</span> <span class="nx">choice</span><span class="p">(</span><span class="nx">match</span><span class="p">(</span><span class="s1">&#39;alf&#39;</span><span class="p">),</span> <span class="nx">match</span><span class="p">(</span><span class="s1">&#39;hi&#39;</span><span class="p">)))</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>without actually performing both matches inside the <code>choice</code> operator – they provide us an option to skip unrequired call of the second <code>match</code> function, when we got <code>&#39;Gandalf&#39;</code>, but not <code>&#39;Ghandi&#39;</code> as an input string given to our tiny little parser.</p>
+
+<p>This way, the code inside <code>choice</code> operator may look like:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">choice</span><span class="p">(</span><span class="nx">f1</span><span class="p">,</span> <span class="nx">f2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">f1</span><span class="p">()</span> <span class="o">||</span> <span class="nx">f2</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>So JavaScript engine will skip second call if first one returned some value with enough truthful meaning for operator. Both readable and economic, preciousss!!</p>
+
+<p>Following this example you might observe that every operator in generated parsers is a postponed function (at least, but not at last). I&rsquo;ll list them all below, one by one, all <em>The Mighty 18</em> of them.</p>
+
+<p>They are intended to impress you at the first glance, so no need in getting everything to the deepest deep – later you&rsquo;ll have a chance either to dig into any level of details you&rsquo;ll find required, or freely drop it as unuseful just after this chapter&rsquo;s end. [Or you may drop it even here, why bother?]</p>
+
+<p>A quick look into global things:</p>
+
+<ul>
+<li><code>input</code> variable contains text to parse;</li>
+<li><code>ilen</code> variable contains input length;</li>
+<li><code>cc()</code> function returns current character in parser position;</li>
+<li><code>pos</code> variable contains current parser position;</li>
+<li><code>ppos</code> variable contains parser position before execution of current rule, may be forcely overwritten;</li>
+<li><code>EOI</code> is just an alias for <em>end of input</em>;</li>
+<li><code>failed(expected, found)</code> function throws <code>MatchFailed</code> exception from the inside, but also fills it with with important information like line number and character number in the souce text where the failure occured;</li>
+<li><code>safe(func)</code> calls <code>func</code>, but preserves (подавляет) <code>MatchFailed</code> exceptions occured when <code>func</code> was called, while saving them to error stack;</li>
+<li><code>cctx</code> object holds variables accessible at this nesting level and above (through <code>prototype</code> chain); details of that will be covered later, if you&rsquo;ll ever need them.</li>
+<li><code>inctx(func)</code> function creates a personal nesting level of context for the provided function, when function will finish its execution, level will be returned back;maame as above, details will be covered below, don&rsquo;t you worry;</li>
+</ul>
+<h3 id="example">0. example</h3>
+<p>This example demonstrates the template used in subsections below to describe you the every next operator. You&rsquo;ll find the short but lyrical description in this place. If you are unfamiliar with PEG syntax while you&rsquo;re still reading at this point, please undoubtedly follow <a href="https://github.com/dmajda/pegjs#grammar-syntax-and-semantics">this link</a> to find out the basics (though it&rsquo;s a bit customized version we use here, if you need the real world standard – better follow <a href="http://en.wikipedia.org/wiki/Parsing_expression_grammar">this specification</a>).</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>PEG syntax for this operator</code></li>
+<li><strong>example:</strong> <code>example of PEG rule, composed using this operator</code></li>
+<li><strong>code:</strong> <code>JS code, as it appears in generated parser for the above rule</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">example</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// a code of the operator function, with the postponing</span>
+    <span class="c1">// wrapper omitted, since it&#39;s the same in every one of them</span>
+    <span class="c1">// and programmer may wrap all of the operators later him-</span>
+    <span class="c1">// herself this way... and also anyway it is described in</span>
+    <span class="c1">// very details in the next chapter</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="ch">1. ch</h3>
+<p>This operator hoists the next character from the text. If current position is greater than input length, it fails with telling that parser expected any symbol and got end-of-input instead. If next character is what we searched for, input position is advanced by one.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>.</code></li>
+<li><strong>example:</strong> <code>start = . . .</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(ch(), ch(), ch());</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">ch</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">pos</span> <span class="o">&gt;=</span> <span class="nx">ilen</span><span class="p">)</span> <span class="nx">failed</span><span class="p">(</span><span class="nx">ANY</span><span class="p">,</span> <span class="nx">EOI</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">input</span><span class="p">[</span><span class="nx">pos</span><span class="o">++</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="match">2. match</h3>
+<p>This operator tries to match next portion of an input with given string, using string length to consider the size of a portion to test. If the match passed, input position is advanced by the very same value. If input position plus string length exceeds input length – parser fails saying it reached end-of-input. If input does not contains the given string, parser fails saying current character and expected string. (It is possible to provide which part of input exactly was different, but original <code>peg.js</code> tests do not cover it and it&rsquo;s commonly considered optional, so it may be a homework for a reader).</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&quot;&lt;string&gt;&quot;</code>, <code>&#39;&lt;string&gt;&#39;</code></li>
+<li><strong>example:</strong> <code>start = . &#39;oo&#39;</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(any(), match(&#39;oo&#39;));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">match</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">slen</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">((</span><span class="nx">pos</span> <span class="o">+</span> <span class="nx">slen</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">ilen</span><span class="p">)</span> <span class="p">{</span> <span class="nx">failed</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">EOI</span><span class="p">);</span> <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">pos</span><span class="p">,</span> <span class="nx">slen</span><span class="p">)</span> <span class="o">===</span> <span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">pos</span> <span class="o">+=</span> <span class="nx">slen</span><span class="p">;</span> <span class="k">return</span> <span class="nx">str</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">failed</span><span class="p">(</span><span class="nx">str</span><span class="p">,</span> <span class="nx">cc</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="re">3. re</h3>
+<p>This operator tries to match using symbols-driven regular expression (the only allowed in <code>peg.js</code>). The regular expression may have some description provided, then this description will be used to describe a failure. On the other branches, this operator logic is similar to the one before.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>[&lt;symbols&gt;]</code>, <code>[^&lt;symbols&gt;]</code>, <code>[&lt;symbol_1&gt;-&lt;symbol_n&gt;]</code>, <code>[^&lt;symbol_1&gt;-&lt;symbol_n&gt;]</code>, <code>&quot;&lt;string&gt;&quot;i</code>, <code>&#39;&lt;string&gt;&#39;i</code></li>
+<li><strong>example:</strong> <code>start = [^f-o]+</code></li>
+<li><strong>code:</strong> <code>rules.start = some(re(/[^f-o]/));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">re</span><span class="p">(</span><span class="nx">rx</span><span class="p">,</span> <span class="nx">desc</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">desc</span> <span class="o">=</span> <span class="nx">desc</span> <span class="o">||</span> <span class="nx">rx</span><span class="p">.</span><span class="nx">source</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">res</span> <span class="o">=</span> <span class="nx">rx</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">pos</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">index</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">failed</span><span class="p">(</span><span class="nx">desc</span><span class="p">,</span> <span class="nx">cc</span><span class="p">());</span>
+    <span class="nx">pos</span> <span class="o">+=</span> <span class="nx">res</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="k">return</span> <span class="nx">res</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="nx">failed</span><span class="p">(</span><span class="nx">desc</span><span class="p">,</span> <span class="nx">cc</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="text">4. text</h3>
+<p><code>text</code> operator executes the other operator inside as normally, but always returns the matched portion of input text instead of what the inner operator decided to return. If there will be failures during the inner operator parsing process, return code will not ever be reached.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>$&lt;expression&gt;</code></li>
+<li><strong>example:</strong> <code>start = $(. . .)</code></li>
+<li><strong>code:</strong> <code>rules.start = text(seqnc(ch(), ch(), ch()));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">text</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">ppos</span> <span class="o">=</span> <span class="nx">pos</span><span class="p">;</span>
+  <span class="nx">f</span><span class="p">();</span> <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">ppos</span><span class="p">,</span> <span class="nx">pos</span><span class="o">-</span><span class="nx">ppos</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="maybe">5. maybe</h3>
+<p>This operator ensures that some other operator at least tried to be executed, but absorbs the failure if it happened. In other words, it makes other operator optional. <code>safe</code> function is the internal function to absorb operator failures and execute some callback if failure happened.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;expression&gt;?</code></li>
+<li><strong>example:</strong> <code>start = &#39;f&#39;? (. .)?</code></li>
+<li><strong>code:</strong>
+<code>rules.start  = seqnc(maybe(match(&#39;f&#39;)),</code>
+<code>maybe(seqnc(ch(), ch())));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">maybe</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">missed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nx">res</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">missed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">});</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">missed</span><span class="p">)</span> <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="some">6. some</h3>
+<p>This operator executes other operator the most possible number of times (but at least one) until it fails (without failing the parser). If it failed at the moment of a first call – then the whole parser failed. If same operator failed during any of the next calls, failure is absorbed without advancing parsing position further. This logic is often called &ldquo;one or more&rdquo; and works the same way in regular expressions. In our case, we achieve the effect by calling the operator itself normally and then combining it with immediately-called<code>any</code> (&ldquo;zero or more&rdquo;) operator described just below.</p>
+
+<p><code>some</code> operator returns the array of matches on success, with at least one element inside.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;expression&gt;+</code></li>
+<li><strong>example:</strong> <code>start = &#39;f&#39;? .+</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(maybe(match(&#39;f&#39;)), some(ch()));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">some</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">f</span><span class="p">()].</span><span class="nx">concat</span><span class="p">(</span><span class="nx">any</span><span class="p">(</span><span class="nx">f</span><span class="p">)());</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="any">7. any</h3>
+<p>This operator executes other operator the most possible number of times, but even no matches at all will suffice as no failure. <code>any</code> operator also returns an array of matches, but the empty one if no matches succeeded.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;expression&gt;*</code></li>
+<li><strong>example:</strong> <code>start = &#39;f&#39;+ &#39;o&#39;*</code></li>
+<li><strong>code:</strong>  <code>rules.start = seqnc(some(match(&#39;f&#39;)), any(match(&#39;o&#39;)));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">any</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="p">[],</span>
+      <span class="nx">missed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nx">on_miss</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">missed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nx">missed</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">s</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">safe</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">on_miss</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">missed</span><span class="p">)</span> <span class="nx">s</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="and">8. and</h3>
+<p><code>and</code> operator executes other operator almost normally, but returns an empty string if it matched and failures expecting end-of-input if it failed. Also, everything happens without advancing the parser position. <code>pos</code> variable here is global parser position and it is rolled back after the execution of inner operator. <code>nr</code> flag is &lsquo;no-report&rsquo; flag, it is used to skip storing parsing errors data (like their postions), or else they all stored in order of appearance, even if they don&rsquo;t lead to global parsing failure.</p>
+
+<p>It&rsquo;s important to say here that, honestly speaking, yes, <code>peg.js-fn</code> is aldo driven by exceptions, among with postponed function. One special class of exception, named <code>MatchFailed</code>. It is raised on every local parse failure, but sometimes it is absorbed by operators wrapping it (i.e. <code>safe</code> function contains <code>try {...} catch(MatchFailed) {...}</code> inside), and sometimes their logic tranfers it to the top (global) level which causes the final global parse failure and parsing termination. The latter happens once and only once for every new input/parser execution, of course.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&amp;&lt;expression&gt;</code></li>
+<li><strong>example:</strong> <code>start = &amp;&#39;f&#39; &#39;foo&#39;</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(and(match(&#39;f&#39;)), match(&#39;foo&#39;));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">and</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">ppos</span> <span class="o">=</span> <span class="nx">pos</span><span class="p">,</span> <span class="nx">missed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">nr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">safe</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">missed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">});</span> <span class="nx">nr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">pos</span> <span class="o">=</span> <span class="nx">ppos</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">missed</span><span class="p">)</span> <span class="nx">failed</span><span class="p">(</span><span class="nx">EOI</span><span class="p">,</span> <span class="nx">cc</span><span class="p">());</span>
+  <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="not">9. not</h3>
+<p><code>not</code> operator acts the same way as <code>and</code> operator, but in a bit inverse manner. It also ensures not to advance the position, but returns an empty string when match failed and fails with expecting end-of-input, if match succeeded.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>!&lt;expression&gt;</code></li>
+<li><strong>example:</strong> <code>start = !&#39;g&#39; &#39;foo&#39;</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(not(match(&#39;g&#39;)), match(&#39;foo&#39;));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">not</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">ppos</span> <span class="o">=</span> <span class="nx">pos</span><span class="p">,</span> <span class="nx">missed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">nr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">safe</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">missed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">});</span> <span class="nx">nr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">pos</span> <span class="o">=</span> <span class="nx">p_pos</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">missed</span><span class="p">)</span> <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="nx">failed</span><span class="p">(</span><span class="nx">EOI</span><span class="p">,</span> <span class="nx">cc</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="seqnc">10. seqnc</h3>
+<p>This operator executes a sequence of other operators of any kind, and this sequence may have any (but finite) length. If one of the given operators failed during execution, the sequence is interrupted immediately and the exception is thrown. If all operators performed with no errors, an array of their results is returned.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;expression_1&gt; &lt;expression_2&gt; ...</code></li>
+<li><strong>example:</strong> <code>start = . &#39;oo&#39; &#39;bar&#39;?</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(ch(), match(&#39;oo&#39;), maybe(match(&#39;bar&#39;)));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">seqnc</span><span class="p">(</span><span class="cm">/*f...*/</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">ppos</span> <span class="o">=</span> <span class="nx">pos</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">,</span>
+      <span class="nx">s</span> <span class="o">=</span> <span class="p">[],</span>
+      <span class="nx">on_miss</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">pos</span> <span class="o">=</span> <span class="nx">ppos</span><span class="p">;</span> <span class="k">throw</span> <span class="nx">e</span><span class="p">;</span> <span class="p">};</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">fi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">fl</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+        <span class="nx">fi</span> <span class="o">&lt;</span> <span class="nx">fl</span><span class="p">;</span> <span class="nx">fi</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">s</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">safe</span><span class="p">(</span><span class="nx">fs</span><span class="p">[</span><span class="nx">fi</span><span class="p">],</span> <span class="nx">on_miss</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="choice">11. choice</h3>
+<p>This operator works similarly to pipe (<code>|</code>) operator in regular expressions – it tries to execute the given operators one by one, returning (actually, without advancing) the parsing position back in the end of each iteration.  If there was a success when one of these operators was executed, <code>choice</code> immediately exits with the successful result. If all operators failed, <code>choice</code> throws a <code>MatchFailed</code> exception.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;expression_1&gt; / &lt;expression_2&gt; / ...</code></li>
+<li><strong>example:</strong> <code>start = . (&#39;aa&#39; / &#39;oo&#39; / &#39;ee&#39;) .</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(ch(), choice(match(&#39;aa&#39;), match(&#39;oo&#39;), match(&#39;ee&#39;)), ch());</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">choice</span><span class="p">(</span><span class="cm">/*f...*/</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">,</span>
+      <span class="nx">missed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="nx">my_e</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nx">on_miss</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">my_e</span> <span class="o">=</span> <span class="nx">e</span><span class="p">;</span> <span class="nx">missed</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">};</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">fi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">fl</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+      <span class="nx">fi</span> <span class="o">&lt;</span> <span class="nx">fl</span><span class="p">;</span> <span class="nx">fi</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">safe</span><span class="p">(</span><span class="nx">fs</span><span class="p">[</span><span class="nx">fi</span><span class="p">],</span> <span class="nx">on_miss</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">missed</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="nx">missed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">throw</span> <span class="nx">my_e</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="action">12. action</h3>
+<p>In <code>peg.js</code> any rule or sequence may have some javascript code assigned to it, so it will be executed on a successful match event, and in latter case this code has the ability to manipulate the match result it receives and to return the caller something completely different instead.</p>
+
+<p>Commonly the operators which themselves execute some other, inner operators, (and weren&rsquo;t overriden) return the array containing their result values, if succeeded. Other operators return plain values. With <code>action</code>, both these types of results may be replaced with any crap developer will like.</p>
+
+<p>By the way, the code also receives all the values returned from labelled operators (on the same nesting level and above) as the variables with the names equal to the labels. See more information on labelling below.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;expression&gt; { &lt;javascript-code&gt; }</code></li>
+<li><strong>example:</strong> <code>start = &#39;fo&#39; (. { return offset(); })</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(match(&#39;fo&#39;), action(ch(), function() { return offset(); }));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">action</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">function</span> <span class="nx">inctx</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ppos</span> <span class="o">=</span> <span class="nx">pos</span><span class="p">;</span> <span class="kd">var</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="nx">f</span><span class="p">();</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">code</span><span class="p">(</span><span class="nx">cctx</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">res</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">ppos</span><span class="p">;</span>
+      <span class="nx">failed</span><span class="p">(</span><span class="nx">SOMETHING</span><span class="p">,</span> <span class="nx">NOTHING</span><span class="p">);</span> <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="pre">13. pre</h3>
+<p>The rule in <code>peg.js</code> also may be prefixed/precessed with some JavaScript code which is executed before running all the inner rule operators. This JavaScript code may check some condition(s) and decide, if it&rsquo;s ever has sense to run this rule, with returning a boolean value. Of course, this code does not advances the parser position.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&amp; { &lt;javascript-code&gt; }</code></li>
+<li><strong>example:</strong> <code>start = &amp;{ return true; } &#39;foo&#39;</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(pre(function() { return true; }), match(&#39;foo&#39;));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">pre</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">ppos</span> <span class="o">=</span> <span class="nx">pos</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">code</span><span class="p">(</span><span class="nx">cctx</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;&#39;</span> <span class="o">:</span> <span class="nx">failed</span><span class="p">(</span><span class="nx">cc</span><span class="p">(),</span> <span class="nx">EOI</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="xpre">14. xpre</h3>
+<p>Same as <code>pre</code> operator, but in this case, reversely, <code>false</code> returned says it&rsquo;s ok to execute the rule this operator precedes.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>! { &lt;javascript-code&gt; }</code></li>
+<li><strong>example:</strong> <code>start = !{ return false; } &#39;foo&#39;</code></li>
+<li><strong>code:</strong> <code>rules.start = seqnc(xpre(function() { return false; }), match(&#39;foo&#39;));</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">xpre</span><span class="p">(</span><span class="nx">code</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">ppos</span> <span class="o">=</span> <span class="nx">pos</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">code</span><span class="p">(</span><span class="nx">cctx</span><span class="p">)</span> <span class="o">?</span> <span class="nx">failed</span><span class="p">(</span><span class="nx">cc</span><span class="p">(),</span> <span class="nx">EOI</span><span class="p">)</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="label">15. label</h3>
+<p><code>label</code> operator allows to tag some expression with a name, which makes it&rsquo;s result to be accessible to the JavaScript code through variable having the exact same name. Since you may execute JavaScript code in the end of any sequence operator <code>sqnc</code> by wrapping it with <code>action</code> operator, you may get access to these values from everywhere, and only bothering if current nesting level has access to the label you want to use.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;name&gt;:&lt;expression&gt;</code></li>
+<li><strong>example:</strong> <code>start = a:. &#39;oo&#39; { return a + &#39;bb&#39;; }</code></li>
+<li><strong>code:</strong> <code>rules.start = action(seqnc(label(&#39;a&#39;, ch()), match(&#39;oo&#39;)), function(a) { return a + &#39;bb&#39;});</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">label</span><span class="p">(</span><span class="nx">lbl</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">cctx</span><span class="p">[</span><span class="nx">lbl</span><span class="p">]</span> <span class="o">=</span> <span class="nx">f</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="rule">16. Rule</h3>
+<p>This operator is different from others, because it just wraps a rule and calls its first wrapping operator immediately and nothing more. It only used to provide better readibility of parser code, so you (as well as parser itself) may link to any rule using <code>rules.&lt;your_rule&gt;</code> reference.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;rule_name&gt; = &lt;expression&gt;</code></li>
+<li><strong>example:</strong>
+<code>space = &quot; &quot;</code>
+<code>foo &quot;three symbols&quot; = . . .</code>
+<code>start = !space foo !space</code></li>
+<li><strong>code:</strong>
+<code>rules.space = function() { return (match(&#39; &#39;))(); };</code>
+<code>rules.foo = function() { return (as(&#39;three symbols&#39;, seqnc(ch(), ch(), ch())))(); };</code>
+<code>rules.start = function() { return (seqnc(not(ref(rules.space)), ref(rules.foo), not(ref(rules.space))))(); };</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">rules</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">rule_name</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="o">&lt;</span><span class="nx">root_operator_code</span><span class="o">&gt;</span><span class="p">)();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="ref">17. ref</h3>
+<p>&hellip;And if we plan to call some rule from some operator with <code>rules.&lt;rule_name&gt;</code> reference, we need to make current context accessible from the inside. Context is those variables who accessible at this nesting level and above (nesting level is determined with brackets in grammar). This provided with some complex tricks, but we&rsquo;ll keep them for those who want to know all the details – if you&rsquo;re one of them, the next chapter is completely yours.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;rule_name&gt;</code></li>
+<li><strong>example:</strong>
+<code>fo_rule = &#39;fo&#39;</code>
+<code>start = fo_rule &#39;o&#39;</code></li>
+<li><strong>code:</strong>
+<code>rules.fo_rule = function() { return (match(&#39;fo&#39;))(); };</code>
+<code>rules.start = function() { return (seqnc(ref(rules.fo_rule), match(&#39;o&#39;))(); };</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">ref</span> <span class="o">=</span> <span class="nx">inctx</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="as">18. as</h3>
+<p>The final operator creates an alias for a rule so it will be referenced with another name in error messages. And it&rsquo;s the only purpose of this one, the last one.</p>
+
+<ul>
+<li><strong>syntax:</strong> <code>&lt;rule_name&gt; &quot;&lt;alias&gt;&quot; = &lt;expression&gt;</code></li>
+<li><strong>example:</strong> <code>start &quot;blah&quot; = &#39;bar&#39;</code></li>
+<li><strong>code:</strong> <code>rules.start = function() { return (as(&#39;blah&#39;, match(&#39;bar&#39;)))(); };</code></li>
+</ul>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">as</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">alias</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span> <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">f</span><span class="p">();</span>
+  <span class="nx">alias</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span> <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>So here you go, the list is finished and I hope you now have the vision of a generated parser code as a LEGO-bricks, all types and kinds listed here. By the way, here&rsquo;s the Gist with all operators code from above with no meaningless wrapping text: <a href="https://gist.github.com/shamansir/40eaffb802beaefd9443">click here</a>. If you want to dig into details and tricks, the next chapter will cover them, but it is completely optional and on your own will.</p>
+<h2 id="details">Details</h2>
+<p>If you are reading this chapter, then seems you are interested in the deepest secrets of a generated parser. Please remember, that you are totally not ought to! And, to be honest, there are not secrets at all there, just a boring, almost bureaucratic, stuff. So if you accidentally started from this chapter (this article is huge, so I suppose it&rsquo;s rather easy to get lost here – no panic&hellip;), just head to the top and start from the beginning, go straight, and try to reach this very point from different direction – this way you&rsquo;ll find yourself in much more comfortable situation.</p>
+
+<p>For those who haven&rsquo;t left us – let&rsquo;s start.</p>
+
+<p>A generated parser consists of several parts, in given order (later we will inspect each of them separately):</p>
+
+<ul>
+<li><em>Global variables</em>, just <code>input</code>, <code>pos</code> (current parsing position) &amp; <code>p_pos</code>(previous parsing position) are here. And parsing <code>options</code>. Four of them, and it&rsquo;s actually enough. They&rsquo;re accessible both to user code and parser code;</li>
+<li><em>User code</em> from a parser grammar, wrapped in it&rsquo;s own closure, so it will only have access to functions defined in this closure and global variables. It has no access to internal parser code, which is itself isolated in another closure. Though we store user code in an object, so parser will have access to it. Oh, if you wonder where from we got this code, it&rsquo;s the one user may write in grammar prelude, inside <code>action</code>s and for <code>pre</code> and <code>xpre</code> operator;</li>
+<li><em>Parser closure</em>, which, in its turn, consists of:
+
+<ul>
+<li><em>Rules</em>, those ones, which were defined in a parser grammar and were converted to javascript code, same way as in examples for operators above, like <code>rules.space = function() { return (match(&#39; &#39;))(); };</code>;</li>
+<li><em>Operators</em> code, presented exactly as above, but, of course, there are only the ones included, that were used in the rules above, at least once;</li>
+<li><em>Internal parser variables</em>, <em>Context management functions</em>;</li>
+<li><em><code>parse()</code> function</em>, the only one exported to user;</li>
+<li><em><code>MatchFailed</code>, <code>SyntaxError</code> exceptions</em> definition, <em>parse error handling code</em>;</li>
+</ul></li>
+<li>A call of the parser closure defined above, to prepare its variables only once for several parsing sessions.</li>
+</ul>
+
+<p><a href="https://gist.github.com/shamansir/7348144">Here&rsquo;s the gist</a> with the complete code of a parser generated using some simple grammar (also included).</p>
+
+<p>Let&rsquo;s briefly look into every mentioned block and then finish with this impermissibly vast article:</p>
+<h3 id="global-variables">Global Variables</h3>
+<p>As it was said before, there&rsquo;s only four of them:</p>
+
+<ul>
+<li><code>input</code> – contains the string that was passed to a <code>parse()</code> function, so here it stays undefined and just provides global access to it, but surely it&rsquo;s initialized with new value on every call to <code>parse()</code>;</li>
+<li><code>pos</code> – current parsing position in the <code>input</code> string, it resets to 0 on every <code>parse()</code> call and keeps unevenly increasing until reaches the length of current <code>input</code> minus one, except the cases when any of fall-back operators were met (like <code>choice</code> or  <code>and</code> or <code>pre</code> or <code>xpre</code> or &hellip;), then it moves back a bit or stays at one place for some time, but still returns to increasing way just after that;</li>
+<li><code>p_pos</code> (notice the underscore) – previous parsing position, a position in <code>input</code> string where parser resided just before the execution of current operator. So for matching operators (<code>match</code>, <code>ref</code>, <code>some</code>, <code>any</code>, &hellip;), a string chunk between <code>input[p_pos]</code> and <code>input[pos]</code> is always a matched part of an input.</li>
+<li><code>options</code> – options passed to <code>parse()</code> function;</li>
+</ul>
+<h3 id="user-code">User Code</h3>
+<p>What is the user code, you ask? The user code is every piece of Javascript code user may specify in his grammar, collected in one place. Think of grammar prelude, <code>action</code>, <code>pre</code> and <code>xpre</code> operators. The complex problem here is that user should be able to access the results of labeled operators in current scope and only in current scope, and these labeled results should be converted to variables under the very same name. So:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>some_rule = a:&#39;a&#39; x:(z:&#39;z&#39; { return func_az(a, z); })
+                  (b:&#39;b&#39; c:&#39;c&#39; { return func_axbc(a, x, b, c); })
+                  (d:&#39;d&#39; (e:&#39;e&#39; { return func_axde(a, x, d, e); })
+                         f:&#39;f&#39; { return func_axdf(a, x, d, f); })
+            g:&#39;g&#39; { return func_axg(a, x, g); }
+</pre></div>
+</td></tr></table></div></div>
+<p>in this rule user code for every action should &ldquo;see&rdquo; only the variables mentioned in function title (so <code>func_az</code> should only see labeled results <code>a</code> and <code>z</code>, and so on) and of course they should contain a proper result. In other words, every brackets pair creates a deeper level of context which &ldquo;sees&rdquo; all the values in contexts from the levels above, and two contexts on the same level can&rsquo;t see each other, since they can not intersect. Plus, the code may &ldquo;see&rdquo; only the labels on the left, in its context, on the same level and above, since they are already calculated, since parser goes through rule from left to right.</p>
+
+<p>JavaScript is actually not very friendly to perversions like named parameters (Python, you are cool!), and, for the non-expandable parser code, like the one we describe in the article. We need to store the values and later pass them under required names to the wrapper of user code, but we can&rsquo;t predict their names until we start parsing. But we want to isolate user code in functions aside from parser code, so everything private will not be visible to user not bacause of underscores, but thankfully to closures. Named parameters seem the only way to provide user with this functionality from the first sight.</p>
+
+<p>Same for the second sight, though. Same for the third.</p>
+
+<p>Still seems the only way. Or we&rsquo;d should pass an object to every code block and ask user to refer to them as <code>some_obj.a</code>, <code>some_obj.z</code> etc., which is ugly and dishonest. May be we should drop this idea?</p>
+
+<p>But JS actually hides inside another ability we may use for the good – prototypes. This one is helpful to easily go up and down through user contexts. When user JS function is called, some object will already contain all current-level values, and hold the parent-context values in prototypes chain. When we go out of a nested context, we drop the last created object and switch to a parent prototype to be a current context object.</p>
+
+<p>So labels problem was solved another way, I decided to do the very same prototype travelling during conversion of a grammar to AST tree. And then I know which labels should be visible to user, I inject them directly into user function calls as properties of an object which holds current parsing-time context under known labels.</p>
+
+<p>Woof, seems we got it not so briefly here. But anyway this will help to explain some things below and you&rsquo;re stll with me, so I&rsquo;ll try to demonstrate it with an excerpt from Gist with parser example mentioned above:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68</pre></div></td><td class="code"><div class="highlight"><pre>  <span class="c1">// This code encloses all of the user blocks (initializer and/or</span>
+  <span class="c1">// actions) in their own sandbox, so if there is an initializer,</span>
+  <span class="c1">// its inner variables will [only] be accessible to actions.</span>
+  <span class="c1">// This, however, requires an initializer not to have any</span>
+  <span class="c1">// first-level return statements (which has no sense, in its</span>
+  <span class="c1">// turn). Also, this approach keeps parser inner variables</span>
+  <span class="c1">// safe from user access, except the ones defined above.</span>
+  <span class="kd">var</span> <span class="nx">__user_blocks</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// functions accessible only to user code</span>
+    <span class="kd">function</span> <span class="nx">offset</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">p_pos</span><span class="p">;</span> <span class="p">};</span>
+    <span class="kd">function</span> <span class="nx">text</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">input</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">p_pos</span><span class="p">,</span> <span class="nx">pos</span><span class="p">);</span> <span class="p">};</span>
+
+    <span class="cm">/* ########### USER CODE ########### */</span>
+
+    <span class="cm">/* ----------- INITIALIZER ----------- */</span>
+
+    <span class="kd">var</span> <span class="nx">user_var</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="cm">/* ----------- BLOCKS ----------- */</span>
+
+    <span class="c1">// Blocks are grouped by rule name and id;</span>
+    <span class="c1">// they all get access to current context through `ctx`</span>
+    <span class="c1">// variable which they expand into their arguments.</span>
+    <span class="c1">// Arguments&#39; names are pre-calculated during</span>
+    <span class="c1">// parser generation process.</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="s2">&quot;additive&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">$ctx</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// additive[0]</span>
+          <span class="k">return</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span><span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
+             <span class="k">return</span> <span class="nx">left</span> <span class="o">+</span> <span class="nx">right</span><span class="p">;</span>
+          <span class="p">})(</span><span class="nx">$ctx</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span><span class="nx">$ctx</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;multiplicative&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">$ctx</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// multiplicative[0]</span>
+          <span class="k">return</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">left</span><span class="p">,</span><span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
+             <span class="k">return</span> <span class="nx">left</span> <span class="o">*</span> <span class="nx">right</span><span class="p">;</span>
+          <span class="p">})(</span><span class="nx">$ctx</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span><span class="nx">$ctx</span><span class="p">.</span><span class="nx">right</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;primary&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">$ctx</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// primary[0]</span>
+          <span class="k">return</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">additive</span><span class="p">)</span> <span class="p">{</span>
+             <span class="k">return</span> <span class="nx">additive</span><span class="p">;</span>
+          <span class="p">})(</span><span class="nx">$ctx</span><span class="p">.</span><span class="nx">additive</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="s2">&quot;integer&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">$ctx</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// integer[0]</span>
+          <span class="k">return</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">digits</span><span class="p">)</span> <span class="p">{</span>
+             <span class="k">return</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">digits</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+          <span class="p">})(</span><span class="nx">$ctx</span><span class="p">.</span><span class="nx">digits</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">};</span>
+
+  <span class="p">}</span> <span class="p">})();</span>
+
+  <span class="c1">// ...</span>
+
+  <span class="c1">// this expression is evaluated before every parsing cycle</span>
+  <span class="kd">var</span> <span class="nx">$f</span> <span class="o">=</span> <span class="nx">__user_blocks</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>All user code blocks are grouped by rule name, so each rule has it&rsquo;s own array. We already traveled the grammar AST here, when we generated this parsing code, so we knew all the labels names and injected them to proper places. When user parses some input, we know an index of user block to call, so we pass current context to a function and call it, i.e. <code>__user_blocks.additive[0](cctx)</code> (<code>cctx</code>  variable holds current context).</p>
+<h3 id="parser-closure">Parser Closure</h3>
+<p>It just isolates parser code from user code. That&rsquo;s it. Let&rsquo;s move deeper.</p>
+<h4 id="rules">Rules</h4>
+<p>Every rule from grammar is encoded using operators (that stuff described in previous part), so this:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>... other rules ...
+additive
+  = left:multiplicative &quot;+&quot; right:additive { return left + right; }
+  / multiplicative
+... some more rules ...
+</pre></div>
+</td></tr></table></div></div>
+<p>becomes this:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">rules</span> <span class="o">=</span> <span class="p">{};</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// ... other rules here ...</span>
+
+    <span class="nx">rules</span><span class="p">.</span><span class="nx">additive</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">_code</span> <span class="o">=</span> <span class="nx">$f</span><span class="p">.</span><span class="nx">additive</span><span class="p">;</span>
+      <span class="k">return</span> <span class="p">(</span>
+        <span class="nx">choice</span><span class="p">(</span>
+          <span class="nx">action</span><span class="p">(</span>
+            <span class="nx">seqnc</span><span class="p">(</span>
+              <span class="nx">label</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">,</span>
+                <span class="nx">ref</span><span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">multiplicative</span><span class="p">)</span>
+              <span class="p">),</span>
+              <span class="nx">match</span><span class="p">(</span><span class="s2">&quot;+&quot;</span><span class="p">),</span>
+              <span class="nx">label</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span>
+                <span class="nx">ref</span><span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">additive</span><span class="p">)</span>
+              <span class="p">)</span>
+            <span class="p">),</span>
+            <span class="nx">_code</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="cm">/*{ return left + right; }*/</span><span class="p">,</span>
+          <span class="nx">ref</span><span class="p">(</span><span class="nx">rules</span><span class="p">.</span><span class="nx">multiplicative</span><span class="p">)</span>
+        <span class="p">)</span>
+      <span class="p">());</span>
+    <span class="p">}</span>
+
+    <span class="c1">// ... some more rules ...</span>
+
+<span class="p">})();</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><code>$f</code> is given a value of <code>__user_blocks()</code> on every call to <code>parse()</code> function.</p>
+<h4 id="operators">Operators</h4>
+<p>All the operators were covered in details above, even with code examples, so for now you only should know that exceptionally the operators actually mentioned in rules are included here.</p>
+
+<p>Ok, there&rsquo;s one more subtlety I need to tell you about. May be you recall I mentioned that operators are postponed functions. So every operator here is wrapped so that it&rsquo;s first call only stores arguments passed and second call actually performs the function code with the stored data. This may be done in different ways, like using <code>Function.bind</code>, for example. You may take a look at the Gist code to see which way it&rsquo;s implemented in my case, but the way actually has no matter here, only the result matters. This, however is the clockwork which makes everything tick <em>in functional way</em>.</p>
+
+<p><code>cc()</code> and <code>ref()</code> functions mentioned in <em><a href="#Operators">Operators</a></em> chapter are also defined here.</p>
+<h4 id="internal-parser-variables">Internal Parser Variables</h4>
+<p>Parser needs to store some private things, of course. Each of this variables below resets to initial state at the start of each parsing cycle.</p>
+
+<ul>
+<li><code>cache</code> object stores the rules results by position in the <code>input</code> string, so in cases of backtracking there will be no special need in recalculating. Every rule wrapped the way it checks the cache before execution and if position matches, returns the result from cache. Caching may be disabled on parser generation;</li>
+<li><code>ctx</code> variable holds the vey root of context, the topmost level of it (see above in <em><a href="#User-Code">User Code</a></em> section regarding prototype chains for context levels);</li>
+<li><code>cctx</code> points to current context level;</li>
+<li><code>ctxl</code> holds current context level index, the deeper the level, the higher index is stored here;</li>
+<li><code>current</code> is the name of the rule in process of execution;</li>
+<li><code>alias</code> is the alias (see <code>as()</code> operator) of current rule, if it is defined;</li>
+<li><code>ilen</code> is the length of an input;</li>
+</ul>
+<h4 id="context-management-functions">Context Management Functions</h4>
+<p>Actually, everything about context structure was described in <em><a href="#User-Code">User Code</a></em> section. I&rsquo;ll just remind you that new, deeper, context levels are just new JS objects which hold pointer to previous (higher) level of context in their <code>prototype</code>. And yeah, context is where labeled results are stored for <code>action</code>, <code>pre</code> and <code>xpre</code> operators, which may contain JS code intended to have access to these labels. Deeper level of context is marked in grammar with parentheses.</p>
+
+<ul>
+<li><code>ctx_level(parent)</code> creates a deeper level of context below a <code>parent</code> and returns it;</li>
+<li><code>din()</code> moves <code>cctx</code> (current context level) pointer to a deeper level, parallelly with creating it if requred;</li>
+<li><code>dout()</code> moves <code>cctx</code> (current context level) pointer to a higher level;</li>
+<li><code>inctx(f)</code> goes a level deeper, performs the passed function <code>f</code> and then immediately goes out;</li>
+</ul>
+<h4 id="parse-function"><code>parse()</code> Function</h4>
+<p>It is the function called with evey new <code>input</code> to parse. It resets all the variables to their default values, clears the cache and does <code>$f = __user_blocks()</code> (see <a href="#User-Code">User Code</a> section), for example, then searches for the starting rule and executes it in a <code>try</code>-<code>catch</code> block. If <code>MatchFailed</code> exception was fired during the execution, it collects all the necessary information about the failure and fires it further to user (since it reached the top level and wasn&rsquo;t suppressed, for suppressed exceptions no information that should have belonged to user is collected).</p>
+<h4 id="matchfailed-syntaxerror-error-handling"><code>MatchFailed</code>, <code>SyntaxError</code>, Error Handling</h4>
+<p>Errors handing mechanics are driven by Exceptions in Pegjs-fn. <code>safe()</code> function suppresses exceptions fired from operators called inside it, but stores them anyway, to allow parser find the last one happened in special cases.</p>
+
+<p>Some variables are used to manage error data:</p>
+
+<ul>
+<li><code>failures</code> object to store all the failures found, suppressed or not, gruped by postion in <code>input</code> string;</li>
+<li><code>rmfpos</code> stores the position of the right-most failure;</li>
+<li><code>nr</code> turns the failure reporting mechanics off (sometimes <code>safe</code> function is not enough to have);</li>
+</ul>
+
+<p><code>MatchError</code> is fired when parser found any mismatch between grammar and input,  it stores what actually failed, the expected chunk and found chunk (or a marker, see just below), failure position as offset and two-dimensional position (line and column number) in <code>input</code>string (which may have line breaks and it&rsquo;s not a problem for a parser).</p>
+
+<p><code>SyntaxError</code> is fired when grammar used to generate the parser contained some unexpected error, i.e. if it had no start rule clearly known.</p>
+<h4 id="markers">Markers</h4>
+<p>There are few special cases, when <code>MatchFailed</code> exception may contain marker instead of string chunk:</p>
+
+<ul>
+<li><code>EOI</code>, <em>end-of-input</em>, if the final character of <code>input</code> string was unawarely reached during parsing;</li>
+<li><code>SOMETHING</code>, if it wasn&rsquo;t concretely known what to expect, but there required to be something instead of end-of-input, for example. <code>action</code> operator uses this marker  to describe what was expected if the user JS code informed that rule failed (returned <code>false</code>);</li>
+<li><code>NOTHING</code>, is a marker <code>action</code> operator uses to describe what was found when <code>SOMETHING</code> was expected. Sad story;</li>
+</ul>
+<h3 id="parser-closure-call">Parser Closure Call</h3>
+<p>This call builds the <code>Parser</code> instance and returns it to a user. Parser instance has:</p>
+
+<ul>
+<li><code>toSource()</code> function which returns it&rsquo;s own code as a string;</li>
+<li><code>MatchFailed</code> exception description;</li>
+<li><code>SyntaxError</code> exception description;</li>
+<li><code>parse(input[, options])</code> function, the one that user may use to triggers the parsing process on the given <code>input</code>;</li>
+</ul>
+<h1 id="conclusion">Conclusion</h1>
+<p>I hope you found this article interesting and discovered a new approach to parser generation. And thank you for being patient and reaching the very end.</p>
+
+<p>P.S. Parsing this article with non-legal parsers or parsers built on a base of non-legal grammars is strictly forbidden.</p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="Twitter profile"><img src="/assets/img/social/twitter.png" width="16" height="16" alt="Twitter profile"></a></li>
+    <li><a href="https://github.com/shamansir" title="Github profile"><img src="/assets/img/social/github.png" width="16" height="16" alt="GitHub profile"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="Facebook profile"><img src="/assets/img/social/facebook.png" width="16" height="16" alt="Facebook profile"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="Stackoverflow profile"><img src="/assets/img/social/stack-overflow.png" width="16" height="16" alt="Stack Overflow profile"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

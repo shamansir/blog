@@ -1,0 +1,1476 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="A blog about programming and only about it. No word about onion. At all. Totally none." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/" />
+<link rel="index" href="/archives/" />
+
+<link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-4', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — 16 Practical Solutions for Javascript &ndash; No word about onion</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/" rel="contents" title="Blog">Blog</a></li>
+        <li><a href="/archives/" rel="index" title="Archives">Archives</a></li>
+        <li><a href="/tags/" title="Tags">Tags</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Author">Author</a></li>
+        <li><a href="/feed.xml" title="Feed">Feed</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/" title="No word about onion">No word about onion</a></h1>
+    <div id="nwao-subtitle"><span>shaman.sir's telling you about stuff</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li>English Version</li>
+        <li><a href="/ru" title="Russian Version">Russian Version</a></li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/">Blog</a></li>
+        
+            
+            
+
+            <li><a href="/articles">Articles</a></li>
+        
+            
+            
+
+            <li>16 Practical Solutions for ...</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/articles/javascript-oop/"
+                   title="OOP &amp; JavaScript">Previous article</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/articles/occasional-textpattern-bug/"
+                   title="Occasional Textpattern Bug">Next article</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Contents:</h3><a href="#top" title="top">(top)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#oop" title="OOP">OOP</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#js-object-model" title="JS Object Model">JS Object Model</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#browser-detection" title="Browser detection">Browser detection</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#coordinates-positioning" title="Coordinates / Positioning">Coordinates / Positioning</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#dom" title="DOM">DOM</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#ajax" title="AJAX">AJAX</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#logging" title="Logging">Logging</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#bonus" title="Bonus">Bonus</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#epilogue" title="Epilogue">Epilogue</a>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/articles/16-useful-solutions-for-javascript/" title="16 Practical Solutions for Javascript">16 Practical Solutions for Javascript</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Published at</dt>
+    <dd class="nwao-published">
+        <a href="/archives/2007/"
+           title="12 August 2007, Sunday. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>12 Aug 2007</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Tags</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/tags/javascript/" rel="tag"
+                       title="Posts with 'javascript' tag">javascript</a>
+                    
+                        <span class="tag-count">9</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/web-dev/" rel="tag"
+                       title="Posts with 'web-dev' tag">web-dev</a>
+                    
+                        <span class="tag-count">11</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p>Let me present you a set of functions that I keep in separate <code>utils.js</code> file - they are the most frequent functions I used. They do trying very hard to be compliant with the modern browsers and they are tested in IE6/7, FF2 and Safari 2 and also in a hard complicated web-system. And they are supposed to work in other, not very old, browsers - I&rsquo;ve used browser detection only for exceptional cases. Some of them, surely, are just mixes of something found in the open web (I am pointing to the source everywhere I remember it) and the bigger part is constructed on the base of my own ideas (and colleagues advices) intended to work properly - just because in that variety of scripts the subtleties (which become generics with closer examination :) ) are not taken into account, and to remain legible.</p>
+
+<p>Functions are grouped in sections, by themes:</p>
+
+<ul>
+<li><strong><a href="#oop">OOP</a></strong> &ndash; <em>giving a possibility to use (or just emulating) the principles of OOP in JavaScript</em></li>
+<li><strong><a href="#js-object-model">JS Object model</a></strong> &ndash; <em>usage of and extending native JavaScript objects</em></li>
+<li><strong><a href="#browser-detection">Browser detection</a></strong> &ndash; <em>to use in those exceptional cases when it is really-hopeless-required :)</em></li>
+<li><strong><a href="#coordinates-positioning">Coordinates / Positioning</a></strong> &ndash; <em>calculation of coordinates and positioning elements - it is a really tricky thing, incidentally</em></li>
+<li><strong><a href="#dom">DOM</a></strong> &ndash; <em>working with Document Object Model</em></li>
+<li><strong><a href="#ajax">AJAX</a></strong> &ndash; <em>helper functions for AJAX &ndash; this detergent used frequently in modern times :)</em></li>
+<li><strong><a href="#logging">Logging</a></strong> &ndash; <em>it is really required sometimes :)</em></li>
+</ul>
+
+<p><strong>NB!</strong> (optimising and fixing proposals are welcome)</p>
+
+<p><strong>NB!</strong> (all the examples are taken from the working code, but in several places function names and some small functionality is changed offhand. also, the line-wrapping was applied to the code - currently, without checking the resulting code to work. so just when it will be completely checked for its correct work, after these changes, this comment will be removed)</p>
+<h3 id="oop">OOP</h3>
+<p><a name="sol-1"></a> <em>1.</em> First block &ndash; is a set of three functions (two of them are empty ones :) ), providing a possibility to use (emulate?) all of three <strong>OOP</strong> principles in <strong>JavaScript</strong>. I&rsquo;ve chosen this variant from some of proposed at <a href="http://www.ajaxpath.com/javascript-inheritance">AJAXPath</a> and <a href="http://ajaxpatterns.org/Javascript_Inheritance">AJAXPatterns</a> because of its both lucidity and quick execution time and I&rsquo;ve changed it a bit, to allow the separate properties (key-values that are not defined in class methods but as class object properties) to act as a static constants.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">Class</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="nx">Class</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">construct</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+
+<span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">def</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">classDef</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!==</span> <span class="nx">Class</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">construct</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="k">new</span> <span class="k">this</span><span class="p">(</span><span class="nx">Class</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">superClass</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">n</span> <span class="k">in</span> <span class="nx">def</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">def</span><span class="p">[</span><span class="nx">n</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="nx">item</span><span class="p">.</span><span class="nx">$</span> <span class="o">=</span> <span class="nx">superClass</span><span class="p">;</span> <span class="k">else</span> <span class="nx">classDef</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+        <span class="nx">proto</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">classDef</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">;</span>
+
+    <span class="nx">classDef</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">extend</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">classDef</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The complete examples of usage are too huge for this article, so I&rsquo;ll pass them to <a href="../javascript-oop">the next article</a>, and now we&rsquo;ll proceed further. You may notice two simple examples in the points <em><a href="#sol-2">2</a></em>, <em><a href="#sol-5">5</a></em> and <em><a href="#sol-15">15</a></em>.</p>
+
+<p><a name="sol-2"></a> <em>2.</em> Next function &ndash; a simple but elegant one &ndash; is useful in combination with previous set &ndash; it <strong>creates a function reference for the method</strong>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">createMethodReference</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">methodName</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">object</span><span class="p">[</span><span class="nx">methodName</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Now you can write something like that:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">ScrollingHandler</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+    <span class="nx">construct</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">elementId</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_elementId</span> <span class="o">=</span> <span class="nx">elementId</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">assignListener</span><span class="p">();</span>
+        <span class="p">},</span>
+
+    <span class="nx">assignListener</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">scrollControlElem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_elementId</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">scrollControlElem</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">scrollControlElem</span><span class="p">.</span><span class="nx">onscroll</span> <span class="o">=</span> <span class="nx">createMethodReference</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s2">&quot;_onElementScroll&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+    <span class="nx">_onElementScroll</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ev</span> <span class="o">=</span> <span class="nx">ev</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;please stop scrolling, I&#39;ve already got an event: &quot;</span> <span class="o">+</span> <span class="nx">ev</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">elmScrollHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ScrollHandler</span><span class="p">(</span><span class="s1">&#39;SomeElmId&#39;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>You can associate the instances of this class with the element-having-the-specified-ID scrolling event and to perform something in this case.</p>
+<h3 id="js-object-model">JS Object Model</h3>
+<p><a name="sol-3"></a> <em>3.</em> The following function <strong>clones</strong> any <strong>object</strong> including all of its properties:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">cloneObj</span><span class="p">(</span><span class="nx">objToClone</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">clone</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">objToClone</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">clone</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">objToClone</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">clone</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The usage is enormously simple:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">clonedObj</span> <span class="o">=</span> <span class="nx">cloneObj</span><span class="p">(</span><span class="nx">objToClone</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><a name="sol-4"></a> <em>4.</em> <strong>Objects converter</strong>. Next function provides an elegant way to make a conditional constructs like  <code>if (tablet.toLowerCase() in oc([&#39;cialis&#39;,&#39;mevacor&#39;,&#39;zocor&#39;])) { alert(&#39;I will not!&#39;) };</code> work. The code is borrowed from [here]<a href="http://snook.ca/archives/javascript/testing_for_a_v/">http://snook.ca/archives/javascript/testing_for_a_v/</a>).</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">oc</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">o</span><span class="p">[</span><span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>An example is the situation when you first need to test is object exist in some set of single objects, and then, is it exist in pair with another object in another set of object pairs. Let&rsquo;s imagine that we&rsquo;ve organized a party for the people with concrete allowed names, if they are single, and with concrete allowed name pairs, if they are in pair:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">isPersonAllowed</span><span class="p">(</span><span class="nx">maleName</span><span class="p">,</span> <span class="nx">femaleName</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">pairsAllowed</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">([</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Yoko&quot;</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="s2">&quot;Bill&quot;</span><span class="p">,</span>  <span class="s2">&quot;Monica&quot;</span> <span class="p">],</span> <span class="p">[</span> <span class="s2">&quot;Phil&quot;</span><span class="p">,</span>  <span class="s2">&quot;Sue&quot;</span> <span class="p">],</span>
+            <span class="p">[</span> <span class="s2">&quot;Jason&quot;</span><span class="p">,</span>  <span class="s2">&quot;Harrison&quot;</span> <span class="p">],</span> <span class="p">[</span> <span class="s2">&quot;Adam&quot;</span><span class="p">,</span>  <span class="s2">&quot;Eve&quot;</span> <span class="p">]);</span>
+    <span class="kd">var</span> <span class="nx">singlesAllowed</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="s2">&quot;Michael&quot;</span><span class="p">,</span> <span class="s2">&quot;Pete&quot;</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Dave&quot;</span><span class="p">,</span> <span class="s2">&quot;Matthew&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">femaleName</span>
+            <span class="o">?</span> <span class="p">([</span><span class="nx">maleName</span><span class="p">,</span> <span class="nx">femaleName</span><span class="p">]</span> <span class="k">in</span> <span class="nx">oc</span><span class="p">(</span><span class="nx">pairsAllowed</span><span class="p">))</span>
+            <span class="o">:</span> <span class="p">(</span><span class="nx">maleName</span> <span class="k">in</span> <span class="nx">oc</span><span class="p">(</span><span class="nx">singlesAllowed</span><span class="p">)));</span>
+<span class="p">}</span>
+
+<span class="nx">alert</span><span class="p">(</span><span class="nx">isPersonAllowed</span><span class="p">(</span><span class="s2">&quot;Jack&quot;</span><span class="p">));</span> <span class="c1">// false</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">isPersonAllowed</span><span class="p">(</span><span class="s2">&quot;Adam&quot;</span><span class="p">));</span> <span class="c1">// false</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">isPersonAllowed</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">));</span> <span class="c1">// true</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">isPersonAllowed</span><span class="p">(</span><span class="s2">&quot;Phil&quot;</span><span class="p">,</span><span class="s2">&quot;Marlo&quot;</span><span class="p">));</span> <span class="c1">// false</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">isPersonAllowed</span><span class="p">(</span><span class="s2">&quot;Jason&quot;</span><span class="p">,</span><span class="s2">&quot;Harrison&quot;</span><span class="p">));</span> <span class="c1">// true</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">isPersonAllowed</span><span class="p">(</span><span class="s2">&quot;Martin&quot;</span><span class="p">,</span><span class="s2">&quot;Luther&quot;</span><span class="p">));</span> <span class="c1">// false</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><a name="sol-5"></a> <em>5.</em> A function that allows to create <strong>hash</strong> seems to be a little bit overhead at first sight: JavaScript objects act almost like hashes, but sometimes you find yourself in need to use some existing variable value as a key &ndash; and here comes the <code>Hash</code> function (yes, you can also make this function it in your favourite look-how-I-hacked-up-this-feee-js style, but I think my method is a little bit more polite to JS :) &ndash; you can exclude this function from the &lsquo;useful&rsquo; list if you want :) )</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">Hash</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">items</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>To access the elements, just use <code>items</code> property (may be I need to make <code>keys</code> property in new version by the way? :) ):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">Game</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+    <span class="nx">STG_STOP</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">STG_START</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">STG_LOADING</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="nx">STG_MENU</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="nx">STG_PROCESS</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+
+    <span class="nx">construct</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">_stage</span> <span class="o">=</span> <span class="nx">Game</span><span class="p">.</span><span class="nx">STG_LOADING</span><span class="p">;</span> <span class="p">},</span>
+
+    <span class="nx">getStage</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_stage</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">stateMap</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Hash</span><span class="p">(</span>
+            <span class="p">[</span> <span class="nx">Game</span><span class="p">.</span><span class="nx">STG_START</span><span class="p">,</span>   <span class="s2">&quot;start&quot;</span>    <span class="p">],</span>
+            <span class="p">[</span> <span class="nx">Game</span><span class="p">.</span><span class="nx">STG_LOADING</span><span class="p">,</span> <span class="s2">&quot;loading&quot;</span>  <span class="p">],</span>
+            <span class="p">[</span> <span class="nx">Game</span><span class="p">.</span><span class="nx">STG_MENU</span><span class="p">,</span>    <span class="s2">&quot;menu&quot;</span>     <span class="p">],</span>
+            <span class="p">[</span> <span class="nx">Game</span><span class="p">.</span><span class="nx">STG_PROCESS</span><span class="p">,</span> <span class="s2">&quot;process&quot;</span>  <span class="p">],</span>
+            <span class="p">[</span> <span class="nx">Game</span><span class="p">.</span><span class="nx">STG_STOP</span><span class="p">,</span>    <span class="s2">&quot;stopping&quot;</span> <span class="p">]);</span>
+
+<span class="kd">var</span> <span class="nx">someGame</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Game</span><span class="p">();</span>
+<span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;You are in &quot;</span><span class="o">+</span><span class="nx">stateMap</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="nx">someGame</span><span class="p">.</span><span class="nx">getStage</span><span class="p">()]</span><span class="o">+</span><span class="s2">&quot; stage!&quot;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><a name="sol-6"></a> <em>6.</em> Three other functions just make some operations easier/lighter: <code>getTime</code> shortens the access to <strong>current time</strong> in 11 symbols, <code>getTimeDelta</code> lets you to find the <strong>time difference in milliseconds</strong> between the moments of time (or the one passed moment and the current time in the single-parameter-mode), and the last function just extends the <strong>methods of <code>Number</code></strong> object <strong>to get 0 when it&rsquo;s <code>NaN</code></strong> a little bit easier.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">getTime</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">().</span><span class="nx">getTime</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getTimeDelta</span><span class="p">(</span><span class="nx">timeBegin</span><span class="p">,</span> <span class="nx">timeEnd</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">timeEnd</span> <span class="o">=</span> <span class="nx">timeEnd</span> <span class="o">||</span> <span class="nx">getTime</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">timeEnd</span> <span class="o">-</span> <span class="nx">timeBegin</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">NaN0</span><span class="o">=</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">isNaN</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="browser-detection">Browser detection</h3>
+<p><a name="sol-7"></a> <em>7.</em> A small object, the named properties of it &ndash; are conditions. This is how the readability of <strong>most types of browsers detection</strong> is achieved here. This object was borrowed by me from the project I&rsquo;ve participated in &ndash; and I found myself that use it frequently, but I think the real authors are somewhere in the web, and the code is not so complicated to pretend on something&hellip; If you don&rsquo;t like the way it works or it not works for your browser, you may use an alternative <a href="http://www.howtocreate.co.uk/jslibs/htmlhigh/sniffer.html">from HowToCreate</a>. And I&rsquo;ll repeat: this way of detection I use &ldquo;_only in the case if concrete bug in concrete browser is known and I need to avoid it&rdquo;. Also, you can use this object as a long line of code to make it work faster (how &ndash; look <a href="http://www.howtocreate.co.uk/jslibs/htmlhigh/sniffer.html">here</a> again)</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">USER_DATA</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="nx">Browser</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">KHTML</span><span class="o">:</span> <span class="sr">/Konqueror|KHTML/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="o">!</span><span class="sr">/Apple/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">),</span>
+        <span class="nx">Safari</span><span class="o">:</span> <span class="sr">/KHTML/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="sr">/Apple/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">),</span>
+        <span class="nx">Opera</span><span class="o">:</span> <span class="o">!!</span><span class="nb">window</span><span class="p">.</span><span class="nx">opera</span><span class="p">,</span>
+        <span class="nx">MSIE</span><span class="o">:</span> <span class="o">!!</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">attachEvent</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">window</span><span class="p">.</span><span class="nx">opera</span><span class="p">),</span>
+        <span class="nx">Gecko</span><span class="o">:</span> <span class="sr">/Gecko/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="o">!</span><span class="sr">/Konqueror|KHTML/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">navigator</span><span class="p">.</span><span class="nx">userAgent</span><span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="nx">OS</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">Windows</span><span class="o">:</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Win&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="nx">Mac</span><span class="o">:</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Mac&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+        <span class="nx">Linux</span><span class="o">:</span> <span class="nx">navigator</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;Linux&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="coordinates-positioning">Coordinates / Positioning</h3>
+<p><a name="sol-8"></a> <em>8.</em> The set of functions that allow to get <strong>element coordinates</strong> on the user screen.</p>
+
+<p>If your document is static relatively to the window, and there are no scrollbars &ndash; you better use <code>getPosition</code> function &ndash; this will work faster. If this statement is false for you, use <code>getAlignedPosition</code> &ndash; it checks the scrollbars positions. Just pay attention: <code>top</code> or <code>left</code> attribute of element can be negative, if it is placed outside the window &ndash; to be synchronized with mouse pointer you&rsquo;ll possibly need to reset the height of element to 0. The basic script is take from <a href="http://blog.firetree.net/2005/07/04/javascript-find-position/">one blog</a>, Aligned-version &ndash; is a result of much searches mixed with the information from <a href="http://xhtml.ru/2007/03/10/advanced-thumbnail-creator/">two</a> <a href="http://www.habrahabr.ru/blog/webdev/13897.html">articles</a> (when IE sees <code>DOCTYPE</code> it goes in its own, a little bit unpredictable, mode). Also this method is combined with getting positions from <a href="http://www.webreference.com/programming/javascript/mk/column2/Dragging%20and%20Dropping%20in%20JavaScript_files/drag_drop.js">sources</a> <a href="http://www.webreference.com/programming/javascript/mk/column2/">of Drag’n&#39;Drop tutorial</a>. Pay attention: the function <code>NaN0</code> from point <em><a href="#sol-6">6</a></em> is used here, you&rsquo;ll need to add it to the script to make it work correctly :) (thanks, <a href="http://invisibleman.ru/">Homer</a>).</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">getPosition</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">top</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">left</span> <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">+</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderLeftWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="nx">top</span>  <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetTop</span>  <span class="o">+</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderTopWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">left</span> <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">+</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderLeftWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="nx">top</span>  <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetTop</span>  <span class="o">+</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderTopWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="nx">left</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="nx">top</span><span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">IS_IE</span> <span class="o">=</span> <span class="nx">USER_DATA</span><span class="p">[</span><span class="s1">&#39;Browser&#39;</span><span class="p">].</span><span class="nx">MSIE</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">getAlignedPosition</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">top</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">left</span> <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">+</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderLeftWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="nx">top</span>  <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetTop</span>  <span class="o">+</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderTopWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="nx">e</span>  <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">)</span> <span class="p">{</span><span class="nx">left</span> <span class="o">-=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">)</span>  <span class="p">{</span><span class="nx">top</span>  <span class="o">-=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">docBody</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="o">?</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="o">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+
+    <span class="nx">left</span> <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">+</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">?</span>
+                <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderLeftWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span>
+                <span class="o">:</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span>
+        <span class="p">(</span><span class="nx">IS_IE</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">docBody</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span>
+        <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">docBody</span><span class="p">.</span><span class="nx">clientLeft</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">();</span>
+    <span class="nx">top</span>  <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetTop</span>  <span class="o">+</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span> <span class="o">?</span>
+                <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderTopWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span>
+                <span class="o">:</span>  <span class="mi">0</span><span class="p">)</span> <span class="o">+</span>
+        <span class="p">(</span><span class="nx">IS_IE</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">docBody</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span>
+        <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">docBody</span><span class="p">.</span><span class="nx">clientTop</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="nx">left</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="nx">top</span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<blockquote>
+<p>The times passed, and this two function has merged into one, a little bit simpler one, universal one and correct herewith (but if you getting position of the element that is held inside another scrollable element &ndash; do not forget to add <code>scrollTop</code> or <code>scrollLeft</code> coordinated of the last one to the first one: your code will look nicer and more logical if you will use it in concrete place, unlike with aligned-version:</p>
+</blockquote>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">findPos</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">baseEl</span> <span class="o">=</span> <span class="nx">e</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">curleft</span> <span class="o">=</span> <span class="nx">curtop</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="nx">curleft</span> <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetLeft</span><span class="p">;</span>
+            <span class="nx">curtop</span> <span class="o">+=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetParent</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">docBody</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="o">?</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="o">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">docBody</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">curleft</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">baseEl</span><span class="p">.</span><span class="nx">currentStyle</span><span class="o">?</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">baseEl</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderLeftWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span><span class="o">:</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span>
+                   <span class="p">(</span><span class="nx">IS_IE</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">docBody</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">docBody</span><span class="p">.</span><span class="nx">clientLeft</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">();</span>
+        <span class="nx">curtop</span>  <span class="o">+=</span> <span class="p">(</span><span class="nx">baseEl</span><span class="p">.</span><span class="nx">currentStyle</span><span class="o">?</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">baseEl</span><span class="p">.</span><span class="nx">currentStyle</span><span class="p">.</span><span class="nx">borderTopWidth</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span><span class="o">:</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span>
+                   <span class="p">(</span><span class="nx">IS_IE</span> <span class="o">?</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">docBody</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">()</span> <span class="o">:</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">docBody</span><span class="p">.</span><span class="nx">clientTop</span><span class="p">)).</span><span class="nx">NaN0</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span> <span class="nx">curleft</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="nx">curtop</span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><a name="sol-9"></a> <em>9.</em> Getting current <strong>mouse pointer coordinates</strong> is relatively easy, if you use the according function (constructed on the base <a href="http://xhtml.ru/2007/03/10/advanced-thumbnail-creator/">of</a> <a href="http://www.habrahabr.ru/blog/webdev/13897.html">three</a> <a href="http://quirksmode.org/js/events_properties.html">sources</a>):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">mouseCoords</span><span class="p">(</span><span class="nx">ev</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">ev</span><span class="p">.</span><span class="nx">pageX</span> <span class="o">||</span> <span class="nx">ev</span><span class="p">.</span><span class="nx">pageY</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span><span class="nx">x</span><span class="o">:</span><span class="nx">ev</span><span class="p">.</span><span class="nx">pageX</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span><span class="nx">ev</span><span class="p">.</span><span class="nx">pageY</span><span class="p">};</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">docBody</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="o">?</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span> <span class="o">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">x</span><span class="o">:</span> <span class="nx">ev</span><span class="p">.</span><span class="nx">clientX</span> <span class="o">+</span> <span class="nx">docBody</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">-</span> <span class="nx">docBody</span><span class="p">.</span><span class="nx">clientLeft</span><span class="p">,</span>
+        <span class="nx">y</span><span class="o">:</span> <span class="nx">ev</span><span class="p">.</span><span class="nx">clientY</span> <span class="o">+</span> <span class="nx">docBody</span><span class="p">.</span><span class="nx">scrollTop</span>  <span class="o">-</span> <span class="nx">docBody</span><span class="p">.</span><span class="nx">clientTop</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getMouseOffset</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">ev</span><span class="p">,</span> <span class="nx">aligned</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ev</span> <span class="o">=</span> <span class="nx">ev</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">aligned</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="nx">aligned</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">docPos</span>    <span class="o">=</span> <span class="nx">aligned</span>
+        <span class="o">?</span> <span class="nx">getAlignedPosition</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span>
+        <span class="o">:</span> <span class="nx">getPosition</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">mousePos</span>  <span class="o">=</span> <span class="nx">mouseCoords</span><span class="p">(</span><span class="nx">ev</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">x</span><span class="o">:</span> <span class="nx">mousePos</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">docPos</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span>
+        <span class="nx">y</span><span class="o">:</span> <span class="nx">mousePos</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">docPos</span><span class="p">.</span><span class="nx">y</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<blockquote>
+<p>The updated version of <code>getMouseOffset</code> for the variant with single position detection function:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">getMouseOffset</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ev</span> <span class="o">=</span> <span class="nx">ev</span> <span class="o">||</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">docPos</span> <span class="o">=</span> <span class="nx">findPos</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">mousePos</span> <span class="o">=</span> <span class="nx">mouseCoords</span><span class="p">(</span><span class="nx">ev</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">x</span><span class="o">:</span> <span class="nx">mousePos</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">docPos</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span>
+        <span class="nx">y</span><span class="o">:</span> <span class="nx">mousePos</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">docPos</span><span class="p">.</span><span class="nx">y</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div></blockquote>
+
+<p>The last function can also be used in two modes, using the <code>aligned</code> parameter and intended for easy usage in events handlers, for example:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">onMouseMove</span><span class="p">(</span><span class="nx">elm</span><span class="p">,</span> <span class="nx">ev</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">mouseOffset</span> <span class="o">=</span> <span class="nx">getMouseOffset</span><span class="p">(</span><span class="nx">elm</span><span class="p">,</span> <span class="nx">ev</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;x: %d; y: %d&quot;</span><span class="p">,</span> <span class="nx">mouseOffset</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">mouseOffset</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;someId&quot;</span> <span class="na">onmousemove=</span><span class="s">&quot;onMouseMove(this, event);</span>
+<span class="s">    return false;&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>NB!</strong> (if this functions (<em>suddenly</em> :) ) will not work in some case &ndash; please report &ndash; I want to achieve the maximum of portability)</p>
+
+<p><a name="sol-10"></a> <em>10.</em> Evaluating <strong>the height of element</strong> is a hard task in several cases, harder then getting its other parameters, but this two functions will help:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">findOffsetHeight</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nx">res</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+        <span class="nx">res</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getOffsetHeight</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">||</span>
+           <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">pixelHeight</span> <span class="o">||</span>
+           <span class="nx">findOffsetHeight</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="dom">DOM</h3>
+<p><a name="sol-11"></a> <em>11.</em> Sometimes you need <strong>to walk the DOM tree recursively</strong>, starting from some element and performing some function with each child, getting to the deepest deeps. There is <code>TreeWalker</code> object in DOM, but it fails to work in IE and it is not always easy/simple in use. <code>walkTree</code> function allows to perform some another function with each of child elements and also to pass some data package. <code>searchTree</code> function differs in that it stops the walk after the first successful result and returns the result to the call point:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">walkTree</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">mapFunction</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="nx">mapFunction</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">walkTree</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">mapFunction</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">searchTree</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">searchFunction</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">funcResult</span> <span class="o">=</span> <span class="nx">searchFunction</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">funcResult</span><span class="p">)</span> <span class="k">return</span> <span class="nx">funcResult</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">searchResult</span> <span class="o">=</span> <span class="nx">searchTree</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">searchFunction</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">searchResult</span><span class="p">)</span> <span class="k">return</span> <span class="nx">searchResult</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The functions <code>setElmAttr</code> and <code>getElmAttr</code>, are used in example, I&rsquo;ll present them in <em><a href="#sol-13">13</a></em> point. By fact, they do the same as <code>getAttribute</code> and <code>setAttribute</code> do. The used <code>oc</code> function description is in <em><a href="#sol-4">4</a></em> point. In the first part of example the root element&rsquo;s &ldquo;<code>nodeType</code>&rdquo; attribute is set to &ldquo;<code>root</code>&rdquo;, and for all of its children - to &ldquo;<code>child</code>&rdquo;. In the second part the data package passing is demonstrated &ndash; when we find the first element having the &ldquo;<code>class</code>&rdquo; attribute equal to one of the names in the package, its &ldquo;<code>isTarget</code>&rdquo; attribute is set to &ldquo;<code>true</code>&rdquo;.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">rootElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;rootElm&#39;</span><span class="p">);</span>
+
+<span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">rootElement</span><span class="p">,</span> <span class="s2">&quot;nodeType&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">childNodeFunc</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">nodeName</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">nodeName</span> <span class="o">!==</span> <span class="s1">&#39;#text&#39;</span><span class="p">)</span>
+                      <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">nodeName</span> <span class="o">!==</span> <span class="s1">&#39;#comment&#39;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="s2">&quot;nodeType&quot;</span><span class="p">,</span> <span class="s2">&quot;child&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">walkTree</span><span class="p">(</span><span class="nx">rootElement</span><span class="p">,</span> <span class="nx">childNodeFunc</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">findTargetNode</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">classList</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="nx">node</span><span class="p">.</span><span class="nx">nodeName</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">nodeName</span> <span class="o">!==</span> <span class="s1">&#39;#text&#39;</span><span class="p">)</span>
+                       <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">nodeName</span> <span class="o">!==</span> <span class="s1">&#39;#comment&#39;</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+                       <span class="p">(</span><span class="nx">getElmAttr</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">)</span> <span class="k">in</span> <span class="nx">oc</span><span class="p">(</span><span class="nx">classList</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">node</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">targetNode</span> <span class="o">=</span> <span class="nx">searchTree</span><span class="p">(</span><span class="nx">rootElement</span><span class="p">,</span> <span class="nx">findTargetNode</span><span class="p">,</span>
+                    <span class="p">[</span><span class="s1">&#39;headingClass&#39;</span><span class="p">,</span> <span class="s1">&#39;footerClass&#39;</span><span class="p">,</span> <span class="s1">&#39;tableClass&#39;</span><span class="p">]);</span>
+<span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">targetNode</span><span class="p">,</span> <span class="s2">&quot;isTarget&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>NB!</strong> (be careful with these functions and try to avoid the frequent calls of them (more than one time in a second) even on the easy tree - they can eat a lot of resources. Or at least call them in background using <code>setTimeout</code>)</p>
+
+<p><a name="sol-12"></a> <em>12.</em> <strong>Removing nodes</strong> is sometimes the task you need to do. In one cases you need to remove the single node, in other &ndash; only its children.  <code>removeChildrenRecursively</code> function remove all the children of the specified node excluding itself. <code>removeElementById</code> removes element by its <code>id</code> - the task is simple but the way is tricky:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">removeChildrenRecursively</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">node</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">hasChildNodes</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nx">removeChildrenRecursively</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">);</span>
+        <span class="nx">node</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">removeElementById</span><span class="p">(</span><span class="nx">nodeId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">nodeId</span><span class="p">).</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span>
+                            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">nodeId</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><a name="sol-13"></a> <em>13.</em> Seems the elementary task &ndash; working with attributes of the element &ndash; but sometimes you meet the absolutely occasional problems: IE, for example, throws an exception when trying to access <code>table</code> element width/height attributes, and Safari differs in access to attributes with namespaces. The following function are avoiding all the problems I&rsquo;ve met, without severe damage for the execution speed (for sure, it is better to use the native functions in standard cases):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">IS_SAFARI</span> <span class="o">=</span> <span class="nx">USER_DATA</span><span class="p">[</span><span class="s1">&#39;Browser&#39;</span><span class="p">].</span><span class="nx">Safari</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="nx">elm</span><span class="p">,</span> <span class="nx">attrName</span><span class="p">,</span> <span class="nx">ns</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// IE6 fails getAttribute when used on table element</span>
+    <span class="kd">var</span> <span class="nx">elmValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nx">elmValue</span> <span class="o">=</span> <span class="p">(</span><span class="nx">elm</span><span class="p">.</span><span class="nx">getAttribute</span>
+                    <span class="o">?</span> <span class="nx">elm</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">((</span><span class="nx">ns</span> <span class="o">?</span> <span class="p">(</span><span class="nx">ns</span> <span class="o">+</span> <span class="nx">NS_SYMB</span><span class="p">)</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="nx">attrName</span><span class="p">)</span> <span class="o">:</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">elmValue</span> <span class="o">&amp;&amp;</span> <span class="nx">IS_SAFARI</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">elmValue</span> <span class="o">=</span> <span class="p">(</span><span class="nx">elm</span><span class="p">.</span><span class="nx">getAttributeNS</span>
+                    <span class="o">?</span> <span class="nx">elm</span><span class="p">.</span><span class="nx">getAttributeNS</span><span class="p">(</span><span class="nx">ns</span><span class="p">,</span> <span class="nx">attrName</span><span class="p">)</span>
+                    <span class="o">:</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">elmValue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">elm</span><span class="p">,</span> <span class="nx">attrName</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">ns</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">IS_SAFARI</span> <span class="o">||</span> <span class="o">!</span><span class="nx">ns</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">elm</span><span class="p">.</span><span class="nx">setAttribute</span>
+                    <span class="o">?</span> <span class="nx">elm</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">((</span><span class="nx">ns</span> <span class="o">?</span> <span class="p">(</span><span class="nx">ns</span> <span class="o">+</span> <span class="nx">NS_SYMB</span><span class="p">)</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="nx">attrName</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="o">:</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">elm</span><span class="p">.</span><span class="nx">setAttributeNS</span>
+                    <span class="o">?</span> <span class="nx">elm</span><span class="p">.</span><span class="nx">setAttributeNS</span><span class="p">(</span><span class="nx">ns</span><span class="p">,</span> <span class="nx">attrName</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span>
+                    <span class="o">:</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">remElmAttr</span><span class="p">(</span><span class="nx">elm</span><span class="p">,</span> <span class="nx">attrName</span><span class="p">,</span> <span class="nx">ns</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">IS_SAFARI</span> <span class="o">||</span> <span class="o">!</span><span class="nx">ns</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">elm</span><span class="p">.</span><span class="nx">removeAttribute</span>
+                    <span class="o">?</span> <span class="nx">elm</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">((</span><span class="nx">ns</span> <span class="o">?</span> <span class="p">(</span><span class="nx">ns</span> <span class="o">+</span> <span class="nx">NS_SYMB</span><span class="p">)</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                    <span class="o">+</span> <span class="nx">attrName</span><span class="p">)</span> <span class="o">:</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">elm</span><span class="p">.</span><span class="nx">removeAttributeNS</span>
+                    <span class="o">?</span> <span class="nx">elm</span><span class="p">.</span><span class="nx">removeAttributeNS</span><span class="p">(</span><span class="nx">ns</span><span class="p">,</span> <span class="nx">attrName</span><span class="p">)</span>
+                    <span class="o">:</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="ajax">AJAX</h3>
+<p><a name="sol-14"></a> <em>14.</em> If you need nothing more but just <strong>execute asynchronous call</strong> and do something and on the basis of data obtained &ndash; this function is for you. The way of getting <code>XMLHttpRequest</code> object can be replaced, of course. Comments are intentionally left to show the ideas on extending the function:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/* AJAX call */</span>
+
+<span class="cm">/* locationURL - URL to use */</span>
+<span class="cm">/* parameters - url parameters, null if not required (format: &quot;parameter1=value1&amp;parameter2=value2[...]&quot;) */</span>
+<span class="cm">/* onComplete - listener: function (http_request) or (http_request, package) */</span>
+<span class="cm">/* doPost - (optional) specifies if POST (true) or GET (false/null) request required</span>
+<span class="cm">/* package - (optional) some variable or array to tranfer to complete listener, may be not specified */</span>
+
+<span class="kd">function</span> <span class="nx">makeRequest</span><span class="p">(</span><span class="nx">locationURL</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">onComplete</span><span class="p">,</span> <span class="nx">doPost</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">http_request</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nx">http_request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Msxml2.XMLHTTP&quot;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nx">http_request</span><span class="o">=</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Microsoft.XMLHTTP&quot;</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">http_request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">//if (http_request.overrideMimeType) { // optional</span>
+    <span class="c1">//  http_request.overrideMimeType(&#39;text/xml&#39;);</span>
+    <span class="c1">//}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">http_request</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Cannot create XMLHTTP instance&#39;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">completeListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">http_request</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">http_request</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">onComplete</span><span class="p">(</span><span class="nx">http_request</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="c1">//var salt = hex_md5(new Date().toString());</span>
+    <span class="nx">http_request</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="nx">completeListener</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">doPost</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="nx">locationURL</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">&quot;Content-type&quot;</span><span class="p">,</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">&quot;Content-length&quot;</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">&quot;Connection&quot;</span><span class="p">,</span> <span class="s2">&quot;close&quot;</span><span class="p">);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">parameters</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="nx">locationURL</span> <span class="o">+</span> <span class="p">(</span><span class="nx">parameters</span> <span class="o">?</span> <span class="p">(</span><span class="s2">&quot;?&quot;</span> <span class="o">+</span> <span class="nx">parameters</span><span class="p">)</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="c1">//http_request.open(&#39;GET&#39;, &#39;./proxy.php?&#39; + parameters +</span>
+                    <span class="c1">// &quot;&amp;salt=&quot; + salt, true);</span>
+        <span class="nx">http_request</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The example of usage &ndash; is from one of my working test task, that searched over the music and/or music database using the string entered in the element with &ldquo;<code>searchStr</code>&rdquo; <code>id</code>, using <code>LIKE</code> in <code>SQL</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">gotSearchResults</span><span class="p">(</span><span class="nx">http_request</span><span class="p">,</span> <span class="nx">dataPackage</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">request_result</span> <span class="o">=</span> <span class="nx">http_request</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">divElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">dataPackage</span><span class="p">[</span><span class="s2">&quot;divId&quot;</span><span class="p">]);</span>
+    <span class="nx">divElement</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">request_result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">insertMusicSearchResults</span><span class="p">(</span><span class="nx">divId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">searchStrElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;searchStr&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">dataPackage</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+    <span class="nx">dataPackage</span><span class="p">[</span><span class="s2">&quot;divId&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">divId</span><span class="p">;</span>
+    <span class="nx">makeRequest</span><span class="p">(</span><span class="s2">&quot;getAlbums.php&quot;</span><span class="p">,</span> <span class="s2">&quot;searchStr=&quot;</span>
+            <span class="o">+</span> <span class="nx">searchStrElement</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="nx">gotSearchResults</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">dataPackage</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">insertVideoSearchResults</span><span class="p">(</span><span class="nx">divId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">searchStrElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;searchStr&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">dataPackage</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+    <span class="nx">dataPackage</span><span class="p">[</span><span class="s2">&quot;divId&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">divId</span><span class="p">;</span>
+    <span class="nx">makeRequest</span><span class="p">(</span><span class="s2">&quot;getMovies.php&quot;</span><span class="p">,</span> <span class="s2">&quot;searchStr=&quot;</span>
+            <span class="o">+</span> <span class="nx">searchStrElement</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="nx">gotSearchResults</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nx">dataPackage</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="logging">Logging</h3>
+<p><a name="sol-15"></a> <em>15.</em> The function presented below is very simple and intended to help in <strong>logging</strong>. Just add somewhere in the document the <code>&lt;div id=&quot;LOG_DIV&quot;&gt;&lt;/div&gt;</code> element, set the required height for it, and you&rsquo;ll get an information redirected in it, even with scrolling:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">LOG</span><span class="p">(</span><span class="nx">informerName</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">logElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;LOG_DIV&#39;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">logElement</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">logElement</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span>
+                        <span class="nx">informerName</span> <span class="o">+</span> <span class="s1">&#39;: &#39;</span> <span class="o">+</span> <span class="nx">text</span><span class="p">));</span>
+        <span class="nx">logElement</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;br&#39;</span><span class="p">));</span>
+        <span class="nx">logElement</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">+=</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><a name="sol-16"></a> <em>16.</em> In the very cool <a href="http://www.getfirebug.com/">Firebug</a> plugin for Firefox there is the very cool <strong>console</strong>, where you can <a href="http://www.getfirebug.com/console.html">place your logs</a> with much of features. However, if you are debugging the code in other browsers &ndash; calling it will cause errors and even crashes. Not to clear your <code>console.log</code> calls every time, you can use this stub instead:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">Console</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="c1">// the stub class to allow using console when browser have it,</span>
+    <span class="c1">// if not - just pass all calls</span>
+    <span class="nx">construct</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
+    <span class="nx">log</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span>
+    <span class="nx">info</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span>
+    <span class="nx">warn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span>
+    <span class="nx">error</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">window</span><span class="p">.</span><span class="nx">console</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Console</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Combining the previous point with CSS can inspire you to write your own console but for another browsers ;). If you&rsquo;ll make it - please share with me :).</p>
+<h3 id="bonus">Bonus</h3>
+<p>As a bonus (not to mess with number in the title, pleasantly smelling with binariness :) ) I will tell you about <strong>double click</strong> problem &ndash; not me who fought with this bug, but my colleagues, the problem is &ndash; when registering <code>ondblclick</code> event, the <code>onclick</code> event is called anyway. So, if you really need to handle this (not so obvious for web user, I need to mention) event - you need to have something like this code in the scripts (with the milliseconds count you need and saving an element that was clicked, if required):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">dblClicked</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">dblClickedNode</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">DBL_CLICK_MAXTIME</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">dblClick</span><span class="p">(</span><span class="nx">clickedNode</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">dblClicked</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">dblClickedNode</span> <span class="o">=</span> <span class="nx">clickedNode</span> <span class="o">||</span> <span class="nx">dblClickedNode</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">releaseDblClick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="s1">&#39;dblClicked=false;&#39;</span><span class="p">,</span> <span class="nx">DBL_CLICK_MAXTIME</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Its usage causes severe conditions. Now in <code>ondblclick</code> handler you need to call first function at the start and &ndash; when you&rsquo;ve done handling &ndash; the second in the end, and in the <code>onclick</code> handler you need to ensure that double click was <em>not</em> performed:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;someId&quot;</span> <span class="na">onclick=</span><span class="s">&quot;if (!dblClicked) alert(&#39;click&#39;);&quot;</span>
+<span class="na">ondblick=</span><span class="s">&quot;dblClick(this); alert(&#39;dblclick&#39;); releaseDblClick();&quot;</span><span class="err">;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Also, for the point  <em><a href="#sol-1">1</a></em> we can add a small function of <strong>getting an instance</strong> (you can change it to pass arguments in constructor if you wish):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">getInstanceOf</span><span class="p">(</span><span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;new &#39;</span> <span class="o">+</span> <span class="nx">className</span> <span class="o">+</span> <span class="s1">&#39;()&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>The <strong>pause</strong> function will fit the point <em><a href="#sol-6">6</a></em> (the real pause, not what the <code>setTimeout</code> does):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">pause</span><span class="p">(</span><span class="nx">millis</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">time</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">curTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">do</span> <span class="p">{</span> <span class="nx">curTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">curTime</span> <span class="o">-</span> <span class="nx">time</span> <span class="o">&lt;</span> <span class="nx">millis</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>Upd.</strong> Some more functions for the point <em><a href="#sol-6">6</a></em>:</p>
+
+<p>Determining of <strong>number occurrence in the range</strong>, limited by the <code>start</code> number inclusively and <code>stop</code> number exclusively:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">inBounds</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">start</span><span class="p">,</span><span class="nx">stop</span><span class="p">){</span><span class="k">return</span> <span class="p">((</span><span class="k">this</span><span class="o">&gt;=</span><span class="nx">start</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="k">this</span><span class="o">&lt;</span><span class="nx">stop</span><span class="p">))</span><span class="o">?</span><span class="kc">true</span><span class="o">:</span><span class="kc">false</span><span class="p">;};</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>Trimming</strong> starting and ending <strong>whitespace symbols</strong> from the line:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">trim</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span> <span class="sr">/^\s+/g</span><span class="p">,</span> <span class="s2">&quot;&quot;</span> <span class="p">);</span><span class="k">return</span> <span class="nx">temp</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span> <span class="sr">/\s+$/g</span><span class="p">,</span> <span class="s2">&quot;&quot;</span> <span class="p">);}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>Converting</strong> the object or the string <strong>to <code>boolean</code> type</strong>. It can be declared also for a <code>Boolean</code>-object, just because you may not know the type of passed object:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">boolFromObj</span><span class="p">(</span><span class="nx">obj</span><span class="p">){</span><span class="k">return</span><span class="p">(((</span><span class="nx">obj</span><span class="o">==</span><span class="s2">&quot;true&quot;</span><span class="p">)</span><span class="o">||</span><span class="p">(</span><span class="nx">obj</span> <span class="o">==</span> <span class="kc">true</span><span class="p">))</span><span class="o">?</span><span class="kc">true</span><span class="o">:</span><span class="kc">false</span><span class="p">);}</span>
+
+<span class="nb">String</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">asBoolVal</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="p">((</span><span class="k">this</span><span class="o">==</span><span class="s2">&quot;true&quot;</span><span class="p">)</span><span class="o">?</span><span class="kc">true</span><span class="o">:</span><span class="kc">false</span><span class="p">);}</span>
+
+<span class="nb">Boolean</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">asBoolVal</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="p">((</span><span class="k">this</span><span class="o">==</span><span class="kc">true</span><span class="p">)</span><span class="o">?</span><span class="kc">true</span><span class="o">:</span><span class="kc">false</span><span class="p">);}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>Padding with zeroes</strong> the number until its digits-length with not fit the specified one:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getFStr</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">fillNum</span><span class="p">){</span><span class="kd">var</span> <span class="nx">fillNum</span><span class="o">=</span><span class="nx">fillNum</span><span class="o">?</span><span class="nx">fillNum</span><span class="o">:</span><span class="mi">2</span><span class="p">;</span><span class="kd">var</span>
+<span class="nx">temp</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">+</span><span class="k">this</span><span class="p">;</span><span class="k">while</span><span class="p">(</span><span class="nx">temp</span><span class="p">.</span><span class="nx">length</span><span class="o">&lt;</span><span class="nx">fillNum</span><span class="p">)</span><span class="nx">temp</span><span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="o">+</span><span class="nx">temp</span><span class="p">;</span><span class="k">return</span> <span class="nx">temp</span><span class="p">;}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Along with that, we can add the <strong>sorting</strong> functions to the <a href="#js-obj-model">second part</a>,&hellip;</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">intComparator</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getObjSortedProps</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">sortFunc</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">propsArr</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">propName</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">propsArr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">propName</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">propsArr</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">sortFunc</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>&hellip;where the <code>getObjSortedProps</code> function allows to get the array of sorted (with <code>sortFunc</code> comparator) names of passed object properties, and <code>intComparator</code> function can be passed to the arrays <code>sort</code> function or the very same <code>getObjSortedProps</code> function, if the required array or object properties names are consist of numeric values&hellip;</p>
+
+<p>&hellip;and two function to <strong>ease the work with arrays</strong>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">indexOf</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">elem</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">itemIdx</span> <span class="k">in</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">itemIdx</span><span class="p">]</span> <span class="o">==</span> <span class="nx">elem</span><span class="p">)</span> <span class="k">return</span> <span class="nx">itemIdx</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">removeFromArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">,</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// removes only one item!</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">itemIndex</span> <span class="k">in</span> <span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">itemIndex</span><span class="p">]</span> <span class="o">==</span> <span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">itemIndex</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">arr</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><code>indexOf</code> return the index of the specified element in array, and <code>removeFromArray</code> removes the specified element from array.</p>
+<h3 id="epilogue">Epilogue</h3>
+<p>That&rsquo;s all, seems, for now. The article is ready for corrections (if they will appear :) ), I can pass to the next ones :). In the <a href="./javascript-oop">next-article</a> I want to tell about OOP in JavaScript and make a few simple but useful examples of classes. I hope this article saved some of your man-hours that you may potentially had spent in the fighting with variable browsers quirks.</p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="Twitter profile"><img src="/assets/img/social/twitter.png" width="16" height="16" alt="Twitter profile"></a></li>
+    <li><a href="https://github.com/shamansir" title="Github profile"><img src="/assets/img/social/github.png" width="16" height="16" alt="GitHub profile"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="Facebook profile"><img src="/assets/img/social/facebook.png" width="16" height="16" alt="Facebook profile"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="Stackoverflow profile"><img src="/assets/img/social/stack-overflow.png" width="16" height="16" alt="Stack Overflow profile"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

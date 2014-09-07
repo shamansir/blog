@@ -1,0 +1,353 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/ru/" />
+<link rel="index" href="/ru/archives/" />
+
+<link rel="shortcut icon" href="/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/ru/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/ru/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — Моделируем солнечную систему в fluxus &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/ru/" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="/ru/archives/" rel="index" title="Архив">Архив</a></li>
+        <li><a href="/ru/tags/" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        <li><a href="/ru/feed.xml" title="Лента RSS">RSS</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/ru/" title="Ни слова о луке">Ни слова о луке</a></h1>
+    <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li><a href="/" title="English Version">English Version</a></li>
+        <li>Russian Version</li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/ru/">Блог</a></li>
+        
+            
+            
+
+            <li><a href="/ru/articles">Статьи</a></li>
+        
+            
+            
+
+            <li>Моделируем солнечную систему в ...</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/ru/articles/ror-ide-gedit-link/"
+                   title="Ссылка: RoR IDE из gedit">Предыдущая статья</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/ru/articles/tumblr-sandwitch-theme/"
+                   title="Sandwitch: Тема для Tumblr">Следующая статья</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section" title="Исходники">Исходники</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-2" title="Описание">Описание</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-3" title="Разбор кода">Разбор кода</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-4" title="Видеоролики">Видеоролики</a>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/ru/articles/fluxus-solar-system/" title="Моделируем солнечную систему в fluxus">Моделируем солнечную систему в fluxus</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Опубликован</dt>
+    <dd class="nwao-published">
+        <a href="/ru/archives/2010/"
+           title="06 декабря 2010, понедельник. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>06 дек 2010</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Метки</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/ru/tags/fluxus/" rel="tag"
+                       title="Статьи с меткой 'fluxus'">fluxus</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/graphics/" rel="tag"
+                       title="Статьи с меткой 'graphics'">graphics</a>
+                    
+                        <span class="tag-count">3</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/lecture/" rel="tag"
+                       title="Статьи с меткой 'lecture'">lecture</a>
+                    
+                        <span class="tag-count">5</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/livecoding/" rel="tag"
+                       title="Статьи с меткой 'livecoding'">livecoding</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/racket/" rel="tag"
+                       title="Статьи с меткой 'racket'">racket</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/scheme/" rel="tag"
+                       title="Статьи с меткой 'scheme'">scheme</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p>Я <a href="?post-about-fluxus">уже писал</a> про <a href="http://www.pawfal.org/fluxus/">fluxus</a>, систему livecoding и, по совместительству, 3D-прототипирования. Теперь хочу показать его возможности и как им можно пользоваться в целях, близких к псевдонаучным. Например, можно смоделировать и уместить упрощённую солнечную систему всего в 125 строк (это достоинство языка <a href="http://racket-lang.org/">Racket</a> с графическими стероидами, развития PLT Scheme, который лежит в основе fluxus). Вот как будет выглядеть результат:</p>
+
+<p>В посте исходники, краткое описание на русском и livecoding-видеоролики на славянском английском в подробностях рассматривающие и следящие за всем процессом написания этого сложного кода.</p>
+
+<p><a href="/ru/figures/fluxus-solar-system/screen04.png"><img src="/ru/figures/fluxus-solar-system/screen04-thumb.png" alt="Screenshot 01"></a></p>
+
+<p><a href="/ru/figures/fluxus-solar-system/screen05.png"><img src="/ru/figures/fluxus-solar-system/screen05-thumb.png" alt="Screenshot 02"></a></p>
+<h3 id="section">Исходники</h3>
+<p><a href="http://paste.pocoo.org/show/301220/">ВОТ</a></p>
+
+<blockquote>
+<p>Заметка: Они были потеряны вместе с Poocoo, так что я попробую восстановить их из видео</p>
+</blockquote>
+<h3 id="section-2">Описание</h3>
+<p>Fluxus использует понятие машины состояний для построения сцены. Если вы использовали в программировании OpenGL, вам знаком этот принцип - каждая последующая функция в коде либо изменяет матрицу состояния сцены, либо меняет само состояние сцены (например, отображает объект). Объекты для сцены можно построить предварительно до какого-либо рендеринга, а потом изменять их состояния или же рисовать новые примитивы в каждом кадре (OpenGL понимает, что неизмненяемые объекты можно кэшировать между кадрами). Я объединяю оба этих пути, подготавливая шрифтовые надписи и орбиты планет до рендеринга и рисуя планеты в каждом новом фрейме.</p>
+
+<p>Все данные об диаметрах, орбитальных радиусах и периодах обращения планет я банально брал из одной-единственной таблицы в <a href="http://ru.wikipedia.org/wiki/%D0%9F%D0%BB%D0%B0%D0%BD%D0%B5%D1%82%D0%B0#.D0.A1.D0.BE.D0.BB.D0.BD.D0.B5.D1.87.D0.BD.D0.B0.D1.8F_.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D0.B0">статье из википедии</a>. Что удобно, все нужные данные указаны в ней относительно Земли (так устроена астрономическая система измерений), поэтому диаметр Земли и земной год можно брать за единицы исчисления в нашей модели.</p>
+
+<blockquote>
+<p>А вы знаете, что расстояние от центра масс Солнца до центра масс Земли примерно равно 11740 диаметрам Земли? Это астрономическая единица (константа <code>astro-unit</code>) и относительно неё измеряются расстояния от Солнца до планет. А кроме того, диаметр солнца вмещает 109 диаметров Земли (в модели диаметр Земли представлен константой <code>diameter-factor</code>).</p>
+</blockquote>
+
+<p>Зная эти данные, можно вычислять углы положений планет (в модели эллиптичность орбит не учитывается, это домашнее задание) и располагать их на модели.</p>
+<h3 id="section-3">Разбор кода</h3>
+<ul>
+<li>описываются структуры звезды (<code>star</code>), планеты (<code>planet</code>) и планетной системы (она названа <code>star-system</code> поскольку центром является звезда), состоящей из звезды и планет</li>
+<li>описываются функции
+
+<ul>
+<li>получения вектора переноса (<code>qtv</code> - <em>quick translate vector</em>) планеты на основе её орбитального радиуса и периода обращения</li>
+<li>получения вектора масштабирования (<code>qsv</code> - <em>quick scale vector</em>) планеты на основе её диаметра</li>
+<li>быстрого вычисления угла (<code>curang</code>) положения планеты относительно точки (0, 0) (солнца) на основе периода обращения, используется в <code>qtv</code></li>
+<li>построения примитива орбиты (<code>build-orbit</code>) на основе орбитального радиуса</li>
+<li>построения примитива метки (<code>qto</code> - quick text object) планеты по переданной строке</li>
+</ul></li>
+<li>создаётся звезда солнце, планеты и все они записываются в экземпляр &ldquo;солнечная система&rdquo; (<code>solar-system</code>). при построении планет создаются примитивы меток для каждой.</li>
+<li>на основе данных о планетах строятся орбиты</li>
+<li>описываются функции
+
+<ul>
+<li><code>draw-star</code>, рисующая звезду</li>
+<li><code>draw-planet</code>, рисующая планету в нужной позиции относительно времени и перемещающая подготовленную текстовую метку в ту же позицию</li>
+</ul></li>
+<li>описывается функция <code>render</code>, которая поочерёдно рисует солнце и планеты, вызывая <code>draw-star</code> и <code>draw-planet</code></li>
+<li><code>render</code> назначается в качестве функции, исполняющейся для каждого кадра</li>
+</ul>
+<h3 id="section-4">Видеоролики</h3>
+<p><iframe src="http://player.vimeo.com/video/17502661" width="400" height="300" frameborder="0"></iframe><p><a href="http://vimeo.com/17502661">Fluxus Livecoding: Building 3D Solar System / Part 1</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p></p>
+
+<p><iframe src="http://player.vimeo.com/video/17515694" width="400" height="300" frameborder="0"></iframe><p><a href="http://vimeo.com/17515694">Fluxus Livecoding: Building 3D Solar System / Part 2</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p></p>
+
+<p><iframe src="http://player.vimeo.com/video/17516078" width="400" height="300" frameborder="0"></iframe><p><a href="http://vimeo.com/17516078">Fluxus Livecoding: Building 3D Solar System / Part 3</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p></p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль в Github"><img src="/ru/assets/img/social/github.png" width="16" height="16" alt="профиль в GitHub"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль в Stackoverflow"><img src="/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/ru/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/ru/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

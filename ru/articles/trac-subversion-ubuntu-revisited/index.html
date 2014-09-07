@@ -1,0 +1,722 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/ru/" />
+<link rel="index" href="/ru/archives/" />
+
+<link rel="shortcut icon" href="/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/ru/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/ru/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — Trac + Subversion @ Ubuntu: Revisited &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/ru/" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="/ru/archives/" rel="index" title="Архив">Архив</a></li>
+        <li><a href="/ru/tags/" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        <li><a href="/ru/feed.xml" title="Лента RSS">RSS</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/ru/" title="Ни слова о луке">Ни слова о луке</a></h1>
+    <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li><a href="/" title="English Version">English Version</a></li>
+        <li>Russian Version</li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/ru/">Блог</a></li>
+        
+            
+            
+
+            <li><a href="/ru/articles">Статьи</a></li>
+        
+            
+            
+
+            <li>Trac + Subversion @ Ubuntu: ...</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/ru/articles/java-and-json/"
+                   title="Java + JSON">Предыдущая статья</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/ru/articles/vim-python-windows-compilation/"
+                   title="[g]Vim в режиме Python: Рекомпиляция в Windows">Следующая статья</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section" title="Задача">Задача</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-2" title="Дано">Дано</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-3" title="Решение">Решение</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#section-4" title="Пункт 1. Установка базовых дистрибутивов, доступных в пакетах.">Пункт 1. Установка базовых дистрибутивов, доступных в пакетах.</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#sqlite." title="Пункт 2. Установка sqlite.">Пункт 2. Установка sqlite.</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#trac-related-easy_install." title="Пункт 3. Установка trac-related пакетов через easy_install.">Пункт 3. Установка trac-related пакетов через easy_install.</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#section-5" title="Пункт 4. Создание репозиториев.">Пункт 4. Создание репозиториев.</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#apache-subversion." title="Пункт 5. Связывание apache и subversion.">Пункт 5. Связывание apache и subversion.</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#trac." title="Пункт 6. Создание окружений trac.">Пункт 6. Создание окружений trac.</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#apache-trac." title="Пункт 7. Связывание apache и trac.">Пункт 7. Связывание apache и trac.</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-6" title="Заключение.">Заключение.</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-7" title="Примечания">Примечания</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#a.-." title="Примечание A. О добавлении проектов.">Примечание A. О добавлении проектов.</a>
+                
+            </li>
+        
+    
+
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#ssl-" title="Примечание Б. SSL и виртуальные хосты">Примечание Б. SSL и виртуальные хосты</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/ru/articles/trac-subversion-ubuntu-revisited/" title="Trac + Subversion @ Ubuntu: Revisited">Trac + Subversion @ Ubuntu: Revisited</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Опубликован</dt>
+    <dd class="nwao-published">
+        <a href="/ru/archives/2008/"
+           title="17 марта 2008, понедельник. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>17 мар 2008</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Метки</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/ru/tags/administration/" rel="tag"
+                       title="Статьи с меткой 'administration'">administration</a>
+                    
+                        <span class="tag-count">4</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/subversion/" rel="tag"
+                       title="Статьи с меткой 'subversion'">subversion</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/trac/" rel="tag"
+                       title="Статьи с меткой 'trac'">trac</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/ubuntu/" rel="tag"
+                       title="Статьи с меткой 'ubuntu'">ubuntu</a>
+                    
+                        <span class="tag-count">5</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <h3 id="section">Задача</h3>
+<p>Установить на только что инсталлированный Ubuntu последнюю версию Trac, создать репозитории для нескольких проектов и настроить окружение соответственно. Структура проектов должна быть полностью корректной, установка максимально быстрой при минимальном количестве пакетов. Авторизация в репозитории и окружения Trac может быть общей, но позволяющей индивидуальную настройку для каждого проекта. Также, установка должна быть максимально независима от версий.</p>
+<h3 id="section-2">Дано</h3>
+<p><strong>Upd.</strong> <em>(12.11.2009)</em> Сценарий работает и для новых версий Ubuntu/Debian, Python, Trac - заменив версии в ссылках на более новые, можно оставить всё остальное как есть. Устанавливать SQLite из исходников не обязательно, подойдёт и обычная установка через <code>sudo apt-get install sqlite3</code>.</p>
+
+<ul>
+<li>Ubuntu 7.04 <em>Feisty Fawn Herd</em></li>
+<li>Trac 0.11b2</li>
+<li>Subversion 1.4.3</li>
+<li>Два пользователя: <code>user1</code> и <code>user2</code></li>
+<li>Два проекта: <code>Some Project</code> и <code>Another Project</code></li>
+<li>Требуется доступ в Trac и репозиторий по адресам <code>&lt;host&gt;/localProjects</code> и <code>&lt;host&gt;/svn</code> соотвественно</li>
+</ul>
+<h3 id="section-3">Решение</h3><h4 id="section-4">Пункт 1. Установка базовых дистрибутивов, доступных в пакетах.</h4>
+<p>Для начала можно установить дистрибутивы, доступные в репозиториях Ubuntu в поддерживаемых версиях &ndash; на данный момент это <a href="http://apache.org/">Apache</a> 2.2.3, <a href="http://python.org/">Python</a> 2.5.1 (необходим для работы trac), <a href="http://subversion.tigris.org/">Subversion</a> 1.4.3 и <a href="http://gcc.gnu.org/">g++</a> 4.1.2 (необходим для сборки sqlite). Установим, предварительно обновив данные о пакетах:</p>
+<pre><code>sudo apt-get update
+sudo apt-get install python
+sudo apt-get install apache2
+sudo apt-get install subversion
+sudo apt-get install g++
+</code></pre><h4 id="sqlite.">Пункт 2. Установка sqlite.</h4>
+<p>Теперь необходимо собрать sqlite (легковесная база данных, в котрой будут хранится внутренние данные trac) — версия, находящая в репозитории (3.3.13) на данный момент меньше требуемой (3.3.4). Создадим каталог для временного хранения дистрибутивов и перейдём в него:</p>
+<pre><code>mkdir ~&#x2F;distr
+cd ~&#x2F;distr
+</code></pre>
+<p>Скачаем <a href="http://www.sqlite.org/download.html">последнюю версию</a> sqlite и установим:</p>
+<pre><code>wget http:&#x2F;&#x2F;www.sqlite.org&#x2F;sqlite-3.5.6.tar.gz
+tar -xvzf .&#x2F;sqlite-3.5.6.tar.gz
+mv .&#x2F;sqlite-3.5.6 .&#x2F;sqlite # чтобы следовать букве README-руководства
+mkdir .&#x2F;bld # временный каталог для скомпилированных файлов
+cd .&#x2F;bld
+..&#x2F;sqlite&#x2F;configure
+make
+sudo make install
+cd ..
+rm -r .&#x2F;bld
+</code></pre><h4 id="trac-related-easy_install.">Пункт 3. Установка trac-related пакетов через easy_install.</h4>
+<p>Для Python существует утилита, облегчающая установку python-пакетов, называемых также <em>яйцами</em> (они имеют расширение *.egg). Установим её:</p>
+<pre><code>wget http:&#x2F;&#x2F;peak.telecommunity.com&#x2F;dist&#x2F;ez_setup.py
+sudo python .&#x2F;ez_setup.py
+</code></pre>
+<p>И посредством неё установим последние версии <a href="http://pygments.org/">Pygments</a> (0.9) (инструмент для подсветки программного кода на Python), <a href="http://genshi.edgewall.org/">Genshi</a> (0.4.4) (механизм шаблонов от создателей trac) и собственно самого <a href="http://trac.edgewall.org/">trac</a> (0.11b2):</p>
+<pre><code>sudo easy_install Pygments
+sudo easy_install Genshi
+sudo easy_install Trac
+</code></pre>
+<p>Можно установить также <code>docutils</code> и <code>pytz</code></p>
+<h4 id="section-5">Пункт 4. Создание репозиториев.</h4>
+<p>Создадим репозитории для наших проектов и сделаем первые коммиты, содержащие отправные точки для их структур. Все репозитории будут находиться в каталоге <code>/var/svn</code>, полностью доступном для сервера, каждый в своём подкаталоге &ndash; такой метод удобен при наличии нескольких проектов и это будет заметно в следующем пункте, на этапе настройки авторизации.</p>
+<pre><code>sudo mkdir &#x2F;var&#x2F;svn
+sudo mkdir &#x2F;var&#x2F;svn&#x2F;someProject
+sudo mkdir &#x2F;var&#x2F;svn&#x2F;anotherProject
+cd &#x2F;tmp
+sudo rm -Rf * # удалить все обычные файлы
+sudo rm -Rf .* # удалить все скрытые&#x2F;системные файлы
+sudo mkdir &#x2F;tmp&#x2F;someProject
+sudo mkdir &#x2F;tmp&#x2F;someProject&#x2F;trunk
+sudo mkdir &#x2F;tmp&#x2F;someProject&#x2F;tags
+sudo mkdir &#x2F;tmp&#x2F;someProject&#x2F;branches
+sudo mkdir &#x2F;tmp&#x2F;anotherProject
+sudo mkdir &#x2F;tmp&#x2F;anotherProject&#x2F;trunk
+sudo mkdir &#x2F;tmp&#x2F;anotherProject&#x2F;tags
+sudo mkdir &#x2F;tmp&#x2F;anotherProject&#x2F;branches
+sudo svnadmin create &#x2F;var&#x2F;svn&#x2F;someProject
+sudo svn import .&#x2F;someProject file:&#x2F;&#x2F;&#x2F;var&#x2F;svn&#x2F;someProject \
+    -m &quot;Initial import&quot;
+sudo svnadmin create &#x2F;var&#x2F;svn&#x2F;anotherProject
+sudo svn import .&#x2F;anotherProject file:&#x2F;&#x2F;&#x2F;var&#x2F;svn&#x2F;anotherProject \
+    -m &quot;Initinal import&quot;
+sudo chown -R www-data:www-data &#x2F;var&#x2F;svn
+</code></pre><h4 id="apache-subversion.">Пункт 5. Связывание apache и subversion.</h4>
+<p>Необходимо настроить доступ извне для созданных репозиториев. Для этого нужно установить модуль <code>dav_svn</code> для <code>apache2</code> и заодно, раз мы работаем с subversion, установим связку subversion c Python, для корректной работы trac с репозиториями:</p>
+<pre><code>sudo apt-get install libapache2-svn
+sudo apt-get install python-subversion
+sudo &#x2F;etc&#x2F;init.d&#x2F;apache2 restart
+</code></pre>
+<p>Теперь нужно настроить установленный модуль (при установки он автоматически включается для <code>apache</code>, если нет — используйте <code>a2enmod dav_svn</code> по завершению настройки):</p>
+<pre><code>sudo cp &#x2F;etc&#x2F;apache2&#x2F;mods-available&#x2F;dav_svn.conf &#x2F;etc&#x2F;apache2&#x2F;mods-available&#x2F;dav_svn.conf.bak
+sudo vi &#x2F;etc&#x2F;apache2&#x2F;mods-available&#x2F;dav_svn.conf
+</code></pre>
+<p>Ниже приведено точное содержимое конфигурационного файла. При обращении на путь <code>&lt;host&gt;/svn/...</code> модуль авторизации apache будет обращаться к файлу <code>/etc/apache2/dav_svn.passwd</code> за списком пользователей, а затем давать права на доступ к соответствующему проекту из файла <code>/etc/apache2/dav_svn.authz</code>. Обратите также внимание на использование <code>SVNParentPath</code> вместо <code>SVNPath</code> &ndash; таким образом subversion-модуль поймёт, что мы используем мультипроектную структуру и будет обрабатывать путь не как один общий репозиторий, а как несколько внутренних:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;Location</span> <span class="s">/svn</span><span class="nt">&gt;</span>
+    <span class="nb">DAV</span> svn
+    <span class="nb">SVNParentPath</span> <span class="sx">/var/svn</span>
+    <span class="nb">AuthType</span> Basic
+    <span class="nb">AuthName</span> <span class="s2">&quot;Subversion Repository&quot;</span>
+    <span class="nb">AuthUserFile</span> <span class="sx">/etc/apache2/dav_svn.passwd</span>
+    <span class="nb">AuthzSVNAccessFile</span> <span class="sx">/etc/apache2/dav_svn.authz</span>
+    <span class="nb">Require</span> valid-user
+<span class="nt">&lt;/Location&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Создадим соответствующих пользователей в файлах авторизации. Используйте пароли попроще для проверки и не забудьте их потом поменять:</p>
+<pre><code>sudo htpasswd -c &#x2F;etc&#x2F;apache2&#x2F;dav_svn.passwd user1
+sudo htpasswd &#x2F;etc&#x2F;apache2&#x2F;dav_svn.passwd user2
+</code></pre>
+<p>Создадим файл аутентификации:</p>
+<pre><code>sudo vi &#x2F;etc&#x2F;apache2&#x2F;dav_svn.authz
+</code></pre>
+<p>В открытым файле опишем права доступа (на чтение &ndash; “<code>r</code>” и на запись &ndash; “<code>w</code>“) пользователей в соответствующие репозитории:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[/]</span>
+<span class="na">user1</span><span class="o">=</span><span class="s">r</span>
+<span class="na">user2</span><span class="o">=</span><span class="s">r</span>
+
+<span class="k">[/someProject]</span>
+<span class="na">user1</span><span class="o">=</span><span class="s">rw</span>
+<span class="na">user2</span><span class="o">=</span><span class="s">r</span>
+
+<span class="k">[/anotherProject]</span>
+<span class="na">user1</span><span class="o">=</span><span class="s">r</span>
+<span class="na">user2</span><span class="o">=</span><span class="s">rw</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="trac.">Пункт 6. Создание окружений trac.</h4>
+<p>Создадим каталог, в котором будут находиться окружения для соответствующих проектов.</p>
+<pre><code>sudo mkdir &#x2F;var&#x2F;trac
+cd &#x2F;var&#x2F;trac
+</code></pre>
+<p>Теперь создадим для каждого из них, по очереди, окружение:</p>
+<pre><code>sudo trac-admin someProject initenv
+sudo trac-admin anotherProject initenv
+</code></pre>
+<p>Имена проектов остаются на ваше усмотрение, тип репозиториев &ndash; по умолчанию <code>svn</code> (просто нажать Enter), путь к базе общий, по умолчанию (<code>sqlite:db/trac.db</code>, аналогично), пути к репозиториям: <code>/var/svn/someProject</code> и <code>/var/svn/anotherProject</code> соответственно.</p>
+
+<p>Дадим права apache пользоваться этим каталогом.</p>
+<pre><code>sudo chown -R www-data:www-data &#x2F;var&#x2F;trac
+</code></pre><h4 id="apache-trac.">Пункт 7. Связывание apache и trac.</h4>
+<p>Есть несколько вариантов такого связывания, мы остановимся на быстром, но надёжном способе &ndash; через <code>mod_python</code> (<a href="http://trac.edgewall.org/wiki/TracInstall#WebServer">описания способов</a> на сайте trac). Для этого модуль нужно установить (также, если он не включился после установки, по завершению настройки используйте <code>a2enmod mod_python</code>):</p>
+<pre><code>sudo apt-get install libapache2-mod-python
+</code></pre>
+<p>Настроим доступ к окружениям trac:</p>
+<pre><code>sudo vi &#x2F;etc&#x2F;apache2&#x2F;sites-available&#x2F;trac
+</code></pre>
+<p>Эта настройка специфична для использования <code>mod_python</code> (<a href="http://trac.edgewall.org/wiki/TracModPython">руководство</a> на сайте trac, см. <a href="http://trac.edgewall.org/wiki/TracInstall#WebServer">описания</a>, если необходимы другие способы настройки). Обработчиком обращений по адресу <code>&lt;host&gt;/localProjects</code> выступит модуль, он будет рассматривать каталог <code>/var/trac/</code> как корень нескольких проектов и содаст страницу с их списком (редактируемый шаблон можно найти внутри исходников trac), аналогично принципам <code>SVNParentPath</code>, <code>URI</code> передаётся в код trac. Запросы на вход будут обрабатываться по пользователям из того же <code>passwd</code> файла, из которого берёт их список subversion, а их права на действия в окружениях trac раздаются через <code>trac-admin</code> или в GUI-версии TracAdmin, доступной для аминистраторов окружений (будьте внимательны, пользователи создаваемые через интерфейс также добавляются в этот файл и доступны к использованию для настройки авторизации в subversion через <code>authz</code>-файл (по умолчанию у них нет никаких прав)) .</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;Location</span> <span class="s">/localProjects</span><span class="nt">&gt;</span>
+   <span class="nb">SetHandler</span> mod_python
+   <span class="nb">PythonInterpreter</span> main_interpreter
+   <span class="nb">PythonHandler</span> trac.web.modpython_frontend
+   <span class="nb">PythonOption</span> TracEnvParentDir <span class="sx">/var/trac</span>
+   <span class="nb">PythonOption</span> TracUriRoot <span class="sx">/localProjects</span>
+<span class="nt">&lt;/Location&gt;</span>
+
+<span class="nt">&lt;LocationMatch</span> <span class="s">/localProjects/[^/]+/login</span><span class="nt">&gt;</span>
+   <span class="nb">AuthType</span> Basic
+   <span class="nb">AuthName</span> “Local Projects”
+   <span class="nb">AuthUserFile</span> <span class="sx">/etc/apache2/dav_svn.passwd</span>
+   <span class="nb">Require</span> valid-user
+<span class="nt">&lt;/LocationMatch&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Теперь заменим сайт по умолчанию для apache на сайт trac:</p>
+<pre><code>sudo a2dissite default
+sudo a2ensite trac
+</code></pre>
+<p>Дадим пользователям права администратов в окружениях trac, в соотвествии с правами на репозиторий, теперь у них, у каждого в своём проекте, будет веб-интерфейс для полной настройки trac.</p>
+<pre><code>sudo trac-admin someProject permission add user1 TRAC_ADMIN
+sudo trac-admin anotherProject permission add user2 TRAC_ADMIN
+</code></pre><h3 id="section-6">Заключение.</h3>
+<p>Осталось перезагрузить сервер, (принудительная перезагрузка настроек: <code>force-reload</code>) и проверить адреса <code>&lt;host&gt;/localProjects</code>, <code>&lt;host&gt;/svn/someProject</code> и <code>&lt;host&gt;/svn/anotherProject</code>, попробовав авторизироваться разными пользователями.</p>
+<pre><code>sudo &#x2F;etc&#x2F;init.d&#x2F;apache2 restart
+</code></pre>
+<p>Если при установке появились какие-либо проблемы и ничего не помогает, попробуйте ознакомиться с <a href="?trac-subversion-ubuntu-initial">предыдущей статьёй</a> (но она несколько более сумбурна и менее структурирована) или опишите проблему(-мы) по почте &ndash; постараюсь реагировать быстро.</p>
+<h3 id="section-7">Примечания</h3><h4 id="a.-.">Примечание A. О добавлении проектов.</h4>
+<p>Добавление проектов в будущем требует лишь нескольких шагов &ndash; создание базовой структуры первым коммитом в какой-либо подкаталог <code>/var/svn</code>, опциональное добавление новых пользователей в <code>htpasswd</code>-файл, настройка прав доступа в <code>authz</code>-файле, создание окружения trac в соответствующем подкталоге <code>/var/trac</code> через <code>trac initenv</code>, опциональная выдача trac-прав новым пользователям и проверка, что apache имеет доступ к созданным каталогам.</p>
+<h4 id="ssl-">Примечание Б. SSL и виртуальные хосты</h4>
+<p>Для работы с SSL достаточно включить модуль <code>ssl</code> для <code>apache</code>:</p>
+<pre><code>sudo a2enmod ssl
+</code></pre>
+<p>Для того, чтобы закрыть доступ в <code>svn</code> по <code>http</code>, нужно обратно закомментировать все строки в <code>/etc/apache2/mods-available/dav_svn.conf</code> или вернуть забекапленную версию:</p>
+<pre><code>sudo cp -f &#x2F;etc&#x2F;apache2&#x2F;mods-available&#x2F;dav_svn.conf.bak &#x2F;etc&#x2F;apache2&#x2F;mods-available&#x2F;dav_svn.conf
+</code></pre>
+<p>Теперь настроим виртуальные хосты для <code>subversion</code> и <code>trac</code>:</p>
+<pre><code>sudo vi &#x2F;etc&#x2F;apache2&#x2F;sites-available&#x2F;svn
+</code></pre>
+<p>В нём:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="s">acme.org:796</span><span class="nt">&gt;</span>
+    <span class="nb">ServerName</span> svn.acme.org
+    <span class="nt">&lt;Location</span> <span class="s">/</span><span class="nt">&gt;</span>
+        <span class="nb">DAV</span> svn
+        <span class="nb">SVNParentPath</span> <span class="sx">/var/svn</span>
+        <span class="nb">AuthType</span> Basic
+        <span class="nb">AuthName</span> <span class="s2">&quot;Subversion Repository&quot;</span>
+        <span class="nb">AuthUserFile</span> <span class="sx">/etc/apache2/dav_svn.passwd</span>
+        <span class="nb">AuthzSVNAccessFile</span> <span class="sx">/etc/apache2/dav_svn.authz</span>
+        <span class="nb">Require</span> valid-user
+    <span class="nt">&lt;/Location&gt;</span>
+    <span class="nb">SSLEngine</span> <span class="k">on</span>
+    <span class="nb">SSLCertificateFile</span> <span class="sx">/etc/ssl/certs/ssl-cert-snakeoil.pem</span>
+    <span class="nb">SSLCertificateKeyFile</span> <span class="sx">/etc/ssl/private/ssl-cert-snakeoil.key</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Trac:</p>
+<pre><code>sudo vi &#x2F;etc&#x2F;apache2&#x2F;sites-available&#x2F;trac
+</code></pre>
+<p>В нём:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="s">acme.org:967</span><span class="nt">&gt;</span>
+    <span class="nb">ServerName</span> trac.acme.org
+
+    <span class="nt">&lt;Location</span> <span class="s">/</span><span class="nt">&gt;</span>
+        <span class="nb">SetHandler</span> mod_python
+        <span class="nb">PythonInterpreter</span> main_intepreter
+        <span class="nb">PythonHandler</span> trac.web.modpython_frontend
+        <span class="nb">PythonOption</span> TracEnvParentDir <span class="sx">/var/trac</span>
+        <span class="nb">PythonOption</span> TracUriRoot /
+    <span class="nt">&lt;/Location&gt;</span>
+
+    <span class="nt">&lt;LocationMatch</span> <span class="s">/[^/]+/login</span><span class="nt">&gt;</span>
+        <span class="nb">AuthType</span> Basic
+        <span class="nb">AuthName</span> <span class="s2">&quot;Local Projects&quot;</span>
+        <span class="nb">AuthUserFile</span> <span class="sx">/etc/apache2/dav_svn.passwd</span>
+        <span class="nb">Require</span> valid-user
+    <span class="nt">&lt;/LocationMatch&gt;</span>
+    <span class="nb">SSLEngine</span> <span class="k">on</span>
+    <span class="nb">SSLCertificateFile</span> <span class="sx">/etc/ssl/certs/ssl-cert-snakeoil.pem</span>
+    <span class="nb">SSLCertificateKeyFile</span> <span class="sx">/etc/ssl/private/ssl-cert-snakeoil.key</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Замените <code>acme.org</code> на имя вашего хоста, <code>796</code> и <code>967</code> на необходимый вам порт для <code>svn</code> и <code>trac</code> соответственно, и при необходимости укажите свой собственный сертификат/ключ.</p>
+
+<p>Указанные вами порты необходимо добавить в <code>/etc/apache2/ports.conf</code>:</p>
+<pre><code>sudo vi &#x2F;etc&#x2F;apache2&#x2F;ports.conf
+</code></pre><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre>...
+<span class="nb">NameVirtualHost</span> *:80
+<span class="nb">Listen</span> <span class="m">80</span>
+<span class="nb">Listen</span> <span class="m">443</span>
+<span class="c"># svn.acme.org</span>
+<span class="nb">Listen</span> <span class="m">796</span>
+<span class="c"># trac.acme.org</span>
+<span class="nb">Listen</span> <span class="m">967</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Наступило время включить модуль <code>svn</code> и перезапустить <code>apache</code>:</p>
+<pre><code>sudo a2ensite svn
+sudo &#x2F;etc&#x2F;init.d&#x2F;apache2 restart
+</code></pre>
+<p>Теперь по адресам <code>https://svn.acme.org:796</code> и <code>https://trac.acme.org:967</code> должны быть доступны ваши <code>svn</code> и <code>trac</code>. Всё.</p>
+
+<p><strong>Upd.</strong> По мотивам этой статьи пользователь <code>MaroonOrg</code> создал <a href="http://maroonorg.wikidot.com/trac">другую</a>, где описал свою конфигурацию.</p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль в Github"><img src="/ru/assets/img/social/github.png" width="16" height="16" alt="профиль в GitHub"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль в Stackoverflow"><img src="/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/ru/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/ru/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

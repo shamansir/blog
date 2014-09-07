@@ -1,0 +1,1447 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/ru/" />
+<link rel="index" href="/ru/archives/" />
+
+<link rel="shortcut icon" href="/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/ru/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/ru/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — Путь асинхронного самурая &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/ru/" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="/ru/archives/" rel="index" title="Архив">Архив</a></li>
+        <li><a href="/ru/tags/" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        <li><a href="/ru/feed.xml" title="Лента RSS">RSS</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/ru/" title="Ни слова о луке">Ни слова о луке</a></h1>
+    <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li><a href="/" title="English Version">English Version</a></li>
+        <li>Russian Version</li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/ru/">Блог</a></li>
+        
+            
+            
+
+            <li><a href="/ru/articles">Статьи</a></li>
+        
+            
+            
+
+            <li>Путь асинхронного самурая</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/ru/articles/mastering-functional-javascript-slides/"
+                   title="Слайды «Постигаем функциональный JavaScript»">Предыдущая статья</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/ru/articles/monkey-patching-or-extending-native-types-religious-or-not/"
+                   title="Monkey-Patching или Расширение Встроенных Типов: религия или осознанный выбор?">Следующая статья</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section" title="Проблема">Проблема</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-2" title="Когда всё это нужно?">Когда всё это нужно?</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-3" title="Содержание">Содержание</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-4" title="Путь 1. Просто вызовы">Путь 1. Просто вызовы</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-5" title="Путь 2. Шины событий">Путь 2. Шины событий</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-6" title="Путь 3. Библиотеки">Путь 3. Библиотеки</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-7" title="Путь 4. «Чистые» монады">Путь 4. «Чистые» монады</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#section-8" title="モナダの空道">モナダの空道</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-9" title="Путь 5. «Грязноватые» (но от этого такие простые) монады или «Мы можем это сами»">Путь 5. «Грязноватые» (но от этого такие простые) монады или «Мы можем это сами»</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#section-10" title="モナダの土道">モナダの土道</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-11" title="Эпилог">Эпилог</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#upd.-qampa" title="(Upd.) Q&amp;A">(Upd.) Q&amp;A</a>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/ru/articles/the-way-of-the-asynchronous-samurai/" title="Путь асинхронного самурая">Путь асинхронного самурая</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Опубликован</dt>
+    <dd class="nwao-published">
+        <a href="/ru/archives/2012/"
+           title="22 февраля 2012, среда. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>22 фев 2012</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Метки</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/ru/tags/javascript/" rel="tag"
+                       title="Статьи с меткой 'javascript'">javascript</a>
+                    
+                        <span class="tag-count">14</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/web-dev/" rel="tag"
+                       title="Статьи с меткой 'web-dev'">web-dev</a>
+                    
+                        <span class="tag-count">21</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p>JavaScript — очень необычный язык. Может это звучит немного странно, но по-моему в его истории есть некоторое сходство с судьбой японского языка. Он, возможно, не был изначально глубоко продуман и был сделан на скорую руку, но при этом в умелых руках он часто оказывается неожиданно элегантным. Он был &ldquo;поскрёбан&rdquo; по различной степени качества сусекам, но при этом он легко впитывает нововведения и иногда даже кажется, что только для них и был создан. Он покорно принимает различные стили письма и, если бы не апологеты, &ldquo;правильное&rdquo; написание было бы, возможно, уже забыто… И, самое главное, как и для японского, <em>нет обозримой границы в познании этого языка</em>. Я знаком с ним на протяжении многих лет и он постоянно открывает мне новые грани.</p>
+
+<p>Но одно я знаю точно — на JavaScript можно писать очень простой и понятный код. К этому нужно стремиться и взращивать это в себе, нужно не опускать руки, нужно узнавать новые и новые вещи, уметь принимать их, и рано или поздно обнаруживаешь, что сам язык — довольно-таки прост и при этом очень, просто-таки бесконечно, элегантен.</p>
+
+<p>И впитывает новое, как губка.</p>
+
+<p>Теперь к делу.</p>
+<h3 id="section">Проблема</h3>
+<p>Большинство жалоб на язык — ООП, которое, <a href="http://shamansir.github.com/js-lecture-wsd">как известно</a>, в нём есть, в своём наипрекраснейшем и буквальном виде, в виде прототипов. И даже необходимость в наследовании оказывается довольно-таки надумана, когда понимаешь, как дружить миксины. Но статья, в этот раз, не об этом.</p>
+
+<p>Вторая по категоричности, но первая по сегодняшней моде, жалоба — &ldquo;неудобство асинхронного программирования&rdquo;. Она озвучивается тут и там, находят способы один необычнее другого, но все они ненамного проще друг друга настолько, что мне даже не хочется приводить ссылки (хотя приведу пример). Предлагаются сотни похожих библиотек, пишутся монструозные заменители, в общем всё происходит так, как обычно происходит с бедным стареньким, молодым и свежим JavaScript&#39;ом.</p>
+
+<p>…И потом пишутся тонны &ldquo;образумливающих&rdquo; статей подобных моей, и только читателю решать, где истина.</p>
+
+<p>Посему эта статья о том, как <em>сделать асинхронное программирование действительно простым</em>. Но добиться настоящей простоты обычно довольно-таки сложно, поэтому, чую, статья получится вполне объёмной.</p>
+
+<p>В обратном порядке, от не очень приятного метода до самого клёвого и независимого (от того, node.js вы используете или браузерный движок), поэтому я вам даже советую <a href="#point-5"><em>просто проскроллить вниз</em></a>. Кроме того, последние пункты немного разъяснят как работают, например, библиотеки. …И сразу же пример из него, чтобы уж точно никто не смущался: <em>семью</em> строками кода JS, без никаких библиотек (!), мы добъёмся, скажем, этого:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">successive_read</span><span class="p">(</span><span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span>
+                <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span>
+                <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;не_существует&#39;</span><span class="p">),</span>
+                <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="c1">// тело этой, последней, функции не будет вызвано (вообще!)</span>
+         <span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="section-2">Когда всё это нужно?</h3>
+<ul>
+<li>Цепочки запросов к серверному API</li>
+<li>Необходимость последовательного извещения UI по сингалам с сервера, да и без сигналов тоже</li>
+<li>Поочерёдное чтение файлов</li>
+<li>Парсеры текста и парсер-генераторы</li>
+<li>Аналоги консольного pipe (<code>|</code>) или направление символьных потоков</li>
+<li>Чтение пользовательского ввода</li>
+<li><p>Безопасные вызовы цепочек функций</p>
+
+<p>Цепочки, цепочки… Вы заметили, да?</p></li>
+</ul>
+<h3 id="section-3">Содержание</h3>
+<ul>
+<li><a href="#point-1">Путь 1. Просто вызовы</a></li>
+<li><a href="#point-2">Путь 2. Шины событий</a></li>
+<li><a href="#point-3">Путь 3. Библиотеки</a></li>
+<li><a href="#point-4">Путь 4. «Чистые» монады</a></li>
+<li><a href="#point-5">Путь 5. «Грязноватые» (но от этого такие простые) монады или «Мы можем это сами»</a></li>
+</ul>
+
+<p><a name="point-1"></a></p>
+<h3 id="section-4">Путь 1. Просто вызовы</h3>
+<p>Почти что первое, что приходит на ум.</p>
+
+<p>Допустим, у вас есть серверное атомарное API, есть класс работы с ним и мы хотим получить сортированный список пользователей. Сильно не утруждайтесь разбираться, оцените только размер и сложность кода, это всё равно худший из вариантов (хотя в сети встречаются <em>ещё хуже</em>):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">people</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">papi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PeopleAPI</span><span class="p">();</span>
+
+    <span class="kd">function</span> <span class="nx">People</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__requested</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__callback</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">People</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getAllSorted</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">__requested</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Request already started&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__requested</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__callback</span> <span class="o">=</span> <span class="nx">callback</span><span class="p">;</span>
+        <span class="nx">papi</span><span class="p">.</span><span class="nx">orderedBy</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_gotOrder</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="nx">People</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_gotOrder</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">order</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="p">{},</span> <span class="nx">got</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">got_one</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">people</span><span class="p">,</span> <span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">man</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">res</span><span class="p">[</span><span class="nx">man</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">man</span><span class="p">;</span>
+                <span class="nx">people</span><span class="p">.</span><span class="nx">__got</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">people</span><span class="p">.</span><span class="nx">__got</span> <span class="o">===</span> <span class="nx">count</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">people</span><span class="p">.</span><span class="nx">_gotAll</span><span class="p">(</span><span class="nx">order</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">})(</span><span class="k">this</span><span class="p">,</span> <span class="nx">order</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">oi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">ol</span> <span class="o">=</span> <span class="nx">order</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">oi</span> <span class="o">&lt;</span> <span class="nx">ol</span><span class="p">,</span> <span class="nx">oi</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">papi</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">order</span><span class="p">[</span><span class="nx">oi</span><span class="p">],</span> <span class="nx">got_one</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">People</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_gotAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">order</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__callback</span><span class="p">(</span><span class="nx">order</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">__requested</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">People</span><span class="p">();</span>
+
+<span class="p">})();</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>В нужный момент мы передаём нужный метод-хэндлер, храним состояние вызова… Ох, всё равно до хрена монструозно, правда? <strong>Ужас, ужас!</strong> Мне даже сейчас было противно писать это и я ничего не тестировал, хотя когда-то похожим образом у меня был построен <a href="http://code.google.com/p/lepro-blackjack/source/browse/trunk/lepro-blackjack/blackjack.js#778">относительно крупный проект</a> (там выглядит чуть лучше, потому что API писал тоже я :) ). Пропускаем.</p>
+
+<p><a name="point-2"></a></p>
+<h3 id="section-5">Путь 2. Шины событий</h3>
+<p>Попробуем быть чуть умнее, заведём общую шину событий:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">handlers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;user&#39;</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="s1">&#39;book&#39;</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="s1">&#39;message&#39;</span><span class="o">:</span> <span class="p">{},</span>
+    <span class="s1">&#39;_error&#39;</span><span class="o">:</span> <span class="p">[]</span> <span class="c1">// допустим, ошибки не зависят от namespace</span>
+<span class="p">};</span>
+
+<span class="nx">events</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="s1">&#39;delete&#39;</span><span class="p">,</span> <span class="s1">&#39;list&#39;</span> <span class="p">];</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">ei</span> <span class="o">=</span> <span class="nx">events</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">ei</span><span class="o">--</span><span class="p">;)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">ns</span> <span class="k">in</span> <span class="nx">handlers</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// мой объект чист, поэтому не нужно `hasOwnProperty`</span>
+        <span class="nx">handlers</span><span class="p">[</span><span class="nx">ns</span><span class="p">][</span><span class="nx">events</span><span class="p">[</span><span class="nx">ei</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Шина событий в данном случае разбита на подразделы (области имён), а глубже уровнем подразделы разбиты на типы событий, где на данный момент содержатся пустые массивы. Например, <code>handlers.user.update</code> и <code>handlers.message.list</code> это пустые массивы (<code>[]</code>), и так для каждого события в каждом подразделе.</p>
+
+<p>Теперь организуем функции подписки на события и ошибки и функции выброса (ну а как ещё назвать?) и тех и других.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// теперь объект handlers можно наполнять ссылками</span>
+<span class="c1">// на &quot;слушателей&quot;, группируя их по неймспейсу</span>
+<span class="c1">// и типу события</span>
+
+<span class="c1">// подписаться на событие в неймспейсе</span>
+<span class="kd">function</span> <span class="nx">subscribe</span><span class="p">(</span><span class="nx">ns</span><span class="p">,</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">handlers</span><span class="p">[</span><span class="nx">ns</span><span class="p">][</span><span class="nx">event</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">handler</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// подписаться на сообщения об ошибках</span>
+<span class="kd">function</span> <span class="nx">subscribe_errors</span><span class="p">(</span><span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">handlers</span><span class="p">.</span><span class="nx">_error</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">handler</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// сообщить о произошедшем в неймспейсе сообытии</span>
+<span class="kd">function</span> <span class="nx">fire</span><span class="p">(</span><span class="nx">ns</span><span class="p">,</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">e_handlers</span> <span class="o">=</span> <span class="nx">handlers</span><span class="p">[</span><span class="nx">ns</span><span class="p">][</span><span class="nx">event</span><span class="p">],</span>
+        <span class="nx">hname</span> <span class="o">=</span> <span class="s1">&#39;on_&#39;</span><span class="o">+</span><span class="nx">ns</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="nx">event</span><span class="p">,</span>
+        <span class="nx">handler</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">ei</span> <span class="o">=</span> <span class="nx">e_handlers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">ei</span><span class="o">--</span><span class="p">;)</span> <span class="p">{</span>
+        <span class="nx">handler</span> <span class="o">=</span> <span class="nx">e_handlers</span><span class="p">[</span><span class="nx">ei</span><span class="p">][</span><span class="nx">hname</span><span class="p">];</span>
+        <span class="nx">handler</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">handler</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// сообщить о произошедшей ошибке</span>
+<span class="kd">function</span> <span class="nx">fire_error</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">e_handlers</span> <span class="o">=</span> <span class="nx">handlers</span><span class="p">.</span><span class="nx">_error</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">ei</span> <span class="o">=</span> <span class="nx">e_handlers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">ei</span><span class="o">--</span><span class="p">;)</span> <span class="p">{</span>
+        <span class="nx">e_handlers</span><span class="p">[</span><span class="nx">ei</span><span class="p">].</span><span class="nx">on_error</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">handler</span><span class="p">,</span> <span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>По сути это весь необходимый код механизма событий и он, по-моему, довольно приличный. Так что, без лишних рассуждений, приведём пример использования:  </p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// некий proxy к серверному API,</span>
+<span class="c1">// делает только асинхронные вызовы</span>
+<span class="kd">var</span> <span class="nx">uapi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">UserAPI</span><span class="p">();</span>
+
+<span class="c1">// ваше приложение</span>
+<span class="kd">function</span> <span class="nx">MyApp</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// TODO: сделать функцию subscribe_all(&#39;user&#39;, this)</span>
+    <span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+    <span class="nx">subscribe_errors</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// запросить список пользователей</span>
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">requestUsers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">uapi</span><span class="p">.</span><span class="nx">get_all</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">order</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">order</span><span class="o">:</span> <span class="nx">order</span><span class="p">,</span> <span class="nx">list</span><span class="o">:</span> <span class="nx">res</span>
+        <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+<span class="c1">// обновить данные о пользователе</span>
+<span class="c1">// (может вызываться при отправке формы заполнения профиля)</span>
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">updateUser</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">uapi</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+    <span class="p">}</span><span class="cm">/*, fire_error*/</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="c1">// этот метод будет вызван при срабатывании события user/list</span>
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">on_user_list</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">users</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="c1">// обновление UI</span>
+    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="c1">// при необходимости можно выбросить другое событие</span>
+<span class="p">}</span>
+<span class="c1">// этот метод будет вызван при срабатывании события user/update</span>
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">on_user_update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="c1">// обновление UI</span>
+    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="c1">// при необходимости можно выбросить другое событие</span>
+<span class="p">}</span>
+<span class="c1">// этот метод будет вызван при ошибке</span>
+<span class="nx">MyApp</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">on_error</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span> <span class="c1">// нотификация об ошибке, паника, кони, люди</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Выглядит значительно более лаконично по сравнению с предыдущим примером и получается даже чем-то похоже на GWT, только в разы короче ;). На события может подписываться не один объект, а сколько угодно, для работы с серверным API — почти что идеальное решение.</p>
+
+<p>Поиграться с ним можно <a href="http://jsfiddle.net/shaman_sir/Gupft/3/">здесь</a>.</p>
+
+<p>Но для парсеров и последовательного чтения файлов — не совсем то. Теперь представим, что нам надоело, мы закрыли глаза, и обратились в сторону библиотек, не задаваясь вопросом что за ними стоит. Просто — взять и вставить, кого нынче волнуют килобайты и внутренности всяких этих хламидомонад?</p>
+
+<p><a name="point-3"></a></p>
+<h3 id="section-6">Путь 3. Библиотеки</h3>
+<p>Как бы там ни было, по сравнению с другими популярно-предлагаемыми способами, библиотеки — не самое плохое решение. Хоть их и пишут сразу кучу по первой же надобности, некоторые из них отдельно хороши и в разы повышают качество вашего кода. Просто пара ссылок, думаю вы запросто сами разберётесь как их использовать:</p>
+
+<ul>
+<li><a href="https://github.com/kriskowal/q">Q</a> (node.js, browser)</li>
+<li><a href="https://github.com/coolaj86/futures">Futures</a> (browser, node.js/v8, rhino)</li>
+<li><a href="https://github.com/medikoo/deferred">deferred</a> (node.js, browser)</li>
+<li><a href="https://github.com/laverdet/node-fibers">fibers</a> (node.js/v8)</li>
+<li><a href="http://www.cs.umd.edu/projects/PL/arrowlets/index.xhtml">arrowlets</a> (browser)</li>
+<li><a href="https://github.com/0ctave/node-sync">Sync</a> (node.js)</li>
+<li><a href="https://github.com/caolan/async">Async</a> (node.js, browser)</li>
+<li><a href="https://github.com/creationix/step">Step</a> (node.js)</li>
+<li><a href="https://github.com/substack/node-seq">Seq</a> (node.js)</li>
+</ul>
+
+<p>Туда же пойдут Dojo.deferred и прочие кандидаты. Плюс, январская презентация <a href="http://www.medikoo.com/asynchronous-javascript/3d">«Аsynchronous JavaScript»</a> (англ.) от автора третьей библиотеки вдогонку.</p>
+
+<p><a name="point-4"></a></p>
+<h3 id="section-7">Путь 4. «Чистые» монады</h3><h6 id="section-8">モナダの空道</h6>
+<p>…Ух ты, почти что ни одного упоминания о монадах в JS на русском, а я надеялся, мне не придётся их объяснять. Впрочем, я и не буду. И не будет в этой главе примеров кода «правильных» монад на JS. Англоязычных статей за последний год тысячи и в ближайшее время кто-нибудь их, да переведёт, и такого кода там завались:</p>
+
+<ul>
+<li><a href="http://blog.jcoglan.com/2011/03/05/translation-from-haskell-to-javascript-of-selected-portions-of-the-best-introduction-to-monads-ive-ever-read/">Translation from Haskell to JavaScript of selected portions of the best introduction to monads I’ve ever read</a></li>
+<li><a href="http://igstan.ro/posts/2011-05-02-understanding-monads-with-javascript.html">Understanding Monads with JavaScript</a></li>
+<li><a href="http://blog.jcoglan.com/2011/03/06/monad-syntax-for-javascript/">Monad Syntax for JavaScript</a></li>
+<li><a href="http://amix.dk/blog/post/19509">How to build your own Monads</a></li>
+<li><a href="http://blog.sigfpe.com/2006/08/you-could-have-invented-monads-and.html">You could have invented monads</a></li>
+<li><a href="http://blog.jcoglan.com/2011/03/11/promises-are-the-monad-of-asynchronous-programming/">Promises are the monad of asynchronous programming</a></li>
+<li><a href="http://matthew.yumptious.com/2009/04/javascript/dojo-deferred-is-a-monad/">Dojo.deferred is a monad</a></li>
+<li><a href="http://importantshock.wordpress.com/2009/01/18/jquery-is-a-monad/">JQuery is monad</a></li>
+<li><a href="http://stackoverflow.com/q/5569805/167262">Conjuring JQuery Deferred with monadic incantations</a></li>
+<li><a href="http://sovety.blogspot.com/2009/09/haskell-horrors.html">(Новичковые) ужасы Хаскеля</a></li>
+<li><a href="http://blog.tupil.com/look-ma-no-callbacks/">Look Ma, No Callbacks!</a><br></li>
+<li><a href="http://blog.getify.com/native-javascript-sync-async/">Native Javascript: sync and async</a></li>
+<li><a href="http://codereview.stackexchange.com/questions/8055/java-monad-implementation">Java Monad Implementation</a></li>
+</ul>
+
+<p>Но долг требует хотя бы вкратце изложить суть.</p>
+
+<p>В разделе «Когда это нужно?» почти весь список содержал популярные примеры применения монад, причём распространено мнение, что вы можете использовать их часто даже сами не осознавая того, что вы их используете. (Знаю я этот приёмчик, слышал не раз). И монады, кстати, стары, как сам программистский мир.</p>
+
+<p>…Однако восклик &ldquo;ах, блин, да это же монады, я ведь их часто использую&rdquo;, родился и у меня. Не супер, прямо скажем, часто, но, оказывается, правда случается. И это действительно ещё одна вещь  из того множества, которое надо понимать любому уважающему себя программисту.</p>
+
+<p><em>Примечание:</em> К моему стыду, я очень плохо понимаю код на Haskell и как он работает, даже в двустрочных примерах, хоть и предпринимал пару решительных попыток залезть во вражеский лагерь. С другими языками программирования у меня обычно таких проблем нет (читаю за еду код на Java, Lisp, Python), а вот тут — обнаружилась. Посему мои последующие (до пятой главы) слова отнюдь не аксиомы, а лишь <em>то, что я увидел со своего берега</em>. Я могу даже нагло врать, абсолютно не стесняясь (говорят, правда, что я этого не умею, но в тексте не должно быть заметно), но если вы вчитываетесь в эту главу, другого выхода, кроме как поверить на слово, у вас, на данный момент, нет :)</p>
+
+<p>Всё просто. Если вы задались любой проблемой из вышеупомянутого списка из раздела «Когда это нужно?», значит вам нужны монады. И, как верно для любого паттерна, вы бы рано или поздно к ним пришли.</p>
+
+<p>Они, в каких-то своих проявлениях, находятся среди вас — например, когда вы используете в консоли пайп:</p>
+<pre><code>&gt; cat my.js | more
+</code></pre>
+<p>Достаточно задуматься о том, как этот пайп написан, и вы тут же поймёте монады. Ну, не справочное описание, а именно как они <em>примерно</em> работают.</p>
+
+<p><a name="note-1-src"></a>Если файл <code>my.js</code> не существует, <code>more</code> не будет вызван вообще<sup><a href="#note-1">[1]</a></sup>. Это нам довольно знакомо, мы ведь со времён Perl любим писать:</p>
+<pre><code>&gt; read_file(&#x27;my.js&#x27;) || die(&#x27;where\&#x27;s my file?!&#x27;)
+</code></pre>
+<p>Основная проблема в написании такого оператора — передача контекста. Вы не хотели бы знать, как работают <code>cat</code>, <code>more</code>, <code>read_file</code> или <code>die</code> (хотя снова вру, иногда очень даже интересно, что там, после этого <code>die</code>…). Вы бы скорее потребовали от них некий общий протокол общения, которому бы они беспрекословно следовали. Что-нибудь такое, что сделало бы очевидным, сорвалась операция или нет и готов для приёма абстрактный поток или не судьба.</p>
+
+<p>Чтобы проблема была видна нагляднее, сделаем цепочку подлиннее, что-нибудь злобное (не пробовать дома, я и сам не пробовал):</p>
+<pre><code>&gt; cat my.file &gt;&gt; &#x2F;dev&#x2F;dsp &gt;&gt; &#x2F;dev&#x2F;hda1 &gt;&gt; my_utility &gt;&gt; &#x2F;dev&#x2F;null
+</code></pre>
+<p>Монада — это и элемент такой цепочки и одновременно функция, которая её обрабатывает.</p>
+
+<p>«Чистая» монада должна быть полностью независимой от внешнего контекста, быть вещью в себе, но от неё требуется вернуть унифицированный ответ. При этом позволяется заставить её возвращать этот самый унифицированный ответ через всяческие функции-обёртки, но, ещё раз, для использования в цепочке <em>необходимо</em>, чтобы каждый элемент был унифицирован, вся цепочка должна работать по единому <em>правилу</em> и её элементы должны быть <em>компонуемы</em>.</p>
+
+<p>В нашем, последнем представленном, случае, любой элемент (или сам контекст вызова) должен уметь оборвать выполнение всей цепочки, если хоть один элемент не доступен, и последовательно запрашивать новые куски потока, если всё хорошо. А для обеспечения корректной работы всего этого мы должны понять, произошла ошибка или нет и принудить все элементы передавать поток единообразно.</p>
+
+<p>Вот этот момент, с ошибкой, является характерным примером монады <em>MayBe</em>, которую мы незаметно так рассмотрели: в некоторых языках (JavaScript среди них, so sad ;( ) нет специального типа для ошибки (временно забудем о <code>try</code>/<code>catch</code>) и мы не можем стопроцентно для всех случаев сказать, хотел нам пользователь намеренно вернуть <code>undefined</code>, <code>null</code> или <code>false</code> как некие пустые данные или он правда имел ввиду, что произошла ошибка. В шелле есть <code>exit code</code> и это однозначное сообщение об ошибке, так все эти пайпы и работают. И Хаскель тоже так умеет, а JavaScript вот — нет.</p>
+
+<p>Так что монада — это некая функция, которая может быть вызвана в некой очереди, в дереве процессов или просто независимом контексте и, оставаясь для них прозрачной, способная адекватно сообщить о своём состоянии. Навскидку — так.</p>
+
+<p>В Хаскеле все функции «чисты» и не изменяют что-либо вне себя (в смысле <em>вообще ничего</em>!), они работают исключительно с одним аргументом (другой функцией, <em>каррирование</em>), а кроме этого занимаются только подготовкой возвращаемого значения, и лезть куда-то наружу для них —  святотатство. Поэтому почти любую функцию в Хаскеле можно «омонадить» (TODO: спросить Хаскелистов, похоже на правду это утверждение или нет), просто потому что она независима и прозрачна. Так рождаются различные комбинации монад.</p>
+
+<p>Кроме <em>MayBe</em> (привязка точной информации об ошибке к оборачиваемой функции) существуют другие монады-паттерны: <em>Continuation</em> (связывание нескольких функций между собой), <em>Writer</em> (привязка текстовой информации к функции, например логгинга), <em>I/O</em> (спросить пользователя, дождаться ответа из терминала, отреагировать на ответ; или прочитать файл, дождаться когда он будет доступен, прочитать содержимое, закрыть файл), <em>Identity</em> (привязка/подмена информации в возвращаемом значении), <em>State</em> (привязка состояния к функции) и другие (смотрите ссылки в русской статье на википедии и раздел «Ссылки» статьи на английском).</p>
+
+<p>То есть, как результат, несколько функций можно обернуть в <em>Continuation</em> (последовательный вызов) и для обеспечения требуемой унификации, для каждой можно использовать монаду <em>MayBe</em> и  как раз получится наш пайп или оператор <code>||</code> / <code>&amp;&amp;</code>.</p>
+
+<p>Поэтому, когда вы делаете асинхронные вызовы (или даже просто последовательные) к серверному коду — вы тоже используете монады.</p>
+
+<p>Когда вы просите одну функцию вызвать другую или несколько, в неком чистом окружении, и ждёте от них ответ — вы используете монады.</p>
+
+<p>(Кстати, пока я искал материал к статье, нашёл всё-таки <a href="http://sovety.blogspot.com/2009/09/haskell-horrors.html">одно описание на русском</a> (глава 4), которое, к моему приятному удивлению, показало, что я и правда «всё правильно понял», а пример с пайпом, оказывается, вообще стандартен для описания монадических замутов).</p>
+
+<p>Советую заглянуть в статьи по ссылкам в начале главы и посмотреть, как монады надо «правильно» адаптировать в JavaScript. Там, в общем случае, описываются одна-две монады и приводятся три основные функции: <code>bind</code>, переводящая переданную функцию в компонуемую форму (чтобы её можно было использовать в цепочках), <code>unit</code>, обеспечивающая унифицированный формат для вовращаемого значения функции и, опционально, <code>lift</code>, добавляющая к функции необходимые данные, чтобы передавать их по цепочке.</p>
+
+<p>Но ввиду неприспособленности JS к настолько абстрактным понятиям, многие реализации требует своих версий этих функций и значительных усилий над собой, чтобы всё это верно организовать. Может где-то недалеко и пишут уже фреймворк с прямой трансляцией хаскелевских монад на JS и это наверное хорошо.</p>
+
+<p>Но я имею привычку отмечать, что «Жаваскрипту — Жаваскриптовое».</p>
+
+<p>Так что хватит этой напыщенной чистоты, пора и грязь познать :)</p>
+
+<p><a name="point-5"></a></p>
+<h3 id="section-9">Путь 5. «Грязноватые» (но от этого такие простые) монады или «Мы можем это сами»</h3><h6 id="section-10">モナダの土道</h6>
+<p>Из предыдущего раздела мы узнали что такое монады и как, примерно, они должны «правильно» готовиться. Но, как я люблю говаривать, «Хаскелю — Хаскелево». Монады — общее достояние и каждый язык имеет право смотреть на них со своей колокольни. В статьях, ссылки на которые вы найдёте предыдущей главе, они адаптируются в язык не то чтобы дословно, но довольно тщательно — авторы стремятся дать почти идентичное хаскелевому решение, универсальное для всех функций. На самом же деле это больше концепция, чем необходимость дословной реализации и таскания её за собой.</p>
+
+<p>JS на самом деле не особо предусмотрен для таких инъекций, код становится только толще и сложнее, а таскать за собой ещё парочку js-файлов, раз этого нет в явном виде в стандарте языка, иногда очень даже «не комильфо». Для того чтобы подход стал простым, надо кое-от-чего отказаться.</p>
+
+<p>Откажемся от передачи контекстов, условимся, что контекст у нас внешний и функции могут в него свободно писать. Сначала может показаться, что реализация станет зависимой от задачи, но это совсем не так: наоборот, мы оставим на своё усмотрение операции над контекстом и доверимся одной-единственной функции, которая будет превращать другую, переданную ей, функцию в отложенную и компонуемую. Вот она:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">deferrable</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// выберите название поприятнее</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span> <span class="p">};</span>
+        <span class="p">})(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Я свернул пару строчек в одну, чтобы их правда было семь :).</p>
+
+<p>Это изящное, на мой взгляд, сочетание тех самых <code>bind</code> и <code>unit</code>.</p>
+
+<p>Посмотрим, как можно это использовать. Допустим, мы хотим манипулировать чтением файлов, выполняя его последовательно по цепочке и обрывая цепочку, если какой-либо файл из неё не был найден.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/* функция, вызовы к которой мы хотим уметь откладывать */</span>
+<span class="kd">function</span> <span class="nx">read_file</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;reading &#39;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">name</span> <span class="o">!==</span> <span class="s1">&#39;foo.js&#39;</span><span class="p">;</span> <span class="c1">// true, если имя файла не `foo.js`</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Заметим, однако, что для этого простейшего случая, мы уже умеем это делать:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/* мы можем эмулировать метод &quot;прервать очередь по падению&quot; через оператор &amp;&amp;</span>
+<span class="cm">                    или метод &quot;прервать по первой удаче&quot; используя оператор ||</span>
+<span class="cm">   но это всё.</span>
+
+<span class="cm">   обратите внимание, что `read_file(&#39;c&#39;)` не вызывается. */</span>
+<span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;foo.js&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">);</span>
+<span class="c1">// &gt; reading a</span>
+<span class="c1">// &gt; reading b</span>
+<span class="c1">// &gt; reading foo.js</span>
+<span class="c1">// &lt; false</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Если условиться, что функция возвращает более осмысленное значение (например, ссылку на файл) и <code>null</code> при ошибке (но помните о <em>MayBe</em>), то в JS мы можем сделать даже так:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">found</span> <span class="o">=</span> <span class="nx">find_file</span><span class="p">(</span><span class="s1">&#39;foo.js&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">find_file</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">find_file</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">);</span>
+<span class="c1">// &gt; found</span>
+<span class="c1">// &lt; [file &#39;a&#39;]</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Пояснение бы не было полным, если бы мы не сэмулировали это поведение через функции. Функция, которая эмулирует поведение <code>&amp;&amp;</code>, выглядит примерно так:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/* некая функция, которая оперирует над списком других функций</span>
+<span class="cm">   более хитрым способом</span>
+
+<span class="cm">   подготавливает их, прерывает, всё что угодно... */</span>
+<span class="kd">function</span> <span class="nx">smart_and</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">,</span> <span class="c1">// массив отложенных функций</span>
+        <span class="nx">flen</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">flen</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// если функция не сработала, остановить процесс</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">fs</span><span class="p">[</span><span class="nx">i</span><span class="p">]())</span> <span class="k">return</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>А функция, которая эмулирует поведение <code>||</code>, выглядит примерно так:  </p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">smart_or</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">arguments</span><span class="p">,</span> <span class="c1">// массив отложенных функций</span>
+        <span class="nx">flen</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+        <span class="nx">res</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">flen</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// если функция сработала, вернуть результат</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">res</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">[</span><span class="nx">i</span><span class="p">]())</span> <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Но если мы захотим использовать одну из них, то нам придётся сделать что-то трудночитаемое:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/* мы можем использовать smart_and таким вот образом,</span>
+<span class="cm">   но выглядит, честно говоря, хреново</span>
+
+<span class="cm">   да, мы можем обпередаваться внутрь массивами имён файлов</span>
+<span class="cm">   и обрабатывать их внутри, но тогда надо будет назвать её не</span>
+<span class="cm">   smart_and, а скорее smart_read_file */</span>
+<span class="nx">smart_and</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="p">},</span>
+          <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="p">},</span>
+          <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;foo.js&#39;</span><span class="p">)</span> <span class="p">},</span>
+          <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="p">});</span>
+<span class="c1">// &gt; reading a</span>
+<span class="c1">// &gt; reading b</span>
+<span class="c1">// &gt; reading foo.js</span>
+<span class="c1">// &lt; undefined</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Вся проблема здесь в подготовке массива отложенных функций. Как в JS можно вызвать функцию, передав ей параметр, запомнив его, но не выполнив её тела до тех пор, пока к ней не было прямого обращения, как это делают <code>||</code>/<code>&amp;&amp;</code>? Очень просто, она должна вернуть внутреннюю функцию, содержащую своё тело:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">my_func</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arg</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// &gt; var f = my_func([&#39;a&#39;, 0]);</span>
+<span class="c1">// &gt; f</span>
+<span class="c1">// &lt; [function]</span>
+<span class="c1">// &gt; f(); // или напрямую: my_func([&#39;a&#39;, 0])();</span>
+<span class="c1">// &lt; [ &quot;a&quot;, 0 ]</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Но это не самый приятный подход, оборачивать так каждую функцию быстро надоест и выведет вас из себя… Так вот же, наверху, семистрочное решение всех ваших проблем:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">_log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="p">}</span>
+<span class="nx">_log</span> <span class="o">=</span> <span class="nx">deferrable</span><span class="p">(</span><span class="nx">_log</span><span class="p">);</span>
+<span class="c1">// &gt; _log(&#39;Hi!&#39;);</span>
+<span class="c1">// &lt; [function]</span>
+<span class="c1">// &gt; _log(&#39;Mooo!&#39;)();</span>
+<span class="c1">// &lt; Moo!</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Вуаля:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// делаем `read_file` откладываемой</span>
+<span class="nx">read_file</span> <span class="o">=</span> <span class="nx">deferrable</span><span class="p">(</span><span class="nx">read_file</span><span class="p">);</span>
+
+<span class="cm">/* ... достаточно круто, ведь правда?</span>
+
+<span class="cm">   обратите внимание, что `read_file(&#39;c&#39;)` не исполняется… */</span>
+<span class="nx">smart_and</span><span class="p">(</span><span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">),</span>
+          <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;foo.js&#39;</span><span class="p">),</span> <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">));</span>
+<span class="c1">// &gt; reading a</span>
+<span class="c1">// &gt; reading b</span>
+<span class="c1">// &gt; reading foo.js</span>
+<span class="c1">// &lt; undefined</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Настало время, однако, представить, что наша задача сложнее и нам нужно, например, передать последний найденный файл в следующую функцию — операторы <code>||</code>/<code>&amp;&amp;</code> здесь уже совсем не подойдут. А то ведь не очень понятно, зачем мы углубились в эти странные эмуляции операторов, если всё можно сделать их посредством без лишнего кода. <em>Вовсе не всё, на что способны монады.</em></p>
+
+<p>Хочу сразу заметить, что <code>deferrable</code> — это только часть монады; другую часть, делающую вызовы отложенных функций в нужной последовательности и окружении, я рекомендую писать вам самим (выше это <code>smart_and</code> и <code>smart_or</code>). Да и <code>deferrable</code> можно подправлять в зависимости от желаний. Просто по той причине, что лучше написать две семистрочные функции, работающие для вашей конкретной задачи (а в действительности, в подавляющем большинстве случаев, для одной задачи требуется только одна версия каждой из функций), чем добавлять целую библиотеку и/или наращивать универсальность.</p>
+
+<p><sub>[В процессе обсуждения статьи, благодаря <a href="http://habrahabr.ru/users/Pozadi/">Pozadi</a> и <a href="http://habrahabr.ru/users/qmax">qmax</a> обнаружилось, что последние абзацы не ложились в канву статьи и выяснилась пара довольно важных вещей (см. <a href="#q-5">Q5</a>, <a href="#Q6">Q6</a>) поэтому часть ниже, до упоминания парсера — обновлена в соответствии с замечаниями]</sub></p>
+
+<p><strong>NB.</strong> Как выяснилось, функция <code>deferrable</code> по концепции практически идентична введённой в ES5/JS1.8.5 <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind"><code>Function.prototype.bind</code></a> и в варианте «по умолчанию» может быть заменена на неё почти безболезненно. Но на данный момент во всех текущих браузерах кроме FF она работает <a href="http://jsperf.com/deferrable-test/2">в разы медленнее</a> <code>deferrable</code>, <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind#Browser_compatibility">поддерживается отнюдь не везде</a> и <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind#Compatibility">логически она сложнее</a> — так что выбирать вам, статья скорее о методе, чем о конкретной функции.</p>
+
+<p><a name="q-6-trg"></a>Что ж, теперь давайте напишем обещанную в начале статьи цепочку чтения файлов, в асинхронном варианте.</p>
+
+<p>Немного изменяем <code>deferrable</code> (никто не говорил, что её нельзя менять, вы помните? :) ), чтобы он умел принимать callback в точке вызова и передавать его отложенной функции в виде последнего параметра:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">__s</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">deferrable_as</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">args</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span><span class="nx">callback</span><span class="p">]));</span> <span class="p">};</span>
+        <span class="p">})(</span><span class="nx">__s</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Есть некий <code>fs.readFile</code>, здесь мы его эмулируем через <code>setTimeout</code>, просто чтобы сделать вид, что это асинхронность:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;readFile&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">===</span> <span class="s1">&#39;not_exist&#39;</span><span class="p">)</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Not exist&#39;</span><span class="p">);</span>
+                    <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+                <span class="p">},</span> <span class="mi">2000</span><span class="p">);</span>
+                <span class="k">return</span> <span class="s1">&#39;unneeded&#39;</span><span class="p">;</span>
+            <span class="p">}</span> <span class="p">};</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Делаем связывание:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">read_file</span> <span class="o">=</span> <span class="nx">deferrable_as</span><span class="p">(</span><span class="nx">fs</span><span class="p">,</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Пишем функцию, которая поочерёдно вызывает отложенные функции через механизм коллбэков:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">successive_read</span><span class="p">(</span><span class="cm">/*f...*/</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">as</span> <span class="o">=</span> <span class="nx">__s</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">),</span>
+        <span class="nx">handle_err</span> <span class="o">=</span> <span class="nx">as</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">as</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span> <span class="nx">handle_err</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span> <span class="k">return</span><span class="p">;</span> <span class="p">};</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Executed:&#39;</span><span class="p">,</span><span class="nx">res</span><span class="p">);</span>
+        <span class="nx">successive_read</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">as</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Вызываем:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">successive_read</span><span class="p">(</span><span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;one&#39;</span><span class="p">),</span>
+                <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;two&#39;</span><span class="p">),</span>
+                <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;three&#39;</span><span class="p">),</span>
+                <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;not_exist&#39;</span><span class="p">),</span>
+                <span class="nx">read_file</span><span class="p">(</span><span class="s1">&#39;four&#39;</span><span class="p">),</span>
+                <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span><span class="nx">e</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span> <span class="p">});</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Вывод:</p>
+<pre><code>Executed: one
+Executed: two
+Executed: three
+Error: Not exist  
+</code></pre>
+<p>Или вот, очень актуальная задача, генератор парсеров с правилами и блекджеком. Такой, чтобы можно было сказать…:</p>
+
+<p>(Я этим как раз сейчас занимаюсь, <a href="https://github.com/shamansir/pegjs/tree/compact-result">оптимизирую тут один генератор парсеров</a>, который для сложных синтаксисов выдаёт парсеры на несколько мегабайт JS-кода; и в поисках красоты и справедливости, я и пришёл неожиданно к монадам, поэтому у меня есть готовый симпатичный пример)</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// start = (&quot;a&quot;* / &quot;b&quot;) &quot;c&quot; (d:f+ { return d.join(&#39;:&#39;); })</span>
+<span class="c1">// f = &quot;YY&quot; &quot;d&quot;+</span>
+<span class="c1">// &quot;aaacYYddYYdd&quot; -&gt; [ [&quot;a&quot;,&quot;a&quot;,&quot;a&quot;], &quot;c&quot;, &quot;YY,d,d:YY,d,d&quot; ]</span>
+
+<span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">sequence</span><span class="p">(</span>
+                        <span class="nx">choice</span><span class="p">(</span>
+                            <span class="nx">any</span><span class="p">(</span><span class="nx">match</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)),</span>
+                            <span class="nx">match</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+                        <span class="p">),</span>
+                        <span class="nx">action</span><span class="p">(</span>
+                           <span class="nx">label</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="nx">some</span><span class="p">(</span><span class="nx">rule_f</span><span class="p">)),</span>
+                           <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">);</span> <span class="p">}</span>
+                        <span class="p">)</span>
+                    <span class="p">)();</span> <span class="p">}</span>
+
+<span class="nx">rule_f</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">sequence</span><span class="p">(</span>
+                               <span class="nx">match</span><span class="p">(</span><span class="s2">&quot;YY&quot;</span><span class="p">),</span>
+                               <span class="nx">some</span><span class="p">(</span><span class="nx">match</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">))();</span>
+
+<span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">parse</span><span class="p">(</span><span class="s2">&quot;aaacYYddYYdd&quot;</span><span class="p">));</span>
+<span class="c1">// &gt; [ [&quot;a&quot;,&quot;a&quot;,&quot;a&quot;], &quot;c&quot;, &quot;YY,d,d:YY,d,d&quot; ]</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>(Воистину, монадическое торжество!)</p>
+
+<p>Такие функции вполне могут возвратить и пустые строки и <code>undefined</code> (см. <code>action</code>), которые будут являться вполне полноправным значением и оно не будет значить, что что-то упало, что-то не найдено: просто не совпал элемент, но парсинг-то продолжается.</p>
+
+<p>Ни одна из этих функций не должна выполняться по месту вызова, <code>choice</code> может пропустить последний элемент, если совпал первый, должен иметь возможность остановиться в нужный момент и откатиться назад. В этом коде я использую тот же самый <code>deferrable</code>, который я привёл выше, и это мой единственный молоток.</p>
+
+<p>Все <a href="https://github.com/shamansir/pegjs/blob/compact-result/test/temp.js">используемые функции парсера</a> не сильно сложнее по коду, чем примеры выше, пара-тройка строк на каждую простую, пять-десять на каждую сложную.</p>
+
+<p><code>sequence</code>, например, подобно <code>smart_or</code> выше, собирает результаты совпавших функций в массив и возвращает его, благодаря чему переменная результата парсинга (вот этот сложносоставной массив) нигде не определена и блуждает по парсеру до окончания его действия и обретает однозначную сущность только по возвращению из функции <code>parse</code>.</p>
+
+<p>Плюс, эксепшны. Тут они подходят как нельзя кстати. Они обычно занимают кучу кода, а мне важен каждый байт, поэтому я тоже обернул их в функции:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// сообщить об ошибке</span>
+<span class="kd">function</span> <span class="nx">failed</span><span class="p">(</span><span class="nx">expected</span><span class="p">,</span> <span class="nx">found</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">failures</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">expected</span><span class="p">);</span> <span class="c1">// да, failures объявлен извне,</span>
+                             <span class="c1">// мне важны простота и размер кода</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nx">MatchFailed</span><span class="p">(</span><span class="nx">expected</span><span class="p">,</span> <span class="nx">found</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// подавить ошибку при вызове функции и известить о ней коллбэк,</span>
+<span class="c1">// если таковой указан</span>
+<span class="kd">function</span> <span class="nx">safe</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">f</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span> <span class="k">instanceof</span> <span class="nx">MatchFailed</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="nx">cb</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="k">throw</span> <span class="nx">e</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Именно функция <code>safe</code> подавляет ошибки, брошенные при несовпадении, например, от <code>match</code>, перехватывая их, например, для <code>choice</code>, который при неудаче просто переходит к следующему варианту.  </p>
+
+<p>Минус такого подхода в том, что эта самая блуждающая переменная результата при выбросе исключения теряется. Вернее, каждый раз перед потенциальной неудачей, её нужно сохранять (например, передавать в <code>failed</code>). То есть, если вы собираетесь использовать сгенерированный парсер чтобы подсвечивать текст в редакторе (например, маркдаун) на лету, то вы могли бы как раз и опираться на этот эксепшн для сборки табика <em>code completion</em>. Но предыдущий-то код тоже надо подсвечивать, а прошлый результат парсинга мог и устареть.</p>
+
+<p>В общем, с ошибками ситуации изредка и правда могут быть не однозначными: из-за сомнительности возвращаемых типов, из-за сложных структур, которые нужно восстановить при ошибке и т.п. поэтому, в этих редких случаях, приемлемо по-хаскельному примешивать к возвращаемым значениям функций код или инстанс ошибки, например. Тут и понадобится монада <em>MayBe</em> и всяческие <code>bind</code>/<code>unit</code>.</p>
+
+<p>Но вы ведь можете просто чётко знать, чего вы хотите достичь и что происходит в вашем коде и свободно оперировать внешними переменными. Так что, учтите — перебор действий с примешиваниями в JS — <em>это значительная жертва читабельности и простоте кода</em>.</p>
+
+<p>Не замыкайтесь на контекст. Пользуйтесь данной вам свободой. Стремитесь к простоте. Хаскелю — Хаскелево.</p>
+
+<p>Позже, когда закончу, я расскажу про этот парсерогенератор подробнее, а сейчас давно уже пора закругляться, поэтому эпилог:</p>
+<h3 id="section-11">Эпилог</h3>
+<p>Ну вот и всё :) Надеюсь, было понятно. <strong>Будьте проще!</strong> Чмоки-чмоки. <code>xxxxo</code>. また近いうちに 👻</p>
+
+<hr>
+
+<hr>
+<h3 id="upd.-qampa">(Upd.) Q&amp;A</h3>
+<p>Логично, что к статье появились вопросы. Ответы, думаю, тоже должны быть частью статьи (она ведь худенькая совсем, разве нет? :) )</p>
+
+<p><center>===[ <a href="#q-1">[1]</a> <a href="#q-2">[2]</a> <a href="#q-3">[3]</a> <a href="#q-4">[4]</a> <a href="#q-5">[5]</a> <a href="#q-6">[6]</a> ]===</center></p>
+
+<p><a name="q-1"></a>1. Мистер <a href="http://habrahabr.ru/users/Silver_Clash/">Silver_Clash</a> спрашивает:</p>
+
+<p><strong>Q:</strong> Можно подробнее расписать что происходит в семистрочной функции и зачем там столько return?</p>
+
+<p><strong>A</strong>: Можно разбить её на две и тогда, наверное, будет очевиднее что там происходит:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// связывает функцию с аргументами и возвращает &quot;отложенный вариант&quot;,</span>
+<span class="c1">// то есть можно вызвать:</span>
+<span class="c1">//</span>
+<span class="c1">// function a(arg) {console.log(&#39;a&#39;, arg); }</span>
+<span class="c1">// bind(a, 15); =&gt; функция в &quot;замороженном&quot;, навсегда связанном с переданными аргументами, состоянии</span>
+<span class="c1">// bind(a, 15)(); =&gt; a 15, &quot;замороженный&quot; вариант вызван</span>
+<span class="c1">//</span>
+<span class="c1">// но, используй мы только её одну, пришлось бы вызывать её каждый раз так:</span>
+<span class="c1">// smart_or(bind(read_file, [&#39;one&#39;]), bind(read_file, [&#39;two&#39;]), bind(read_file, [&#39;three&#39;]));</span>
+<span class="kd">function</span> <span class="nx">bind</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+<span class="c1">// даёт функции свойство всегда запоминать c какими аргументами она вызвана</span>
+<span class="c1">// и возвращать отложенный вариант</span>
+<span class="c1">//</span>
+<span class="c1">// то есть она даёт возможность в любом месте писать `a(15)` и получать &quot;замороженный&quot; вариант,</span>
+<span class="c1">// который можно будет вызвать через a(15)(), таким образом избавляя от необходимости</span>
+<span class="c1">// повсеместно использовать `bind`</span>
+<span class="kd">function</span> <span class="nx">wrap</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// для этого она возвращает функцию, которая при вызове запомнит</span>
+                      <span class="c1">// переданные ей аргументы и вернёт &quot;отложенный&quot; вариант</span>
+        <span class="k">return</span> <span class="nx">bind</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// bind + wrap =&gt; просто сумма этих двух функций</span>
+<span class="kd">function</span> <span class="nx">deferrable</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// wrap</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// fn-1</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// fn-2, bind</span>
+            <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span> <span class="p">};</span>
+        <span class="p">})(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span> <span class="c1">// сразу выполняющаяся обёртка, которая на месте создаёт ссылку</span>
+                      <span class="c1">// на аргументы функции fn-1 в функции fn-2</span>
+                      <span class="c1">// (чтобы они не запутались, где чьи аргументы)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>И, кстати, этот bind — «сосед» того bind, который упоминается в этой статье и в статьях про монады по ссылкам. Но там аргументы примешиваются через контекст вызова — они приходят из возвращаемых значений других функций, просочившись через них все. В моём же случае просто делается «pin» — «я собираюсь вызвать эту функцию именно с этими аргументами, запомни и верни то, что я смогу вызвать потом».</p>
+
+<p><a name="q-2"></a>2. Некто <a href="http://habrahabr.ru/users/ZokotuhaFly">zokotuhaFly</a> интересуется:</p>
+
+<p><strong>Q:</strong> Наверняка использующие эту вашу семистрочную функцию в ООП или сложных замыканиях захотят привязки к контексту, как решить эту проблему, ведь она применяется к <code>null</code>?</p>
+
+<p><strong>A:</strong> Проблема решается легко, вариант для объектов/контекстов:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">o_deferrable</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// выберите название поприятнее</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// f и o можно не передавать</span>
+            <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span> <span class="p">};</span>
+        <span class="p">})(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Использование:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">my_obj</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">test</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+                     <span class="p">}</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">obj_test</span> <span class="o">=</span> <span class="nx">o_deferrable</span><span class="p">(</span><span class="nx">my_obj</span><span class="p">,</span> <span class="nx">my_obj</span><span class="p">.</span><span class="nx">test</span><span class="p">);</span>
+<span class="c1">// &gt; obj_test(12)();</span>
+<span class="c1">// &lt; [object my_obj] 12</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Или вот так:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">my_obj</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// объект должен существовать на момент вызова `o_deferrable`</span>
+<span class="nx">my_obj</span><span class="p">.</span><span class="nx">test</span> <span class="o">=</span> <span class="nx">o_deferrable</span><span class="p">(</span><span class="nx">my_obj</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+              <span class="p">});</span> <span class="c1">// ну, или через прототипы</span>
+<span class="c1">// &gt; my_obj.test(12)();</span>
+<span class="c1">// &lt; [object my_obj] 12</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><a name="q-3"></a>3. Сэр <a href="http://habrahabr.ru/users/klvov/">klvov</a> задумывается:</p>
+
+<p><strong>Q:</strong> Мне одному кажется, что автор изобрел <a href="">Y-комбинатор</a> в виде функции deferrable?</p>
+
+<p><strong>A:</strong> Надеюсь, одному — код визуально схож, но по факту это немного разные вещи. Применение комбинатора ограничено более узким спектром задач. Вообще, это  это трюк, чтобы делать рекурсивные вычисления не используя имён функций (через лямбды), получая ссылку на функцию от предыдущего, внешнего, вызова. Цели об отложенных вызовах здесь нет, хотя функция-рекурсер изначально (один раз) откладывается, чтобы использоваться в следующих вызовах, но <em>не привязывается к аргументам</em>.</p>
+
+<p>Кстати, тот самый парень, который переводит монады в JS, <a href="http://blog.jcoglan.com/2008/01/10/deriving-the-y-combinator/">тоже писал</a> трансляцию/разъяснение Y-комбинатора. (<a href="http://thraxil.org/users/anders/posts/2008/09/15/My-Own-Javascript-Y-Combinator/">+ ещё одна статья</a>)</p>
+
+<p>Пусть здесь сразу будет пример, чтобы каждый мог оценить для себя, тем более это немного в тему статьи, да и комбинатор — это хитрость посложнее чем deferrable):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">Y</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">g</span><span class="p">(</span><span class="nx">g</span><span class="p">);</span>
+    <span class="p">})(</span><span class="kd">function</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">f</span><span class="p">(</span><span class="nx">h</span><span class="p">(</span><span class="nx">h</span><span class="p">)).</span><span class="nx">apply</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+        <span class="p">};</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">factorial</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">recurse</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;called with&#39;</span><span class="p">,</span><span class="nx">x</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">x</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">recurse</span><span class="p">(</span><span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">});</span>
+<span class="c1">// &gt; factorial(5);</span>
+<span class="c1">// &lt; called with 5</span>
+<span class="c1">// &lt; called with 4</span>
+<span class="c1">// &lt; called with 3</span>
+<span class="c1">// &lt; called with 2</span>
+<span class="c1">// &lt; called with 1</span>
+<span class="c1">// &lt; 120</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>&hellip;хотя через <code>deferrable</code> можно эмулировать комбинатор, хоть и чуть более криво.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">fc</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nx">x</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">f</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)();</span>
+<span class="p">}</span>
+<span class="nx">fc</span> <span class="o">=</span> <span class="nx">deferrable</span><span class="p">(</span><span class="nx">fc</span><span class="p">);</span>
+<span class="c1">// &gt; fc(fc,5)();</span>
+<span class="c1">// &lt; 120;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Хм&hellip;</p>
+
+<p>Ну а за сам комбинатор мы должны благодарить того самого Хаскеля, в честь которого, собственно, назван язык. Это так, для тех кто вдруг не знает.</p>
+
+<p><a name="q-4"></a>4. Господин <a href="http://habrahabr.ru/users/grasshoppergn/">grasshoppergn</a> замечает:</p>
+
+<p><strong>Q:</strong> а вообще <code>deferrable</code> можно даже еще сократить, потому что есть же <code>Function.prototype.bind</code> :)</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">deferrable</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">unshift</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nx">bind</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>A:</strong> <em><strong>Не стóит</strong></em>, такой вариант работает <a href="http://jsperf.com/deferrable-test">в разы медленнее</a>, да и <code>bind</code> поддерживается не во всех браузерах.</p>
+
+<p><a name="q-5"></a>5. Дон <a href="http://habrahabr.ru/users/Pozadi/">Pozadi</a> замечает:</p>
+
+<p><strong>Q:</strong> Вообще-то функция <code>deferrable</code> идентична <code>Function.prototype.bind</code>.</p>
+
+<p><strong>A:</strong> Да, я не знал про эту фунцию и не заметил этого, пока не прочитал про неё. Но, её <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind#Compatibility">псевдокод значительно больше</a> (большей частью поскольку она нативная, чтобы уберечь программиста от возможных ошибок), и на данный момент она <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function/bind#Browser_compatibility">не поддерживается во многих браузерах</a> и в текущем состоянии в <em>Chrome</em> она работает <a href="http://jsperf.com/deferrable-test/2">в разы медленнее</a> (<em>в разы!</em>, но в FF она конечно выигрывает).</p>
+
+<p><a name="q-6"></a>6. Мёсьё <a href="http://habrahabr.ru/users/qmax/">qmax</a> и <a href="http://habrahabr.ru/users/Pozadi/">Pozadi</a> <a href="http://habrahabr.ru/blogs/javascript/138773/#comment_4637222">задают</a> самый важный вопрос, который привёл нас к полезной дискуссии (вопрос перефразирован автором статьи):</p>
+
+<p><strong>Q:</strong> Я ожидал увидеть в статье пример из начала с использованием семистрочной функции и <em>настоящих</em> нативных асинхронных функций (вроде <code>fs.readFile</code>), собственно ради только этого её и читал, но вы так ни одного и не привели.</p>
+
+<p><a name="note-2-src"></a><strong>A:</strong> Ваша правда, простите меня, исправляюсь<sup><a href="#note-2">[2]</a></sup>:</p>
+
+<p>Тру-нативно-асинхронная функция — это, например <code>fs.readFile</code> или <code>XMLHttpRequest</code>.</p>
+
+<p>Вот <a href="http://jsfiddle.net/shaman_sir/NwSgE/1/">пример на jsfiddle</a>. Я поменял пример <code>piped</code> в статье на ответ на этот вопрос, <a href="#q-6-trg">прошу сюда</a>.</p>
+
+<hr>
+
+<hr>
+
+<p><a name="note-1"></a><sup><a href="#note-1-src">[1]</a></sup> Как меня верно <a href="http://habrahabr.ru/blogs/javascript/138773/#comment_4636020">поправили</a>, на самом деле это ложь. <code>more</code> будет вызван, операции по пайпу выполняются параллельно, и это <a href="http://okmij.org/ftp/Computation/monadic-shell.html#Parallel%20vs.%20sequential%20execution%20of%20monadic%20commands">единственное отличие</a> шелловских монад от Хаскелевской имплементации, и у них были личные причины на это. Эта ложь в жертву науке: лучшего, но верного, примера я пока не придумал — надеюсь, вы меня простите. Или представьте, что всё это происходит в Perl. А <em>та самая</em> функция никак не ограничивает вас в способе организации этих процессов, вы можете вызывать отложенную функцию несколько раз и просить новую часть результата (типа <code>yield</code>) и сделать почти что вот такое же параллельное выполнение.</p>
+
+<p><a name="note-2"></a><sup><a href="#note-2-src">[2]</a></sup> На самом деле я (автор) <em>очень</em> долго настаивал на своём и делал вид, что не понимаю вопроса, выигрывая время на обдумывание, зато вопрос получился достаточно чётким и выяснилась пара провисов в статье, благодарю комментаторов за настойчивость.</p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль в Github"><img src="/ru/assets/img/social/github.png" width="16" height="16" alt="профиль в GitHub"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль в Stackoverflow"><img src="/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/ru/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/ru/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

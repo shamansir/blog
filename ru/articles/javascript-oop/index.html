@@ -1,0 +1,1160 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/ru/" />
+<link rel="index" href="/ru/archives/" />
+
+<link rel="shortcut icon" href="/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/ru/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/ru/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — ООП и JavaScript &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/ru/" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="/ru/archives/" rel="index" title="Архив">Архив</a></li>
+        <li><a href="/ru/tags/" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        <li><a href="/ru/feed.xml" title="Лента RSS">RSS</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/ru/" title="Ни слова о луке">Ни слова о луке</a></h1>
+    <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li><a href="/" title="English Version">English Version</a></li>
+        <li>Russian Version</li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/ru/">Блог</a></li>
+        
+            
+            
+
+            <li><a href="/ru/articles">Статьи</a></li>
+        
+            
+            
+
+            <li>ООП и JavaScript</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/ru/articles/ant-tomcat-redeploying/"
+                   title="Редеплойинг приложения на Tomcat средствами Ant">Предыдущая статья</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/ru/articles/16-useful-solutions-for-javascript/"
+                   title="16 полезных решений для Javascript">Следующая статья</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section" title="Ссылки">Ссылки</a>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/ru/articles/javascript-oop/" title="ООП и JavaScript">ООП и JavaScript</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Опубликован</dt>
+    <dd class="nwao-published">
+        <a href="/ru/archives/2007/"
+           title="19 августа 2007, воскресенье. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>19 авг 2007</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Метки</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/ru/tags/javascript/" rel="tag"
+                       title="Статьи с меткой 'javascript'">javascript</a>
+                    
+                        <span class="tag-count">14</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/web-dev/" rel="tag"
+                       title="Статьи с меткой 'web-dev'">web-dev</a>
+                    
+                        <span class="tag-count">21</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p>В <a href="../16-useful-solutions-for-javascript">предыдущей статье</a> я представил на ваше рассмотрение небольшой кусок кода, который позволяет использовать три столпа ООП в JavaScript. Все это достигается несколько хитро, тем не менее я позволил себе чуточку изменить функцию <code>extend</code>, дабы классы имели понятие о том, что такое статические константы (на самом деле константы конечно получились условные, но это, думаю, можно оправдать условностью их в самом JavaScript). Здесь я рассмотрю этот вопрос поподробнее и, видимо, буду расширять статью по мере его более глубокого понимания.</p>
+
+<p>Итак, исходные данные (повторюсь, заимствованы из источников на <a href="http://www.ajaxpath.com/javascript-inheritance">AJAXPath</a> и на <a href="http://ajaxpatterns.org/Javascript_Inheritance">AJAXPatterns</a>):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">Class</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+
+<span class="nx">Class</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">construct</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+
+<span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">def</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">classDef</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!==</span> <span class="nx">Class</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">construct</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">proto</span> <span class="o">=</span> <span class="k">new</span> <span class="k">this</span><span class="p">(</span><span class="nx">Class</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">superClass</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">n</span> <span class="k">in</span> <span class="nx">def</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">def</span><span class="p">[</span><span class="nx">n</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">item</span> <span class="k">instanceof</span> <span class="nb">Function</span><span class="p">)</span> <span class="nx">item</span><span class="p">.</span><span class="nx">$</span> <span class="o">=</span> <span class="nx">superClass</span><span class="p">;</span>
+                <span class="k">else</span> <span class="nx">classDef</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+        <span class="nx">proto</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">classDef</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">;</span>
+    <span class="nx">classDef</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">extend</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nx">classDef</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Благодаря использованию трех этих функций, у вас появляется замечательная возможность строить довольно серьезные и обширные по конструкции фреймворки, не теряя при этом читабельности кода и возможности быстро найти нужное место дабы его изменить. Ну и плюс, конечно, практически все преимущества ООП.</p>
+
+<p>Эти три функции использовались как фундамент ООП-Drag’n&#39;Drop фреймворка для крупного проекта на Java+Wicket. Я бы с удовольствием безвозмездно поделился бы его кодом, но по контракту этот код - собственность компании, а компания не хочет его рассекречивать. По этой причине я могу лишь дать, если нужно, наводящие мысли, наводящие на конкретные мысли :).</p>
+
+<p>Впрочем, ближе к делу. Для такого кода требуется пример. Я наваял тут небольшой скрипт, эмулирующий операционную систему Windows, надеюсь он подойдет:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/* пара вспомогательных функций */</span>
+
+<span class="kd">function</span> <span class="nx">getInstanceOf</span><span class="p">(</span><span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// возвращает объект класса по имени класса</span>
+    <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;new &#39;</span> <span class="o">+</span> <span class="nx">className</span> <span class="o">+</span> <span class="s1">&#39;()&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">pause</span><span class="p">(</span><span class="nx">millis</span><span class="p">)</span> <span class="c1">// останавливает выполнение</span>
+    <span class="c1">// скрипта на указанное количество миллисекунд</span>
+<span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">time</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">curTime</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">do</span> <span class="p">{</span> <span class="nx">curTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span> <span class="p">}</span>
+        <span class="k">while</span><span class="p">(</span> <span class="nx">curTime</span> <span class="o">-</span> <span class="nx">time</span> <span class="o">&lt;</span> <span class="nx">millis</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* === Абстрактная Операционная Система === */</span>
+
+<span class="kd">var</span> <span class="nx">AbstractOS</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+    <span class="nx">construct</span><span class="o">:</span> <span class="c1">// конструктор, параметр - тип компьютера</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">computerClassName</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// компьютер, на котором запускается ОС</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_computer</span> <span class="o">=</span> <span class="nx">getInstanceOf</span><span class="p">(</span><span class="nx">computerClassName</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">getComputer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_computer</span><span class="p">;</span> <span class="p">},</span>
+
+    <span class="nx">reboot</span><span class="o">:</span> <span class="c1">// перезагрузка ОС</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">getComputer</span><span class="p">().</span><span class="nx">shutDown</span><span class="p">()</span> <span class="o">&amp;&amp;</span>
+                   <span class="k">this</span><span class="p">.</span><span class="nx">getComputer</span><span class="p">().</span><span class="nx">startUp</span><span class="p">();</span>
+        <span class="p">},</span>
+
+    <span class="nx">shutDown</span><span class="o">:</span> <span class="c1">// выключение ОС</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">getComputer</span><span class="p">().</span><span class="nx">shutDown</span><span class="p">();</span> <span class="p">},</span>
+
+    <span class="nx">startUp</span><span class="o">:</span> <span class="c1">// запуск ОС</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">getComputer</span><span class="p">().</span><span class="nx">startUp</span><span class="p">();</span> <span class="p">},</span>
+
+    <span class="nx">exec</span><span class="o">:</span> <span class="c1">// абстрактный (условно) метод запуска команды</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">commandStr</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">},</span>
+
+    <span class="nx">cycle</span><span class="o">:</span> <span class="c1">// запуск ОС, выполнение команды, отключение ОС</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">cmdStr</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">startUp</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">cmdStr</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                                     <span class="k">this</span><span class="p">.</span><span class="nx">shutDown</span><span class="p">();</span>
+        <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="cm">/* === Синий Экран Смерти === */</span>
+
+<span class="kd">var</span> <span class="nx">BSOD</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+    <span class="nx">launch</span><span class="o">:</span> <span class="c1">// запуск</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;You see the BSOD&#39;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="cm">/* === Операционная Система MS Windows === */</span>
+
+<span class="kd">var</span> <span class="nx">MSWindows</span> <span class="o">=</span> <span class="nx">AbstractOS</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="c1">// наследуется от абстрактной ОС</span>
+
+    <span class="c1">// сообщения - статические константы (условно)</span>
+    <span class="nx">STARTUP_MSG</span><span class="o">:</span> <span class="s1">&#39;Windows Starting&#39;</span><span class="p">,</span>
+    <span class="nx">EXEC_MSG</span><span class="o">:</span> <span class="s1">&#39;This program has performed an illegal operation&#39;</span><span class="p">,</span>
+    <span class="nx">REBOOT_MSG</span><span class="o">:</span> <span class="s1">&#39;Do you really want to reboot your computer?&#39;</span><span class="p">,</span>
+
+    <span class="nx">construct</span><span class="o">:</span> <span class="c1">// конструктор, параметр - тип компьютера</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">computerClassName</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// вызов родительского конструктора</span>
+            <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">$</span><span class="p">.</span><span class="nx">construct</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">computerClassName</span><span class="p">);</span>
+            <span class="c1">// кэш-е синего экрана смерти (ибо он будет один)</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_bsod</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BSOD</span><span class="p">();</span>
+        <span class="p">},</span>
+
+    <span class="nx">getBSOD</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bsod</span><span class="p">;</span> <span class="p">},</span>
+
+    <span class="nx">reboot</span><span class="o">:</span> <span class="c1">// перегруженная перезагрузка</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// вывод сообщения</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="nx">MSWindows</span><span class="p">.</span><span class="nx">REBOOT_MSG</span><span class="p">);</span>
+            <span class="c1">// вызов родительского метода</span>
+            <span class="k">return</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">$</span><span class="p">.</span><span class="nx">reboot</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">shutDown</span><span class="o">:</span> <span class="c1">// перегруженное выключение</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// запуск СЭС и, если он удачен - вызов</span>
+            <span class="c1">// родительского метода. возвращается результат</span>
+            <span class="c1">// удачности</span>
+            <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getBSOD</span><span class="p">().</span><span class="nx">launch</span><span class="p">()</span> <span class="o">&amp;&amp;</span>
+                    <span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">$</span><span class="p">.</span><span class="nx">shutDown</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+        <span class="p">},</span>
+
+    <span class="nx">startUp</span><span class="o">:</span> <span class="c1">//  перегруженная загрузка</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// если удачно выполнился родительский метод</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">callee</span><span class="p">.</span><span class="nx">$</span><span class="p">.</span><span class="nx">startUp</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">))</span> <span class="p">{</span>
+                <span class="c1">// выполнить необходимые операции</span>
+                <span class="nx">pause</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+                <span class="c1">//setTimeout(&quot;alert(&#39;Windows Starting&#39;)&quot;, 400);</span>
+                <span class="c1">// сообщить об удачной загрузке</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="nx">MSWindows</span><span class="p">.</span><span class="nx">STARTUP_MSG</span><span class="p">);</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// нет - так нет</span>
+        <span class="p">},</span>
+
+    <span class="nx">exec</span><span class="o">:</span> <span class="c1">// перегруженное выполнение команды</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">commandStr</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// если команда валидна - выдать результат</span>
+            <span class="c1">// исполнения, иначе - выключиться</span>
+            <span class="k">return</span> <span class="nx">commandStr</span>
+                <span class="o">?</span> <span class="nx">alert</span><span class="p">(</span><span class="nx">MSWindows</span><span class="p">.</span><span class="nx">EXEC_MSG</span><span class="p">)</span>
+                <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">shutDown</span><span class="p">();</span>
+        <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="cm">/* === Обычный Компьтер === */</span>
+
+<span class="kd">var</span> <span class="nx">SimpleComputer</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+    <span class="nx">startUp</span><span class="o">:</span> <span class="c1">// при запуске выводит сообщение</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Starting Up&#39;</span><span class="p">);</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">},</span>
+
+    <span class="nx">shutDown</span><span class="o">:</span> <span class="c1">// при выключении выводит сообщение</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Shutting Down&#39;</span><span class="p">);</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="cm">/* проверочная функция */</span>
+
+<span class="kd">function</span> <span class="nx">perform</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// инициируем ОС на обычном компьютере (инсталляция)</span>
+    <span class="kd">var</span> <span class="nx">testOs</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MSWindows</span><span class="p">(</span><span class="s1">&#39;SimpleComputer&#39;</span><span class="p">);</span>
+    <span class="c1">// запускаем ОС</span>
+    <span class="nx">testOs</span><span class="p">.</span><span class="nx">startUp</span><span class="p">();</span>
+    <span class="c1">// выполняем банальную команду</span>
+    <span class="nx">testOs</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;ls -laF&#39;</span><span class="p">);</span>
+    <span class="c1">// выключаем ОС</span>
+    <span class="nx">testOs</span><span class="p">.</span><span class="nx">shutDown</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p><strong>NB!</strong> (не забывайте - после последнего объявления метода в классе запятой ставить не нужно, иначе Ослик (IE) обидится)</p>
+
+<p>Если предыдущий пример вам не понравился &ndash; я могу предложить вам довольно полезный класс, который сильно помогает, если в вашем проекте понятие элемента DOM пересекается с понятием объекта, над которым производятся манипуляции:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">ElementWrapper</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+    <span class="nx">construct</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">elementId</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">elementId</span> <span class="o">=</span> <span class="nx">elementId</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">element</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_initializeElement</span><span class="p">();</span>
+        <span class="p">},</span>
+
+    <span class="nx">_initializeElement</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">docElm</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">elementId</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">docElm</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">element</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">elementId</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">element</span> <span class="o">=</span> <span class="nx">docElm</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_assignListeners</span><span class="p">();</span>
+        <span class="p">},</span>
+
+    <span class="nx">_assignListeners</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+        <span class="p">},</span>
+
+    <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+
+    <span class="nx">reassignTo</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">elementId</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">elementId</span> <span class="o">=</span> <span class="nx">elementId</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">element</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_initializeElement</span><span class="p">();</span>
+        <span class="p">}</span>
+
+<span class="p">});</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>От этого класса очень удобно наследовать классы, расширяющие функциональность элементов DOM. Также, теперь вы можете использовать код типа этого:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">someElement</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ElementWrapper</span><span class="p">(</span><span class="s1">&#39;someElmId&#39;</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>…и объект <code>someElement</code> будет связан с элементом (оборачивать элемент) с <code>id</code> <em>‘<code>SomeElmId</code>’</em>. Доступ к нему &ndash; как к элементу DOM &ndash; можно будет получить через свойство <code>someElement.element</code>.</p>
+
+<p>Приведенный ниже класс наследуется от <code>ElementWrapper</code> и позволяет обращаться с обернутым элементом как с практически полноценным (неполноценным? :) ) графическим объектом (используются некоторые функции из <a href="../16-useful-solutions-for-javascript">предыдущей статьи</a>: <code>getElmAttr</code>, <code>setElmAttr</code>, <code>findOffsetHeight</code>, <code>getPosition</code>, <code>getAlignedPosition</code>)</p>
+
+<blockquote>
+<p>Как и у некоторых функций из <a href="../16-useful-solutions-for-javascript">предыдущей статьи</a>, со временем код изменился &ndash; в данном случае он оброс функциональностью и одновременно несколько упростился:</p>
+</blockquote>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">DND_NS</span>              <span class="o">=</span> <span class="s1">&#39;dnd&#39;</span><span class="p">;</span> <span class="c1">// to use in getAttributeNS and setAttributeNS</span>
+
+<span class="kd">var</span> <span class="nx">DND_LWIDTH_ATTR</span>     <span class="o">=</span> <span class="s1">&#39;localWidth&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">DND_LHEIGHT_ATTR</span>    <span class="o">=</span> <span class="s1">&#39;localHeight&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">DND_LTOP_ATTR</span>       <span class="o">=</span> <span class="s1">&#39;localTop&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">DND_LLEFT_ATTR</span>      <span class="o">=</span> <span class="s1">&#39;localLeft&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">DND_BTOP_ATTR</span>       <span class="o">=</span> <span class="s1">&#39;baseTop&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">DND_BLEFT_ATTR</span>      <span class="o">=</span> <span class="s1">&#39;baseLeft&#39;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">GraphicalElementWrapper</span> <span class="o">=</span> <span class="nx">ExpandedElementWrapper</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+    <span class="nx">_assignListeners</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// не назначать слушателей событий, если не необходимо</span>
+        <span class="p">},</span>
+
+    <span class="c1">// ========[ функции установки необходимых для работы аттрибутов ]==========</span>
+
+    <span class="cm">/* localLeft, localTop -- атрибуты, содержащие координату верхнего левого угла элемента</span>
+<span class="cm">                              с учётом смещения [скроллинга];</span>
+<span class="cm">       localWidth, localHeight -- атрибуты, содержащие реальную высоту и ширину элемента;</span>
+<span class="cm">       baseLeft, baseTop -- атрибуты, содержащие координату верхнего левого угла элемента</span>
+<span class="cm">                            без учёта смещения [скроллинга] */</span>
+
+    <span class="nx">setLocalWidth</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">localWidth</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_LWIDTH_ATTR</span><span class="p">,</span> <span class="nx">localWidth</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">setLocalHeight</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">localHeight</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_LHEIGHT_ATTR</span><span class="p">,</span> <span class="nx">localHeight</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">setLocalLeft</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">localLeft</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_LLEFT_ATTR</span><span class="p">,</span> <span class="nx">localLeft</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">setLocalTop</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">localTop</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_LTOP_ATTR</span><span class="p">,</span> <span class="nx">localTop</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">setBaseLeft</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">baseLeft</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_BLEFT_ATTR</span><span class="p">,</span> <span class="nx">baseLeft</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">setBaseTop</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">baseTop</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_BTOP_ATTR</span><span class="p">,</span> <span class="nx">baseTop</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">getLocalWidth</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_LWIDTH_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">getLocalHeight</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_LHEIGHT_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">getLocalLeft</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_LLEFT_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">getLocalTop</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_LTOP_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">getBaseLeft</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_BLEFT_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">getBaseTop</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">,</span> <span class="nx">DND_BTOP_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">getOffsetWidth</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">;</span>
+        <span class="p">},</span>
+
+    <span class="nx">getOffsetHeight</span><span class="o">:</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">offsetHeight</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">pixelHeight</span> <span class="o">||</span> <span class="nx">findOffsetHeight</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="c1">// =======[ / функции установки необходимых для работы аттрибутов ]=========</span>
+
+    <span class="nx">show</span><span class="o">:</span> <span class="c1">// показать элемент</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span>    <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">=</span> <span class="s1">&#39;visible&#39;</span><span class="p">;</span>
+        <span class="p">},</span>
+
+    <span class="nx">hide</span><span class="o">:</span> <span class="c1">// спрятать элемент</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">!=</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span>  <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+    <span class="nx">blank</span><span class="o">:</span> <span class="c1">// &quot;забелить&quot; эелемент</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span>    <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+    <span class="nx">makeBlock</span><span class="o">:</span> <span class="c1">// сделать элемент блоком (иногда необходимо)</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">!=</span> <span class="s1">&#39;block&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span>  <span class="o">=</span> <span class="s1">&#39;block&#39;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+    <span class="nx">isPointInside</span><span class="o">:</span> <span class="c1">// находится ли точка внутри элемента, точка в формате {x, y}</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">curPoint</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">localRight</span>  <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalLeft</span><span class="p">())</span> <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalWidth</span><span class="p">())</span>
+                                       <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">localBottom</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalTop</span><span class="p">())</span>  <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalHeight</span><span class="p">())</span>
+                                       <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalLeft</span><span class="p">())</span> <span class="o">&lt;</span> <span class="nx">curPoint</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                   <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalTop</span><span class="p">())</span>  <span class="o">&lt;</span> <span class="nx">curPoint</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                   <span class="p">(</span><span class="nx">localRight</span> <span class="o">&gt;</span> <span class="nx">curPoint</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">localBottom</span> <span class="o">&gt;</span> <span class="nx">curPoint</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">isElementNear</span><span class="o">:</span> <span class="cm">/* находится ли переданный элемент рядом с этим элементом</span>
+<span class="cm">            (перекрывает область этого элемента больше чем половиной своей) */</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">graphicalElement</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">graphicalElement</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">elmCurPos</span> <span class="o">=</span> <span class="nx">findPos</span><span class="p">(</span><span class="nx">graphicalElement</span><span class="p">.</span><span class="nx">element</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">elmHalfHeight</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">graphicalElement</span><span class="p">.</span><span class="nx">getLocalHeight</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                <span class="kd">var</span> <span class="nx">elmHalfWidth</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">graphicalElement</span><span class="p">.</span><span class="nx">getLocalWidth</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                <span class="kd">var</span> <span class="nx">localLeft</span> <span class="o">=</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalLeft</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalLeft</span><span class="p">())</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">localTop</span> <span class="o">=</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalTop</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalTop</span><span class="p">())</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">leftCorrect</span> <span class="o">=</span> <span class="p">(</span><span class="nx">elmCurPos</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">localLeft</span> <span class="o">-</span> <span class="nx">elmHalfWidth</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+                                  <span class="p">(</span><span class="nx">elmCurPos</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">localLeft</span> <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalWidth</span><span class="p">())</span> <span class="o">-</span> <span class="nx">elmHalfWidth</span><span class="p">));</span>
+                <span class="kd">var</span> <span class="nx">topCorrect</span> <span class="o">=</span> <span class="p">(</span><span class="nx">elmCurPos</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">localTop</span> <span class="o">-</span> <span class="nx">elmHalfHeight</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+                                 <span class="p">(</span><span class="nx">elmCurPos</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">localTop</span> <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalHeight</span><span class="p">())</span> <span class="o">-</span> <span class="nx">elmHalfHeight</span><span class="p">));</span>
+                <span class="k">return</span> <span class="nx">leftCorrect</span> <span class="o">&amp;&amp;</span> <span class="nx">topCorrect</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">},</span>
+
+    <span class="nx">isElementInside</span><span class="o">:</span> <span class="c1">// находится ли переданный элемент внутри этого элемента</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">graphicalElement</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">graphicalElement</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">elmCurPos</span> <span class="o">=</span> <span class="nx">findPos</span><span class="p">(</span><span class="nx">graphicalElement</span><span class="p">.</span><span class="nx">element</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">elmHalfHeight</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">graphicalElement</span><span class="p">.</span><span class="nx">getOffsetHeight</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                <span class="kd">var</span> <span class="nx">elmHalfWidth</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">graphicalElement</span><span class="p">.</span><span class="nx">getOffsetWidth</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">isPointInside</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="p">(</span><span class="nx">elmCurPos</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">elmHalfWidth</span><span class="p">),</span>
+                                       <span class="nx">y</span><span class="o">:</span><span class="p">(</span><span class="nx">elmCurPos</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">elmHalfHeight</span><span class="p">)})</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">},</span>
+
+    <span class="nx">isLeftSide</span><span class="o">:</span> <span class="c1">// находится ли точка({x, y}) на левой стороне области элемента</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">curPoint</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">elmHalfWidth</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalWidth</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">localLeft</span> <span class="o">=</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalLeft</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalLeft</span><span class="p">())</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">curPoint</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;=</span> <span class="nx">localLeft</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">curPoint</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">localLeft</span> <span class="o">+</span> <span class="nx">elmHalfWidth</span><span class="p">));</span>
+        <span class="p">},</span>
+
+    <span class="nx">isRightSide</span><span class="o">:</span> <span class="c1">// находится ли точка({x, y}) на правой стороне элемента</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">curPoint</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">elmHalfWidth</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalWidth</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">localRight</span> <span class="o">=</span> <span class="p">((</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalLeft</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+                    <span class="o">?</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalLeft</span><span class="p">())</span>
+                    <span class="o">:</span> <span class="mi">0</span><span class="p">))</span> <span class="o">+</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalWidth</span><span class="p">());</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">curPoint</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="nx">localRight</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">curPoint</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">localRight</span> <span class="o">-</span> <span class="nx">elmHalfWidth</span><span class="p">));</span>
+        <span class="p">},</span>
+
+    <span class="nx">inTopOf</span><span class="o">:</span> <span class="c1">// находится ли точка({x, y}) на верхней стороне области элемента</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">curPoint</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">localTop</span>    <span class="o">=</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalTop</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalTop</span><span class="p">())</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">localHeight</span> <span class="o">=</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalHeight</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalHeight</span><span class="p">())</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">clientHeight</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">clientHeight</span> <span class="o">&lt;</span> <span class="nx">localHeight</span><span class="p">))</span>
+                <span class="nx">localHeight</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
+            <span class="k">return</span> <span class="p">((</span><span class="nx">curPoint</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="nx">localTop</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">curPoint</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="nx">localTop</span> <span class="o">+</span> <span class="p">(</span><span class="nx">localHeight</span> <span class="o">/</span> <span class="mi">10</span><span class="p">))));</span>
+        <span class="p">},</span>
+
+    <span class="nx">inBottomOf</span><span class="o">:</span> <span class="c1">// находится ли точка({x, y}) на нижней стороне области элемента</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">curPoint</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">localTop</span>    <span class="o">=</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalTop</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalTop</span><span class="p">())</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">localHeight</span> <span class="o">=</span> <span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalHeight</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getLocalHeight</span><span class="p">())</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">clientHeight</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">clientHeight</span> <span class="o">&lt;</span> <span class="nx">localHeight</span><span class="p">))</span>
+                <span class="nx">localHeight</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
+            <span class="k">return</span> <span class="p">((</span><span class="nx">curPoint</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="nx">localTop</span> <span class="o">+</span> <span class="nx">localHeight</span> <span class="o">-</span> <span class="p">(</span><span class="nx">localHeight</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)))</span> <span class="o">&amp;&amp;</span>
+                    <span class="p">(</span><span class="nx">curPoint</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nx">localTop</span> <span class="o">+</span> <span class="nx">localHeight</span><span class="p">)));</span>
+        <span class="p">},</span>
+
+    <span class="nx">recalc</span><span class="o">:</span> <span class="c1">// пересчитывает координаты элемента</span>
+           <span class="cm">/* baseOffset в подавляющем большинстве случаев -- это</span>
+<span class="cm">           { x: this.element.scrollLeft, y: this.element.scrollTop } */</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">baseOffset</span><span class="p">)</span> <span class="p">{</span>
+
+            <span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">findPos</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">setBaseLeft</span><span class="p">(</span><span class="nx">pos</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setBaseTop</span><span class="p">(</span><span class="nx">pos</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setLocalLeft</span><span class="p">(</span><span class="nx">pos</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="p">(</span><span class="nx">baseOffset</span> <span class="o">?</span> <span class="nx">baseOffset</span><span class="p">.</span><span class="nx">x</span> <span class="o">:</span> <span class="mi">0</span><span class="p">));</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setLocalTop</span><span class="p">(</span><span class="nx">pos</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="p">(</span><span class="nx">baseOffset</span> <span class="o">?</span> <span class="nx">baseOffset</span><span class="p">.</span><span class="nx">y</span> <span class="o">:</span> <span class="mi">0</span><span class="p">));</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setLocalWidth</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getOffsetWidth</span><span class="p">()));</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setLocalHeight</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getOffsetHeight</span><span class="p">()));</span>
+        <span class="p">},</span>
+
+    <span class="nx">addOffset</span><span class="o">:</span> <span class="c1">// добавляет смещение к элементу, смещение в формате {x, y}</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">offsetXY</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setLocalLeft</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getBaseLeft</span><span class="p">())</span> <span class="o">-</span> <span class="nx">offsetXY</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">setLocalTop</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getBaseTop</span><span class="p">())</span> <span class="o">-</span> <span class="nx">offsetXY</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+        <span class="p">},</span>
+
+    <span class="nx">copyElmRectParameters</span><span class="o">:</span> <span class="c1">// скопировать атрибуты с этого элемента на другой</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">fromElm</span><span class="p">,</span> <span class="nx">toElm</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">toElm</span> <span class="o">=</span> <span class="nx">toElm</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">;</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">toElm</span><span class="p">,</span> <span class="nx">DND_BTOP_ATTR</span><span class="p">,</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="nx">fromElm</span><span class="p">,</span> <span class="nx">DND_BTOP_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">),</span> <span class="nx">DND_NS</span><span class="p">);</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">toElm</span><span class="p">,</span> <span class="nx">DND_BLEFT_ATTR</span><span class="p">,</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="nx">fromElm</span><span class="p">,</span> <span class="nx">DND_BLEFT_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">),</span> <span class="nx">DND_NS</span><span class="p">);</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">toElm</span><span class="p">,</span> <span class="nx">DND_LTOP_ATTR</span><span class="p">,</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="nx">fromElm</span><span class="p">,</span> <span class="nx">DND_LTOP_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">),</span> <span class="nx">DND_NS</span><span class="p">);</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">toElm</span><span class="p">,</span> <span class="nx">DND_LLEFT_ATTR</span><span class="p">,</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="nx">fromElm</span><span class="p">,</span> <span class="nx">DND_LLEFT_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">),</span> <span class="nx">DND_NS</span><span class="p">);</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">toElm</span><span class="p">,</span> <span class="nx">DND_LWIDTH_ATTR</span><span class="p">,</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="nx">fromElm</span><span class="p">,</span> <span class="nx">DND_LWIDTH_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">),</span> <span class="nx">DND_NS</span><span class="p">);</span>
+            <span class="nx">setElmAttr</span><span class="p">(</span><span class="nx">toElm</span><span class="p">,</span> <span class="nx">DND_LHEIGHT_ATTR</span><span class="p">,</span> <span class="nx">getElmAttr</span><span class="p">(</span><span class="nx">fromElm</span><span class="p">,</span> <span class="nx">DND_LHEIGHT_ATTR</span><span class="p">,</span> <span class="nx">DND_NS</span><span class="p">),</span> <span class="nx">DND_NS</span><span class="p">);</span>
+        <span class="p">}</span>
+
+<span class="p">});</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Оба этих класса, надеюсь, помогут вам при решении задач, связанных с опознаванием элементов DOM как графических объектов (например, Drag’n&#39;Drop (здесь я наследовал класс перетаскиваемыx нод, классы областей, их содержащих (несколько с разными свойствами, отнаследованных друг от друга) и помощник для перетаскивания &ndash; от <code>GraphicElementWrapper</code>, а главный контейнер &ndash; от <code>ElementWrapper</code>) или, например, веб-приложение, эмулирующее работу оконного (здесь, когда я этим занимался, я наследовал перетаскиваемые элементы от <code>GraphicElementWrapper</code>, а меню, статусбар, рабочую область &ndash; от <code>ElementWrapper</code>).</p>
+
+<p>Как всё это работает &ndash; довольно-таки непростой вопрос, но я постараюсь через некоторое время уделить внимание и ему, возможно в этой же статье… А пока &ndash; кажется всё. Удач в JS-конструировании :).</p>
+<h3 id="section">Ссылки</h3>
+<p>про это…</p>
+
+<ul>
+<li>… - <a href="http://dklab.ru/chicken/nablas/40.html">по-русски, от Дмитрия Котерова</a></li>
+<li>… - <a href="http://forum.dklab.ru/comments/nablas/40InheritanceInJavascript.html?start=80&amp;sid=fac82f100376bdaceb0f5024b136fb0c">более поздние впечатления - по-русски, от Дмитрия Котерова и его соратников</a></li>
+<li>…<a href="http://ajaxpatterns.org/Javascript_Inheritance">на AjaxPatterns</a></li>
+<li>…<a href="http://www.ajaxpath.com/javascript-inheritance/">на AJAXPath</a></li>
+<li>…<a href="http://www.xml.com/pub/a/2006/06/07/object-oriented-javascript.html">на XML.com</a></li>
+<li>…<a href="http://www.webreference.com/js/column79/">на WebReference.com</a></li>
+<li>…<a href="http://www.codeproject.com/aspnet/JsOOP1.asp">на The Code Project</a></li>
+<li>…<a href="http://www.javascriptkit.com/javatutors/oopjs.shtml">на JavaScript Kit</a></li>
+<li>…<a href="http://www.devarticles.com/c/a/JavaScript/ObjectOriented-JavaScript-An-Introduction-to-Core-Concepts/">на DevArticles</a></li>
+<li>… - <a href="http://chunkysoup.net/advanced/oojavascript1/">как на этом делать галерею</a></li>
+<li>…<a href="http://www.kevlindev.com/tutorials/javascript/inheritance/index.htm">кратко, от Kevin Lindsey</a></li>
+<li>…<a href="http://blogs.nitobi.com/dave/?p=166">кратко, от Dave Johnson</a></li>
+<li>… - <a href="http://forum.vingrad.ru/index.php?showtopic=120066&amp;view=findpost&amp;p=1215304">ссылки от Zeroglif</a></li>
+</ul>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль в Github"><img src="/ru/assets/img/social/github.png" width="16" height="16" alt="профиль в GitHub"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль в Stackoverflow"><img src="/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/ru/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/ru/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

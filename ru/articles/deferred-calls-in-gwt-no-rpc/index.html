@@ -1,0 +1,819 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/ru/" />
+<link rel="index" href="/ru/archives/" />
+
+<link rel="shortcut icon" href="/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/ru/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/ru/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — Deferred-вызовы серверного API в GWT (без RPC) &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/ru/" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="/ru/archives/" rel="index" title="Архив">Архив</a></li>
+        <li><a href="/ru/tags/" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        <li><a href="/ru/feed.xml" title="Лента RSS">RSS</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/ru/" title="Ни слова о луке">Ни слова о луке</a></h1>
+    <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li><a href="/" title="English Version">English Version</a></li>
+        <li>Russian Version</li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/ru/">Блог</a></li>
+        
+            
+            
+
+            <li><a href="/ru/articles">Статьи</a></li>
+        
+            
+            
+
+            <li>Deferred-вызовы серверного API в ...</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/ru/articles/post-about-fluxus/"
+                   title="Fluxus — Прототипирование OpenGL графики и игр on-the-fly (добавить Scheme по вкусу)">Предыдущая статья</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/ru/articles/ant-junit-one-liner-output-formatter/"
+                   title="Только полезная информация в выводе JUnit при запуске из ant">Следующая статья</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            
+    
+        
+            
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/ru/articles/deferred-calls-in-gwt-no-rpc/" title="Deferred-вызовы серверного API в GWT (без RPC)">Deferred-вызовы серверного API в GWT (без RPC)</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Опубликован</dt>
+    <dd class="nwao-published">
+        <a href="/ru/archives/2010/"
+           title="15 июня 2010, вторник. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>15 июн 2010</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Метки</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/ru/tags/deferred/" rel="tag"
+                       title="Статьи с меткой 'deferred'">deferred</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/gwt/" rel="tag"
+                       title="Статьи с меткой 'gwt'">gwt</a>
+                    
+                        <span class="tag-count">4</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/java/" rel="tag"
+                       title="Статьи с меткой 'java'">java</a>
+                    
+                        <span class="tag-count">11</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/json/" rel="tag"
+                       title="Статьи с меткой 'json'">json</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/requestbuilder/" rel="tag"
+                       title="Статьи с меткой 'requestbuilder'">requestbuilder</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p><strong>Deferred</strong> - <em>зд.</em> термин, который применяется для описания <strong>вложенных асинхронных вызовов</strong>, см. например <a href="http://javascript.ru/unsorted/async/deferred-deep">Deferred в Javascript</a> и конкретно <a href="http://api.dojotoolkit.org/jsdoc/1.3/dojo.Deferred">Deferred в Dojo framework</a>. <em>Не путать с Deferred Binding</em>.</p>
+
+<hr>
+
+<blockquote>
+<p>Заранее отмечу, что статья никак не связана с GWT-RPC и описывает только <em>&ldquo;нативные&rdquo;</em> вызовы серверного API. GWT-RPC ограничивает возможности крупных проектов тем, что на серверной строне может использоваться только Java, в нашем случае я хочу избавить разработчика клиентской стороны от таких ограничений, поэтому использую <code>RequestBuilder</code> напрямую.</p>
+</blockquote>
+
+<p>Как известно, в GWT рекомендуется придерживаться <em>асинхронных</em> вызовов и полагаться только на них.</p>
+
+<p>Представим, что есть некое API, располагающееся на том же сервере, что и GWT-приложение. API предоставляет набор функций, которые можно вызывать по адресу вроде <code>http://127.0.0.1/api/do.something?param1=foo&amp;param2=bar</code> (или POST-запросом, неважно). Допустим, это API возвращает JSON-объекты в виде ответа. Если делать все функции в таком API атомарными, то рано или поздно придётся последовательно делать цепочки асинхронных запросов вроде <code>user.new</code> (передаётся юзернейм и возвращется id пользователя), затем <code>session.new</code> (только если <code>user.new</code> исполнился корректно, передаём полученный id пользователя, получаем id сессии), затем <code>group.enter</code> (только если <code>session.new</code> исполнился корректно, передаём id юзера и id сессии), ну и так далее. Если какой-то запрос в цепочке свалился, то считается, что вся цепочка не сработала (а обычно требуется именно чтобы такая цепочка сработала вся до конца). Такие цепочки вызовов называются <em>вложенными</em> и к ним принято применять термин <em>Deferred</em>.</p>
+
+<p>Итак, чтобы общаться с описанным API, нужно написать некий, простой в использовании, Java-GWT код, который будет позволять вызывать такие цепочки. О таком коде я последовательно и расскажу.</p>
+
+<hr>
+
+<p>Ниже &lsquo;хэшами&rsquo; я называю <code>HashMap</code>&lsquo;ы, если не указано иного - просто для краткости, с <code>HashSet</code>&#39;ами и md5/sha-хэшами они не имеют ничего общего. В JavaScript это объекты, в PHP/Perl - хэш-массивы, в Python - словари. Не в том смысле, что это идентичные вещи, а в том, что это сходные концепции.</p>
+
+<p>Условимся, что API возвращает JSON-объекты, поля у которых варьируются, но всегда присутствует поле <code>&quot;status&quot;</code>, равное <code>&quot;error&quot;</code> (тогда присутствет также поле <code>&quot;description&quot;</code>) или <code>&quot;ok&quot;</code>.</p>
+
+<p>Для примера возьмём цепочку (названия функций говорят сами за себя, поэтому их назначения пояснять не буду):</p>
+
+<ul>
+<li><code>user.enter</code> - принимает <code>username=foo</code> и возвращает <code>{ &#39;status&#39;: &#39;ok&#39;, &#39;uid&#39;: 50 }</code></li>
+<li><code>session.new</code> - не принимает ничего и возвращает <code>{ &#39;status&#39;: &#39;ok&#39;, &#39;sid&#39;: &#39;0e05bf5e-b521-46bf-8bf4-b017c7efd3d2&#39; }</code>, если пользователь вошёл</li>
+<li><code>group.enter</code> - принимает <code>sid=0e05bf5e-b521-46bf-8bf4-b017c7efd3d2</code> и <code>gid=somegroup</code> и возвращает <code>{ &#39;status&#39;: &#39;ok&#39;, &#39;master&#39;: &#39;true&#39; }</code>. Если группа не существует, она автоматически создаётся.</li>
+<li><code>group.users</code> - принимает <code>gid=somegroup</code> и возвращает <code>{ &#39;status&#39;: &#39;ok&#39;, &#39;users&#39;: [&#39;bill&#39;, &#39;steve&#39;, &#39;sergey&#39;, &#39;linus&#39;] }</code></li>
+<li><code>group.getmessages</code> - принимает <code>gid=somegroup</code>, <code>start_from=20</code> и возвращает  <code>{ &#39;status&#39;: &#39;ok&#39;, &#39;count&#39;: 3, &#39;messages&#39;: [&#39;helloall&#39;, &#39;hows iPad?&#39;, &#39;seems it sucks&#39;, &#39;forget about it&#39;] }</code></li>
+<li>если произошла ошибка, она возвращается в виде <code>{ &#39;status&#39;: &#39;error&#39;, &#39;code&#39;: 200, &#39;description&#39;: &#39;Wow!&#39;}</code></li>
+</ul>
+
+<p>Общая идея такова: Поскольку между вызовами возвращаемые и передаваемые параметры обычно имеют одинаковые имена (или, лучше сказать, <em>обязаны</em> иметь), то вполне достаточно иметь между этими вызовами некий общий контекст, в который будут складываться возвращённые параметры и из которого будут вытаскиваться те параметры, которые нужно передать. Такой контект можно предварительно подготовить, заранее установив в него уже известные переменные и передавать его, обновляя, сквозь все функции.</p>
+
+<p>Дополнительное преимущество такого подхода состоит в том, что <em>вообще все</em> цепочки могут иметь <em>один общий</em> контекст, в котором всегда будет доступен, например, последний ID сессии (будет замещён по ключу в хэше после каждого вызова <code>session.new</code>) или хранить GUID последнего запроса, если условиться возвращать его в каждой функции, или верифицировать любой процесс приёма-отдачи засчёт установки некой переменной в контексте в ожидаемое значение и проверять его после выполнения запроса и т.п.</p>
+
+<p>Поэтому такой контекст может быть обычным <code>HashMap&lt;String, Object&gt;</code>:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">APICallContext</span> <span class="kd">extends</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="o">{</span> <span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Кода относительно много, поэтому начнём с конца и подготовим всё небходимое для вызова цепочки. Все без исключения внешние импорты берутся из пакетов  <code>com.google.gwt....</code> и <code>java.util</code>, поэтому я их не буду указывать.</p>
+
+<p>Опишем интерфейс хэндлера, который будет срабатывать после успешного вызова <em>каждой</em> функции в цепочке (<code>statusCode == 200</code>, <code>&#39;status&#39;: &#39;ok&#39;</code>):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIResponseHandler</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleResponse</span><span class="o">(</span><span class="n">JSONObject</span> <span class="n">answer</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Опишем интерфейс хэндлера, который будет срабатывать после того, как выполнение <em>всей</em> цепочки закончилось успешно и получать изменённый, в соответствии с ответами на запросы, контекст:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIChainResponseHandler</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleSuccess</span><span class="o">(</span><span class="n">EurekaAPICallContext</span> <span class="n">context</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Опишем интерфейс хэндлера, который будет срабатывать после <em>первого</em> неудачного вызова функции из цепочки:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIErrorHandler</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleError</span><span class="o">(</span><span class="n">String</span> <span class="n">errorText</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>В результате, вызов цепочки будет совершаться через передачу следующих параметров</p>
+
+<ul>
+<li>Списка из названий (алиасов) функций, которые требуется выполнить. Напр., <code>[&quot;user.new&quot;, &quot;session.new&quot;, &quot;page.enter&quot;]</code>.</li>
+<li>Подготовленного контекста, или <code>null</code>, тогда перед выполнением цепочки будет создан пустой контекст</li>
+<li>Хэндлера, который сработает после успешного выполнения всей цепочки (все функции вернули <code>&#39;status&#39;: &#39;ok&#39;</code>)</li>
+<li>Хэндлера, который сработает после первого неудачного вызова одной из функций в цепочке (как минимум одна функция вернула <code>&#39;status&#39;: &#39;error&#39;</code>)</li>
+</ul>
+
+<p>Так будет выглядеть описание функции, вызывающей такую цепочку:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">callServerFuncsChain</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsCodes</span><span class="o">,</span> <span class="n">APICallContext</span> <span class="n">context</span><span class="o">,</span>
+                                 <span class="n">APIChainResponseHandler</span> <span class="n">finalSuccessHandler</span><span class="o">,</span> <span class="n">APIErrorHandler</span> <span class="n">errorHandler</span><span class="o">);</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Любой из хэндлеров можно передать как <code>null</code>, тогда в соответствующем случае просто ничего не будет вызвано.</p>
+
+<p>Создадим оборачивающий класс, который будет управлять связью с API и вставим в него все приведённые выше интерфейсы:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIConnector</span> <span class="o">{</span>
+
+    <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&quot;serial&quot;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">APICallContext</span> <span class="kd">extends</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="o">{</span> <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIResponseHandler</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleResponse</span><span class="o">(</span><span class="n">JSONObject</span> <span class="n">answer</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIErrorHandler</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleError</span><span class="o">(</span><span class="n">String</span> <span class="n">errorText</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIChainResponseHandler</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleSuccess</span><span class="o">(</span><span class="n">EurekaAPICallContext</span> <span class="n">context</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Укажем в этом классе общий URL API, к которому он будет подключаться:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="s">&quot;http://127.0.0.1/api&quot;</span><span class="o">;</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Опишем в нём хэш, который будет содержать данные о том, какие параметры необходимо передавать в каждую из функций API. Если функция не принимает параметров - её можно не указывать.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIConnector</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="s">&quot;http://127.0.0.1/api&quot;</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">apiFuncsMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;();</span>
+
+    <span class="kd">static</span> <span class="o">{</span>
+        <span class="n">apiFuncsMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;user.enter&quot;</span><span class="o">,</span> <span class="s">&quot;username&quot;</span><span class="o">);</span>
+        <span class="c1">// apiFuncsMap.put(&quot;session.new&quot;, null);</span>
+        <span class="n">apiFuncsMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;group.enter&quot;</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;sid&quot;</span><span class="o">,</span> <span class="s">&quot;gid&quot;</span><span class="o">));</span>
+        <span class="n">apiFuncsMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;group.users&quot;</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;gid&quot;</span><span class="o">));</span>
+        <span class="n">apiFuncsMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;room.getmessages&quot;</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;gid&quot;</span><span class="o">,</span> <span class="s">&quot;start_from&quot;</span><span class="o">));</span>
+        <span class="n">apiFuncsMap</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;group.say&quot;</span><span class="o">,</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;gid&quot;</span><span class="o">,</span> <span class="s">&quot;gid&quot;</span><span class="o">,</span> <span class="s">&quot;message&quot;</span><span class="o">));</span>
+    <span class="o">};</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Опишем те параметры, которые можно не сохранять в контексте, дабы его не засорять:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">filterFields</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;status&quot;</span><span class="o">,</span> <span class="s">&quot;description&quot;</span><span class="o">));</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Пусть класс будет иметь возможность работать в одном из режимов: <code>GET</code> или <code>POST</code> и принимать для этого в конструктор boolean-параметр <code>getMode</code>, при значении <code>true</code> будет включаться режим <code>GET</code>, при значении <code>false</code> - <code>POST</code></p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">getMode</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">APIConnector</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">getMode</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">getMode</span> <span class="o">=</span> <span class="n">getMode</span><span class="o">;</span>
+    <span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Теперь напишем собственно метод, который будет делать единственный вызов единственной функции API и после удачного вызова вызывать хэндлер <code>successHandler</code>, а после неудачного - <code>errorHandler</code>. Для этого используется GWT-класс <code>RequestBuilder</code>, который в скомпилированной версии генерирует известный нам AJAX-вызов через <code>XMLHttpRequest</code> (согласно браузеру). Методу также передаётся список параметров функции/запроса в виде <code>Map&lt;String, String&gt;</code>.</p>
+
+<p>Кроме этого требуется указать коллбэк, который будет вызван из GWT после асинхронного вызова, для этого дополнительно опишем внутренний класс. И, будем запоминать последнюю ошибку на всякий случай (обратите внимание, как обрабатывается ошибка в коллбэке):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">private</span> <span class="kt">boolean</span> <span class="n">wasError</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+<span class="kd">private</span> <span class="n">String</span> <span class="n">lastErrorText</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">callServerFunc</span><span class="o">(</span><span class="n">String</span> <span class="n">funcCode</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="o">,</span>
+                              <span class="n">APIResponseHandler</span> <span class="n">successHandler</span><span class="o">,</span>
+                              <span class="n">APIErrorHandler</span> <span class="n">errorHandler</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">StringBuffer</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
+    <span class="n">url</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">SERVER_URL</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span><span class="o">);</span>
+    <span class="n">url</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">funcCode</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">getMode</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">params</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">))</span> <span class="n">url</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;?&quot;</span> <span class="o">+</span> <span class="n">prepareParams</span><span class="o">(</span><span class="n">params</span><span class="o">));</span>
+
+    <span class="n">forgetErrors</span><span class="o">();</span>
+
+    <span class="n">RequestBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RequestBuilder</span><span class="o">(</span>
+                        <span class="n">getMode</span> <span class="o">?</span> <span class="n">RequestBuilder</span><span class="o">.</span><span class="na">GET</span> <span class="o">:</span> <span class="n">RequestBuilder</span><span class="o">.</span><span class="na">POST</span><span class="o">,</span>
+                        <span class="n">url</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+    <span class="k">if</span> <span class="o">(!</span><span class="n">getMode</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">builder</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&quot;Content-Type&quot;</span><span class="o">,</span> <span class="s">&quot;application/x-www-form-urlencoded&quot;</span><span class="o">);</span>
+        <span class="n">builder</span><span class="o">.</span><span class="na">setRequestData</span><span class="o">(</span><span class="n">prepareParams</span><span class="o">(</span><span class="n">params</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="n">builder</span><span class="o">.</span><span class="na">setCallback</span><span class="o">(</span><span class="k">new</span> <span class="n">APIRequestCallback</span><span class="o">(</span><span class="n">successHandler</span><span class="o">,</span> <span class="n">errorHandler</span><span class="o">));</span>
+
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">builder</span><span class="o">.</span><span class="na">send</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RequestException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">storeError</span><span class="o">(</span><span class="s">&quot;Couldn&#39;t retrieve data because of request exception. &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">storeError</span><span class="o">(</span><span class="s">&quot;Unknown Exception: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">protected</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">prepareParams</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">params</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">StringBuffer</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuffer</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">iter</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">iterator</span><span class="o">();</span> <span class="n">iter</span><span class="o">.</span><span class="na">hasNext</span><span class="o">();</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">Map</span><span class="o">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">param</span> <span class="o">=</span> <span class="n">iter</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">URL</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">param</span><span class="o">.</span><span class="na">getKey</span><span class="o">())</span> <span class="o">+</span> <span class="s">&quot;=&quot;</span> <span class="o">+</span> <span class="n">URL</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">param</span><span class="o">.</span><span class="na">getValue</span><span class="o">()));</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">iter</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;&amp;&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">return</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">forgetErrors</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">wasError</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="n">lastErrorText</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">storeError</span><span class="o">(</span><span class="n">String</span> <span class="n">errorText</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">wasError</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="n">lastErrorText</span> <span class="o">=</span> <span class="n">errorText</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">APIRequestCallback</span> <span class="kd">implements</span> <span class="n">RequestCallback</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">APIResponseHandler</span> <span class="n">successHandler</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">APIErrorHandler</span> <span class="n">errorHandler</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">APIRequestCallback</span><span class="o">(</span><span class="n">APIResponseHandler</span> <span class="n">successHandler</span><span class="o">,</span>
+                              <span class="n">APIErrorHandler</span> <span class="n">errorHandler</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">successHandler</span> <span class="o">=</span> <span class="n">successHandler</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">errorHandler</span> <span class="o">=</span> <span class="n">errorHandler</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">APIRequestCallback</span><span class="o">(</span><span class="n">APIResponseHandler</span> <span class="n">successHandler</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">successHandler</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleError</span><span class="o">(</span><span class="n">String</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">errorHandler</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">errorHandler</span><span class="o">.</span><span class="na">handleError</span><span class="o">(</span><span class="n">error</span><span class="o">);</span>
+        <span class="n">storeError</span><span class="o">(</span><span class="n">error</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Request</span> <span class="n">request</span><span class="o">,</span> <span class="n">Throwable</span> <span class="n">exception</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">handleError</span><span class="o">(</span><span class="s">&quot;Can&#39;t get JSON data: &quot;</span>  <span class="o">+</span> <span class="n">exception</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onResponseReceived</span><span class="o">(</span><span class="n">Request</span> <span class="n">request</span><span class="o">,</span> <span class="n">Response</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="mi">200</span> <span class="o">==</span> <span class="n">response</span><span class="o">.</span><span class="na">getStatusCode</span><span class="o">())</span> <span class="o">{</span>
+            <span class="c1">// FIXME: check if response is trusted</span>
+            <span class="n">JSONValue</span> <span class="n">value</span> <span class="o">=</span> <span class="n">JSONParser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getText</span><span class="o">());</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">JSONObject</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">isObject</span><span class="o">();</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">answer</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">successHandler</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">successHandler</span><span class="o">.</span><span class="na">handleResponse</span><span class="o">(</span><span class="n">answer</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">handleError</span><span class="o">(</span><span class="s">&quot;Returned JSON can not be parsed as object&quot;</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">handleError</span><span class="o">(</span><span class="s">&quot;Returned response can not be parsed as JSON&quot;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">handleError</span><span class="o">(</span><span class="s">&quot;Can&#39;t get JSON data (&quot;</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="na">getStatusText</span><span class="o">()</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Также этот метод использует встроенный в GWT JSON-парсер. Кроме всего прочего, он убежден, что из запроса ему приходит правильный JSON-объект поэтому от всех функций API требуется, соответственно и разумеется, чтобы они возвращали JSON-объект. Если какой-то из хэндлеров успеха/ошибки не объявлен - в соответствующих случаях ничего не будет вызвано.</p>
+
+<p>Настало время написать приватный метод, который будет вызывать одну функцию из цепочки зная о том, что при удаче ему нужно вызвать следующую, при ошибке - <code>errorHandler</code>, а при заключительном успехе - <code>finalSuccessHandler</code> (обратите внимание, что это другой интерфейс -  этот хэндлер вызывается не для каждой функции, а только при условии успеха выполнения всей цепочки).  Для этого кроме имени текущей выполняемой функции API ему будет передаваться итератор по именам из цепочки функций, и собственно оба хэндлера. Если следующей функции нет - цепочка окончена - будет вызваться хэндлер успеха,  если она есть - рекурсивно будет вызван тот же самой метод, уже для следующей функции, со сделавшим шаг итератором.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">private</span> <span class="kt">void</span> <span class="nf">callChainFunc</span><span class="o">(</span><span class="n">String</span> <span class="n">function</span><span class="o">,</span> <span class="kd">final</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsIter</span><span class="o">,</span>
+                           <span class="kd">final</span> <span class="n">APICallContext</span> <span class="n">context</span><span class="o">,</span>
+                           <span class="kd">final</span> <span class="n">APIChainResponseHandler</span> <span class="n">finalSuccessHandler</span><span class="o">,</span>
+                           <span class="kd">final</span> <span class="n">APIErrorHandler</span> <span class="n">errorHandler</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">requiredParams</span> <span class="o">=</span> <span class="n">apiFuncsMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">function</span><span class="o">);</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">requiredParams</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="nl">paramName:</span> <span class="n">requiredParams</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">paramName</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">&quot;Required parameter value &#39;&quot;</span>
+                            <span class="o">+</span> <span class="n">paramName</span> <span class="o">+</span> <span class="s">&quot;&#39; for function &#39;&quot;</span> <span class="o">+</span> <span class="n">function</span> <span class="o">+</span> <span class="s">&quot;&#39; was not found in API context&quot;</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">paramName</span><span class="o">,</span> <span class="n">context</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">paramName</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">callServerFunc</span><span class="o">(</span><span class="n">function</span><span class="o">,</span> <span class="n">params</span><span class="o">,</span> <span class="k">new</span> <span class="n">APIResponseHandler</span><span class="o">()</span> <span class="o">{</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleResponse</span><span class="o">(</span><span class="n">JSONObject</span> <span class="n">answer</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">boolean</span> <span class="n">wasError</span> <span class="o">=</span> <span class="s">&quot;error&quot;</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="n">answer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;status&quot;</span><span class="o">).</span><span class="na">toString</span><span class="o">().</span><span class="na">replace</span><span class="o">(</span><span class="s">&quot;\&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">));</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">wasError</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">errorHandler</span><span class="o">.</span><span class="na">handleError</span><span class="o">(</span><span class="s">&quot;received error status &quot;</span> <span class="o">+</span> <span class="n">answer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;description&quot;</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
+                <span class="k">return</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keys</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="na">keySet</span><span class="o">();</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="nl">key:</span> <span class="n">keys</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">filterFields</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">key</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">context</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">answer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">));</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">funcsIter</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+                <span class="n">callChainFunc</span><span class="o">(</span><span class="n">funcsIter</span><span class="o">.</span><span class="na">next</span><span class="o">(),</span> <span class="n">funcsIter</span><span class="o">,</span> <span class="n">context</span><span class="o">,</span> <span class="n">finalSuccessHandler</span><span class="o">,</span> <span class="n">errorHandler</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">finalSuccessHandler</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">finalSuccessHandler</span><span class="o">.</span><span class="na">handleSuccess</span><span class="o">(</span><span class="n">context</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+    <span class="o">},</span> <span class="n">errorHandler</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Метод, как видно, передаёт каждой функции в вызов только необходимые параметры, описанные в хэше c функциями, приведённом выше, берёт их значения из контекста и, после выполнения запроса, устанавливает в контекст по полям все значения из ответа, исключая поля указанные в фильтре, также приведённом выше. Поскольку данные в контекст могут быть установлены и из Java-кода заранее - значения в контексте это нативные объекты, а не строки или объекты JSON.</p>
+
+<p>И, наконец, внешний (публичный) метод, который позволит запустить весь процесс и который мы декларировали в самом начале. Он берёт итератор по списку функций, передаёт первую функцию из списка и сам этот итератор в тот самый приватный метод, который мы только что написали. Хэндлеры уходят туда же.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">callServerFuncsChain</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsCodes</span><span class="o">,</span> <span class="kd">final</span> <span class="n">APICallContext</span> <span class="n">context</span><span class="o">,</span>
+                                 <span class="kd">final</span> <span class="n">APIChainResponseHandler</span> <span class="n">finalSuccessHandler</span><span class="o">,</span>
+                                 <span class="kd">final</span> <span class="n">APIErrorHandler</span> <span class="n">errorHandler</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">funcsCodes</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsIter</span> <span class="o">=</span> <span class="n">funcsCodes</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+        <span class="n">callChainFunc</span><span class="o">(</span><span class="n">funcsIter</span><span class="o">.</span><span class="na">next</span><span class="o">(),</span> <span class="n">funcsIter</span><span class="o">,</span> <span class="n">context</span><span class="o">,</span> <span class="n">finalSuccessHandler</span><span class="o">,</span> <span class="n">errorHandler</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Можно насоздавать алиасов для этого метода, требующих меньшего количества параметров - в качестве любого из хэндлеров позвояляется передавать <code>null</code>, а контекст при его отсутствии можно создавать на месте через <code>new APICallContext()</code>.</p>
+
+<p>Кстати, метод, который помогает внешнему пользователю создать контекст (это не статический метод, поскольку для внутреннего класса необходимо присутствие инстанса):</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="kd">public</span> <span class="n">APICallContext</span> <span class="nf">newCallsContext</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">APICallContext</span><span class="o">();</span>
+    <span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Теперь, пример использования. Общий контекст для всех цепочек можно хранить в приватном поле и передавать при соответствующей необходимости:</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">UsersGroup</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">APIConnector</span> <span class="n">apiConnector</span> <span class="o">=</span> <span class="n">APIConnector</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span> <span class="c1">// удобнее сделать APIConnector синглтоном</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">APICallContext</span> <span class="n">apiContext</span> <span class="o">=</span> <span class="n">apiConnector</span><span class="o">.</span><span class="na">newCallsContext</span><span class="o">();</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">&quot;shamansir&quot;</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">groupname</span> <span class="o">=</span> <span class="s">&quot;testgroup&quot;</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enterGroup</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">apiContext</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;rid&quot;</span><span class="o">,</span> <span class="n">roomname</span><span class="o">);</span>
+        <span class="n">apiContext</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;start_from&quot;</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+        <span class="n">apiContext</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;username&quot;</span><span class="o">,</span> <span class="n">username</span><span class="o">);</span>
+        <span class="n">apiConnector</span><span class="o">.</span><span class="na">callServerFuncsChain</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;user.get&quot;</span><span class="o">,</span>
+                                                        <span class="s">&quot;session.new&quot;</span><span class="o">,</span>
+                                                        <span class="s">&quot;group.enter&quot;</span><span class="o">,</span>
+                                                        <span class="s">&quot;group.users&quot;</span><span class="o">,</span>
+                                                        <span class="s">&quot;group.getmessages&quot;</span><span class="o">),</span>
+                        <span class="n">apiContext</span><span class="o">,</span> <span class="k">new</span> <span class="n">APIChainResponseHandler</span><span class="o">()</span> <span class="o">{</span>
+
+                            <span class="nd">@Override</span>
+                            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleSuccess</span><span class="o">(</span><span class="n">APICallContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="n">username</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;username&quot;</span><span class="o">).</span><span class="na">toString</span><span class="o">();</span>
+                                <span class="n">onMessagesReceived</span><span class="o">(</span>
+                                    <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;count&quot;</span><span class="o">).</span><span class="na">toString</span><span class="o">()),</span>
+                                    <span class="o">(</span><span class="n">JSONArray</span><span class="o">)</span><span class="n">context</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;messageslist&quot;</span><span class="o">));</span>
+                                <span class="n">onParticipantsReceived</span><span class="o">(</span>
+                                    <span class="o">(</span><span class="n">JSONArray</span><span class="o">)</span><span class="n">context</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;users&quot;</span><span class="o">));</span>
+                                <span class="n">onAfterEnter</span><span class="o">();</span>
+                            <span class="o">}</span>
+
+                        <span class="o">},</span> <span class="k">new</span> <span class="n">APIErrorHandler</span><span class="o">()</span> <span class="o">{</span>
+
+                            <span class="nd">@Override</span>
+                            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleError</span><span class="o">(</span><span class="n">String</span> <span class="n">errorText</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="n">Window</span><span class="o">.</span><span class="na">alert</span><span class="o">(</span><span class="s">&quot;Error: &quot;</span> <span class="o">+</span> <span class="n">errorText</span><span class="o">);</span>
+                            <span class="o">}</span>
+
+                        <span class="o">});</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">onParticipantsReceived</span><span class="o">(</span><span class="n">JSONArray</span> <span class="n">participants</span><span class="o">);</span>
+    <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">onMessagesReceived</span><span class="o">(</span><span class="kt">int</span> <span class="n">count</span><span class="o">,</span> <span class="n">JSONArray</span> <span class="n">messages</span><span class="o">);</span>
+
+<span class="o">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>Можно, конечно, использовать, отдельный контекст для цепочки, который заранее подготавливается. А можно, опять же, передавать <code>null</code> :).</p>
+
+<p>Если вы предпочитаете не пользоваться вызовами <code>Arrays.asList</code> используйте инстансы <code>LinkedList</code> - помните, что важен порядок.</p>
+
+<p>Если необходимо известить о принятых объектах несколько целей, можно использовать механизм событий <code>GwtEvent&lt;H&gt;</code> из самого GWT или паттерн шины событий.</p>
+
+<p>Что ж, на этом всё, спасибо за внимание. Прошу указывать на ошибки и возмущаться. если есть повод.</p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль в Github"><img src="/ru/assets/img/social/github.png" width="16" height="16" alt="профиль в GitHub"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль в Stackoverflow"><img src="/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/ru/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/ru/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

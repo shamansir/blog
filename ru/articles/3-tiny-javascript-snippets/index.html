@@ -1,0 +1,750 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/ru/" />
+<link rel="index" href="/ru/archives/" />
+
+<link rel="shortcut icon" href="/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/ru/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/ru/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — 3 Маленьких JS-Сниппета &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/ru/" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="/ru/archives/" rel="index" title="Архив">Архив</a></li>
+        <li><a href="/ru/tags/" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        <li><a href="/ru/feed.xml" title="Лента RSS">RSS</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/ru/" title="Ни слова о луке">Ни слова о луке</a></h1>
+    <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li><a href="/" title="English Version">English Version</a></li>
+        <li>Russian Version</li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/ru/">Блог</a></li>
+        
+            
+            
+
+            <li><a href="/ru/articles">Статьи</a></li>
+        
+            
+            
+
+            <li>3 Маленьких JS-Сниппета</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/ru/articles/android-renderscript-example-translation/"
+                   title="Разбирая фонтан на Renderscript">Предыдущая статья</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/ru/articles/ror-ide-gedit-link/"
+                   title="Ссылка: RoR IDE из gedit">Следующая статья</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#each-" title="Сниппет первый. Двустрочный each (одна функция)">Сниппет первый. Двустрочный each (одна функция)</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section" title="Сниппет второй. Быстрое создание объекта (Одиночное наследование, одна функция)">Сниппет второй. Быстрое создание объекта (Одиночное наследование, одна функция)</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#section-2" title="Использование">Использование</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-3" title="Сниппет третий. Легкий механизм тестирования (одна или две функции)">Сниппет третий. Легкий механизм тестирования (одна или две функции)</a>
+                
+                    <ul>
+                        
+                            
+    
+        
+            
+            <li>
+                <a href="#section-4" title="Примеры">Примеры</a>
+                
+            </li>
+        
+    
+
+                        
+                    </ul>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-5" title="Тесты для сниппетов">Тесты для сниппетов</a>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/ru/articles/3-tiny-javascript-snippets/" title="3 Маленьких JS-Сниппета">3 Маленьких JS-Сниппета</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Опубликован</dt>
+    <dd class="nwao-published">
+        <a href="/ru/archives/2011/"
+           title="03 февраля 2011, четверг. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>03 фев 2011</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Метки</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/ru/tags/javascript/" rel="tag"
+                       title="Статьи с меткой 'javascript'">javascript</a>
+                    
+                        <span class="tag-count">14</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/web-dev/" rel="tag"
+                       title="Статьи с меткой 'web-dev'">web-dev</a>
+                    
+                        <span class="tag-count">21</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p>В данный момент я делаю разные вещи на JavaScript и мне нужно, чтобы код с которым я работаю, был насколько возможно лёгок и прост. Лёгок и прост так же, как и эта статья. Но есть вещи, которые для комфортного программирования мне обязательны. Поэтому и от них тоже я требую лёгкости и простоты.</p>
+<h3 id="each-">Сниппет первый. Двустрочный each (одна функция)</h3>
+<p>Работает с массивами и объектами. В случае объектов в колбэк передаются ключ и значение. В случае массивов - элемент.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * Нано-each</span>
+<span class="cm"> * @param {Array, Object} iterable сущность, по которой производится итерирование</span>
+<span class="cm"> * @param {Function} func вызвается на каждой итерации, в режиме массива принимает элемент (func(elem)),</span>
+<span class="cm">                                                        в режиме объекта принимает ключ и значение (func(v, k))</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">each</span><span class="p">(</span><span class="nx">iterable</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">iterable</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">iterable</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="nx">func</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">iterable</span><span class="p">,</span> <span class="nx">iterable</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">iterable</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="nx">field</span> <span class="k">in</span> <span class="nx">iterable</span><span class="p">)</span> <span class="nx">func</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">iterable</span><span class="p">,</span> <span class="nx">iterable</span><span class="p">[</span><span class="nx">field</span><span class="p">],</span> <span class="nx">field</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="section">Сниппет второй. Быстрое создание объекта (Одиночное наследование, одна функция)</h3>
+<p>Это совсем чуть-чуть изменённая версия <a href="http://www.willmcgugan.com/blog/tech/2009/12/5/javascript-snippets/">из этой прелестной статьи</a>. Кстати, функция <code>bind</code> полезна для случаев типа такого: <code>var catMeow = bind(cat, Cat.meow);</code>.</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">class_</span><span class="p">(</span><span class="nx">def</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">_proto</span> <span class="o">=</span> <span class="nx">def</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">def</span><span class="p">[</span><span class="s1">&#39;_extends&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">_ex</span> <span class="o">=</span> <span class="nx">def</span><span class="p">[</span><span class="s1">&#39;_extends&#39;</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">_ex</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">each</span><span class="p">(</span><span class="nx">_ex</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">k</span><span class="p">){</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">_proto</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">_proto</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">_proto</span><span class="p">[</span><span class="s1">&#39;_s_&#39;</span><span class="o">+</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Wrong _extends field&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">_init</span> <span class="o">=</span> <span class="nx">def</span><span class="p">[</span><span class="s1">&#39;_init&#39;</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">_init</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">_init</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="s1">&#39;_s__init&#39;</span><span class="p">])</span> <span class="k">this</span><span class="p">.</span><span class="nx">_init_super</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">_init</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">_proto</span><span class="p">;</span>
+
+    <span class="nx">def</span><span class="p">[</span><span class="s1">&#39;hasOwnProperty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">k</span> <span class="o">!==</span> <span class="s1">&#39;hasOwnProperty&#39;</span><span class="p">)</span>
+               <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+                  <span class="o">||</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">_proto</span><span class="p">,</span> <span class="nx">k</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">_init</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">bind</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">method</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="section-2">Использование</h4><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">Base</span> <span class="o">=</span> <span class="nx">class_</span><span class="p">({</span>
+
+    <span class="nx">_init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">someMethod</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;parent&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">Child</span> <span class="o">=</span> <span class="nx">class_</span><span class="p">({</span>
+
+    <span class="nx">_extends</span><span class="o">:</span> <span class="nx">Base</span><span class="p">,</span>
+
+    <span class="nx">_init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_s__init</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">c</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">someMethod</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_s_someMethod</span><span class="p">();</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;child&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Base</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Child</span><span class="p">();</span>
+
+<span class="nx">b</span><span class="p">.</span><span class="nx">someMethod</span><span class="p">();</span>
+<span class="nx">c</span><span class="p">.</span><span class="nx">someMethod</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span> <span class="k">instanceof</span> <span class="nx">Base</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span> <span class="k">instanceof</span> <span class="nx">Child</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span> <span class="k">instanceof</span> <span class="nx">Base</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">c</span> <span class="k">instanceof</span> <span class="nx">Child</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="section-3">Сниппет третий. Легкий механизм тестирования (одна или две функции)</h3>
+<p>Для быстрого TDD, если вам оно нравится. Если вам нужно просто проверять ассерты, а не запускать большие сложные тесты, берите только <code>AssertException</code> и функцию <code>assert</code> - это всё что вам нужно. Если нет, <code>runTests</code> позволяет вам запускать <code>JUnit</code>-подобные коллекции текстов, даже с использованием  <code>setUp</code> и <code>tearDown</code>. (Использует консоль для вывода результатов тестов, так что в этом варианте может работать только в Firefox и WebKit)</p>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">AssertException</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">expectation</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">result</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+                                                <span class="k">this</span><span class="p">.</span><span class="nx">expectation</span> <span class="o">=</span> <span class="nx">expectation</span><span class="p">;</span> <span class="p">}</span>
+<span class="nx">AssertException</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">expectation</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;AssertException: Expected: &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">expectation</span> <span class="o">+</span> <span class="s1">&#39; Got: &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">return</span> <span class="p">(</span><span class="s1">&#39;AssertException: Got: &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Нано-ассерт</span>
+<span class="cm"> * @param {Boolean} test тестируемое выражение</span>
+<span class="cm"> * @param {String} [_expectation] что ожидалось</span>
+<span class="cm"> * @throws {AssertException} если ассерт не прошёл</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">assert</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">_expectation</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">test</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">AssertException</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">_expectation</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">_assert</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">expectation</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">test</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">AssertException</span><span class="p">(</span><span class="nx">val</span><span class="p">,</span> <span class="nx">expectation</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">assertNotNull</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span> <span class="nx">_assert</span><span class="p">(</span><span class="nx">test</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">test</span> <span class="o">+</span> <span class="s1">&#39; == null&#39;</span><span class="p">,</span> <span class="s1">&#39;not null&#39;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kd">function</span> <span class="nx">assertDefined</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span> <span class="nx">_assert</span><span class="p">(</span><span class="nx">test</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">,</span> <span class="nx">test</span> <span class="o">+</span> <span class="s1">&#39; !== undefined&#39;</span><span class="p">,</span> <span class="s1">&#39;defined&#39;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kd">function</span> <span class="nx">assertTrue</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span> <span class="nx">_assert</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">test</span> <span class="o">+</span> <span class="s1">&#39; != true&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kd">function</span> <span class="nx">assertFalse</span><span class="p">(</span><span class="nx">test</span><span class="p">)</span> <span class="p">{</span> <span class="nx">_assert</span><span class="p">(</span><span class="o">!</span><span class="nx">test</span><span class="p">,</span> <span class="nx">test</span> <span class="o">+</span> <span class="s1">&#39; != false&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">);</span> <span class="p">}</span>
+<span class="kd">function</span> <span class="nx">assertEquals</span><span class="p">(</span><span class="nx">first</span><span class="p">,</span> <span class="nx">second</span><span class="p">)</span> <span class="p">{</span> <span class="nx">_assert</span><span class="p">(</span><span class="nx">first</span> <span class="o">===</span> <span class="nx">second</span><span class="p">,</span> <span class="nx">first</span> <span class="o">+</span> <span class="s1">&#39; != &#39;</span> <span class="o">+</span> <span class="nx">second</span><span class="p">,</span> <span class="nx">second</span> <span class="o">+</span> <span class="s1">&#39; == &#39;</span> <span class="o">+</span> <span class="nx">second</span><span class="p">);</span> <span class="p">}</span>
+<span class="kd">function</span> <span class="nx">assertInstance</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">cls</span><span class="p">)</span> <span class="p">{</span> <span class="nx">_assert</span><span class="p">(</span><span class="nx">test</span> <span class="k">instanceof</span> <span class="nx">cls</span><span class="p">,</span> <span class="nx">test</span> <span class="o">+</span> <span class="s1">&#39; not instance of &#39;</span> <span class="o">+</span> <span class="nx">cls</span><span class="p">,</span> <span class="nx">test</span> <span class="o">+</span> <span class="s1">&#39; instance of &#39;</span> <span class="o">+</span> <span class="nx">cls</span><span class="p">);</span> <span class="p">}</span>
+<span class="kd">function</span> <span class="nx">assertType</span><span class="p">(</span><span class="nx">test</span><span class="p">,</span> <span class="nx">typename</span><span class="p">)</span> <span class="p">{</span> <span class="nx">_assert</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">test</span> <span class="o">==</span> <span class="nx">typename</span><span class="p">,</span> <span class="nx">test</span> <span class="o">+</span> <span class="s1">&#39; is not of type &#39;</span> <span class="o">+</span> <span class="nx">typename</span><span class="p">,</span> <span class="nx">test</span> <span class="o">+</span> <span class="s1">&#39; has type &#39;</span> <span class="o">+</span> <span class="nx">typename</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Гонщик тестов</span>
+<span class="cm"> * @param {Object, Function} suite для параметров типа функция,</span>
+<span class="cm">                                       вызывает эту функцию и пишет в консоль Firebug если какой-либо ассерт не прошёл</span>
+<span class="cm">                                   для параметров типа объект,</span>
+<span class="cm">                                       работает как JUnit, вызывает каждый метод с именем начинающимся с &#39;test...&#39;,</span>
+<span class="cm">                                       также в нужные моменты вызывает &#39;setUp&#39; и &#39;tearDown&#39;</span>
+<span class="cm">                                       сообщает в консоль Firebug о пройденных/упавших тестах вместе с именем метода</span>
+<span class="cm"> * @param {String} [_name] имя теста или коллекции тестов (используется только для того, чтобы помочь вам определить в логах что именно упало)</span>
+<span class="cm"> * @param {String} [_stopWhenFailed] для режима объекта, прекращает выполнение тестов при первом упавшем ассерте</span>
+<span class="cm"> * @returns {AssertException} в режиме функции - первый упавший ассерт, в режиме объектов - ничего не возвращается</span>
+<span class="cm"> *</span>
+<span class="cm"> * runTests(new SomeClass());</span>
+<span class="cm"> * runTests(someFunc(), &#39;someFunc&#39;);</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">__tCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">__fCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">runTests</span><span class="p">(</span><span class="nx">suite</span><span class="p">,</span> <span class="nx">_name</span><span class="p">,</span> <span class="nx">_stopWhenFailed</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">suite</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="nx">__fCount</span><span class="o">++</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="p">(</span><span class="nx">_name</span> <span class="o">?</span> <span class="nx">_name</span> <span class="o">:</span> <span class="p">(</span><span class="s1">&#39;Function &#39;</span> <span class="o">+</span> <span class="nx">__fCount</span><span class="p">));</span>
+        <span class="k">try</span> <span class="p">{</span> <span class="nx">suite</span><span class="p">();</span>
+              <span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;%s: %s&#39;</span><span class="p">,</span> <span class="nx">field</span><span class="p">,</span> <span class="s1">&#39;OK&#39;</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">ex</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">ex</span> <span class="k">instanceof</span> <span class="nx">AssertException</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">info_</span> <span class="o">=</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nx">field</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">ex</span><span class="p">.</span><span class="nx">lineNumber</span><span class="p">)</span> <span class="nx">info_</span> <span class="o">+=</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">ex</span><span class="p">.</span><span class="nx">lineNumber</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">ex</span><span class="p">.</span><span class="nx">expectation</span><span class="p">)</span>  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Assertion failed. Expected:&#39;</span><span class="p">,</span> <span class="nx">ex</span><span class="p">.</span><span class="nx">expectation</span><span class="p">,</span>
+                                                    <span class="s1">&#39;. Got:&#39;</span><span class="p">,</span> <span class="nx">ex</span><span class="p">.</span><span class="nx">result</span><span class="p">,</span> <span class="nx">info_</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">);</span>
+                <span class="k">else</span> <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Assertion failed. Got:&#39;</span><span class="p">,</span> <span class="nx">ex</span><span class="p">.</span><span class="nx">result</span><span class="p">,</span> <span class="nx">info_</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">);</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">ex</span><span class="p">);</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s1">&#39;%s: %s&#39;</span><span class="p">,</span> <span class="nx">field</span><span class="p">,</span> <span class="s1">&#39;FAILED&#39;</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nx">ex</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">ex</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">suite</span> <span class="o">===</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="nx">__tCount</span><span class="o">++</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">title</span> <span class="o">=</span> <span class="nx">_name</span> <span class="o">||</span> <span class="p">(</span><span class="s2">&quot;Suite &quot;</span> <span class="o">+</span> <span class="nx">__tCount</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">field</span> <span class="k">in</span> <span class="nx">suite</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">((</span><span class="k">typeof</span> <span class="nx">suite</span><span class="p">[</span><span class="nx">field</span><span class="p">]</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">suite</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">field</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Running&#39;</span><span class="p">,</span> <span class="nx">title</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nx">field</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">suite</span><span class="p">.</span><span class="nx">setUp</span><span class="p">)</span> <span class="nx">suite</span><span class="p">.</span><span class="nx">setUp</span><span class="p">();</span>
+                <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">runTests</span><span class="p">(</span><span class="nx">bind</span><span class="p">(</span><span class="nx">suite</span><span class="p">,</span> <span class="nx">suite</span><span class="p">[</span><span class="nx">field</span><span class="p">]),</span> <span class="nx">field</span><span class="p">);</span>
+                <span class="kd">var</span> <span class="nx">passed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">result</span> <span class="o">===</span> <span class="kc">null</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">_stopWhenFailed</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">result</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">))</span> <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">suite</span><span class="p">.</span><span class="nx">tearDown</span><span class="p">)</span> <span class="nx">suite</span><span class="p">.</span><span class="nx">tearDown</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s1">&#39;Passed var has invalid type&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div><h4 id="section-4">Примеры</h4><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">T1</span> <span class="o">=</span> <span class="nx">class_</span><span class="p">({</span>
+
+   <span class="nx">_init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  <span class="p">},</span>
+
+   <span class="nx">setUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">},</span>
+
+   <span class="nx">test1</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+       <span class="nx">assert</span><span class="p">(</span><span class="kc">null</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span>
+       <span class="nx">assert</span><span class="p">(</span><span class="mi">12</span> <span class="o">==</span> <span class="kc">null</span><span class="p">,</span> <span class="s1">&#39;12 == null&#39;</span><span class="p">);</span>
+       <span class="nx">assert</span><span class="p">(</span><span class="s1">&#39;a&#39;</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span>
+       <span class="nx">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+       <span class="nx">assertFalse</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+       <span class="nx">assertTrue</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+       <span class="nx">assertFalse</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+       <span class="nx">assertEquals</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">);</span>
+       <span class="nx">assertEquals</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+       <span class="nx">assertEquals</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;ab&#39;</span><span class="p">);</span>
+       <span class="nx">assertEquals</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">);</span>
+       <span class="nx">assertType</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;integer&#39;</span><span class="p">);</span>
+       <span class="nx">assertType</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">);</span>
+       <span class="nx">assertType</span><span class="p">(</span><span class="s1">&#39;12&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">);</span>
+       <span class="nx">assertInstance</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">T1</span><span class="p">);</span>
+       <span class="nx">assertInstance</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nb">Object</span><span class="p">);</span>
+       <span class="nx">assertInstance</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nb">Object</span><span class="p">);</span>
+       <span class="nx">assertNotNull</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+       <span class="nx">assertNotNull</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+   <span class="p">},</span>
+
+   <span class="nx">test2</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+       <span class="c1">//throw new Error(&#39;Alala&#39;);</span>
+       <span class="nx">assertEquals</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">);</span>
+   <span class="p">},</span>
+
+   <span class="nx">tearDown</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">_f</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">assertTrue</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="nx">assertEquals</span><span class="p">(</span><span class="s1">&#39;12&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">runTests</span><span class="p">(</span><span class="k">new</span> <span class="nx">T1</span><span class="p">());</span>
+<span class="nx">runTests</span><span class="p">(</span><span class="nx">_f</span><span class="p">,</span> <span class="s1">&#39;_f&#39;</span><span class="p">);</span>
+
+<span class="k">new</span> <span class="nx">T1</span><span class="p">().</span><span class="nx">test1</span><span class="p">();</span>
+
+<span class="nx">_f</span><span class="p">();</span>
+</pre></div>
+</td></tr></table></div></div><h3 id="section-5">Тесты для сниппетов</h3>
+<p>С использованием TDD-сниппета я написал общий Test Suite для всех трёх сниппетов, чтобы продемонстрировать их во взаимодействии:</p>
+
+<p><a href="http://paste.pocoo.org/show/344963/">Test Suite</a> | <a href="http://paste.pocoo.org/show/344962/">Все сниппеты</a></p>
+
+<p><strong>P.S.</strong> См. тж. <a href="https://github.com/theshock/nanojs">atom.js</a> (<a href="http://habrahabr.ru/blogs/javascript/109762/">статья</a>)</p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль в Github"><img src="/ru/assets/img/social/github.png" width="16" height="16" alt="профиль в GitHub"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль в Stackoverflow"><img src="/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/ru/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/ru/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

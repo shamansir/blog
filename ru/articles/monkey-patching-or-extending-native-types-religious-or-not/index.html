@@ -1,0 +1,480 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="Блог о программировании и только о нём. Ни слова о луке. Ни одного. Вообще." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/ru/" />
+<link rel="index" href="/ru/archives/" />
+
+<link rel="shortcut icon" href="/ru/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/ru/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/ru/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/ru/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/ru/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/ru/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-6', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — Monkey-Patching или Расширение Встроенных Типов: религия или осознанный выбор? &ndash; Ни слова о луке</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/ru/" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="/ru/archives/" rel="index" title="Архив">Архив</a></li>
+        <li><a href="/ru/tags/" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        <li><a href="/ru/feed.xml" title="Лента RSS">RSS</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/ru/" title="Ни слова о луке">Ни слова о луке</a></h1>
+    <div id="nwao-subtitle"><span>сэр шаман рассказывает о чём может</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li><a href="/" title="English Version">English Version</a></li>
+        <li>Russian Version</li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/ru/">Блог</a></li>
+        
+            
+            
+
+            <li><a href="/ru/articles">Статьи</a></li>
+        
+            
+            
+
+            <li>Monkey-Patching или Расширение ...</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/ru/articles/the-way-of-the-asynchronous-samurai/"
+                   title="Путь асинхронного самурая">Предыдущая статья</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/ru/articles/javascript-the-right-one-announce/"
+                   title="Доклад «Правильный JavaScript» на WebStandardDays @ Киев">Следующая статья</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Содержание:</h3><a href="#top" title="наверх">(наверх)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section" title="Исторический взгляд">Исторический взгляд</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-2" title="Логический взгляд">Логический взгляд</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-3" title="Практический взгляд">Практический взгляд</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-4" title="Разумный взгляд">Разумный взгляд</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-5" title="Когда можно">Когда можно</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-6" title="Альтернативы">Альтернативы</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-7" title="Статьи по теме">Статьи по теме</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#section-8" title="Тесты">Тесты</a>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/ru/articles/monkey-patching-or-extending-native-types-religious-or-not/" title="Monkey-Patching или Расширение Встроенных Типов: религия или осознанный выбор?">Monkey-Patching или Расширение Встроенных Типов: религия или осознанный выбор?</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Опубликован</dt>
+    <dd class="nwao-published">
+        <a href="/ru/archives/2011/"
+           title="16 ноября 2011, среда. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>16 ноя 2011</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Метки</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/ru/tags/javascript/" rel="tag"
+                       title="Статьи с меткой 'javascript'">javascript</a>
+                    
+                        <span class="tag-count">14</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/rage/" rel="tag"
+                       title="Статьи с меткой 'rage'">rage</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/ru/tags/web-dev/" rel="tag"
+                       title="Статьи с меткой 'web-dev'">web-dev</a>
+                    
+                        <span class="tag-count">21</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p>Прошу прощения за «жёлтый» заголовок, но надо же как-то привлечь.</p>
+
+<p>В <a href="http://habrahabr.ru/blogs/javascript/132654/">статье о moment.js</a>, в первой же ветке, <a href="http://habrahabr.ru/blogs/javascript/132654/#comment_4403094">разгорелся горячий спор</a>, в котором участвовали даже мэтры JS на хабре. Это очень странно для меня, мне всё казалось таким очевидным, а уж тем более для мэтров.</p>
+
+<p>И я считаю, это достаточно серьёзный спор для того, чтобы у него была отдельная статья. <em>Очень важно</em> с этим моментом наконец разобраться. <sub>Если мы придём к обратному заявленому в статье решению – это, в конце концов, тоже будет важный ответ.</sub></p>
+
+<p>Так расширять <em>встроенные</em> типы (<code>String</code>, <code>Array</code>, <code>Number</code>, &hellip;) в JS или не расширять?</p>
+
+<p><strong>Однозначно и безоговорочно нет</strong>. Под катом – нерелигиозные аргументы, пояснения, когда всё-таки можно, и дискуссия в комментариях.</p>
+
+<hr>
+<h3 id="section">Исторический взгляд</h3>
+<p>Что мы получим, если рассмотрим исторический процесс становления JavaScript? (это мой вольный взгляд по памяти на историю JS, вполне возможно в нём есть реальные отклонения от настоящего).</p>
+
+<ol>
+<li>Появляется JavaScript и в нём прототипное наследование. И встроенные типы в нём тоже построены на прототипном наследовании. И ещё в нём есть неудобные операции с DOM. Это безэмоциальные факты.</li>
+<li>JS используют для мелких скриптов, в которых не задумываются о наследовании и никаких вопросов соответственно не стоит</li>
+<li>Браузеры развиваются, постепенно JS всё плотнее входит в веб-разработку и становится нужным писать на JavaScript более крупные вещи, чем раньше. Динамические языки ещё не так популярны, популярны: C++, PHP, Java</li>
+<li>Из-за необходимости написания крупных вещей (и неудобства DOM в JS) появляются библиотеки с функциями-помощниками. Одна из них - Prototype.js. Поскольку о наследовании вопрос ещё не стоял и не задавался, авторы библиотеки по привычке подсовывают нужные методы в прототипы встроенных объектов и чувствуют себя совершенно спокойно. И разработчики тоже. Где-то в это же время разработчики начинают хотеть классы в JS (и ваш покорный слуга из их числа) и, откопав где-то копипасту с функцией <code>extend</code> или чем-то подобным, начинают её активно использовать. Прототипы это сложно, а классы – это знакомо и проверено временем. Так что это тоже происходит довольно безболезненно, поскольку классическое ООП нормально ложится на прототипное наследование</li>
+<li>Незаметное событие: Те, кто использует Prototype.js в крупных проектах неожиданно замечают вкусный на вид оператор for-in, прикручивают его, но чуть позже начинают обнаруживать странные ошибки при проходах по массивам и объектам</li>
+<li>Вина за эти ошибки интуитивно падает на JavaScript, эта информация расходится по интернетам, цикл for-in становится нерекомендуемым, все спокойны и рады. На фоне появляется Ajax, после нескольких попыток для него появляется работающая на тот момент кроссбраузерная копипаста, все вроде тоже довольны, но всё же как-то не хватает стандартизации.</li>
+<li>Неожиданно появляется чуть больше людей, которые разобрались в прототипном наследовании и понимают, что то что происходит – не очень хорошо. Появляется и тут же популяризуется jQuery (к коду которого у меня никаких претензий, кроме нынешнего веса библиотеки - но так тоже сложилось исторически) (с удобным методом ajax, btw)</li>
+<li>Адепты прототипного наследования выходят из нор и пытаются раскрыть другим программистам глаза на возможности, которые уже давно им доступны, но они их упускают. Библиотеки ещё весят мало, поэтому их иногда смешивают. Где-то здесь появляется конфликт JQuery и Prototype.js, выросший из <a href="http://ejohn.org/blog/getelementsbyclassname-pre-prototype-16/">проблемы с document.getElementByClassName</a>, причина которой в расширении встроенного типа</li>
+<li>Время идёт, разобравшихся в прототипном наследовании всё больше. С другой стороны подступает функциональщина, которой тоже удобно писать на JS, используя созданные in-the-place объекты</li>
+<li>Появляется node.js, в котором отказываются от классического ООП и используют паттерн &ldquo;модуль&rdquo; из CommonJS, где отдельный файл содержит неймспейс с функциональщиной (или, нежелательно, ООП) внутри. Это шаг к отказу от ООП</li>
+<li>Войны ООП vs прототипы/функциональщина</li>
+<li>Сейчас мы здесь</li>
+</ol>
+
+<p>Видно, что ошибки научили ещё не всех.</p>
+<h3 id="section-2">Логический взгляд</h3>
+<ul>
+<li><em>Почему в JS не рекомендуется использовать оператор <code>for-in</code>?</em></li>
+<li><strong>Неправильный ответ:</strong> потому что в перечисление могут попасть ненужные свойства и методы объекта</li>
+<li><strong>Сомнительный ответ:</strong> не использовать для массивов, потому что для массивов не гарантировано сохранение порядка перебора (это правда, но это провис языка и/или движков браузеров и сейчас это меняется)</li>
+<li><strong>Сомнительный ответ:</strong> в массив можно записать свойство не по индексу через <code>a[&quot;woo&quot;] = 23;</code> и тогда оно попадёт в цикл. Да, можно, но зачем осознанно так делать?</li>
+<li><p><strong>Правильный ответ:</strong> в перечисление могут попасть все не-<code>enumerable</code> свойства объекта, а в том числе все свойства из цепочки прототипов. Если у объекта длинная цепочка прототипов, то это будет происходить долго из-за её перебора. Для отделения свойств на верхнем уровне цепочки можно использовать <code>hasOwnProperty</code>`, для определения, принадлежит ли свойство объекту.</p></li>
+<li><p><em>Да, но что если у нас есть простой объект без сложной цепочки, созданный прямо на месте? Вот так: <code>{&#39;a&#39;: 2, &#39;b&#39;: 3}</code>? Тоже нельзя использовать <code>for-in</code>?</em></p></li>
+<li><p><strong>Неправильный ответ:</strong> Да, нельзя. Это не рекомендуется.</p></li>
+<li><p><strong>Сомнительный ответ:</strong> Эммм&hellip;.</p></li>
+<li><p><strong>Почти правильный ответ:</strong> Можно, он для этого и был прездназначен. <em>Но есть одно «но».</em> Программисты библиотеки, которую ты используешь, подсовывают в прототипы встроенных объектов свои методы и естественно не заботятся об <code>enumerable: false</code>. И эти методы могут попасть в перечисление. Безопаснее этим не пользоваться.</p></li>
+</ul>
+
+<p>Эй, а почему вдруг безопаснее отгородить себя? Значит так и будет продолжаться? Это разве решение проблемы?</p>
+
+<ul>
+<li><strong>Правильный ответ:</strong> Давно пора образумить этих программистов.</li>
+</ul>
+<h3 id="section-3">Практический взгляд</h3><div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="p">}</span>
+<span class="o">&gt;</span> <span class="mi">0</span> <span class="mi">12</span>
+<span class="o">&gt;</span> <span class="mi">1</span> <span class="mi">14</span>
+<span class="o">&gt;</span> <span class="mi">2</span> <span class="mi">13</span>
+<span class="o">&gt;</span> <span class="mi">3</span> <span class="mi">6</span>
+
+<span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span> <span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">a</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">a</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="p">}</span>
+<span class="o">&gt;</span> <span class="mi">0</span> <span class="mi">12</span>
+<span class="o">&gt;</span> <span class="mi">1</span> <span class="mi">14</span>
+<span class="o">&gt;</span> <span class="mi">2</span> <span class="mi">13</span>
+<span class="o">&gt;</span> <span class="mi">3</span> <span class="mi">6</span>
+<span class="o">&gt;</span> <span class="nx">foo</span> <span class="nx">bar</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">a</span> <span class="k">in</span> <span class="p">{</span> <span class="s1">&#39;a&#39;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="o">:</span> <span class="mi">3</span> <span class="p">})</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="p">}</span>
+<span class="o">&gt;</span> <span class="nx">a</span>
+<span class="o">&gt;</span> <span class="nx">b</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">a</span> <span class="k">in</span> <span class="p">{</span> <span class="s1">&#39;a&#39;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="o">:</span> <span class="mi">3</span> <span class="p">})</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="p">}</span>
+<span class="o">&gt;</span> <span class="nx">a</span>
+<span class="o">&gt;</span> <span class="nx">b</span>
+<span class="o">&gt;</span> <span class="nx">foo</span>
+
+<span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">forEach</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(...)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">matches</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/t/</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">matches</span> <span class="k">instanceof</span> <span class="nb">Array</span> <span class="p">);</span>
+<span class="o">&gt;</span> <span class="kc">true</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">matches</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">matches</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="o">&gt;</span> <span class="mi">0</span> <span class="nx">t</span>
+<span class="o">&gt;</span> <span class="nx">index</span> <span class="mi">0</span>
+<span class="o">&gt;</span> <span class="nx">input</span> <span class="nx">test</span>
+<span class="o">&gt;</span> <span class="nx">forEach</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+</td></tr></table></div></div>
+<p>(за обнаружение последнего примера спасибо <a href="http://habrahabr.ru/users/TheShock/">TheShock</a>)</p>
+
+<blockquote>
+<p>Где-то здесь появляется конфликт JQuery и Prototype.js, выросший из <a href="http://ejohn.org/blog/getelementsbyclassname-pre-prototype-16/">проблемы с document.getElementByClassName</a></p>
+</blockquote>
+
+<p><a href="http://shamansir.github.com/JavaScript-Garden/#object.prototype">JavaScript Гарден, глава «Великий прототип»</a>, последний раздел «Расширение встроенных прототипов». Мой там только перевод, этот документ писали опытные JS-программисты (хотя и там есть косяки. но не в этом абзаце).</p>
+
+<p>Вы уверены, что в соседней библиотеке не захотят переопределить метод и назвать его также? И тогда будет невозможно пользоваться ни вашей библиотекой, ни соседней. Но случаи смешанных библиотек случаются всё реже. Хуже, если этот метод войдёт в следующую спецификацию и будет обладать другим поведением – вы отрежете его пользователям вашей библиотеки.</p>
+
+<blockquote>
+<p>&hellip;По-моему как раз «соответствует всей идеологии JS» и «все JS фреймворки» – это религия. В языке есть дырки и одна из них – то, что можно расширять встроенные типы.</p>
+
+<p>JQuery пользуется расширением прототипа собственного объекта – это вполне себе ок и как раз соответствует идеологии. А мы говорим о расширении встроенных типов — это две разные вещи. Встроенные типы по правилам any-типизированных языков должны быть закрыты для расширения. В JS у вас есть возможность их расширить и это сработало как неизвестное медленно-текущее вирусное заболевание. Заразились одни, не ощутили последствий, а через месяцы оказались заражены все вокруг.</p>
+</blockquote>
+<h3 id="section-4">Разумный взгляд</h3>
+<p>Вы помните чем кончается переопределение операторов в C++? Вы знаете, что не можете расширить встроенные классы Java? Вы пытаетесь отнаследоваться от <code>str</code> в Python? <strong>Нет</strong>. Так почему же вы это делаете в JS?</p>
+
+<p>Сейчас мы живём в эру быстро сменяющихся версий браузеров, избавления от старых, и перехода на HTML5, так может и в JS стоит забыть некоторые первобытные страхи?</p>
+<h3 id="section-5">Когда можно</h3>
+<ul>
+<li>Если вам нужно в своём личном скрипте обеспечить наличие метода, который будет в будущем имплементирован. При этом нужно, чтобы интерфейс который он возвращает также соответствовал спецификации</li>
+<li>Всё</li>
+</ul>
+<h3 id="section-6">Альтернативы</h3>
+<p>Да какие хотите (ок, все приведённые функции – в видимости какого-то своего объекта, не в глобальной):</p>
+
+<ul>
+<li><code>function trim(str) { return str.replace(...); } trim(&quot;   string to trim   &quot;);</code></li>
+<li><code>function trim() { return this.replace(...); } trim.call(&quot;   string to trim   &quot;);</code></li>
+<li><code>utils.trim(&quot;   string to trim   &quot;);</code></li>
+<li><code>var a = new ExtendedString(&quot;   string to trim   &quot;); a.trim();</code></li>
+<li><code>$.each([ 1, 2, 6, 6], …);</code></li>
+</ul>
+<h3 id="section-7">Статьи по теме</h3>
+<ul>
+<li><a href="http://perfectionkills.com/extending-built-in-native-objects-evil-or-not/">Extending built-in native objects. Evil or not?</a> by <a href="http://perfectionkills.com">kangax</a> (спасибо <a href="http://habrahabr.ru/users/smashercosmo/">smashercosmo</a>)</li>
+<li><a href="http://perfectionkills.com/whats-wrong-with-extending-the-dom/">What&rsquo;s wrong with extending DOM?</a> by <a href="http://perfectionkills.com">kangax</a> (спасибо <a href="http://habrahabr.ru/users/smashercosmo/">smashercosmo</a>)</li>
+<li><a href="http://stackoverflow.com/questions/500504/javascript-for-in-with-arrays">Javascript <code>for...in</code> with arrays</a> @ <a href="http://stackoverflow.com">SO</a></li>
+<li><a href="http://javascriptweblog.wordpress.com/2011/01/04/exploring-javascript-for-in-loops/">Exploring JavaScript <code>for...in</code> loops</a></li>
+</ul>
+<h3 id="section-8">Тесты</h3>
+<p><a href="http://habrahabr.ru/blogs/javascript/132690/#comment_4405362">В этом комментарии</a> <a href="http://habrahabr.ru/users/Zibx/">Zibx</a> провёл тест по скорости двух способов: через расширение прототипа и отдельную функцию и <em>работа через прототип чуть не показалась нам действительно значительно быстрее</em>. Но, к счастью, <a href="http://habrahabr.ru/users/Markel/">Markel</a> <a href="http://habrahabr.ru/blogs/javascript/132690/#comment_4408606"><em>опроверг</em></a> этот факт, создав <a href="http://jsperf.com/132690">соответствующий тест</a> на jsperf.</p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="профиль в Twitter"><img src="/ru/assets/img/social/twitter.png" width="16" height="16" alt="профиль в Twitter"></a></li>
+    <li><a href="https://github.com/shamansir" title="профиль в Github"><img src="/ru/assets/img/social/github.png" width="16" height="16" alt="профиль в GitHub"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="профиль в Facebook"><img src="/ru/assets/img/social/facebook.png" width="16" height="16" alt="профиль в Facebook"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="профиль в Stackoverflow"><img src="/ru/assets/img/social/stack-overflow.png" width="16" height="16" alt="профиль на Stack Overflow"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/ru/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/ru/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>

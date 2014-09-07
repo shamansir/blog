@@ -1,0 +1,353 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+<meta name="author" content="Ulric Wilfred" />
+<meta name="description" content="A blog about programming and only about it. No word about onion. At all. Totally none." />
+<meta name="generator" content="mynt v0.3.1" />
+
+<link rel="author me ext" href="http://shamansir.github.io" />
+<link rel="contents start home" href="/" />
+<link rel="index" href="/archives/" />
+
+<link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon" />
+
+<link rel="alternate" href="/feed.xml" type="application/atom+xml" />
+
+
+
+<link rel="stylesheet" href="/assets/css/screen.css" media="screen, projection" type="text/css" />
+<link rel="stylesheet" href="/assets/css/print.css" media="print" type="text/css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="/assets/css/ie.css" media="screen, projection" type="text/css" />
+  <![endif]-->
+<link rel="stylesheet" href="/assets/css/pygments.trac.css" type="text/css" />
+
+
+    
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/aeaf962b-fb56-4a2d-af48-f7da7a5ede31.css" type="text/css" />
+    
+
+    
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-20770637-4', 'auto');
+            ga('send', 'pageview');
+        </script>
+    
+
+
+
+
+
+
+    <title>nwao — Modelling a Solar System in Fluxus &ndash; No word about onion</title>
+
+</head>
+
+<body>
+
+    <header id="nwao-header">
+    <nav id="nwao-nav" role="site-navigation"><ul>
+        <li><a href="/" rel="contents" title="Blog">Blog</a></li>
+        <li><a href="/archives/" rel="index" title="Archives">Archives</a></li>
+        <li><a href="/tags/" title="Tags">Tags</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Author">Author</a></li>
+        <li><a href="/feed.xml" title="Feed">Feed</a></li>
+    </ul></nav>
+
+    <h1 id="nwao-title"><a href="/" title="No word about onion">No word about onion</a></h1>
+    <div id="nwao-subtitle"><span>shaman.sir's telling you about stuff</span></div>
+</header>
+
+    <ul id="nwao-lang-switch">
+        <li>English Version</li>
+        <li><a href="/ru" title="Russian Version">Russian Version</a></li>
+    </ul>
+
+    <div id="top"></div>
+
+    
+        <nav role="breadcrumbs" id="nwao-breadcrumbs">
+            
+    <ul>
+        
+            
+            
+
+            <li><a href="/">Blog</a></li>
+        
+            
+            
+
+            <li><a href="/articles">Articles</a></li>
+        
+            
+            
+
+            <li>Modelling a Solar System in Fluxus</li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="dive" id="nwao-dive">
+            
+    <ul>
+        
+            <li id="nwao-prev">
+                <a href="/articles/3-tiny-javascript-snippets/"
+                   title="3 Tiny JavaScript Snippets">Previous article</a>
+            </li>
+        
+        
+            <li id="nwao-next">
+                <a href="/articles/tumblr-sandwitch-theme/"
+                   title="Sandwitch Tumblr Theme">Next article</a>
+            </li>
+        
+    </ul>
+
+        </nav>
+    
+
+    
+        <nav role="table-of-contents" id="nwao-toc">
+            <h3>Contents:</h3><a href="#top" title="top">(top)</a>
+            
+    
+        
+            
+            
+                <ul>
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#sources" title="Sources">Sources</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#description" title="Description">Description</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#examining-code" title="Examining code">Examining code</a>
+                
+            </li>
+        
+    
+
+                    
+                        
+    
+        
+            
+            <li>
+                <a href="#videos" title="Videos">Videos</a>
+                
+            </li>
+        
+    
+
+                    
+                <ul>
+            
+        
+    
+
+        </nav>
+    
+
+    <section id="nwao-content" class="nwao-post">
+        
+    <article>
+        <header class="nwao-post-header">
+    <h2 class="nwao-post-title">
+        <a href="/articles/fluxus-solar-system/" title="Modelling a Solar System in Fluxus">Modelling a Solar System in Fluxus</a>
+    </h2>
+    <dl class="nwao-post-infoline">
+    <dt class="nwao-published">Published at</dt>
+    <dd class="nwao-published">
+        <a href="/archives/2010/"
+           title="06 December 2010, Monday. 22:21">
+           <time datetime="%d-%m-%Y" pubdate>06 Dec 2010</time>
+        </a>
+    </dd>
+    
+        <dt class="nwao-tags-title">Tags</dt>
+        <dd>
+            <div class="nwao-tags">
+                
+                    <a href="/tags/fluxus/" rel="tag"
+                       title="Posts with 'fluxus' tag">fluxus</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/graphics/" rel="tag"
+                       title="Posts with 'graphics' tag">graphics</a>
+                    
+                        <span class="tag-count">3</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/lecture/" rel="tag"
+                       title="Posts with 'lecture' tag">lecture</a>
+                    
+                        <span class="tag-count">3</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/livecoding/" rel="tag"
+                       title="Posts with 'livecoding' tag">livecoding</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/racket/" rel="tag"
+                       title="Posts with 'racket' tag">racket</a>
+                    
+                        <span class="tag-count">1</span>
+                    
+                    
+                        <span class="nwao-comma">,</span>
+                    
+                
+                    <a href="/tags/scheme/" rel="tag"
+                       title="Posts with 'scheme' tag">scheme</a>
+                    
+                        <span class="tag-count">2</span>
+                    
+                    
+                
+            </div>
+        </dd>
+    
+</dl>
+</header>
+
+        <div class="nwao-post-content">
+            <p>Some time ago I <a href="#post-about-fluxus">wrote a post</a> about <a href="http://www.pawfal.org/fluxus/">fluxus</a>, livecoding and 3D-prototyping system. Now I want to demonstrate some of its features and describe how you may use them in pseudo(;))scientific needs. For example, you can create a model of a simplified solar system and make it fit in only 125 lines of code (including comments) &ndash; it is the advantage of <a href="http://racket-lang.org/">Racket</a> language with graphic steroids, the core of fluxus and a descendant of PLT Scheme. Here how the result will look like:</p>
+
+<p><a href="/figures/fluxus-solar-system/screen04.png"><img src="/figures/fluxus-solar-system/screen04-thumb.png" alt="Screenshot 01"></a></p>
+
+<p><a href="/figures/fluxus-solar-system/screen05.png"><img src="/figures/fluxus-solar-system/screen05-thumb.png" alt="Screenshot 02"></a></p>
+
+<p>There are sources in the post, a short desription of code structure, tutorial movies in Slavic English, examining in detail the whole process of writing this complicated (;)) code.</p>
+<h3 id="sources">Sources</h3>
+<p><a href="http://paste.pocoo.org/show/301220/">HERE</a></p>
+
+<blockquote>
+<p>Note: Since it was lost with the Poocoo, I&rsquo;ll try to restore it from video.</p>
+</blockquote>
+<h3 id="description">Description</h3>
+<p>Fluxus uses a term of state machine for scene construction. If you have programmed in OpenGL already, you are familiar with this principle - every next function in the code either modifies the matrix of scene state or changes the content of the scene (i.e. draws an object). You may construct the required scene objects just before any rendering will happen and then change their conditions later or just draw a new primitives in every frame (OpenGL understands that it may cache the objects which state is not changed a lot between frames). I am using the both ways of these, so I prepare the text labels and planets&#39; orbits before rendering process but I draw planets in every new frame.</p>
+
+<p>I have taken all the data about equatorial diameters, orbital radiuses and orbital periods of the planets from the single one table in <a href="http://en.wikipedia.org/wiki/Planet#Solar_System">Wikipedia article</a>. It is very handy that all parameters are presented relatively to Earth properties (that is how astronomical units are calculated), so the Earth diameter and Earth year can be used as system of units in our model.</p>
+
+<blockquote>
+<p>Do you know that distance from mass center of Earth to mass center of Sun is approximately equal to 11740 Earth diameters? It is the astronomical unit (<code>astro-unit</code> constant) and the distances from Sun to planets are measured relativey to it. And more, 109 Earth diameters fits the diameter of Sun (the Earth diameter is represented with <code>diameter-factor</code> constant in the model).</p>
+</blockquote>
+
+<p>When we know this data, we can calculate the angles for planets positions (the orbital eccentricities are not taken in account in the model, it&rsquo;s a homework) and place them appropriately in the model.</p>
+<h3 id="examining-code">Examining code</h3>
+<ul>
+<li><code>star</code>, <code>planet</code> and planetary system (it is called <code>star-system</code> because the center of it is a star), consisting of star and planets, structures are defined</li>
+<li>defined functions of
+
+<ul>
+<li>getting translate vector (<code>qtv</code> - <em>quick translate vector</em>) for planet using its orbital radius and orbital period</li>
+<li>getting scale vector (<code>qsv</code> - <em>quick scale vector</em>) of planet using its diameter</li>
+<li>fast calculation of planet position angle (<code>curang</code>), relatively to (Sun) (0, 0) point, using planet&rsquo;s orbital period</li>
+<li>building orbit primitive (<code>build-orbit</code>) using its orbital radius</li>
+<li>building label primitive (<code>qto</code> - _quick text object`) for planet using the passed string</li>
+</ul></li>
+<li>the star of Sun is created, planets and all of them are put into &ldquo;solar system&rdquo; instance (<code>solar-system</code>). while filling planets structures, the labels primitives are built for each one.</li>
+<li>using the planets data the orbits are built</li>
+<li>functions are defined
+
+<ul>
+<li><code>draw-star</code>, it draws a star</li>
+<li><code>draw-planet</code>, it draws a planet in the required position depending on current time and moving the text label in the same position</li>
+</ul></li>
+<li><code>render</code> function is defined, it draws sun and planets one by one, calling <code>draw-star</code> and <code>draw-planet</code></li>
+<li><code>render</code> is assigned to be a function executed for each frame</li>
+</ul>
+<h3 id="videos">Videos</h3>
+<p><iframe src="http://player.vimeo.com/video/17502661" width="400" height="300" frameborder="0"></iframe><p><a href="http://vimeo.com/17502661">Fluxus Livecoding: Building 3D Solar System / Part 1</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p></p>
+
+<p><iframe src="http://player.vimeo.com/video/17515694" width="400" height="300" frameborder="0"></iframe><p><a href="http://vimeo.com/17515694">Fluxus Livecoding: Building 3D Solar System / Part 2</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p></p>
+
+<p><iframe src="http://player.vimeo.com/video/17516078" width="400" height="300" frameborder="0"></iframe><p><a href="http://vimeo.com/17516078">Fluxus Livecoding: Building 3D Solar System / Part 3</a> from <a href="http://vimeo.com/shamansir">Ulric Wilfred</a> on <a href="http://vimeo.com">Vimeo</a>.</p></p>
+
+        </div>
+    </article>
+
+    </section>
+
+    
+        <ul id="nwao-social">
+    <li><a href="https://twitter.com/#!/shaman_sir" title="Twitter profile"><img src="/assets/img/social/twitter.png" width="16" height="16" alt="Twitter profile"></a></li>
+    <li><a href="https://github.com/shamansir" title="Github profile"><img src="/assets/img/social/github.png" width="16" height="16" alt="GitHub profile"></a></li>
+    
+    <li><a href="https://www.facebook.com/shaman.sir" title="Facebook profile"><img src="/assets/img/social/facebook.png" width="16" height="16" alt="Facebook profile"></a></li>
+    
+    
+    <li><a href="http://stackoverflow.com/users/167262" title="Stackoverflow profile"><img src="/assets/img/social/stack-overflow.png" width="16" height="16" alt="Stack Overflow profile"></a></li>
+    
+</ul>
+    
+
+    <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
+
+    <footer id="nwao-footer">
+        <p>Copyright &copy; 2014 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
+    </footer>
+
+    <!--
+    <script type="text/javascript" src="/assets/js/scrolls.js"></script>
+    <script type="text/javascript" src="/assets/js/page.scrolls.js"></script> -->
+
+</body>
+</html>
