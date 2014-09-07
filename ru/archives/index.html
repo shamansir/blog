@@ -12,17 +12,13 @@
 
 {% block content %}
     <h2 id="nwao-page-title">
-        <a href="#top" title="Articles">
-            <i class="icon-book"></i>Архив
-        </a>
+        <a href="#top" title="Архив">Архив</a>
     </h2>
 
     {% for year, archive in posts.archives|items %}
         <dl class="nwao-archives-year">
             <dt>
-                <a href="{{ get_url(archive.url) }}" title="Архив — {{ year }}">
-                    <i class="icon-calendar"></i>{{ year }}
-                </a>
+                <a href="{{ get_url(archive.url) }}" title="Архив — {{ year }}">{{ year }}</a>
             </dt>
             <dd>
                 {% for month, month_posts in archive.months|items %}

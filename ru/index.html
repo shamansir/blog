@@ -10,9 +10,7 @@
 {% block content %}
 
     <h2 id="nwao-page-title">
-        <a href="#top" title="Статьи">
-            <i class="icon-arrow-down"></i>Свежие статьи
-        </a>
+        <a href="#top" title="Статьи">Свежие статьи</a>
     </h2>
 
     {% for post in posts %}
@@ -20,15 +18,13 @@
 
         <article class="nwao-blog-feed-item">
 
-            <div class="nwao-item-marker"><i class="icon-file"></i></div>
-
             {% include '_blocks/list.post.header.html' %}
 
             <div class="nwao-post-excerpt">
                 <p>{% if post.excerpt %}{{ post.excerpt }}{% else %}{{ post.content }}{% endif %}</p>
             </div>
 
-            <a href="{{ get_url(post.url) }}" title="Continue Reading" class="nwao-continue">
+            <a href="{{ get_url(post.url) }}" title="Продолжить чтение" class="nwao-continue">
                 Продолжить&nbsp;чтение
             </a>
 
@@ -38,7 +34,7 @@
 
     {% if site.post_limit and posts.items|length > site.post_limit %}
         <div id="nwao-pagination">
-            <p><a href="{{ get_url('archives/') }}" title="All Articles">Предыдущие&nbsp;статьи</a></p>
+            <p><a href="{{ get_url('archives/') }}" title="Все статьи">Предыдущие&nbsp;статьи</a></p>
         </div>
     {% endif %}
 

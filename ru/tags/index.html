@@ -12,16 +12,14 @@
 
 {% block content %}
     <h2 id="nwao-page-title">
-        <a href="#top" title="Метки">
-            <i class="icon-tag"></i>Метки
-        </a>
+        <a href="#top" title="Метки">Метки</a>
     </h2>
 
     <ul class="nwao-tag-cloud">
         {% for tag in posts.tags|values %}
             <li>
                 <a href="{{ get_url(tag.url) }}" rel="tag"
-                   title="Статьи с меткой '{{ tag }}'"><i class="icon-tag"></i>{{ tag.name }}</a>
+                   title="Статьи с меткой '{{ tag }}'">{{ tag.name }}</a>
                 {% if tag.count %}
                     <span class="tag-count">{{ tag.count }}</span>
                 {% endif %}

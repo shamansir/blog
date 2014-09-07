@@ -1,10 +1,10 @@
 <header id="nwao-header">
     <nav id="nwao-nav" role="site-navigation"><ul>
-        <li><a href="{{ get_url() }}" rel="contents" title="Blog"><i class="icon-home"></i>Блог</a></li>
-        <li><a href="{{ get_url('archives/') }}" rel="index" title="Archives"><i class="icon-book"></i>Архив</a></li>
-        <li><a href="{{ get_url('tags/') }}" title="Tags"><i class="icon-tag"></i>Tags</a></li>
-        <li><a href="http://shamansir.github.com" rel="author" title="Author"><i class="icon-user"></i>Автор</a></li>
-        {% if site.feed %}<li><a href="{{ get_url('feed.xml') }}" title="Feed"><i class="icon-rss"></i>RSS</a></li>{% endif %}
+        <li><a href="{{ get_url() }}" rel="contents" title="Blog">Блог</a></li>
+        <li><a href="{{ get_url('archives/') }}" rel="index" title="Архив">Архив</a></li>
+        <li><a href="{{ get_url('tags/') }}" title="Метки">Метки</a></li>
+        <li><a href="http://shamansir.github.com" rel="author" title="Автор">Автор</a></li>
+        {% if site.feed %}<li><a href="{{ get_url('feed.xml') }}" title="Лента RSS">RSS</a></li>{% endif %}
     </ul></nav>
 
     <h1 id="nwao-title"><a href="{{ get_url() }}" title="{{ site.title }}">{{ site.title }}</a></h1>

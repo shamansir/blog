@@ -10,17 +10,13 @@
 {% block content %}
 
     <h2 id="nwao-page-title">
-        <a href="#top" title="Articles">
-            <i class="icon-arrow-down"></i>Latest articles
-        </a>
+        <a href="#top" title="Articles">Latest articles</a>
     </h2>
 
     {% for post in posts %}
         {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}
 
         <article class="nwao-blog-feed-item">
-
-            <div class="nwao-item-marker"><i class="icon-file"></i></div>
 
             {% include '_blocks/list.post.header.html' %}
 
@@ -38,7 +34,7 @@
 
     {% if site.post_limit and posts.items|length > site.post_limit %}
         <div id="nwao-pagination">
-            <p><a href="{{ get_url('archives/') }}" title="All Articles">Previous&nbsp;articles</a></p>
+            <p><a href="{{ get_url('archives/') }}" title="Articles">Previous&nbsp;articles</a></p>
         </div>
     {% endif %}
 
