@@ -6,7 +6,7 @@
         <link rel="alternate" href="http://shamansir.github.io/blog/" />
         <link rel="self" href="http://shamansir.github.io/blog/feed.xml" type="application/atom+xml" />
         <id>http://shamansir.github.io/blog/</id>
-        <updated>2014-09-07T23:01:29Z</updated>
+        <updated>2014-09-07T23:07:16Z</updated>
         
         <author>
             <name>Ulric Wilfred</name>
@@ -19,7 +19,7 @@
                 <title>Generating Functional Parsers</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/generating-functional-parsers/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/generating-functional-parsers/</id>
-                <updated>2014-09-06T23:01:00Z</updated>
+                <updated>2014-09-06T23:07:00Z</updated>
                 
                 <summary type="html">Are you interested in a functional approach to parsers generation? Well, I&#39;m sure you do, even if, at your side, you&#39;re not sure what it means exactly. It&#39;s just because anything that connects parsers and functional programming in practice can be nothing but joyful...</summary>
                 <content type="html">&lt;p&gt;&lt;em&gt;Disclaimer:&lt;/em&gt; The author of this text is still and eternally non-native English-writer, so please excuse him for his grammar errors, mistypes and stupid bravity without any malice, but please consider correcting his mistakes &lt;a href=&#34;mailto://shaman.sir@gmail.com&#34;&gt;using his e-mail&lt;/a&gt; without any commiseration. (TODO: Remove this portion of text when everything wrong will be fixed).&lt;/p&gt;
@@ -649,7 +649,7 @@ additive
                 <title>Mastering Functional JavaScript Lecture Slides</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/mastering-functional-javascript-slides/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/mastering-functional-javascript-slides/</id>
-                <updated>2013-02-16T23:01:00Z</updated>
+                <updated>2013-02-16T23:07:00Z</updated>
                 
                 <summary type="html">In JavaScript, like, say, in Python, functions are also objects. It gives developer the opportunity to write pure (or not so, since there are no native monads support ;) ) functional code. Most people among us do easily forget about this fact, but it is still true and, what&amp;rsquo;s truly great, it was true from the start.</summary>
                 <content type="html">&lt;p&gt;In JavaScript, like, say, in Python, functions are also objects. It gives developer the opportunity to write pure (or not so, since there are no native monads support ;) ) functional code. Most people among us do easily forget about this fact, but it is still true and, what&amp;rsquo;s truly great, it was true from the start.&lt;/p&gt;
@@ -697,7 +697,7 @@ Article on lyfe.js: &lt;a href=&#34;http://balpha.de/2011/06/introducing-lyfe-yi
                 <title>GWT + mvp4g Lecture Slides</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/gwt-mvp4g-slides/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/gwt-mvp4g-slides/</id>
-                <updated>2011-05-04T23:01:00Z</updated>
+                <updated>2011-05-04T23:07:00Z</updated>
                 
                 <summary type="html">April 29, I&amp;rsquo;ve presented a lecture on Web-development with &lt;a href=&#34;http://code.google.com/intl/ru/webtoolkit/&#34;&gt;GWT&lt;/a&gt; and &lt;a href=&#34;http://code.google.com/p/mvp4g/&#34;&gt;mvp4g&lt;/a&gt; Framework, at &lt;a href=&#34;http://addconf.ru&#34;&gt;Application Developer Days&lt;/a&gt; 2011 Conference. Here are the slides.</summary>
                 <content type="html">&lt;p&gt;April 29, I&amp;rsquo;ve presented a lecture on Web-development with &lt;a href=&#34;http://code.google.com/intl/ru/webtoolkit/&#34;&gt;GWT&lt;/a&gt; and &lt;a href=&#34;http://code.google.com/p/mvp4g/&#34;&gt;mvp4g&lt;/a&gt; Framework, at &lt;a href=&#34;http://addconf.ru&#34;&gt;Application Developer Days&lt;/a&gt; 2011 Conference. Here are the slides.&lt;/p&gt;
@@ -802,7 +802,7 @@ Article on lyfe.js: &lt;a href=&#34;http://balpha.de/2011/06/introducing-lyfe-yi
                 <title>LimeJS: Writing a cross-platform game in HTML5 with touch support</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/limejs-writing-a-game/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/limejs-writing-a-game/</id>
-                <updated>2011-02-15T23:01:00Z</updated>
+                <updated>2011-02-15T23:07:00Z</updated>
                 
                 <summary type="html">&lt;a href=&#34;http://www.limejs.com&#34;&gt;LimeJS&lt;/a&gt; is 2D Open Source HTML5-engine for game development with touch-events support and it works (following to the description on the site) with most of mobile platfroms. I have found it not by myself, but last week I&amp;rsquo;ve got a letter with a proposition to tell community about the engine [in russian, this is an english version] and I&amp;rsquo;ve decided - so if this is the case, why waste time on trifles, why not to try this engine in action. Among with that, I have agreed in advance with engine authors that I will tell both advantages and disadvantages, so I hope to clear the advertisment halo from the article with that (though, what means advertisment to open-source)..?</summary>
                 <content type="html">&lt;p&gt;&lt;a href=&#34;http://www.limejs.com&#34;&gt;LimeJS&lt;/a&gt; is 2D Open Source HTML5-engine for game development with touch-events support and it works (following to the description on the site) with most of mobile platfroms. I have found it not by myself, but last week I&amp;rsquo;ve got a letter with a proposition to tell community about the engine [in russian, this is an english version] and I&amp;rsquo;ve decided - so if this is the case, why waste time on trifles, why not to try this engine in action. Among with that, I have agreed in advance with engine authors that I will tell both advantages and disadvantages, so I hope to clear the advertisment halo from the article with that (though, what means advertisment to open-source)..?&lt;/p&gt;
@@ -1373,7 +1373,7 @@ $ .&amp;#x2F;bin&amp;#x2F;lime.py build pingpong -o pingpong&amp;#x2F;compiled&a
                 <title>3 Tiny JavaScript Snippets</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/3-tiny-javascript-snippets/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/3-tiny-javascript-snippets/</id>
-                <updated>2011-02-03T23:01:00Z</updated>
+                <updated>2011-02-03T23:07:00Z</updated>
                 
                 <summary type="html">Currently I am doing some stuff in JavaScript and I need to have just a tiny amounts of code to work with. As tiny as this article. But there are some things I really need to make the development comfortable for myself. So I require them to be tiny too.</summary>
                 <content type="html">&lt;p&gt;Currently I am doing some stuff in JavaScript and I need to have just a tiny amounts of code to work with. As tiny as this article. But there are some things I really need to make the development comfortable for myself. So I require them to be tiny too.&lt;/p&gt;
@@ -1624,7 +1624,7 @@ _f();
                 <title>Modelling a Solar System in Fluxus</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/fluxus-solar-system/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/fluxus-solar-system/</id>
-                <updated>2010-12-06T23:01:00Z</updated>
+                <updated>2010-12-06T23:07:00Z</updated>
                 
                 <summary type="html">Some time ago I &lt;a href=&#34;#post-about-fluxus&#34;&gt;wrote a post&lt;/a&gt; about &lt;a href=&#34;http://www.pawfal.org/fluxus/&#34;&gt;fluxus&lt;/a&gt;, livecoding and 3D-prototyping system. Now I want to demonstrate some of its features and describe how you may use them in pseudo(;))scientific needs. For example, you can create a model of a simplified solar system and make it fit in only 125 lines of code (including comments) &amp;ndash; it is the advantage of &lt;a href=&#34;http://racket-lang.org/&#34;&gt;Racket&lt;/a&gt; language with graphic steroids, the core of fluxus and a descendant of PLT Scheme. Here how the result will look like:</summary>
                 <content type="html">&lt;p&gt;Some time ago I &lt;a href=&#34;#post-about-fluxus&#34;&gt;wrote a post&lt;/a&gt; about &lt;a href=&#34;http://www.pawfal.org/fluxus/&#34;&gt;fluxus&lt;/a&gt;, livecoding and 3D-prototyping system. Now I want to demonstrate some of its features and describe how you may use them in pseudo(;))scientific needs. For example, you can create a model of a simplified solar system and make it fit in only 125 lines of code (including comments) &amp;ndash; it is the advantage of &lt;a href=&#34;http://racket-lang.org/&#34;&gt;Racket&lt;/a&gt; language with graphic steroids, the core of fluxus and a descendant of PLT Scheme. Here how the result will look like:&lt;/p&gt;
@@ -1686,7 +1686,7 @@ _f();
                 <title>Sandwitch Tumblr Theme</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/tumblr-sandwitch-theme/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/tumblr-sandwitch-theme/</id>
-                <updated>2010-12-02T23:01:00Z</updated>
+                <updated>2010-12-02T23:07:00Z</updated>
                 
                 <summary type="html">Have created &lt;a href=&#34;http://www.tumblr.com/theme/18012&#34;&gt;Tumblr theme&lt;/a&gt; named &lt;a href=&#34;http://uncyclopedia.wikia.com/wiki/Sandwitch&#34;&gt;Sandwitch&lt;/a&gt;. I was going to make tumblr-blog look like &lt;a href=&#34;http://code.google.com/p/showdown-blog/&#34;&gt;showdown blog&lt;/a&gt;-engine style I&amp;rsquo;ve made, and seems the result in the end is even better!</summary>
                 <content type="html">&lt;p&gt;Have created &lt;a href=&#34;http://www.tumblr.com/theme/18012&#34;&gt;Tumblr theme&lt;/a&gt; named &lt;a href=&#34;http://uncyclopedia.wikia.com/wiki/Sandwitch&#34;&gt;Sandwitch&lt;/a&gt;. I was going to make tumblr-blog look like &lt;a href=&#34;http://code.google.com/p/showdown-blog/&#34;&gt;showdown blog&lt;/a&gt;-engine style I&amp;rsquo;ve made, and seems the result in the end is even better!&lt;/p&gt;
@@ -1707,7 +1707,7 @@ _f();
                 <title>Easy as Sandwich: Blog Engine in JavaScript and XML</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/easy-as-sandwich-blog-engine/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/easy-as-sandwich-blog-engine/</id>
-                <updated>2010-11-17T23:01:00Z</updated>
+                <updated>2010-11-17T23:07:00Z</updated>
                 
                 <summary type="html">Say you suddenly needed a personal blog. I already have some puny free hosting, and it hosting is puny for real, so it has no PHP and it even has no possibilities to set up any server-side at all. Or even worse, you have only a Dropbox account and in this very moment, suddenly, the personal blog is needed.</summary>
                 <content type="html">&lt;p&gt;Say you suddenly needed a personal blog. I already have some puny free hosting, and it hosting is puny for real, so it has no PHP and it even has no possibilities to set up any server-side at all. Or even worse, you have only a Dropbox account and in this very moment, suddenly, the personal blog is needed.&lt;/p&gt;
@@ -1781,7 +1781,7 @@ _f();
                 <title>Way of the Rainbow: Fingers Motion Detection Algorythm Based on a Colors Differentiation (Driven by LISP)</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/nijiato-detection-of-fingers-motion-algorithm/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/nijiato-detection-of-fingers-motion-algorithm/</id>
-                <updated>2010-08-12T23:01:00Z</updated>
+                <updated>2010-08-12T23:07:00Z</updated>
                 
                 <summary type="html">I am crazy a little bit, so in my spare time I&amp;rsquo;ve started to study Lisp and, to make my studying more interesting, I&amp;rsquo;ve tried to make a realization of my own algorithm. &amp;ldquo;Algorythm&amp;rdquo;, for sure, is spoken too loudly, it has no matrix multiplication, no arrays sorting, no bubbles and no hard work in optimization (even no colors calibration, I sorry myself with the fact that this version if for learning). And yes, there are a lot of pictures in the article, and in the end there even will be a video.</summary>
                 <content type="html">&lt;p&gt;I am crazy a little bit, so in my spare time I&amp;rsquo;ve started to study Lisp and, to make my studying more interesting, I&amp;rsquo;ve tried to make a realization of my own algorithm. &amp;ldquo;Algorythm&amp;rdquo;, for sure, is spoken too loudly, it has no matrix multiplication, no arrays sorting, no bubbles and no hard work in optimization (even no colors calibration, I sorry myself with the fact that this version if for learning). And yes, there are a lot of pictures in the article, and in the end there even will be a video.&lt;/p&gt;
@@ -1881,7 +1881,7 @@ _f();
                 <title>Fluxus — Prototyping OpenGL graphics and games on-the-fly (add Scheme to taste)</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/post-about-fluxus/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/post-about-fluxus/</id>
-                <updated>2010-07-10T23:01:00Z</updated>
+                <updated>2010-07-10T23:07:00Z</updated>
                 
                 <summary type="html">The internet for a programmer who insterested in 3D-graphics for several years is full of videos where people programming music visualizers, complex color-morphing effects or even more tricky things working at the intersection of technology - literally the author writes code and somewhere on background it is compiled and executed and the author sees the result - this process named &lt;em&gt;livecoding&lt;/em&gt;. Most recently the programs like these are written in lisp-family languages, the similar editor exists for ProcessingJS, it renders code immediately in browser, but its not about it.</summary>
                 <content type="html">&lt;p&gt;The internet for a programmer who insterested in 3D-graphics for several years is full of videos where people programming music visualizers, complex color-morphing effects or even more tricky things working at the intersection of technology - literally the author writes code and somewhere on background it is compiled and executed and the author sees the result - this process named &lt;em&gt;livecoding&lt;/em&gt;. Most recently the programs like these are written in lisp-family languages, the similar editor exists for ProcessingJS, it renders code immediately in browser, but its not about it.&lt;/p&gt;
@@ -1920,7 +1920,7 @@ _f();
                 <title>Ant JUnit Nice Output Formatter</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/ant-junit-one-liner-output-formatter/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/ant-junit-one-liner-output-formatter/</id>
-                <updated>2010-04-08T23:01:00Z</updated>
+                <updated>2010-04-08T23:07:00Z</updated>
                 
                 <summary type="html">I&amp;rsquo;ve seached for nice Apache Ant formatter which do not writes full stack trace in console/file and just writes what methods are passed, what methods are failed, and if failed - where and why they failed (and only trace about methods from test class). I haven&amp;rsquo;t found any. So I&amp;rsquo;ve written one.</summary>
                 <content type="html">&lt;p&gt;I&amp;rsquo;ve seached for nice Apache Ant formatter which do not writes full stack trace in console/file and just writes what methods are passed, what methods are failed, and if failed - where and why they failed (and only trace about methods from test class). I haven&amp;rsquo;t found any. So I&amp;rsquo;ve written one.&lt;/p&gt;
@@ -2324,7 +2324,7 @@ public class OneLinerFormatter implements JUnitResultFormatter {
                 <title>10 Useful Solutions for Android Developer</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/10-useful-solutions-for-android-developer/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/10-useful-solutions-for-android-developer/</id>
-                <updated>2010-01-09T23:01:00Z</updated>
+                <updated>2010-01-09T23:07:00Z</updated>
                 
                 <summary type="html">This post contains several useful solutions for Android developers. If you are starting to dive in it, I think the detailed description of the problems I solved will help you in your Android adventures.</summary>
                 <content type="html">&lt;p&gt;This post contains several useful solutions for Android developers. If you are starting to dive in it, I think the detailed description of the problems I solved will help you in your Android adventures.&lt;/p&gt;
@@ -2935,7 +2935,7 @@ public static String format(String source, String... params) {
                 <title>Google Wave Client as Java Web Application</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/sametimed-google-wave-client/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/sametimed-google-wave-client/</id>
-                <updated>2009-10-13T23:01:00Z</updated>
+                <updated>2009-10-13T23:07:00Z</updated>
                 
                 <summary type="html">Zdrawstwooyte.</summary>
                 <content type="html">&lt;p&gt;Zdrawstwooyte.&lt;/p&gt;
@@ -3046,7 +3046,7 @@ public static String format(String source, String... params) {
                 <title>[g]Vim in Python mode : Recompilation in Windows</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/vim-python-windows-compilation/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/vim-python-windows-compilation/</id>
-                <updated>2008-03-15T23:01:00Z</updated>
+                <updated>2008-03-15T23:07:00Z</updated>
                 
                 <summary type="html">Vim editor is best known between the developers who work on Unix systems &amp;ndash; it&amp;rsquo;s a &lt;code&gt;emacs&lt;/code&gt; competitor, something to call IDE-in-a-terminal &amp;ndash; this editor, with proper dexterity and tuning (it seems to me, the amount of required dexterity is a little less and the required efforts for tuning are more obvious than in &lt;code&gt;emacs&lt;/code&gt;, but the last has the real powerful functionality &amp;ndash; it&amp;rsquo;s a programmer&amp;rsquo;s choice what to use) can make most of development processes faster and easier not in the expense of such advantages like auto-completion and project navigation. But if you plan to use it for Python development in Windows with all the advantages like these &amp;ndash; you&amp;#39;&amp;rsquo;ll need to make some efforts, and the main effort is recompilation&amp;hellip;</summary>
                 <content type="html">&lt;p&gt;Vim editor is best known between the developers who work on Unix systems &amp;ndash; it&amp;rsquo;s a &lt;code&gt;emacs&lt;/code&gt; competitor, something to call IDE-in-a-terminal &amp;ndash; this editor, with proper dexterity and tuning (it seems to me, the amount of required dexterity is a little less and the required efforts for tuning are more obvious than in &lt;code&gt;emacs&lt;/code&gt;, but the last has the real powerful functionality &amp;ndash; it&amp;rsquo;s a programmer&amp;rsquo;s choice what to use) can make most of development processes faster and easier not in the expense of such advantages like auto-completion and project navigation. But if you plan to use it for Python development in Windows with all the advantages like these &amp;ndash; you&amp;#39;&amp;rsquo;ll need to make some efforts, and the main effort is recompilation&amp;hellip;&lt;/p&gt;
@@ -3172,7 +3172,7 @@ autocmd BufNewFile *.py call BufNewFile_PY()
                 <title>Redeploying an Application to Tomcat with Ant</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/ant-tomcat-redeploying/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/ant-tomcat-redeploying/</id>
-                <updated>2007-09-15T23:01:00Z</updated>
+                <updated>2007-09-15T23:07:00Z</updated>
                 
                 <summary type="html">The process of out project development has one drawback, which is common to many serious J2EE-projects: after applying changes to the code code and further recompilation, a server do not catches a new version automatically, but requires stoping it, cleaning cache, restarting it again and then, redeploying a package.</summary>
                 <content type="html">&lt;p&gt;The process of out project development has one drawback, which is common to many serious J2EE-projects: after applying changes to the code code and further recompilation, a server do not catches a new version automatically, but requires stoping it, cleaning cache, restarting it again and then, redeploying a package.&lt;/p&gt;
@@ -3364,7 +3364,7 @@ web.dir = ${root.dir}&amp;#x2F;WebContent&amp;#x2F;
                 <title>OOP &amp;amp; JavaScript</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/javascript-oop/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/javascript-oop/</id>
-                <updated>2007-08-19T23:01:00Z</updated>
+                <updated>2007-08-19T23:07:00Z</updated>
                 
                 <summary type="html">In &lt;a href=&#34;../16-useful-solutions-for-javascript&#34;&gt;previous article&lt;/a&gt; I have presented you a small example of code, which allows you to use the three pillars of OOP theory in JavaScript. The way it is accomplished is a little tricky, but I have afforded mysefl to modify &lt;code&gt;extend&lt;/code&gt; function a bit, to give a possibility of having a static constants for classes (in fact, the constants in result are just conventional, of course). Here I will provide a special example for it.</summary>
                 <content type="html">&lt;p&gt;In &lt;a href=&#34;../16-useful-solutions-for-javascript&#34;&gt;previous article&lt;/a&gt; I have presented you a small example of code, which allows you to use the three pillars of OOP theory in JavaScript. The way it is accomplished is a little tricky, but I have afforded mysefl to modify &lt;code&gt;extend&lt;/code&gt; function a bit, to give a possibility of having a static constants for classes (in fact, the constants in result are just conventional, of course). Here I will provide a special example for it.&lt;/p&gt;
@@ -3871,7 +3871,7 @@ var GraphicalElementWrapper = ExpandedElementWrapper.extend({
                 <title>16 Practical Solutions for Javascript</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/16-useful-solutions-for-javascript/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/16-useful-solutions-for-javascript/</id>
-                <updated>2007-08-12T23:01:00Z</updated>
+                <updated>2007-08-12T23:07:00Z</updated>
                 
                 <summary type="html">Let me present you a set of functions that I keep in separate &lt;code&gt;utils.js&lt;/code&gt; file - they are the most frequent functions I used. They do trying very hard to be compliant with the modern browsers and they are tested in IE6/7, FF2 and Safari 2 and also in a hard complicated web-system. And they are supposed to work in other, not very old, browsers - I&amp;rsquo;ve used browser detection only for exceptional cases. Some of them, surely, are just mixes of something found in the open web (I am pointing to the source everywhere I remember it) and the bigger part is constructed on the base of my own ideas (and colleagues advices) intended to work properly - just because in that variety of scripts the subtleties (which become generics with closer examination :) ) are not taken into account, and to remain legible.</summary>
                 <content type="html">&lt;p&gt;Let me present you a set of functions that I keep in separate &lt;code&gt;utils.js&lt;/code&gt; file - they are the most frequent functions I used. They do trying very hard to be compliant with the modern browsers and they are tested in IE6/7, FF2 and Safari 2 and also in a hard complicated web-system. And they are supposed to work in other, not very old, browsers - I&amp;rsquo;ve used browser detection only for exceptional cases. Some of them, surely, are just mixes of something found in the open web (I am pointing to the source everywhere I remember it) and the bigger part is constructed on the base of my own ideas (and colleagues advices) intended to work properly - just because in that variety of scripts the subtleties (which become generics with closer examination :) ) are not taken into account, and to remain legible.&lt;/p&gt;
@@ -4584,7 +4584,7 @@ function removeFromArray(arr, element) { &amp;#x2F;&amp;#x2F; removes only one i
                 <title>Occasional Textpattern Bug</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/occasional-textpattern-bug/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/occasional-textpattern-bug/</id>
-                <updated>2007-07-23T23:01:00Z</updated>
+                <updated>2007-07-23T23:07:00Z</updated>
                 
                 <summary type="html">While I&amp;rsquo;ve played with &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt; at &lt;a href=&#34;http://sharedcode.info/&#34;&gt;sharecode&lt;/a&gt;, I faced this issue that may come in touch with those who uses &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt;.</summary>
                 <content type="html">&lt;p&gt;While I&amp;rsquo;ve played with &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt; at &lt;a href=&#34;http://sharedcode.info/&#34;&gt;sharecode&lt;/a&gt;, I faced this issue that may come in touch with those who uses &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt;.&lt;/p&gt;
@@ -4613,7 +4613,7 @@ $evt_list = safe_column(&amp;#x27;event&amp;#x27;, &amp;#x27;txp_prefs&amp;#x27;
                 <title>Eric IDE 4.0.1 in Ubuntu 7.04</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/eric-ide-ubuntu/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/eric-ide-ubuntu/</id>
-                <updated>2007-07-22T23:01:00Z</updated>
+                <updated>2007-07-22T23:07:00Z</updated>
                 
                 <summary type="html">&lt;a href=&#34;http://www.die-offenbachs.de/eric/index.html&#34;&gt;Eric&lt;/a&gt; – is very good IDE for &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;. And &lt;a href=&#34;http://www.die-offenbachs.de/eric/eric-news.html&#34;&gt;just yesterday&lt;/a&gt; the new &lt;a href=&#34;http://sourceforge.net/project/showfiles.php?group_id=119070&amp;amp;package_id=233329&#34;&gt;4.0.1&lt;/a&gt; version was released, but in repositories the last version for the moment is 3.9, and I found myself missing those good old times when I&amp;rsquo;ve compiled packages form sources recently. So I am presenting you a listing of things to be done just in case, to prevent you from meeting the errors that visited me through the process of compilation. Something from this stuff is oriented on new versions :). Just because it was installed on clean Ubuntu - everything must be adequate&amp;hellip; If I missed something, please report.</summary>
                 <content type="html">&lt;p&gt;&lt;a href=&#34;http://www.die-offenbachs.de/eric/index.html&#34;&gt;Eric&lt;/a&gt; – is very good IDE for &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;. And &lt;a href=&#34;http://www.die-offenbachs.de/eric/eric-news.html&#34;&gt;just yesterday&lt;/a&gt; the new &lt;a href=&#34;http://sourceforge.net/project/showfiles.php?group_id=119070&amp;amp;package_id=233329&#34;&gt;4.0.1&lt;/a&gt; version was released, but in repositories the last version for the moment is 3.9, and I found myself missing those good old times when I&amp;rsquo;ve compiled packages form sources recently. So I am presenting you a listing of things to be done just in case, to prevent you from meeting the errors that visited me through the process of compilation. Something from this stuff is oriented on new versions :). Just because it was installed on clean Ubuntu - everything must be adequate&amp;hellip; If I missed something, please report.&lt;/p&gt;
@@ -4682,7 +4682,7 @@ $ sudo python install.py
                 <title>SATA, DMA and Ubuntu strange things</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/sata-dma-ubuntu/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/sata-dma-ubuntu/</id>
-                <updated>2007-01-24T23:01:00Z</updated>
+                <updated>2007-01-24T23:07:00Z</updated>
                 
                 <summary type="html">Today we&amp;rsquo;ve made an installation of &lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Edgy&#34;&gt;Ubuntu 6.06 LTS&lt;/a&gt; to &lt;code&gt;SATA&lt;/code&gt; hard drive. And it have failed in angriness, so strange. &lt;code&gt;Live CD&lt;/code&gt; tried to mount this HD eventually long and finally mounted it, seems, but in the end, while running the kernel, it started spitting out with &lt;code&gt;buffer I/O Read Error&lt;/code&gt; and so on.</summary>
                 <content type="html">&lt;p&gt;Today we&amp;rsquo;ve made an installation of &lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Edgy&#34;&gt;Ubuntu 6.06 LTS&lt;/a&gt; to &lt;code&gt;SATA&lt;/code&gt; hard drive. And it have failed in angriness, so strange. &lt;code&gt;Live CD&lt;/code&gt; tried to mount this HD eventually long and finally mounted it, seems, but in the end, while running the kernel, it started spitting out with &lt;code&gt;buffer I/O Read Error&lt;/code&gt; and so on.&lt;/p&gt;
@@ -4704,7 +4704,7 @@ $ sudo python install.py
                 <title>PHP + AJAX = SACK</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/php-ajax-sack/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/php-ajax-sack/</id>
-                <updated>2006-12-22T23:01:00Z</updated>
+                <updated>2006-12-22T23:07:00Z</updated>
                 
                 <summary type="html">Occasionally, I&amp;rsquo;ve got a task to&amp;hellip; But I was too lazy to write my own function, to check the browser and blah-blah-blah (the more, as I remember, there are more progressive methods exist already :) ) &amp;hellip; Tried to attach &lt;a href=&#34;http://dklab.ru/lib/JsHttpRequest/&#34;&gt;JsHttpRequest from dklab.ru&lt;/a&gt;, but &amp;rsquo;ve got different tricky errors and everything from Mr. D. Koteroff is a little bit misty for me :), &amp;lsquo;cause I am not a prof in &lt;code&gt;PHP&lt;/code&gt; still. So I&amp;rsquo;ve taken &lt;a href=&#34;http://www.twilightuniverse.com/projects/sack/&#34;&gt;another sack&lt;/a&gt;, named  &lt;code&gt;SACK&lt;/code&gt; &amp;ndash; Simple AJAX Code-Kit. And in this sack everything is so simple and trivial for real &amp;ndash; I haven&amp;rsquo;t needed anything more.</summary>
                 <content type="html">&lt;p&gt;Occasionally, I&amp;rsquo;ve got a task to&amp;hellip; But I was too lazy to write my own function, to check the browser and blah-blah-blah (the more, as I remember, there are more progressive methods exist already :) ) &amp;hellip; Tried to attach &lt;a href=&#34;http://dklab.ru/lib/JsHttpRequest/&#34;&gt;JsHttpRequest from dklab.ru&lt;/a&gt;, but &amp;rsquo;ve got different tricky errors and everything from Mr. D. Koteroff is a little bit misty for me :), &amp;lsquo;cause I am not a prof in &lt;code&gt;PHP&lt;/code&gt; still. So I&amp;rsquo;ve taken &lt;a href=&#34;http://www.twilightuniverse.com/projects/sack/&#34;&gt;another sack&lt;/a&gt;, named  &lt;code&gt;SACK&lt;/code&gt; &amp;ndash; Simple AJAX Code-Kit. And in this sack everything is so simple and trivial for real &amp;ndash; I haven&amp;rsquo;t needed anything more.&lt;/p&gt;
@@ -5002,7 +5002,7 @@ echo $responce_str;
                 <title>PHP and UTF-8 (Unicode) - A funny thing for a half of a day</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/php-mysql-unicode/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/php-mysql-unicode/</id>
-                <updated>2006-12-22T23:01:00Z</updated>
+                <updated>2006-12-22T23:07:00Z</updated>
                 
                 <summary type="html">It is &lt;a href=&#34;http://live.julik.nl/2005/03/unicode-php&#34;&gt;not the advice of mine&lt;/a&gt;, but it helped me enormously.</summary>
                 <content type="html">&lt;p&gt;It is &lt;a href=&#34;http://live.julik.nl/2005/03/unicode-php&#34;&gt;not the advice of mine&lt;/a&gt;, but it helped me enormously.&lt;/p&gt;
@@ -5057,7 +5057,7 @@ php_value       mbstring.detect_order   &amp;quot;UTF-8,KOI8-R,CP1251&amp;quot;
                 <title>JSP Custom Tags</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/jsp-custom-tags/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/jsp-custom-tags/</id>
-                <updated>2006-05-15T23:01:00Z</updated>
+                <updated>2006-05-15T23:07:00Z</updated>
                 
                 <summary type="html">Let the first post will be about custom-tags for &lt;a href=&#34;http://java.sun.com/products/jsp/&#34;&gt;JSP&lt;/a&gt;, for example (and Java Server Faces, I think, will also follows these rules). There is a lot of information about them, but I&amp;rsquo;ve wanted to introduce you my sight and also to start from something relatively easy, though.</summary>
                 <content type="html">&lt;p&gt;Let the first post will be about custom-tags for &lt;a href=&#34;http://java.sun.com/products/jsp/&#34;&gt;JSP&lt;/a&gt;, for example (and Java Server Faces, I think, will also follows these rules). There is a lot of information about them, but I&amp;rsquo;ve wanted to introduce you my sight and also to start from something relatively easy, though.&lt;/p&gt;
