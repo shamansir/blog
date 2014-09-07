@@ -1,1 +1,5 @@
-.tmp
+.site
+.cache
+.fonts
+config.codekit
+shared/
