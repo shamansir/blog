@@ -1,50 +1,45 @@
-
 {% extends 'layout.html' %}
 
 
-{% set title = 'nwao — ' + item.title %}
+{% set post = item %}
 
-{% block breadcrumbs %}
-    <ul id="nwao-breadcrumbs">
-        <li><a href="{{ get_url() }}">Блог</a></li>
-        <li><a href="{{ get_url('/articles') }}">Статьи</a></li>
-        <li>{{ item.title|truncate(75) }}</li>
-    </ul>
-{% endblock %}
+{% set title = 'nwao — ' + post.title %}
+
+{% set section_id = 'post' %}
+
+{% set crumbs = (
+    ('Блог',''),
+    ('Статьи','/articles'),
+    (post.title|truncate(35), None)
+) %}
+
+{% set toc = post.toc %}
 
 {% block dive %}
-  <div id="nwao-dive">
-    {% if item.prev %}<a href="{{ item.prev.url }}" id="nwao-prev">Предыдущий пост</a>{% endif %}
-    {% if item.next %}<a href="{{ item.next.url }}" id="nwao-next">Следующий пост</a>{% endif %}
-  </div>
+    <nav role="dive">
+        <ul id="nwao-dive">
+            {% if post.prev %}
+                <li id="nwao-prev">
+                    <a href="{{ post.prev.url }}"
+                       title="{{ post.prev.title }}">Предыдущая статья</a>
+                </li>
+            {% endif %}
+            {% if post.next %}
+                <li id="nwao-next">
+                    <a href="{{ post.next.url }}"
+                       title="{{ post.next.title }}">Следующая статья</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 {% endblock %}
 
-<!-- TODO: TOC -->
-
 {% block content %}
-    <article id="nwao-post">
-        <div class="nwao-post-header">
-            <h2 class="nwao-post-title" id="top">
-                <a href="#top" title="{{ item.title }}">
-                    {{ item.title }}
-                </a>
-            </h2>
-            <dl class="nwao-post-infoline">
-                <dt class="nwao-hidden">Опубликован</dt>
-                <dd class="nwao-published"><i class="icon-time"></i>&nbsp;{{ item.timestamp|date('%d %B %Y, %A') }}</dd>
-                {% if item.tags %}
-                    <dt class="nwao-hidden">Тэги</dt>
-                    <dd class="nwao-tags">
-                    {% for tag in item.tags %}
-                        <a href="{{ get_url(posts.tags[tag].url) }}" rel="tag" title="Посты с тэгом '{{ tag }}' tag"><i class="icon-tag"></i>&nbsp;{{ tag }}</a>{% if not loop.last %}<span class="nwao-hidden">,</span> {% endif %}
-                    {% endfor %}
-                    </dd>
-                {% endif %}
-            </dl>
-        </div>
+    <article>
+        {% include '_blocks/post.header.html' %}
 
         <div class="nwao-post-content">
-            {{ item.content }}
+            {{ post.content }}
         </div>
     </article>
 {% endblock %}

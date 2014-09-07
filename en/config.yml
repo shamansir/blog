@@ -24,7 +24,7 @@ posts_url: /articles/<slug>/
 # Used in header meta tags and the site feed.
 author: Ulric Wilfred
 # A description of your site to be used in header meta tags.
-description: Blog about programming and only about it. No word about onion. At all. Totally none.
+description: A blog about programming and only about it. No word about onion. At all. Totally none.
 # Used in the site feed.
 email: shaman.sir@gmail.com
 # Your site's subtitle.

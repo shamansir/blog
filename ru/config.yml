@@ -15,7 +15,6 @@
 base_url: /blog/ru/
 domain: shamansir.github.com
 # Posts URL
-posts_root: /articles/
 posts_url: /articles/<slug>/
 
 
@@ -51,6 +50,7 @@ time_locale: ru_RU.UTF-8
 
 # If you'd like to enable Google Analytics for your site, set this to your tracking code.
 analytics: UA-20770637-6
+webfonts: aeaf962b-fb56-4a2d-af48-f7da7a5ede31
 # Set this to True to enable an Atom feed of your site.
 #   NOTE: `author`, `domain`, and `title` must be set to generate a valid feed.
 feed: true
@@ -77,8 +77,11 @@ figures_url: /figures/
 jinja:
     extensions:
         - jinja2.ext.loopcontrols
-misaka:
+hoep:
     render_flags:
         toc: true
 tag_layout: tag.html
 tags_url: /tags/
+pygmentize: true
+
+local: true

@@ -1,60 +1,45 @@
 {% extends 'layout.html' %}
 
-{% block breadcrumbs %}
-    <ul id="nwao-breadcrumbs">
-        <li>Блог</li>
-    </ul>
-{% endblock %}
+
+{% set section_id = 'feed' %}
+
+{% set crumbs = (
+    ('Блог',None),
+) %}
 
 {% block content %}
 
-    <div id="nwao-blog-feed">
+    <h2 id="nwao-page-title">
+        <a href="#top" title="Статьи">
+            <i class="icon-arrow-down"></i>Свежие статьи
+        </a>
+    </h2>
 
-    <div id="top" class="nwao-page-title-anchor"><h2 id="nwao-page-title"><a href="#top" title="Свежие"><i class="icon-arrow-down"></i>&nbsp;Свежие</a></h2></div>
-
-    {% for item in posts.items %}
+    {% for post in posts %}
         {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}
 
-        <section class="nwao-blog-feed-item">
-
-            <div class="nwao-post-header">
-                <h2 class="nwao-post-title">
-                    <a href="{{ get_url(item.url) }}" title="{{ item.title }}">{{ item.title }}</a>
-                </h2>
-                <dl class="nwao-post-infoline">
-                    <dt class="nwao-hidden">Опубликован</dt>
-                    <dd class="nwao-published"><i class="icon-time"></i>&nbsp;{{ item.timestamp|date('%d %B %Y, %A') }}</dd>
-                    {% if item.tags %}
-                        <dt class="nwao-hidden">Тэги</dt>
-                        <dd class="nwao-tags">
-                        {% for tag in item.tags %}
-                            <a href="{{ get_url(posts.tags[tag].url) }}" rel="tag" title="Посты с тэгом '{{ tag }}' tag"><i class="icon-tag"></i>&nbsp;{{ tag }}</a>{% if not loop.last %}<span class="nwao-hidden">,</span> {% endif %}
-                        {% endfor %}
-                        </dd>
-                    {% endif %}
-                </dl>
-            </div>
-
-            <div class="nwao-post-excerpt">
-                <p>{% if item.excerpt %}{{ item.excerpt }}{% else %}{{ item.content }}{% endif %}</p>
-            </div>
-
-            <div class="nwao-continue">
-                <a href="{{ get_url(item.url) }}" title="Прочесть" class="nwao-button">Прочесть&nbsp;&raquo;</a>
-            </div>
+        <article class="nwao-blog-feed-item">
 
             <div class="nwao-item-marker"><i class="icon-file"></i></div>
 
-        </section>
+            {% include '_blocks/list.post.header.html' %}
+
+            <div class="nwao-post-excerpt">
+                <p>{% if post.excerpt %}{{ post.excerpt }}{% else %}{{ post.content }}{% endif %}</p>
+            </div>
+
+            <a href="{{ get_url(post.url) }}" title="Continue Reading" class="nwao-continue">
+                Продолжить&nbsp;чтение
+            </a>
+
+        </article>
 
     {% endfor %}
 
     {% if site.post_limit and posts.items|length > site.post_limit %}
         <div id="nwao-pagination">
-            <p><a href="{{ get_url('archives/') }}" class="nwao-button" title="Подтухшие посты">Предыдущие&nbsp;посты</a></p>
+            <p><a href="{{ get_url('archives/') }}" title="All Articles">Предыдущие&nbsp;статьи</a></p>
         </div>
     {% endif %}
-
-    </div> <!-- / #nwao-blog-feed -->
 
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+
+{% set title = 'nwao — Статьи' %}
+
+{% set section_id = 'articles' %}
+
+{% set crumbs = (
+    ('Блог',''),
+    ('Статьи',None)
+) %}
+
+{% block content %}
+    <h2 id="nwao-page-title">
+        <a href="#top" title="Articles">
+            <i class="icon-file"></i>Статьи
+        </a>
+    </h2>
+
+    {% for year, archive in posts.archives|items %}
+        {% for month, month_posts in archive.months|items %}
+            {% include '_blocks/list.month.html' %}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

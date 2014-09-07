@@ -1,0 +1,42 @@
+{% macro toc(leaf) %}
+    {% if leaf %}
+        {% if leaf.parent %}
+            {# the root leaf has no parent #}
+            <li>
+                <a href="#{{ leaf.identifier }}" title="{{ leaf.text }}">{{ leaf.text }}</a>
+                {% if leaf.children %}
+                    <ul>
+                        {% for subleaf in leaf.children %}
+                            {{ toc(subleaf) }}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% else %}
+            {# the root leaf  #}
+            {% if leaf.children|length > 0 %}
+                <nav role="table-of-contents" id="nwao-toc">
+                    <h3>Содержание:</h3><a href="#top">(top)</a>
+                    <ul>
+                        {% for subleaf in leaf.children %}
+                            {{ toc(subleaf) }}
+                        {% endfor %}
+                    <ul>
+                </nav>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro breadcrumbs(crumbs) %}
+    <nav role="breadcrumbs">
+        <ul id="nwao-breadcrumbs">
+            {% for crumb in crumbs %}
+                {% set link = crumb[0] %}
+                {% set url = crumb[1]|default(none) %}
+
+                <li>{% if url is not none %}<a href="{{ get_url(url) }}">{{ link }}</a>{% else %}{{ link }}{% endif %}</li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endmacro %}

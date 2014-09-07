@@ -1,17 +1,55 @@
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta charset="utf-8" />
 
 {% if site.author %}<meta name="author" content="{{ site.author }}" />{% endif %}
 {% if site.description %}<meta name="description" content="{{ site.description }}" />{% endif %}
 <meta name="generator" content="mynt v{{ site.version }}" />
 
-<link rel="author me ext" href="http://shamansir.github.com" />
+<link rel="author me ext" href="http://shamansir.github.io" />
 <link rel="contents start home" href="{{ get_url() }}" />
 <link rel="index" href="{{ get_url('archives/') }}" />
 
 <link rel="shortcut icon" href="{{ get_asset('img/favicon.png') }}" type="image/x-icon" />
 
 {% if site.feed %}<link rel="alternate" href="{{ get_url('feed.xml') }}" type="application/atom+xml" />{% endif %}
+
+{% if site.local %}
+    <style type="text/css">
+        @font-face {
+          font-family: 'Input Sans Cond Ex Lt';
+          src: url('/.fonts/Input_Fonts/InputSans/InputSansCondensed/InputSansCondensed-ExtraLight.ttf') format('truetype');
+        }
+
+        @font-face {
+          font-family: 'Input Sans Cond Lt';
+          src: url('/.fonts/Input_Fonts/InputSans/InputSansCondensed/InputSansCondensed-Light.ttf') format('truetype');
+        }
+
+        @font-face {
+          font-family: 'Input Serif Comp Ex Lt';
+          src: url('/.fonts/Input_Fonts/InputSerif/InputSerifCompressed/InputSerifCompressed-ExtraLight.ttf') format('truetype');
+        }
+
+        @font-face {
+          font-family: 'Input Serif Comp Lt';
+          src: url('/.fonts/Input_Fonts/InputSerif/InputSerifCompressed/InputSerifCompressed-Light.ttf') format('truetype');
+        }
+
+        @font-face {
+          font-family: 'Input Serif Comp Thin';
+          src: url('/.fonts/Input_Fonts/InputSerif/InputSerifCompressed/InputSerifCompressed-Thin.ttf') format('truetype');
+        }
+
+        @font-face {
+          font-family: 'Input Mono Ex Lt';
+          src: url('/.fonts/Input_Fonts/InputMono/InputMono/InputMono-ExtraLight.ttf') format('truetype');
+        }
+
+        @font-face {
+          font-family: 'Input Mono Lt';
+          src: url('/.fonts/Input_Fonts/InputMono/InputMono/InputMono-Light.ttf') format('truetype');
+        }
+    </style>
+{% endif %}
 
 <link rel="stylesheet" href="{{ get_asset('css/screen.css') }}" media="screen, projection" type="text/css" />
 <link rel="stylesheet" href="{{ get_asset('css/print.css') }}" media="print" type="text/css" />
@@ -20,19 +58,30 @@
   <![endif]-->
 {% if site.pygmentize %}<link rel="stylesheet" href="{{ get_asset('css/pygments.trac.css') }}" type="text/css" />{% endif %}
 
-<!-- Font Awesome - http://fortawesome.github.com/Font-Awesome -->
+<!-- Font Awesome - http://fortawesome.github.io/Font-Awesome/ -->
 <link rel="stylesheet" href="{{ get_asset('css/font-awesome.css') }}" />
 
+{% if site.local %}
+
+{% else %}
+    {% if site.webfonts %}
+        <!-- WebFonts -->
+        <link rel="stylesheet" href="//cloud.webtype.com/css/{{ site.webfonts }}.css" type="text/css" />
+    {% endif %}
+
+    {% if site.analytics %}
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{ site.analytics }}', 'auto');
+            ga('send', 'pageview');
+        </script>
+    {% endif %}
+{% endif %}
+
 {% if site.analytics %}
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', '{{ site.analytics }}']);
-        _gaq.push(['_trackPageview']);
-        
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
+
 {% endif %}

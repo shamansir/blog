@@ -1,38 +1,27 @@
 {% extends 'layout.html' %}
 
 
-{% set title = 'nwao — Тэг  &rsaquo; ' ~ tag.name %}
+{% set title = 'nwao — Метка  &rsaquo; ' ~ tag.name %}
 
-{% block breadcrumbs %}
-    <ul id="nwao-breadcrumbs">
-        <li><a href="{{ get_url() }}">Blog</a></li>
-        <li><a href="{{ get_url('/tags') }}">Тэги</a></li>
-        <li>{{ tag.name }}</li>
-    </ul>
-{% endblock %}
+{% set section_id = 'tagged' %}
+
+{% set crumbs = (
+    ('Блог',''),
+    ('Метки','/tags'),
+    (tag.name, None)
+) %}
 
 {% block content %}
-    <div id="nwao-tagged">
-        <div id="top" class="nwao-page-title-anchor">
-            <h2 id="nwao-page-title">
-                <a href="#top" title="Тэг — {{ tag.name }}"><i class="icon-tag"></i><span class="nwao-hidden">&nbsp;Тэг&nbsp;&raquo;</span>&nbsp;{{ tag.name }}</a>
-            </h2>
-        </div>
-        {% for year, archive in tag.archives|items %}
-            <dl class="nwao-archives-year">
-                <dt><a href="{{ get_url(archive.url) }}" title="Архив — {{ year }}" class="nwao-button"><i class="icon-calendar"></i>&nbsp;{{ year }}</a></dt>
-                <dd>
-                    <dl class="nwao-archive-items">
-                        {% for month, items in archive.months|items %}
-                            {% for item in items %}
-                                <dt><i class="icon-time"></i>&nbsp;{{ item.timestamp|date('%B %d') }}</dt>
-                                <dd>
-                                    <a href="{{ get_url(item.url) }}"><i class="icon-file"></i>&nbsp;{{ item.title }}</a>{% if item.tags %}<div class="nwao-tags"><span class="nwao-hidden">&nbsp;С тэгами <span>&raquo;</span> </span>{% for tag in item.tags %}<a href="{{ get_url(posts.tags[tag].url) }}" rel="tag" title="Посты с тэгом '{{ tag }}' tag"><i class="icon-tag"></i>&nbsp;{{ tag }}</a>{% if not loop.last %}<span class="nwao-hidden">,</span> {% endif %}{% endfor %}</div>{% endif %}</dd>
-                            {% endfor %}
-                        {% endfor %}
-                    </dl>
-                </dd>
-            </dl>
-        {% endfor %}
-    </div>
+    <h2 id="nwao-page-title">
+        <a href="#top" title="Метка — {{ tag.name }}">
+            <i class="icon-tag"></i>
+            <span id="nwao-page-title-primary">Метка</span>
+            <span id="nwao-page-title-splitter">&mdash;</span>
+            <span id="nwao-page-title-secondary">{{ tag.name }}</span>
+        </a>
+    </h2>
+
+    {% for year, archive in tag.archives|items %}
+        {% include '_blocks/list.year.html' %}
+    {% endfor %}
 {% endblock %}
