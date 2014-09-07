@@ -13,10 +13,10 @@
 #           base_url: /my-blog/
 #           domain: my-site.com
 base_url: /blog/ru/
-domain: shamansir.github.com
+domain: shamansir.github.io
 # Posts URL
 posts_url: /articles/<slug>/
-
+assets_url: ./assets/
 
 #
 # METADATA
