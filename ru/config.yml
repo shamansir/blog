@@ -84,4 +84,4 @@ tag_layout: tag.html
 tags_url: /tags/
 pygmentize: true
 
-local: true
+local: false

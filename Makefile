@@ -32,7 +32,7 @@ build:
 	mynt gen -f --base-url=/ ./$(SRC_DIR)/$(DEF_LANG) ./$(TRG_DIR)
 	mynt gen -f --locale=$(SEC_LANG_LOCALE) --base-url=/$(SEC_LANG)/ ./$(SRC_DIR)/$(SEC_LANG) ./$(TRG_DIR)/$(SEC_LANG)
 
-	ln -sf ../.fonts/ ./$(TRG_DIR)/.fonts
+	# ln -sf ../.fonts/ ./$(TRG_DIR)/.fonts
 
 serve:
 	mynt serve --base-url=/ ./$(TRG_DIR)
