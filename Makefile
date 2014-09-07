@@ -8,9 +8,9 @@ SEC_LANG_LOCALE=ru_RU.UTF-8
 TRG_DIR=.site
 SRC_DIR=.cache
 
-all: build
+all: build-local
 
-build:
+build-local:
 	cd $(ROOT_DIR)
 
 	rm -Rf ./$(SRC_DIR)
@@ -32,7 +32,29 @@ build:
 	mynt gen -f --base-url=/ ./$(SRC_DIR)/$(DEF_LANG) ./$(TRG_DIR)
 	mynt gen -f --locale=$(SEC_LANG_LOCALE) --base-url=/$(SEC_LANG)/ ./$(SRC_DIR)/$(SEC_LANG) ./$(TRG_DIR)/$(SEC_LANG)
 
-	# ln -sf ../.fonts/ ./$(TRG_DIR)/.fonts
+	ln -sf ../.fonts/ ./$(TRG_DIR)/.fonts
+
+build-prod:
+	cd $(ROOT_DIR)
+
+	rm -Rf ./$(SRC_DIR)
+	rm -Rf ./$(TRG_DIR)
+
+	mkdir ./$(SRC_DIR)
+	mkdir ./$(SRC_DIR)/$(DEF_LANG)
+	mkdir ./$(SRC_DIR)/$(SEC_LANG)
+
+	mkdir ./$(TRG_DIR)
+	mkdir ./$(TRG_DIR)/$(SEC_LANG)
+
+	cp -R ./$(DEF_LANG)/* ./$(SRC_DIR)/$(DEF_LANG)
+	cp -R ./shared/* ./$(SRC_DIR)/$(DEF_LANG)
+
+	cp -R ./$(SEC_LANG)/* ./$(SRC_DIR)/$(SEC_LANG)
+	cp -R ./shared/* ./$(SRC_DIR)/$(SEC_LANG)
+
+	mynt gen -f ./$(SRC_DIR)/$(DEF_LANG) ./$(TRG_DIR)
+	mynt gen -f --locale=$(SEC_LANG_LOCALE) ./$(SRC_DIR)/$(SEC_LANG) ./$(TRG_DIR)/$(SEC_LANG)
 
 serve:
 	mynt serve --base-url=/ ./$(TRG_DIR)

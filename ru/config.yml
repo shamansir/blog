@@ -16,7 +16,7 @@ base_url: /blog/ru/
 domain: shamansir.github.io
 # Posts URL
 posts_url: /articles/<slug>/
-assets_url: ./assets/
+assets_url: /assets/
 
 #
 # METADATA
