@@ -35,7 +35,7 @@
             <h3>Contents:</h3><a href="#top" title="top">(top)</a>
             {{ build_toc(toc) }}
         </nav>
-    {% elif custom_toc %}
+    {% elif has_custom_toc %}
         <nav role="table-of-contents" id="nwao-toc">
             <h3>Contents:</h3><a href="#top" title="top">(top)</a>
             {% block custom_toc %}{% endblock %}

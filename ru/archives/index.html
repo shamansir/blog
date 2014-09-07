@@ -10,10 +10,12 @@
     ('Архив',None)
 ) %}
 
+{% set has_custom_toc = true %}
+
 {% block custom_toc %}
     <ul>
         {% for year, archive in posts.archives|items %}
-            <li><a href="{{ get_url(archive.url) }}" title="Archives — {{ year }}">{{ year }}</a></li>
+            <li><a href="{{ get_url('archives/#' + year) }}" title="Архив — {{ year }}">{{ year }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
@@ -24,7 +26,7 @@
     </h2>
 
     {% for year, archive in posts.archives|items %}
-        <dl class="nwao-archives-year">
+        <dl class="nwao-archives-year" id="{{year}}">
             <dt>
                 <a href="{{ get_url(archive.url) }}" title="Архив — {{ year }}">{{ year }}</a>
             </dt>
