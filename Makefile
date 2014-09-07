@@ -45,3 +45,6 @@ watch:
 
 watch-sec:
 	mynt watch -f --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/$(SEC_LANG)
+
+update-sec-styles:
+	cp ./$(TRG_DIR)/assets/css/* ./$(TRG_DIR)/$(SEC_LANG)/assets/css/

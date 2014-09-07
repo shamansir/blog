@@ -20,13 +20,13 @@
         <ul id="nwao-dive">
             {% if post.prev %}
                 <li id="nwao-prev">
-                    <a href="{{ post.prev.url }}"
+                    <a href="{{ get_url(post.prev.url) }}"
                        title="{{ post.prev.title }}">Предыдущая статья</a>
                 </li>
             {% endif %}
             {% if post.next %}
                 <li id="nwao-next">
-                    <a href="{{ post.next.url }}"
+                    <a href="{{ get_url(post.next.url) }}"
                        title="{{ post.next.title }}">Следующая статья</a>
                 </li>
             {% endif %}
