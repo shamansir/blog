@@ -30,6 +30,8 @@ It started two years ago, actually I was in need of some specific JS-driven-pars
 
 But let's skip long stories and I'll show you the resulting code example. And the comparison with the original code and binary code. The source is arithmetics grammar, given below.
 
+You may open this image in new tab (right click &rarr; Open in new Tab) to see it in full size.
+
 ![Comparison of generated parsers]({{ get_figure(slug, 'comparison.png') }})
 
 ``` peg
@@ -584,7 +586,7 @@ Woof, seems we got it not so briefly here. But anyway this will help to explain 
   // ...
 
   // this expression is evaluated before every parsing cycle
-  var ƒ = __user_blocks();
+  var $f = __user_blocks();
 ```
 
 All user code blocks are grouped by rule name, so each rule has it's own array. We already traveled the grammar AST here, when we generated this parsing code, so we knew all the labels names and injected them to proper places. When user parses some input, we know an index of user block to call, so we pass current context to a function and call it, i.e. `__user_blocks.additive[0](cctx)` (`cctx`  variable holds current context).
@@ -613,7 +615,7 @@ var rules = {}; (function() {
     // ... other rules here ...
 
     rules.additive = function() {
-      var _code = ƒ.additive;
+      var _code = $f.additive;
       return (
         choice(
           action(
@@ -638,7 +640,7 @@ var rules = {}; (function() {
 })();
 ```
 
-`ƒ` is given a value of `__user_blocks()` on every call to `parse()` function.
+`$f` is given a value of `__user_blocks()` on every call to `parse()` function.
 
 #### Operators
 
@@ -671,7 +673,7 @@ Actually, everything about context structure was described in _[User Code](#User
 
 #### `parse()` Function
 
-It is the function called with evey new `input` to parse. It resets all the variables to their default values, clears the cache and does `ƒ = __user_blocks()` (see [User Code](#User-Code) section), for example, then searches for the starting rule and executes it in a `try`-`catch` block. If `MatchFailed` exception was fired during the execution, it collects all the necessary information about the failure and fires it further to user (since it reached the top level and wasn't suppressed, for suppressed exceptions no information that should have belonged to user is collected).
+It is the function called with evey new `input` to parse. It resets all the variables to their default values, clears the cache and does `$f = __user_blocks()` (see [User Code](#User-Code) section), for example, then searches for the starting rule and executes it in a `try`-`catch` block. If `MatchFailed` exception was fired during the execution, it collects all the necessary information about the failure and fires it further to user (since it reached the top level and wasn't suppressed, for suppressed exceptions no information that should have belonged to user is collected).
 
 #### `MatchFailed`, `SyntaxError`, Error Handling
 
