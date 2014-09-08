@@ -32,6 +32,14 @@ build-local:
 	mynt gen -f --base-url=/ ./$(SRC_DIR)/$(DEF_LANG) ./$(TRG_DIR)
 	mynt gen -f --locale=$(SEC_LANG_LOCALE) --base-url=/$(SEC_LANG)/ ./$(SRC_DIR)/$(SEC_LANG) ./$(TRG_DIR)/$(SEC_LANG)
 
+	sass ./shared/_assets/css/_sass/print.sass ./$(TRG_DIR)/assets/css/print.css
+	sass ./shared/_assets/css/_sass/screen.sass ./$(TRG_DIR)/assets/css/screen.css
+	sass ./shared/_assets/css/_sass/pygments.trac.sass ./$(TRG_DIR)/assets/css/pygments.trac.css
+
+	sass ./shared/_assets/css/_sass/print.sass ./$(TRG_DIR)/$(SEC_LANG)/assets/css/print.css
+	sass ./shared/_assets/css/_sass/screen.sass ./$(TRG_DIR)/$(SEC_LANG)/assets/css/screen.css
+	sass ./shared/_assets/css/_sass/pygments.trac.sass ./$(TRG_DIR)/$(SEC_LANG)/assets/css/pygments.trac.css
+
 	ln -sf ../.fonts/ ./$(TRG_DIR)/.fonts
 
 build-prod:
@@ -56,6 +64,14 @@ build-prod:
 	mynt gen -f ./$(SRC_DIR)/$(DEF_LANG) ./$(TRG_DIR)
 	mynt gen -f --locale=$(SEC_LANG_LOCALE) ./$(SRC_DIR)/$(SEC_LANG) ./$(TRG_DIR)/$(SEC_LANG)
 
+	sass ./shared/_assets/css/_sass/print.sass ./$(TRG_DIR)/assets/css/print.css
+	sass ./shared/_assets/css/_sass/screen.sass ./$(TRG_DIR)/assets/css/screen.css
+	sass ./shared/_assets/css/_sass/pygments.trac.sass ./$(TRG_DIR)/assets/css/pygments.trac.css
+
+	sass ./shared/_assets/css/_sass/print.sass ./$(TRG_DIR)/$(SEC_LANG)/assets/css/print.css
+	sass ./shared/_assets/css/_sass/screen.sass ./$(TRG_DIR)/$(SEC_LANG)/assets/css/screen.css
+	sass ./shared/_assets/css/_sass/pygments.trac.sass ./$(TRG_DIR)/$(SEC_LANG)/assets/css/pygments.trac.css
+
 serve:
 	mynt serve --base-url=/ ./$(TRG_DIR)
 
@@ -67,6 +83,3 @@ watch:
 
 watch-sec:
 	mynt watch -f --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/$(SEC_LANG)
-
-update-sec-styles:
-	cp ./$(TRG_DIR)/assets/css/* ./$(TRG_DIR)/$(SEC_LANG)/assets/css/
