@@ -2,7 +2,7 @@
     <dt class="nwao-published">Опубликован</dt>
     <dd class="nwao-published">
         <a href="{{ get_url('archives/' + post.timestamp|date('%Y') + '/') }}"
-           title="{{ post.timestamp|date('%d %B %Y, %A. %H:%M') }}">
+           title="{{ post.timestamp|date('%d %B %Y, %A') }}">
            <time datetime="%d-%m-%Y" pubdate>{{ post.timestamp|date('%d %b %Y') }}</time>
         </a>
     </dd>
