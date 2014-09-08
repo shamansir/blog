@@ -59,15 +59,19 @@ integer "integer"
   = digits:[0-9]+ { return parseInt(digits.join(""), 10); }
 ```
 
-So you see, the one on the right is much much more readable and compact. Though yeah, this variant of parser is also much slower, but I do not consider this fact as a failure of my version, since the aim was not to focus on speed at all. To forget about it completely, why not – a life in digital age makes us learn that at some future point your optimized code will work for user at almost the same speed as similar non-optimized one. So, if  the point of your research is some moment in next ten years or so, you may freely omit the time factor... ;).
+So you see, the one on the right is much much more readable and compact.
 
-> Actually I know that main cause of this speed decrease is in the fact that generated parsers are overwhelmingly exception-driven (yes they do, which means some largely re-used `try`/`catch` blocks mentioned later in this article, but is does not affect operators or rules code a lot) and it's a known common performance flaw of JS engines, which may quite easily be solved with hacks – but using them will break parsers readability just in favor of a single language, so I won't do it in this article, since it's more a theoretical one. Anyway, you may better replace it with some similar code, with your own hands.
+Though yeah, this variant of parser is also parses much slower, at least in case of using JavaScript engine for its generation.
+
+I've investigated in that, and I actually know that main cause of this speed decrease is in the fact that generated parsers are overwhelmingly exception-driven (yes they do, which means some largely re-used `try`/`catch` blocks mentioned later in this article, but actually it doesn't affects operators or rules code a lot). And it's a common known performance flaw of JS engines, which may quite easily be solved with hacks – but using them will break parsers readability just in favor of single language, so I won't do it in this article, since it's more a theoretical one.
+
+Anyway, if speed is highly important for you, you may safely treat the code below as a pseudocode which will make it language-independent, or replace it with some similar code with your own hands, or may be using another language will just neutralize these speed issues.
 
 What I consider innovative is massive usage of partial function application in generated code and, as it appeared in the end, the overall simplicity and functional beauty of operators' code 'mini-patterns'. Most part of my life I am truly a modest guy, so please note that I overcome myself to make you pay proper attention to the benefits of the approach). And also, without David's hard work there'd be no basement for me to build on. No, false comparison. No walls, fundament, finely tuned electricity network, gas tubes system, properly configured and built water system, to put my roof on. That's closer.
 
-I named it `peg.js-fn` and all the code is located [at github]().
+I named it `peg.js-fn` and all the code is located [at github][pegjs-fn-github].
 
-Since people will probably ask, I need to mention that, of course, all of peg.js tests are successfully passed by peg.js-fn.
+Since people will probably ask, I need to mention that, for sure, all of peg.js tests are successfully passed by peg.js-fn.
 
 So the third part of the article is about the structure of generated parser code, in details, on how it works from the inside, and a second one is a just a list of all 18 operators' code snippets with short comments. Just in case I'll get your interest in internals of the approach.
 
