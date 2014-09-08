@@ -19,7 +19,7 @@
         {% for tag in posts.tags|values %}
             <li>
                 <a href="{{ get_url(tag.url) }}" rel="tag"
-                   title="Статьи с меткой '{{ tag }}'">{{ tag.name }}</a>
+                   title="Статьи с меткой '{{ tag.name }}'">{{ tag.name }}</a>
                 {% if tag.count %}
                     <span class="tag-count">{{ tag.count }}</span>
                 {% endif %}
