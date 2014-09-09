@@ -63,7 +63,7 @@ So you see, the one on the right is much much more readable and compact.
 
 Though yeah, this variant of parser is also parses much slower, at least in case of using JavaScript engine for its generation.
 
-I've investigated in that, and I actually know that main cause of this speed decrease is in the fact that generated parsers are overwhelmingly exception-driven (yes they do, which means some largely re-used `try`/`catch` blocks mentioned later in this article, but actually it doesn't affects operators or rules code a lot). And it's a common known performance flaw of JS engines, which may quite easily be solved with hacks – but using them will break parsers readability just in favor of single language, so I won't do it in this article, since it's more a theoretical one.
+I've investigated in that, and I actually know that main cause of this speed decrease is in the fact that generated parsers are overwhelmingly exception-driven (yes they do, which means some largely re-used `try`/`catch` blocks mentioned later in this article, but actually it doesn't affects operators or rules code a lot). And it's a common known performance flaw of JS engines, which may quite easily be solved with hacks or by re-implementing `Either` monad (thx guys, I missed that one before!) – but using them will break parsers readability just in favor of what single language lacks of, so I won't do it in this article, since it's more a theoretical one.
 
 Anyway, if speed is highly important for you, you may safely treat the code below as a pseudocode which will make it language-independent, or replace it with some similar code with your own hands, or may be using another language will just neutralize these speed issues.
 
@@ -99,7 +99,7 @@ So JavaScript engine will skip second call if first one returned some value with
 
 Following this example you might observe that every operator in generated parsers is a postponed function (at least, but not at last). I'll list them all below, one by one, all _The Mighty 18_ of them.
 
-They are intended to impress you at the first glance, so no need in getting everything to the deepest deep – later you'll have a chance either to dig into any level of details you'll find required, or freely drop it as unuseful just after this chapter's end. [Or you may drop it even here, why bother?]
+They are intended to impress you at the first glance, so no need in getting everything to the deepest deep – later you'll have a chance either to dig into any level of details you'll find required, or freely drop it as useless just after this chapter's end. [Or you may drop it even here, why bother?]
 
 A quick look into global things:
 
