@@ -255,6 +255,6 @@ If you planned to parse the `.elmi` file and extract types out of it, now you ha
 
 # Solutions for the tricks
 
-* **#1:** nothing special, just use `chmod` and `chown` to set a sticky bit on a directory which could contain a file, to prevent a user who runs the application (REPL, in this case) from deleting anything inside it: http://unix.stackexchange.com/a/20106/7667
-* **#2:** even less special, nice util named `xdd` is your friend: http://unix.stackexchange.com/a/282220/7667, http://stackoverflow.com/a/20305782/167262
-* **#3:** no solution at all.
+* **#1:** nothing special, just use `chmod` and `chown` to set a sticky bit on a directory which could contain a file, to prevent a user who runs the application (REPL, in this case) from deleting anything inside it: http://unix.stackexchange.com/a/20106/7667;
+* **#2:** even less special, nice util named `xdd` is your friend: http://unix.stackexchange.com/a/282220/7667, http://stackoverflow.com/a/20305782/167262;
+* **#3:** no solution at all;

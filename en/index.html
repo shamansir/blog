@@ -16,7 +16,7 @@
     {% for post in posts %}
         {% if site.post_limit and loop.index > site.post_limit %}{% break %}{% endif %}
 
-        <article class="nwao-blog-feed-item">
+        <article class="nwao-blog-feed-item" data-post-slug="{{ post.slug }}">
 
             {% include '_blocks/list.post.header.html' %}
 
