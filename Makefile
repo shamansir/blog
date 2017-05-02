@@ -83,3 +83,8 @@ watch:
 
 watch-sec:
 	mynt watch -f --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/$(SEC_LANG)
+
+share-styles:
+	rm -Rf ./$(TRG_DIR)/$(SEC_LANG)/assets/css
+	mkdir ./$(TRG_DIR)/$(SEC_LANG)/assets/css
+	cp -R ./$(TRG_DIR)/assets/css/* ./$(TRG_DIR)/$(SEC_LANG)/assets/css/
