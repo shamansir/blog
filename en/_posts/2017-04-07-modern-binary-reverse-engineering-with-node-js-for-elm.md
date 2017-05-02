@@ -2,7 +2,7 @@
 layout: post.html
 title: "Modern Binary Reverse-Engineering with node.js, for Elm, or Why We Really Need Elm Playgrounds"
 datetime: 07 Apr 2017 14:32
-tags: [ elm, functional, parsers, binary-parsers, reverse-engineering ]
+tags: [ elm, functional, parsers ]
 excerpt: Kind of a problem for the developers of these plugins, is the fact that for the moment Elm has no reflection (a way to get a type of an entity) and tends not to have it at all. By itself, having no reflection is rather a good thing, usually it complicates the language syntax and/or libraries a lot. But the detailed types information is needed to implement helpful things in editors—nice type hints, nice auto-completion etc...
 ---
 
@@ -174,7 +174,7 @@ It allows you to open binary file, see all its bits in a nice grid, easily mark 
 
 The `.grammar` file for .elmi also [lies in the repository](https://github.com/shamansir/node-elm-repl/blob/master/elmi.grammar).
 
-[A complete grammar structure and an example binary file, parsed with this grammar, side-by-side. Synalyze it!]({{ get_figure(slug, 'grammar-structure-synalyze-it.png') }})
+![A complete grammar structure and an example binary file, parsed with this grammar, side-by-side. Synalyze it!]({{ get_figure(slug, 'grammar-structure-synalyze-it.png') }})
 
 # Destructuring ELMI in details
 
@@ -187,11 +187,11 @@ Some primitive conclusions were quite easy to determine from the start:
 * then, there go type definitions paired with variable names;
 * this usually ends the important part of a file (sometimes not);
 
-[Root ELMI File structure.]({{ get_figure(slug, 'structure-elmi.png') }})
+![Root ELMI File structure.]({{ get_figure(slug, 'structure-elmi.png') }})
 
 Some things were much harder to evaluate: for example complex structures, when stored in binary, usually consist of several marker bit-cells with numbers, following the marker bit-cells with the same numbers, but in this case these same numbers could have totally different meaning, and in theory could (or could not) define the number of bytes we should read after reading such marker, but these bytes, which we should probably read, could also include markers with different meaning, and also some markers inside them could define that the structure should split in three branches from now on, and each of these branches starts with some markers… truly, when you destructure these plain sequences of senseless numbers and try to form a meaningful stable tree from them, it feels like you are some kind of _holistic detective_…
 
-[How a line of random byte and string sequences could lead to a meaningful structure with cells and markers.]({{ get_figure(slug, 'random-bytes-line.png') }})
+![How a line of random byte and string sequences could lead to a meaningful structure with cells and markers.]({{ get_figure(slug, 'random-bytes-line.png') }})
 
 How a line of random byte and string sequences could lead to a meaningful structure with cells and markers.
 
@@ -199,15 +199,15 @@ Especially when you do it in Pages App. So, at least don’t do this kind of stu
 
 The project [has all the tests](https://github.com/shamansir/node-elm-repl/tree/master/test) required for every discovered example of complex type, including pre-compiled `.elmi` files and not-yet-compiled `.elm` files to test.
 
-[Package info definition.]({{ get_figure(slug, 'structure-package.png') }})
+![Package info definition.]({{ get_figure(slug, 'structure-package.png') }})
 
-[Package Info example from HelloWorld.elm.]({{ get_figure(slug, 'package-info-hello.png') }})
+![Package Info example from HelloWorld.elm.]({{ get_figure(slug, 'package-info-hello.png') }})
 
 **Package Info.** Package info requires no comments, it just contains the Elm compiler version, package author username and project name.
 
-[Imports and Exports definition.]({{ get_figure(slug, 'structure-import-export.png') }})
+![Imports and Exports definition.]({{ get_figure(slug, 'structure-import-export.png') }})
 
-[Imports and Exports example from HelloWorld.elm]({{ get_figure(slug, 'import-export-hello.png') }})
+![Imports and Exports example from HelloWorld.elm]({{ get_figure(slug, 'import-export-hello.png') }})
 
 **Imports.** Any import could be an internal packages and so defined just by name (marker `0001`), or require a full path to a package and type (marker `02`).
 
@@ -215,7 +215,7 @@ The project [has all the tests](https://github.com/shamansir/node-elm-repl/tree/
 
 **Type Definitions.** Type Definitions are the most complex and complicated things in a file. They are the ones who contain mysterious markers-inside-markers constructions described above. But I’m here to help.
 
-[Type Definitions and Nodes kinds.]({{ get_figure(slug, 'structure-node.png') }})
+![Type Definitions and Nodes kinds.]({{ get_figure(slug, 'structure-node.png') }})
 
 The kinds of structures here are a bit different to actual Elm types but still they define them in a deterministic way. The single type is defined with a recursive structure of data cells, where a cell could be a:
 
@@ -228,20 +228,20 @@ The kinds of structures here are a bit different to actual Elm types but still t
 
 **NB:** lambda could only have two parts, so the definition like `String -> Int -> Bool` is stored as two lambdas, one inside another: lambda `(Int -> Bool)` is applied to a `String` type, and so the root lambda cell is `(outer-lambda: String -> (inner-lambda: Int -> Bool))`; **Trickity-trick #3:** think on how this could be connected to function definitions in Elm types;
 
-[All the Node kinds expanded (except Aliases).]({{ get_figure(slug, 'structure-types.png') }})
+![All the Node kinds expanded (except Aliases).]({{ get_figure(slug, 'structure-types.png') }})
 
-[Type Definition example from HelloWorld.elm]({{ get_figure(slug, 'types-hello.png') }})
+![Type Definition example from HelloWorld.elm]({{ get_figure(slug, 'types-hello.png') }})
 
 The trick here is that almost every cell may include another cell with its own internal namespace of definitions and numbers, and this is the reason why plain structure of bytes looks so repetitive from the start. If you have Ph.D. in Binary Reverse Engineering (like I do not), you would treat that obvious, but for newbies there’s always an advice not to be fearful of the structures and believe that there is a meaningful reason behind every bit, every byte, every Life, every Universe and EveryThing…
 
-[Aliased Node structure.]({{ get_figure(slug, 'structure-aliased.png') }})
+![Aliased Node structure.]({{ get_figure(slug, 'structure-aliased.png') }})
 
 **Unions, Aliases, Fixities.** Any of these seem to have no effect on type definitions, so these parts could be skipped from parsing completely.
 All the schemes above, along with the `.grammar` file, do define the structure of any `.elmi` file [I found yet]. If you have found the `.elmi` file not satisfying to this schemes and grammar, please fork [node-elm-repl](https://github.com/shamansir/node-elm-repl) repository, add this file [to the specs](https://github.com/shamansir/node-elm-repl/tree/master/test) and then make a Pull Request to the origin.
 
 So, now we know the type (and a value) of any expression, [node-elm-repl](https://github.com/shamansir/node-elm-repl) in Action.:
 
-[node-elm-repl in Action.]({{ get_figure(slug, 'node-elm-repl-in-action.png') }})
+![node-elm-repl in Action.]({{ get_figure(slug, 'node-elm-repl-in-action.png') }})
 
 # The Verdict
 
@@ -255,6 +255,6 @@ If you planned to parse the `.elmi` file and extract types out of it, now you ha
 
 # Solutions for the tricks
 
-**#1:** nothing special, just use `chmod` and `chown` to set a sticky bit on a directory which could contain a file, to prevent a user who runs the application (REPL, in this case) from deleting anything inside it: http://unix.stackexchange.com/a/20106/7667
-**#2:** even less special, nice util named `xdd` is your friend: http://unix.stackexchange.com/a/282220/7667, http://stackoverflow.com/a/20305782/167262
-**#3:** no solution at all.
+* **#1:** nothing special, just use `chmod` and `chown` to set a sticky bit on a directory which could contain a file, to prevent a user who runs the application (REPL, in this case) from deleting anything inside it: http://unix.stackexchange.com/a/20106/7667
+* **#2:** even less special, nice util named `xdd` is your friend: http://unix.stackexchange.com/a/282220/7667, http://stackoverflow.com/a/20305782/167262
+* **#3:** no solution at all.
