@@ -73,16 +73,16 @@ build-prod:
 	sass ./shared/_assets/css/_sass/pygments.trac.sass ./$(TRG_DIR)/$(SEC_LANG)/assets/css/pygments.trac.css
 
 serve:
-	mynt serve --base-url=/ ./$(TRG_DIR)
+	mynt serve --base-url=/ ./$(TRG_DIR) -p 1234
 
 serve-sec:
-	mynt serve --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/$(SEC_LANG)
+	mynt serve --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/$(SEC_LANG) -p 1234
 
 watch:
-	mynt watch -f --base-url=/ ./$(TRG_DIR)
+	mynt watch -f --base-url=/ ./$(TRG_DIR) -p 1234
 
 watch-sec:
-	mynt watch -f --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/$(SEC_LANG)
+	mynt watch -f --base-url=/$(SEC_LANG)/ ./$(TRG_DIR)/$(SEC_LANG) -p 1234
 
 share-styles:
 	rm -Rf ./$(TRG_DIR)/$(SEC_LANG)/assets/css
