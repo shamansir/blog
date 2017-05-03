@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: 10 полезных решений для разработчика под Android
-datetime: 05 Jan 2010 19:48
+datetime: 09 Jan 2011 19:48
 tags: [ java, android, vimeoid, mobile-dev ]
 ---
 
