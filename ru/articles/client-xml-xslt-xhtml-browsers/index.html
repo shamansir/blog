@@ -95,7 +95,7 @@
             
             
 
-            <li>На клиенте! Получить XML! Получить ...</li>
+            <li>На клиенте! Получить XML!...</li>
         
     </ul>
 
@@ -276,7 +276,7 @@
                     <a href="/blog/ru/tags/javascript/" rel="tag"
                        title="Статьи с меткой ''">javascript</a>
                     
-                        <span class="tag-count">14</span>
+                        <span class="tag-count">15</span>
                     
                     
                         <span class="nwao-comma">,</span>
@@ -360,7 +360,7 @@
 33
 34
 35
-36</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="cp">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;./contacts.xsl&quot;?&gt;</span>
 <span class="nt">&lt;contacts</span>
     <span class="na">xmlns=</span><span class="s">&quot;http://any-developer.name&quot;</span>
@@ -462,7 +462,7 @@
 53
 54
 55
-56</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+56</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
 <span class="nt">&lt;xsl:stylesheet</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span>
         <span class="na">xmlns:xsl=</span><span class="s">&quot;http://www.w3.org/1999/XSL/Transform&quot;</span>
         <span class="na">xmlns:c=</span><span class="s">&quot;http://any-developer.name&quot;</span> <span class="na">exclude-result-prefixes=</span><span class="s">&quot;c&quot;</span><span class="nt">&gt;</span>
@@ -596,7 +596,7 @@
 63
 64
 65
-66</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+66</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/**</span>
 <span class="cm"> * Browser-independent [A]JAX call</span>
 <span class="cm"> *</span>
 <span class="cm"> * @param {String} locationURL an URL to call, without parameters</span>
@@ -674,7 +674,7 @@
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/**</span>
 <span class="cm"> * Loads any XML using synchronous XMLHttpRequest call.</span>
 <span class="cm"> * @param {String} fileName name of the file to be loaded</span>
 <span class="cm"> * @return {XMLDocument|Object}</span>
@@ -718,7 +718,7 @@
 27
 28
 29
-30</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/**</span>
 <span class="cm"> * Loads any XML document using ActiveX (for IE) or createDocumentFunction (for</span>
 <span class="cm"> * other browsers)</span>
 <span class="cm"> * @param {String} fileName name of the file to be loaded</span>
@@ -785,7 +785,7 @@
 26
 27
 28
-29</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+29</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/**</span>
 <span class="cm"> * Applies specified XSL stylesheet to the specified XML file and returns</span>
 <span class="cm"> * the result as a string. ActiveX is used in IE, otherwise, XSLTProcessor</span>
 <span class="cm"> * is used.</span>
@@ -818,7 +818,7 @@
 </td></tr></table></div></div><h3 id="section-3">Итог</h3>
 <p>Всё, весь необходимый код готов и вы можете использовать функцию <code>getStylingResult</code> для преобразования XML-файлов и вставки результата в XHTML. Например, таким образом:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span>
             <span class="nx">getStylingResult</span><span class="p">(</span><span class="s1">&#39;./contacts.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;./contacts.xsl&#39;</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -851,7 +851,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

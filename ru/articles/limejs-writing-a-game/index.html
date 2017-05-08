@@ -95,7 +95,7 @@
             
             
 
-            <li>LimeJS: Пишем кроссплатформенную ...</li>
+            <li>LimeJS: Пишем...</li>
         
     </ul>
 
@@ -108,8 +108,8 @@
     <ul>
         
             <li id="nwao-prev">
-                <a href="/blog/ru/articles/about-future-gwt-mvp4g-lecture/"
-                   title="Лекция по GWT+mvp4g на ADDConf '11">Предыдущая статья</a>
+                <a href="/blog/ru/articles/javascript-garden-translation/"
+                   title="JavaScript Гарден на русском">Предыдущая статья</a>
             </li>
         
         
@@ -390,7 +390,7 @@
                     <a href="/blog/ru/tags/javascript/" rel="tag"
                        title="Статьи с меткой ''">javascript</a>
                     
-                        <span class="tag-count">14</span>
+                        <span class="tag-count">15</span>
                     
                     
                         <span class="nwao-comma">,</span>
@@ -491,7 +491,7 @@ $ cd .&#x2F;digitalfruit-limejs
  9
 10
 11
-12</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// entrypoint</span>
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// entrypoint</span>
 <span class="nx">pingpong</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
 
     <span class="kd">var</span> <span class="nx">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Director</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">),</span>
@@ -517,7 +517,7 @@ $ cd .&#x2F;digitalfruit-limejs
  9
 10
 11
-12</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Director</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">),</span>
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Director</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">),</span>
     <span class="nx">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Scene</span><span class="p">(),</span>
 
     <span class="nx">floor_</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Layer</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
@@ -541,7 +541,7 @@ $ cd .&#x2F;digitalfruit-limejs
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;pingpong.Player&#39;</span><span class="p">);</span>
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">goog</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;pingpong.Player&#39;</span><span class="p">);</span>
 
 <span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lime.Polygon&#39;</span><span class="p">);</span>
 
@@ -557,10 +557,10 @@ $ cd .&#x2F;digitalfruit-limejs
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// -1,-2.5, 0,-3.5, 1,-2.5, 1,2.5, 0,3.5, -1,2.5, 0,1.5, 0,-1.5</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// -1,-2.5, 0,-3.5, 1,-2.5, 1,2.5, 0,3.5, -1,2.5, 0,1.5, 0,-1.5</span>
 <span class="k">this</span><span class="p">.</span><span class="nx">addPoints</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">175</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">75</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">210</span><span class="p">,.</span><span class="mi">7</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">setScale</span><span class="p">(.</span><span class="mi">4</span><span class="p">);</span>
+    <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">210</span><span class="p">,</span><span class="mf">.7</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">setScale</span><span class="p">(</span><span class="mf">.4</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div></div>
 <p><img src="/blog/ru/figures/limejs-writing-a-game/player.png" alt="Игрок"></p>
@@ -568,7 +568,7 @@ $ cd .&#x2F;digitalfruit-limejs
 <p>Красной точкой на рисунке помечена так называемая <code>anchorPoint</code>, для полигона она рассчитывается автоматически. Это точка отсчёта локальной системы координат спрайта - от неё высчитываются все относительные размеры и расстояния, к нему относящиеся.</p>
 
 <p>Пока что код равноценен вызову:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">().</span><span class="nx">addPoints</span><span class="p">(...).</span><span class="nx">setFill</span><span class="p">(...);</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Polygon</span><span class="p">().</span><span class="nx">addPoints</span><span class="p">(...).</span><span class="nx">setFill</span><span class="p">(...);</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Но позже мы добавим поведение к игроку и будет очевидно, что выделить класс было разумным. Давайте проверим, корректно ли отображается игрок в сцене - вернёмся к файлу <code>pingpong.js</code>&hellip; впрочем, что уж тянуть, давайте добавим сразу обоих игроков и отразим первого, чтобы они стояли лицом к лицу:</p>
@@ -584,7 +584,7 @@ $ cd .&#x2F;digitalfruit-limejs
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
 <span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pingpong.Player&#39;</span><span class="p">);</span>
 
 <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
@@ -618,14 +618,14 @@ $ .&#x2F;bin&#x2F;lime.py update
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;pingpong.Ball&#39;</span><span class="p">);</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">goog</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;pingpong.Ball&#39;</span><span class="p">);</span>
 
 <span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lime.Circle&#39;</span><span class="p">);</span>
 
 <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">goog</span><span class="p">.</span><span class="nx">base</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,.</span><span class="mi">7</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.7</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nx">goog</span><span class="p">.</span><span class="nx">inherits</span><span class="p">(</span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">,</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Circle</span><span class="p">);</span>
@@ -645,7 +645,7 @@ $ .&#x2F;bin&#x2F;lime.py update
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
 <span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pingpong.Ball&#39;</span><span class="p">);</span>
 <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
 
@@ -661,13 +661,13 @@ $ .&#x2F;bin&#x2F;lime.py update
 <p><img src="/blog/ru/figures/limejs-writing-a-game/stage2.png" alt="Пляжники в синих плавках с мячиком"></p>
 <h4 id="section-8">Фон</h4>
 <p>Давайте зададим фон на поле с игроками, для каждого игрока половина поля своего цвета. Добавим к <code>Director</code> параметры размеров экрана игры:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Director</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">480</span><span class="p">),</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">director</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Director</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span><span class="mi">600</span><span class="p">,</span><span class="mi">480</span><span class="p">),</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Эти размеры никак не соотносятся с какими-либо пикселями - полотно игры автоматически масштабируется или разворачивается на весь экран при необходимости, но эти размеры позволяют задавать относительное положение элементов на полотне. Поправим позиции мяча и игроков в соответствии с ними:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">240</span><span class="p">).</span><span class="nx">setRotation</span><span class="p">(</span><span class="mi">180</span><span class="p">),</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">240</span><span class="p">).</span><span class="nx">setRotation</span><span class="p">(</span><span class="mi">180</span><span class="p">),</span>
 <span class="nx">playerTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">240</span><span class="p">),</span>
 <span class="nx">ball</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">240</span><span class="p">);</span>
 </pre></div>
@@ -683,7 +683,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
                                     <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">480</span><span class="p">)</span>
                                     <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">));</span>
 <span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">480</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
@@ -707,7 +707,7 @@ $ .&#x2F;bin&#x2F;lime.py update
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;pingpong.Wall&#39;</span><span class="p">);</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">goog</span><span class="p">.</span><span class="nx">provide</span><span class="p">(</span><span class="s1">&#39;pingpong.Wall&#39;</span><span class="p">);</span>
 
 <span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lime.Sprite&#39;</span><span class="p">);</span>
 
@@ -741,7 +741,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 15
 16
 17
-18</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
 <span class="nx">goog</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pingpong.Wall&#39;</span><span class="p">);</span>
 <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
 
@@ -779,7 +779,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
 
 <span class="nx">director</span><span class="p">.</span><span class="nx">makeMobileWebAppCapable</span><span class="p">();</span>
 
@@ -815,7 +815,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 17
 18
 19
-20</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setMovementBounds</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span><span class="nx">right</span><span class="p">,</span><span class="nx">bottom</span><span class="p">,</span><span class="nx">left</span><span class="p">)</span> <span class="p">{</span>
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setMovementBounds</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span><span class="nx">right</span><span class="p">,</span><span class="nx">bottom</span><span class="p">,</span><span class="nx">left</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">_moveBounds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Box</span><span class="p">(</span><span class="nx">top</span><span class="p">,</span><span class="nx">right</span><span class="p">,</span><span class="nx">bottom</span><span class="p">,</span><span class="nx">left</span><span class="p">);</span>
     <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
 <span class="p">}</span>
@@ -844,7 +844,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">playerOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
                                  <span class="p">.</span><span class="nx">setRotation</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
                                  <span class="p">.</span><span class="nx">setMovementBounds</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">620</span><span class="p">,</span><span class="mi">460</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span>
 <span class="nx">playerTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
@@ -859,7 +859,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">floor_</span><span class="p">,[</span><span class="s1">&#39;mousedown&#39;</span><span class="p">,</span><span class="s1">&#39;touchstart&#39;</span><span class="p">],</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">floor_</span><span class="p">,[</span><span class="s1">&#39;mousedown&#39;</span><span class="p">,</span><span class="s1">&#39;touchstart&#39;</span><span class="p">],</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">player_</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;=</span> <span class="mi">320</span><span class="p">)</span> <span class="o">?</span> <span class="nx">playerOne</span> <span class="o">:</span> <span class="nx">playerTwo</span><span class="p">;</span>
     <span class="nx">player_</span><span class="p">.</span><span class="nx">runAction</span><span class="p">(</span>
             <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">animation</span><span class="p">.</span><span class="nx">MoveTo</span><span class="p">(</span>
@@ -897,10 +897,10 @@ $ .&#x2F;bin&#x2F;lime.py update
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">goog</span><span class="p">.</span><span class="nx">base</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,.</span><span class="mi">7</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.7</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">_xCoef</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -954,7 +954,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 24
 25
 26
-27</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">updateAndCheckHit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dt</span><span class="p">,</span><span class="nx">playerOne</span><span class="p">,</span><span class="nx">playerTwo</span><span class="p">)</span> <span class="p">{</span>
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">updateAndCheckHit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dt</span><span class="p">,</span><span class="nx">playerOne</span><span class="p">,</span><span class="nx">playerTwo</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">newPos_</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getPosition</span><span class="p">();</span>
     <span class="kd">var</span> <span class="nx">size_</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">goog</span><span class="p">.</span><span class="nx">math</span><span class="p">.</span><span class="nx">Size</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getSize</span><span class="p">().</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">getScale</span><span class="p">().</span><span class="nx">x</span><span class="p">,</span>
                                    <span class="k">this</span><span class="p">.</span><span class="nx">getSize</span><span class="p">().</span><span class="nx">height</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">getScale</span><span class="p">().</span><span class="nx">y</span><span class="p">);</span>
@@ -1021,7 +1021,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 30
 31
 32
-33</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">catched</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pos</span><span class="p">)</span> <span class="p">{</span>
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Player</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">catched</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pos</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getPoints</span><span class="p">(),</span>
         <span class="nx">s</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getScale</span><span class="p">(),</span>
         <span class="nx">r</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getRotation</span><span class="p">(),</span>
@@ -1060,9 +1060,9 @@ $ .&#x2F;bin&#x2F;lime.py update
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">ball</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">ball</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">pingpong</span><span class="p">.</span><span class="nx">Ball</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
                           <span class="p">.</span><span class="nx">setMovementBounds</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">620</span><span class="p">,</span><span class="mi">460</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-                          <span class="p">.</span><span class="nx">setVelocity</span><span class="p">(.</span><span class="mi">2</span><span class="p">)</span>
+                          <span class="p">.</span><span class="nx">setVelocity</span><span class="p">(</span><span class="mf">.2</span><span class="p">)</span>
                           <span class="p">.</span><span class="nx">setResetPosition</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">240</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -1076,7 +1076,7 @@ $ .&#x2F;bin&#x2F;lime.py update
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(.</span> <span class="p">.</span> <span class="p">.);</span>
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(.</span> <span class="p">.</span> <span class="p">.);</span>
 
 <span class="kd">var</span> <span class="nx">hitPos_</span><span class="p">;</span>
 <span class="nx">lime</span><span class="p">.</span><span class="nx">scheduleManager</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dt</span><span class="p">){</span>
@@ -1095,7 +1095,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 4
 5
 6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">ball</span> <span class="o">=</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">ball</span> <span class="o">=</span> <span class="p">.</span> <span class="p">.</span> <span class="p">.</span>
        <span class="p">.</span><span class="nx">setResetPosition</span><span class="p">(</span><span class="mi">320</span><span class="p">,</span><span class="mi">240</span><span class="p">),</span>
 
 <span class="nx">label</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Label</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">280</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
@@ -1106,7 +1106,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 </td></tr></table></div></div>
 <p>Не забудем добавить лейбл на слой с доской:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ball</span><span class="p">);</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ball</span><span class="p">);</span>
 <span class="nx">board_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">label</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -1123,7 +1123,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(.</span> <span class="p">.</span> <span class="p">.);</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">goog</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">listen</span><span class="p">(.</span> <span class="p">.</span> <span class="p">.);</span>
 
 <span class="kd">var</span> <span class="nx">hitPos_</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">defDelay_</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="nx">delay_</span> <span class="o">=</span> <span class="nx">defDelay_</span><span class="p">;</span>
 <span class="nx">lime</span><span class="p">.</span><span class="nx">scheduleManager</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dt</span><span class="p">){</span>
@@ -1154,7 +1154,7 @@ $ .&#x2F;bin&#x2F;lime.py update
  9
 10
 11
-12</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">floor_</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">Sprite</span><span class="p">().</span><span class="nx">setPosition</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span><span class="mi">240</span><span class="p">)</span>
                                     <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">321</span><span class="p">,</span><span class="mi">480</span><span class="p">)</span>
                                     <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">fill</span><span class="p">.</span><span class="nx">LinearGradient</span><span class="p">()</span>
                                                      <span class="p">.</span><span class="nx">setDirection</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
@@ -1174,17 +1174,17 @@ $ .&#x2F;bin&#x2F;lime.py update
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">this</span><span class="p">.</span><span class="nx">addPoints</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">175</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">75</span><span class="p">)</span>
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">addPoints</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">175</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">175</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span><span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">75</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">75</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="k">new</span> <span class="nx">lime</span><span class="p">.</span><span class="nx">fill</span><span class="p">.</span><span class="nx">LinearGradient</span><span class="p">()</span>
                           <span class="p">.</span><span class="nx">setDirection</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-                          <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">210</span><span class="p">,.</span><span class="mi">7</span><span class="p">)</span>
-                          <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">105</span><span class="p">,.</span><span class="mi">7</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">setScale</span><span class="p">(.</span><span class="mi">4</span><span class="p">);</span>
+                          <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">210</span><span class="p">,</span><span class="mf">.7</span><span class="p">)</span>
+                          <span class="p">.</span><span class="nx">addColorStop</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">105</span><span class="p">,</span><span class="mf">.7</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">setScale</span><span class="p">(</span><span class="mf">.4</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Мячу (<code>ball.js</code>) поставим текстуру с мячиком:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="s1">&#39;./ball.png&#39;</span><span class="p">)</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="s1">&#39;./ball.png&#39;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -1196,7 +1196,7 @@ $ .&#x2F;bin&#x2F;lime.py update
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">pingpong</span><span class="p">.</span><span class="nx">Wall</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">goog</span><span class="p">.</span><span class="nx">base</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">setFill</span><span class="p">(</span><span class="mi">109</span><span class="p">,</span><span class="mi">122</span><span class="p">,</span><span class="mi">181</span><span class="p">)</span>
@@ -1230,17 +1230,17 @@ $ .&#x2F;bin&#x2F;lime.py build pingpong -o pingpong&#x2F;compiled&#x2F;pp.js
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
 
-<span class="nt">&lt;html&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;title&gt;</span>pingpong<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;pp.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>pingpong<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;pp.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;body</span> <span class="na">onload=</span><span class="s">&quot;pingpong.start()&quot;</span><span class="nt">&gt;&lt;/body&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">onload</span><span class="o">=</span><span class="s">&quot;pingpong.start()&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;/html&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </td></tr></table></div></div><h3 id="section-15">Резюме</h3>
 <p>Сначала я относился к движку немного скептически, представленные на сайте две (всего) игры чересчур каузальны, я не очень это люблю. Мало примеров и подробностей в документации и многовато всего нужно для установки. И ещё очень кислотный незамысловатый квадратик в <code>favicon</code>&hellip; :)</p>
@@ -1282,7 +1282,7 @@ $ .&#x2F;bin&#x2F;lime.py build pingpong -o pingpong&#x2F;compiled&#x2F;pp.js
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

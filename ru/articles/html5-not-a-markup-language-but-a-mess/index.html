@@ -114,8 +114,8 @@
         
         
             <li id="nwao-next">
-                <a href="/blog/ru/articles/javascript-garden-translation/"
-                   title="JavaScript Гарден на русском">Следующая статья</a>
+                <a href="/blog/ru/articles/gwt-mvp4g-layouts/"
+                   title="GWT + mvp4g: видео доклада + отзыв о ADDConf'11 + пример с портлетами">Следующая статья</a>
             </li>
         
     </ul>
@@ -361,16 +361,16 @@
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span class="l-Scalar-Plain">blog</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">author</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mikashkin</span>
-    <span class="l-Scalar-Plain">sort-by</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">date</span>
-    <span class="l-Scalar-Plain">paging</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">20</span>
-    <span class="l-Scalar-Plain">style</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">blog.css</span>
-    <span class="l-Scalar-Plain">entries</span><span class="p-Indicator">:</span>
-        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">buildout-lecture.markdown</span>
-        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">python-is-great.markdown</span>
-        <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">why-gae-is-cool.markdown</span>
-        <span class="l-Scalar-Plain">. . .</span>
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">blog</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">author</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mikashkin</span>
+    <span class="l l-Scalar l-Scalar-Plain">sort-by</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">date</span>
+    <span class="l l-Scalar l-Scalar-Plain">paging</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+    <span class="l l-Scalar l-Scalar-Plain">style</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">blog.css</span>
+    <span class="l l-Scalar l-Scalar-Plain">entries</span><span class="p p-Indicator">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">buildout-lecture.markdown</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-is-great.markdown</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">why-gae-is-cool.markdown</span>
+        <span class="l l-Scalar l-Scalar-Plain">. . .</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Ну, вы представляете что получится в результате.</p></li>
@@ -391,23 +391,23 @@
 14
 15
 16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span class="l-Scalar-Plain">DockLayout</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">north</span><span class="p-Indicator">:</span>
-        <span class="l-Scalar-Plain">evn-Toolbar</span>
-        <span class="l-Scalar-Plain">evn-LoginBlock loggedin=true</span>
-    <span class="l-Scalar-Plain">west</span><span class="p-Indicator">:</span>
-        <span class="l-Scalar-Plain">evn-NotesTree</span>
-    <span class="l-Scalar-Plain">center</span><span class="p-Indicator">:</span>
-        <span class="l-Scalar-Plain">evn-NotepadWidget</span>
-    <span class="l-Scalar-Plain">south height=0.1</span><span class="p-Indicator">:</span>
-        <span class="l-Scalar-Plain">text &quot;copyright © %year&quot;</span>
-        <span class="l-Scalar-Plain">link &quot;http://evernote.app&quot;</span>
-        <span class="l-Scalar-Plain">input &quot;Feedback&quot; active=true</span>
-        <span class="l-Scalar-Plain">button &quot;send&quot;</span>
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">DockLayout</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">north</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">evn-Toolbar</span>
+        <span class="l l-Scalar l-Scalar-Plain">evn-LoginBlock loggedin=true</span>
+    <span class="l l-Scalar l-Scalar-Plain">west</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">evn-NotesTree</span>
+    <span class="l l-Scalar l-Scalar-Plain">center</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">evn-NotepadWidget</span>
+    <span class="l l-Scalar l-Scalar-Plain">south height=0.1</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">text &quot;copyright © %year&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">link &quot;http://evernote.app&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">input &quot;Feedback&quot; active=true</span>
+        <span class="l l-Scalar l-Scalar-Plain">button &quot;send&quot;</span>
 
 <span class="err">```</span>
 
-<span class="l-Scalar-Plain">В результате, браузер *сам* парсит этот язык и отображает его как надо. Кстати, такой UI хорошо смасштабруется и на мобильный браузер.</span>
+<span class="l l-Scalar l-Scalar-Plain">В результате, браузер *сам* парсит этот язык и отображает его как надо. Кстати, такой UI хорошо смасштабруется и на мобильный браузер.</span>
 </pre></div>
 </td></tr></table></div></div></li>
 <li><p>Вы запрашиваете в браузере адрес <code>http://chromium.os</code>, браузер видит MIME-тип <code>application/os</code> и редерит полученный ассемблерный код на клиенте</p></li>
@@ -454,7 +454,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

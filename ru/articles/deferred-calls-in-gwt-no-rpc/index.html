@@ -95,7 +95,7 @@
             
             
 
-            <li>Deferred-вызовы серверного API в ...</li>
+            <li>Deferred-вызовы серверного API...</li>
         
     </ul>
 
@@ -243,7 +243,7 @@
 <p>Дополнительное преимущество такого подхода состоит в том, что <em>вообще все</em> цепочки могут иметь <em>один общий</em> контекст, в котором всегда будет доступен, например, последний ID сессии (будет замещён по ключу в хэше после каждого вызова <code>session.new</code>) или хранить GUID последнего запроса, если условиться возвращать его в каждой функции, или верифицировать любой процесс приёма-отдачи засчёт установки некой переменной в контексте в ожидаемое значение и проверять его после выполнения запроса и т.п.</p>
 
 <p>Поэтому такой контекст может быть обычным <code>HashMap&lt;String, Object&gt;</code>:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">APICallContext</span> <span class="kd">extends</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="o">{</span> <span class="o">}</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">APICallContext</span> <span class="kd">extends</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="o">{</span> <span class="o">}</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Кода относительно много, поэтому начнём с конца и подготовим всё небходимое для вызова цепочки. Все без исключения внешние импорты берутся из пакетов  <code>com.google.gwt....</code> и <code>java.util</code>, поэтому я их не буду указывать.</p>
@@ -251,7 +251,7 @@
 <p>Опишем интерфейс хэндлера, который будет срабатывать после успешного вызова <em>каждой</em> функции в цепочке (<code>statusCode == 200</code>, <code>&#39;status&#39;: &#39;ok&#39;</code>):</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIResponseHandler</span> <span class="o">{</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIResponseHandler</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleResponse</span><span class="o">(</span><span class="n">JSONObject</span> <span class="n">answer</span><span class="o">);</span>
 <span class="o">}</span>
 </pre></div>
@@ -259,7 +259,7 @@
 <p>Опишем интерфейс хэндлера, который будет срабатывать после того, как выполнение <em>всей</em> цепочки закончилось успешно и получать изменённый, в соответствии с ответами на запросы, контекст:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIChainResponseHandler</span> <span class="o">{</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIChainResponseHandler</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleSuccess</span><span class="o">(</span><span class="n">EurekaAPICallContext</span> <span class="n">context</span><span class="o">);</span>
 <span class="o">}</span>
 </pre></div>
@@ -267,7 +267,7 @@
 <p>Опишем интерфейс хэндлера, который будет срабатывать после <em>первого</em> неудачного вызова функции из цепочки:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIErrorHandler</span> <span class="o">{</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">APIErrorHandler</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">handleError</span><span class="o">(</span><span class="n">String</span> <span class="n">errorText</span><span class="o">);</span>
 <span class="o">}</span>
 </pre></div>
@@ -283,7 +283,7 @@
 
 <p>Так будет выглядеть описание функции, вызывающей такую цепочку:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">callServerFuncsChain</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsCodes</span><span class="o">,</span> <span class="n">APICallContext</span> <span class="n">context</span><span class="o">,</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">callServerFuncsChain</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsCodes</span><span class="o">,</span> <span class="n">APICallContext</span> <span class="n">context</span><span class="o">,</span>
                                  <span class="n">APIChainResponseHandler</span> <span class="n">finalSuccessHandler</span><span class="o">,</span> <span class="n">APIErrorHandler</span> <span class="n">errorHandler</span><span class="o">);</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -306,7 +306,7 @@
 14
 15
 16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIConnector</span> <span class="o">{</span>
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIConnector</span> <span class="o">{</span>
 
     <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&quot;serial&quot;</span><span class="o">)</span>
     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">APICallContext</span> <span class="kd">extends</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="o">{</span> <span class="o">}</span>
@@ -326,7 +326,7 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>Укажем в этом классе общий URL API, к которому он будет подключаться:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="s">&quot;http://127.0.0.1/api&quot;</span><span class="o">;</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="s">&quot;http://127.0.0.1/api&quot;</span><span class="o">;</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Опишем в нём хэш, который будет содержать данные о том, какие параметры необходимо передавать в каждую из функций API. Если функция не принимает параметров - её можно не указывать.</p>
@@ -343,7 +343,7 @@
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIConnector</span> <span class="o">{</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">APIConnector</span> <span class="o">{</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">SERVER_URL</span> <span class="o">=</span> <span class="s">&quot;http://127.0.0.1/api&quot;</span><span class="o">;</span>
 
@@ -360,7 +360,7 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>Опишем те параметры, которые можно не сохранять в контексте, дабы его не засорять:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">filterFields</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;status&quot;</span><span class="o">,</span> <span class="s">&quot;description&quot;</span><span class="o">));</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">filterFields</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&quot;status&quot;</span><span class="o">,</span> <span class="s">&quot;description&quot;</span><span class="o">));</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Пусть класс будет иметь возможность работать в одном из режимов: <code>GET</code> или <code>POST</code> и принимать для этого в конструктор boolean-параметр <code>getMode</code>, при значении <code>true</code> будет включаться режим <code>GET</code>, при значении <code>false</code> - <code>POST</code></p>
@@ -368,7 +368,7 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">getMode</span><span class="o">;</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">getMode</span><span class="o">;</span>
 
     <span class="kd">public</span> <span class="nf">APIConnector</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">getMode</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">getMode</span> <span class="o">=</span> <span class="n">getMode</span><span class="o">;</span>
@@ -475,7 +475,7 @@
 95
 96
 97
-98</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">private</span> <span class="kt">boolean</span> <span class="n">wasError</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+98</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kt">boolean</span> <span class="n">wasError</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
 <span class="kd">private</span> <span class="n">String</span> <span class="n">lastErrorText</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
 <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">callServerFunc</span><span class="o">(</span><span class="n">String</span> <span class="n">funcCode</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="o">,</span>
@@ -617,7 +617,7 @@
 37
 38
 39
-40</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">private</span> <span class="kt">void</span> <span class="nf">callChainFunc</span><span class="o">(</span><span class="n">String</span> <span class="n">function</span><span class="o">,</span> <span class="kd">final</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsIter</span><span class="o">,</span>
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kt">void</span> <span class="nf">callChainFunc</span><span class="o">(</span><span class="n">String</span> <span class="n">function</span><span class="o">,</span> <span class="kd">final</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsIter</span><span class="o">,</span>
                            <span class="kd">final</span> <span class="n">APICallContext</span> <span class="n">context</span><span class="o">,</span>
                            <span class="kd">final</span> <span class="n">APIChainResponseHandler</span> <span class="n">finalSuccessHandler</span><span class="o">,</span>
                            <span class="kd">final</span> <span class="n">APIErrorHandler</span> <span class="n">errorHandler</span><span class="o">)</span> <span class="o">{</span>
@@ -625,9 +625,9 @@
     <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">requiredParams</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="nl">paramName:</span> <span class="n">requiredParams</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">paramName</span><span class="o">:</span> <span class="n">requiredParams</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="n">context</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">paramName</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">&quot;Required parameter value &#39;&quot;</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&quot;Required parameter value &#39;&quot;</span>
                             <span class="o">+</span> <span class="n">paramName</span> <span class="o">+</span> <span class="s">&quot;&#39; for function &#39;&quot;</span> <span class="o">+</span> <span class="n">function</span> <span class="o">+</span> <span class="s">&quot;&#39; was not found in API context&quot;</span><span class="o">);</span>
             <span class="o">}</span>
             <span class="n">params</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">paramName</span><span class="o">,</span> <span class="n">context</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">paramName</span><span class="o">).</span><span class="na">toString</span><span class="o">());</span>
@@ -643,7 +643,7 @@
                 <span class="k">return</span><span class="o">;</span>
             <span class="o">}</span>
             <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">keys</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="na">keySet</span><span class="o">();</span>
-            <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="nl">key:</span> <span class="n">keys</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">:</span> <span class="n">keys</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(!</span><span class="n">filterFields</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">key</span><span class="o">))</span> <span class="o">{</span>
                     <span class="n">context</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">answer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">));</span>
                 <span class="o">}</span>
@@ -669,7 +669,7 @@
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">callServerFuncsChain</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsCodes</span><span class="o">,</span> <span class="kd">final</span> <span class="n">APICallContext</span> <span class="n">context</span><span class="o">,</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">callServerFuncsChain</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">funcsCodes</span><span class="o">,</span> <span class="kd">final</span> <span class="n">APICallContext</span> <span class="n">context</span><span class="o">,</span>
                                  <span class="kd">final</span> <span class="n">APIChainResponseHandler</span> <span class="n">finalSuccessHandler</span><span class="o">,</span>
                                  <span class="kd">final</span> <span class="n">APIErrorHandler</span> <span class="n">errorHandler</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(!</span><span class="n">funcsCodes</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
@@ -684,8 +684,8 @@
 <p>Кстати, метод, который помогает внешнему пользователю создать контекст (это не статический метод, поскольку для внутреннего класса необходимо присутствие инстанса):</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="kd">public</span> <span class="n">APICallContext</span> <span class="nf">newCallsContext</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">APICallContext</span><span class="o">();</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">APICallContext</span> <span class="nf">newCallsContext</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">APICallContext</span><span class="o">();</span>
     <span class="o">}</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -733,7 +733,7 @@
 41
 42
 43
-44</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">UsersGroup</span> <span class="o">{</span>
+44</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">UsersGroup</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="kd">final</span> <span class="n">APIConnector</span> <span class="n">apiConnector</span> <span class="o">=</span> <span class="n">APIConnector</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span> <span class="c1">// удобнее сделать APIConnector синглтоном</span>
     <span class="kd">private</span> <span class="kd">final</span> <span class="n">APICallContext</span> <span class="n">apiContext</span> <span class="o">=</span> <span class="n">apiConnector</span><span class="o">.</span><span class="na">newCallsContext</span><span class="o">();</span>
 
@@ -808,7 +808,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

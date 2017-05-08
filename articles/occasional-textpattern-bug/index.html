@@ -139,7 +139,7 @@
 
     <section id="nwao-content" class="nwao-post">
         
-    <article>
+    <article id="nwao-post-occasional-textpattern-bug">
         <header class="nwao-post-header">
     <h2 class="nwao-post-title">
         <a href="/blog/articles/occasional-textpattern-bug/" title="Occasional Textpattern Bug">Occasional Textpattern Bug</a>
@@ -197,13 +197,13 @@
 
 <p>You need to do just two actions. First - take <code>./textpattern/include/txp_prefs.php</code> file from your hosting, find a 89 line:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="x">$evt_list = safe_column(&#39;event&#39;, &#39;txp_prefs&#39;,</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">$evt_list = safe_column(&#39;event&#39;, &#39;txp_prefs&#39;,</span>
 <span class="x">     &quot;type = 0 and prefs_id = 1 group by &#39;event&#39; order by event desc&quot;);</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>and to delete the quotes wrapping <code>event</code> to make it match with <a href="http://dev.textpattern.com/browser/development/4.0/textpattern/include/txp_prefs.php?rev=2156#L89">this variant</a>):</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="x">$evt_list = safe_column(&#39;event&#39;, &#39;txp_prefs&#39;,</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">$evt_list = safe_column(&#39;event&#39;, &#39;txp_prefs&#39;,</span>
 <span class="x">     &quot;type = 0 and prefs_id = 1 group by event order by event desc&quot;);</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -230,7 +230,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
     </footer>
 
     <!--

@@ -155,7 +155,7 @@
 
     <section id="nwao-content" class="nwao-post">
         
-    <article>
+    <article id="nwao-post-javascript-oop">
         <header class="nwao-post-header">
     <h2 class="nwao-post-title">
         <a href="/blog/articles/javascript-oop/" title="OOP &amp; JavaScript">OOP &amp; JavaScript</a>
@@ -225,7 +225,7 @@
 24
 25
 26
-27</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">function</span> <span class="nx">Class</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">Class</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
 
 <span class="nx">Class</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">construct</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
 
@@ -405,7 +405,7 @@
 144
 145
 146
-147</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/* some helping functions */</span>
+147</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/* some helping functions */</span>
 
 <span class="kd">function</span> <span class="nx">getInstanceOf</span><span class="p">(</span><span class="nx">className</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// creates an object using the class name</span>
@@ -592,7 +592,7 @@
 33
 34
 35
-36</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">ElementWrapper</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+36</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">ElementWrapper</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
     <span class="nx">construct</span><span class="o">:</span>
         <span class="kd">function</span><span class="p">(</span><span class="nx">elementId</span><span class="p">)</span> <span class="p">{</span>
@@ -631,7 +631,7 @@
 </pre></div>
 </td></tr></table></div></div>
 <p>You can comfortly extend this class with other classes expanding the DOM elements functionality. Also, you can use a code like this:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">someElement</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ElementWrapper</span><span class="p">(</span><span class="s1">&#39;someElmId&#39;</span><span class="p">);</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">someElement</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ElementWrapper</span><span class="p">(</span><span class="s1">&#39;someElmId&#39;</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>…and <code>someElement</code> object will be linked to element (wrapping an element) with <code>id</code> <em>‘<code>SomeElmId</code>’</em>. To access it &ndash; as a DOM element &ndash; you can ask <code>someElement.element</code> property.</p>
@@ -871,7 +871,7 @@
 228
 229
 230
-231</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">DND_NS</span>              <span class="o">=</span> <span class="s1">&#39;dnd&#39;</span><span class="p">;</span> <span class="c1">// to use in getAttributeNS and setAttributeNS</span>
+231</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">DND_NS</span>              <span class="o">=</span> <span class="s1">&#39;dnd&#39;</span><span class="p">;</span> <span class="c1">// to use in getAttributeNS and setAttributeNS</span>
 
 <span class="kd">var</span> <span class="nx">DND_LWIDTH_ATTR</span>     <span class="o">=</span> <span class="s1">&#39;localWidth&#39;</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">DND_LHEIGHT_ATTR</span>    <span class="o">=</span> <span class="s1">&#39;localHeight&#39;</span><span class="p">;</span>
@@ -1147,7 +1147,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
     </footer>
 
     <!--

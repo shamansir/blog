@@ -233,7 +233,7 @@
                     <a href="/blog/ru/tags/javascript/" rel="tag"
                        title="Статьи с меткой ''">javascript</a>
                     
-                        <span class="tag-count">14</span>
+                        <span class="tag-count">15</span>
                     
                     
                         <span class="nwao-comma">,</span>
@@ -307,7 +307,7 @@
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">acme</span><span class="o">.</span><span class="na">json</span><span class="o">;</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">com.acme.json</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.json.JSONObject</span><span class="o">;</span>
 
@@ -373,7 +373,7 @@
 50
 51
 52
-53</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">acme</span><span class="o">.</span><span class="na">json</span><span class="o">;</span>
+53</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">com.acme.json</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
 
@@ -413,10 +413,10 @@
     <span class="o">}</span>
 
     <span class="kd">public</span> <span class="n">JSONObject</span> <span class="nf">toJSONObject</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">JSONObject</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
             <span class="nd">@Override</span>
             <span class="kd">public</span> <span class="n">Object</span> <span class="nf">get</span><span class="o">(</span><span class="n">String</span> <span class="n">key</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JSONException</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="nf">isAllowedKey</span><span class="o">(</span><span class="n">key</span><span class="o">)</span> <span class="o">?</span> <span class="kd">super</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">)</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
+                <span class="k">return</span> <span class="n">isAllowedKey</span><span class="o">(</span><span class="n">key</span><span class="o">)</span> <span class="o">?</span> <span class="kd">super</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">)</span> <span class="o">:</span> <span class="kc">null</span><span class="o">;</span>
             <span class="o">}</span>
         <span class="o">};</span>
     <span class="o">}</span>
@@ -463,7 +463,7 @@
 32
 33
 34
-35</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">acme</span><span class="o">.</span><span class="na">json</span><span class="o">.</span><span class="na">beans</span><span class="o">;</span>
+35</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">com.acme.json.beans</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.acme.json.JSONBean</span><span class="o">;</span>
 
@@ -531,7 +531,7 @@
 28
 29
 30
-31</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">acme</span><span class="o">.</span><span class="na">json</span><span class="o">;</span>
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">com.acme.json</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
 
@@ -542,7 +542,7 @@
     <span class="kd">protected</span> <span class="n">JSONBean</span> <span class="nf">prepareBeanForReceiving</span><span class="o">(</span><span class="n">Map</span> <span class="n">parametersMap</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">parametersMap</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">&quot;source&quot;</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
            <span class="o">(</span><span class="n">parametersMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;source&quot;</span><span class="o">)</span> <span class="o">==</span> <span class="s">&quot;sampleBean&quot;</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">PersonBean</span><span class="o">();</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">PersonBean</span><span class="o">();</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
     <span class="o">}</span>
@@ -550,7 +550,7 @@
     <span class="kd">protected</span> <span class="n">JSONBean</span> <span class="nf">prepareBeanForSending</span><span class="o">(</span><span class="n">Map</span> <span class="n">parametersMap</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">parametersMap</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="s">&quot;source&quot;</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
            <span class="o">(</span><span class="n">parametersMap</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&quot;source&quot;</span><span class="o">)</span> <span class="o">==</span> <span class="s">&quot;sampleBean&quot;</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">PersonBean</span><span class="o">();</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">PersonBean</span><span class="o">();</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
     <span class="o">}</span>
@@ -631,7 +631,7 @@
 64
 65
 66
-67</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">acme</span><span class="o">.</span><span class="na">json</span><span class="o">;</span>
+67</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">com.acme.json</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 
@@ -728,7 +728,7 @@
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre> <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
  <span class="nt">&lt;web-app</span> <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/j2ee&quot;</span>
           <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
           <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://java.sun.com/xml/ns/j2ee</span>
@@ -786,7 +786,7 @@
 25
 26
 27
-28</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">JSONManager</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">JSONManager</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
     <span class="nx">JSON_BEAN_SERVLET_PATH</span><span class="o">:</span> <span class="s2">&quot;./jsonBean&quot;</span><span class="p">,</span>
     <span class="nx">JSON_BEAN_PARAM_NAME</span><span class="o">:</span> <span class="s2">&quot;jsonBean&quot;</span><span class="p">,</span>
@@ -830,7 +830,7 @@
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">alexanderJSON</span> <span class="o">=</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">alexanderJSON</span> <span class="o">=</span>
         <span class="p">{</span><span class="s2">&quot;personFirstName&quot;</span><span class="o">:</span>    <span class="s2">&quot;Alexander&quot;</span><span class="p">,</span>
          <span class="s2">&quot;personLastName&quot;</span><span class="o">:</span>     <span class="s2">&quot;Makedonsky&quot;</span><span class="p">,</span>
          <span class="s2">&quot;personAge&quot;</span><span class="o">:</span>             <span class="mi">35</span><span class="p">,</span>
@@ -873,7 +873,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

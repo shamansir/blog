@@ -95,7 +95,7 @@
             
             
 
-            <li>[g]Vim в режиме Python: ...</li>
+            <li>[g]Vim в режиме Python:...</li>
         
     </ul>
 
@@ -331,14 +331,14 @@
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">PATCHES_DOWNLOAD_PATH</span><span class="o">=</span>ftp://ftp.vim.org/pub/vim/patches
-<span class="nv">PATCHES_VER</span><span class="o">=</span>7.1
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nv">PATCHES_DOWNLOAD_PATH</span><span class="o">=</span>ftp://ftp.vim.org/pub/vim/patches
+<span class="nv">PATCHES_VER</span><span class="o">=</span><span class="m">7</span>.1
 wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.001-100.gz
 wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.101-200.gz
 
-<span class="k">for </span>i in <span class="sb">`</span>seq 201 278<span class="sb">`</span>;
+<span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">201</span> <span class="m">278</span><span class="sb">`</span><span class="p">;</span>
 <span class="k">do</span>
-<span class="k">    </span>wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.<span class="nv">$i</span>
+    wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.<span class="nv">$i</span>
 <span class="k">done</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -370,28 +370,28 @@ wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VE
 19
 20
 21
-22</pre></div></td><td class="code"><div class="highlight"><pre>@ECHO off
-ECHO changing directory to parent...
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">ECHO</span> off
+<span class="k">ECHO</span> changing directory to parent...
 
-CD ..
+<span class="k">CD</span> ..
 
-ECHO -------------------- %Date% -------------------- &gt;&gt; patching-src.log
+<span class="k">ECHO</span> -------------------- <span class="nv">%Date%</span> -------------------- <span class="p">&gt;&gt;</span> patching-src.log
 
-ECHO %CD%: applying first 200 patches
+<span class="k">ECHO</span> <span class="nv">%CD%</span>: applying first 200 patches
 
-patch -p0 &lt; patches/7.1.001-100 &gt;&gt; patching-src.log 2&gt;&amp;1
-patch -p0 &lt; patches/7.1.101-200 &gt;&gt; patching-src.log 2&gt;&amp;1
+patch -p0 <span class="p">&lt;</span> patches/7.1.001-100 <span class="p">&gt;&gt;</span> patching-src.log <span class="mi">2</span><span class="p">&gt;&amp;</span><span class="mi">1</span>
+patch -p0 <span class="p">&lt;</span> patches/7.1.101-200 <span class="p">&gt;&gt;</span> patching-src.log <span class="mi">2</span><span class="p">&gt;&amp;</span><span class="mi">1</span>
 
-ECHO %CD%: applying the last patches
+<span class="k">ECHO</span> <span class="nv">%CD%</span>: applying the last patches
 
-FOR /L %%B IN (201,1,278) DO
-    patch -p0 &lt; patches/7.1.%%B &gt;&gt; patching-src.log 2&gt;&amp;1
+<span class="k">FOR</span> <span class="k">/L</span> <span class="se">%%</span>B <span class="k">IN</span> <span class="p">(</span><span class="mi">201</span>,<span class="mi">1</span>,<span class="mi">278</span><span class="p">)</span> <span class="k">DO</span>
+    patch -p0 <span class="p">&lt;</span> patches/7.1.<span class="se">%%</span>B <span class="p">&gt;&gt;</span> patching-src.log <span class="mi">2</span><span class="p">&gt;&amp;</span><span class="mi">1</span>
 
-ECHO Finished
+<span class="k">ECHO</span> Finished
 
-PAUSE
+<span class="k">PAUSE</span>
 
-@ECHO on
+<span class="p">@</span><span class="k">ECHO</span> on
 </pre></div>
 </td></tr></table></div></div>
 <p>Этот файл нужно положить в каталог <code>/patches</code> и после корректировки выполнить (убедитесь, что вся описанная выше структура дерева исходников сформирована): в корне исходников будет создан файл <code>patching-src.log</code>, в котором можно проследить результаты прошедшего патчинга. Если утилита <code>patch</code> не была найдена, проверьте <code>PATH</code> на наличие пути к Cygwin. Если некоторое (небольшое) количество файлов не было найдено и пропатчено &ndash; можно сильно не беспокоится, это в основном файлы для XWindow-версии.</p>
@@ -458,7 +458,7 @@ autocmd BufNewFile *.py call BufNewFile_PY()
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

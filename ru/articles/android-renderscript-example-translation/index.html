@@ -336,7 +336,7 @@
 51
 52
 53
-54</pre></div></td><td class="code"><div class="highlight"><pre><span class="c1">// Fountain test script</span>
+54</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">// Fountain test script</span>
 <span class="cp">#pragma version(1)</span>
 
 <span class="kt">int</span> <span class="n">newPart</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -484,7 +484,7 @@
 87
 88
 89
-90</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/*</span>
+90</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (C) 2008 The Android Open Source Project</span>
 <span class="cm"> *</span>
 <span class="cm"> * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -500,7 +500,7 @@
 <span class="cm"> * limitations under the License.</span>
 <span class="cm"> */</span>
 
-<span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">fountain</span><span class="o">;</span>
+<span class="kn">package</span> <span class="nn">com.android.fountain</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.Writer</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
@@ -565,10 +565,10 @@
             <span class="n">mRender</span><span class="o">.</span><span class="na">newTouchPosition</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
         <span class="o">}</span>
-        <span class="kt">float</span> <span class="n">rate</span> <span class="o">=</span> <span class="o">(</span><span class="n">ev</span><span class="o">.</span><span class="na">getPressure</span><span class="o">()</span> <span class="o">*</span> <span class="mi">50</span><span class="o">.</span><span class="na">f</span><span class="o">);</span>
+        <span class="kt">float</span> <span class="n">rate</span> <span class="o">=</span> <span class="o">(</span><span class="n">ev</span><span class="o">.</span><span class="na">getPressure</span><span class="o">()</span> <span class="o">*</span> <span class="mf">50.f</span><span class="o">);</span>
         <span class="n">rate</span> <span class="o">*=</span> <span class="n">rate</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">rate</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="o">.</span><span class="na">f</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">rate</span> <span class="o">=</span> <span class="mi">2000</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">rate</span> <span class="o">&gt;</span> <span class="mf">2000.f</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">rate</span> <span class="o">=</span> <span class="mf">2000.f</span><span class="o">;</span>
         <span class="o">}</span>
         <span class="n">mRender</span><span class="o">.</span><span class="na">newTouchPosition</span><span class="o">((</span><span class="kt">int</span><span class="o">)</span><span class="n">ev</span><span class="o">.</span><span class="na">getX</span><span class="o">(),</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">ev</span><span class="o">.</span><span class="na">getY</span><span class="o">(),</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">rate</span><span class="o">);</span>
         <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
@@ -690,7 +690,7 @@
 111
 112
 113
-114</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/*</span>
+114</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * Copyright (C) 2008 The Android Open Source Project</span>
 <span class="cm"> *</span>
 <span class="cm"> * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -706,7 +706,7 @@
 <span class="cm"> * limitations under the License.</span>
 <span class="cm"> */</span>
 
-<span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">fountain</span><span class="o">;</span>
+<span class="kn">package</span> <span class="nn">com.android.fountain</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">android.content.res.Resources</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">android.renderscript.*</span><span class="o">;</span>
@@ -737,13 +737,13 @@
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">newTouchPosition</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">rate</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">mSD</span><span class="o">.</span><span class="na">rate</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">mSD</span><span class="o">.</span><span class="na">r</span> <span class="o">=</span> <span class="o">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span><span class="o">.</span><span class="na">f</span> <span class="o">:</span> <span class="mi">1</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
-            <span class="n">mSD</span><span class="o">.</span><span class="na">g</span> <span class="o">=</span> <span class="o">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x2</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span><span class="o">.</span><span class="na">f</span> <span class="o">:</span> <span class="mi">1</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
-            <span class="n">mSD</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="o">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x4</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span><span class="o">.</span><span class="na">f</span> <span class="o">:</span> <span class="mi">1</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+            <span class="n">mSD</span><span class="o">.</span><span class="na">r</span> <span class="o">=</span> <span class="o">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x1</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="mf">0.f</span> <span class="o">:</span> <span class="mf">1.f</span><span class="o">;</span>
+            <span class="n">mSD</span><span class="o">.</span><span class="na">g</span> <span class="o">=</span> <span class="o">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x2</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="mf">0.f</span> <span class="o">:</span> <span class="mf">1.f</span><span class="o">;</span>
+            <span class="n">mSD</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="o">((</span><span class="n">x</span> <span class="o">&amp;</span> <span class="mh">0x4</span><span class="o">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">?</span> <span class="mf">0.f</span> <span class="o">:</span> <span class="mf">1.f</span><span class="o">;</span>
             <span class="k">if</span> <span class="o">((</span><span class="n">mSD</span><span class="o">.</span><span class="na">r</span> <span class="o">+</span> <span class="n">mSD</span><span class="o">.</span><span class="na">g</span> <span class="o">+</span> <span class="n">mSD</span><span class="o">.</span><span class="na">b</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mf">0.9f</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">mSD</span><span class="o">.</span><span class="na">r</span> <span class="o">=</span> <span class="mf">0.8f</span><span class="o">;</span>
                 <span class="n">mSD</span><span class="o">.</span><span class="na">g</span> <span class="o">=</span> <span class="mf">0.5f</span><span class="o">;</span>
-                <span class="n">mSD</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="na">f</span><span class="o">;</span>
+                <span class="n">mSD</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="mf">1.f</span><span class="o">;</span>
             <span class="o">}</span>
         <span class="o">}</span>
         <span class="n">mSD</span><span class="o">.</span><span class="na">rate</span> <span class="o">=</span> <span class="n">rate</span><span class="o">;</span>
@@ -831,7 +831,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

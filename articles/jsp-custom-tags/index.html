@@ -134,7 +134,7 @@
 
     <section id="nwao-content" class="nwao-post">
         
-    <article>
+    <article id="nwao-post-jsp-custom-tags">
         <header class="nwao-post-header">
     <h2 class="nwao-post-title">
         <a href="/blog/articles/jsp-custom-tags/" title="JSP Custom Tags">JSP Custom Tags</a>
@@ -223,7 +223,7 @@
 28
 29
 30
-31</pre></div></td><td class="code"><div class="highlight"><pre><span class="cm">/**</span>
+31</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cm">/**</span>
 <span class="cm"> * @author uwilfred</span>
 <span class="cm"> *</span>
 <span class="cm"> * Adds priorityFontTag, specified in .tld as</span>
@@ -301,7 +301,7 @@
 36
 37
 38
-39</pre></div></td><td class="code"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+39</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="cp">&lt;!DOCTYPE taglib PUBLIC</span>
 <span class="cp">    &quot;-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN&quot;</span>
 <span class="cp">    &quot;http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd&quot;&gt;</span>
@@ -558,7 +558,7 @@
 211
 212
 213
-214</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">package</span> <span class="n">org</span><span class="o">.</span><span class="na">individpro</span><span class="o">.</span><span class="na">uwilfred</span><span class="o">.</span><span class="na">tag</span><span class="o">;</span>
+214</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">package</span> <span class="nn">org.individpro.uwilfred.tag</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.servlet.jsp.JspException</span><span class="o">;</span>
@@ -705,7 +705,7 @@
          <span class="o">}</span>
       <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">nfe</span><span class="o">)</span> <span class="o">{</span>
          <span class="n">nfe</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-         <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="n">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont</span>
 <span class="s">                        tag body couldn&#39;t be parsed&quot;</span><span class="o">,</span> <span class="n">nfe</span><span class="o">);</span>
       <span class="o">}</span>
       <span class="k">return</span> <span class="n">SKIP_BODY</span><span class="o">;</span>
@@ -713,7 +713,7 @@
 
    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">doEndTag</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JspException</span> <span class="o">{</span>
       <span class="k">if</span> <span class="o">(</span><span class="n">value</span> <span class="o">==</span> <span class="n">Integer</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(-</span><span class="mi">1</span><span class="o">))</span> <span class="o">{</span>
-         <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag requires</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="n">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag requires</span>
 <span class="s">                  the body xor the value parameter to</span>
 <span class="s">                  be specified (also, negative values are unsupported)&quot;</span><span class="o">);</span>
       <span class="o">}</span>
@@ -753,18 +753,18 @@
                    <span class="o">+</span> <span class="s">&quot;\&quot;&gt;&quot;</span><span class="o">;</span>
             <span class="n">valueHtmlPostfix</span> <span class="o">=</span> <span class="s">&quot;&lt;/span&gt;&quot;</span><span class="o">;</span>
          <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">modificator</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-             <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span> <span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag parameters</span>
+             <span class="k">throw</span> <span class="k">new</span> <span class="n">JspException</span> <span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag parameters</span>
 <span class="s">                    values couldn&#39;t be parsed&quot;</span><span class="o">);</span>
          <span class="o">}</span>
          <span class="n">jspOut</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">valueHtmlPrefix</span> <span class="o">+</span> <span class="n">bodyTextContent</span> <span class="o">+</span>
                <span class="n">valueHtmlPostfix</span><span class="o">);</span>
       <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NumberFormatException</span> <span class="n">nfe</span><span class="o">)</span> <span class="o">{</span>
          <span class="n">nfe</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-         <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag parameters</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="n">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag parameters</span>
 <span class="s">                        couldn&#39;t be parsed&quot;</span><span class="o">,</span> <span class="n">nfe</span><span class="o">);</span>
       <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ioe</span><span class="o">)</span> <span class="o">{</span>
          <span class="n">ioe</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-         <span class="k">throw</span> <span class="k">new</span> <span class="nf">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag parameters</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="n">JspException</span><span class="o">(</span><span class="s">&quot;jbpm:priorityFont tag parameters</span>
 <span class="s">                        couldn&#39;t be parsed&quot;</span><span class="o">,</span> <span class="n">ioe</span><span class="o">);</span>
       <span class="o">}</span>
       <span class="n">release</span><span class="o">();</span>
@@ -849,75 +849,75 @@
 66
 67
 68
-69</pre></div></td><td class="code"><div class="highlight"><pre><span class="err">&lt;</span>%@ taglib uri=&quot;/WEB-INF/uwilfred.tld&quot; prefix=&quot;uwilfred&quot; %&gt;...
-<span class="nt">&lt;html&gt;</span><span class="err">&lt;</span>%
+69</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="err">&lt;</span>%@ taglib uri=&quot;/WEB-INF/uwilfred.tld&quot; prefix=&quot;uwilfred&quot; %&gt;...
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span><span class="err">&lt;</span>%
 ...
 %&gt;
-<span class="nt">&lt;head&gt;</span>
-   <span class="nt">&lt;style&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
 
-   <span class="nc">.priorityHigh</span> <span class="p">{</span>
-      <span class="k">font</span><span class="o">-</span><span class="k">color</span><span class="o">:</span> <span class="m">#f00</span><span class="p">;</span>
-      <span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
-      <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">solid</span> <span class="m">#333</span><span class="p">;</span>
+   <span class="p">.</span><span class="nc">priorityHigh</span> <span class="p">{</span>
+      <span class="n">font-color</span><span class="p">:</span> <span class="mh">#f00</span><span class="p">;</span>
+      <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+      <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#333</span><span class="p">;</span>
    <span class="p">}</span>
 
-   <span class="nc">.priorityLow</span> <span class="p">{</span>
-      <span class="k">font</span><span class="o">-</span><span class="k">color</span><span class="o">:</span> <span class="m">#00f</span><span class="p">;</span>
-      <span class="k">font-style</span><span class="o">:</span> <span class="k">italic</span><span class="p">;</span>
-      <span class="k">border</span><span class="o">:</span> <span class="m">1px</span> <span class="k">dotted</span> <span class="m">#999</span><span class="p">;</span>
+   <span class="p">.</span><span class="nc">priorityLow</span> <span class="p">{</span>
+      <span class="n">font-color</span><span class="p">:</span> <span class="mh">#00f</span><span class="p">;</span>
+      <span class="k">font-style</span><span class="p">:</span> <span class="kc">italic</span><span class="p">;</span>
+      <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">dotted</span> <span class="mh">#999</span><span class="p">;</span>
    <span class="p">}</span>
 
-   <span class="nt">&lt;/style&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 
-   <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span><span class="nt">&gt;</span>
-   <span class="nt">&lt;title&gt;</span>Test priorityFont Tag<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
+   <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;text/html; charset=UTF-8&quot;</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Test priorityFont Tag<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">&quot;layout&quot;</span><span class="nt">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;layout&quot;</span><span class="p">&gt;</span>
 
-   <span class="nt">&lt;c:forEach</span> <span class="na">items=</span><span class="s">&quot;${model.tasks}&quot;</span> <span class="na">var=</span><span class="s">&quot;task&quot;</span> <span class="na">varStatus=</span><span class="s">&quot;status&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${task.priority}&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;taskinfo.htm?id=&lt;c:out value=&quot;</span><span class="err">${</span><span class="na">task</span><span class="err">.</span><span class="na">id</span><span class="err">}&quot;</span><span class="nt">/&gt;</span>&quot;&gt;
-                  <span class="nt">&lt;c:out</span> <span class="na">value=</span><span class="s">&quot;${task.name}&quot;</span><span class="nt">/&gt;</span>
-            <span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
-   <span class="nt">&lt;/c:forEach&gt;</span>
+   <span class="p">&lt;</span><span class="nt">c:forEach</span> <span class="na">items</span><span class="o">=</span><span class="s">&quot;${model.tasks}&quot;</span> <span class="na">var</span><span class="o">=</span><span class="s">&quot;task&quot;</span> <span class="na">varStatus</span><span class="o">=</span><span class="s">&quot;status&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">uwilfred:priorityFont</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;${task.priority}&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;taskinfo.htm?id=&lt;c:out value=&quot;</span><span class="err">${</span><span class="na">task</span><span class="err">.</span><span class="na">id</span><span class="err">}&quot;</span><span class="p">/&gt;</span>&quot;&gt;
+                  <span class="p">&lt;</span><span class="nt">c:out</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;${task.name}&quot;</span><span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">uwilfred:priorityFont</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">c:forEach</span><span class="p">&gt;</span>
 
    <span class="err">&lt;</span>%-- is identical to: --%&gt;
 
-   <span class="nt">&lt;c:forEach</span> <span class="na">items=</span><span class="s">&quot;${model.tasks}&quot;</span> <span class="na">var=</span><span class="s">&quot;task&quot;</span> <span class="na">varStatus=</span><span class="s">&quot;status&quot;</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${task.priority}&quot;</span> <span class="na">level=</span><span class="s">&quot;3&quot;</span>
-              <span class="na">highChange=</span><span class="s">&quot;bold&quot;</span> <span class="na">lowChange=</span><span class="s">&quot;italic&quot;</span><span class="nt">&gt;</span>
-         <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;taskinfo.htm?id=&lt;c:out value=&quot;</span><span class="err">${</span><span class="na">task</span><span class="err">.</span><span class="na">id</span><span class="err">}&quot;</span><span class="nt">/&gt;</span>&quot;&gt;
-            <span class="nt">&lt;c:out</span> <span class="na">value=</span><span class="s">&quot;${task.name}&quot;</span><span class="nt">/&gt;</span>
-         <span class="nt">&lt;/a&gt;</span>
-      <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
-   <span class="nt">&lt;/c:forEach&gt;</span>
+   <span class="p">&lt;</span><span class="nt">c:forEach</span> <span class="na">items</span><span class="o">=</span><span class="s">&quot;${model.tasks}&quot;</span> <span class="na">var</span><span class="o">=</span><span class="s">&quot;task&quot;</span> <span class="na">varStatus</span><span class="o">=</span><span class="s">&quot;status&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">uwilfred:priorityFont</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;${task.priority}&quot;</span> <span class="na">level</span><span class="o">=</span><span class="s">&quot;3&quot;</span>
+              <span class="na">highChange</span><span class="o">=</span><span class="s">&quot;bold&quot;</span> <span class="na">lowChange</span><span class="o">=</span><span class="s">&quot;italic&quot;</span><span class="p">&gt;</span>
+         <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;taskinfo.htm?id=&lt;c:out value=&quot;</span><span class="err">${</span><span class="na">task</span><span class="err">.</span><span class="na">id</span><span class="err">}&quot;</span><span class="p">/&gt;</span>&quot;&gt;
+            <span class="p">&lt;</span><span class="nt">c:out</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;${task.name}&quot;</span><span class="p">/&gt;</span>
+         <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">uwilfred:priorityFont</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">c:forEach</span><span class="p">&gt;</span>
 
    <span class="err">&lt;</span>%-- different variants: --%&gt;
 
-   <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${someValue}&quot;</span>
-            <span class="na">highChange=</span><span class="s">&quot;{font-color: #f00; font-weight: bold;}&quot;</span>
-            <span class="na">lowChange=</span><span class="s">&quot;{font-color: #00f; font-style: italic;}&quot;</span><span class="nt">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">uwilfred:priorityFont</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;${someValue}&quot;</span>
+            <span class="na">highChange</span><span class="o">=</span><span class="s">&quot;{font-color: #f00; font-weight: bold;}&quot;</span>
+            <span class="na">lowChange</span><span class="o">=</span><span class="s">&quot;{font-color: #00f; font-style: italic;}&quot;</span><span class="p">&gt;</span>
                   BlahByCSSInline
-   <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">uwilfred:priorityFont</span><span class="p">&gt;</span>
 
-   <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${someValue}&quot;</span>
-                                    <span class="na">highChange=</span><span class="s">&quot;.priorityHigh&quot;</span>
-                                    <span class="na">lowChange=</span><span class="s">&quot;.priorityLow&quot;</span><span class="nt">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">uwilfred:priorityFont</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;${someValue}&quot;</span>
+                                    <span class="na">highChange</span><span class="o">=</span><span class="s">&quot;.priorityHigh&quot;</span>
+                                    <span class="na">lowChange</span><span class="o">=</span><span class="s">&quot;.priorityLow&quot;</span><span class="p">&gt;</span>
          BlahByCSSExistentClass
-   <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">uwilfred:priorityFont</span><span class="p">&gt;</span>
 
-   <span class="nt">&lt;uwilfred:priorityFont</span> <span class="na">value=</span><span class="s">&quot;${someValue}&quot;</span>
-               <span class="na">highChange=</span><span class="s">&quot;:strong&quot;</span>
-               <span class="na">lowChange=</span><span class="s">&quot;:em&quot;</span><span class="nt">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">uwilfred:priorityFont</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;${someValue}&quot;</span>
+               <span class="na">highChange</span><span class="o">=</span><span class="s">&quot;:strong&quot;</span>
+               <span class="na">lowChange</span><span class="o">=</span><span class="s">&quot;:em&quot;</span><span class="p">&gt;</span>
          BlahByTagRedefine
-   <span class="nt">&lt;/uwilfred:priorityFont&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">uwilfred:priorityFont</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;/body&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 
-<span class="nt">&lt;/html&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </td></tr></table></div></div>
         </div>
@@ -941,7 +941,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
     </footer>
 
     <!--

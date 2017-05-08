@@ -95,7 +95,7 @@
             
             
 
-            <li>[g]Vim in Python mode : ...</li>
+            <li>[g]Vim in Python mode :...</li>
         
     </ul>
 
@@ -227,7 +227,7 @@
 
     <section id="nwao-content" class="nwao-post">
         
-    <article>
+    <article id="nwao-post-vim-python-windows-compilation">
         <header class="nwao-post-header">
     <h2 class="nwao-post-title">
         <a href="/blog/articles/vim-python-windows-compilation/" title="[g]Vim in Python mode : Recompilation in Windows">[g]Vim in Python mode : Recompilation in Windows</a>
@@ -331,14 +331,14 @@
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">PATCHES_DOWNLOAD_PATH</span><span class="o">=</span>ftp://ftp.vim.org/pub/vim/patches
-<span class="nv">PATCHES_VER</span><span class="o">=</span>7.1
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nv">PATCHES_DOWNLOAD_PATH</span><span class="o">=</span>ftp://ftp.vim.org/pub/vim/patches
+<span class="nv">PATCHES_VER</span><span class="o">=</span><span class="m">7</span>.1
 wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.001-100.gz
 wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.101-200.gz
 
-<span class="k">for </span>i in <span class="sb">`</span>seq 201 278<span class="sb">`</span>;
+<span class="k">for</span> i in <span class="sb">`</span>seq <span class="m">201</span> <span class="m">278</span><span class="sb">`</span><span class="p">;</span>
 <span class="k">do</span>
-<span class="k">    </span>wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.<span class="nv">$i</span>
+    wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VER</span>/<span class="nv">$PATCHES_VER</span>.<span class="nv">$i</span>
 <span class="k">done</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -370,28 +370,28 @@ wget <span class="nv">$PATCHES_DOWNLOAD_PATH</span>/<span class="nv">$PATCHES_VE
 19
 20
 21
-22</pre></div></td><td class="code"><div class="highlight"><pre>@ECHO off
-ECHO changing directory to parent...
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">ECHO</span> off
+<span class="k">ECHO</span> changing directory to parent...
 
-CD ..
+<span class="k">CD</span> ..
 
-ECHO -------------------- %Date% -------------------- &gt;&gt; patching-src.log
+<span class="k">ECHO</span> -------------------- <span class="nv">%Date%</span> -------------------- <span class="p">&gt;&gt;</span> patching-src.log
 
-ECHO %CD%: applying first 200 patches
+<span class="k">ECHO</span> <span class="nv">%CD%</span>: applying first 200 patches
 
-patch -p0 &lt; patches/7.1.001-100 &gt;&gt; patching-src.log 2&gt;&amp;1
-patch -p0 &lt; patches/7.1.101-200 &gt;&gt; patching-src.log 2&gt;&amp;1
+patch -p0 <span class="p">&lt;</span> patches/7.1.001-100 <span class="p">&gt;&gt;</span> patching-src.log <span class="mi">2</span><span class="p">&gt;&amp;</span><span class="mi">1</span>
+patch -p0 <span class="p">&lt;</span> patches/7.1.101-200 <span class="p">&gt;&gt;</span> patching-src.log <span class="mi">2</span><span class="p">&gt;&amp;</span><span class="mi">1</span>
 
-ECHO %CD%: applying the last patches
+<span class="k">ECHO</span> <span class="nv">%CD%</span>: applying the last patches
 
-FOR /L %%B IN (201,1,278) DO
-    patch -p0 &lt; patches/7.1.%%B &gt;&gt; patching-src.log 2&gt;&amp;1
+<span class="k">FOR</span> <span class="k">/L</span> <span class="se">%%</span>B <span class="k">IN</span> <span class="p">(</span><span class="mi">201</span>,<span class="mi">1</span>,<span class="mi">278</span><span class="p">)</span> <span class="k">DO</span>
+    patch -p0 <span class="p">&lt;</span> patches/7.1.<span class="se">%%</span>B <span class="p">&gt;&gt;</span> patching-src.log <span class="mi">2</span><span class="p">&gt;&amp;</span><span class="mi">1</span>
 
-ECHO Finished
+<span class="k">ECHO</span> Finished
 
-PAUSE
+<span class="k">PAUSE</span>
 
-@ECHO on
+<span class="p">@</span><span class="k">ECHO</span> on
 </pre></div>
 </td></tr></table></div></div>
 <p>Place this file in <code>/patches</code> directory, ensure the directories structure matches the one described above, correct numbers and execute it. In the sources root there will be a <code>patching-src.log</code> file created, where you can monitor the results of patching procedure. If <code>patch</code> utility wasn&rsquo;t found, ensure Cygwin path is in you <code>PATH</code>. If some (small amount of) files has not been found and patched - there is nothing to worry about, they may relate to XWindow-version.</p>
@@ -403,13 +403,13 @@ PAUSE
 4
 5
 6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span class="nv">$ </span><span class="nb">cd</span> /cygdrive/c/devel/vim-src/vim71
-<span class="nv">$ </span>make -B -f Make_cyg.mak <span class="nv">GUI</span><span class="o">=</span>no <span class="se">\</span>
-    <span class="nv">PYTHON</span><span class="o">=</span>/cygdrive/c/devel/Python <span class="nv">PYTHON_VER</span><span class="o">=</span>25 <span class="nv">DYNAMIC_PYTHON</span><span class="o">=</span>yes <span class="se">\</span>
-    <span class="nv">TCL</span><span class="o">=</span>/cygdrive/c/devel/Tcl <span class="nv">TCL_VER</span><span class="o">=</span>85 <span class="nv">DYNAMIC_TCL</span><span class="o">=</span>yes vim.exe
-<span class="nv">$ </span>make -B -f Make_cyg.mak <span class="nv">OLE</span><span class="o">=</span>yes <span class="se">\</span>
-    <span class="nv">PYTHON</span><span class="o">=</span>/cygdrive/c/devel/Python <span class="nv">PYTHON_VER</span><span class="o">=</span>25 <span class="nv">DYNAMIC_PYTHON</span><span class="o">=</span>yes <span class="se">\</span>
-    <span class="nv">TCL</span><span class="o">=</span>/cygdrive/c/devel/Tcl <span class="nv">TCL_VER</span><span class="o">=</span>85 <span class="nv">DYNAMIC_TCL</span><span class="o">=</span>yes gvim.exe
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /cygdrive/c/devel/vim-src/vim71
+$ make -B -f Make_cyg.mak <span class="nv">GUI</span><span class="o">=</span>no <span class="se">\</span>
+    <span class="nv">PYTHON</span><span class="o">=</span>/cygdrive/c/devel/Python <span class="nv">PYTHON_VER</span><span class="o">=</span><span class="m">25</span> <span class="nv">DYNAMIC_PYTHON</span><span class="o">=</span>yes <span class="se">\</span>
+    <span class="nv">TCL</span><span class="o">=</span>/cygdrive/c/devel/Tcl <span class="nv">TCL_VER</span><span class="o">=</span><span class="m">85</span> <span class="nv">DYNAMIC_TCL</span><span class="o">=</span>yes vim.exe
+$ make -B -f Make_cyg.mak <span class="nv">OLE</span><span class="o">=</span>yes <span class="se">\</span>
+    <span class="nv">PYTHON</span><span class="o">=</span>/cygdrive/c/devel/Python <span class="nv">PYTHON_VER</span><span class="o">=</span><span class="m">25</span> <span class="nv">DYNAMIC_PYTHON</span><span class="o">=</span>yes <span class="se">\</span>
+    <span class="nv">TCL</span><span class="o">=</span>/cygdrive/c/devel/Tcl <span class="nv">TCL_VER</span><span class="o">=</span><span class="m">85</span> <span class="nv">DYNAMIC_TCL</span><span class="o">=</span>yes gvim.exe
 </pre></div>
 </td></tr></table></div></div>
 <p>You can ignore warnings and even some of the errors if they relate to Python or Tcl, if process is still going and <code>.exe</code>-files are created in the end. If everything has ended up successfully, then you&rsquo;ll find both <code>.exe</code> files in <code>src</code> directory. Make a backup of existing files in working version of Vim (i.e. <code>vim.exe.bak</code> and <code>gvim.exe.bak</code>) and replace them with the ones just compiled. If you&rsquo;ve applied the pathces, then place the <code>*.vim</code> files, <code>/doc/</code> and <code>/plugins</code> directories back from <code>/runtime</code> directory, making a backup before, replacing the old versions. Now launch Vim or gVim from the working Vim directory and re-check the version and the compilation options in the same place to have <code>+python</code> key &ndash; it must be ok in most cases.</p>
@@ -465,7 +465,7 @@ autocmd BufNewFile *.py call BufNewFile_PY()
     <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
     </footer>
 
     <!--

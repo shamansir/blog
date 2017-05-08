@@ -6,7 +6,7 @@
         <link rel="alternate" href="http://shamansir.github.io/blog/" />
         <link rel="self" href="http://shamansir.github.io/blog/feed.xml" type="application/atom+xml" />
         <id>http://shamansir.github.io/blog/</id>
-        <updated>2014-09-09T08:17:22Z</updated>
+        <updated>2017-05-08T20:45:44Z</updated>
         
         <author>
             <name>Ulric Wilfred</name>
@@ -16,10 +16,264 @@
         
         
             <entry>
+                <title>Modern Binary Reverse-Engineering with node.js, for Elm, or Why We Really Need Elm Playgrounds</title>
+                <link rel="alternate" href="http://shamansir.github.io/blog/articles/modern-binary-reverse-engineering-with-node-js-for-elm/" type="text/html" />
+                <id>http://shamansir.github.io/blog/articles/modern-binary-reverse-engineering-with-node-js-for-elm/</id>
+                <updated>2017-04-07T20:45:00Z</updated>
+                
+                <summary type="html">Kind of a problem for the developers of these plugins, is the fact that for the moment Elm has no reflection (a way to get a type of an entity) and tends not to have it at all. By itself, having no reflection is rather a good thing, usually it complicates the language syntax and/or libraries a lot. But the detailed types information is needed to implement helpful things in editors—nice type hints, nice auto-completion etc...</summary>
+                <content type="html">&lt;p&gt;Seems I haven’t posted anything for a while, &lt;a href=&#34;http://shamansir.github.io/blog/&#34;&gt;since Sep 2014&lt;/a&gt; to be precise—even though I had nice &lt;a href=&#34;http://shamansir.github.io/rpd/&#34;&gt;topics&lt;/a&gt; to discuss. So here’s a new try to get back to you with writing nerdy texts. Especially, considering the fact it gets more popular and fancy every day.&lt;/p&gt;
+&lt;h1 id=&#34;a-quintessence-of-this-post-not-to-say-tldr&#34;&gt;A quintessence of this post (not to say TL;DR):&lt;/h1&gt;
+&lt;p&gt;There exists a language Elm. Which could be a new nice replacement for JavaScript. [“That’s a rough and controversial statement!”, you would say. You have a right to say so!]. And, as it happens with every new language, step-by-step, it gets its plugins developed for every modern code editor / IDE. Every such plugin is usually written by the new-language community rather than developers of this particular editor / IDE.&lt;/p&gt;
+
+&lt;p&gt;Kind of a problem for the developers of these plugins, is the fact that for the moment Elm has no reflection (a way to get a type of an entity) and tends not to have it at all. By itself, having no reflection is rather a good thing, usually it complicates the language syntax and/or libraries a lot. But the detailed types information is needed to implement helpful things in editors—nice type hints, nice auto-completion etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/no-reflection.jpeg&#34; alt=&#34;By itself, having no reflection is rather a normal thing… Primitive joke, I know… Failed to resist.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;It could look like nothing special from the first sight—a bunch of languages have no reflection, so usually people write IDE-dependent Lexers and Parsers or use some other ways to get type information. But with Elm, there’s one subtle difference: it has a REPL which shows the correct type of an entity (variable or function) for every entry. It works not with the help of language, but with some hidden tricky features of the compiler (I will cover them later). So why not use the official REPL result to get this useful information?.. The post answers why.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/elm-repl.png&#34; alt=&#34;Elm Language REPL (every pun intended… or not)&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Also, this post shamelessly promotes the node.js library named &lt;a href=&#34;https://github.com/shamansir/node-elm-repl&#34;&gt;node-elm-repl&lt;/a&gt;, to those who develop Elm plugins for IDEs, but only for those who do not disdain running node.js processes inside their target IDE.&lt;/p&gt;
+
+&lt;p&gt;So, if you are not interested in Elm or writing plugins for IDEs or parsing binary files, the article could not be interesting for you… Or actually it could?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; &lt;em&gt;(I always have disclaimers in my posts. Why ruin the tradition then?)&lt;/em&gt; Every conclusion below is a subjects to discussion, since what’s happening here is just an investigation driven by a single human mind, usually tending to be so offensively wrong, that only dozens of years prove how was it surprisingly right from the very beginning;&lt;/p&gt;
+&lt;h1 id=&#34;why-getting-types-in-elm-is-important-at-all&#34;&gt;Why getting types in Elm is important at all?&lt;/h1&gt;
+&lt;p&gt;Some may be satisfied with &lt;a href=&#34;http://lighttable.com/&#34;&gt;Lighttable&lt;/a&gt; way of determining the type — selecting the expression and pressing a special key to get the value and type from the execution in background REPL process.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/elm-repl-lighttable.gif&#34; alt=&#34;Elm REPL in Lighttable&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Lighttable&lt;/em&gt; was probably the first IDE inspired by Bret Victor lectures on sandboxing and gave us some ideas on how it would work in real life. For now, there are much more implementations of sandbox-driven programming, and some of them actually show the results live.&lt;/p&gt;
+
+&lt;p&gt;There are &lt;a href=&#34;https://developer.apple.com/swift/blog/?id=35&#34;&gt;Swift Playgrounds&lt;/a&gt; in XCode, there is &lt;a href=&#34;http://haskellformac.com/&#34;&gt;Haskell for Mac&lt;/a&gt;, there is &lt;a href=&#34;http://jupyter.org/&#34;&gt;Jupyter&lt;/a&gt; (formerly iPython) Notebook, there are &lt;a href=&#34;https://github.com/bhauman/devcards&#34;&gt;DevCards in ClojureScript&lt;/a&gt;, there are &lt;a href=&#34;https://getstorybook.io/&#34;&gt;React Storybooks&lt;/a&gt;, there is &lt;a href=&#34;https://www.wolframalpha.com/&#34;&gt;Wolfram Alpha&lt;/a&gt; and new &lt;a href=&#34;http://www.wolfram.com/development-platform/&#34;&gt;Wolfram Language&lt;/a&gt;, and there’s &lt;a href=&#34;http://datalore.io/&#34;&gt;datalore.io&lt;/a&gt; from &lt;a href=&#34;https://www.jetbrains.com/&#34;&gt;JetBrains&lt;/a&gt;—all of them have something different, some are &lt;em&gt;visual REPLs&lt;/em&gt;, others are &lt;em&gt;livecoding environments&lt;/em&gt;, but in general the concept is in observing the results and/or statistics of the code expressions on the fly and usually side-to-side.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/types-of-sandboxes.png&#34; alt=&#34;Different types of Sandboxes, Playgrounds and Visual REPLs for different languages (not Elm).&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Several of the listed environments provide users with the way to change the input values using special controls without modifying an actual code — to let users supervise how subtle changes could affect the output.&lt;/p&gt;
+
+&lt;p&gt;Haskell for Mac is probably the closest thing to what would be cool to have for Elm. (Especially, considering the fact that Elm has quite stable &lt;a href=&#34;http://package.elm-lang.org/packages/elm-community/webgl/latest&#34;&gt;WebGL package&lt;/a&gt; already, it could be huge).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/elm-playground-mockup.png&#34; alt=&#34;Elm Playground Mockup&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Why would it be cool for Elm in particular?&lt;/p&gt;
+
+&lt;p&gt;First, unlike Python and JS, Elm is strictly-typed language, so actually any variable has 100% guarantee to be a number, string, HTML block, canvas or some user-defined custom type, including optionals, and this variable is guaranteed to stay this way forever, starting from the moment it was defined somewhere in the code.&lt;/p&gt;
+
+&lt;p&gt;Second, as in React, Elm could treat functions, which return some markup (i.e. HTML) in response to changes in a &lt;em&gt;State&lt;/em&gt;, as &lt;em&gt;Components&lt;/em&gt;. So, if your expression returns HTML (or SVG or commands for canvas context, or whatever you could treat &lt;em&gt;visual&lt;/em&gt;) and your IDE supports sandboxing, you may observe the changes to your Components just when you change the State bound to this Component. Following The Elm Architecture, &lt;em&gt;views&lt;/em&gt; are the functions which return &lt;code&gt;Html&lt;/code&gt; in response to any change in a &lt;code&gt;Model&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/elm-mdl.png&#34; alt=&#34;An example of Elm components provided by elm-mdl library.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;(Above is the example of Elm Components provided by &lt;a href=&#34;https://debois.github.io/elm-mdl&#34;&gt;elm-mdl&lt;/a&gt; library.)&lt;/p&gt;
+
+&lt;p&gt;Third, what is even better for Elm, all the expressions are functions and any function could be called with omitting some of its arguments (we name it „partial application“ in functional programming). This allows the said plugin to substitute some arguments with suggested values and draw a plot of all the possible results, for example.&lt;/p&gt;
+
+&lt;p&gt;Oh, and the main point—this is the thing &lt;a href=&#34;http://debug.elm-lang.org/&#34;&gt;what Evan dreamt of&lt;/a&gt; when presented the debugger :).&lt;/p&gt;
+
+&lt;p&gt;So, Elm is the language which fits sandboxing in its best.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/mukeshsoni&#34;&gt;Mukesh Soni&lt;/a&gt; is developing &lt;a href=&#34;https://github.com/mukeshsoni/elm-instant&#34;&gt;a plugin for Atom&lt;/a&gt; which brings React Storybooks-inspired interface to Elm.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/elm-instant.png&#34; alt=&#34;Elm-Instant plugin for Atom by Mukesh Soni&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;But user needs to wrap blocks of code in a special form and to write things-to-try in a Playground panel, unlike Sandboxes which provide programmer with the view and control over the actual code being developed.&lt;/p&gt;
+
+&lt;p&gt;The idea of binary-parsing &lt;code&gt;.elmi&lt;/code&gt; actually started from the moment when I connected with Mukesh (he had the plugin working already) and decided to try to implement things by detecting the types. He completely agreed that would help, so I rushed into binary investigation and Mukesh helped me a lot in my findings. Unfortunately, for the moment the integration of a working type-detection into the plugin itself is in a frozen state due to different reasons. And especially, due to my current occupation (JetBrains, in case you wondered) it seems better to use this skills/code to improve IDEA plugin instead :). Though anyway, that would be cool to have it everywhere. That’s one of the reasons why I write this article.&lt;/p&gt;
+
+&lt;p&gt;Some links to Google Groups discussions, to provide you with the progress of getting types from outside with the language itself or its utilities:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2013. &lt;a href=&#34;https://groups.google.com/forum/#!searchin/elm-discuss/elmi%7Csort:relevance/elm-discuss/omXjo_4p8CM/-UqLefyCI78J&#34;&gt;Evan tells he is working on providing types&lt;/a&gt;, probably using &lt;code&gt;elmi&lt;/code&gt; files (these experiments were abandoned later);&lt;/li&gt;
+&lt;li&gt;2013. &lt;a href=&#34;https://groups.google.com/forum/#!searchin/elm-discuss/elmi%7Csort:relevance/elm-discuss/bkEEN1P5f9U/hyNfMSur-d0J&#34;&gt;The discussion on the ways to organise the binary files&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;2016. &lt;a href=&#34;https://groups.google.com/forum/#!searchin/elm-dev/elmi%7Csort:relevance/elm-dev/QPLPd8q1Od0/gYFfWgezBAAJ&#34;&gt;The discussion on AST Tooling, p.1&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;2016. &lt;a href=&#34;https://groups.google.com/forum/#!searchin/elm-dev/language$20server%7Csort:relevance/elm-dev/uDGGTEh8ZYg/MNO19dYDAwAJ&#34;&gt;The discussion on AST Tooling, p.2&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;2017. &lt;a href=&#34;https://groups.google.com/forum/#!searchin/elm-dev/elmi%7Csort:relevance/elm-dev/aDWFBg72Wt4/0ZUKGOq7CQAJ&#34;&gt;The discussion on pairing Elm with MS Language Server&lt;/a&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So it is important to notice, that things could change drastically in Elm 0.19 or a bit later and may be at some recent point we’ll have the types with a call to compiler in some way, or have a &lt;a href=&#34;https://github.com/Microsoft/language-server-protocol&#34;&gt;MS Language Protocol&lt;/a&gt; implemented. I &lt;em&gt;really&lt;/em&gt; have considered this twist of faith, and I think this could lead to a better Elm-IDE world without binary parsing and that’s what we all actually need. Also, &lt;code&gt;elmi&lt;/code&gt; file format could change in any way Evan wants. Yet I have awesome tests. If that will happen soon, this story has completely no practical point, and rather could be an interesting, but pointless stack of information. Please &lt;em&gt;consider&lt;/em&gt; that before reading further.&lt;/p&gt;
+&lt;h1 id=&#34;what-elm-ide-plugins-use-for-type-suggestions-right-now&#34;&gt;What Elm IDE Plugins use for type suggestions right now?&lt;/h1&gt;
+&lt;p&gt;(There could be errors in this list, please correct me if something is wrong or outdated)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rundis/elm-light&#34;&gt;LightTable Elm Plugin&lt;/a&gt;: used &lt;a href=&#34;https://github.com/ElmCast/elm-oracle&#34;&gt;elm-oracle&lt;/a&gt; before, now directly uses elm-repl to evaluate code in-place, and its own &lt;a href=&#34;http://pegjs.majda.cz/&#34;&gt;peg.js&lt;/a&gt;-generated parser to extract types. In terms of getting types and values, both work with limitations and have time issues, at least afaik;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/durkiewicz/elm-plugin&#34;&gt;IntelliJ IDEA Elm Plugin&lt;/a&gt;: parses types with its own parser;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ElmCast/elm-oracle&#34;&gt;elm-oracle&lt;/a&gt; is a JS tool to extract types from Elm documentation existing online: requires internet connection;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/halohalospecial/atom-elmjutsu&#34;&gt;elmjutsu&lt;/a&gt;, a recent development, a toolbox for developing Elm plugins in Atom: no requirement of &lt;a href=&#34;https://github.com/ElmCast/elm-oracle&#34;&gt;elm-oracle&lt;/a&gt;, still parses the Elm Documentation, however it stores type tokens in a local cache, so usually works quite fast and constant internet connection is not required;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/edubkendo/atom-elm&#34;&gt;Atom Elm Plugin&lt;/a&gt;: uses &lt;a href=&#34;https://github.com/ElmCast/elm-oracle&#34;&gt;elm-oracle&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sbrink/vscode-elm&#34;&gt;VSCode Elm Plugin&lt;/a&gt;: uses &lt;a href=&#34;https://github.com/ElmCast/elm-oracle&#34;&gt;elm-oracle&lt;/a&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, the solution is either writing a full custom Elm syntax parser or parsing documentation, for now. Regarding first option: custom syntax parser is also required to parse imported packages code to get types for them. Second option is used mostly by JS-driven tools, not to parse the code of requirements as a time-wasting issue. To get the type when it’s not specified, Elm allows it, programmers use &lt;code&gt;elm-repl&lt;/code&gt;. But the Elm compiler itself already has this information at hand when it compiles the source!&lt;/p&gt;
+&lt;h1 id=&#34;how-could-it-be-improved&#34;&gt;How could it be improved?&lt;/h1&gt;
+&lt;p&gt;No requirement for internet connection is still better than having it. In some countries it is still slow, in some countries some sites are still restricted to be visited. And programmers do want to work in trains, buses, underground… A lot of areas are still not covered with connection or you have to pay for it and/or you have to authorise even when you don’t want to—a lot of barriers now exist (and there were even less before), especially for travellers.&lt;/p&gt;
+
+&lt;p&gt;Evan, the author of Elm language, however, had noticed once, that at some points documentation could be stored in a package distribution itself.&lt;/p&gt;
+
+&lt;p&gt;In case of using REPL, the connection is only required if you have no required package installed (“I haven’t found your package locally, may I download your package?”, it asks, and you may agree). In all the other cases you may happily continue asking it for types:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/elm-repl-types.png&#34; alt=&#34;Elm REPL, getting types&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Except the fact that every request for a command is really slow. As a user, you may not notice that at all, but it takes 300ms to several seconds for &lt;em&gt;every&lt;/em&gt; request even on my modern machine. If you wrap the call with node.js using child processes, and it turns out you need to run an isolated REPL process to detect the type of a single expression, so the pause between single calls becomes completely unpredictable.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/elm-getting-types-pause.gif&#34; alt=&#34;The actual sensitive pause required to determine the type of the expression for the first time in Elm REPL.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Why node.js? Most of the popular editors nowadays are either powered with JS, or may run JS from the inside. Plus, Elm compiles to JS for the moment, plus you may use native JS modules to connect JS and Elm, plus there are JS-ports for data communication with JS—so JS is like a really friendly neighbour. At least for now. While we are yet not into WebAssembly.&lt;/p&gt;
+
+&lt;p&gt;Another problem: if you want to extract the type from REPL this way, you need to parse it from the output. It’s not the same as writing the language syntax parser, it’s not that hard, but with a subtle change in a REPL output format (which could not be included in What’s New sections), your tool breaks. If some weird OS breaks the output, you tool also breaks. &lt;em&gt;And this format is not bound to a compiler version, actually it’s the same as for documentation the plugins parse.&lt;/em&gt; No guarantees at all. And anyway, REPL itself is rather an intermediary in terms of getting the type.&lt;/p&gt;
+&lt;h1 id=&#34;digging-into-the-repl-logic&#34;&gt;Digging into the REPL logic&lt;/h1&gt;
+&lt;p&gt;But if you dig a little into the Elm REPL code, you’ll find that Elm compiler actually creates one magic binary file to store the types. Not in the directory with the code, but in &lt;code&gt;elm-packages&lt;/code&gt; directory and below. This file has &lt;code&gt;.elmi&lt;/code&gt; extension. And REPL uses it to get those types, surprisingly, in a quite dirty way:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Take new input expression, there should be the only one;&lt;/li&gt;
+&lt;li&gt;Append it to all the imports of the expressions executed before, so imports will go first and will be shared with previous expressions;&lt;/li&gt;
+&lt;li&gt;Assign your expression to an exclusively-named variable (easter-egg from Evan here, but I won’t spoil it);&lt;/li&gt;
+&lt;li&gt;Concat the lines, put everything in a temporary &lt;code&gt;.elm&lt;/code&gt; file;&lt;/li&gt;
+&lt;li&gt;Compile this file with &lt;code&gt;elm-make&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;Go into &lt;code&gt;elm-stuff/build-artifacts/user/project/1.0.0&lt;/code&gt; and find the corresponding &lt;code&gt;.elmi&lt;/code&gt; file there (which is binary!);&lt;/li&gt;
+&lt;li&gt;Parse this file with the same Haskell code which compiled it into binary code, and so extract the variable type from it;&lt;/li&gt;
+&lt;li&gt;Also, take the value of this expression by executing compiled &lt;code&gt;.js&lt;/code&gt; file, including some additions to log the evaluated value, with node.js;&lt;/li&gt;
+&lt;li&gt;Delete everything temporary, like it never happened (&lt;code&gt;.elmi&lt;/code&gt; files stay for reuse, to the moment source was changed);&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/elm-repl-logic.png&#34; alt=&#34;Elm REPL Logic.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;This is what I was able to get from Haskell code of the REPL, along with using some UNIX utilities to lock files lying in a known directory from deleting—so I was able to patiently analyse them with no rush.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Trickity-trick #1:&lt;/strong&gt; Hello, my dear young shiny developer! This is the first exercise of mine for you. If you have already read some fairy-tales about the UNIX shell, could you please solve a minor problem for me? The question is: how would you prevent the file from deletion even before it’s being created and without knowing it’s name? …&lt;/p&gt;
+&lt;h1 id=&#34;getting-rid-of-intermediaries&#34;&gt;Getting rid of intermediaries&lt;/h1&gt;
+&lt;p&gt;Now, when the algorithm is known, we may drop some actions we don’t need or make them optional. Since the requirement for me was JS/node.js usage, I decided that it’s ok to drop Haskell part and make everything JS-driven.&lt;/p&gt;
+
+&lt;p&gt;Which means, we need to parse the binary &lt;code&gt;.elmi&lt;/code&gt; file with server-side JavaScript!&lt;/p&gt;
+&lt;h1 id=&#34;actually-starting-to-parse&#34;&gt;Actually starting to parse&lt;/h1&gt;
+&lt;p&gt;There are a lot of binary parsers for node.js—however, it turned out, that not every parser supports everything expected—reality bites. Some parsers fail to do nesting (and &lt;code&gt;.elmi&lt;/code&gt; files do contain nesting, since type definitions may recursively refer to themselves), some are abandoned, some require special parser syntax (like LEG/PEG etc.) and so they use a lot of time to convert this syntax to JS-friendly AST (to say truth, with these parser generators you often may pre-compile a JS parser to a reusable JS file, but usually this file takes a lot of space).&lt;/p&gt;
+
+&lt;p&gt;I decided that having JS chain-like syntax is enough for that purpose — to simultaneously be able to feel the flow of the parser just from the syntax and not to waste user resources. Through some exploration, I chose two ones using a list of these strict requirements:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/substack/node-binary&#34;&gt;node-binary&lt;/a&gt; from &lt;a href=&#34;https://github.com/substack&#34;&gt;substack&lt;/a&gt;: it has nice syntax, and is minimal;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/keichi/binary-parser&#34;&gt;binary-parser&lt;/a&gt; from &lt;a href=&#34;https://github.com/keichi&#34;&gt;keichi&lt;/a&gt;: nice syntax and also minimal, has nesting;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;First, I thought I may just use &lt;code&gt;.tap()&lt;/code&gt; function of node-binary to dive into complex structures, but it turned out I also was required to have a &lt;code&gt;.choice()&lt;/code&gt; function to decide which sub-parser to call if some byte equals some expected value, and also the binary-parser from keichi seemed to be not so abandoned (2012 vs 2016).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/parser-code-example.png&#34; alt=&#34;Some code from the parser&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Yet it required some modifications, though.&lt;/p&gt;
+
+&lt;p&gt;First, I was required to &lt;a href=&#34;https://github.com/keichi/binary-parser/pull/41&#34;&gt;implement support for named sub-parsers&lt;/a&gt; (they could be defined as functions) to be able to reuse them without re-instantiating, and so do a real recursion, using sub-parsers as cells.&lt;/p&gt;
+
+&lt;p&gt;Second, it uses &lt;code&gt;eval&lt;/code&gt;-like way to call user-defined callbacks in a required context (actually, it was &lt;code&gt;new Function&lt;/code&gt; constructor, which is treated unsafe and leads to &lt;code&gt;eval&lt;/code&gt; call in the end) and Atom infrastructure was not very fond of it, so I was required &lt;a href=&#34;https://github.com/keichi/binary-parser/pull/44&#34;&gt;to add&lt;/a&gt; &lt;a href=&#34;https://www.npmjs.com/package/loophole&#34;&gt;loophole package&lt;/a&gt; to the &lt;code&gt;package.json&lt;/code&gt; with some &lt;em&gt;monkey-patching&lt;/em&gt;, to make this code safe (code made safe with monkey-patching, sounds really weird…).&lt;/p&gt;
+
+&lt;p&gt;Both Pull Requests are not merged into the original repository of &lt;a href=&#34;https://keichi.net/&#34;&gt;&lt;em&gt;keichi&lt;/em&gt;&lt;/a&gt; yet.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The code:&lt;/strong&gt; Here’s the &lt;a href=&#34;https://github.com/shamansir/node-elm-repl/blob/master/src/parser.js&#34;&gt;code of the final version of the parser&lt;/a&gt;, written with the help of &lt;a href=&#34;https://github.com/shamansir/binary-parser&#34;&gt;my own modification of the binary-parser&lt;/a&gt; package.&lt;/p&gt;
+&lt;h1 id=&#34;diving-into-the-binary&#34;&gt;Diving into the binary&lt;/h1&gt;
+&lt;p&gt;As a source material of &lt;code&gt;.elmi&lt;/code&gt; files and as a goal to parse properly, I decided to use &lt;a href=&#34;https://github.com/shamansir/exercism&#34;&gt;my implementation&lt;/a&gt; of &lt;a href=&#34;http://exercism.io/languages/elm/exercises&#34;&gt;exercises from Exercism.io&lt;/a&gt;. They have divergent but simple combinations of types, which I used to actually test the code (chai and mocha to the help, nyan!). By locking the files created by REPL, I was able to see which way the REPL extracts the type of variable (by creating a temporary-created variable and a file for every new expression, as &lt;a href=&#34;#digging-into-the-repl-logic&#34;&gt;it is described above&lt;/a&gt;) and then get binary results.&lt;/p&gt;
+
+&lt;p&gt;First (actually, in process of writing 80% of current parser code), it was a manual trial and error: using shell binary viewer and passing the result to MacOS Pages (ha-ha!), I changed the font to monospaced, marked the areas, appearing to be common, with different colours and tried to find a structure and relations between them:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/decomposing-process.png&#34; alt=&#34;In the process of decomposing binaries, using MacOS Pages and iTerm 2.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Trickity-trick #2:&lt;/strong&gt; Which UNIX tool you, the almighty UNIX master, would use to see binary file contents in a beautiful and friendly way?&lt;/p&gt;
+
+&lt;p&gt;Then, closer to the finish, I discovered a very nice tool named “&lt;a href=&#34;https://itunes.apple.com/de/app/synalyze-it/id417074533&#34;&gt;Synalize it!&lt;/a&gt;” (formerly Hexinator). Basically, this tool is the very binary-reverse-engineer friend.&lt;/p&gt;
+
+&lt;p&gt;It allows you to open binary file, see all its bits in a nice grid, easily mark regions with a mouse, and assign name/colour pairs to these regions, defying how many bits they take in a file. After that, you may reuse the pairs to mark similar regions with a single name/colour. Apart from that, this tool has it’s own XML-based &lt;code&gt;.grammar&lt;/code&gt; definition format, which supports different ways of nesting and reusing already defined structures. And yes, this tool costs a bit, if that’s a downside to you.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;.grammar&lt;/code&gt; file for .elmi also &lt;a href=&#34;https://github.com/shamansir/node-elm-repl/blob/master/elmi.grammar&#34;&gt;lies in the repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/grammar-structure-synalyze-it.png&#34; alt=&#34;A complete grammar structure and an example binary file, parsed with this grammar, side-by-side. Synalyze it!&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;destructuring-elmi-in-details&#34;&gt;Destructuring ELMI in details&lt;/h1&gt;
+&lt;p&gt;Some primitive conclusions were quite easy to determine from the start:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;strings are defined with 8 bytes of length and the contents follow this byte;&lt;/li&gt;
+&lt;li&gt;first, there goes Elm version and package name;&lt;/li&gt;
+&lt;li&gt;then, there go imports, prefixed with a number of them used;&lt;/li&gt;
+&lt;li&gt;then, there go exports, prefixed with a number of them used;&lt;/li&gt;
+&lt;li&gt;then, there go type definitions paired with variable names;&lt;/li&gt;
+&lt;li&gt;this usually ends the important part of a file (sometimes not);&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/structure-elmi.png&#34; alt=&#34;Root ELMI File structure.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Some things were much harder to evaluate: for example complex structures, when stored in binary, usually consist of several marker bit-cells with numbers, following the marker bit-cells with the same numbers, but in this case these same numbers could have totally different meaning, and in theory could (or could not) define the number of bytes we should read after reading such marker, but these bytes, which we should probably read, could also include markers with different meaning, and also some markers inside them could define that the structure should split in three branches from now on, and each of these branches starts with some markers… truly, when you destructure these plain sequences of senseless numbers and try to form a meaningful stable tree from them, it feels like you are some kind of &lt;em&gt;holistic detective&lt;/em&gt;…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/random-bytes-line.png&#34; alt=&#34;How a line of random byte and string sequences could lead to a meaningful structure with cells and markers.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;How a line of random byte and string sequences could lead to a meaningful structure with cells and markers.&lt;/p&gt;
+
+&lt;p&gt;Especially when you do it in Pages App. So, at least don’t do this kind of stuff in Pages App unless you really want to get weird.&lt;/p&gt;
+
+&lt;p&gt;The project &lt;a href=&#34;https://github.com/shamansir/node-elm-repl/tree/master/test&#34;&gt;has all the tests&lt;/a&gt; required for every discovered example of complex type, including pre-compiled &lt;code&gt;.elmi&lt;/code&gt; files and not-yet-compiled &lt;code&gt;.elm&lt;/code&gt; files to test.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/structure-package.png&#34; alt=&#34;Package info definition.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/package-info-hello.png&#34; alt=&#34;Package Info example from HelloWorld.elm.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Package Info.&lt;/strong&gt; Package info requires no comments, it just contains the Elm compiler version, package author username and project name.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/structure-import-export.png&#34; alt=&#34;Imports and Exports definition.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/import-export-hello.png&#34; alt=&#34;Imports and Exports example from HelloWorld.elm&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Imports.&lt;/strong&gt; Any import could be an internal packages and so defined just by name (marker &lt;code&gt;0001&lt;/code&gt;), or require a full path to a package and type (marker &lt;code&gt;02&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Exports.&lt;/strong&gt; They are just paths — string arrays of different lengths.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Type Definitions.&lt;/strong&gt; Type Definitions are the most complex and complicated things in a file. They are the ones who contain mysterious markers-inside-markers constructions described above. But I’m here to help.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/structure-node.png&#34; alt=&#34;Type Definitions and Nodes kinds.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;The kinds of structures here are a bit different to actual Elm types but still they define them in a deterministic way. The single type is defined with a recursive structure of data cells, where a cell could be a:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Variable&lt;/em&gt; (marker is &lt;code&gt;1&lt;/code&gt;): just a reference to some existing variable by its name;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lambda&lt;/em&gt; (marker is &lt;code&gt;0&lt;/code&gt;): define something that applies &lt;em&gt;left side&lt;/em&gt; to the &lt;em&gt;right side&lt;/em&gt;—in Elm code we represent it with an arrow (→) when we define types, i.e. &lt;code&gt;String -&amp;gt; Int&lt;/code&gt;, where &lt;code&gt;String&lt;/code&gt; is on the left side and &lt;code&gt;Int&lt;/code&gt; is on the right side;&lt;/li&gt;
+&lt;li&gt;enclose either &lt;em&gt;Holley&lt;/em&gt; or &lt;em&gt;Filled&lt;/em&gt; Type (marker is &lt;code&gt;2&lt;/code&gt;): this cell could be defined inside any other cell, where &lt;em&gt;Holley&lt;/em&gt; means the type defined in a local scope and thus referred by a single name and &lt;em&gt;Filled&lt;/em&gt; means the type which is defined not only by name, but also by user, package and module name;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Application&lt;/em&gt; (marker is &lt;code&gt;3&lt;/code&gt;): define something that has a &lt;em&gt;subject&lt;/em&gt; and an &lt;em&gt;object&lt;/em&gt;—in Elm code we represent it with a space (&lt;code&gt;&lt;/code&gt;) when we define types, i.e. &lt;code&gt;List Int&lt;/code&gt;, where &lt;code&gt;List&lt;/code&gt; is the subject and &lt;code&gt;Int&lt;/code&gt; is the object; an infinite number of objects could be applied to a single subjects;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Record&lt;/em&gt; (marker is &lt;code&gt;4&lt;/code&gt;): a &lt;a href=&#34;http://elm-lang.org/docs/syntax#records&#34;&gt;record&lt;/a&gt; with named field↔type pairs inside it, prefixed with the number of stored fields inside;&lt;/li&gt;
+&lt;li&gt;Alias (marker is &lt;code&gt;5&lt;/code&gt;): an inferred type which has a reusable alias inside the type definition—think of &lt;code&gt;a&lt;/code&gt; in &lt;code&gt;Html a&lt;/code&gt;, &lt;code&gt;msg&lt;/code&gt; in &lt;code&gt;Cmd msg&lt;/code&gt;, &lt;code&gt;foo&lt;/code&gt; in &lt;code&gt;foo -&amp;gt; foo&lt;/code&gt; and so on…; or a &lt;a href=&#34;https://guide.elm-lang.org/types/type_aliases.html&#34;&gt;type alias&lt;/a&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;NB:&lt;/strong&gt; lambda could only have two parts, so the definition like &lt;code&gt;String -&amp;gt; Int -&amp;gt; Bool&lt;/code&gt; is stored as two lambdas, one inside another: lambda &lt;code&gt;(Int -&amp;gt; Bool)&lt;/code&gt; is applied to a &lt;code&gt;String&lt;/code&gt; type, and so the root lambda cell is &lt;code&gt;(outer-lambda: String -&amp;gt; (inner-lambda: Int -&amp;gt; Bool))&lt;/code&gt;; &lt;strong&gt;Trickity-trick #3:&lt;/strong&gt; think on how this could be connected to function definitions in Elm types;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/structure-types.png&#34; alt=&#34;All the Node kinds expanded (except Aliases).&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/types-hello.png&#34; alt=&#34;Type Definition example from HelloWorld.elm&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;The trick here is that almost every cell may include another cell with its own internal namespace of definitions and numbers, and this is the reason why plain structure of bytes looks so repetitive from the start. If you have Ph.D. in Binary Reverse Engineering (like I do not), you would treat that obvious, but for newbies there’s always an advice not to be fearful of the structures and believe that there is a meaningful reason behind every bit, every byte, every Life, every Universe and EveryThing…&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/structure-aliased.png&#34; alt=&#34;Aliased Node structure.&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Unions, Aliases, Fixities.&lt;/strong&gt; Any of these seem to have no effect on type definitions, so these parts could be skipped from parsing completely.
+All the schemes above, along with the &lt;code&gt;.grammar&lt;/code&gt; file, do define the structure of any &lt;code&gt;.elmi&lt;/code&gt; file [I found yet]. If you have found the &lt;code&gt;.elmi&lt;/code&gt; file not satisfying to this schemes and grammar, please fork &lt;a href=&#34;https://github.com/shamansir/node-elm-repl&#34;&gt;node-elm-repl&lt;/a&gt; repository, add this file &lt;a href=&#34;https://github.com/shamansir/node-elm-repl/tree/master/test&#34;&gt;to the specs&lt;/a&gt; and then make a Pull Request to the origin.&lt;/p&gt;
+
+&lt;p&gt;So, now we know the type (and a value) of any expression, &lt;a href=&#34;https://github.com/shamansir/node-elm-repl&#34;&gt;node-elm-repl&lt;/a&gt; in Action.:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://shamansir.github.io/blog/figures/modern-binary-reverse-engineering-with-node-js-for-elm/node-elm-repl-in-action.png&#34; alt=&#34;node-elm-repl in Action.&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;the-verdict&#34;&gt;The Verdict&lt;/h1&gt;
+&lt;p&gt;If you are an Elm plugin developer for any of the IDEs, please find any possible way to develop and integrate sandboxing with Elm in your favourite IDE, since, considering all the language features, it has all the chances just to be awesome.&lt;/p&gt;
+
+&lt;p&gt;If you are someone who have read this article from the beginning to the end just for fun, please keep being this kind of a person.&lt;/p&gt;
+
+&lt;p&gt;If you are expecting to binary-engineer a file in some nearby future and read this article just to know how its usually done, consider using Synalize it! for this case. Or else, just use hand and paper. Or Pages. Or Excel. In any way it trains your mind to solve deeply-connected things. But some tools really help not to go too crazy.&lt;/p&gt;
+
+&lt;p&gt;If you planned to parse the &lt;code&gt;.elmi&lt;/code&gt; file and extract types out of it, now you have a complete technical specification… and a code in JS to do it automatically.&lt;/p&gt;
+&lt;h1 id=&#34;solutions-for-the-tricks&#34;&gt;Solutions for the tricks&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;#1:&lt;/strong&gt; nothing special, just use &lt;code&gt;chmod&lt;/code&gt; and &lt;code&gt;chown&lt;/code&gt; to set a sticky bit on a directory which could contain a file, to prevent a user who runs the application (REPL, in this case) from deleting anything inside it: &lt;a href=&#34;http://unix.stackexchange.com/a/20106/7667&#34;&gt;http://unix.stackexchange.com/a/20106/7667&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;#2:&lt;/strong&gt; even less special, nice util named &lt;code&gt;xdd&lt;/code&gt; is your friend: &lt;a href=&#34;http://unix.stackexchange.com/a/282220/7667&#34;&gt;http://unix.stackexchange.com/a/282220/7667&lt;/a&gt;, &lt;a href=&#34;http://stackoverflow.com/a/20305782/167262&#34;&gt;http://stackoverflow.com/a/20305782/167262&lt;/a&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;#3:&lt;/strong&gt; no solution at all;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+            </entry>
+        
+            <entry>
                 <title>Generating Functional Parsers</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/generating-functional-parsers/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/generating-functional-parsers/</id>
-                <updated>2014-09-06T08:17:00Z</updated>
+                <updated>2014-09-06T20:45:00Z</updated>
                 
                 <summary type="html">Are you interested in a functional approach to parsers generation? Well, I&#39;m sure you do, even if, at your side, you&#39;re not sure what it means exactly. It&#39;s just because anything that connects parsers and functional programming in practice can be nothing but joyful...</summary>
                 <content type="html">&lt;p&gt;&lt;em&gt;Disclaimer:&lt;/em&gt; The author of this text is still and eternally non-native English-writer, so please excuse him for his grammar errors, mistypes and stupid bravity without any malice, but please consider correcting his mistakes &lt;a href=&#34;mailto://shaman.sir@gmail.com&#34;&gt;using his e-mail&lt;/a&gt; without any commiseration. (TODO: Remove this portion of text when everything wrong will be fixed).&lt;/p&gt;
@@ -651,7 +905,7 @@ additive
                 <title>Mastering Functional JavaScript Lecture Slides</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/mastering-functional-javascript-slides/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/mastering-functional-javascript-slides/</id>
-                <updated>2013-02-16T08:17:00Z</updated>
+                <updated>2013-02-16T20:45:00Z</updated>
                 
                 <summary type="html">In JavaScript, like, say, in Python, functions are also objects. It gives developer the opportunity to write pure (or not so, since there are no native monads support ;) ) functional code. Most people among us do easily forget about this fact, but it is still true and, what&amp;rsquo;s truly great, it was true from the start.</summary>
                 <content type="html">&lt;p&gt;In JavaScript, like, say, in Python, functions are also objects. It gives developer the opportunity to write pure (or not so, since there are no native monads support ;) ) functional code. Most people among us do easily forget about this fact, but it is still true and, what&amp;rsquo;s truly great, it was true from the start.&lt;/p&gt;
@@ -699,7 +953,7 @@ Article on lyfe.js: &lt;a href=&#34;http://balpha.de/2011/06/introducing-lyfe-yi
                 <title>GWT + mvp4g Lecture Slides</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/gwt-mvp4g-slides/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/gwt-mvp4g-slides/</id>
-                <updated>2011-05-04T08:17:00Z</updated>
+                <updated>2011-05-04T20:45:00Z</updated>
                 
                 <summary type="html">April 29, I&amp;rsquo;ve presented a lecture on Web-development with &lt;a href=&#34;http://code.google.com/intl/ru/webtoolkit/&#34;&gt;GWT&lt;/a&gt; and &lt;a href=&#34;http://code.google.com/p/mvp4g/&#34;&gt;mvp4g&lt;/a&gt; Framework, at &lt;a href=&#34;http://addconf.ru&#34;&gt;Application Developer Days&lt;/a&gt; 2011 Conference. Here are the slides.</summary>
                 <content type="html">&lt;p&gt;April 29, I&amp;rsquo;ve presented a lecture on Web-development with &lt;a href=&#34;http://code.google.com/intl/ru/webtoolkit/&#34;&gt;GWT&lt;/a&gt; and &lt;a href=&#34;http://code.google.com/p/mvp4g/&#34;&gt;mvp4g&lt;/a&gt; Framework, at &lt;a href=&#34;http://addconf.ru&#34;&gt;Application Developer Days&lt;/a&gt; 2011 Conference. Here are the slides.&lt;/p&gt;
@@ -804,7 +1058,7 @@ Article on lyfe.js: &lt;a href=&#34;http://balpha.de/2011/06/introducing-lyfe-yi
                 <title>LimeJS: Writing a cross-platform game in HTML5 with touch support</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/limejs-writing-a-game/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/limejs-writing-a-game/</id>
-                <updated>2011-02-15T08:17:00Z</updated>
+                <updated>2011-02-15T20:45:00Z</updated>
                 
                 <summary type="html">&lt;a href=&#34;http://www.limejs.com&#34;&gt;LimeJS&lt;/a&gt; is 2D Open Source HTML5-engine for game development with touch-events support and it works (following to the description on the site) with most of mobile platfroms. I have found it not by myself, but last week I&amp;rsquo;ve got a letter with a proposition to tell community about the engine [in russian, this is an english version] and I&amp;rsquo;ve decided - so if this is the case, why waste time on trifles, why not to try this engine in action. Among with that, I have agreed in advance with engine authors that I will tell both advantages and disadvantages, so I hope to clear the advertisment halo from the article with that (though, what means advertisment to open-source)..?</summary>
                 <content type="html">&lt;p&gt;&lt;a href=&#34;http://www.limejs.com&#34;&gt;LimeJS&lt;/a&gt; is 2D Open Source HTML5-engine for game development with touch-events support and it works (following to the description on the site) with most of mobile platfroms. I have found it not by myself, but last week I&amp;rsquo;ve got a letter with a proposition to tell community about the engine [in russian, this is an english version] and I&amp;rsquo;ve decided - so if this is the case, why waste time on trifles, why not to try this engine in action. Among with that, I have agreed in advance with engine authors that I will tell both advantages and disadvantages, so I hope to clear the advertisment halo from the article with that (though, what means advertisment to open-source)..?&lt;/p&gt;
@@ -1375,7 +1629,7 @@ $ .&amp;#x2F;bin&amp;#x2F;lime.py build pingpong -o pingpong&amp;#x2F;compiled&a
                 <title>3 Tiny JavaScript Snippets</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/3-tiny-javascript-snippets/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/3-tiny-javascript-snippets/</id>
-                <updated>2011-02-03T08:17:00Z</updated>
+                <updated>2011-02-03T20:45:00Z</updated>
                 
                 <summary type="html">Currently I am doing some stuff in JavaScript and I need to have just a tiny amounts of code to work with. As tiny as this article. But there are some things I really need to make the development comfortable for myself. So I require them to be tiny too.</summary>
                 <content type="html">&lt;p&gt;Currently I am doing some stuff in JavaScript and I need to have just a tiny amounts of code to work with. As tiny as this article. But there are some things I really need to make the development comfortable for myself. So I require them to be tiny too.&lt;/p&gt;
@@ -1626,7 +1880,7 @@ _f();
                 <title>Modelling a Solar System in Fluxus</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/fluxus-solar-system/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/fluxus-solar-system/</id>
-                <updated>2010-12-06T08:17:00Z</updated>
+                <updated>2010-12-06T20:45:00Z</updated>
                 
                 <summary type="html">Some time ago I &lt;a href=&#34;#post-about-fluxus&#34;&gt;wrote a post&lt;/a&gt; about &lt;a href=&#34;http://www.pawfal.org/fluxus/&#34;&gt;fluxus&lt;/a&gt;, livecoding and 3D-prototyping system. Now I want to demonstrate some of its features and describe how you may use them in pseudo(;))scientific needs. For example, you can create a model of a simplified solar system and make it fit in only 125 lines of code (including comments) &amp;ndash; it is the advantage of &lt;a href=&#34;http://racket-lang.org/&#34;&gt;Racket&lt;/a&gt; language with graphic steroids, the core of fluxus and a descendant of PLT Scheme. Here how the result will look like:</summary>
                 <content type="html">&lt;p&gt;Some time ago I &lt;a href=&#34;#post-about-fluxus&#34;&gt;wrote a post&lt;/a&gt; about &lt;a href=&#34;http://www.pawfal.org/fluxus/&#34;&gt;fluxus&lt;/a&gt;, livecoding and 3D-prototyping system. Now I want to demonstrate some of its features and describe how you may use them in pseudo(;))scientific needs. For example, you can create a model of a simplified solar system and make it fit in only 125 lines of code (including comments) &amp;ndash; it is the advantage of &lt;a href=&#34;http://racket-lang.org/&#34;&gt;Racket&lt;/a&gt; language with graphic steroids, the core of fluxus and a descendant of PLT Scheme. Here how the result will look like:&lt;/p&gt;
@@ -1688,7 +1942,7 @@ _f();
                 <title>Sandwitch Tumblr Theme</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/tumblr-sandwitch-theme/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/tumblr-sandwitch-theme/</id>
-                <updated>2010-12-02T08:17:00Z</updated>
+                <updated>2010-12-02T20:45:00Z</updated>
                 
                 <summary type="html">Have created &lt;a href=&#34;http://www.tumblr.com/theme/18012&#34;&gt;Tumblr theme&lt;/a&gt; named &lt;a href=&#34;http://uncyclopedia.wikia.com/wiki/Sandwitch&#34;&gt;Sandwitch&lt;/a&gt;. I was going to make tumblr-blog look like &lt;a href=&#34;http://code.google.com/p/showdown-blog/&#34;&gt;showdown blog&lt;/a&gt;-engine style I&amp;rsquo;ve made, and seems the result in the end is even better!</summary>
                 <content type="html">&lt;p&gt;Have created &lt;a href=&#34;http://www.tumblr.com/theme/18012&#34;&gt;Tumblr theme&lt;/a&gt; named &lt;a href=&#34;http://uncyclopedia.wikia.com/wiki/Sandwitch&#34;&gt;Sandwitch&lt;/a&gt;. I was going to make tumblr-blog look like &lt;a href=&#34;http://code.google.com/p/showdown-blog/&#34;&gt;showdown blog&lt;/a&gt;-engine style I&amp;rsquo;ve made, and seems the result in the end is even better!&lt;/p&gt;
@@ -1709,7 +1963,7 @@ _f();
                 <title>Easy as Sandwich: Blog Engine in JavaScript and XML</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/easy-as-sandwich-blog-engine/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/easy-as-sandwich-blog-engine/</id>
-                <updated>2010-11-17T08:17:00Z</updated>
+                <updated>2010-11-17T20:45:00Z</updated>
                 
                 <summary type="html">Say you suddenly needed a personal blog. I already have some puny free hosting, and it hosting is puny for real, so it has no PHP and it even has no possibilities to set up any server-side at all. Or even worse, you have only a Dropbox account and in this very moment, suddenly, the personal blog is needed.</summary>
                 <content type="html">&lt;p&gt;Say you suddenly needed a personal blog. I already have some puny free hosting, and it hosting is puny for real, so it has no PHP and it even has no possibilities to set up any server-side at all. Or even worse, you have only a Dropbox account and in this very moment, suddenly, the personal blog is needed.&lt;/p&gt;
@@ -1783,7 +2037,7 @@ _f();
                 <title>Way of the Rainbow: Fingers Motion Detection Algorythm Based on a Colors Differentiation (Driven by LISP)</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/nijiato-detection-of-fingers-motion-algorithm/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/nijiato-detection-of-fingers-motion-algorithm/</id>
-                <updated>2010-08-12T08:17:00Z</updated>
+                <updated>2010-08-12T20:45:00Z</updated>
                 
                 <summary type="html">I am crazy a little bit, so in my spare time I&amp;rsquo;ve started to study Lisp and, to make my studying more interesting, I&amp;rsquo;ve tried to make a realization of my own algorithm. &amp;ldquo;Algorythm&amp;rdquo;, for sure, is spoken too loudly, it has no matrix multiplication, no arrays sorting, no bubbles and no hard work in optimization (even no colors calibration, I sorry myself with the fact that this version if for learning). And yes, there are a lot of pictures in the article, and in the end there even will be a video.</summary>
                 <content type="html">&lt;p&gt;I am crazy a little bit, so in my spare time I&amp;rsquo;ve started to study Lisp and, to make my studying more interesting, I&amp;rsquo;ve tried to make a realization of my own algorithm. &amp;ldquo;Algorythm&amp;rdquo;, for sure, is spoken too loudly, it has no matrix multiplication, no arrays sorting, no bubbles and no hard work in optimization (even no colors calibration, I sorry myself with the fact that this version if for learning). And yes, there are a lot of pictures in the article, and in the end there even will be a video.&lt;/p&gt;
@@ -1883,7 +2137,7 @@ _f();
                 <title>Fluxus — Prototyping OpenGL graphics and games on-the-fly (add Scheme to taste)</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/post-about-fluxus/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/post-about-fluxus/</id>
-                <updated>2010-07-10T08:17:00Z</updated>
+                <updated>2010-07-10T20:45:00Z</updated>
                 
                 <summary type="html">The internet for a programmer who insterested in 3D-graphics for several years is full of videos where people programming music visualizers, complex color-morphing effects or even more tricky things working at the intersection of technology - literally the author writes code and somewhere on background it is compiled and executed and the author sees the result - this process named &lt;em&gt;livecoding&lt;/em&gt;. Most recently the programs like these are written in lisp-family languages, the similar editor exists for ProcessingJS, it renders code immediately in browser, but its not about it.</summary>
                 <content type="html">&lt;p&gt;The internet for a programmer who insterested in 3D-graphics for several years is full of videos where people programming music visualizers, complex color-morphing effects or even more tricky things working at the intersection of technology - literally the author writes code and somewhere on background it is compiled and executed and the author sees the result - this process named &lt;em&gt;livecoding&lt;/em&gt;. Most recently the programs like these are written in lisp-family languages, the similar editor exists for ProcessingJS, it renders code immediately in browser, but its not about it.&lt;/p&gt;
@@ -1922,7 +2176,7 @@ _f();
                 <title>Ant JUnit Nice Output Formatter</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/ant-junit-one-liner-output-formatter/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/ant-junit-one-liner-output-formatter/</id>
-                <updated>2010-04-08T08:17:00Z</updated>
+                <updated>2010-04-08T20:45:00Z</updated>
                 
                 <summary type="html">I&amp;rsquo;ve seached for nice Apache Ant formatter which do not writes full stack trace in console/file and just writes what methods are passed, what methods are failed, and if failed - where and why they failed (and only trace about methods from test class). I haven&amp;rsquo;t found any. So I&amp;rsquo;ve written one.</summary>
                 <content type="html">&lt;p&gt;I&amp;rsquo;ve seached for nice Apache Ant formatter which do not writes full stack trace in console/file and just writes what methods are passed, what methods are failed, and if failed - where and why they failed (and only trace about methods from test class). I haven&amp;rsquo;t found any. So I&amp;rsquo;ve written one.&lt;/p&gt;
@@ -2326,7 +2580,7 @@ public class OneLinerFormatter implements JUnitResultFormatter {
                 <title>10 Useful Solutions for Android Developer</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/10-useful-solutions-for-android-developer/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/10-useful-solutions-for-android-developer/</id>
-                <updated>2010-01-09T08:17:00Z</updated>
+                <updated>2010-01-09T20:45:00Z</updated>
                 
                 <summary type="html">This post contains several useful solutions for Android developers. If you are starting to dive in it, I think the detailed description of the problems I solved will help you in your Android adventures.</summary>
                 <content type="html">&lt;p&gt;This post contains several useful solutions for Android developers. If you are starting to dive in it, I think the detailed description of the problems I solved will help you in your Android adventures.&lt;/p&gt;
@@ -2937,7 +3191,7 @@ public static String format(String source, String... params) {
                 <title>Google Wave Client as Java Web Application</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/sametimed-google-wave-client/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/sametimed-google-wave-client/</id>
-                <updated>2009-10-13T08:17:00Z</updated>
+                <updated>2009-10-13T20:45:00Z</updated>
                 
                 <summary type="html">Zdrawstwooyte.</summary>
                 <content type="html">&lt;p&gt;Zdrawstwooyte.&lt;/p&gt;
@@ -3048,7 +3302,7 @@ public static String format(String source, String... params) {
                 <title>[g]Vim in Python mode : Recompilation in Windows</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/vim-python-windows-compilation/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/vim-python-windows-compilation/</id>
-                <updated>2008-03-15T08:17:00Z</updated>
+                <updated>2008-03-15T20:45:00Z</updated>
                 
                 <summary type="html">Vim editor is best known between the developers who work on Unix systems &amp;ndash; it&amp;rsquo;s a &lt;code&gt;emacs&lt;/code&gt; competitor, something to call IDE-in-a-terminal &amp;ndash; this editor, with proper dexterity and tuning (it seems to me, the amount of required dexterity is a little less and the required efforts for tuning are more obvious than in &lt;code&gt;emacs&lt;/code&gt;, but the last has the real powerful functionality &amp;ndash; it&amp;rsquo;s a programmer&amp;rsquo;s choice what to use) can make most of development processes faster and easier not in the expense of such advantages like auto-completion and project navigation. But if you plan to use it for Python development in Windows with all the advantages like these &amp;ndash; you&amp;#39;&amp;rsquo;ll need to make some efforts, and the main effort is recompilation&amp;hellip;</summary>
                 <content type="html">&lt;p&gt;Vim editor is best known between the developers who work on Unix systems &amp;ndash; it&amp;rsquo;s a &lt;code&gt;emacs&lt;/code&gt; competitor, something to call IDE-in-a-terminal &amp;ndash; this editor, with proper dexterity and tuning (it seems to me, the amount of required dexterity is a little less and the required efforts for tuning are more obvious than in &lt;code&gt;emacs&lt;/code&gt;, but the last has the real powerful functionality &amp;ndash; it&amp;rsquo;s a programmer&amp;rsquo;s choice what to use) can make most of development processes faster and easier not in the expense of such advantages like auto-completion and project navigation. But if you plan to use it for Python development in Windows with all the advantages like these &amp;ndash; you&amp;#39;&amp;rsquo;ll need to make some efforts, and the main effort is recompilation&amp;hellip;&lt;/p&gt;
@@ -3174,7 +3428,7 @@ autocmd BufNewFile *.py call BufNewFile_PY()
                 <title>Redeploying an Application to Tomcat with Ant</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/ant-tomcat-redeploying/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/ant-tomcat-redeploying/</id>
-                <updated>2007-09-15T08:17:00Z</updated>
+                <updated>2007-09-15T20:45:00Z</updated>
                 
                 <summary type="html">The process of out project development has one drawback, which is common to many serious J2EE-projects: after applying changes to the code code and further recompilation, a server do not catches a new version automatically, but requires stoping it, cleaning cache, restarting it again and then, redeploying a package.</summary>
                 <content type="html">&lt;p&gt;The process of out project development has one drawback, which is common to many serious J2EE-projects: after applying changes to the code code and further recompilation, a server do not catches a new version automatically, but requires stoping it, cleaning cache, restarting it again and then, redeploying a package.&lt;/p&gt;
@@ -3366,7 +3620,7 @@ web.dir = ${root.dir}&amp;#x2F;WebContent&amp;#x2F;
                 <title>OOP &amp;amp; JavaScript</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/javascript-oop/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/javascript-oop/</id>
-                <updated>2007-08-19T08:17:00Z</updated>
+                <updated>2007-08-19T20:45:00Z</updated>
                 
                 <summary type="html">In &lt;a href=&#34;../16-useful-solutions-for-javascript&#34;&gt;previous article&lt;/a&gt; I have presented you a small example of code, which allows you to use the three pillars of OOP theory in JavaScript. The way it is accomplished is a little tricky, but I have afforded mysefl to modify &lt;code&gt;extend&lt;/code&gt; function a bit, to give a possibility of having a static constants for classes (in fact, the constants in result are just conventional, of course). Here I will provide a special example for it.</summary>
                 <content type="html">&lt;p&gt;In &lt;a href=&#34;../16-useful-solutions-for-javascript&#34;&gt;previous article&lt;/a&gt; I have presented you a small example of code, which allows you to use the three pillars of OOP theory in JavaScript. The way it is accomplished is a little tricky, but I have afforded mysefl to modify &lt;code&gt;extend&lt;/code&gt; function a bit, to give a possibility of having a static constants for classes (in fact, the constants in result are just conventional, of course). Here I will provide a special example for it.&lt;/p&gt;
@@ -3873,7 +4127,7 @@ var GraphicalElementWrapper = ExpandedElementWrapper.extend({
                 <title>16 Practical Solutions for Javascript</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/16-useful-solutions-for-javascript/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/16-useful-solutions-for-javascript/</id>
-                <updated>2007-08-12T08:17:00Z</updated>
+                <updated>2007-08-12T20:45:00Z</updated>
                 
                 <summary type="html">Let me present you a set of functions that I keep in separate &lt;code&gt;utils.js&lt;/code&gt; file - they are the most frequent functions I used. They do trying very hard to be compliant with the modern browsers and they are tested in IE6/7, FF2 and Safari 2 and also in a hard complicated web-system. And they are supposed to work in other, not very old, browsers - I&amp;rsquo;ve used browser detection only for exceptional cases. Some of them, surely, are just mixes of something found in the open web (I am pointing to the source everywhere I remember it) and the bigger part is constructed on the base of my own ideas (and colleagues advices) intended to work properly - just because in that variety of scripts the subtleties (which become generics with closer examination :) ) are not taken into account, and to remain legible.</summary>
                 <content type="html">&lt;p&gt;Let me present you a set of functions that I keep in separate &lt;code&gt;utils.js&lt;/code&gt; file - they are the most frequent functions I used. They do trying very hard to be compliant with the modern browsers and they are tested in IE6/7, FF2 and Safari 2 and also in a hard complicated web-system. And they are supposed to work in other, not very old, browsers - I&amp;rsquo;ve used browser detection only for exceptional cases. Some of them, surely, are just mixes of something found in the open web (I am pointing to the source everywhere I remember it) and the bigger part is constructed on the base of my own ideas (and colleagues advices) intended to work properly - just because in that variety of scripts the subtleties (which become generics with closer examination :) ) are not taken into account, and to remain legible.&lt;/p&gt;
@@ -4586,7 +4840,7 @@ function removeFromArray(arr, element) { &amp;#x2F;&amp;#x2F; removes only one i
                 <title>Occasional Textpattern Bug</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/occasional-textpattern-bug/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/occasional-textpattern-bug/</id>
-                <updated>2007-07-23T08:17:00Z</updated>
+                <updated>2007-07-23T20:45:00Z</updated>
                 
                 <summary type="html">While I&amp;rsquo;ve played with &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt; at &lt;a href=&#34;http://sharedcode.info/&#34;&gt;sharecode&lt;/a&gt;, I faced this issue that may come in touch with those who uses &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt;.</summary>
                 <content type="html">&lt;p&gt;While I&amp;rsquo;ve played with &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt; at &lt;a href=&#34;http://sharedcode.info/&#34;&gt;sharecode&lt;/a&gt;, I faced this issue that may come in touch with those who uses &lt;a href=&#34;http://textpattern.org/&#34;&gt;textpattern&lt;/a&gt;.&lt;/p&gt;
@@ -4615,7 +4869,7 @@ $evt_list = safe_column(&amp;#x27;event&amp;#x27;, &amp;#x27;txp_prefs&amp;#x27;
                 <title>Eric IDE 4.0.1 in Ubuntu 7.04</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/eric-ide-ubuntu/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/eric-ide-ubuntu/</id>
-                <updated>2007-07-22T08:17:00Z</updated>
+                <updated>2007-07-22T20:45:00Z</updated>
                 
                 <summary type="html">&lt;a href=&#34;http://www.die-offenbachs.de/eric/index.html&#34;&gt;Eric&lt;/a&gt; – is very good IDE for &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;. And &lt;a href=&#34;http://www.die-offenbachs.de/eric/eric-news.html&#34;&gt;just yesterday&lt;/a&gt; the new &lt;a href=&#34;http://sourceforge.net/project/showfiles.php?group_id=119070&amp;amp;package_id=233329&#34;&gt;4.0.1&lt;/a&gt; version was released, but in repositories the last version for the moment is 3.9, and I found myself missing those good old times when I&amp;rsquo;ve compiled packages form sources recently. So I am presenting you a listing of things to be done just in case, to prevent you from meeting the errors that visited me through the process of compilation. Something from this stuff is oriented on new versions :). Just because it was installed on clean Ubuntu - everything must be adequate&amp;hellip; If I missed something, please report.</summary>
                 <content type="html">&lt;p&gt;&lt;a href=&#34;http://www.die-offenbachs.de/eric/index.html&#34;&gt;Eric&lt;/a&gt; – is very good IDE for &lt;a href=&#34;http://www.python.org/&#34;&gt;Python&lt;/a&gt;. And &lt;a href=&#34;http://www.die-offenbachs.de/eric/eric-news.html&#34;&gt;just yesterday&lt;/a&gt; the new &lt;a href=&#34;http://sourceforge.net/project/showfiles.php?group_id=119070&amp;amp;package_id=233329&#34;&gt;4.0.1&lt;/a&gt; version was released, but in repositories the last version for the moment is 3.9, and I found myself missing those good old times when I&amp;rsquo;ve compiled packages form sources recently. So I am presenting you a listing of things to be done just in case, to prevent you from meeting the errors that visited me through the process of compilation. Something from this stuff is oriented on new versions :). Just because it was installed on clean Ubuntu - everything must be adequate&amp;hellip; If I missed something, please report.&lt;/p&gt;
@@ -4684,7 +4938,7 @@ $ sudo python install.py
                 <title>SATA, DMA and Ubuntu strange things</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/sata-dma-ubuntu/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/sata-dma-ubuntu/</id>
-                <updated>2007-01-24T08:17:00Z</updated>
+                <updated>2007-01-24T20:45:00Z</updated>
                 
                 <summary type="html">Today we&amp;rsquo;ve made an installation of &lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Edgy&#34;&gt;Ubuntu 6.06 LTS&lt;/a&gt; to &lt;code&gt;SATA&lt;/code&gt; hard drive. And it have failed in angriness, so strange. &lt;code&gt;Live CD&lt;/code&gt; tried to mount this HD eventually long and finally mounted it, seems, but in the end, while running the kernel, it started spitting out with &lt;code&gt;buffer I/O Read Error&lt;/code&gt; and so on.</summary>
                 <content type="html">&lt;p&gt;Today we&amp;rsquo;ve made an installation of &lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Edgy&#34;&gt;Ubuntu 6.06 LTS&lt;/a&gt; to &lt;code&gt;SATA&lt;/code&gt; hard drive. And it have failed in angriness, so strange. &lt;code&gt;Live CD&lt;/code&gt; tried to mount this HD eventually long and finally mounted it, seems, but in the end, while running the kernel, it started spitting out with &lt;code&gt;buffer I/O Read Error&lt;/code&gt; and so on.&lt;/p&gt;
@@ -4706,7 +4960,7 @@ $ sudo python install.py
                 <title>PHP + AJAX = SACK</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/php-ajax-sack/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/php-ajax-sack/</id>
-                <updated>2006-12-22T08:17:00Z</updated>
+                <updated>2006-12-22T20:45:00Z</updated>
                 
                 <summary type="html">Occasionally, I&amp;rsquo;ve got a task to&amp;hellip; But I was too lazy to write my own function, to check the browser and blah-blah-blah (the more, as I remember, there are more progressive methods exist already :) ) &amp;hellip; Tried to attach &lt;a href=&#34;http://dklab.ru/lib/JsHttpRequest/&#34;&gt;JsHttpRequest from dklab.ru&lt;/a&gt;, but &amp;rsquo;ve got different tricky errors and everything from Mr. D. Koteroff is a little bit misty for me :), &amp;lsquo;cause I am not a prof in &lt;code&gt;PHP&lt;/code&gt; still. So I&amp;rsquo;ve taken &lt;a href=&#34;http://www.twilightuniverse.com/projects/sack/&#34;&gt;another sack&lt;/a&gt;, named  &lt;code&gt;SACK&lt;/code&gt; &amp;ndash; Simple AJAX Code-Kit. And in this sack everything is so simple and trivial for real &amp;ndash; I haven&amp;rsquo;t needed anything more.</summary>
                 <content type="html">&lt;p&gt;Occasionally, I&amp;rsquo;ve got a task to&amp;hellip; But I was too lazy to write my own function, to check the browser and blah-blah-blah (the more, as I remember, there are more progressive methods exist already :) ) &amp;hellip; Tried to attach &lt;a href=&#34;http://dklab.ru/lib/JsHttpRequest/&#34;&gt;JsHttpRequest from dklab.ru&lt;/a&gt;, but &amp;rsquo;ve got different tricky errors and everything from Mr. D. Koteroff is a little bit misty for me :), &amp;lsquo;cause I am not a prof in &lt;code&gt;PHP&lt;/code&gt; still. So I&amp;rsquo;ve taken &lt;a href=&#34;http://www.twilightuniverse.com/projects/sack/&#34;&gt;another sack&lt;/a&gt;, named  &lt;code&gt;SACK&lt;/code&gt; &amp;ndash; Simple AJAX Code-Kit. And in this sack everything is so simple and trivial for real &amp;ndash; I haven&amp;rsquo;t needed anything more.&lt;/p&gt;
@@ -5004,7 +5258,7 @@ echo $responce_str;
                 <title>PHP and UTF-8 (Unicode) - A funny thing for a half of a day</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/php-mysql-unicode/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/php-mysql-unicode/</id>
-                <updated>2006-12-22T08:17:00Z</updated>
+                <updated>2006-12-22T20:45:00Z</updated>
                 
                 <summary type="html">It is &lt;a href=&#34;http://live.julik.nl/2005/03/unicode-php&#34;&gt;not the advice of mine&lt;/a&gt;, but it helped me enormously.</summary>
                 <content type="html">&lt;p&gt;It is &lt;a href=&#34;http://live.julik.nl/2005/03/unicode-php&#34;&gt;not the advice of mine&lt;/a&gt;, but it helped me enormously.&lt;/p&gt;
@@ -5059,7 +5313,7 @@ php_value       mbstring.detect_order   &amp;quot;UTF-8,KOI8-R,CP1251&amp;quot;
                 <title>JSP Custom Tags</title>
                 <link rel="alternate" href="http://shamansir.github.io/blog/articles/jsp-custom-tags/" type="text/html" />
                 <id>http://shamansir.github.io/blog/articles/jsp-custom-tags/</id>
-                <updated>2006-05-15T08:17:00Z</updated>
+                <updated>2006-05-15T20:45:00Z</updated>
                 
                 <summary type="html">Let the first post will be about custom-tags for &lt;a href=&#34;http://java.sun.com/products/jsp/&#34;&gt;JSP&lt;/a&gt;, for example (and Java Server Faces, I think, will also follows these rules). There is a lot of information about them, but I&amp;rsquo;ve wanted to introduce you my sight and also to start from something relatively easy, though.</summary>
                 <content type="html">&lt;p&gt;Let the first post will be about custom-tags for &lt;a href=&#34;http://java.sun.com/products/jsp/&#34;&gt;JSP&lt;/a&gt;, for example (and Java Server Faces, I think, will also follows these rules). There is a lot of information about them, but I&amp;rsquo;ve wanted to introduce you my sight and also to start from something relatively easy, though.&lt;/p&gt;

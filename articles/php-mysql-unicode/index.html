@@ -95,7 +95,7 @@
             
             
 
-            <li>PHP and UTF-8 (Unicode) - A funny ...</li>
+            <li>PHP and UTF-8 (Unicode) - A...</li>
         
     </ul>
 
@@ -139,7 +139,7 @@
 
     <section id="nwao-content" class="nwao-post">
         
-    <article>
+    <article id="nwao-post-php-mysql-unicode">
         <header class="nwao-post-header">
     <h2 class="nwao-post-title">
         <a href="/blog/articles/php-mysql-unicode/" title="PHP and UTF-8 (Unicode) - A funny thing for a half of a day">PHP and UTF-8 (Unicode) - A funny thing for a half of a day</a>
@@ -217,7 +217,7 @@
 
 <p>In mysql, following to <code>PHPMyAdmin</code> everything was set to <code>utf-8</code>. But I had to correct this line in database connection line:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="x">mysql_select_db(&quot;****&quot;) and mysql_query(&quot;set names utf8&quot;) and</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">mysql_select_db(&quot;****&quot;) and mysql_query(&quot;set names utf8&quot;) and</span>
 <span class="x">mysql_query(&quot;SET collation_connection = &#39;utf8_general_ci&#39;&quot;);</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -238,7 +238,7 @@
 14
 15
 16
-17</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># unicode support</span>
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c"># unicode support</span>
 <span class="nb">AddDefaultCharset</span> utf-8
 <span class="nt">&lt;IfModule</span> <span class="s">mod_charset.c</span><span class="nt">&gt;</span>
    <span class="nb">CharsetDisable</span> <span class="k">on</span>
@@ -262,9 +262,9 @@
 <p>And in <code>HTML</code>-pages I&rsquo;ve added this, just be on the safe side:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>And everything started to work great and in <code>UTF-8</code>! (this method was used in next post)</p>
@@ -290,7 +290,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Back to top">Back to top</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; powered by <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> and <a href="http://input.fontbureau.com/" title="Input fonts">Input fonts</a></p>
     </footer>
 
     <!--

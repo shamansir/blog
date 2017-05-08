@@ -95,7 +95,7 @@
             
             
 
-            <li>Ubuntu 7.04, Пыхтерский ...</li>
+            <li>Ubuntu 7.04, Пыхтерский...</li>
         
     </ul>
 
@@ -430,44 +430,44 @@ $ sudo lsmod | grep n_hdlc
 35
 36
 37
-38</pre></div></td><td class="code"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+38</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
-<span class="c"># This is an improved eciadsl launch script, which</span>
-<span class="c"># tries to connect after failures until success.</span>
-<span class="c"># Feel free to share and modify</span>
-<span class="c"># by Starlite</span>
+<span class="c1"># This is an improved eciadsl launch script, which</span>
+<span class="c1"># tries to connect after failures until success.</span>
+<span class="c1"># Feel free to share and modify</span>
+<span class="c1"># by Starlite</span>
 
-<span class="k">case</span> <span class="s2">&quot;$1&quot;</span> in
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> in
     start<span class="o">)</span>
         sudo eciadsl-start
         <span class="nv">result</span><span class="o">=</span><span class="nv">$?</span>
-        <span class="c">#echo &#39;exit code:&#39; $result</span>
-        <span class="k">until</span> <span class="o">[</span> <span class="nv">$result</span> -eq 0 <span class="o">]</span>
+        <span class="c1">#echo &#39;exit code:&#39; $result</span>
+        <span class="k">until</span> <span class="o">[</span> <span class="nv">$result</span> -eq <span class="m">0</span> <span class="o">]</span>
         <span class="k">do</span>
-<span class="k">            </span><span class="nb">echo</span> ‘Error: connection failed’
+            <span class="nb">echo</span> ‘Error: connection failed’
             sudo eciadsl-stop
             sudo eciadsl-start
             <span class="nv">result</span><span class="o">=</span><span class="nv">$?</span>
-        <span class="c">#   echo ‘exit code:’ $result</span>
+        <span class="c1">#   echo ‘exit code:’ $result</span>
         <span class="k">done</span>
-<span class="k">        </span><span class="nb">echo</span> ‘connection established’
+        <span class="nb">echo</span> ‘connection established’
         sudo pppoe-start
         <span class="nb">exit</span> <span class="nv">$?</span>
-        ;;
+        <span class="p">;;</span>
     stop<span class="o">)</span>
         sudo eciadsl-stop
         <span class="nb">exit</span> <span class="nv">$?</span>
-        ;;
-    restart|force-reload<span class="o">)</span>
+        <span class="p">;;</span>
+    restart<span class="p">|</span>force-reload<span class="o">)</span>
         <span class="nv">$0</span> stop <span class="o">&amp;&amp;</span> <span class="nv">$0</span> start
         <span class="nb">exit</span> <span class="nv">$?</span>
-        ;;
+        <span class="p">;;</span>
     *<span class="o">)</span>
-        <span class="nb">echo</span> ‘Usage: eciadsl <span class="o">{</span>start|stop|restart<span class="o">}</span>’
-        <span class="nb">exit </span>1
-        ;;
+        <span class="nb">echo</span> ‘Usage: eciadsl <span class="o">{</span>start<span class="p">|</span>stop<span class="p">|</span>restart<span class="o">}</span>’
+        <span class="nb">exit</span> <span class="m">1</span>
+        <span class="p">;;</span>
 <span class="k">esac</span>
-<span class="nb">exit </span>0
+<span class="nb">exit</span> <span class="m">0</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>потом - ставим его на автозагрузку:</p>
@@ -610,7 +610,7 @@ PID - product id</p>
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

@@ -197,13 +197,13 @@
 
 <p>Сделать надо всего лишь два действия. Раз – забрать с вашего хостинга файл <code>./textpattern/include/txp_prefs.php</code>, найти в нем строку 89:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="x">$evt_list = safe_column(&#39;event&#39;, &#39;txp_prefs&#39;,</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">$evt_list = safe_column(&#39;event&#39;, &#39;txp_prefs&#39;,</span>
 <span class="x">     &quot;type = 0 and prefs_id = 1 group by &#39;event&#39; order by event desc&quot;);</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>и удалить из нее кавычки вокруг event (чтобы она совпадала с <a href="http://dev.textpattern.com/browser/development/4.0/textpattern/include/txp_prefs.php?rev=2156#L89">этим вариантом</a>):</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="x">$evt_list = safe_column(&#39;event&#39;, &#39;txp_prefs&#39;,</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">$evt_list = safe_column(&#39;event&#39;, &#39;txp_prefs&#39;,</span>
 <span class="x">     &quot;type = 0 and prefs_id = 1 group by event order by event desc&quot;);</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -230,7 +230,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

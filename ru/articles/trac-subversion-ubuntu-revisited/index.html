@@ -95,7 +95,7 @@
             
             
 
-            <li>Trac + Subversion @ Ubuntu: ...</li>
+            <li>Trac + Subversion @ Ubuntu: Revisited</li>
         
     </ul>
 
@@ -467,7 +467,7 @@ sudo vi &#x2F;etc&#x2F;apache2&#x2F;mods-available&#x2F;dav_svn.conf
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;Location</span> <span class="s">/svn</span><span class="nt">&gt;</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nt">&lt;Location</span> <span class="s">/svn</span><span class="nt">&gt;</span>
     <span class="nb">DAV</span> svn
     <span class="nb">SVNParentPath</span> <span class="sx">/var/svn</span>
     <span class="nb">AuthType</span> Basic
@@ -496,7 +496,7 @@ sudo htpasswd &#x2F;etc&#x2F;apache2&#x2F;dav_svn.passwd user2
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">[/]</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">[/]</span>
 <span class="na">user1</span><span class="o">=</span><span class="s">r</span>
 <span class="na">user2</span><span class="o">=</span><span class="s">r</span>
 
@@ -542,7 +542,7 @@ sudo trac-admin anotherProject initenv
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;Location</span> <span class="s">/localProjects</span><span class="nt">&gt;</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nt">&lt;Location</span> <span class="s">/localProjects</span><span class="nt">&gt;</span>
    <span class="nb">SetHandler</span> mod_python
    <span class="nb">PythonInterpreter</span> main_interpreter
    <span class="nb">PythonHandler</span> trac.web.modpython_frontend
@@ -597,7 +597,7 @@ sudo trac-admin anotherProject permission add user2 TRAC_ADMIN
 12
 13
 14
-15</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="s">acme.org:796</span><span class="nt">&gt;</span>
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">acme.org:796</span><span class="nt">&gt;</span>
     <span class="nb">ServerName</span> svn.acme.org
     <span class="nt">&lt;Location</span> <span class="s">/</span><span class="nt">&gt;</span>
         <span class="nb">DAV</span> svn
@@ -638,7 +638,7 @@ sudo trac-admin anotherProject permission add user2 TRAC_ADMIN
 18
 19
 20
-21</pre></div></td><td class="code"><div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="s">acme.org:967</span><span class="nt">&gt;</span>
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nt">&lt;VirtualHost</span> <span class="s">acme.org:967</span><span class="nt">&gt;</span>
     <span class="nb">ServerName</span> trac.acme.org
 
     <span class="nt">&lt;Location</span> <span class="s">/</span><span class="nt">&gt;</span>
@@ -672,7 +672,7 @@ sudo trac-admin anotherProject permission add user2 TRAC_ADMIN
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre>...
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span>...
 <span class="nb">NameVirtualHost</span> *:80
 <span class="nb">Listen</span> <span class="m">80</span>
 <span class="nb">Listen</span> <span class="m">443</span>
@@ -711,7 +711,7 @@ sudo &#x2F;etc&#x2F;init.d&#x2F;apache2 restart
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--

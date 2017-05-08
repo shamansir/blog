@@ -95,7 +95,7 @@
             
             
 
-            <li>10 полезных решений для ...</li>
+            <li>10 полезных решений для...</li>
         
     </ul>
 
@@ -108,14 +108,14 @@
     <ul>
         
             <li id="nwao-prev">
-                <a href="/blog/ru/articles/latex-study-works/"
-                   title="Подготовка учебных документов в LaTeX">Предыдущая статья</a>
+                <a href="/blog/ru/articles/3-tiny-javascript-snippets/"
+                   title="3 Маленьких JS-Сниппета">Предыдущая статья</a>
             </li>
         
         
             <li id="nwao-next">
-                <a href="/blog/ru/articles/sametimed-google-wave-client/"
-                   title="Клиент для Google Wave в виде Java Web Application">Следующая статья</a>
+                <a href="/blog/ru/articles/ror-ide-gedit-link/"
+                   title="Ссылка: RoR IDE из gedit">Следующая статья</a>
             </li>
         
     </ul>
@@ -347,9 +347,9 @@
     <dl class="nwao-post-infoline">
     <dt class="nwao-published">Опубликован</dt>
     <dd class="nwao-published">
-        <a href="/blog/ru/archives/2010/"
-           title="05 января 2010, вторник">
-           <time datetime="%d-%m-%Y" pubdate>05 янв 2010</time>
+        <a href="/blog/ru/archives/2011/"
+           title="09 января 2011, воскресенье">
+           <time datetime="%d-%m-%Y" pubdate>09 янв 2011</time>
         </a>
     </dd>
     
@@ -427,7 +427,7 @@
 <p><img src="/blog/ru/figures/10-useful-solutions-for-android-developer/guest-channel.png" alt="Список с разделами"></p>
 
 <p>Заголовки не должны реагировать на нажатия и выбор и должны иметь собственный вид. Этого можно достичь, переопределив кроме <code>getView</code> методы <code>getItemViewType</code>, <code>getViewTypeCount</code> и <code>isEnabled</code> адаптера этого списка и отнаследовав его, например, от <code>BaseAdapter</code>.</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SectionedItemsAdapter</span> <span class="kd">extends</span> <span class="n">BaseAdapter</span> <span class="o">{</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SectionedItemsAdapter</span> <span class="kd">extends</span> <span class="n">BaseAdapter</span> <span class="o">{</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
 </pre></div>
 </td></tr></table></div></div>
 <ul>
@@ -436,12 +436,12 @@
 
 <p>Прежде всего заводятся константы, которые однозначно идентифицируют тип элемента, одна для заголовка, вторая для пункта (то есть типов может быть и больше двух, однако в таком случае лучше использовать <code>enum</code> с набором идентификаторов):</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">ITEM_VIEW_TYPE</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="err">\\</span> <span class="err">пункт</span>
-<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SECTION_VIEW_TYPE</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="err">\\</span> <span class="err">раздел</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">ITEM_VIEW_TYPE</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="err">\\</span> <span class="n">пункт</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">SECTION_VIEW_TYPE</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="err">\\</span> <span class="n">раздел</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Потом константа, содержащая количество типов элементов (в нашем случае - два):</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">VIEW_TYPES_COUNT</span> <span class="o">=</span> <span class="n">SECTION_VIEW_TYPE</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">VIEW_TYPES_COUNT</span> <span class="o">=</span> <span class="n">SECTION_VIEW_TYPE</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Адаптер будет содержать в себе информацию обо всех элементах, поэтому реализации <code>getCount</code>, <code>getItem</code> и <code>getItemId</code> зависят от вашей ситуации.</p>
@@ -451,7 +451,7 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getItemViewType</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getItemViewType</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(.</span> <span class="o">.</span> <span class="o">.)</span> <span class="k">return</span> <span class="n">ITEM_VIEW_TYPE</span><span class="o">;</span>
     <span class="k">if</span> <span class="o">(.</span> <span class="o">.</span> <span class="o">.)</span> <span class="k">return</span> <span class="n">SECTION_VIEW_TYPE</span><span class="o">;</span>
     <span class="k">return</span> <span class="n">IGNORE_ITEM_VIEW_TYPE</span><span class="o">;</span>
@@ -470,7 +470,7 @@
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
       <span class="kd">final</span> <span class="kt">int</span> <span class="n">viewType</span> <span class="o">=</span> <span class="n">getItemViewType</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
       <span class="k">if</span> <span class="o">(</span><span class="n">viewType</span> <span class="o">==</span> <span class="n">IGNORE_ITEM_VIEW_TYPE</span><span class="o">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Failed to get object at position &quot;</span> <span class="o">+</span> <span class="n">position</span><span class="o">);</span>
       <span class="k">if</span> <span class="o">(</span><span class="n">viewType</span> <span class="o">==</span> <span class="n">SECTION_VIEW_TYPE</span><span class="o">)</span> <span class="o">{</span>
@@ -484,12 +484,12 @@
 </td></tr></table></div></div>
 <p>Метод <code>isEnabled</code> должен возвращать <code>false</code> для элементов, на которые нельзя нажимать и на которые нельзя переходить курсором и <code>true</code> для остальных. Здесь снова поможет <code>getItemViewType</code>:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEnabled</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="nf">getItemViewType</span><span class="o">(</span><span class="n">position</span><span class="o">)</span> <span class="o">!=</span> <span class="n">SECTION_VIEW_TYPE</span> <span class="o">};</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEnabled</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">getItemViewType</span><span class="o">(</span><span class="n">position</span><span class="o">)</span> <span class="o">!=</span> <span class="n">SECTION_VIEW_TYPE</span> <span class="o">};</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Метод <code>getViewTypeCount</code> возвращает ту самую константу, количество возможных типов элементов:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getViewTypeCount</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">VIEW_TYPES_COUNT</span><span class="o">;</span> <span class="o">}</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getViewTypeCount</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">VIEW_TYPES_COUNT</span><span class="o">;</span> <span class="o">}</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Кстати, можно хранить ссылку на <code>LayoutInflater</code> в самом адаптере, а получать её от создавшей его активити через конструктор.</p>
@@ -504,7 +504,7 @@
 
 <p>Таким образом я упростил добавление групп и пунктов в список. Адаптер имеет методы:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">int</span> <span class="nf">addSection</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">);</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">int</span> <span class="nf">addSection</span><span class="o">(</span><span class="n">String</span> <span class="n">title</span><span class="o">);</span>
 <span class="kd">public</span> <span class="n">LActionItem</span> <span class="nf">addItem</span><span class="o">(</span><span class="kt">int</span> <span class="n">section</span><span class="o">,</span> <span class="kt">int</span> <span class="n">icon</span><span class="o">,</span> <span class="n">String</span> <span class="n">title</span><span class="o">);</span>
 </pre></div>
 </td></tr></table></div></div>
@@ -517,7 +517,7 @@
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">final</span> <span class="kt">int</span> <span class="n">suitsSection</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="na">addSection</span><span class="o">(</span><span class="s">&quot;Suits&quot;</span><span class="o">);</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="kt">int</span> <span class="n">suitsSection</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="na">addSection</span><span class="o">(</span><span class="s">&quot;Suits&quot;</span><span class="o">);</span>
 <span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">heart</span><span class="o">,</span> <span class="s">&quot;Hearts&quot;</span><span class="o">);</span>
 <span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">diamond</span><span class="o">,</span> <span class="s">&quot;Diamonds&quot;</span><span class="o">);</span>
 <span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">spade</span><span class="o">,</span> <span class="s">&quot;Spades&quot;</span><span class="o">);</span>
@@ -537,7 +537,7 @@
 </ul>
 
 <p>Если вы согласны с этим, ваш адаптер может имплементировать интерфейс <code>OnItemClickListener</code>:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ActionsAdapter</span> <span class="kd">extends</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="kd">implements</span> <span class="n">OnItemClickListener</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ActionsAdapter</span> <span class="kd">extends</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="kd">implements</span> <span class="n">OnItemClickListener</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>А в использующей его активити можно сделать:</p>
@@ -545,7 +545,7 @@
 2
 3
 4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">final</span> <span class="n">ListView</span> <span class="n">actionsList</span> <span class="o">=</span> <span class="o">(</span><span class="n">ListView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">actionsList</span><span class="o">);</span>
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ListView</span> <span class="n">actionsList</span> <span class="o">=</span> <span class="o">(</span><span class="n">ListView</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">actionsList</span><span class="o">);</span>
 <span class="kd">final</span> <span class="n">SectionedActionsAdapter</span> <span class="n">actionsAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ActionsAdapter</span><span class="o">(.</span> <span class="o">.</span> <span class="o">.);</span>
 <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="c1">// заполнить адаптер значениями</span>
 <span class="n">actionsList</span><span class="o">.</span><span class="na">setAdapter</span><span class="o">(</span><span class="n">actionsAdapter</span><span class="o">);</span>
@@ -556,7 +556,7 @@
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemClick</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">parent</span><span class="o">,</span> <span class="n">View</span> <span class="n">view</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kt">long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemClick</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">parent</span><span class="o">,</span> <span class="n">View</span> <span class="n">view</span><span class="o">,</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="kt">long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
     <span class="kd">final</span> <span class="n">LActionItem</span> <span class="n">item</span> <span class="o">=</span> <span class="o">(</span><span class="n">LActionItem</span><span class="o">)</span> <span class="n">getItem</span><span class="o">(</span><span class="n">position</span><span class="o">);</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">onClick</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">item</span><span class="o">.</span><span class="na">onClick</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
 <span class="o">}</span>
@@ -564,8 +564,8 @@
 </td></tr></table></div></div>
 <p>Используя описанный выше метод <code>addItem</code> можно устанавливать обработчик:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">final</span> <span class="n">LActionItem</span> <span class="n">heartsItem</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">heart</span><span class="o">,</span> <span class="s">&quot;Hearts&quot;</span><span class="o">);</span>
-<span class="n">heartsItem</span><span class="o">.</span><span class="na">onClick</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OnClickListener</span><span class="o">()</span> <span class="o">{</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">}</span> <span class="o">};</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">LActionItem</span> <span class="n">heartsItem</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="na">addItem</span><span class="o">(</span><span class="n">suitsSection</span><span class="o">,</span> <span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">heart</span><span class="o">,</span> <span class="s">&quot;Hearts&quot;</span><span class="o">);</span>
+<span class="n">heartsItem</span><span class="o">.</span><span class="na">onClick</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OnClickListener</span><span class="o">()</span> <span class="o">{</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="o">}</span> <span class="o">};</span>
 </pre></div>
 </td></tr></table></div></div><h3 id="section-5">4. Принудительная инвалидация видов в списках</h3>
 <p><code>ListView</code> в Android, как известно, устроены с небольшой хитростью, эта хитрость - <a href="http://android.amberfog.com/?p=296"><em>ListView Recycler</em></a>. Приницип <em>Recycler</em>&lsquo;а, если кратко, состоит в том, что если в списке элементов больше, чем вмещается на экран, при прокручивании списка виды новых элементы не создаются, а переиспользуются виды старых - на этом приниципе работают имплементации <code>getView</code> в адаптерах.</p>
@@ -581,7 +581,7 @@
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="n">View</span> <span class="nf">getItemViewIfVisible</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">holder</span><span class="o">,</span> <span class="kt">int</span> <span class="n">itemPos</span><span class="o">)</span> <span class="o">{</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">View</span> <span class="nf">getItemViewIfVisible</span><span class="o">(</span><span class="n">AdapterView</span><span class="o">&lt;?&gt;</span> <span class="n">holder</span><span class="o">,</span> <span class="kt">int</span> <span class="n">itemPos</span><span class="o">)</span> <span class="o">{</span>
       <span class="kt">int</span> <span class="n">firstPosition</span> <span class="o">=</span> <span class="n">holder</span><span class="o">.</span><span class="na">getFirstVisiblePosition</span><span class="o">();</span>
       <span class="kt">int</span> <span class="n">wantedChild</span> <span class="o">=</span> <span class="n">itemPos</span> <span class="o">-</span> <span class="n">firstPosition</span><span class="o">;</span>
       <span class="k">if</span> <span class="o">(</span><span class="n">wantedChild</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">wantedChild</span> <span class="o">&gt;=</span> <span class="n">holder</span><span class="o">.</span><span class="na">getChildCount</span><span class="o">())</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
@@ -650,7 +650,7 @@
 22
 23
 24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">private</span> <span class="kd">final</span> <span class="n">Page</span><span class="o">[]</span> <span class="n">pages</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Page</span><span class="o">[</span><span class="n">MAX_PAGES_COUNT</span><span class="o">];</span>
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">final</span> <span class="n">Page</span><span class="o">[]</span> <span class="n">pages</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Page</span><span class="o">[</span><span class="n">MAX_PAGES_COUNT</span><span class="o">];</span>
 
 <span class="kd">public</span> <span class="n">View</span> <span class="nf">getView</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">position</span><span class="o">,</span> <span class="n">View</span> <span class="n">convertView</span><span class="o">,</span> <span class="n">ViewGroup</span> <span class="n">parent</span><span class="o">)</span> <span class="o">{</span>
 
@@ -745,22 +745,22 @@
 15
 16
 17
-18</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="n">InputStream</span> <span class="nf">getVideoStream</span><span class="o">(</span><span class="kt">long</span> <span class="n">videoId</span><span class="o">)</span>
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">InputStream</span> <span class="nf">getVideoStream</span><span class="o">(</span><span class="kt">long</span> <span class="n">videoId</span><span class="o">)</span>
        <span class="kd">throws</span> <span class="n">FailedToGetVideoStreamException</span><span class="o">,</span> <span class="n">VideoLinkRequestException</span> <span class="o">{</span>
     <span class="k">try</span> <span class="o">{</span>
         <span class="kd">final</span> <span class="n">HttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultHttpClient</span><span class="o">();</span>
         <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
         <span class="kd">final</span> <span class="n">HttpResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
         <span class="k">if</span> <span class="o">((</span><span class="n">response</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getEntity</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">))</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nf">FailedToGetVideoStreamException</span><span class="o">(</span><span class="s">&quot;Failed to get video stream&quot;</span><span class="o">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">FailedToGetVideoStreamException</span><span class="o">(</span><span class="s">&quot;Failed to get video stream&quot;</span><span class="o">);</span>
         <span class="n">lastContentLength</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getEntity</span><span class="o">().</span><span class="na">getContentLength</span><span class="o">();</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="na">getEntity</span><span class="o">().</span><span class="na">getContent</span><span class="o">();</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">URISyntaxException</span> <span class="n">use</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nf">VideoLinkRequestException</span><span class="o">(</span><span class="s">&quot;URI creation failed : &quot;</span> <span class="o">+</span> <span class="n">use</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">VideoLinkRequestException</span><span class="o">(</span><span class="s">&quot;URI creation failed : &quot;</span> <span class="o">+</span> <span class="n">use</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ClientProtocolException</span> <span class="n">cpe</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nf">VideoLinkRequestException</span><span class="o">(</span><span class="s">&quot;Client call failed : &quot;</span> <span class="o">+</span> <span class="n">cpe</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">VideoLinkRequestException</span><span class="o">(</span><span class="s">&quot;Client call failed : &quot;</span> <span class="o">+</span> <span class="n">cpe</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
     <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">ioe</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nf">VideoLinkRequestException</span><span class="o">(</span><span class="s">&quot;Connection failed : &quot;</span> <span class="o">+</span> <span class="n">ioe</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">VideoLinkRequestException</span><span class="o">(</span><span class="s">&quot;Connection failed : &quot;</span> <span class="o">+</span> <span class="n">ioe</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
@@ -774,7 +774,7 @@
 4
 5
 6
-7</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="o">{</span>
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getId</span><span class="o">();</span>
     <span class="kt">void</span> <span class="nf">setNextTask</span><span class="o">(</span><span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">task</span><span class="o">);</span>
     <span class="kd">public</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Parames</span><span class="o">&gt;</span> <span class="nf">getNextTask</span><span class="o">();</span>
@@ -787,7 +787,7 @@
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PerformHandler</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span> <span class="o">{</span>
+4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PerformHandler</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPerfomed</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="n">Result</span> <span class="n">result</span><span class="o">,</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">nextTask</span><span class="o">);</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">,</span> <span class="n">String</span> <span class="n">description</span><span class="o">);</span>
 <span class="o">}</span>
@@ -827,7 +827,7 @@
 31
 32
 33
-34</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TaskInQueue</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AsyncTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Void</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span>
+34</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TaskInQueue</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">AsyncTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Void</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span>
                                          <span class="kd">implements</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">taskId</span><span class="o">;</span>
@@ -848,12 +848,12 @@
         <span class="n">listener</span><span class="o">.</span><span class="na">onPerformed</span><span class="o">(</span><span class="n">taskId</span><span class="o">,</span> <span class="n">result</span><span class="o">,</span> <span class="n">nextTask</span><span class="o">);</span>
     <span class="o">}</span>
 
-    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">int</span> <span class="n">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">taskId</span><span class="o">;</span> <span class="o">}</span>
+    <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="n">taskId</span><span class="o">;</span> <span class="o">}</span>
 
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNextTask</span><span class="o">(</span><span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">nextTask</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">nextTask</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Next task is already set&quot;</span><span class="o">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Next task is already set&quot;</span><span class="o">);</span>
         <span class="k">this</span><span class="o">.</span><span class="na">nextTask</span> <span class="o">=</span> <span class="n">nextTask</span><span class="o">;</span>
     <span class="o">}</span>
 
@@ -957,7 +957,7 @@
 91
 92
 93
-94</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">TasksQueue</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span>
+94</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">TasksQueue</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;</span>
                 <span class="kd">implements</span> <span class="n">PerformHandler</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">,</span> <span class="n">Result</span><span class="o">&gt;,</span> <span class="n">Runnable</span> <span class="o">{</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&quot;TasksQueue&quot;</span><span class="o">;</span>
@@ -1002,14 +1002,14 @@
                 <span class="n">onError</span><span class="o">(</span><span class="n">e</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
                 <span class="n">finish</span><span class="o">();</span>
             <span class="o">}</span>
-        <span class="k">else</span> <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Queue is empty&quot;</span><span class="o">);</span>
+        <span class="k">else</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Queue is empty&quot;</span><span class="o">);</span>
     <span class="o">}</span>
 
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPerfomed</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="n">Result</span> <span class="n">result</span><span class="o">,</span> <span class="n">HasNextTask</span><span class="o">&lt;</span><span class="n">Params</span><span class="o">&gt;</span> <span class="n">nextTask</span><span class="o">)</span> <span class="o">{</span>
           <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&quot;Task &quot;</span> <span class="o">+</span> <span class="n">taskId</span> <span class="o">+</span> <span class="s">&quot; performed&quot;</span><span class="o">);</span>
         <span class="k">if</span> <span class="o">(</span><span class="n">taskId</span> <span class="o">!=</span> <span class="n">currentTask</span><span class="o">)</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Tasks queue desynchronized&quot;</span><span class="o">);</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="o">(</span><span class="s">&quot;Tasks queue desynchronized&quot;</span><span class="o">);</span>
         <span class="n">running</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="n">nextTask</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
@@ -1097,7 +1097,7 @@
 41
 42
 43
-44</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">protected</span> <span class="kd">final</span> <span class="n">TasksQueue</span> <span class="n">secondaryTasks</span><span class="o">;</span>
+44</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">protected</span> <span class="kd">final</span> <span class="n">TasksQueue</span> <span class="n">secondaryTasks</span><span class="o">;</span>
 
 <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">TASK_1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">TASK_2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
@@ -1109,12 +1109,12 @@
 
         <span class="c1">// здесь можно переопределить createTask</span>
 
-        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onPerfomed</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="o">...</span> <span class="n">result</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JSONException</span> <span class="o">{</span>
+        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onPerfomed</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="o">...</span> <span class="n">result</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">JSONException</span> <span class="o">{</span>
             <span class="kd">super</span><span class="o">.</span><span class="na">onPerfomed</span><span class="o">(</span><span class="n">taskId</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
             <span class="n">onSecondaryTaskPerfomed</span><span class="o">(</span><span class="n">taskId</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
         <span class="o">}</span>
 
-        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onError</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">message</span> <span class="o">+</span> <span class="s">&quot; / &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getLocalizedMessage</span><span class="o">());</span>
             <span class="n">Dialogs</span><span class="o">.</span><span class="na">makeExceptionToast</span><span class="o">(</span><span class="n">ItemsListActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
         <span class="o">}</span>
@@ -1135,16 +1135,16 @@
 
 <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onSecondaryTaskPerfomed</span><span class="o">(</span><span class="kt">int</span> <span class="n">taskId</span><span class="o">,</span> <span class="o">...</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">switch</span> <span class="o">(</span><span class="n">taskId</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">case</span> <span class="nl">TASK_1:</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
-        <span class="k">case</span> <span class="nl">TASK_2:</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
-        <span class="k">case</span> <span class="nl">TASK_3:</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+        <span class="k">case</span> <span class="n">TASK_1</span><span class="o">:</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+        <span class="k">case</span> <span class="n">TASK_2</span><span class="o">:</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+        <span class="k">case</span> <span class="n">TASK_3</span><span class="o">:</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
         <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </pre></div>
 </td></tr></table></div></div>
 <p>Кстати, благодаря интерфейсу <code>Runnable</code> такие очереди можно запускать в отдельном потоке:</p>
-<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">secondaryTasks</span><span class="o">,</span> <span class="s">&quot;Tasks Queue&quot;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+<div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">secondaryTasks</span><span class="o">,</span> <span class="s">&quot;Tasks Queue&quot;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
 </pre></div>
 </td></tr></table></div></div>
 <ul>
@@ -1198,7 +1198,7 @@
 17
 18
 19
-20</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreateContextMenu</span><span class="o">(</span><span class="n">ContextMenu</span> <span class="n">menu</span><span class="o">,</span> <span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="n">ContextMenuInfo</span> <span class="n">menuInfo</span><span class="o">)</span> <span class="o">{</span>
+20</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreateContextMenu</span><span class="o">(</span><span class="n">ContextMenu</span> <span class="n">menu</span><span class="o">,</span> <span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="n">ContextMenuInfo</span> <span class="n">menuInfo</span><span class="o">)</span> <span class="o">{</span>
     <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
     <span class="kd">final</span> <span class="n">AdapterView</span><span class="o">.</span><span class="na">AdapterContextMenuInfo</span> <span class="n">info</span> <span class="o">=</span> <span class="n">extractMenuInfo</span><span class="o">(</span><span class="n">menuInfo</span><span class="o">);</span>
     <span class="kd">final</span> <span class="n">QuickAction</span> <span class="n">quickAction</span> <span class="o">=</span>
@@ -1210,8 +1210,8 @@
     <span class="n">QuickAction</span> <span class="n">qa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QuickAction</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
     <span class="n">qa</span><span class="o">.</span><span class="na">addActionItem</span><span class="o">(</span><span class="n">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">...),</span>
                      <span class="n">getResources</span><span class="o">().</span><span class="na">getDrawable</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">...),</span>
-            <span class="k">new</span> <span class="nf">QActionClickListener</span><span class="o">()</span> <span class="o">{</span>
-                <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="n">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="n">QActionItem</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">new</span> <span class="n">QActionClickListener</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="n">View</span> <span class="n">v</span><span class="o">,</span> <span class="n">QActionItem</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
                     <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
                 <span class="o">}</span>
             <span class="o">});</span>
@@ -1241,7 +1241,7 @@
 5
 6
 7
-8</pre></div></td><td class="code"><div class="highlight"><pre><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">format</span><span class="o">(</span><span class="n">String</span> <span class="n">source</span><span class="o">,</span> <span class="n">String</span><span class="o">...</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">format</span><span class="o">(</span><span class="n">String</span> <span class="n">source</span><span class="o">,</span> <span class="n">String</span><span class="o">...</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">source</span><span class="o">;</span>
     <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
     <span class="k">while</span> <span class="o">(</span><span class="n">pos</span> <span class="o">&lt;</span> <span class="n">params</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
@@ -1286,7 +1286,7 @@
     <div id="nwao-jump-to-top"><a href="#top" title="Наверх">Наверх</a></div>
 
     <footer id="nwao-footer">
-        <p>Copyright &copy; 2014 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
+        <p>Copyright &copy; 2017 Ulric Wilfred; запитано <a href="http://mynt.mirroredwhite.com/" title="mynt">mynt</a> и <a href="http://input.fontbureau.com/" title="шрифты Input">шрифтами Input</a></p>
     </footer>
 
     <!--
