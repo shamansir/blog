@@ -2,6 +2,6 @@
 .cache
 .sass-cache
 .fonts
-config.codekit
+config.codekit*
 en/_posts/*.html
 ru/_posts/*.html
