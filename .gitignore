@@ -1,5 +1,5 @@
 .site
 .cache
 .fonts
-config.codekit
+config.codekit*
 shared/
