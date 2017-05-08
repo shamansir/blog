@@ -2,7 +2,7 @@
 layout: post.html
 title: "Modern Binary Reverse-Engineering with node.js, for Elm, or Why We Really Need Elm Playgrounds"
 datetime: 07 Apr 2017 14:32
-tags: [ elm, functional, parsers ]
+tags: [ elm, functional-programming, parsers, javascript ]
 excerpt: Kind of a problem for the developers of these plugins, is the fact that for the moment Elm has no reflection (a way to get a type of an entity) and tends not to have it at all. By itself, having no reflection is rather a good thing, usually it complicates the language syntax and/or libraries a lot. But the detailed types information is needed to implement helpful things in editors—nice type hints, nice auto-completion etc...
 ---
 

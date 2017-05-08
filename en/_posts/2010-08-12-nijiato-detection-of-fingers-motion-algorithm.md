@@ -2,7 +2,7 @@
 layout: post.html
 title: "Way of the Rainbow: Fingers Motion Detection Algorythm Based on a Colors Differentiation (Driven by LISP)"
 datetime: 12 Aug 2010 15:38
-tags: [ lisp, algorithm, nijiato, vision ]
+tags: [ lisp, computer-vision, functional-programming ]
 ---
 
 I am crazy a little bit, so in my spare time I've started to study Lisp and, to make my studying more interesting, I've tried to make a realization of my own algorithm. "Algorythm", for sure, is spoken too loudly, it has no matrix multiplication, no arrays sorting, no bubbles and no hard work in optimization (even no colors calibration, I sorry myself with the fact that this version if for learning). And yes, there are a lot of pictures in the article, and in the end there even will be a video.

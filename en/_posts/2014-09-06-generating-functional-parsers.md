@@ -2,7 +2,7 @@
 layout: post.html
 title: "Generating Functional Parsers"
 datetime: 06 Sep 2014 23:17
-tags: [ javascript, functions, parsers ]
+tags: [ javascript, functional-programming, parsers ]
 excerpt: Are you interested in a functional approach to parsers generation? Well, I'm sure you do, even if, at your side, you're not sure what it means exactly. It's just because anything that connects parsers and functional programming in practice can be nothing but joyful...
 ---
 

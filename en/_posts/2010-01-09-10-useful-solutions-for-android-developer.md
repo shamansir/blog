@@ -2,7 +2,7 @@
 layout: post.html
 title: 10 Useful Solutions for Android Developer
 datetime: 09 Jan 2010 11:42
-tags: [ java, android, vimeoid, mobile-dev ]
+tags: [ java, android ]
 ---
 
 This post contains several useful solutions for Android developers. If you are starting to dive in it, I think the detailed description of the problems I solved will help you in your Android adventures.

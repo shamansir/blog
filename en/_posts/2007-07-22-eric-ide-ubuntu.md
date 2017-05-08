@@ -2,7 +2,7 @@
 layout: post.html
 title: Eric IDE 4.0.1 in Ubuntu 7.04
 datetime: 22 Jul 2007 18:05
-tags: [ eric, ide, python, ubuntu ]
+tags: [ eric-ide, python, ubuntu ]
 ---
 
 [Eric](http://www.die-offenbachs.de/eric/index.html) – is very good IDE for [Python](http://www.python.org/). And [just yesterday](http://www.die-offenbachs.de/eric/eric-news.html) the new [4.0.1](http://sourceforge.net/project/showfiles.php?group_id=119070&package_id=233329) version was released, but in repositories the last version for the moment is 3.9, and I found myself missing those good old times when I've compiled packages form sources recently. So I am presenting you a listing of things to be done just in case, to prevent you from meeting the errors that visited me through the process of compilation. Something from this stuff is oriented on new versions :). Just because it was installed on clean Ubuntu - everything must be adequate... If I missed something, please report.

@@ -2,7 +2,7 @@
 layout: post.html
 title: Разбирая фонтан на Renderscript
 datetime: 11 Feb 2011 10:26
-tags: [ android, renderscript, mobile-dev, translation ]
+tags: [ android, renderscript ]
 ---
 
 **Примечание**: Это не авторская статья, но мой вольный перевод [статьи из далёкого 2009 года](http://www.inter-fuser.com/2009/11/android-renderscript-more-info-and.html), в которой написавший её [Neil Davies](http://www.inter-fuser.com/) знакомится с Renderscript и разбирает (не запуская) код из примера Fountain, выдранного из исходников Android. Что такое Renderscript и как он относится к Андроидам подробно рассказано [здесь](http://habrahabr.ru/blogs/android_development/113535/); вкратце - это возможность нативной (без каких-либо прослоек) работы с 3D-механизмами мобильных систем на Android. Вот, кстати, [исходники этого самого примера](http://www.andrada-dev.org/android-sdk-mac_x86/samples/android-Honeycomb/RenderScript/Fountain/src/com/android/fountain/) в Honeycomb. Я осознаю, что эта статья не содержит ничего большего чем  разбор исходников, но это пока единственная статья на тему которая, возможно, поможет кому-то легче вникнуть в эту самую тему, чтобы быть в теме... короче:

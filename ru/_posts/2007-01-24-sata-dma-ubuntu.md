@@ -2,7 +2,7 @@
 layout: post.html
 title: SATA, DMA и странности Ubuntu
 datetime: 24 Jan 2007 19:52
-tags: [ sata, dma, ubuntu, administration ]
+tags: [ sata, dma, ubuntu ]
 ---
 
 Сегодня ставили [Ubuntu 6.06 LTS](http://ubuntuguide.org/wiki/Ubuntu:Edgy) на `SATA`-шный винт. Она, как ни странно, злобно свалилась. `Live CD` долго пытался подмаунтить винт, потом вроде подмаунтил но при загрузке ядра начал кидаться `buffer I/O Read Error` и бла-бла-бла.

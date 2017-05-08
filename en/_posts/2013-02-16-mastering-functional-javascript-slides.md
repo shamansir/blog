@@ -2,7 +2,7 @@
 layout: post.html
 title: "Mastering Functional JavaScript Lecture Slides"
 datetime: 16 Feb 2013 22:23
-tags: [ javascript, lecture, web-dev, functions ]
+tags: [ javascript, functional-programming ]
 ---
 
 In JavaScript, like, say, in Python, functions are also objects. It gives developer the opportunity to write pure (or not so, since there are no native monads support ;) ) functional code. Most people among us do easily forget about this fact, but it is still true and, what's truly great, it was true from the start.

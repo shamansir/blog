@@ -2,7 +2,7 @@
 layout: post.html
 title: OOP &amp; JavaScript
 datetime: 19 Aug 2007 02:29
-tags: [ javascript, web-dev ]
+tags: [ javascript ]
 ---
 
 In [previous article](../16-useful-solutions-for-javascript) I have presented you a small example of code, which allows you to use the three pillars of OOP theory in JavaScript. The way it is accomplished is a little tricky, but I have afforded mysefl to modify `extend` function a bit, to give a possibility of having a static constants for classes (in fact, the constants in result are just conventional, of course). Here I will provide a special example for it.

@@ -2,7 +2,7 @@
 layout: post.html
 title: Моделируем солнечную систему в fluxus
 datetime: 6 Dec 2010 21:38
-tags: [ fluxus, racket, scheme, livecoding, graphics, lecture ]
+tags: [ fluxus, opengl, scheme, racket, functional-programming ]
 ---
 
 Я [уже писал](?post-about-fluxus) про [fluxus](http://www.pawfal.org/fluxus/), систему livecoding и, по совместительству, 3D-прототипирования. Теперь хочу показать его возможности и как им можно пользоваться в целях, близких к псевдонаучным. Например, можно смоделировать и уместить упрощённую солнечную систему всего в 125 строк (это достоинство языка [Racket](http://racket-lang.org/) с графическими стероидами, развития PLT Scheme, который лежит в основе fluxus). Вот как будет выглядеть результат:

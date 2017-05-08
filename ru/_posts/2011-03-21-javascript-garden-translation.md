@@ -2,7 +2,7 @@
 layout: post.html
 title: JavaScript Гарден на русском
 datetime: 21 Mar 2011 12:08
-tags: [ javascript, translation, web-dev ]
+tags: [ javascript ]
 ---
 
 Стараниями четырёх людей мы перевели [JavaScript Garden](http://bonsaiden.github.com/JavaScript-Garden/) на русский язык!

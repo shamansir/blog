@@ -2,7 +2,7 @@
 layout: post.html
 title: На клиенте! Получить XML! Получить XSL! Сделать XHTML! Марш!
 datetime: 18 Sep 2009 11:41
-tags: [ xml, xslt, javascript, web-dev ]
+tags: [ xml, xslt, javascript ]
 ---
 
 **(X-Task: "On your Client! Get XML! Get XSL! Do XHTML! Go!")**

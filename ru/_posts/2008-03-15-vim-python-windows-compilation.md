@@ -2,7 +2,7 @@
 layout: post.html
 title: "[g]Vim в режиме Python: Рекомпиляция в Windows"
 datetime: 15 Mar 2008 17:32
-tags: [ vim, gvim, windows, python, ide ]
+tags: [ gvim, python ]
 ---
 
 ### Введение

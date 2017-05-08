@@ -2,7 +2,7 @@
 layout: post.html
 title: "[g]Vim in Python mode : Recompilation in Windows"
 datetime: 15 Mar 2008 17:32
-tags: [ vim, gvim, windows, python, ide ]
+tags: [ gvim, python ]
 ---
 
 Vim editor is best known between the developers who work on Unix systems -- it's a `emacs` competitor, something to call IDE-in-a-terminal -- this editor, with proper dexterity and tuning (it seems to me, the amount of required dexterity is a little less and the required efforts for tuning are more obvious than in `emacs`, but the last has the real powerful functionality -- it's a programmer's choice what to use) can make most of development processes faster and easier not in the expense of such advantages like auto-completion and project navigation. But if you plan to use it for Python development in Windows with all the advantages like these -- you''ll need to make some efforts, and the main effort is recompilation...

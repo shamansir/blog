@@ -2,7 +2,7 @@
 layout: post.html
 title: Sandwitch Tumblr Theme
 datetime: 2 Dec 2010 19:31
-tags: [ tumblr, theme, sandwitch ]
+tags: [ tumblr ]
 ---
 
 Have created [Tumblr theme](http://www.tumblr.com/theme/18012) named [Sandwitch](http://uncyclopedia.wikia.com/wiki/Sandwitch). I was going to make tumblr-blog look like [showdown blog](http://code.google.com/p/showdown-blog/)-engine style I've made, and seems the result in the end is even better!

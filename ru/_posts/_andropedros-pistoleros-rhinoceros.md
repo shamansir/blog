@@ -2,7 +2,7 @@
 layout: blog-ru
 title: Смесь андрода с носорогом
 datetime:
-tags: android,rhino,mozilla rhino,javascript,javascript engine
+tags: android,rhino,javascript
 ---
 
 Давно не писал коротеньких статей, да и такие обычно сразу пролистывают до блоков с картинками и кодом,

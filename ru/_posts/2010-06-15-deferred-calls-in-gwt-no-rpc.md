@@ -2,7 +2,7 @@
 layout: post.html
 title: Deferred-вызовы серверного API в GWT (без RPC)
 datetime: 15 Jun 2010 09:32
-tags: [ deferred, gwt, java, json, requestbuilder ]
+tags: [ gwt, java, json ]
 ---
 
 **Deferred** - _зд._ термин, который применяется для описания **вложенных асинхронных вызовов**, см. например [Deferred в Javascript](http://javascript.ru/unsorted/async/deferred-deep) и конкретно [Deferred в Dojo framework](http://api.dojotoolkit.org/jsdoc/1.3/dojo.Deferred). _Не путать с Deferred Binding_.

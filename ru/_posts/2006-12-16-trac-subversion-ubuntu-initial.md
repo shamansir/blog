@@ -2,7 +2,7 @@
 layout: post.html
 title: "Trac + Subversion + Ubuntu: интересная забава на день"
 datetime: 16 Dec 2006 01:47
-tags: [ trac, subversion, ubuntu, administration ]
+tags: [ trac, subversion, ubuntu ]
 ---
 
 Приветствую всех заинтересованных. Ведь вас, наверняка, не очень много :).

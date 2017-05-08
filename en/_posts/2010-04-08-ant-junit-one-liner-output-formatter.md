@@ -2,7 +2,7 @@
 layout: post.html
 title: Ant JUnit Nice Output Formatter
 datetime: 08 Apr 2010 19:32
-tags: [ ant, java, junit, web-dev ]
+tags: [ ant, java, junit ]
 ---
 
 I've seached for nice Apache Ant formatter which do not writes full stack trace in console/file and just writes what methods are passed, what methods are failed, and if failed - where and why they failed (and only trace about methods from test class). I haven't found any. So I've written one.

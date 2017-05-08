@@ -2,7 +2,7 @@
 layout: post.html
 title: "Easy as Sandwich: Blog Engine in JavaScript and XML"
 datetime: 17 Nov 2010 22:06
-tags: [ javascript, xml, blog, web-dev ]
+tags: [ javascript, xml ]
 ---
 
 Say you suddenly needed a personal blog. I already have some puny free hosting, and it hosting is puny for real, so it has no PHP and it even has no possibilities to set up any server-side at all. Or even worse, you have only a Dropbox account and in this very moment, suddenly, the personal blog is needed.

@@ -2,7 +2,7 @@
 layout: post.html
 title: Java + JSON
 datetime: 25 May 2008
-tags: [ java, json, javascript, web-dev ]
+tags: [ java, json, javascript ]
 ---
 
 ### Введение
