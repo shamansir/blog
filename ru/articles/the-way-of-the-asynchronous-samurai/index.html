@@ -313,19 +313,19 @@
         <dd>
             <div class="nwao-tags">
                 
-                    <a href="/blog/ru/tags/javascript/" rel="tag"
-                       title="Статьи с меткой ''">javascript</a>
+                    <a href="/blog/ru/tags/functional-programming/" rel="tag"
+                       title="Статьи с меткой ''">functional-programming</a>
                     
-                        <span class="tag-count">15</span>
+                        <span class="tag-count">7</span>
                     
                     
                         <span class="nwao-comma">,</span>
                     
                 
-                    <a href="/blog/ru/tags/web-dev/" rel="tag"
-                       title="Статьи с меткой ''">web-dev</a>
+                    <a href="/blog/ru/tags/javascript/" rel="tag"
+                       title="Статьи с меткой ''">javascript</a>
                     
-                        <span class="tag-count">21</span>
+                        <span class="tag-count">15</span>
                     
                     
                 
@@ -572,7 +572,7 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>По сути это весь необходимый код механизма событий и он, по-моему, довольно приличный. Так что, без лишних рассуждений, приведём пример использования:  </p>
+<p>По сути это весь необходимый код механизма событий и он, по-моему, довольно приличный. Так что, без лишних рассуждений, приведём пример использования:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -695,7 +695,7 @@
 <li><a href="http://importantshock.wordpress.com/2009/01/18/jquery-is-a-monad/">JQuery is monad</a></li>
 <li><a href="http://stackoverflow.com/q/5569805/167262">Conjuring JQuery Deferred with monadic incantations</a></li>
 <li><a href="http://sovety.blogspot.com/2009/09/haskell-horrors.html">(Новичковые) ужасы Хаскеля</a></li>
-<li><a href="http://blog.tupil.com/look-ma-no-callbacks/">Look Ma, No Callbacks!</a><br></li>
+<li><a href="http://blog.tupil.com/look-ma-no-callbacks/">Look Ma, No Callbacks!</a></li>
 <li><a href="http://blog.getify.com/native-javascript-sync-async/">Native Javascript: sync and async</a></li>
 <li><a href="http://codereview.stackexchange.com/questions/8055/java-monad-implementation">Java Monad Implementation</a></li>
 </ul>
@@ -847,7 +847,7 @@
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>А функция, которая эмулирует поведение <code>||</code>, выглядит примерно так:  </p>
+<p>А функция, которая эмулирует поведение <code>||</code>, выглядит примерно так:</p>
 <div class="code"><div><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -1049,7 +1049,7 @@
 <pre><code>Executed: one
 Executed: two
 Executed: three
-Error: Not exist  
+Error: Not exist
 </code></pre>
 <p>Или вот, очень актуальная задача, генератор парсеров с правилами и блекджеком. Такой, чтобы можно было сказать…:</p>
 
@@ -1147,7 +1147,7 @@ Error: Not exist
 <span class="p">}</span>
 </pre></div>
 </td></tr></table></div></div>
-<p>Именно функция <code>safe</code> подавляет ошибки, брошенные при несовпадении, например, от <code>match</code>, перехватывая их, например, для <code>choice</code>, который при неудаче просто переходит к следующему варианту.  </p>
+<p>Именно функция <code>safe</code> подавляет ошибки, брошенные при несовпадении, например, от <code>match</code>, перехватывая их, например, для <code>choice</code>, который при неудаче просто переходит к следующему варианту.</p>
 
 <p>Минус такого подхода в том, что эта самая блуждающая переменная результата при выбросе исключения теряется. Вернее, каждый раз перед потенциальной неудачей, её нужно сохранять (например, передавать в <code>failed</code>). То есть, если вы собираетесь использовать сгенерированный парсер чтобы подсвечивать текст в редакторе (например, маркдаун) на лету, то вы могли бы как раз и опираться на этот эксепшн для сборки табика <em>code completion</em>. Но предыдущий-то код тоже надо подсвечивать, а прошлый результат парсинга мог и устареть.</p>
 

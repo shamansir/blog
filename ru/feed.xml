@@ -6,7 +6,7 @@
         <link rel="alternate" href="http://shamansir.github.io/blog/ru/" />
         <link rel="self" href="http://shamansir.github.io/blog/ru/feed.xml" type="application/atom+xml" />
         <id>http://shamansir.github.io/blog/ru/</id>
-        <updated>2017-05-08T20:45:46Z</updated>
+        <updated>2017-05-08T21:18:21Z</updated>
 
         <author>
             <name>Ulric Wilfred</name>
@@ -896,7 +896,7 @@ function fire_error(err) {
 }
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;По сути это весь необходимый код механизма событий и он, по-моему, довольно приличный. Так что, без лишних рассуждений, приведём пример использования:  &lt;/p&gt;
+&lt;p&gt;По сути это весь необходимый код механизма событий и он, по-моему, довольно приличный. Так что, без лишних рассуждений, приведём пример использования:&lt;/p&gt;
 &lt;pre&gt;&lt;code data-lang=&#34;javascript&#34;&gt;
 &amp;#x2F;&amp;#x2F; некий proxy к серверному API,
 &amp;#x2F;&amp;#x2F; делает только асинхронные вызовы
@@ -980,7 +980,7 @@ MyApp.prototype.on_error = function(err) {
 &lt;li&gt;&lt;a href=&#34;http://importantshock.wordpress.com/2009/01/18/jquery-is-a-monad/&#34;&gt;JQuery is monad&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/q/5569805/167262&#34;&gt;Conjuring JQuery Deferred with monadic incantations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://sovety.blogspot.com/2009/09/haskell-horrors.html&#34;&gt;(Новичковые) ужасы Хаскеля&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.tupil.com/look-ma-no-callbacks/&#34;&gt;Look Ma, No Callbacks!&lt;/a&gt;&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.tupil.com/look-ma-no-callbacks/&#34;&gt;Look Ma, No Callbacks!&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://blog.getify.com/native-javascript-sync-async/&#34;&gt;Native Javascript: sync and async&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://codereview.stackexchange.com/questions/8055/java-monad-implementation&#34;&gt;Java Monad Implementation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1105,7 +1105,7 @@ function smart_and() {
 }
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;А функция, которая эмулирует поведение &lt;code&gt;||&lt;/code&gt;, выглядит примерно так:  &lt;/p&gt;
+&lt;p&gt;А функция, которая эмулирует поведение &lt;code&gt;||&lt;/code&gt;, выглядит примерно так:&lt;/p&gt;
 &lt;pre&gt;&lt;code data-lang=&#34;javascript&#34;&gt;
 function smart_or() {
     var fs = arguments, &amp;#x2F;&amp;#x2F; массив отложенных функций
@@ -1243,7 +1243,7 @@ successive_read(read_file(&amp;#x27;one&amp;#x27;),
 &lt;pre&gt;&lt;code&gt;Executed: one
 Executed: two
 Executed: three
-Error: Not exist  
+Error: Not exist
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Или вот, очень актуальная задача, генератор парсеров с правилами и блекджеком. Такой, чтобы можно было сказать…:&lt;/p&gt;
 
@@ -1305,7 +1305,7 @@ function safe(f, cb) {
 }
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Именно функция &lt;code&gt;safe&lt;/code&gt; подавляет ошибки, брошенные при несовпадении, например, от &lt;code&gt;match&lt;/code&gt;, перехватывая их, например, для &lt;code&gt;choice&lt;/code&gt;, который при неудаче просто переходит к следующему варианту.  &lt;/p&gt;
+&lt;p&gt;Именно функция &lt;code&gt;safe&lt;/code&gt; подавляет ошибки, брошенные при несовпадении, например, от &lt;code&gt;match&lt;/code&gt;, перехватывая их, например, для &lt;code&gt;choice&lt;/code&gt;, который при неудаче просто переходит к следующему варианту.&lt;/p&gt;
 
 &lt;p&gt;Минус такого подхода в том, что эта самая блуждающая переменная результата при выбросе исключения теряется. Вернее, каждый раз перед потенциальной неудачей, её нужно сохранять (например, передавать в &lt;code&gt;failed&lt;/code&gt;). То есть, если вы собираетесь использовать сгенерированный парсер чтобы подсвечивать текст в редакторе (например, маркдаун) на лету, то вы могли бы как раз и опираться на этот эксепшн для сборки табика &lt;em&gt;code completion&lt;/em&gt;. Но предыдущий-то код тоже надо подсвечивать, а прошлый результат парсинга мог и устареть.&lt;/p&gt;
 
