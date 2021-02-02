@@ -4,6 +4,12 @@
 - Rhino in Android
 - JavaScript modules pattern
 - OpenCV processing
+- A-Frame
+- Tron
+- Kvant
+- PureScript CheatSheet https://twitter.com/shaman_sir/status/962696001139232768
+- Noodle Reasoning
+- Elm Data Types visualisation
 - Jamim
 - /Nijiato/
 - /sametimed/
