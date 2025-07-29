@@ -32,3 +32,20 @@ If you (ever) want to run this locally, you'll need to:
 
         cd ./blog
         make serve
+
+## Development under NixOS
+
+From `NixOS/nixpkgs#71178`:
+
+1. `nix-shell`
+2. `virtualenv venv`
+3. `source ./venv/bin/activate`
+  Some examples:
+
+* `which python`
+* `which pip`
+* `pip install ipython`
+* `which ipython`
+* `echo "request" > requirements.txt`
+* `pip install -r requirements.txt`
+* `ipython`
